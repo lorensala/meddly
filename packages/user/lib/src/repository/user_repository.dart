@@ -22,7 +22,8 @@ class UserRepository {
   final UserCache _cache;
 
   /// Watches the user from the cache.
-  Stream<User> get user => _cache.user().map((u) => u.toDomain());
+  Stream<Option<User>> get user =>
+      _cache.user.map((user) => user == null ? none() : some(user.toDomain()));
 
   /// Creates a user
   ///

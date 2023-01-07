@@ -14,11 +14,15 @@ class UserCache {
   ///
   /// Returns a [Stream] of [UserDto]s.
   /// Throws a [UserCacheException] if the operation was not successful.
-  Stream<UserDto> user() {
+  Stream<UserDto?> get user {
     try {
       return _box.watch().map(
-            (event) => UserDto.fromJson(event.value as Map<String, dynamic>),
-          );
+        (event) {
+          return event.value == null
+              ? null
+              : UserDto.fromJson(event.value as Map<String, dynamic>);
+        },
+      );
     } catch (e) {
       throw UserCacheException();
     }
