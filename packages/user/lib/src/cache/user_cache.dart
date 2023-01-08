@@ -12,7 +12,7 @@ class UserCache {
 
   /// Watches the user from the cache.
   ///
-  /// Returns a [Stream] of [UserDto]s.
+  /// Returns a [Stream] of [UserDto]s.\
   /// Throws a [UserCacheException] if the operation was not successful.
   Stream<UserDto?> get user {
     try {
@@ -30,9 +30,9 @@ class UserCache {
 
   /// Reads the user from the cache.
   ///
-  /// Returns null if the user is not in the cache.
-  /// Returns the [UserDto] if the user is in the cache.
-  /// Throws a [UserCacheException] if the operation was not successful.
+  /// Returns null if the user is not in the cache.\
+  /// Returns the [UserDto] if the user is in the cache.\
+  /// Throws a [UserCacheException] if the operation was not successful.\
   /// Throws a [UserSerializationException] if the operation was not successful.
   UserDto? read() {
     final Map<String, dynamic>? data;
@@ -57,8 +57,16 @@ class UserCache {
   ///
   /// Throws a [UserCacheException] if the operation was not successful.
   Future<void> write(UserDto user) async {
+    late final Map<String, dynamic> userJson;
+
     try {
-      await _box.put(user.id, user.toJson());
+      userJson = user.toJson();
+    } catch (e) {
+      throw UserSerializationException();
+    }
+
+    try {
+      await _box.put(user.id, userJson);
     } catch (e) {
       throw UserCacheException();
     }

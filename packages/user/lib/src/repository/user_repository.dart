@@ -27,7 +27,7 @@ class UserRepository {
 
   /// Creates a user
   ///
-  /// Returns a [Unit] if the operation was successful.
+  /// Returns a [Unit] if the operation was successful.\
   /// Throws a [UserFailure] if the operation was not successful.
   Future<Either<UserFailure, Unit>> createUser(User user) async {
     try {
@@ -68,7 +68,7 @@ class UserRepository {
 
   /// Updates a user
   ///
-  /// Returns a [Unit] if the operation was successful.
+  /// Returns a [Unit] if the operation was successful.\
   /// Throws a [UserFailure] if the operation was not successful.
   Future<Either<UserFailure, Unit>> deleteUser() async {
     try {
@@ -110,7 +110,7 @@ class UserRepository {
 
   /// Gets a user from cache.
   ///
-  /// Returns a [User] if the operation was successful.
+  /// Returns a [User] if the operation was successful.\
   /// Throws a [UserFailure] if the operation was not successful.
   Either<UserFailure, User> getUser() {
     try {
@@ -130,7 +130,7 @@ class UserRepository {
 
   /// Updates a user
   ///
-  /// Returns a [User] if the operation was successful.
+  /// Returns a [User] if the operation was successful.\
   /// Throws a [UserFailure] if the operation was not successful.
   Future<Either<UserFailure, Unit>> updateUser(User user) async {
     try {
