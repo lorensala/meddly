@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "238329653617",
+    "project_id": "meddly-fbcf7",
+    "storage_bucket": "meddly-fbcf7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238329653617:android:34dbaa555bc066a3ffaed0",
+        "android_client_info": {
+          "package_name": "com.example.meddly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238329653617-utlm1603lrsphunmgkr0t5cjjfuej55p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.meddly",
+            "certificate_hash": "17f657cbad5368c23dd949184f6df154523257a9"
+          }
+        },
+        {
+          "client_id": "238329653617-ut6ga92b5eb2v2c20l4pnh7u4omm5lh4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrcIwhcdU-mnBGWxBNG0-6TXAG1QFW8Ig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238329653617-ut6ga92b5eb2v2c20l4pnh7u4omm5lh4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "238329653617-4kh9u60strvlrhbp56ncsjup4uhh068p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.meddly"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238329653617:android:14a7611aeebada80ffaed0",
+        "android_client_info": {
+          "package_name": "com.lorenzosala.meddly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238329653617-ut6ga92b5eb2v2c20l4pnh7u4omm5lh4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrcIwhcdU-mnBGWxBNG0-6TXAG1QFW8Ig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238329653617-ut6ga92b5eb2v2c20l4pnh7u4omm5lh4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "238329653617-4kh9u60strvlrhbp56ncsjup4uhh068p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.meddly"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
