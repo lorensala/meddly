@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:meddly/user/bloc/bloc.dart';
-import 'package:meddly/user/widgets/user_body.dart';
+import 'package:meddly/features/user/user.dart';
 import 'package:user/user.dart';
 
 /// {@template user_page}
@@ -19,10 +18,17 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserBloc(GetIt.I.get<UserRepository>()),
-      child: const Scaffold(
-        body: UserView(),
+    return RepositoryProvider(
+      create: (context) => UserRepository(
+        api: GetIt.I.get<UserApi>(),
+        cache: GetIt.I.get<UserCache>(),
+      ),
+      child: BlocProvider(
+        create: (context) =>
+            UserBloc(RepositoryProvider.of<UserRepository>(context)),
+        child: const Scaffold(
+          body: UserView(),
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meddly/user/bloc/bloc.dart';
+import 'package:meddly/features/user/user.dart';
 
 /// {@template user_body}
 /// Body of the UserPage.
@@ -15,7 +15,7 @@ class UserBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
-        return const Center(child: Text(''));
+        return const Center(child: Text('User Body'));
       },
     );
   }

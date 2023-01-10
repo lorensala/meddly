@@ -33,9 +33,12 @@ class AuthRepository {
     });
   }
 
+  /// Get the current user.
+  User? get currentUser => _firebaseAuth.currentUser;
+
   /// Creates a new user with the provided [email] and [password].
   ///
-  /// Throws a [AuthFailure] if an exception occurs.
+  /// Throws a [AuthFailure] if an exception occurs.\
   /// Returns [bool] if the user is New.
   Future<Either<AuthFailure, bool>> registerWithEmailAndPassword({
     required String email,
@@ -59,7 +62,7 @@ class AuthRepository {
 
   /// Starts the Sign In with Google Flow.
   ///
-  /// Throws a [AuthFailure] if an exception occurs.
+  /// Throws a [AuthFailure] if an exception occurs.\
   /// Returns [bool] if the user is New.
   Future<Either<AuthFailure, bool>> logInWithGoogle() async {
     try {
@@ -122,7 +125,7 @@ class AuthRepository {
 
   /// Deletes the current user.
   ///
-  /// Throws a [AuthFailure] if an exception occurs.
+  /// Throws a [AuthFailure] if an exception occurs.\
   /// Returns [Unit] if the user is deleted.
   Future<Either<AuthFailure, Unit>> deleteUser() async {
     try {
@@ -137,7 +140,7 @@ class AuthRepository {
 
   /// Sends a password reset email to the provided [email].
   ///
-  /// Throws a [AuthFailure] if an exception occurs.
+  /// Throws a [AuthFailure] if an exception occurs.\
   /// Returns [Unit] if the email is sent.
   Future<Either<AuthFailure, Unit>> sendPasswordResetEmail({
     required String email,

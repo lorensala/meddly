@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "47.0.0"
+  _flutterfire_internals:
+    dependency: transitive
+    description:
+      name: _flutterfire_internals
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.12"
   analyzer:
     dependency: transitive
     description:
@@ -29,6 +36,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.9.0"
+  authentication:
+    dependency: "direct main"
+    description:
+      path: "packages/authentication"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   bloc:
     dependency: "direct main"
     description:
@@ -211,6 +225,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.2"
+  firebase_auth:
+    dependency: "direct main"
+    description:
+      name: firebase_auth
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.5"
+  firebase_auth_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_auth_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.11.7"
+  firebase_auth_web:
+    dependency: transitive
+    description:
+      name: firebase_auth_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.2.4"
   firebase_core:
     dependency: "direct main"
     description:
@@ -266,6 +301,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  formz:
+    dependency: "direct main"
+    description:
+      name: formz
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1"
   freezed:
     dependency: "direct dev"
     description:
@@ -301,6 +343,41 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  google_sign_in:
+    dependency: transitive
+    description:
+      name: google_sign_in
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.4.2"
+  google_sign_in_android:
+    dependency: transitive
+    description:
+      name: google_sign_in_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.1.4"
+  google_sign_in_ios:
+    dependency: transitive
+    description:
+      name: google_sign_in_ios
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.5.1"
+  google_sign_in_platform_interface:
+    dependency: transitive
+    description:
+      name: google_sign_in_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.0"
+  google_sign_in_web:
+    dependency: transitive
+    description:
+      name: google_sign_in_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.2"
   graphs:
     dependency: transitive
     description:
@@ -532,6 +609,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.1"
   shelf:
     dependency: transitive
     description:
@@ -667,6 +751,13 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/user"
+      relative: true
+    source: path
+    version: "0.1.0+1"
+  validators:
+    dependency: "direct main"
+    description:
+      path: "packages/validators"
       relative: true
     source: path
     version: "0.1.0+1"
