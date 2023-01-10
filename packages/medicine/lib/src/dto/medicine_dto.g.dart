@@ -10,14 +10,14 @@ _$_MedicineDto _$$_MedicineDtoFromJson(Map<String, dynamic> json) =>
     _$_MedicineDto(
       id: json['id'] as int,
       name: json['name'] as String,
-      startDate: DateTime.parse(json['startDate'] as String),
-      endDate: json['endDate'] == null
+      startDate: DateTime.parse(json['start_date'] as String),
+      endDate: json['end_date'] == null
           ? null
-          : DateTime.parse(json['endDate'] as String),
+          : DateTime.parse(json['end_date'] as String),
       stock: json['stock'] as int?,
-      stockWarning: json['stockWarning'] as int?,
+      stockWarning: json['stock_warning'] as int?,
       presentation: json['presentation'] as String,
-      dosisUnit: json['dosisUnit'] as String,
+      dosisUnit: json['dosis_unit'] as String,
       dosis: (json['dosis'] as num).toDouble(),
       interval: json['interval'] as int?,
       days: (json['days'] as List<dynamic>?)?.map((e) => e as int).toList(),
@@ -30,12 +30,12 @@ Map<String, dynamic> _$$_MedicineDtoToJson(_$_MedicineDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'startDate': instance.startDate.toIso8601String(),
-      'endDate': instance.endDate?.toIso8601String(),
+      'start_date': instance.startDate.toIso8601String(),
+      'end_date': instance.endDate?.toIso8601String(),
       'stock': instance.stock,
-      'stockWarning': instance.stockWarning,
+      'stock_warning': instance.stockWarning,
       'presentation': instance.presentation,
-      'dosisUnit': instance.dosisUnit,
+      'dosis_unit': instance.dosisUnit,
       'dosis': instance.dosis,
       'interval': instance.interval,
       'days': instance.days,

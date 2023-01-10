@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:user/src/cache/user_cache.dart';
-import 'package:user/src/core/failures.dart';
 import 'package:user/user.dart';
 
 /// {@template user_repository}
