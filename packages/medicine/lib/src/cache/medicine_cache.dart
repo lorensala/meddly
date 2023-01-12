@@ -1,6 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:medicine/src/core/core.dart';
 import 'package:medicine/src/dto/medicine_dto.dart';
+import 'package:rxdart/rxdart.dart';
 
 /// {@template medicine_cache}
 /// Cache for medicine operations.
@@ -26,7 +27,7 @@ class MedicineCache {
         }
       }
       return medicines;
-    });
+    }).startWith(readAll());
   }
 
   /// Writes a medicine to the cache.

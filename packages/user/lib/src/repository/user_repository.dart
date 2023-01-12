@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:user/user.dart';
 
 /// {@template user_repository}
@@ -20,8 +21,11 @@ class UserRepository {
   final UserCache _cache;
 
   /// Watches the user from the cache.
-  Stream<Option<User>> get user =>
-      _cache.user.map((user) => user == null ? none() : some(user.toDomain()));
+  Stream<Option<User>> get user => _cache.user
+      .map<Option<User>>(
+        (user) => user == null ? none() : some(user.toDomain()),
+      )
+      .onErrorReturnWith((error, stackTrace) => none());
 
   /// Creates a user
   ///

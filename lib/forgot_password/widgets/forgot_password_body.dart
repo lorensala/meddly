@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meddly/features/forgot_password/cubit/cubit.dart';
+import 'package:meddly/forgot_password/cubit/cubit.dart';
 
 /// {@template forgot_password_body}
 /// Body of the ForgotPasswordPage.

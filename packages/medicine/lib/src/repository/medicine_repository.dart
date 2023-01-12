@@ -1,10 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:medicine/medicine.dart';
-import 'package:medicine/src/cache/medicine_cache.dart';
-import 'package:medicine/src/core/core.dart';
-import 'package:medicine/src/dto/medicine_dto.dart';
-import 'package:medicine/src/models/medicine.dart';
+import 'package:rxdart/rxdart.dart';
 
 /// {@template medicine_repository}
 /// Repository for medicine operations.
@@ -21,9 +18,14 @@ class MedicineRepository {
   final MedicineCache _cache;
 
   /// Watches the medicines from the cache.
-  Stream<List<Medicine>> get medicines => _cache.watchAll().map(
-        (medicineDtoList) => medicineDtoList.map((e) => e.toDomain()).toList(),
-      );
+  Stream<Either<MedicineFailure, List<Medicine>>> get medicines => _cache
+      .watchAll()
+      .map<Either<MedicineFailure, List<Medicine>>>(
+        (medicineDtoList) => Right(
+          medicineDtoList.map((e) => e.toDomain()).toList(),
+        ),
+      )
+      .onErrorReturnWith((error, _) => const Left(MedicineFailure.cache()));
 
   /// Fetches all medicines.
   ///

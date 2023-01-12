@@ -1,8 +1,8 @@
 import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:meddly/features/forgot_password/cubit/cubit.dart';
-import 'package:meddly/features/forgot_password/widgets/widgets.dart';
+import 'package:meddly/forgot_password/cubit/cubit.dart';
+import 'package:meddly/forgot_password/widgets/widgets.dart';
 
 /// {@template forgot_password_page}
 /// A description for ForgotPasswordPage

@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:user/user.dart';
 
 /// {@template user_cache}
@@ -16,13 +17,13 @@ class UserCache {
   /// Throws a [UserCacheException] if the operation was not successful.
   Stream<UserDto?> get user {
     try {
-      return _box.watch().map(
+      return _box.watch(key: userKey).map(
         (event) {
           return event.value == null
               ? null
               : UserDto.fromJson(event.value as Map<String, dynamic>);
         },
-      );
+      ).startWith(read());
     } catch (e) {
       throw UserCacheException();
     }
@@ -37,7 +38,7 @@ class UserCache {
   UserDto? read() {
     final Map<String, dynamic>? data;
     try {
-      data = _box.get(_box.keys.first);
+      data = _box.get(userKey);
     } catch (e) {
       throw UserCacheException();
     }
@@ -66,7 +67,7 @@ class UserCache {
     }
 
     try {
-      await _box.put(user.id, userJson);
+      await _box.put(userKey, userJson);
     } catch (e) {
       throw UserCacheException();
     }
