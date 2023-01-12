@@ -1,7 +1,32 @@
 {
-    "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "emailHint": "Correo electrónico",
+    "passwordHint": "Contraseña",
+    "login": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "cancelledByUser": "Iniciar sesión cancelado por el usuario",
+    "accountsExistsWithDifferentCredentials": "Ya existe una cuenta con las mismas credenciales",
+    "serverError": "Error del servidor",
+    "emailAlreadyInUse": "El correo electrónico ya está en uso por otra cuenta.",
+    "invalidEmail": "La dirección de correo electrónico está mal formateada.",
+    "wrongPassword": "La contraseña no es válida o el usuario no tiene contraseña.",
+    "userNotFound": "No hay ningún usuario correspondiente a este identificador. El usuario puede haber sido eliminado.",
+    "userDisabled": "La cuenta de usuario ha sido deshabilitada por un administrador.",
+    "operationNotAllowed": "El tipo de autenticación utilizado para iniciar sesión no está habilitado.",
+    "tooManyRequests": "Demasiadas solicitudes realizadas a este dispositivo.",
+    "unknownError": "Error desconocido",
+    "invalidEmailAndPasswordCombination": "La combinación de correo electrónico y contraseña no es válida.",
+    "invalidVerificationCode": "Código de verificación no válido.",
+    "invalidVerificationId": "ID de verificación no válido.",
+    "emailEmpty": "El correo electrónico no puede estar vacío.",
+    "invalidPassword": "La contraseña debe tener al menos 8 caracteres, incluyendo al menos una letraa mayúscula, un número y un caracter especial.",
+    "passwordTooLong": "La contraseña no puede tener más de 20 caracteres.",
+    "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
+    "passwordEmpty": "La contraseña no puede estar vacía.",
+    "dontHaveAnAccount": "¿No tienes una cuenta?",
+    "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
+    "passwordResetEmailSent": "Se ha enviado un correo electrónico de restablecimiento de contraseña a su dirección de correo electrónico.",
+    "confirmPasswordHint": "Confirmar contraseña",
+    "passwordsDontMatch": "Las contraseñas no coinciden.",
+    "sendPasswordResetEmail": "Enviar correo electrónico de restablecimiento de contraseña"
 }

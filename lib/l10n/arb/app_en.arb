@@ -1,7 +1,123 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
+    "forgotPassword": "Forgot password?",
+    "@forgotPassword": {
+        "description": "Text shown on the login page"
+    },
+    "emailHint": "Email",
+    "@emailHint": {
+        "description": "Hint text shown on the login page"
+    },
+    "passwordHint": "Password",
+    "@passwordHint": {
+        "description": "Hint text shown on the login page"
+    },
+    "login": "Login",
+    "@login": {
+        "description": "Text shown on the login button"
+    },
+    "cancelledByUser": "Cancelled by user",
+    "@cancelledByUser": {
+        "description": "Text shown when the user cancels the login"
+    },
+    "accountsExistsWithDifferentCredentials": "An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address.",
+    "@accountsExistsWithDifferentCredentials": {
+        "description": "Text shown when the user tries to login with an email that is already in use"
+    },
+    "serverError": "Server error",
+    "@serverError": {
+        "description": "Text shown when the server returns an error"
+    },
+    "emailAlreadyInUse": "The email address is already in use by another account.",
+    "@emailAlreadyInUse": {
+        "description": "Text shown when the user tries to login with an email that is already in use"
+    },
+    "invalidEmail": "The email address is badly formatted.",
+    "@invalidEmail": {
+        "description": "Text shown when the user tries to login with an invalid email"
+    },
+    "wrongPassword": "The password is invalid or the user does not have a password.",
+    "@wrongPassword": {
+        "description": "Text shown when the user tries to login with an invalid password"
+    },
+    "userNotFound": "There is no user record corresponding to this identifier. The user may have been deleted.",
+    "@userNotFound": {
+        "description": "Text shown when the user tries to login with an email that is not registered"
+    },
+    "userDisabled": "The user account has been disabled by an administrator.",
+    "@userDisabled": {
+        "description": "Text shown when the user tries to login with an email that is disabled"
+    },
+    "operationNotAllowed": "Password sign-in is disabled for this project.",
+    "@operationNotAllowed": {
+        "description": "Text shown when the user tries to login with an email that is disabled"
+    },
+    "tooManyRequests": "We have blocked all requests from this device due to unusual activity. Try again later.",
+    "@tooManyRequests": {
+        "description": "Text shown when the user tries to login with an email that is disabled"
+    },
+    "unknownError": "An unknown error has occurred.",
+    "@unknownError": {
+        "description": "Text shown when the user tries to login with an email that is disabled"
+    },
+    "invalidEmailAndPasswordCombination": "Invalid email and password combination.",
+    "@invalidEmailAndPasswordCombination": {
+        "description": "Text shown when the user tries to login with an invalid email and password combination"
+    },
+    "invalidVerificationCode": "Invalid verification code.",
+    "@invalidVerificationCode": {
+        "description": "Text shown when the user tries to login with an invalid verification code"
+    },
+    "invalidVerificationId": "Invalid verification ID.",
+    "@invalidVerificationId": {
+        "description": "Text shown when the user tries to login with an invalid verification ID"
+    },
+    "signUp": "Sign up",
+    "@signUp": {
+        "description": "Text shown on the sign up button"
+    },
+    "emailEmpty": "Email cannot be empty",
+    "@emailEmpty": {
+        "description": "Text shown when the user tries to sign up with an empty email"
+    },
+    "invalidPassword": "Password must be at least 8 characters, contain at least one number, one uppercase letter and one special character",
+    "@invalidPassword": {
+        "description": "Text shown when the user tries to sign up with an invalid password"
+    },
+    "passwordTooLong": "Password must be at most 20 characters",
+    "@passwordTooLong": {
+        "description": "Text shown when the user tries to sign up with a password that is too long"
+    },
+    "passwordTooShort": "Password must be at least 8 characters",
+    "@passwordTooShort": {
+        "description": "Text shown when the user tries to sign up with a password that is too short"
+    },
+    "passwordEmpty": "Password cannot be empty",
+    "@passwordEmpty": {
+        "description": "Text shown when the user tries to sign up with an empty password"
+    },
+    "dontHaveAnAccount": "Don't have an account?",
+    "@dontHaveAnAccount": {
+        "description": "Text shown on the login page"
+    },
+    "alreadyHaveAnAccount": "Already have an account?",
+    "@alreadyHaveAnAccount": {
+        "description": "Text shown on the sign up page"
+    },
+    "passwordResetEmailSent": "Password reset email sent",
+    "@passwordResetEmailSent": {
+        "description": "Text shown when the user requests a password reset email"
+    },
+    "confirmPasswordHint": "Confirm password",
+    "@confirmPasswordHint": {
+        "description": "Hint text shown on the sign up page"
+    },
+    "passwordsDontMatch": "Passwords don't match",
+    "@passwordsDontMatch": {
+        "description": "Text shown when the user tries to sign up with a password that doesn't match the confirm password"
+    },
+    "sendPasswordResetEmail": "Send password reset email",
+    "@sendPasswordResetEmail": {
+        "description": "Text shown on the password reset button"
     }
 }

@@ -7,5 +7,6 @@ class LoginState with _$LoginState {
     @Default(Password.pure()) Password password,
     AuthFailure? failure,
     @Default(FormzStatus.pure) FormzStatus status,
+    @Default(true) bool obscurePassword,
   }) = _LoginState;
 }

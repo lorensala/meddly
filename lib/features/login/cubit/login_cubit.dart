@@ -31,6 +31,14 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
+  void obscurePasswordChanged() {
+    emit(
+      state.copyWith(
+        obscurePassword: !state.obscurePassword,
+      ),
+    );
+  }
+
   Future<void> logInWithEmailAndPassword() async {
     if (state.status.isSubmissionInProgress) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
