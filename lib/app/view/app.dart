@@ -2,11 +2,11 @@ import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:meddly/core/theme.dart';
 import 'package:meddly/features/auth/bloc/auth_bloc.dart';
 import 'package:meddly/features/login/login.dart';
 import 'package:meddly/features/user/view/user_page.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/theme/theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

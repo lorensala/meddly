@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:meddly/core/sizes.dart';
 import 'package:meddly/features/login/cubit/login_cubit.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/widgets/button.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -22,6 +24,9 @@ class LoginForm extends StatelessWidget {
           _EmailInput(),
           SizedBox(height: 16),
           _PasswordInput(),
+          SizedBox(height: 16),
+          _LoginButton()
+
           // GestureDetectorWithHaptic(
           //   onTap: () {
           //     //context.router.push(const ForgotPasswordRoute());
@@ -46,6 +51,29 @@ class LoginForm extends StatelessWidget {
           // ),
         ],
       ),
+    );
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  const _LoginButton();
+
+  @override
+  Widget build(BuildContext context) {
+    final isLoading = context.select(
+      (LoginCubit cubit) => cubit.state.status.isSubmissionInProgress,
+    );
+    final isValid = context.select(
+      (LoginCubit cubit) =>
+          cubit.state.email.value.isNotEmpty &&
+          cubit.state.password.value.isNotEmpty,
+    );
+
+    return Button(
+      isValid: isValid,
+      isLoading: isLoading,
+      onPressed: () => context.read<LoginCubit>().logInWithEmailAndPassword(),
+      label: context.l10n.login,
     );
   }
 }
@@ -106,9 +134,11 @@ class _PasswordInput extends StatelessWidget {
             prefixIconConstraints: BoxConstraints.tight(const Size(52, 20)),
             suffixIcon: GestureDetector(
               onTap: cubit.obscurePasswordChanged,
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Icon(Icons.remove_red_eye),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: state.obscurePassword
+                    ? const Icon(Icons.remove_red_eye)
+                    : const Icon(Icons.remove_red_eye_outlined),
                 // child: SvgPicture.asset(
                 //   isPasswordObscure.value ? Assets.eyeCrossed : Assets.eye,
                 //   color: context.colorScheme.secondaryContainer,

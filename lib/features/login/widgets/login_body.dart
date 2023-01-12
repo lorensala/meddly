@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/login/login.dart';
 import 'package:meddly/features/login/widgets/login_form.dart';
 
@@ -16,7 +17,10 @@ class LoginBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
-        return const Center(child: LoginForm());
+        return const Padding(
+          padding: Sizes.padding,
+          child: Center(child: LoginForm()),
+        );
       },
     );
   }
