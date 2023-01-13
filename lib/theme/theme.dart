@@ -29,6 +29,9 @@ class ThemeManager {
     appBarTheme: AppBarTheme(
       elevation: 0,
       centerTitle: true,
+      iconTheme: const IconThemeData(
+        color: Colors.black,
+      ),
       titleTextStyle: textTheme.titleMedium,
       color: AppColors.scaffoldBackgroundColor,
     ),
@@ -80,14 +83,21 @@ class ThemeManager {
     ),
     colorScheme: const ColorScheme.light().copyWith(
       primary: AppColors.primary,
-      background: AppColors.scaffoldBackgroundColor,
+      onPrimary: Colors.white,
       secondary: AppColors.secondary,
+      onSecondary: Colors.black,
+      background: AppColors.scaffoldBackgroundColor,
+      onBackground: Colors.black,
+      onSurface: Colors.black,
+      surface: Colors.black,
       error: AppColors.error,
-      secondaryContainer: Colors.black,
+      onError: Colors.white,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         elevation: 0,
+        disabledBackgroundColor: Colors.black.withOpacity(0.4),
+        disabledForegroundColor: Colors.white,
         splashFactory: NoSplash.splashFactory,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),

@@ -119,5 +119,37 @@
     "sendPasswordResetEmail": "Send password reset email",
     "@sendPasswordResetEmail": {
         "description": "Text shown on the password reset button"
+    },
+    "loginWithEmailAddress": "Login with email address",
+    "@loginWithEmailAddress": {
+        "description": "Text shown on the login with email button"
+    },
+    "loginWithGoogle": "Login with Google",
+    "@loginWithGoogle": {
+        "description": "Text shown on the login with Google button"
+    },
+    "guidanceConsultationTitle": "Make an orientation consultation",
+    "@guidanceConsultationTitle": {
+        "description": "Text shown on the guidance consultation card title"
+    },
+    "registerMedicationsTitle": "Register your medications",
+    "@registerMedicationsTitle": {
+        "description": "Text shown on the register medications card title"
+    },
+    "followYourTreatmentsTitle": "Follow your treatments",
+    "@followYourTreatmentsTitle": {
+        "description": "Text shown on the follow your treatments card title"
+    },
+    "guidanceConsultationDescription": "Talk to a doctor and get your doubts clarified",
+    "@guidanceConsultationDescription": {
+        "description": "Text shown on the guidance consultation card description"
+    },
+    "registerMedicationsDescription": "Register your medications and receive reminders",
+    "@registerMedicationsDescription": {
+        "description": "Text shown on the register medications card description"
+    },
+    "followYourTreatmentsDescription": "Follow your treatments and receive reminders",
+    "@followYourTreatmentsDescription": {
+        "description": "Text shown on the follow your treatments card description"
     }
 }

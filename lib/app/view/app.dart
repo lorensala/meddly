@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meddly/features/auth/bloc/auth_bloc.dart';
-import 'package:meddly/features/login/login.dart';
+import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/user/view/user_page.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/theme/theme.dart';
@@ -24,7 +24,7 @@ class App extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             home: state.when(
               authenticated: (_) => const UserPage(),
-              unauthenticated: LoginPage.new,
+              unauthenticated: OnboardingPage.new,
             ),
           );
         },

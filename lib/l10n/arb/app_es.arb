@@ -28,5 +28,13 @@
     "passwordResetEmailSent": "Se ha enviado un correo electrónico de restablecimiento de contraseña a su dirección de correo electrónico.",
     "confirmPasswordHint": "Confirmar contraseña",
     "passwordsDontMatch": "Las contraseñas no coinciden.",
-    "sendPasswordResetEmail": "Enviar correo electrónico de restablecimiento de contraseña"
+    "sendPasswordResetEmail": "Enviar correo electrónico de restablecimiento de contraseña",
+    "loginWithGoogle": "Iniciar sesión con Google",
+    "loginWithEmailAddress": "Iniciar sesión con correo electrónico",
+    "guidanceConsultationTitle": "Realiza una consulta orientativa",
+    "guidanceConsultationDescription": "Puedes realizar una consulta orientativa para saber si tu caso es apto para ser atendido por un abogado.",
+    "registerMedicationsTitle": "Registra tus medicamentos",
+    "registerMedicationsDescription": "Registra tus medicamentos para que el abogado pueda conocer tu caso.",
+    "followYourTreatmentsTitle": "Sigue tu tratamiento",
+    "followYourTreatmentsDescription": "El abogado te ayudará a seguir tu tratamiento y a conseguir la mejor compensación."
 }

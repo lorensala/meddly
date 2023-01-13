@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meddly/features/auth/bloc/bloc.dart';
 import 'package:meddly/features/user/user.dart';
 
 /// {@template user_body}
@@ -15,7 +16,13 @@ class UserBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
-        return const Center(child: Text('User Body'));
+        return Center(
+          child: ElevatedButton(
+            onPressed: () =>
+                context.read<AuthBloc>().add(const LogoutRequestedEvent()),
+            child: const Text('logout'),
+          ),
+        );
       },
     );
   }

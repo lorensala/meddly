@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:meddly/core/sizes.dart';
 import 'package:meddly/features/forgot_password/forgot_password.dart';
@@ -28,12 +27,12 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: 16),
           GestureDetector(
             onTap: () {
-              // Navigator.of(context).push( ForgotPasswordPage());
+              Navigator.of(context).push(ForgotPasswordPage.route());
             },
             child: Align(
               alignment: Alignment.centerRight,
               child: Text(
-                '¿Olvidaste tu contraseña?',
+                context.l10n.forgotPassword,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                     ),
@@ -42,17 +41,6 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           const _LoginButton(),
-
-          // const SizedBox(height: 30),
-          // BlocBuilder<LoginCubit, LoginState>(
-          //   builder: (context, state) {
-          //     return Button(
-          //         isLoading: state.status.isSubmissionInProgress,
-          //         onTap: () => BlocProvider.of<LoginCubit>(context)
-          //             .logInWithEmailAndPassword(),
-          //         title: 'Iniciar sesión');
-          //   },
-          // ),
         ],
       ),
     );
@@ -97,12 +85,6 @@ class _EmailInput extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           style: Theme.of(context).textTheme.bodyMedium,
           decoration: InputDecoration(
-            // errorText: !state.email.pure
-            //     ? state.email.error?.when(
-            //         invalid: () => context.l10n.invalidEmail,
-            //         empty: () => context.l10n.emailEmpty,
-            //       )
-            //     : null,
             hintText: context.l10n.emailHint,
           ),
         );
