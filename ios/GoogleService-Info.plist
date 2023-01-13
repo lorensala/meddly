@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>993986469814-8di35emn74nv5o16mkmo4i3bcctpde6f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.993986469814-8di35emn74nv5o16mkmo4i3bcctpde6f</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>993986469814-qbjgoji2nbp5hrbtra1ucequ3mqivm40.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD2fPV-VkXJBM9fvq6khDRnkQ1Zorr7lJ0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>993986469814</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.lorenzosala.meddly</string>
+	<key>PROJECT_ID</key>
+	<string>meddly-da2c2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>meddly-da2c2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:993986469814:ios:c43de533cabff9e6a9ab17</string>
+</dict>
+</plist>

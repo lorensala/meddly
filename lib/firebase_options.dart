@@ -51,23 +51,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDrcIwhcdU-mnBGWxBNG0-6TXAG1QFW8Ig',
-    appId: '1:238329653617:android:14a7611aeebada80ffaed0',
-    messagingSenderId: '238329653617',
-    projectId: 'meddly-fbcf7',
-    storageBucket: 'meddly-fbcf7.appspot.com',
+    apiKey: 'AIzaSyDdCUkmev0t2iy3oTJw60w5Z-TCY36IR48',
+    appId: '1:993986469814:android:f081a49e7e9f25aba9ab17',
+    messagingSenderId: '993986469814',
+    projectId: 'meddly-da2c2',
+    storageBucket: 'meddly-da2c2.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAfFd3iQR-qfLhQVrD6B1X8cJVT4InxmoQ',
-    appId: '1:238329653617:ios:51e68ad91212748cffaed0',
-    messagingSenderId: '238329653617',
-    projectId: 'meddly-fbcf7',
-    storageBucket: 'meddly-fbcf7.appspot.com',
-    androidClientId:
-        '238329653617-utlm1603lrsphunmgkr0t5cjjfuej55p.apps.googleusercontent.com',
+    apiKey: 'AIzaSyD2fPV-VkXJBM9fvq6khDRnkQ1Zorr7lJ0',
+    appId: '1:993986469814:ios:c43de533cabff9e6a9ab17',
+    messagingSenderId: '993986469814',
+    projectId: 'meddly-da2c2',
+    storageBucket: 'meddly-da2c2.appspot.com',
     iosClientId:
-        '238329653617-5or36b58qumk1tmjme0qa30h59gn2981.apps.googleusercontent.com',
+        '993986469814-8di35emn74nv5o16mkmo4i3bcctpde6f.apps.googleusercontent.com',
     iosBundleId: 'com.lorenzosala.meddly',
   );
 }

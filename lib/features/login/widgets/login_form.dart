@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:meddly/core/sizes.dart';
+import 'package:meddly/features/forgot_password/forgot_password.dart';
 import 'package:meddly/features/login/cubit/login_cubit.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/button.dart';
@@ -20,25 +21,28 @@ class LoginForm extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
-          _EmailInput(),
-          SizedBox(height: 16),
-          _PasswordInput(),
-          SizedBox(height: 16),
-          _LoginButton()
+        children: [
+          const _EmailInput(),
+          const SizedBox(height: 16),
+          const _PasswordInput(),
+          const SizedBox(height: 16),
+          GestureDetector(
+            onTap: () {
+              // Navigator.of(context).push( ForgotPasswordPage());
+            },
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                '¿Olvidaste tu contraseña?',
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          const _LoginButton(),
 
-          // GestureDetectorWithHaptic(
-          //   onTap: () {
-          //     //context.router.push(const ForgotPasswordRoute());
-          //   },
-          //   child: Align(
-          //     alignment: Alignment.centerRight,
-          //     child: Text('¿Olvidaste tu contraseña?',
-          //         style: textTheme.bodyMedium!.copyWith(
-          //             color: context.colorScheme.primary,
-          //             fontWeight: FontWeight.w700)),
-          //   ),
-          // ),
           // const SizedBox(height: 30),
           // BlocBuilder<LoginCubit, LoginState>(
           //   builder: (context, state) {
@@ -93,12 +97,12 @@ class _EmailInput extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
           style: Theme.of(context).textTheme.bodyMedium,
           decoration: InputDecoration(
-            errorText: !state.email.pure
-                ? state.email.error?.when(
-                    invalid: () => context.l10n.invalidEmail,
-                    empty: () => context.l10n.emailEmpty,
-                  )
-                : null,
+            // errorText: !state.email.pure
+            //     ? state.email.error?.when(
+            //         invalid: () => context.l10n.invalidEmail,
+            //         empty: () => context.l10n.emailEmpty,
+            //       )
+            //     : null,
             hintText: context.l10n.emailHint,
           ),
         );
@@ -122,9 +126,11 @@ class _PasswordInput extends StatelessWidget {
           textInputAction: TextInputAction.done,
           onChanged: cubit.onPasswordChanged,
           onFieldSubmitted: (String? value) {
-            HapticFeedback.lightImpact();
-
-            BlocProvider.of<LoginCubit>(context).logInWithEmailAndPassword();
+            if (state.password.value.isNotEmpty &&
+                state.email.value.isNotEmpty) {
+              HapticFeedback.lightImpact();
+              BlocProvider.of<LoginCubit>(context).logInWithEmailAndPassword();
+            }
           },
           keyboardType: TextInputType.text,
           style: Theme.of(context).textTheme.bodyMedium,

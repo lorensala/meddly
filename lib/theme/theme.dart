@@ -87,6 +87,7 @@ class ThemeManager {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         splashFactory: NoSplash.splashFactory,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
