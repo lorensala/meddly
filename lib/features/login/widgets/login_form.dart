@@ -48,6 +48,10 @@ class _ForgotPassword extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerRight,
         child: Text(
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
+            fontWeight: FontWeight.w500,
+          ),
           context.l10n.forgotPassword,
         ),
       ),
@@ -136,11 +140,6 @@ class _PasswordInput extends StatelessWidget {
                   state.obscurePassword ? Assets.eyeCrossed : Assets.eye,
                   color: context.colorScheme.onSecondary,
                 ),
-
-                // child: SvgPicture.asset(
-                //   isPasswordObscure.value ? Assets.eyeCrossed : Assets.eye,
-                //   color: context.colorScheme.secondaryContainer,
-                // ),
               ),
             ),
             suffixIconConstraints: const BoxConstraints(
