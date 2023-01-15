@@ -5,6 +5,7 @@ import 'package:formz/formz.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meddly/features/login/cubit/login_cubit.dart';
 import 'package:meddly/features/login/widgets/login_body.dart';
+import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 /// {@template login_page}
@@ -43,6 +44,10 @@ class LoginView extends StatelessWidget {
     return BlocListener<LoginCubit, LoginState>(
       listenWhen: (previous, current) => previous.status != current.status,
       listener: (context, state) {
+        if (state.status.isSubmissionSuccess) {
+          Navigator.of(context)
+              .pushAndRemoveUntil(UserPage.route(), (_) => false);
+        }
         if (state.status.isSubmissionFailure) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()

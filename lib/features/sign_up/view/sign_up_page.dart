@@ -4,6 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meddly/features/sign_up/cubit/cubit.dart';
 import 'package:meddly/features/sign_up/widgets/sign_up_body.dart';
+import 'package:meddly/features/user/view/view.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 /// {@template sign_up_page}
@@ -42,6 +43,10 @@ class SignUpView extends StatelessWidget {
     return BlocListener<SignUpCubit, SignUpState>(
       listenWhen: (previous, current) => previous.status != current.status,
       listener: (context, state) {
+        if (state.status.isSubmissionSuccess) {
+          Navigator.of(context)
+              .pushAndRemoveUntil(UserPage.route(), (_) => false);
+        }
         if (state.status.isSubmissionFailure) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
