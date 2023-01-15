@@ -96,7 +96,7 @@ class ThemeManager {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        disabledBackgroundColor: Colors.black.withOpacity(0.4),
+        disabledBackgroundColor: Colors.black,
         disabledForegroundColor: Colors.white,
         splashFactory: NoSplash.splashFactory,
         shape: RoundedRectangleBorder(
@@ -112,7 +112,8 @@ class ThemeManager {
 }
 
 extension ColorSchemeExtension on ColorScheme {
-  Color get validColor => const Color(0xff3BBD9F);
+  Color get success => const Color(0xff3BBD9F);
+  Color get onSuccess => Colors.white;
 }
 
 final TextTheme textTheme = ThemeData.light().textTheme.copyWith(

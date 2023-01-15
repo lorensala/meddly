@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:formz/formz.dart';
-import 'package:meddly/core/sizes.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/forgot_password/forgot_password.dart';
 import 'package:meddly/features/login/cubit/login_cubit.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/utils/utils.dart';
 import 'package:meddly/widgets/button.dart';
 
 class LoginForm extends StatelessWidget {
@@ -20,28 +22,34 @@ class LoginForm extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          const _EmailInput(),
-          const SizedBox(height: 16),
-          const _PasswordInput(),
-          const SizedBox(height: 16),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(ForgotPasswordPage.route());
-            },
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                context.l10n.forgotPassword,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          const _LoginButton(),
+        children: const [
+          _EmailInput(),
+          SizedBox(height: Sizes.spacing),
+          _PasswordInput(),
+          SizedBox(height: Sizes.spacing),
+          _ForgotPassword(),
+          SizedBox(height: Sizes.spacing),
+          _LoginButton(),
         ],
+      ),
+    );
+  }
+}
+
+class _ForgotPassword extends StatelessWidget {
+  const _ForgotPassword();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(ForgotPasswordPage.route());
+      },
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Text(
+          context.l10n.forgotPassword,
+        ),
       ),
     );
   }
@@ -124,9 +132,11 @@ class _PasswordInput extends StatelessWidget {
               onTap: cubit.obscurePasswordChanged,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: state.obscurePassword
-                    ? const Icon(Icons.remove_red_eye)
-                    : const Icon(Icons.remove_red_eye_outlined),
+                child: SvgPicture.asset(
+                  state.obscurePassword ? Assets.eyeCrossed : Assets.eye,
+                  color: context.colorScheme.onSecondary,
+                ),
+
                 // child: SvgPicture.asset(
                 //   isPasswordObscure.value ? Assets.eyeCrossed : Assets.eye,
                 //   color: context.colorScheme.secondaryContainer,

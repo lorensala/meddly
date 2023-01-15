@@ -1,6 +1,8 @@
 {
     "forgotPassword": "¿Olvidaste tu contraseña?",
     "emailHint": "Correo electrónico",
+    "accept": "Aceptar los",
+    "termsAndConditions": "términos y condiciones",
     "passwordHint": "Contraseña",
     "login": "Iniciar sesión",
     "signUp": "Registrarse",

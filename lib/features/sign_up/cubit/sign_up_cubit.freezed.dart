@@ -22,6 +22,7 @@ mixin _$SignUpState {
       throw _privateConstructorUsedError;
   AuthFailure? get failure => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
+  bool get obscurePassword => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpStateCopyWith<SignUpState> get copyWith =>
@@ -39,7 +40,8 @@ abstract class $SignUpStateCopyWith<$Res> {
       Password password,
       TermsAndConditions termsAndConditions,
       AuthFailure? failure,
-      FormzStatus status});
+      FormzStatus status,
+      bool obscurePassword});
 
   $AuthFailureCopyWith<$Res>? get failure;
 }
@@ -62,6 +64,7 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? termsAndConditions = null,
     Object? failure = freezed,
     Object? status = null,
+    Object? obscurePassword = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -84,6 +87,10 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      obscurePassword: null == obscurePassword
+          ? _value.obscurePassword
+          : obscurePassword // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -113,7 +120,8 @@ abstract class _$$_SignUpStateCopyWith<$Res>
       Password password,
       TermsAndConditions termsAndConditions,
       AuthFailure? failure,
-      FormzStatus status});
+      FormzStatus status,
+      bool obscurePassword});
 
   @override
   $AuthFailureCopyWith<$Res>? get failure;
@@ -135,6 +143,7 @@ class __$$_SignUpStateCopyWithImpl<$Res>
     Object? termsAndConditions = null,
     Object? failure = freezed,
     Object? status = null,
+    Object? obscurePassword = null,
   }) {
     return _then(_$_SignUpState(
       email: null == email
@@ -157,6 +166,10 @@ class __$$_SignUpStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      obscurePassword: null == obscurePassword
+          ? _value.obscurePassword
+          : obscurePassword // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -169,7 +182,8 @@ class _$_SignUpState implements _SignUpState {
       this.password = const Password.pure(),
       this.termsAndConditions = const TermsAndConditions.pure(),
       this.failure,
-      this.status = FormzStatus.pure});
+      this.status = FormzStatus.pure,
+      this.obscurePassword = true});
 
   @override
   @JsonKey()
@@ -185,10 +199,13 @@ class _$_SignUpState implements _SignUpState {
   @override
   @JsonKey()
   final FormzStatus status;
+  @override
+  @JsonKey()
+  final bool obscurePassword;
 
   @override
   String toString() {
-    return 'SignUpState(email: $email, password: $password, termsAndConditions: $termsAndConditions, failure: $failure, status: $status)';
+    return 'SignUpState(email: $email, password: $password, termsAndConditions: $termsAndConditions, failure: $failure, status: $status, obscurePassword: $obscurePassword)';
   }
 
   @override
@@ -202,12 +219,14 @@ class _$_SignUpState implements _SignUpState {
             (identical(other.termsAndConditions, termsAndConditions) ||
                 other.termsAndConditions == termsAndConditions) &&
             (identical(other.failure, failure) || other.failure == failure) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.obscurePassword, obscurePassword) ||
+                other.obscurePassword == obscurePassword));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, password, termsAndConditions, failure, status);
+  int get hashCode => Object.hash(runtimeType, email, password,
+      termsAndConditions, failure, status, obscurePassword);
 
   @JsonKey(ignore: true)
   @override
@@ -222,7 +241,8 @@ abstract class _SignUpState implements SignUpState {
       final Password password,
       final TermsAndConditions termsAndConditions,
       final AuthFailure? failure,
-      final FormzStatus status}) = _$_SignUpState;
+      final FormzStatus status,
+      final bool obscurePassword}) = _$_SignUpState;
 
   @override
   Email get email;
@@ -234,6 +254,8 @@ abstract class _SignUpState implements SignUpState {
   AuthFailure? get failure;
   @override
   FormzStatus get status;
+  @override
+  bool get obscurePassword;
   @override
   @JsonKey(ignore: true)
   _$$_SignUpStateCopyWith<_$_SignUpState> get copyWith =>

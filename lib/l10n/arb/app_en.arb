@@ -151,5 +151,13 @@
     "followYourTreatmentsDescription": "Follow your treatments and receive reminders",
     "@followYourTreatmentsDescription": {
         "description": "Text shown on the follow your treatments card description"
+    },
+    "accept": "Accept",
+    "@accept": {
+        "description": "Text shown on the accept terms and conditions button"
+    },
+    "termsAndConditions": "terms and conditions",
+    "@termsAndConditions": {
+        "description": "Text shown on the terms and conditions button"
     }
 }

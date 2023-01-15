@@ -8,5 +8,6 @@ class SignUpState with _$SignUpState {
     @Default(TermsAndConditions.pure()) TermsAndConditions termsAndConditions,
     AuthFailure? failure,
     @Default(FormzStatus.pure) FormzStatus status,
+    @Default(true) bool obscurePassword,
   }) = _SignUpState;
 }

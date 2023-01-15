@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:meddly/features/auth/bloc/bloc.dart';
+import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:user/user.dart';
 
@@ -43,6 +45,15 @@ class UserView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const UserBody();
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          unauthenticated: () => Navigator.of(context).pushReplacement(
+            OnboardingPage.route(),
+          ),
+        );
+      },
+      child: const UserBody(),
+    );
   }
 }

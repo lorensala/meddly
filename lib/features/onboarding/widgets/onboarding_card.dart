@@ -9,26 +9,6 @@ class OnboardingCard extends StatelessWidget {
     required this.title,
     required this.description,
   });
-  factory OnboardingCard.diagnosis() => const OnboardingCard(
-        asset: Assets.diagnosis,
-        title: 'Realiza un auto diagnóstico',
-        description:
-            'A través del ingreso de síntomas o por un escáner, descubre cuál podría ser tu diagnóstico.',
-      );
-
-  factory OnboardingCard.pills() => const OnboardingCard(
-        asset: Assets.pills,
-        title: 'Registra tus medicamentos',
-        description:
-            'Recibe recordatorios personalizados de tus medicamentos y citas con el médico.',
-      );
-
-  factory OnboardingCard.treatment() => const OnboardingCard(
-        asset: Assets.treatment,
-        title: 'Sigue tu tratamiento',
-        description:
-            'Personaliza tu perfil de salud y lleva el control de tus datos con una cuenta gratuita.',
-      );
 
   final String asset;
   final String title;
