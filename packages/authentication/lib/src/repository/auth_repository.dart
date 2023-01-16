@@ -5,11 +5,11 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-/// {@template firebase_auth_repository}
+/// {@template auth_repository}
 /// Repository which manages user authentication.
 /// {@endtemplate}
 class AuthRepository {
-  /// {@macro firebase_auth_repository}
+  /// {@macro auth_repository}
   AuthRepository({
     FirebaseAuth? firebaseAuth,
     GoogleSignIn? googleSignIn,

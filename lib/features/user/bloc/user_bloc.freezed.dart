@@ -20,18 +20,21 @@ mixin _$UserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() watch,
     required TResult Function(Option<User> nothingOrUser) userReceived,
+    required TResult Function(User user) createUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? watch,
     TResult? Function(Option<User> nothingOrUser)? userReceived,
+    TResult? Function(User user)? createUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watch,
     TResult Function(Option<User> nothingOrUser)? userReceived,
+    TResult Function(User user)? createUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$UserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Watch value) watch,
     required TResult Function(_UserReceived value) userReceived,
+    required TResult Function(_CreateUser value) createUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Watch value)? watch,
     TResult? Function(_UserReceived value)? userReceived,
+    TResult? Function(_CreateUser value)? createUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
     TResult Function(_UserReceived value)? userReceived,
+    TResult Function(_CreateUser value)? createUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,6 +117,7 @@ class _$_Watch implements _Watch {
   TResult when<TResult extends Object?>({
     required TResult Function() watch,
     required TResult Function(Option<User> nothingOrUser) userReceived,
+    required TResult Function(User user) createUser,
   }) {
     return watch();
   }
@@ -120,6 +127,7 @@ class _$_Watch implements _Watch {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? watch,
     TResult? Function(Option<User> nothingOrUser)? userReceived,
+    TResult? Function(User user)? createUser,
   }) {
     return watch?.call();
   }
@@ -129,6 +137,7 @@ class _$_Watch implements _Watch {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watch,
     TResult Function(Option<User> nothingOrUser)? userReceived,
+    TResult Function(User user)? createUser,
     required TResult orElse(),
   }) {
     if (watch != null) {
@@ -142,6 +151,7 @@ class _$_Watch implements _Watch {
   TResult map<TResult extends Object?>({
     required TResult Function(_Watch value) watch,
     required TResult Function(_UserReceived value) userReceived,
+    required TResult Function(_CreateUser value) createUser,
   }) {
     return watch(this);
   }
@@ -151,6 +161,7 @@ class _$_Watch implements _Watch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Watch value)? watch,
     TResult? Function(_UserReceived value)? userReceived,
+    TResult? Function(_CreateUser value)? createUser,
   }) {
     return watch?.call(this);
   }
@@ -160,6 +171,7 @@ class _$_Watch implements _Watch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
     TResult Function(_UserReceived value)? userReceived,
+    TResult Function(_CreateUser value)? createUser,
     required TResult orElse(),
   }) {
     if (watch != null) {
@@ -240,6 +252,7 @@ class _$_UserReceived implements _UserReceived {
   TResult when<TResult extends Object?>({
     required TResult Function() watch,
     required TResult Function(Option<User> nothingOrUser) userReceived,
+    required TResult Function(User user) createUser,
   }) {
     return userReceived(nothingOrUser);
   }
@@ -249,6 +262,7 @@ class _$_UserReceived implements _UserReceived {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? watch,
     TResult? Function(Option<User> nothingOrUser)? userReceived,
+    TResult? Function(User user)? createUser,
   }) {
     return userReceived?.call(nothingOrUser);
   }
@@ -258,6 +272,7 @@ class _$_UserReceived implements _UserReceived {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watch,
     TResult Function(Option<User> nothingOrUser)? userReceived,
+    TResult Function(User user)? createUser,
     required TResult orElse(),
   }) {
     if (userReceived != null) {
@@ -271,6 +286,7 @@ class _$_UserReceived implements _UserReceived {
   TResult map<TResult extends Object?>({
     required TResult Function(_Watch value) watch,
     required TResult Function(_UserReceived value) userReceived,
+    required TResult Function(_CreateUser value) createUser,
   }) {
     return userReceived(this);
   }
@@ -280,6 +296,7 @@ class _$_UserReceived implements _UserReceived {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Watch value)? watch,
     TResult? Function(_UserReceived value)? userReceived,
+    TResult? Function(_CreateUser value)? createUser,
   }) {
     return userReceived?.call(this);
   }
@@ -289,6 +306,7 @@ class _$_UserReceived implements _UserReceived {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
     TResult Function(_UserReceived value)? userReceived,
+    TResult Function(_CreateUser value)? createUser,
     required TResult orElse(),
   }) {
     if (userReceived != null) {
@@ -305,6 +323,155 @@ abstract class _UserReceived implements UserEvent {
   Option<User> get nothingOrUser;
   @JsonKey(ignore: true)
   _$$_UserReceivedCopyWith<_$_UserReceived> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CreateUserCopyWith<$Res> {
+  factory _$$_CreateUserCopyWith(
+          _$_CreateUser value, $Res Function(_$_CreateUser) then) =
+      __$$_CreateUserCopyWithImpl<$Res>;
+  @useResult
+  $Res call({User user});
+
+  $UserCopyWith<$Res> get user;
+}
+
+/// @nodoc
+class __$$_CreateUserCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$_CreateUser>
+    implements _$$_CreateUserCopyWith<$Res> {
+  __$$_CreateUserCopyWithImpl(
+      _$_CreateUser _value, $Res Function(_$_CreateUser) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$_CreateUser(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_CreateUser implements _CreateUser {
+  const _$_CreateUser(this.user);
+
+  @override
+  final User user;
+
+  @override
+  String toString() {
+    return 'UserEvent.createUser(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CreateUser &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CreateUserCopyWith<_$_CreateUser> get copyWith =>
+      __$$_CreateUserCopyWithImpl<_$_CreateUser>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watch,
+    required TResult Function(Option<User> nothingOrUser) userReceived,
+    required TResult Function(User user) createUser,
+  }) {
+    return createUser(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? watch,
+    TResult? Function(Option<User> nothingOrUser)? userReceived,
+    TResult? Function(User user)? createUser,
+  }) {
+    return createUser?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watch,
+    TResult Function(Option<User> nothingOrUser)? userReceived,
+    TResult Function(User user)? createUser,
+    required TResult orElse(),
+  }) {
+    if (createUser != null) {
+      return createUser(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Watch value) watch,
+    required TResult Function(_UserReceived value) userReceived,
+    required TResult Function(_CreateUser value) createUser,
+  }) {
+    return createUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Watch value)? watch,
+    TResult? Function(_UserReceived value)? userReceived,
+    TResult? Function(_CreateUser value)? createUser,
+  }) {
+    return createUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Watch value)? watch,
+    TResult Function(_UserReceived value)? userReceived,
+    TResult Function(_CreateUser value)? createUser,
+    required TResult orElse(),
+  }) {
+    if (createUser != null) {
+      return createUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateUser implements UserEvent {
+  const factory _CreateUser(final User user) = _$_CreateUser;
+
+  User get user;
+  @JsonKey(ignore: true)
+  _$$_CreateUserCopyWith<_$_CreateUser> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -390,8 +557,8 @@ class __$$_LoadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
-  const _$_Loading();
+class _$_Loading extends _Loading {
+  const _$_Loading() : super._();
 
   @override
   String toString() {
@@ -476,8 +643,9 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements UserState {
+abstract class _Loading extends UserState {
   const factory _Loading() = _$_Loading;
+  const _Loading._() : super._();
 }
 
 /// @nodoc
@@ -521,8 +689,8 @@ class __$$_LoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loaded implements _Loaded {
-  const _$_Loaded(this.user);
+class _$_Loaded extends _Loaded {
+  const _$_Loaded(this.user) : super._();
 
   @override
   final User user;
@@ -618,8 +786,9 @@ class _$_Loaded implements _Loaded {
   }
 }
 
-abstract class _Loaded implements UserState {
+abstract class _Loaded extends UserState {
   const factory _Loaded(final User user) = _$_Loaded;
+  const _Loaded._() : super._();
 
   User get user;
   @JsonKey(ignore: true)
@@ -669,8 +838,8 @@ class __$$_FailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Failure implements _Failure {
-  const _$_Failure(this.failure);
+class _$_Failure extends _Failure {
+  const _$_Failure(this.failure) : super._();
 
   @override
   final UserFailure failure;
@@ -766,8 +935,9 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements UserState {
+abstract class _Failure extends UserState {
   const factory _Failure(final UserFailure failure) = _$_Failure;
+  const _Failure._() : super._();
 
   UserFailure get failure;
   @JsonKey(ignore: true)

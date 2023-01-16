@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:meddly/firebase_options.dart';
 import 'package:meddly/inject.dart';
+import 'package:user/user.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -37,6 +38,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   );
 
   await Hive.initFlutter();
+
+  Hive.registerAdapter(UserDtoAdapter());
 
   await inject();
 

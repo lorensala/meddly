@@ -13,9 +13,24 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc(this._repository) : super(const _Loading()) {
     on<_Watch>(_onWatch);
     on<_UserReceived>(_onUserReceived);
+    on<_CreateUser>(_onCreateUser);
 
     add(const _Watch());
   }
+
+  FutureOr<void> _onCreateUser(
+    _CreateUser event,
+    Emitter<UserState> emit,
+  ) async {
+    emit(const _Loading());
+    final result = await _repository.createUser(event.user);
+
+    if (result.isLeft()) {
+      final failure = (result as Left<UserFailure, Unit>).value;
+      emit(_Failure(failure));
+    }
+  }
+
   final UserRepository _repository;
   StreamSubscription<Option<User>>? _userSubscription;
 
@@ -33,7 +48,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   ) {
     emit(
       event.nothingOrUser.fold(
-        () => const _Failure(UserFailure.unknown()),
+        () => const _Failure(UserFailure.notFound()),
         _Loaded.new,
       ),
     );

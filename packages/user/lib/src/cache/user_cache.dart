@@ -9,7 +9,7 @@ class UserCache {
   /// {@macro user_cache}
   UserCache(this._box);
 
-  final Box<Map<String, dynamic>> _box;
+  final Box<UserDto> _box;
 
   /// Watches the user from the cache.
   ///
@@ -19,13 +19,11 @@ class UserCache {
     try {
       return _box.watch(key: userKey).map(
         (event) {
-          return event.value == null
-              ? null
-              : UserDto.fromJson(event.value as Map<String, dynamic>);
+          return event.value == null ? null : event.value as UserDto;
         },
       ).startWith(read());
     } catch (e) {
-      throw UserCacheException();
+      return Stream.error(e);
     }
   }
 
@@ -36,38 +34,26 @@ class UserCache {
   /// Throws a [UserCacheException] if the operation was not successful.\
   /// Throws a [UserSerializationException] if the operation was not successful.
   UserDto? read() {
-    final Map<String, dynamic>? data;
+    final UserDto? user;
     try {
-      data = _box.get(userKey);
+      user = _box.get(userKey);
     } catch (e) {
       throw UserCacheException();
     }
 
-    if (data == null) {
+    if (user == null) {
       return null;
     }
 
-    try {
-      return UserDto.fromJson(data);
-    } catch (e) {
-      throw UserSerializationException();
-    }
+    return user;
   }
 
   /// Writes the user to the cache.
   ///
   /// Throws a [UserCacheException] if the operation was not successful.
   Future<void> write(UserDto user) async {
-    late final Map<String, dynamic> userJson;
-
     try {
-      userJson = user.toJson();
-    } catch (e) {
-      throw UserSerializationException();
-    }
-
-    try {
-      await _box.put(userKey, userJson);
+      await _box.put(userKey, user);
     } catch (e) {
       throw UserCacheException();
     }

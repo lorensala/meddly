@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/bloc/bloc.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:user/user.dart';
 
 /// {@template user_body}
 /// Body of the UserPage.
@@ -17,10 +19,33 @@ class UserBody extends StatelessWidget {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
         return Center(
-          child: ElevatedButton(
-            onPressed: () =>
-                context.read<AuthBloc>().add(const LogoutRequestedEvent()),
-            child: const Text('logout'),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(state.userOrNull?.toString() ?? 'No user data'),
+              ElevatedButton(
+                onPressed: () =>
+                    context.read<AuthBloc>().add(const LogoutRequestedEvent()),
+                child: const Text('logout'),
+              ),
+              const SizedBox(height: Sizes.spacing),
+              ElevatedButton(
+                onPressed: () => context.read<UserBloc>().add(
+                      UserEvent.createUser(
+                        User(
+                          uid: '1',
+                          email: 'salalorenn@gmail.com',
+                          firstName: 'Lorenzo',
+                          lastName: 'Pichilli',
+                          phone: '1234567890',
+                          sex: const Sex.female(),
+                          birth: DateTime(2000).toString(),
+                        ),
+                      ),
+                    ),
+                child: const Text('Create user'),
+              ),
+            ],
           ),
         );
       },

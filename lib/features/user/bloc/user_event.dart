@@ -6,4 +6,7 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.userReceived(
     Option<User> nothingOrUser,
   ) = _UserReceived;
+  const factory UserEvent.createUser(
+    User user,
+  ) = _CreateUser;
 }
