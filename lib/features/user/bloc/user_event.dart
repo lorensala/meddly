@@ -9,4 +9,5 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.createUser(
     User user,
   ) = _CreateUser;
+  const factory UserEvent.logout() = _Logout;
 }

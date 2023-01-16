@@ -1,3 +1,4 @@
+import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -20,17 +21,13 @@ class UserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => UserRepository(
-        api: GetIt.I.get<UserApi>(),
-        cache: GetIt.I.get<UserCache>(),
+    return BlocProvider(
+      create: (context) => UserBloc(
+        userRepository: GetIt.I.get<UserRepository>(),
+        authRepository: GetIt.I.get<AuthRepository>(),
       ),
-      child: BlocProvider(
-        create: (context) =>
-            UserBloc(RepositoryProvider.of<UserRepository>(context)),
-        child: const Scaffold(
-          body: UserView(),
-        ),
+      child: const Scaffold(
+        body: UserView(),
       ),
     );
   }
@@ -48,9 +45,8 @@ class UserView extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         state.whenOrNull(
-          unauthenticated: () => Navigator.of(context).pushReplacement(
-            OnboardingPage.route(),
-          ),
+          unauthenticated: () =>
+              Navigator.of(context).pushReplacement(OnboardingPage.route()),
         );
       },
       child: const UserBody(),

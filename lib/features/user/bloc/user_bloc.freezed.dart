@@ -21,6 +21,7 @@ mixin _$UserEvent {
     required TResult Function() watch,
     required TResult Function(Option<User> nothingOrUser) userReceived,
     required TResult Function(User user) createUser,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$UserEvent {
     TResult? Function()? watch,
     TResult? Function(Option<User> nothingOrUser)? userReceived,
     TResult? Function(User user)? createUser,
+    TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$UserEvent {
     TResult Function()? watch,
     TResult Function(Option<User> nothingOrUser)? userReceived,
     TResult Function(User user)? createUser,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$UserEvent {
     required TResult Function(_Watch value) watch,
     required TResult Function(_UserReceived value) userReceived,
     required TResult Function(_CreateUser value) createUser,
+    required TResult Function(_Logout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$UserEvent {
     TResult? Function(_Watch value)? watch,
     TResult? Function(_UserReceived value)? userReceived,
     TResult? Function(_CreateUser value)? createUser,
+    TResult? Function(_Logout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$UserEvent {
     TResult Function(_Watch value)? watch,
     TResult Function(_UserReceived value)? userReceived,
     TResult Function(_CreateUser value)? createUser,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,6 +124,7 @@ class _$_Watch implements _Watch {
     required TResult Function() watch,
     required TResult Function(Option<User> nothingOrUser) userReceived,
     required TResult Function(User user) createUser,
+    required TResult Function() logout,
   }) {
     return watch();
   }
@@ -128,6 +135,7 @@ class _$_Watch implements _Watch {
     TResult? Function()? watch,
     TResult? Function(Option<User> nothingOrUser)? userReceived,
     TResult? Function(User user)? createUser,
+    TResult? Function()? logout,
   }) {
     return watch?.call();
   }
@@ -138,6 +146,7 @@ class _$_Watch implements _Watch {
     TResult Function()? watch,
     TResult Function(Option<User> nothingOrUser)? userReceived,
     TResult Function(User user)? createUser,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (watch != null) {
@@ -152,6 +161,7 @@ class _$_Watch implements _Watch {
     required TResult Function(_Watch value) watch,
     required TResult Function(_UserReceived value) userReceived,
     required TResult Function(_CreateUser value) createUser,
+    required TResult Function(_Logout value) logout,
   }) {
     return watch(this);
   }
@@ -162,6 +172,7 @@ class _$_Watch implements _Watch {
     TResult? Function(_Watch value)? watch,
     TResult? Function(_UserReceived value)? userReceived,
     TResult? Function(_CreateUser value)? createUser,
+    TResult? Function(_Logout value)? logout,
   }) {
     return watch?.call(this);
   }
@@ -172,6 +183,7 @@ class _$_Watch implements _Watch {
     TResult Function(_Watch value)? watch,
     TResult Function(_UserReceived value)? userReceived,
     TResult Function(_CreateUser value)? createUser,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (watch != null) {
@@ -253,6 +265,7 @@ class _$_UserReceived implements _UserReceived {
     required TResult Function() watch,
     required TResult Function(Option<User> nothingOrUser) userReceived,
     required TResult Function(User user) createUser,
+    required TResult Function() logout,
   }) {
     return userReceived(nothingOrUser);
   }
@@ -263,6 +276,7 @@ class _$_UserReceived implements _UserReceived {
     TResult? Function()? watch,
     TResult? Function(Option<User> nothingOrUser)? userReceived,
     TResult? Function(User user)? createUser,
+    TResult? Function()? logout,
   }) {
     return userReceived?.call(nothingOrUser);
   }
@@ -273,6 +287,7 @@ class _$_UserReceived implements _UserReceived {
     TResult Function()? watch,
     TResult Function(Option<User> nothingOrUser)? userReceived,
     TResult Function(User user)? createUser,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (userReceived != null) {
@@ -287,6 +302,7 @@ class _$_UserReceived implements _UserReceived {
     required TResult Function(_Watch value) watch,
     required TResult Function(_UserReceived value) userReceived,
     required TResult Function(_CreateUser value) createUser,
+    required TResult Function(_Logout value) logout,
   }) {
     return userReceived(this);
   }
@@ -297,6 +313,7 @@ class _$_UserReceived implements _UserReceived {
     TResult? Function(_Watch value)? watch,
     TResult? Function(_UserReceived value)? userReceived,
     TResult? Function(_CreateUser value)? createUser,
+    TResult? Function(_Logout value)? logout,
   }) {
     return userReceived?.call(this);
   }
@@ -307,6 +324,7 @@ class _$_UserReceived implements _UserReceived {
     TResult Function(_Watch value)? watch,
     TResult Function(_UserReceived value)? userReceived,
     TResult Function(_CreateUser value)? createUser,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (userReceived != null) {
@@ -403,6 +421,7 @@ class _$_CreateUser implements _CreateUser {
     required TResult Function() watch,
     required TResult Function(Option<User> nothingOrUser) userReceived,
     required TResult Function(User user) createUser,
+    required TResult Function() logout,
   }) {
     return createUser(user);
   }
@@ -413,6 +432,7 @@ class _$_CreateUser implements _CreateUser {
     TResult? Function()? watch,
     TResult? Function(Option<User> nothingOrUser)? userReceived,
     TResult? Function(User user)? createUser,
+    TResult? Function()? logout,
   }) {
     return createUser?.call(user);
   }
@@ -423,6 +443,7 @@ class _$_CreateUser implements _CreateUser {
     TResult Function()? watch,
     TResult Function(Option<User> nothingOrUser)? userReceived,
     TResult Function(User user)? createUser,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (createUser != null) {
@@ -437,6 +458,7 @@ class _$_CreateUser implements _CreateUser {
     required TResult Function(_Watch value) watch,
     required TResult Function(_UserReceived value) userReceived,
     required TResult Function(_CreateUser value) createUser,
+    required TResult Function(_Logout value) logout,
   }) {
     return createUser(this);
   }
@@ -447,6 +469,7 @@ class _$_CreateUser implements _CreateUser {
     TResult? Function(_Watch value)? watch,
     TResult? Function(_UserReceived value)? userReceived,
     TResult? Function(_CreateUser value)? createUser,
+    TResult? Function(_Logout value)? logout,
   }) {
     return createUser?.call(this);
   }
@@ -457,6 +480,7 @@ class _$_CreateUser implements _CreateUser {
     TResult Function(_Watch value)? watch,
     TResult Function(_UserReceived value)? userReceived,
     TResult Function(_CreateUser value)? createUser,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (createUser != null) {
@@ -473,6 +497,118 @@ abstract class _CreateUser implements UserEvent {
   @JsonKey(ignore: true)
   _$$_CreateUserCopyWith<_$_CreateUser> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LogoutCopyWith<$Res> {
+  factory _$$_LogoutCopyWith(_$_Logout value, $Res Function(_$_Logout) then) =
+      __$$_LogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LogoutCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$_Logout>
+    implements _$$_LogoutCopyWith<$Res> {
+  __$$_LogoutCopyWithImpl(_$_Logout _value, $Res Function(_$_Logout) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Logout implements _Logout {
+  const _$_Logout();
+
+  @override
+  String toString() {
+    return 'UserEvent.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Logout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watch,
+    required TResult Function(Option<User> nothingOrUser) userReceived,
+    required TResult Function(User user) createUser,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? watch,
+    TResult? Function(Option<User> nothingOrUser)? userReceived,
+    TResult? Function(User user)? createUser,
+    TResult? Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watch,
+    TResult Function(Option<User> nothingOrUser)? userReceived,
+    TResult Function(User user)? createUser,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Watch value) watch,
+    required TResult Function(_UserReceived value) userReceived,
+    required TResult Function(_CreateUser value) createUser,
+    required TResult Function(_Logout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Watch value)? watch,
+    TResult? Function(_UserReceived value)? userReceived,
+    TResult? Function(_CreateUser value)? createUser,
+    TResult? Function(_Logout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Watch value)? watch,
+    TResult Function(_UserReceived value)? userReceived,
+    TResult Function(_CreateUser value)? createUser,
+    TResult Function(_Logout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Logout implements UserEvent {
+  const factory _Logout() = _$_Logout;
 }
 
 /// @nodoc

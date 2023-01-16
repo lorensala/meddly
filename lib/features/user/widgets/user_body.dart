@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/auth/bloc/bloc.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:user/user.dart';
 
@@ -25,7 +24,7 @@ class UserBody extends StatelessWidget {
               Text(state.userOrNull?.toString() ?? 'No user data'),
               ElevatedButton(
                 onPressed: () =>
-                    context.read<AuthBloc>().add(const LogoutRequestedEvent()),
+                    context.read<UserBloc>().add(const UserEvent.logout()),
                 child: const Text('logout'),
               ),
               const SizedBox(height: Sizes.spacing),

@@ -171,4 +171,9 @@ class UserRepository {
       return const Left(UserFailure.unknown());
     }
   }
+
+  /// Clears the user cache.
+  void clearCache() {
+    _cache.clear();
+  }
 }
