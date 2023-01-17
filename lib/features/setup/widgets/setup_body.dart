@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meddly/features/setup/cubit/cubit.dart';
+import 'package:meddly/features/user/user.dart';
 
 /// {@template setup_body}
 /// Body of the SetupPage.
@@ -15,7 +16,19 @@ class SetupBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SetupCubit, SetupState>(
       builder: (context, state) {
-        return const Center(child: Text(''));
+        return Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('SetupPage'),
+              ElevatedButton(
+                onPressed: () =>
+                    context.read<UserBloc>().add(const UserEvent.logout()),
+                child: const Text('logout'),
+              ),
+            ],
+          ),
+        );
       },
     );
   }

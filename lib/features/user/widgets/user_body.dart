@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meddly/core/core.dart';
+import 'package:meddly/features/auth/bloc/bloc.dart';
+import 'package:meddly/features/setup/view/setup_page.dart';
 import 'package:meddly/features/user/user.dart';
-import 'package:user/user.dart';
 
 /// {@template user_body}
 /// Body of the UserPage.
@@ -15,36 +15,46 @@ class UserBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserBloc, UserState>(
+    return BlocConsumer<UserBloc, UserState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          success: (user) {
+            if (user.firstName.isEmpty) {
+              Navigator.of(context).pushAndRemoveUntil(
+                SetupPage.route(),
+                (route) => false,
+              );
+            }
+          },
+          failure: (failure) => failure.whenOrNull(
+            notFound: () => context.read<AuthBloc>().state.whenOrNull(
+                  authenticated: (_) async =>
+                      Navigator.of(context).pushAndRemoveUntil(
+                    SetupPage.route(),
+                    (route) => false,
+                  ),
+                ),
+          ),
+        );
+      },
       builder: (context, state) {
-        return Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(state.userOrNull?.toString() ?? 'No user data'),
-              ElevatedButton(
-                onPressed: () =>
-                    context.read<UserBloc>().add(const UserEvent.logout()),
-                child: const Text('logout'),
-              ),
-              const SizedBox(height: Sizes.spacing),
-              ElevatedButton(
-                onPressed: () => context.read<UserBloc>().add(
-                      UserEvent.createUser(
-                        User(
-                          uid: '1',
-                          email: 'salalorenn@gmail.com',
-                          firstName: 'Lorenzo',
-                          lastName: 'Pichilli',
-                          phone: '1234567890',
-                          sex: const Sex.female(),
-                          birth: DateTime(2000).toString(),
-                        ),
-                      ),
-                    ),
-                child: const Text('Create user'),
-              ),
-            ],
+        return state.when(
+          loading: () => const Center(child: CircularProgressIndicator()),
+          failure: (failure) {
+            return Center(child: Text(failure.toString()));
+          },
+          success: (user) => Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(user.toString()),
+                ElevatedButton(
+                  onPressed: () =>
+                      context.read<UserBloc>().add(const UserEvent.logout()),
+                  child: const Text('logout'),
+                ),
+              ],
+            ),
           ),
         );
       },

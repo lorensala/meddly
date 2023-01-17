@@ -5,6 +5,7 @@ import 'package:formz/formz.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meddly/features/login/cubit/login_cubit.dart';
 import 'package:meddly/features/login/widgets/login_body.dart';
+import 'package:meddly/features/onboarding/view/onboarding_page.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 
@@ -25,7 +26,12 @@ class LoginPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginCubit(GetIt.I.get<AuthRepository>()),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          leading: BackButton(
+            onPressed: () => Navigator.of(context)
+                .pushAndRemoveUntil(OnboardingPage.route(), (_) => false),
+          ),
+        ),
         body: const LoginView(),
       ),
     );

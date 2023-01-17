@@ -7,6 +7,7 @@ import 'package:meddly/features/onboarding/view/onboarding_page.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/theme/theme.dart';
+import 'package:user/user.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,9 +17,19 @@ class App extends StatelessWidget {
     final authRepository = GetIt.I.get<AuthRepository>();
     final user = authRepository.currentUser;
 
-    return BlocProvider(
-      create: (context) =>
-          AuthBloc(authRepository: GetIt.I.get<AuthRepository>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) =>
+              AuthBloc(authRepository: GetIt.I.get<AuthRepository>()),
+        ),
+        BlocProvider(
+          create: (_) => UserBloc(
+            userRepository: GetIt.I.get<UserRepository>(),
+            authRepository: GetIt.I.get<AuthRepository>(),
+          ),
+        ),
+      ],
       child: MaterialApp(
         theme: ThemeManager.lightTheme,
         localizationsDelegates: AppLocalizations.localizationsDelegates,

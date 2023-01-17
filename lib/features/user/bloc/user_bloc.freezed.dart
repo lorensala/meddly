@@ -19,50 +19,50 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watch,
-    required TResult Function(Option<User> nothingOrUser) userReceived,
     required TResult Function(User user) createUser,
     required TResult Function() logout,
+    required TResult Function() checkIfUserExists,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? watch,
-    TResult? Function(Option<User> nothingOrUser)? userReceived,
     TResult? Function(User user)? createUser,
     TResult? Function()? logout,
+    TResult? Function()? checkIfUserExists,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watch,
-    TResult Function(Option<User> nothingOrUser)? userReceived,
     TResult Function(User user)? createUser,
     TResult Function()? logout,
+    TResult Function()? checkIfUserExists,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Watch value) watch,
-    required TResult Function(_UserReceived value) userReceived,
     required TResult Function(_CreateUser value) createUser,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_CheckIfUserExists value) checkIfUserExists,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Watch value)? watch,
-    TResult? Function(_UserReceived value)? userReceived,
     TResult? Function(_CreateUser value)? createUser,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_CheckIfUserExists value)? checkIfUserExists,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
-    TResult Function(_UserReceived value)? userReceived,
     TResult Function(_CreateUser value)? createUser,
     TResult Function(_Logout value)? logout,
+    TResult Function(_CheckIfUserExists value)? checkIfUserExists,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -122,9 +122,9 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watch,
-    required TResult Function(Option<User> nothingOrUser) userReceived,
     required TResult Function(User user) createUser,
     required TResult Function() logout,
+    required TResult Function() checkIfUserExists,
   }) {
     return watch();
   }
@@ -133,9 +133,9 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? watch,
-    TResult? Function(Option<User> nothingOrUser)? userReceived,
     TResult? Function(User user)? createUser,
     TResult? Function()? logout,
+    TResult? Function()? checkIfUserExists,
   }) {
     return watch?.call();
   }
@@ -144,9 +144,9 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watch,
-    TResult Function(Option<User> nothingOrUser)? userReceived,
     TResult Function(User user)? createUser,
     TResult Function()? logout,
+    TResult Function()? checkIfUserExists,
     required TResult orElse(),
   }) {
     if (watch != null) {
@@ -159,9 +159,9 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Watch value) watch,
-    required TResult Function(_UserReceived value) userReceived,
     required TResult Function(_CreateUser value) createUser,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_CheckIfUserExists value) checkIfUserExists,
   }) {
     return watch(this);
   }
@@ -170,9 +170,9 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Watch value)? watch,
-    TResult? Function(_UserReceived value)? userReceived,
     TResult? Function(_CreateUser value)? createUser,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_CheckIfUserExists value)? checkIfUserExists,
   }) {
     return watch?.call(this);
   }
@@ -181,9 +181,9 @@ class _$_Watch implements _Watch {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
-    TResult Function(_UserReceived value)? userReceived,
     TResult Function(_CreateUser value)? createUser,
     TResult Function(_Logout value)? logout,
+    TResult Function(_CheckIfUserExists value)? checkIfUserExists,
     required TResult orElse(),
   }) {
     if (watch != null) {
@@ -195,153 +195,6 @@ class _$_Watch implements _Watch {
 
 abstract class _Watch implements UserEvent {
   const factory _Watch() = _$_Watch;
-}
-
-/// @nodoc
-abstract class _$$_UserReceivedCopyWith<$Res> {
-  factory _$$_UserReceivedCopyWith(
-          _$_UserReceived value, $Res Function(_$_UserReceived) then) =
-      __$$_UserReceivedCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Option<User> nothingOrUser});
-}
-
-/// @nodoc
-class __$$_UserReceivedCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$_UserReceived>
-    implements _$$_UserReceivedCopyWith<$Res> {
-  __$$_UserReceivedCopyWithImpl(
-      _$_UserReceived _value, $Res Function(_$_UserReceived) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? nothingOrUser = null,
-  }) {
-    return _then(_$_UserReceived(
-      null == nothingOrUser
-          ? _value.nothingOrUser
-          : nothingOrUser // ignore: cast_nullable_to_non_nullable
-              as Option<User>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_UserReceived implements _UserReceived {
-  const _$_UserReceived(this.nothingOrUser);
-
-  @override
-  final Option<User> nothingOrUser;
-
-  @override
-  String toString() {
-    return 'UserEvent.userReceived(nothingOrUser: $nothingOrUser)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_UserReceived &&
-            (identical(other.nothingOrUser, nothingOrUser) ||
-                other.nothingOrUser == nothingOrUser));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, nothingOrUser);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_UserReceivedCopyWith<_$_UserReceived> get copyWith =>
-      __$$_UserReceivedCopyWithImpl<_$_UserReceived>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() watch,
-    required TResult Function(Option<User> nothingOrUser) userReceived,
-    required TResult Function(User user) createUser,
-    required TResult Function() logout,
-  }) {
-    return userReceived(nothingOrUser);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? watch,
-    TResult? Function(Option<User> nothingOrUser)? userReceived,
-    TResult? Function(User user)? createUser,
-    TResult? Function()? logout,
-  }) {
-    return userReceived?.call(nothingOrUser);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? watch,
-    TResult Function(Option<User> nothingOrUser)? userReceived,
-    TResult Function(User user)? createUser,
-    TResult Function()? logout,
-    required TResult orElse(),
-  }) {
-    if (userReceived != null) {
-      return userReceived(nothingOrUser);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Watch value) watch,
-    required TResult Function(_UserReceived value) userReceived,
-    required TResult Function(_CreateUser value) createUser,
-    required TResult Function(_Logout value) logout,
-  }) {
-    return userReceived(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Watch value)? watch,
-    TResult? Function(_UserReceived value)? userReceived,
-    TResult? Function(_CreateUser value)? createUser,
-    TResult? Function(_Logout value)? logout,
-  }) {
-    return userReceived?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Watch value)? watch,
-    TResult Function(_UserReceived value)? userReceived,
-    TResult Function(_CreateUser value)? createUser,
-    TResult Function(_Logout value)? logout,
-    required TResult orElse(),
-  }) {
-    if (userReceived != null) {
-      return userReceived(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UserReceived implements UserEvent {
-  const factory _UserReceived(final Option<User> nothingOrUser) =
-      _$_UserReceived;
-
-  Option<User> get nothingOrUser;
-  @JsonKey(ignore: true)
-  _$$_UserReceivedCopyWith<_$_UserReceived> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -419,9 +272,9 @@ class _$_CreateUser implements _CreateUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watch,
-    required TResult Function(Option<User> nothingOrUser) userReceived,
     required TResult Function(User user) createUser,
     required TResult Function() logout,
+    required TResult Function() checkIfUserExists,
   }) {
     return createUser(user);
   }
@@ -430,9 +283,9 @@ class _$_CreateUser implements _CreateUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? watch,
-    TResult? Function(Option<User> nothingOrUser)? userReceived,
     TResult? Function(User user)? createUser,
     TResult? Function()? logout,
+    TResult? Function()? checkIfUserExists,
   }) {
     return createUser?.call(user);
   }
@@ -441,9 +294,9 @@ class _$_CreateUser implements _CreateUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watch,
-    TResult Function(Option<User> nothingOrUser)? userReceived,
     TResult Function(User user)? createUser,
     TResult Function()? logout,
+    TResult Function()? checkIfUserExists,
     required TResult orElse(),
   }) {
     if (createUser != null) {
@@ -456,9 +309,9 @@ class _$_CreateUser implements _CreateUser {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Watch value) watch,
-    required TResult Function(_UserReceived value) userReceived,
     required TResult Function(_CreateUser value) createUser,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_CheckIfUserExists value) checkIfUserExists,
   }) {
     return createUser(this);
   }
@@ -467,9 +320,9 @@ class _$_CreateUser implements _CreateUser {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Watch value)? watch,
-    TResult? Function(_UserReceived value)? userReceived,
     TResult? Function(_CreateUser value)? createUser,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_CheckIfUserExists value)? checkIfUserExists,
   }) {
     return createUser?.call(this);
   }
@@ -478,9 +331,9 @@ class _$_CreateUser implements _CreateUser {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
-    TResult Function(_UserReceived value)? userReceived,
     TResult Function(_CreateUser value)? createUser,
     TResult Function(_Logout value)? logout,
+    TResult Function(_CheckIfUserExists value)? checkIfUserExists,
     required TResult orElse(),
   }) {
     if (createUser != null) {
@@ -536,9 +389,9 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watch,
-    required TResult Function(Option<User> nothingOrUser) userReceived,
     required TResult Function(User user) createUser,
     required TResult Function() logout,
+    required TResult Function() checkIfUserExists,
   }) {
     return logout();
   }
@@ -547,9 +400,9 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? watch,
-    TResult? Function(Option<User> nothingOrUser)? userReceived,
     TResult? Function(User user)? createUser,
     TResult? Function()? logout,
+    TResult? Function()? checkIfUserExists,
   }) {
     return logout?.call();
   }
@@ -558,9 +411,9 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watch,
-    TResult Function(Option<User> nothingOrUser)? userReceived,
     TResult Function(User user)? createUser,
     TResult Function()? logout,
+    TResult Function()? checkIfUserExists,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -573,9 +426,9 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Watch value) watch,
-    required TResult Function(_UserReceived value) userReceived,
     required TResult Function(_CreateUser value) createUser,
     required TResult Function(_Logout value) logout,
+    required TResult Function(_CheckIfUserExists value) checkIfUserExists,
   }) {
     return logout(this);
   }
@@ -584,9 +437,9 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Watch value)? watch,
-    TResult? Function(_UserReceived value)? userReceived,
     TResult? Function(_CreateUser value)? createUser,
     TResult? Function(_Logout value)? logout,
+    TResult? Function(_CheckIfUserExists value)? checkIfUserExists,
   }) {
     return logout?.call(this);
   }
@@ -595,9 +448,9 @@ class _$_Logout implements _Logout {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Watch value)? watch,
-    TResult Function(_UserReceived value)? userReceived,
     TResult Function(_CreateUser value)? createUser,
     TResult Function(_Logout value)? logout,
+    TResult Function(_CheckIfUserExists value)? checkIfUserExists,
     required TResult orElse(),
   }) {
     if (logout != null) {
@@ -609,6 +462,120 @@ class _$_Logout implements _Logout {
 
 abstract class _Logout implements UserEvent {
   const factory _Logout() = _$_Logout;
+}
+
+/// @nodoc
+abstract class _$$_CheckIfUserExistsCopyWith<$Res> {
+  factory _$$_CheckIfUserExistsCopyWith(_$_CheckIfUserExists value,
+          $Res Function(_$_CheckIfUserExists) then) =
+      __$$_CheckIfUserExistsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CheckIfUserExistsCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$_CheckIfUserExists>
+    implements _$$_CheckIfUserExistsCopyWith<$Res> {
+  __$$_CheckIfUserExistsCopyWithImpl(
+      _$_CheckIfUserExists _value, $Res Function(_$_CheckIfUserExists) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_CheckIfUserExists implements _CheckIfUserExists {
+  const _$_CheckIfUserExists();
+
+  @override
+  String toString() {
+    return 'UserEvent.checkIfUserExists()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CheckIfUserExists);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watch,
+    required TResult Function(User user) createUser,
+    required TResult Function() logout,
+    required TResult Function() checkIfUserExists,
+  }) {
+    return checkIfUserExists();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? watch,
+    TResult? Function(User user)? createUser,
+    TResult? Function()? logout,
+    TResult? Function()? checkIfUserExists,
+  }) {
+    return checkIfUserExists?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watch,
+    TResult Function(User user)? createUser,
+    TResult Function()? logout,
+    TResult Function()? checkIfUserExists,
+    required TResult orElse(),
+  }) {
+    if (checkIfUserExists != null) {
+      return checkIfUserExists();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Watch value) watch,
+    required TResult Function(_CreateUser value) createUser,
+    required TResult Function(_Logout value) logout,
+    required TResult Function(_CheckIfUserExists value) checkIfUserExists,
+  }) {
+    return checkIfUserExists(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Watch value)? watch,
+    TResult? Function(_CreateUser value)? createUser,
+    TResult? Function(_Logout value)? logout,
+    TResult? Function(_CheckIfUserExists value)? checkIfUserExists,
+  }) {
+    return checkIfUserExists?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Watch value)? watch,
+    TResult Function(_CreateUser value)? createUser,
+    TResult Function(_Logout value)? logout,
+    TResult Function(_CheckIfUserExists value)? checkIfUserExists,
+    required TResult orElse(),
+  }) {
+    if (checkIfUserExists != null) {
+      return checkIfUserExists(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CheckIfUserExists implements UserEvent {
+  const factory _CheckIfUserExists() = _$_CheckIfUserExists;
 }
 
 /// @nodoc

@@ -114,13 +114,53 @@ class UserRepository {
   ///
   /// Returns a [User] if the operation was successful.\
   /// Throws a [UserFailure] if the operation was not successful.
-  Either<UserFailure, User> getUser() {
+  Either<UserFailure, User?> getUser() {
     try {
       final user = _cache.read();
-      if (user == null) {
-        return const Left(UserFailure.notFound());
-      }
+
+      return Right(user?.toDomain());
+    } on UserCacheException {
+      return const Left(UserFailure.cache());
+    } on UserSerializationException {
+      return const Left(UserFailure.serialization());
+    } catch (e) {
+      return const Left(UserFailure.unknown());
+    }
+  }
+
+  /// Fetch user from database
+  ///
+  /// Returns a [User] if the operation was successful.\
+  /// Throws a [UserFailure] if the operation was not successful.
+  Future<Either<UserFailure, User>> fetchUser() async {
+    try {
+      final user = await _api.getUser();
+
+      await _cache.write(user);
+
       return Right(user.toDomain());
+    } on UserNotFoundException {
+      return const Left(UserFailure.notFound());
+    } on UserDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+          return const Left(UserFailure.timeout());
+
+        case DioErrorType.sendTimeout:
+          return const Left(UserFailure.sendTimeout());
+
+        case DioErrorType.receiveTimeout:
+          return const Left(UserFailure.receiveTimeout());
+
+        case DioErrorType.response:
+          return const Left(UserFailure.response());
+
+        case DioErrorType.cancel:
+          return const Left(UserFailure.cancel());
+
+        case DioErrorType.other:
+          return const Left(UserFailure.unknown());
+      }
     } on UserCacheException {
       return const Left(UserFailure.cache());
     } on UserSerializationException {

@@ -2,6 +2,7 @@ import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:get_it/get_it.dart';
+import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/sign_up/cubit/cubit.dart';
 import 'package:meddly/features/sign_up/widgets/sign_up_body.dart';
 import 'package:meddly/features/user/user.dart';
@@ -24,7 +25,12 @@ class SignUpPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignUpCubit(GetIt.I<AuthRepository>()),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          leading: BackButton(
+            onPressed: () => Navigator.of(context)
+                .pushAndRemoveUntil(OnboardingPage.route(), (_) => false),
+          ),
+        ),
         body: const SignUpView(),
       ),
     );

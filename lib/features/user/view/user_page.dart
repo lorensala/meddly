@@ -1,16 +1,13 @@
-import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:meddly/features/auth/bloc/bloc.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/user/user.dart';
-import 'package:user/user.dart';
 
 /// {@template user_page}
 /// A description for UserPage
 /// {@endtemplate}
-class UserPage extends StatelessWidget {
+class UserPage extends StatefulWidget {
   /// {@macro user_page}
   const UserPage({super.key});
 
@@ -20,15 +17,20 @@ class UserPage extends StatelessWidget {
   }
 
   @override
+  State<UserPage> createState() => _UserPageState();
+}
+
+class _UserPageState extends State<UserPage> {
+  @override
+  void initState() {
+    context.read<UserBloc>().add(const UserEvent.checkIfUserExists());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserBloc(
-        userRepository: GetIt.I.get<UserRepository>(),
-        authRepository: GetIt.I.get<AuthRepository>(),
-      ),
-      child: const Scaffold(
-        body: UserView(),
-      ),
+    return const Scaffold(
+      body: UserView(),
     );
   }
 }
