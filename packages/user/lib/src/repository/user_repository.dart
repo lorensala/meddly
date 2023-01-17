@@ -172,7 +172,7 @@ class UserRepository {
 
   /// Updates a user
   ///
-  /// Returns a [User] if the operation was successful.\
+  /// Returns a [Unit] if the operation was successful.\
   /// Throws a [UserFailure] if the operation was not successful.
   Future<Either<UserFailure, Unit>> updateUser(User user) async {
     try {

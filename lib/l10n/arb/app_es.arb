@@ -38,5 +38,14 @@
     "registerMedicationsTitle": "Registra tus medicamentos",
     "registerMedicationsDescription": "Registra tus medicamentos para que el abogado pueda conocer tu caso.",
     "followYourTreatmentsTitle": "Sigue tu tratamiento",
-    "followYourTreatmentsDescription": "El abogado te ayudará a seguir tu tratamiento y a conseguir la mejor compensación."
+    "followYourTreatmentsDescription": "El abogado te ayudará a seguir tu tratamiento y a conseguir la mejor compensación.",
+    "nameHint": "Nombre",
+    "invalidName": "El nombre es inválido",
+    "nameEmpty": "El nombre no puede estar vacío",
+    "nameTooLong": "El nombre no puede tener más de 50 caracteres",
+    "lastNameHint": "Apellido",
+    "invalidLastName": "El apellido es inválido",
+    "lastNameEmpty": "El apellido no puede estar vacío",
+    "lastNameTooLong": "El apellido no puede tener más de 50 caracteres"
+    
 }

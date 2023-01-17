@@ -22,7 +22,7 @@ class UserBody extends StatelessWidget {
             if (user.firstName.isEmpty) {
               Navigator.of(context).pushAndRemoveUntil(
                 SetupPage.route(),
-                (route) => false,
+                (_) => false,
               );
             }
           },
@@ -31,7 +31,7 @@ class UserBody extends StatelessWidget {
                   authenticated: (_) async =>
                       Navigator.of(context).pushAndRemoveUntil(
                     SetupPage.route(),
-                    (route) => false,
+                    (_) => false,
                   ),
                 ),
           ),

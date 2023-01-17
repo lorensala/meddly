@@ -159,5 +159,38 @@
     "termsAndConditions": "terms and conditions",
     "@termsAndConditions": {
         "description": "Text shown on the terms and conditions button"
+    },
+    "nameHint": "Name",
+    "@nameHint": {
+        "description": "Hint text shown on the sign up page"
+    },
+    "invalidName": "Name is invalid",
+    "@invalidName": {
+        "description": "Text shown when the user tries to sign up with an invalid name"
+    },
+    "nameEmpty": "Name cannot be empty",
+    "@nameEmpty": {
+        "description": "Text shown when the user tries to sign up with an empty name"
+    },
+    "nameTooLong": "Name must be at most 50 characters",
+    "@nameTooLong": {
+        "description": "Text shown when the user tries to sign up with a name that is too long"
+    },
+    "lastNameHint": "Last name",
+    "@lastNameHint": {
+        "description": "Hint text shown on the sign up page"
+    },
+    "invalidLastName": "Last name is invalid",
+    "@invalidLastName": {
+        "description": "Text shown when the user tries to sign up with an invalid last name"
+    },
+    "lastNameEmpty": "Last name cannot be empty",
+    "@lastNameEmpty": {
+        "description": "Text shown when the user tries to sign up with an empty last name"
+    },
+    "lastNameTooLong": "Last name must be at most 50 characters",
+    "@lastNameTooLong": {
+        "description": "Text shown when the user tries to sign up with a last name that is too long"
     }
+
 }

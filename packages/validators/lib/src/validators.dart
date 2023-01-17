@@ -1,4 +1,11 @@
+export 'birthdate.dart';
 export 'email.dart';
+export 'height.dart';
+export 'lastname.dart';
+export 'name.dart';
 export 'password.dart';
+export 'phone_number.dart';
+export 'sex.dart';
 export 'terms_and_conditions.dart';
 export 'validators.dart';
+export 'weight.dart';
