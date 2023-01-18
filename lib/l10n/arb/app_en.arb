@@ -191,6 +191,111 @@
     "lastNameTooLong": "Last name must be at most 50 characters",
     "@lastNameTooLong": {
         "description": "Text shown when the user tries to sign up with a last name that is too long"
-    }
-
+    },
+    "birthdateHint": "Birthdate",
+    "@birthdateHint": {
+        "description": "Hint text shown on the sign up page"
+    },
+    "invalidBirthdate": "Birthdate is invalid",
+    "@invalidBirthdate": {
+        "description": "Text shown when the user tries to sign up with an invalid birthdate"
+    },
+    "birthdateEmpty": "Birthdate cannot be empty",
+    "@birthdateEmpty": {
+        "description": "Text shown when the user tries to sign up with an empty birthdate"
+    },
+    "birthdateUnderage": "You must be at least 18 years old to use this app",
+    "@birthdateUnderage": {
+        "description": "Text shown when the user tries to sign up with a birthdate that is underage"
+    },
+    "heightHint": "Height",
+    "@heightHint": {
+        "description": "Hint text shown on the sign up page"
+    },
+    "invalidHeight": "Height is invalid",
+    "@invalidHeight": {
+        "description": "Text shown when the user tries to sign up with an invalid height"
+    },
+    "heightEmpty": "Height cannot be empty",
+    "@heightEmpty": {
+        "description": "Text shown when the user tries to sign up with an empty height"
+    },
+    "heightNegative": "Height cannot be negative",
+    "@heightNegative": {
+        "description": "Text shown when the user tries to sign up with a negative height"
+    },
+    "heightZero": "Height cannot be zero",
+    "@heightZero": {
+        "description": "Text shown when the user tries to sign up with a zero height"
+    },
+    "weightHint": "Weight",
+    "@weightHint": {
+        "description": "Hint text shown on the sign up page"
+    },
+    "invalidWeight": "Weight is invalid",
+    "@invalidWeight": {
+        "description": "Text shown when the user tries to sign up with an invalid weight"
+    },
+    "weightEmpty": "Weight cannot be empty",
+    "@weightEmpty": {
+        "description": "Text shown when the user tries to sign up with an empty weight"
+    },
+    "weightNegative": "Weight cannot be negative",
+    "@weightNegative": {
+        "description": "Text shown when the user tries to sign up with a negative weight"
+    },
+    "weightZero": "Weight cannot be zero",
+    "@weightZero": {
+        "description": "Text shown when the user tries to sign up with a zero weight"
+    },
+    "phoneNumberHint": "Phone number",
+    "@phoneNumberHint": {
+        "description": "Hint text shown on the sign up page"
+    },
+    "invalidPhoneNumber": "Phone number is invalid",
+    "@invalidPhoneNumber": {
+        "description": "Text shown when the user tries to sign up with an invalid phone number"
+    },
+    "phoneNumberEmpty": "Phone number cannot be empty",
+    "@phoneNumberEmpty": {
+        "description": "Text shown when the user tries to sign up with an empty phone number"
+    },
+    "phoneNumberTooLong": "Phone number must be at most 20 characters",
+    "@phoneNumberTooLong": {
+        "description": "Text shown when the user tries to sign up with a phone number that is too long"
+    },
+    "phoneNumberTooShort": "Phone number must be at least 8 characters",
+    "@phoneNumberTooShort": {
+        "description": "Text shown when the user tries to sign up with a phone number that is too short"
+    },
+    "phoneNumberNotNumeric": "Phone number must be numeric",
+    "@phoneNumberNotNumeric": {
+        "description": "Text shown when the user tries to sign up with a phone number that is not numeric"
+    },
+    "sexHint": "Sex",
+    "@sexHint": {
+        "description": "Hint text shown on the sign up page"
+    },
+    "sexDescription": "Select your sex at birth",
+    "@sexDescription": {
+        "description": "Text shown on the sex selector"
+    },
+    "sexWhy": "Why do we ask for this?",
+    "@sexWhy": {
+        "description": "Text shown on under the description"
+    },
+    "male": "Male",
+    "@male": {
+        "description": "Male"
+    },
+    "female": "Female",
+    "@female": {
+        "description": "Female"
+    },
+    "createAccount": "Create account",
+    "@createAccount": {
+        "description": "Text shown on the create account button"
+    },
+    "timeout": "Timeout"
+   
 }

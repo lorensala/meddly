@@ -6,7 +6,6 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/forgot_password/forgot_password.dart';
 import 'package:meddly/features/login/cubit/login_cubit.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:meddly/utils/utils.dart';
 import 'package:meddly/widgets/button.dart';
 
 class LoginForm extends StatelessWidget {
@@ -24,11 +23,11 @@ class LoginForm extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: const [
           _EmailInput(),
-          SizedBox(height: Sizes.spacing),
+          SizedBox(height: Sizes.mediumSpacing),
           _PasswordInput(),
-          SizedBox(height: Sizes.spacing),
+          SizedBox(height: Sizes.mediumSpacing),
           _ForgotPassword(),
-          SizedBox(height: Sizes.spacing),
+          SizedBox(height: Sizes.mediumSpacing),
           _LoginButton(),
         ],
       ),

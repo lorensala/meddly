@@ -6,7 +6,6 @@ import 'package:meddly/features/login/cubit/cubit.dart';
 import 'package:meddly/features/login/widgets/login_form.dart';
 import 'package:meddly/features/sign_up/view/view.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:meddly/utils/extensions.dart';
 
 /// {@template login_body}
 /// Body of the LoginPage.
@@ -26,7 +25,7 @@ class LoginBody extends StatelessWidget {
           child: Column(
             children: const [
               Center(child: LoginForm()),
-              SizedBox(height: Sizes.spacing),
+              SizedBox(height: Sizes.mediumSpacing),
               _DontHaveAccountSignUp(),
             ],
           ),

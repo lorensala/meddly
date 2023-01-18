@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/theme/theme.dart';
-import 'package:meddly/utils/extensions.dart';
 
 class CircleCheckSuffixIcon extends StatelessWidget {
   const CircleCheckSuffixIcon({

@@ -14,7 +14,7 @@ class Birthdate extends FormzInput<String, BirthdateError> {
 
   static bool _isUnderage(DateTime birthdate) {
     return birthdate
-        .isBefore(DateTime.now().subtract(const Duration(days: 657)));
+        .isAfter(DateTime.now().subtract(const Duration(days: 365 * 18)));
   }
 
   static bool _isInvalid(DateTime birthdate) {

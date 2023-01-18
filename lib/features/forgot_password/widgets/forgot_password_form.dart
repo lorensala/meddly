@@ -20,7 +20,7 @@ class ForgotPasswordForm extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: const [
           _EmailInput(),
-          SizedBox(height: Sizes.spacing),
+          SizedBox(height: Sizes.mediumSpacing),
           _SendPasswordResetEmailButton(),
         ],
       ),

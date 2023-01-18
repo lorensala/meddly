@@ -6,7 +6,6 @@ import 'package:formz/formz.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/sign_up/cubit/sign_up_cubit.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:meddly/utils/utils.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class SignUpForm extends StatelessWidget {
@@ -24,11 +23,11 @@ class SignUpForm extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: const [
           _EmailInput(),
-          SizedBox(height: Sizes.spacing),
+          SizedBox(height: Sizes.mediumSpacing),
           _PasswordInput(),
-          SizedBox(height: Sizes.spacing),
+          SizedBox(height: Sizes.mediumSpacing),
           _TermsAndConditions(),
-          SizedBox(height: Sizes.spacing),
+          SizedBox(height: Sizes.mediumSpacing),
           _SignUpButton(),
         ],
       ),

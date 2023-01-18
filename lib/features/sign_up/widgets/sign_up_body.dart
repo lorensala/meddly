@@ -4,7 +4,6 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/login/login.dart';
 import 'package:meddly/features/sign_up/widgets/sign_up_form.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:meddly/utils/extensions.dart';
 
 /// {@template sign_up_body}
 /// Body of the SignUpPage.
@@ -22,7 +21,7 @@ class SignUpBody extends StatelessWidget {
       child: Column(
         children: const [
           SignUpForm(),
-          SizedBox(height: Sizes.spacing),
+          SizedBox(height: Sizes.mediumSpacing),
           _AlreadyHaveAnAccountLogin(),
         ],
       ),
