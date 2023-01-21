@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/bloc/bloc.dart';
+import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/setup/view/setup_page.dart';
 import 'package:meddly/features/user/user.dart';
 
@@ -25,6 +26,12 @@ class UserBody extends StatelessWidget {
                 (_) => false,
               );
             }
+            if (user.phone.isEmpty) {
+              Navigator.of(context).pushAndRemoveUntil(
+                PhonePage.route(),
+                (_) => false,
+              );
+            }
           },
           failure: (failure) => failure.whenOrNull(
             notFound: () => context.read<AuthBloc>().state.whenOrNull(
@@ -41,7 +48,20 @@ class UserBody extends StatelessWidget {
         return state.when(
           loading: () => const Center(child: CircularProgressIndicator()),
           failure: (failure) {
-            return Center(child: Text(failure.toString()));
+            return Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(failure.toString()),
+                  const SizedBox(height: Sizes.mediumSpacing),
+                  ElevatedButton(
+                    onPressed: () =>
+                        context.read<UserBloc>().add(const UserEvent.logout()),
+                    child: const Text('logout'),
+                  ),
+                ],
+              ),
+            );
           },
           success: (user) => Center(
             child: Column(
