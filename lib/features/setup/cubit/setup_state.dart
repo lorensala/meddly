@@ -9,8 +9,12 @@ class SetupState with _$SetupState {
     @Default(Weight.pure()) Weight weight,
     @Default(SexInput.pure()) SexInput sex,
     @Default(Birthdate.pure()) Birthdate birthdate,
-    @Default(PhoneNumber.pure()) PhoneNumber phoneNumber,
     @Default(FormzStatus.pure) FormzStatus status,
     UserFailure? failure,
   }) = _SetupState;
+
+  const SetupState._();
+
+  bool get requiredFieldsAreValid =>
+      name.valid && lastname.valid && birthdate.valid && sex.valid;
 }

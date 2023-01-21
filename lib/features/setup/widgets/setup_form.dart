@@ -2,7 +2,6 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:meddly/core/core.dart';
@@ -37,8 +36,6 @@ class SetupForm extends StatelessWidget {
           SizedBox(height: Sizes.mediumSpacing),
           _WeightInput(),
           SizedBox(height: Sizes.mediumSpacing),
-          _PhoneNumberInput(),
-          SizedBox(height: Sizes.largeSpacing),
           _CreateAccountButton()
         ],
       ),
@@ -53,10 +50,12 @@ class _CreateAccountButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<SetupCubit>();
     return BlocBuilder<SetupCubit, SetupState>(
-      buildWhen: (previous, current) => previous.status != current.status,
+      buildWhen: (previous, current) =>
+          previous.status != current.status ||
+          previous.requiredFieldsAreValid != current.requiredFieldsAreValid,
       builder: (context, state) {
         return Button(
-          isValid: state.status.isValid,
+          isValid: state.requiredFieldsAreValid,
           isLoading: state.status.isSubmissionInProgress,
           onPressed: cubit.createAccount,
           label: context.l10n.createAccount,
@@ -78,7 +77,7 @@ class _SexSelector extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _InputLabel(
+            InputLabel(
               label: context.l10n.sexHint,
               isRequired: true,
             ),
@@ -108,7 +107,7 @@ class _SexSelector extends StatelessWidget {
                 ),
               ],
             ),
-            _InputDescription(
+            InputDescription(
               description: context.l10n.sexDescription,
             ),
             GestureDetector(
@@ -116,8 +115,6 @@ class _SexSelector extends StatelessWidget {
               //onTap: () => Navigator.push(context, route),
               child: Text(
                 context.l10n.sexWhy,
-                // on tap
-
                 style: TextStyle(
                   color: context.colorScheme.primary,
                   decoration: TextDecoration.underline,
@@ -128,53 +125,6 @@ class _SexSelector extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-}
-
-class _InputLabel extends StatelessWidget {
-  const _InputLabel({
-    required this.label,
-    required this.isRequired,
-  });
-
-  final String label;
-  final bool isRequired;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
-        text: label,
-        style: context.textTheme.titleMedium!.copyWith(
-          fontWeight: FontWeight.w500,
-        ),
-        children: [
-          if (isRequired)
-            TextSpan(
-              text: ' *',
-              style: TextStyle(color: context.colorScheme.error),
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-class _InputDescription extends StatelessWidget {
-  const _InputDescription({
-    required this.description,
-  });
-
-  final String description;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      description,
-      style: context.textTheme.bodyMedium!.copyWith(
-        color: context.colorScheme.onSecondary.withOpacity(0.5),
-      ),
     );
   }
 }
@@ -211,7 +161,7 @@ class _BirthdateInputState extends State<_BirthdateInput> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _InputLabel(
+            InputLabel(
               label: context.l10n.birthdateHint,
               isRequired: true,
             ),
@@ -301,7 +251,7 @@ class _NameInput extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _InputLabel(label: context.l10n.nameHint, isRequired: true),
+            InputLabel(label: context.l10n.nameHint, isRequired: true),
             const SizedBox(height: Sizes.smallSpacing),
             TextFormField(
               onChanged: cubit.nameChanged,
@@ -336,7 +286,7 @@ class _LastnameInput extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _InputLabel(label: context.l10n.lastNameHint, isRequired: true),
+            InputLabel(label: context.l10n.lastNameHint, isRequired: true),
             const SizedBox(height: Sizes.smallSpacing),
             TextFormField(
               onChanged: cubit.lastnameChanged,
@@ -359,63 +309,6 @@ class _LastnameInput extends StatelessWidget {
   }
 }
 
-class _PhoneNumberInput extends StatelessWidget {
-  const _PhoneNumberInput();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SetupCubit, SetupState>(
-      buildWhen: (previous, current) =>
-          previous.phoneNumber != current.phoneNumber,
-      builder: (context, state) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _InputLabel(label: context.l10n.phoneNumberHint, isRequired: false),
-            const SizedBox(height: Sizes.smallSpacing),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    '(+54)',
-                    style: context.textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 5,
-                  child: TextFormField(
-                    onChanged: context.read<SetupCubit>().phoneNumberChanged,
-                    keyboardType: TextInputType.phone,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(10),
-                    ],
-                    decoration: InputDecoration(
-                      errorText: !state.phoneNumber.pure
-                          ? state.phoneNumber.error?.when(
-                              invalid: () => context.l10n.invalidPhoneNumber,
-                              empty: () => context.l10n.phoneNumberEmpty,
-                              notNumeric: () =>
-                                  context.l10n.phoneNumberNotNumeric,
-                              tooLong: () => context.l10n.phoneNumberTooLong,
-                              tooShort: () => context.l10n.phoneNumberTooShort,
-                            )
-                          : null,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
 class _WeightInput extends StatelessWidget {
   const _WeightInput();
 
@@ -428,7 +321,7 @@ class _WeightInput extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _InputLabel(
+            InputLabel(
               label: '${context.l10n.weightHint} (kg)',
               isRequired: false,
             ),
@@ -467,7 +360,7 @@ class _HeightInput extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _InputLabel(
+            InputLabel(
               label: '${context.l10n.heightHint} (cm)',
               isRequired: false,
             ),

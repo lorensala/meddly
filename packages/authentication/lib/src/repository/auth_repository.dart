@@ -154,4 +154,42 @@ class AuthRepository {
       return left(const AuthFailure.unknownError());
     }
   }
+
+  /// Verifies the phone number with the provided [phoneNumber].
+  Future<void> verifyPhone({
+    required String phoneNumber,
+    required void Function(PhoneAuthCredential) verificationCompleted,
+    required void Function(FirebaseAuthException) verificationFailed,
+    required void Function(String, int?) codeSent,
+    required void Function(String) codeAutoRetrievalTimeout,
+    int? forceResendingToken,
+  }) async {
+    await _firebaseAuth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: verificationCompleted,
+      verificationFailed: verificationFailed,
+      codeSent: codeSent,
+      codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
+      forceResendingToken: forceResendingToken,
+    );
+  }
+
+  /// Signs in with the provided [phoneAuthCredential].
+  ///
+  /// Throws a [AuthFailure] if an exception occurs.\
+  /// Returns [Unit] if the auth is successful.
+  Future<Either<AuthFailure, Unit>> signInWithPhoneAuthCredential(
+    PhoneAuthCredential phoneAuthCredential,
+  ) async {
+    try {
+      await _firebaseAuth.signInWithCredential(phoneAuthCredential);
+      return right(unit);
+      //check if user is new and return
+      //return right(userCredential.additionalUserInfo!.isNewUser);
+    } on FirebaseAuthException catch (e) {
+      return left(AuthFailure.fromCode(e.code));
+    } catch (_) {
+      return left(const AuthFailure.unknownError());
+    }
+  }
 }

@@ -26,7 +26,6 @@ class SetupCubit extends Cubit<SetupState> {
           state.weight,
           state.sex,
           state.birthdate,
-          state.phoneNumber,
         ]),
       ),
     );
@@ -44,7 +43,6 @@ class SetupCubit extends Cubit<SetupState> {
           state.weight,
           state.sex,
           state.birthdate,
-          state.phoneNumber,
         ]),
       ),
     );
@@ -62,7 +60,6 @@ class SetupCubit extends Cubit<SetupState> {
           state.weight,
           state.sex,
           state.birthdate,
-          state.phoneNumber,
         ]),
       ),
     );
@@ -80,7 +77,6 @@ class SetupCubit extends Cubit<SetupState> {
           weight,
           state.sex,
           state.birthdate,
-          state.phoneNumber,
         ]),
       ),
     );
@@ -98,7 +94,6 @@ class SetupCubit extends Cubit<SetupState> {
           state.weight,
           sex,
           state.birthdate,
-          state.phoneNumber,
         ]),
       ),
     );
@@ -116,25 +111,6 @@ class SetupCubit extends Cubit<SetupState> {
           state.weight,
           state.sex,
           birthdate,
-          state.phoneNumber,
-        ]),
-      ),
-    );
-  }
-
-  void phoneNumberChanged(String value) {
-    final phoneNumber = PhoneNumber.dirty(value);
-    emit(
-      state.copyWith(
-        phoneNumber: phoneNumber,
-        status: Formz.validate([
-          state.name,
-          state.lastname,
-          state.height,
-          state.weight,
-          state.sex,
-          state.birthdate,
-          phoneNumber,
         ]),
       ),
     );
@@ -159,30 +135,47 @@ class SetupCubit extends Cubit<SetupState> {
     final currentUserOrNull =
         (possibleFailureOrUserOrNull as Right<UserFailure, User?>).value;
 
-    final editedUser = currentUserOrNull?.copyWith(
-      firstName: state.name.value.capitalizeFullName.trim(),
-      lastName: state.lastname.value.trim(),
-      height: double.parse(state.height.value),
-      weight: double.parse(state.weight.value),
-      sex: state.sex.value ? const Sex.female() : const Sex.male(),
-      birth: state.birthdate.value,
-      phone: state.phoneNumber.value,
-    );
-
-    final possibleFailureOrUnit = await _repository.updateUser(editedUser!);
-
-    possibleFailureOrUnit.fold(
-      (failure) => emit(
+    if (currentUserOrNull == null) {
+      return emit(
         state.copyWith(
           status: FormzStatus.submissionFailure,
-          failure: failure,
+          failure: const UserFailure.notFound(),
         ),
-      ),
-      (_) => emit(
+      );
+    }
+
+    try {
+      final editedUser = currentUserOrNull.copyWith(
+        firstName: state.name.value.capitalizeFullName.trim(),
+        lastName: state.lastname.value.trim(),
+        birth: state.birthdate.value,
+        sex: state.sex.value ? const Sex.female() : const Sex.male(),
+        height: double.tryParse(state.height.value) ?? 0,
+        weight: double.tryParse(state.weight.value) ?? 0,
+      );
+
+      final possibleFailureOrUnit = await _repository.updateUser(editedUser);
+
+      possibleFailureOrUnit.fold(
+        (failure) => emit(
+          state.copyWith(
+            status: FormzStatus.submissionFailure,
+            failure: failure,
+          ),
+        ),
+        (_) => emit(
+          state.copyWith(
+            status: FormzStatus.submissionSuccess,
+          ),
+        ),
+      );
+    } catch (e) {
+      emit(
         state.copyWith(
-          status: FormzStatus.submissionSuccess,
+          status: FormzStatus.submissionFailure,
+          failure: const UserFailure.unknown(),
         ),
-      ),
-    );
+      );
+    }
   }
 }

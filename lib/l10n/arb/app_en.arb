@@ -296,6 +296,18 @@
     "@createAccount": {
         "description": "Text shown on the create account button"
     },
-    "timeout": "Timeout"
+    "timeout": "Timeout",
+    "sendOTP": "Send OTP",
+    "@sendOTP": {
+        "description": "Text shown on the send OTP button"
+    },
+    "enterPhoneNumber": "Enter your phone number",
+    "@enterPhoneNumber": {
+        "description": "Text shown on the enter phone number page"
+    },
+    "enterPhoneNumberDescription": "You'll receive a 6 digit code to verify next",
+    "@enterPhoneNumberDescription": {
+        "description": "Text shown on the enter phone number page"
+    }
    
 }

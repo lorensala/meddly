@@ -3,6 +3,7 @@ export 'email.dart';
 export 'height.dart';
 export 'lastname.dart';
 export 'name.dart';
+export 'otp.dart';
 export 'password.dart';
 export 'phone_number.dart';
 export 'sex.dart';

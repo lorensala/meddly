@@ -73,6 +73,9 @@
     "male": "Masculino",
     "femenino": "Femenino",
     "createAccount": "Crear cuenta",
-    "timeout": "Tiempo de espera agotado"
+    "timeout": "Tiempo de espera agotado",
+    "sendOTP": "Enviar OTP",
+    "enterPhoneNumber:": "Introduce tu número de teléfono",
+    "enterPhoneNumberDescription": "Introduce tu número de teléfono para que podamos enviarte un código de verificación"
     
 }
