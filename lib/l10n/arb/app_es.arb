@@ -72,11 +72,16 @@
     "sexDescription": "Selecciona tu sexo como figura en el DNI",
     "sexWhy": "¿Por qué preguntamos esto?",
     "male": "Masculino",
-    "femenino": "Femenino",
+    "female": "Femenino",
+    "enterPhoneNumber": "Introduce tu número de teléfono",
     "createAccount": "Crear cuenta",
     "timeout": "Tiempo de espera agotado",
     "sendOTP": "Enviar OTP",
     "enterPhoneNumber:": "Introduce tu número de teléfono",
-    "enterPhoneNumberDescription": "Introduce tu número de teléfono para que podamos enviarte un código de verificación"
-    
+    "enterPhoneNumberDescription": "Introduce tu número de teléfono para que podamos enviarte un código de verificación",
+    "enterCode": "Introduce el código que te enviamos a",
+    "enterCodeDescription": "¿No has recibido el código? Toca en \"Reenviar código\"",
+    "skip": "Saltar",
+    "resendCode": "Reenviar código",
+    "codeWillBeResent": "El código se reenviará en"
 }

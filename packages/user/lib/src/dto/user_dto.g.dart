@@ -6,7 +6,6 @@ part of 'user_dto.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-// ignore: public_member_api_docs
 class UserDtoAdapter extends TypeAdapter<UserDto> {
   @override
   final int typeId = 1;

@@ -5,6 +5,7 @@ import 'package:meddly/features/phone/cubit/otp_form_cubit.dart';
 import 'package:meddly/features/phone/cubit/phone_form_cubit.dart';
 import 'package:meddly/features/phone/widgets/otp_form.dart';
 import 'package:meddly/features/phone/widgets/phone_form.dart';
+import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 /// {@template phone_body}
@@ -27,6 +28,7 @@ class PhoneBody extends StatelessWidget {
         BlocProvider(create: (context) => OtpFormCubit()),
       ],
       child: PageView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
         children: const [
           _PhoneSection(),
@@ -50,14 +52,14 @@ class _OtpSection extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              //context.l10n.enterCode,
-              'Enter Code',
-              style: Theme.of(context).textTheme.headlineSmall,
+              context.l10n.enterCode,
+              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
             const SizedBox(height: Sizes.smallSpacing),
             Text(
-              // context.l10n.enterCodeDescription,
-              'Enter Code Description',
+              context.l10n.enterCodeDescription,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: Sizes.largeSpacing),
@@ -83,7 +85,9 @@ class _PhoneSection extends StatelessWidget {
           children: [
             Text(
               context.l10n.enterPhoneNumber,
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
             const SizedBox(height: Sizes.smallSpacing),
             Text(
@@ -92,6 +96,21 @@ class _PhoneSection extends StatelessWidget {
             ),
             const SizedBox(height: Sizes.largeSpacing),
             const PhoneForm(),
+            const SizedBox(height: Sizes.largeSpacing),
+            Center(
+              child: GestureDetector(
+                onTap: () => Navigator.of(context).push(UserPage.route()),
+                child: Text(
+                  context.l10n.skip,
+                  style: TextStyle(
+                    color: context.colorScheme.onSecondary,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

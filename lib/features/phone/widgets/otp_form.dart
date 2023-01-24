@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/phone/cubit/otp_form_cubit.dart';
 import 'package:meddly/features/phone/cubit/phone_form_cubit.dart';
 import 'package:meddly/features/phone/phone.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -26,9 +29,67 @@ class OtpForm extends StatelessWidget {
           _OtpField(),
           SizedBox(height: Sizes.mediumSpacing),
           _OtpButton(),
+          SizedBox(height: Sizes.mediumSpacing),
+          // _ResendOtpButton(),
         ],
       ),
     );
+  }
+}
+
+class _ResendOtpButton extends StatefulWidget {
+  const _ResendOtpButton();
+
+  @override
+  State<_ResendOtpButton> createState() => _ResendOtpButtonState();
+}
+
+class _ResendOtpButtonState extends State<_ResendOtpButton> {
+  late final Timer _timer;
+  int _start = 30;
+
+  @override
+  void initState() {
+    final phoneNumber = context.read<PhoneFormCubit>().state.phoneNumber;
+
+    final forceResendingToken = context.read<PhoneBloc>().state.whenOrNull(
+          codeSentSuccess: (_, forceResendingToken) => forceResendingToken,
+        );
+
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) => setState(() {
+        _start = _start - 1;
+        if (_start == 0) {
+          timer.cancel();
+          context.read<PhoneBloc>().add(
+                PhoneEvent.sendPhoneNumber(
+                  phoneNumber: phoneNumber.value,
+                  forceResendingToken: forceResendingToken,
+                ),
+              );
+          _start = 30;
+        }
+      }),
+    );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        _timer.isActive
+            ? '${context.l10n.resendCode} in $_start seconds'
+            : context.l10n.resendCode,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
   }
 }
 

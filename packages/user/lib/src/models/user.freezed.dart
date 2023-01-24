@@ -23,8 +23,8 @@ mixin _$User {
   String get phone => throw _privateConstructorUsedError;
   Sex get sex => throw _privateConstructorUsedError;
   String get birth => throw _privateConstructorUsedError;
-  double get height => throw _privateConstructorUsedError;
-  double get weight => throw _privateConstructorUsedError;
+  double? get height => throw _privateConstructorUsedError;
+  double? get weight => throw _privateConstructorUsedError;
   String get invitation => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -44,8 +44,8 @@ abstract class $UserCopyWith<$Res> {
       String phone,
       Sex sex,
       String birth,
-      double height,
-      double weight,
+      double? height,
+      double? weight,
       String invitation});
 
   $SexCopyWith<$Res> get sex;
@@ -71,8 +71,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? phone = null,
     Object? sex = null,
     Object? birth = null,
-    Object? height = null,
-    Object? weight = null,
+    Object? height = freezed,
+    Object? weight = freezed,
     Object? invitation = null,
   }) {
     return _then(_value.copyWith(
@@ -104,14 +104,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.birth
           : birth // ignore: cast_nullable_to_non_nullable
               as String,
-      height: null == height
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as double,
-      weight: null == weight
+              as double?,
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       invitation: null == invitation
           ? _value.invitation
           : invitation // ignore: cast_nullable_to_non_nullable
@@ -142,8 +142,8 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String phone,
       Sex sex,
       String birth,
-      double height,
-      double weight,
+      double? height,
+      double? weight,
       String invitation});
 
   @override
@@ -166,8 +166,8 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? phone = null,
     Object? sex = null,
     Object? birth = null,
-    Object? height = null,
-    Object? weight = null,
+    Object? height = freezed,
+    Object? weight = freezed,
     Object? invitation = null,
   }) {
     return _then(_$_User(
@@ -199,14 +199,14 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.birth
           : birth // ignore: cast_nullable_to_non_nullable
               as String,
-      height: null == height
+      height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as double,
-      weight: null == weight
+              as double?,
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       invitation: null == invitation
           ? _value.invitation
           : invitation // ignore: cast_nullable_to_non_nullable
@@ -226,8 +226,8 @@ class _$_User extends _User {
       this.phone = '',
       this.sex = const Sex.male(),
       this.birth = '',
-      this.height = 0,
-      this.weight = 0,
+      this.height,
+      this.weight,
       this.invitation = ''})
       : super._();
 
@@ -251,11 +251,9 @@ class _$_User extends _User {
   @JsonKey()
   final String birth;
   @override
-  @JsonKey()
-  final double height;
+  final double? height;
   @override
-  @JsonKey()
-  final double weight;
+  final double? weight;
   @override
   @JsonKey()
   final String invitation;
@@ -305,8 +303,8 @@ abstract class _User extends User {
       final String phone,
       final Sex sex,
       final String birth,
-      final double height,
-      final double weight,
+      final double? height,
+      final double? weight,
       final String invitation}) = _$_User;
   const _User._() : super._();
 
@@ -325,9 +323,9 @@ abstract class _User extends User {
   @override
   String get birth;
   @override
-  double get height;
+  double? get height;
   @override
-  double get weight;
+  double? get weight;
   @override
   String get invitation;
   @override

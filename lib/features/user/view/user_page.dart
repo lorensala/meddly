@@ -47,8 +47,8 @@ class UserView extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         state.whenOrNull(
-          unauthenticated: () =>
-              Navigator.of(context).pushReplacement(OnboardingPage.route()),
+          unauthenticated: () => Navigator.of(context)
+              .pushAndRemoveUntil(OnboardingPage.route(), (_) => false),
         );
       },
       child: const UserBody(),

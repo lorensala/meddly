@@ -17,6 +17,8 @@ class UserBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserBloc, UserState>(
+      listenWhen: (previous, current) =>
+          previous.userOrNull?.uid != current.userOrNull?.uid,
       listener: (context, state) {
         state.whenOrNull(
           success: (user) {
@@ -25,8 +27,7 @@ class UserBody extends StatelessWidget {
                 SetupPage.route(),
                 (_) => false,
               );
-            }
-            if (user.phone.isEmpty) {
+            } else if (user.phone.isEmpty) {
               Navigator.of(context).pushAndRemoveUntil(
                 PhonePage.route(),
                 (_) => false,

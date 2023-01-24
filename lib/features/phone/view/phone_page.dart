@@ -82,8 +82,11 @@ class _PhoneViewState extends State<PhoneView> {
           verificated: () => Navigator.of(context).push(UserPage.route()),
         );
       },
-      child: PhoneBody(
-        pageController: _pageController,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: PhoneBody(
+          pageController: _pageController,
+        ),
       ),
     );
   }

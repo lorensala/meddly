@@ -150,8 +150,8 @@ class SetupCubit extends Cubit<SetupState> {
         lastName: state.lastname.value.trim(),
         birth: state.birthdate.value,
         sex: state.sex.value ? const Sex.female() : const Sex.male(),
-        height: double.tryParse(state.height.value) ?? 0,
-        weight: double.tryParse(state.weight.value) ?? 0,
+        height: double.tryParse(state.height.value),
+        weight: double.tryParse(state.weight.value),
       );
 
       final possibleFailureOrUnit = await _repository.updateUser(editedUser);

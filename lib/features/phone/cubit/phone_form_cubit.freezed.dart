@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PhoneFormState {
   PhoneNumber get phoneNumber => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
+  CountryCode get countryCode => throw _privateConstructorUsedError;
   AuthFailure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +33,10 @@ abstract class $PhoneFormStateCopyWith<$Res> {
       _$PhoneFormStateCopyWithImpl<$Res, PhoneFormState>;
   @useResult
   $Res call(
-      {PhoneNumber phoneNumber, FormzStatus status, AuthFailure? failure});
+      {PhoneNumber phoneNumber,
+      FormzStatus status,
+      CountryCode countryCode,
+      AuthFailure? failure});
 
   $AuthFailureCopyWith<$Res>? get failure;
 }
@@ -52,6 +56,7 @@ class _$PhoneFormStateCopyWithImpl<$Res, $Val extends PhoneFormState>
   $Res call({
     Object? phoneNumber = null,
     Object? status = null,
+    Object? countryCode = null,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
@@ -63,6 +68,10 @@ class _$PhoneFormStateCopyWithImpl<$Res, $Val extends PhoneFormState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as CountryCode,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -92,7 +101,10 @@ abstract class _$$_PhoneFormStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {PhoneNumber phoneNumber, FormzStatus status, AuthFailure? failure});
+      {PhoneNumber phoneNumber,
+      FormzStatus status,
+      CountryCode countryCode,
+      AuthFailure? failure});
 
   @override
   $AuthFailureCopyWith<$Res>? get failure;
@@ -111,6 +123,7 @@ class __$$_PhoneFormStateCopyWithImpl<$Res>
   $Res call({
     Object? phoneNumber = null,
     Object? status = null,
+    Object? countryCode = null,
     Object? failure = freezed,
   }) {
     return _then(_$_PhoneFormState(
@@ -122,6 +135,10 @@ class __$$_PhoneFormStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as CountryCode,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -136,6 +153,7 @@ class _$_PhoneFormState implements _PhoneFormState {
   const _$_PhoneFormState(
       {this.phoneNumber = const PhoneNumber.pure(),
       this.status = FormzStatus.pure,
+      this.countryCode = CountryCode.AR,
       this.failure});
 
   @override
@@ -145,11 +163,14 @@ class _$_PhoneFormState implements _PhoneFormState {
   @JsonKey()
   final FormzStatus status;
   @override
+  @JsonKey()
+  final CountryCode countryCode;
+  @override
   final AuthFailure? failure;
 
   @override
   String toString() {
-    return 'PhoneFormState(phoneNumber: $phoneNumber, status: $status, failure: $failure)';
+    return 'PhoneFormState(phoneNumber: $phoneNumber, status: $status, countryCode: $countryCode, failure: $failure)';
   }
 
   @override
@@ -160,11 +181,14 @@ class _$_PhoneFormState implements _PhoneFormState {
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.countryCode, countryCode) ||
+                other.countryCode == countryCode) &&
             (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, phoneNumber, status, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, phoneNumber, status, countryCode, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -177,12 +201,15 @@ abstract class _PhoneFormState implements PhoneFormState {
   const factory _PhoneFormState(
       {final PhoneNumber phoneNumber,
       final FormzStatus status,
+      final CountryCode countryCode,
       final AuthFailure? failure}) = _$_PhoneFormState;
 
   @override
   PhoneNumber get phoneNumber;
   @override
   FormzStatus get status;
+  @override
+  CountryCode get countryCode;
   @override
   AuthFailure? get failure;
   @override

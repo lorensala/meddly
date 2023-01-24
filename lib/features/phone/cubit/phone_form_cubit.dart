@@ -19,4 +19,15 @@ class PhoneFormCubit extends Cubit<PhoneFormState> {
       ),
     );
   }
+
+  void countryCodeChanged(CountryCode? value) {
+    if (value == null) {
+      return;
+    }
+    emit(
+      state.copyWith(
+        countryCode: value,
+      ),
+    );
+  }
 }

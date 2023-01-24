@@ -312,6 +312,26 @@
     "enterPhoneNumberDescription": "You'll receive a 6 digit code to verify next",
     "@enterPhoneNumberDescription": {
         "description": "Text shown on the enter phone number page"
+    },
+    "enterCode": "Enter the code we sent to",
+    "@enterCode": {
+        "description": "Text shown on the enter code page"
+    },
+    "enterCodeDescription": "Didn't receive the code? Tap on \"Resend code\"",
+    "@enterCodeDescription": {
+        "description": "Text shown on the enter code page"
+    },
+    "skip": "Skip",
+    "@skip": {
+        "description": "Text shown on the skip button"
+    },
+    "resendCode": "Resend code",
+    "@resendCode": {
+        "description": "Text shown on the resend code button"
+    },
+    "codeWillBeResent": "Code will be resent in",
+    "@codeWillBeResent": {
+        "description": "Text shown on the code will be resent page"
     }
    
 }

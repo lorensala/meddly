@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:authentication/authentication.dart';
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:user/user.dart' as user;
@@ -17,7 +18,7 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
   })  : _authRepository = authRepository,
         _userRepository = userRepository,
         super(const _Initial()) {
-    on<_VerifyPhoneNumber>(_onVerifyPhone);
+    on<_VerifyPhoneNumber>(_onVerifyPhone, transformer: restartable());
     on<_VerificationCompleted>(_onVerificationCompleted);
     on<_VerificationFailed>(_onVerificationFailed);
     on<_CodeSent>(_onCodeSent);
@@ -155,7 +156,7 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
               return;
             }
             final userWithPhoneNumber = user.copyWith(
-              phone: '+54${event.phoneNumber}',
+              phone: event.phoneNumber,
             );
 
             final possibleFailureOrUserUpdated =
