@@ -468,7 +468,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.7.0"
+    version: "4.8.0"
   logging:
     dependency: transitive
     description:
@@ -525,6 +525,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  notifications:
+    dependency: "direct main"
+    description:
+      path: "packages/notifications"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   package_config:
     dependency: transitive
     description:

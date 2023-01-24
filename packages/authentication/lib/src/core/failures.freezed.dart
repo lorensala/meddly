@@ -36,6 +36,7 @@ mixin _$AuthFailure {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,6 +59,7 @@ mixin _$AuthFailure {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,6 +82,7 @@ mixin _$AuthFailure {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +110,8 @@ mixin _$AuthFailure {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -131,6 +136,7 @@ mixin _$AuthFailure {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -155,6 +161,7 @@ mixin _$AuthFailure {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -234,6 +241,7 @@ class _$CancelledByUser extends CancelledByUser {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return cancelledByUser();
   }
@@ -259,6 +267,7 @@ class _$CancelledByUser extends CancelledByUser {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return cancelledByUser?.call();
   }
@@ -284,6 +293,7 @@ class _$CancelledByUser extends CancelledByUser {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -317,6 +327,8 @@ class _$CancelledByUser extends CancelledByUser {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return cancelledByUser(this);
   }
@@ -344,6 +356,7 @@ class _$CancelledByUser extends CancelledByUser {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return cancelledByUser?.call(this);
   }
@@ -371,6 +384,7 @@ class _$CancelledByUser extends CancelledByUser {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -446,6 +460,7 @@ class _$AccountsExistsWithDifferentCredentials
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return accountsExistsWithDifferentCredentials();
   }
@@ -471,6 +486,7 @@ class _$AccountsExistsWithDifferentCredentials
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return accountsExistsWithDifferentCredentials?.call();
   }
@@ -496,6 +512,7 @@ class _$AccountsExistsWithDifferentCredentials
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (accountsExistsWithDifferentCredentials != null) {
@@ -529,6 +546,8 @@ class _$AccountsExistsWithDifferentCredentials
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return accountsExistsWithDifferentCredentials(this);
   }
@@ -556,6 +575,7 @@ class _$AccountsExistsWithDifferentCredentials
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return accountsExistsWithDifferentCredentials?.call(this);
   }
@@ -583,6 +603,7 @@ class _$AccountsExistsWithDifferentCredentials
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (accountsExistsWithDifferentCredentials != null) {
@@ -654,6 +675,7 @@ class _$ServerError extends ServerError {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return serverError();
   }
@@ -679,6 +701,7 @@ class _$ServerError extends ServerError {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return serverError?.call();
   }
@@ -704,6 +727,7 @@ class _$ServerError extends ServerError {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -737,6 +761,8 @@ class _$ServerError extends ServerError {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return serverError(this);
   }
@@ -764,6 +790,7 @@ class _$ServerError extends ServerError {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return serverError?.call(this);
   }
@@ -791,6 +818,7 @@ class _$ServerError extends ServerError {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -861,6 +889,7 @@ class _$EmailAlreadyInUse extends EmailAlreadyInUse {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return emailAlreadyInUse();
   }
@@ -886,6 +915,7 @@ class _$EmailAlreadyInUse extends EmailAlreadyInUse {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return emailAlreadyInUse?.call();
   }
@@ -911,6 +941,7 @@ class _$EmailAlreadyInUse extends EmailAlreadyInUse {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (emailAlreadyInUse != null) {
@@ -944,6 +975,8 @@ class _$EmailAlreadyInUse extends EmailAlreadyInUse {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return emailAlreadyInUse(this);
   }
@@ -971,6 +1004,7 @@ class _$EmailAlreadyInUse extends EmailAlreadyInUse {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return emailAlreadyInUse?.call(this);
   }
@@ -998,6 +1032,7 @@ class _$EmailAlreadyInUse extends EmailAlreadyInUse {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (emailAlreadyInUse != null) {
@@ -1068,6 +1103,7 @@ class _$OperationNotAllowed extends OperationNotAllowed {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return operationNotAllowed();
   }
@@ -1093,6 +1129,7 @@ class _$OperationNotAllowed extends OperationNotAllowed {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return operationNotAllowed?.call();
   }
@@ -1118,6 +1155,7 @@ class _$OperationNotAllowed extends OperationNotAllowed {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (operationNotAllowed != null) {
@@ -1151,6 +1189,8 @@ class _$OperationNotAllowed extends OperationNotAllowed {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return operationNotAllowed(this);
   }
@@ -1178,6 +1218,7 @@ class _$OperationNotAllowed extends OperationNotAllowed {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return operationNotAllowed?.call(this);
   }
@@ -1205,6 +1246,7 @@ class _$OperationNotAllowed extends OperationNotAllowed {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (operationNotAllowed != null) {
@@ -1275,6 +1317,7 @@ class _$UserDisabled extends UserDisabled {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return userDisabled();
   }
@@ -1300,6 +1343,7 @@ class _$UserDisabled extends UserDisabled {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return userDisabled?.call();
   }
@@ -1325,6 +1369,7 @@ class _$UserDisabled extends UserDisabled {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (userDisabled != null) {
@@ -1358,6 +1403,8 @@ class _$UserDisabled extends UserDisabled {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return userDisabled(this);
   }
@@ -1385,6 +1432,7 @@ class _$UserDisabled extends UserDisabled {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return userDisabled?.call(this);
   }
@@ -1412,6 +1460,7 @@ class _$UserDisabled extends UserDisabled {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (userDisabled != null) {
@@ -1482,6 +1531,7 @@ class _$UserNotFound extends UserNotFound {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return userNotFound();
   }
@@ -1507,6 +1557,7 @@ class _$UserNotFound extends UserNotFound {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return userNotFound?.call();
   }
@@ -1532,6 +1583,7 @@ class _$UserNotFound extends UserNotFound {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (userNotFound != null) {
@@ -1565,6 +1617,8 @@ class _$UserNotFound extends UserNotFound {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return userNotFound(this);
   }
@@ -1592,6 +1646,7 @@ class _$UserNotFound extends UserNotFound {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return userNotFound?.call(this);
   }
@@ -1619,6 +1674,7 @@ class _$UserNotFound extends UserNotFound {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (userNotFound != null) {
@@ -1689,6 +1745,7 @@ class _$WrongPassword extends WrongPassword {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return wrongPassword();
   }
@@ -1714,6 +1771,7 @@ class _$WrongPassword extends WrongPassword {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return wrongPassword?.call();
   }
@@ -1739,6 +1797,7 @@ class _$WrongPassword extends WrongPassword {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (wrongPassword != null) {
@@ -1772,6 +1831,8 @@ class _$WrongPassword extends WrongPassword {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return wrongPassword(this);
   }
@@ -1799,6 +1860,7 @@ class _$WrongPassword extends WrongPassword {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return wrongPassword?.call(this);
   }
@@ -1826,6 +1888,7 @@ class _$WrongPassword extends WrongPassword {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (wrongPassword != null) {
@@ -1896,6 +1959,7 @@ class _$TooManyRequests extends TooManyRequests {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return tooManyRequests();
   }
@@ -1921,6 +1985,7 @@ class _$TooManyRequests extends TooManyRequests {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return tooManyRequests?.call();
   }
@@ -1946,6 +2011,7 @@ class _$TooManyRequests extends TooManyRequests {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (tooManyRequests != null) {
@@ -1979,6 +2045,8 @@ class _$TooManyRequests extends TooManyRequests {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return tooManyRequests(this);
   }
@@ -2006,6 +2074,7 @@ class _$TooManyRequests extends TooManyRequests {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return tooManyRequests?.call(this);
   }
@@ -2033,6 +2102,7 @@ class _$TooManyRequests extends TooManyRequests {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (tooManyRequests != null) {
@@ -2103,6 +2173,7 @@ class _$UnknownError extends UnknownError {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return unknownError();
   }
@@ -2128,6 +2199,7 @@ class _$UnknownError extends UnknownError {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return unknownError?.call();
   }
@@ -2153,6 +2225,7 @@ class _$UnknownError extends UnknownError {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (unknownError != null) {
@@ -2186,6 +2259,8 @@ class _$UnknownError extends UnknownError {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return unknownError(this);
   }
@@ -2213,6 +2288,7 @@ class _$UnknownError extends UnknownError {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return unknownError?.call(this);
   }
@@ -2240,6 +2316,7 @@ class _$UnknownError extends UnknownError {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (unknownError != null) {
@@ -2315,6 +2392,7 @@ class _$InvalidEmailAndPasswordCombination
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return invalidEmailAndPasswordCombination();
   }
@@ -2340,6 +2418,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return invalidEmailAndPasswordCombination?.call();
   }
@@ -2365,6 +2444,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidEmailAndPasswordCombination != null) {
@@ -2398,6 +2478,8 @@ class _$InvalidEmailAndPasswordCombination
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return invalidEmailAndPasswordCombination(this);
   }
@@ -2425,6 +2507,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return invalidEmailAndPasswordCombination?.call(this);
   }
@@ -2452,6 +2535,7 @@ class _$InvalidEmailAndPasswordCombination
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidEmailAndPasswordCombination != null) {
@@ -2523,6 +2607,7 @@ class _$InvalidEmail extends InvalidEmail {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return invalidEmail();
   }
@@ -2548,6 +2633,7 @@ class _$InvalidEmail extends InvalidEmail {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return invalidEmail?.call();
   }
@@ -2573,6 +2659,7 @@ class _$InvalidEmail extends InvalidEmail {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -2606,6 +2693,8 @@ class _$InvalidEmail extends InvalidEmail {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return invalidEmail(this);
   }
@@ -2633,6 +2722,7 @@ class _$InvalidEmail extends InvalidEmail {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return invalidEmail?.call(this);
   }
@@ -2660,6 +2750,7 @@ class _$InvalidEmail extends InvalidEmail {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
@@ -2731,6 +2822,7 @@ class _$InvalidVerificationCode extends InvalidVerificationCode {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return invalidVerificationCode();
   }
@@ -2756,6 +2848,7 @@ class _$InvalidVerificationCode extends InvalidVerificationCode {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return invalidVerificationCode?.call();
   }
@@ -2781,6 +2874,7 @@ class _$InvalidVerificationCode extends InvalidVerificationCode {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidVerificationCode != null) {
@@ -2814,6 +2908,8 @@ class _$InvalidVerificationCode extends InvalidVerificationCode {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return invalidVerificationCode(this);
   }
@@ -2841,6 +2937,7 @@ class _$InvalidVerificationCode extends InvalidVerificationCode {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return invalidVerificationCode?.call(this);
   }
@@ -2868,6 +2965,7 @@ class _$InvalidVerificationCode extends InvalidVerificationCode {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidVerificationCode != null) {
@@ -2938,6 +3036,7 @@ class _$InvalidVerificationId extends InvalidVerificationId {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return invalidVerificationId();
   }
@@ -2963,6 +3062,7 @@ class _$InvalidVerificationId extends InvalidVerificationId {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return invalidVerificationId?.call();
   }
@@ -2988,6 +3088,7 @@ class _$InvalidVerificationId extends InvalidVerificationId {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidVerificationId != null) {
@@ -3021,6 +3122,8 @@ class _$InvalidVerificationId extends InvalidVerificationId {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return invalidVerificationId(this);
   }
@@ -3048,6 +3151,7 @@ class _$InvalidVerificationId extends InvalidVerificationId {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return invalidVerificationId?.call(this);
   }
@@ -3075,6 +3179,7 @@ class _$InvalidVerificationId extends InvalidVerificationId {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidVerificationId != null) {
@@ -3145,6 +3250,7 @@ class _$InvalidPhoneNumber extends InvalidPhoneNumber {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return invalidPhoneNumber();
   }
@@ -3170,6 +3276,7 @@ class _$InvalidPhoneNumber extends InvalidPhoneNumber {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return invalidPhoneNumber?.call();
   }
@@ -3195,6 +3302,7 @@ class _$InvalidPhoneNumber extends InvalidPhoneNumber {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidPhoneNumber != null) {
@@ -3228,6 +3336,8 @@ class _$InvalidPhoneNumber extends InvalidPhoneNumber {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return invalidPhoneNumber(this);
   }
@@ -3255,6 +3365,7 @@ class _$InvalidPhoneNumber extends InvalidPhoneNumber {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return invalidPhoneNumber?.call(this);
   }
@@ -3282,6 +3393,7 @@ class _$InvalidPhoneNumber extends InvalidPhoneNumber {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidPhoneNumber != null) {
@@ -3352,6 +3464,7 @@ class _$InvalidCredential extends InvalidCredential {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return invalidCredential();
   }
@@ -3377,6 +3490,7 @@ class _$InvalidCredential extends InvalidCredential {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return invalidCredential?.call();
   }
@@ -3402,6 +3516,7 @@ class _$InvalidCredential extends InvalidCredential {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidCredential != null) {
@@ -3435,6 +3550,8 @@ class _$InvalidCredential extends InvalidCredential {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return invalidCredential(this);
   }
@@ -3462,6 +3579,7 @@ class _$InvalidCredential extends InvalidCredential {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return invalidCredential?.call(this);
   }
@@ -3489,6 +3607,7 @@ class _$InvalidCredential extends InvalidCredential {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (invalidCredential != null) {
@@ -3559,6 +3678,7 @@ class _$WeakPassword extends WeakPassword {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return weakPassword();
   }
@@ -3584,6 +3704,7 @@ class _$WeakPassword extends WeakPassword {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return weakPassword?.call();
   }
@@ -3609,6 +3730,7 @@ class _$WeakPassword extends WeakPassword {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (weakPassword != null) {
@@ -3642,6 +3764,8 @@ class _$WeakPassword extends WeakPassword {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return weakPassword(this);
   }
@@ -3669,6 +3793,7 @@ class _$WeakPassword extends WeakPassword {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return weakPassword?.call(this);
   }
@@ -3696,6 +3821,7 @@ class _$WeakPassword extends WeakPassword {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (weakPassword != null) {
@@ -3766,6 +3892,7 @@ class _$RequiresRecentLogin extends RequiresRecentLogin {
     required TResult Function() invalidCredential,
     required TResult Function() weakPassword,
     required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
   }) {
     return requiresRecentLogin();
   }
@@ -3791,6 +3918,7 @@ class _$RequiresRecentLogin extends RequiresRecentLogin {
     TResult? Function()? invalidCredential,
     TResult? Function()? weakPassword,
     TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
   }) {
     return requiresRecentLogin?.call();
   }
@@ -3816,6 +3944,7 @@ class _$RequiresRecentLogin extends RequiresRecentLogin {
     TResult Function()? invalidCredential,
     TResult Function()? weakPassword,
     TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (requiresRecentLogin != null) {
@@ -3849,6 +3978,8 @@ class _$RequiresRecentLogin extends RequiresRecentLogin {
     required TResult Function(InvalidCredential value) invalidCredential,
     required TResult Function(WeakPassword value) weakPassword,
     required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
   }) {
     return requiresRecentLogin(this);
   }
@@ -3876,6 +4007,7 @@ class _$RequiresRecentLogin extends RequiresRecentLogin {
     TResult? Function(InvalidCredential value)? invalidCredential,
     TResult? Function(WeakPassword value)? weakPassword,
     TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
   }) {
     return requiresRecentLogin?.call(this);
   }
@@ -3903,6 +4035,7 @@ class _$RequiresRecentLogin extends RequiresRecentLogin {
     TResult Function(InvalidCredential value)? invalidCredential,
     TResult Function(WeakPassword value)? weakPassword,
     TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
     required TResult orElse(),
   }) {
     if (requiresRecentLogin != null) {
@@ -3915,4 +4048,218 @@ class _$RequiresRecentLogin extends RequiresRecentLogin {
 abstract class RequiresRecentLogin extends AuthFailure {
   const factory RequiresRecentLogin() = _$RequiresRecentLogin;
   const RequiresRecentLogin._() : super._();
+}
+
+/// @nodoc
+abstract class _$$CredentialAlreadyInUseCopyWith<$Res> {
+  factory _$$CredentialAlreadyInUseCopyWith(_$CredentialAlreadyInUse value,
+          $Res Function(_$CredentialAlreadyInUse) then) =
+      __$$CredentialAlreadyInUseCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CredentialAlreadyInUseCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res, _$CredentialAlreadyInUse>
+    implements _$$CredentialAlreadyInUseCopyWith<$Res> {
+  __$$CredentialAlreadyInUseCopyWithImpl(_$CredentialAlreadyInUse _value,
+      $Res Function(_$CredentialAlreadyInUse) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$CredentialAlreadyInUse extends CredentialAlreadyInUse {
+  const _$CredentialAlreadyInUse() : super._();
+
+  @override
+  String toString() {
+    return 'AuthFailure.credentialAlreadyInUse()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CredentialAlreadyInUse);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancelledByUser,
+    required TResult Function() accountsExistsWithDifferentCredentials,
+    required TResult Function() serverError,
+    required TResult Function() emailAlreadyInUse,
+    required TResult Function() operationNotAllowed,
+    required TResult Function() userDisabled,
+    required TResult Function() userNotFound,
+    required TResult Function() wrongPassword,
+    required TResult Function() tooManyRequests,
+    required TResult Function() unknownError,
+    required TResult Function() invalidEmailAndPasswordCombination,
+    required TResult Function() invalidEmail,
+    required TResult Function() invalidVerificationCode,
+    required TResult Function() invalidVerificationId,
+    required TResult Function() invalidPhoneNumber,
+    required TResult Function() invalidCredential,
+    required TResult Function() weakPassword,
+    required TResult Function() requiresRecentLogin,
+    required TResult Function() credentialAlreadyInUse,
+  }) {
+    return credentialAlreadyInUse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? cancelledByUser,
+    TResult? Function()? accountsExistsWithDifferentCredentials,
+    TResult? Function()? serverError,
+    TResult? Function()? emailAlreadyInUse,
+    TResult? Function()? operationNotAllowed,
+    TResult? Function()? userDisabled,
+    TResult? Function()? userNotFound,
+    TResult? Function()? wrongPassword,
+    TResult? Function()? tooManyRequests,
+    TResult? Function()? unknownError,
+    TResult? Function()? invalidEmailAndPasswordCombination,
+    TResult? Function()? invalidEmail,
+    TResult? Function()? invalidVerificationCode,
+    TResult? Function()? invalidVerificationId,
+    TResult? Function()? invalidPhoneNumber,
+    TResult? Function()? invalidCredential,
+    TResult? Function()? weakPassword,
+    TResult? Function()? requiresRecentLogin,
+    TResult? Function()? credentialAlreadyInUse,
+  }) {
+    return credentialAlreadyInUse?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancelledByUser,
+    TResult Function()? accountsExistsWithDifferentCredentials,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyInUse,
+    TResult Function()? operationNotAllowed,
+    TResult Function()? userDisabled,
+    TResult Function()? userNotFound,
+    TResult Function()? wrongPassword,
+    TResult Function()? tooManyRequests,
+    TResult Function()? unknownError,
+    TResult Function()? invalidEmailAndPasswordCombination,
+    TResult Function()? invalidEmail,
+    TResult Function()? invalidVerificationCode,
+    TResult Function()? invalidVerificationId,
+    TResult Function()? invalidPhoneNumber,
+    TResult Function()? invalidCredential,
+    TResult Function()? weakPassword,
+    TResult Function()? requiresRecentLogin,
+    TResult Function()? credentialAlreadyInUse,
+    required TResult orElse(),
+  }) {
+    if (credentialAlreadyInUse != null) {
+      return credentialAlreadyInUse();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelledByUser value) cancelledByUser,
+    required TResult Function(AccountsExistsWithDifferentCredentials value)
+        accountsExistsWithDifferentCredentials,
+    required TResult Function(ServerError value) serverError,
+    required TResult Function(EmailAlreadyInUse value) emailAlreadyInUse,
+    required TResult Function(OperationNotAllowed value) operationNotAllowed,
+    required TResult Function(UserDisabled value) userDisabled,
+    required TResult Function(UserNotFound value) userNotFound,
+    required TResult Function(WrongPassword value) wrongPassword,
+    required TResult Function(TooManyRequests value) tooManyRequests,
+    required TResult Function(UnknownError value) unknownError,
+    required TResult Function(InvalidEmailAndPasswordCombination value)
+        invalidEmailAndPasswordCombination,
+    required TResult Function(InvalidEmail value) invalidEmail,
+    required TResult Function(InvalidVerificationCode value)
+        invalidVerificationCode,
+    required TResult Function(InvalidVerificationId value)
+        invalidVerificationId,
+    required TResult Function(InvalidPhoneNumber value) invalidPhoneNumber,
+    required TResult Function(InvalidCredential value) invalidCredential,
+    required TResult Function(WeakPassword value) weakPassword,
+    required TResult Function(RequiresRecentLogin value) requiresRecentLogin,
+    required TResult Function(CredentialAlreadyInUse value)
+        credentialAlreadyInUse,
+  }) {
+    return credentialAlreadyInUse(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CancelledByUser value)? cancelledByUser,
+    TResult? Function(AccountsExistsWithDifferentCredentials value)?
+        accountsExistsWithDifferentCredentials,
+    TResult? Function(ServerError value)? serverError,
+    TResult? Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult? Function(OperationNotAllowed value)? operationNotAllowed,
+    TResult? Function(UserDisabled value)? userDisabled,
+    TResult? Function(UserNotFound value)? userNotFound,
+    TResult? Function(WrongPassword value)? wrongPassword,
+    TResult? Function(TooManyRequests value)? tooManyRequests,
+    TResult? Function(UnknownError value)? unknownError,
+    TResult? Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult? Function(InvalidEmail value)? invalidEmail,
+    TResult? Function(InvalidVerificationCode value)? invalidVerificationCode,
+    TResult? Function(InvalidVerificationId value)? invalidVerificationId,
+    TResult? Function(InvalidPhoneNumber value)? invalidPhoneNumber,
+    TResult? Function(InvalidCredential value)? invalidCredential,
+    TResult? Function(WeakPassword value)? weakPassword,
+    TResult? Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult? Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
+  }) {
+    return credentialAlreadyInUse?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelledByUser value)? cancelledByUser,
+    TResult Function(AccountsExistsWithDifferentCredentials value)?
+        accountsExistsWithDifferentCredentials,
+    TResult Function(ServerError value)? serverError,
+    TResult Function(EmailAlreadyInUse value)? emailAlreadyInUse,
+    TResult Function(OperationNotAllowed value)? operationNotAllowed,
+    TResult Function(UserDisabled value)? userDisabled,
+    TResult Function(UserNotFound value)? userNotFound,
+    TResult Function(WrongPassword value)? wrongPassword,
+    TResult Function(TooManyRequests value)? tooManyRequests,
+    TResult Function(UnknownError value)? unknownError,
+    TResult Function(InvalidEmailAndPasswordCombination value)?
+        invalidEmailAndPasswordCombination,
+    TResult Function(InvalidEmail value)? invalidEmail,
+    TResult Function(InvalidVerificationCode value)? invalidVerificationCode,
+    TResult Function(InvalidVerificationId value)? invalidVerificationId,
+    TResult Function(InvalidPhoneNumber value)? invalidPhoneNumber,
+    TResult Function(InvalidCredential value)? invalidCredential,
+    TResult Function(WeakPassword value)? weakPassword,
+    TResult Function(RequiresRecentLogin value)? requiresRecentLogin,
+    TResult Function(CredentialAlreadyInUse value)? credentialAlreadyInUse,
+    required TResult orElse(),
+  }) {
+    if (credentialAlreadyInUse != null) {
+      return credentialAlreadyInUse(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CredentialAlreadyInUse extends AuthFailure {
+  const factory CredentialAlreadyInUse() = _$CredentialAlreadyInUse;
+  const CredentialAlreadyInUse._() : super._();
 }

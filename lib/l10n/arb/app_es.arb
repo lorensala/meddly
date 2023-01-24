@@ -11,6 +11,7 @@
     "serverError": "Error del servidor",
     "emailAlreadyInUse": "El correo electrónico ya está en uso por otra cuenta.",
     "invalidEmail": "La dirección de correo electrónico está mal formateada.",
+    "credentialAlreadyInUse": "Esta credencial ya está asociada a una cuenta de usuario diferente.",
     "wrongPassword": "La contraseña no es válida o el usuario no tiene contraseña.",
     "userNotFound": "No hay ningún usuario correspondiente a este identificador. El usuario puede haber sido eliminado.",
     "userDisabled": "La cuenta de usuario ha sido deshabilitada por un administrador.",

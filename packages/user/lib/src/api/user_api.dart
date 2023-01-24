@@ -93,7 +93,7 @@ class UserApi {
   /// Throws a [UserDioException] if the operation was not successful.
   /// Throws a [UserSerializationException] if the serialization was not
   /// successful.
-  Future<UserDto> updateUser(UserDto user) async {
+  Future<void> updateUser(UserDto user) async {
     late final Response<dynamic> res;
 
     try {
@@ -104,12 +104,6 @@ class UserApi {
       }
     } on DioError catch (e) {
       throw UserDioException(e);
-    }
-
-    try {
-      return UserDto.fromJson(res.data as Map<String, dynamic>);
-    } catch (e) {
-      throw UserSerializationException();
     }
   }
 }

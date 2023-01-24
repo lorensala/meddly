@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/phone/cubit/otp_form_cubit.dart';
+import 'package:meddly/features/phone/cubit/phone_form_cubit.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -37,6 +38,8 @@ class _OtpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final otp = context.select((OtpFormCubit cubit) => cubit.state.otp);
+    final phoneNumber =
+        context.select((PhoneFormCubit cubit) => cubit.state.phoneNumber);
     final isLoading = context.select((PhoneBloc bloc) => bloc.state.isLoading);
     final verificationId = context.select(
       (PhoneBloc bloc) => bloc.state.maybeWhen(
@@ -54,6 +57,7 @@ class _OtpButton extends StatelessWidget {
               PhoneEvent.verifyPhoneNumber(
                 verificationId: verificationId ?? '',
                 smsCode: otp.value,
+                phoneNumber: phoneNumber.value,
               ),
             );
       },

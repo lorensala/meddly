@@ -10,10 +10,12 @@ class PhoneEvent with _$PhoneEvent {
   const factory PhoneEvent.verifyPhoneNumber({
     required String verificationId,
     required String smsCode,
+    required String phoneNumber,
   }) = _VerifyPhoneNumber;
 
   const factory PhoneEvent.verificationCompleted({
     required PhoneAuthCredential phoneAuthCredential,
+    required String phoneNumber,
   }) = _VerificationCompleted;
 
   const factory PhoneEvent.verificationFailed({

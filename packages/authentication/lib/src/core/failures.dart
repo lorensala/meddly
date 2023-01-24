@@ -66,6 +66,9 @@ class AuthFailure with _$AuthFailure {
   const factory AuthFailure.requiresRecentLogin() = RequiresRecentLogin;
 
   /// {@macro auth_failure}
+  const factory AuthFailure.credentialAlreadyInUse() = CredentialAlreadyInUse;
+
+  /// {@macro auth_failure}
   factory AuthFailure.fromCode(String code) {
     switch (code) {
       case 'invalid-email':
@@ -92,6 +95,8 @@ class AuthFailure with _$AuthFailure {
         return const AuthFailure.invalidVerificationId();
       case 'requires-recent-login':
         return const AuthFailure.requiresRecentLogin();
+      case 'credential-already-in-use':
+        return const AuthFailure.credentialAlreadyInUse();
       default:
         return const AuthFailure.unknownError();
     }

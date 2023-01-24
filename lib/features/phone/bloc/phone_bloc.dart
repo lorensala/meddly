@@ -4,13 +4,19 @@ import 'package:authentication/authentication.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:user/user.dart' as user;
 
 part 'phone_bloc.freezed.dart';
 part 'phone_event.dart';
 part 'phone_state.dart';
 
 class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
-  PhoneBloc(this._repository) : super(const _Initial()) {
+  PhoneBloc({
+    required AuthRepository authRepository,
+    required user.UserRepository userRepository,
+  })  : _authRepository = authRepository,
+        _userRepository = userRepository,
+        super(const _Initial()) {
     on<_VerifyPhoneNumber>(_onVerifyPhone);
     on<_VerificationCompleted>(_onVerificationCompleted);
     on<_VerificationFailed>(_onVerificationFailed);
@@ -19,18 +25,20 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
     on<_SendPhoneNumber>(_onSendPhoneNumber);
   }
 
-  final AuthRepository _repository;
+  final AuthRepository _authRepository;
+  final user.UserRepository _userRepository;
 
   FutureOr<void> _onSendPhoneNumber(
     _SendPhoneNumber event,
     Emitter<PhoneState> emit,
   ) async {
-    await _repository.verifyPhone(
+    await _authRepository.verifyPhone(
       phoneNumber: event.phoneNumber,
       verificationCompleted: (phoneAuthCredential) {
         add(
           _VerificationCompleted(
             phoneAuthCredential: phoneAuthCredential,
+            phoneNumber: event.phoneNumber,
           ),
         );
       },
@@ -67,7 +75,12 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
       smsCode: event.smsCode,
     );
 
-    add(_VerificationCompleted(phoneAuthCredential: phoneAuthCredential));
+    add(
+      _VerificationCompleted(
+        phoneAuthCredential: phoneAuthCredential,
+        phoneNumber: event.phoneNumber,
+      ),
+    );
   }
 
   FutureOr<void> _onCodeAutoRetrievalTimeout(
@@ -107,19 +120,66 @@ class PhoneBloc extends Bloc<PhoneEvent, PhoneState> {
     _VerificationCompleted event,
     Emitter<PhoneState> emit,
   ) async {
+    final credential = event.phoneAuthCredential;
     final possibleFailureOrUnit =
-        await _repository.signInWithPhoneAuthCredential(
-      event.phoneAuthCredential,
-    );
+        await _authRepository.updatePhoneNumber(credential);
 
-    possibleFailureOrUnit.fold(
-      (failure) => emit(
-        _Error(
-          failure: failure,
-          verificationId: event.phoneAuthCredential.verificationId ?? '',
-        ),
-      ),
-      (_) => emit(const _Verificated()),
+    await possibleFailureOrUnit.fold(
+      (failure) {
+        emit(
+          _Error(
+            failure: failure,
+            verificationId: event.phoneAuthCredential.verificationId ?? '',
+          ),
+        );
+      },
+      (_) async {
+        await _userRepository.getUser().fold(
+          (failure) {
+            emit(
+              _Error(
+                failure: const AuthFailure.unknownError(),
+                verificationId: event.phoneAuthCredential.verificationId ?? '',
+              ),
+            );
+          },
+          (user) async {
+            if (user == null) {
+              emit(
+                _Error(
+                  failure: const AuthFailure.unknownError(),
+                  verificationId:
+                      event.phoneAuthCredential.verificationId ?? '',
+                ),
+              );
+              return;
+            }
+            final userWithPhoneNumber = user.copyWith(
+              phone: '+54${event.phoneNumber}',
+            );
+
+            final possibleFailureOrUserUpdated =
+                await _userRepository.updateUser(
+              userWithPhoneNumber,
+            );
+
+            possibleFailureOrUserUpdated.fold(
+              (failure) {
+                emit(
+                  _Error(
+                    failure: const AuthFailure.unknownError(),
+                    verificationId:
+                        event.phoneAuthCredential.verificationId ?? '',
+                  ),
+                );
+              },
+              (_) {
+                emit(const _Verificated());
+              },
+            );
+          },
+        );
+      },
     );
   }
 }

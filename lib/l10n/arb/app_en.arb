@@ -60,6 +60,10 @@
     "@unknownError": {
         "description": "Text shown when the user tries to login with an email that is disabled"
     },
+    "credentialAlreadyInUse": "This credential is already associated with a different user account.",
+    "@credentialAlreadyInUse": {
+        "description": "Text shown when the user tries to login with an email that is disabled"
+    },
     "invalidEmailAndPasswordCombination": "Invalid email and password combination.",
     "@invalidEmailAndPasswordCombination": {
         "description": "Text shown when the user tries to login with an invalid email and password combination"

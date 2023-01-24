@@ -192,4 +192,26 @@ class AuthRepository {
       return left(const AuthFailure.unknownError());
     }
   }
+
+  /// Updates the current user's phone number.
+  ///
+  /// Throws a [AuthFailure] if an exception occurs.\
+  /// Returns [Unit] if the phone number is updated.
+  Future<Either<AuthFailure, Unit>> updatePhoneNumber(
+    PhoneAuthCredential credential,
+  ) async {
+    try {
+      if (_firebaseAuth.currentUser == null) {
+        return left(const AuthFailure.userNotFound());
+      }
+      await _firebaseAuth.currentUser!.updatePhoneNumber(
+        credential,
+      );
+      return right(unit);
+    } on FirebaseAuthException catch (e) {
+      return left(AuthFailure.fromCode(e.code));
+    } catch (_) {
+      return left(const AuthFailure.unknownError());
+    }
+  }
 }

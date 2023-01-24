@@ -20,9 +20,11 @@ mixin _$PhoneEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, int? forceResendingToken)
         sendPhoneNumber,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(
+            String verificationId, String smsCode, String phoneNumber)
         verifyPhoneNumber,
-    required TResult Function(PhoneAuthCredential phoneAuthCredential)
+    required TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)
         verificationCompleted,
     required TResult Function(FirebaseAuthException firebaseAuthException)
         verificationFailed,
@@ -35,8 +37,11 @@ mixin _$PhoneEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult? Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult? Function(
+            String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult? Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult? Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -49,8 +54,10 @@ mixin _$PhoneEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult Function(String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -191,9 +198,11 @@ class _$_SendPhoneNumber implements _SendPhoneNumber {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, int? forceResendingToken)
         sendPhoneNumber,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(
+            String verificationId, String smsCode, String phoneNumber)
         verifyPhoneNumber,
-    required TResult Function(PhoneAuthCredential phoneAuthCredential)
+    required TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)
         verificationCompleted,
     required TResult Function(FirebaseAuthException firebaseAuthException)
         verificationFailed,
@@ -209,8 +218,11 @@ class _$_SendPhoneNumber implements _SendPhoneNumber {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult? Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult? Function(
+            String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult? Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult? Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -226,8 +238,10 @@ class _$_SendPhoneNumber implements _SendPhoneNumber {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult Function(String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -306,7 +320,7 @@ abstract class _$$_VerifyPhoneNumberCopyWith<$Res> {
           $Res Function(_$_VerifyPhoneNumber) then) =
       __$$_VerifyPhoneNumberCopyWithImpl<$Res>;
   @useResult
-  $Res call({String verificationId, String smsCode});
+  $Res call({String verificationId, String smsCode, String phoneNumber});
 }
 
 /// @nodoc
@@ -322,6 +336,7 @@ class __$$_VerifyPhoneNumberCopyWithImpl<$Res>
   $Res call({
     Object? verificationId = null,
     Object? smsCode = null,
+    Object? phoneNumber = null,
   }) {
     return _then(_$_VerifyPhoneNumber(
       verificationId: null == verificationId
@@ -332,6 +347,10 @@ class __$$_VerifyPhoneNumberCopyWithImpl<$Res>
           ? _value.smsCode
           : smsCode // ignore: cast_nullable_to_non_nullable
               as String,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -340,16 +359,20 @@ class __$$_VerifyPhoneNumberCopyWithImpl<$Res>
 
 class _$_VerifyPhoneNumber implements _VerifyPhoneNumber {
   const _$_VerifyPhoneNumber(
-      {required this.verificationId, required this.smsCode});
+      {required this.verificationId,
+      required this.smsCode,
+      required this.phoneNumber});
 
   @override
   final String verificationId;
   @override
   final String smsCode;
+  @override
+  final String phoneNumber;
 
   @override
   String toString() {
-    return 'PhoneEvent.verifyPhoneNumber(verificationId: $verificationId, smsCode: $smsCode)';
+    return 'PhoneEvent.verifyPhoneNumber(verificationId: $verificationId, smsCode: $smsCode, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -359,11 +382,14 @@ class _$_VerifyPhoneNumber implements _VerifyPhoneNumber {
             other is _$_VerifyPhoneNumber &&
             (identical(other.verificationId, verificationId) ||
                 other.verificationId == verificationId) &&
-            (identical(other.smsCode, smsCode) || other.smsCode == smsCode));
+            (identical(other.smsCode, smsCode) || other.smsCode == smsCode) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, verificationId, smsCode);
+  int get hashCode =>
+      Object.hash(runtimeType, verificationId, smsCode, phoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -377,9 +403,11 @@ class _$_VerifyPhoneNumber implements _VerifyPhoneNumber {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, int? forceResendingToken)
         sendPhoneNumber,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(
+            String verificationId, String smsCode, String phoneNumber)
         verifyPhoneNumber,
-    required TResult Function(PhoneAuthCredential phoneAuthCredential)
+    required TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)
         verificationCompleted,
     required TResult Function(FirebaseAuthException firebaseAuthException)
         verificationFailed,
@@ -387,7 +415,7 @@ class _$_VerifyPhoneNumber implements _VerifyPhoneNumber {
         codeSent,
     required TResult Function(String verificationId) codeAutoRetrievalTimeout,
   }) {
-    return verifyPhoneNumber(verificationId, smsCode);
+    return verifyPhoneNumber(verificationId, smsCode, phoneNumber);
   }
 
   @override
@@ -395,8 +423,11 @@ class _$_VerifyPhoneNumber implements _VerifyPhoneNumber {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult? Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult? Function(
+            String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult? Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult? Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -404,7 +435,7 @@ class _$_VerifyPhoneNumber implements _VerifyPhoneNumber {
         codeSent,
     TResult? Function(String verificationId)? codeAutoRetrievalTimeout,
   }) {
-    return verifyPhoneNumber?.call(verificationId, smsCode);
+    return verifyPhoneNumber?.call(verificationId, smsCode, phoneNumber);
   }
 
   @override
@@ -412,8 +443,10 @@ class _$_VerifyPhoneNumber implements _VerifyPhoneNumber {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult Function(String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -422,7 +455,7 @@ class _$_VerifyPhoneNumber implements _VerifyPhoneNumber {
     required TResult orElse(),
   }) {
     if (verifyPhoneNumber != null) {
-      return verifyPhoneNumber(verificationId, smsCode);
+      return verifyPhoneNumber(verificationId, smsCode, phoneNumber);
     }
     return orElse();
   }
@@ -477,10 +510,12 @@ class _$_VerifyPhoneNumber implements _VerifyPhoneNumber {
 abstract class _VerifyPhoneNumber implements PhoneEvent {
   const factory _VerifyPhoneNumber(
       {required final String verificationId,
-      required final String smsCode}) = _$_VerifyPhoneNumber;
+      required final String smsCode,
+      required final String phoneNumber}) = _$_VerifyPhoneNumber;
 
   String get verificationId;
   String get smsCode;
+  String get phoneNumber;
   @JsonKey(ignore: true)
   _$$_VerifyPhoneNumberCopyWith<_$_VerifyPhoneNumber> get copyWith =>
       throw _privateConstructorUsedError;
@@ -492,7 +527,7 @@ abstract class _$$_VerificationCompletedCopyWith<$Res> {
           $Res Function(_$_VerificationCompleted) then) =
       __$$_VerificationCompletedCopyWithImpl<$Res>;
   @useResult
-  $Res call({PhoneAuthCredential phoneAuthCredential});
+  $Res call({PhoneAuthCredential phoneAuthCredential, String phoneNumber});
 }
 
 /// @nodoc
@@ -507,12 +542,17 @@ class __$$_VerificationCompletedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phoneAuthCredential = null,
+    Object? phoneNumber = null,
   }) {
     return _then(_$_VerificationCompleted(
       phoneAuthCredential: null == phoneAuthCredential
           ? _value.phoneAuthCredential
           : phoneAuthCredential // ignore: cast_nullable_to_non_nullable
               as PhoneAuthCredential,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -520,14 +560,17 @@ class __$$_VerificationCompletedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_VerificationCompleted implements _VerificationCompleted {
-  const _$_VerificationCompleted({required this.phoneAuthCredential});
+  const _$_VerificationCompleted(
+      {required this.phoneAuthCredential, required this.phoneNumber});
 
   @override
   final PhoneAuthCredential phoneAuthCredential;
+  @override
+  final String phoneNumber;
 
   @override
   String toString() {
-    return 'PhoneEvent.verificationCompleted(phoneAuthCredential: $phoneAuthCredential)';
+    return 'PhoneEvent.verificationCompleted(phoneAuthCredential: $phoneAuthCredential, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -536,11 +579,14 @@ class _$_VerificationCompleted implements _VerificationCompleted {
         (other.runtimeType == runtimeType &&
             other is _$_VerificationCompleted &&
             (identical(other.phoneAuthCredential, phoneAuthCredential) ||
-                other.phoneAuthCredential == phoneAuthCredential));
+                other.phoneAuthCredential == phoneAuthCredential) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, phoneAuthCredential);
+  int get hashCode =>
+      Object.hash(runtimeType, phoneAuthCredential, phoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -554,9 +600,11 @@ class _$_VerificationCompleted implements _VerificationCompleted {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, int? forceResendingToken)
         sendPhoneNumber,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(
+            String verificationId, String smsCode, String phoneNumber)
         verifyPhoneNumber,
-    required TResult Function(PhoneAuthCredential phoneAuthCredential)
+    required TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)
         verificationCompleted,
     required TResult Function(FirebaseAuthException firebaseAuthException)
         verificationFailed,
@@ -564,7 +612,7 @@ class _$_VerificationCompleted implements _VerificationCompleted {
         codeSent,
     required TResult Function(String verificationId) codeAutoRetrievalTimeout,
   }) {
-    return verificationCompleted(phoneAuthCredential);
+    return verificationCompleted(phoneAuthCredential, phoneNumber);
   }
 
   @override
@@ -572,8 +620,11 @@ class _$_VerificationCompleted implements _VerificationCompleted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult? Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult? Function(
+            String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult? Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult? Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -581,7 +632,7 @@ class _$_VerificationCompleted implements _VerificationCompleted {
         codeSent,
     TResult? Function(String verificationId)? codeAutoRetrievalTimeout,
   }) {
-    return verificationCompleted?.call(phoneAuthCredential);
+    return verificationCompleted?.call(phoneAuthCredential, phoneNumber);
   }
 
   @override
@@ -589,8 +640,10 @@ class _$_VerificationCompleted implements _VerificationCompleted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult Function(String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -599,7 +652,7 @@ class _$_VerificationCompleted implements _VerificationCompleted {
     required TResult orElse(),
   }) {
     if (verificationCompleted != null) {
-      return verificationCompleted(phoneAuthCredential);
+      return verificationCompleted(phoneAuthCredential, phoneNumber);
     }
     return orElse();
   }
@@ -653,10 +706,11 @@ class _$_VerificationCompleted implements _VerificationCompleted {
 
 abstract class _VerificationCompleted implements PhoneEvent {
   const factory _VerificationCompleted(
-          {required final PhoneAuthCredential phoneAuthCredential}) =
-      _$_VerificationCompleted;
+      {required final PhoneAuthCredential phoneAuthCredential,
+      required final String phoneNumber}) = _$_VerificationCompleted;
 
   PhoneAuthCredential get phoneAuthCredential;
+  String get phoneNumber;
   @JsonKey(ignore: true)
   _$$_VerificationCompletedCopyWith<_$_VerificationCompleted> get copyWith =>
       throw _privateConstructorUsedError;
@@ -730,9 +784,11 @@ class _$_VerificationFailed implements _VerificationFailed {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, int? forceResendingToken)
         sendPhoneNumber,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(
+            String verificationId, String smsCode, String phoneNumber)
         verifyPhoneNumber,
-    required TResult Function(PhoneAuthCredential phoneAuthCredential)
+    required TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)
         verificationCompleted,
     required TResult Function(FirebaseAuthException firebaseAuthException)
         verificationFailed,
@@ -748,8 +804,11 @@ class _$_VerificationFailed implements _VerificationFailed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult? Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult? Function(
+            String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult? Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult? Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -765,8 +824,10 @@ class _$_VerificationFailed implements _VerificationFailed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult Function(String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -916,9 +977,11 @@ class _$_CodeSent implements _CodeSent {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, int? forceResendingToken)
         sendPhoneNumber,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(
+            String verificationId, String smsCode, String phoneNumber)
         verifyPhoneNumber,
-    required TResult Function(PhoneAuthCredential phoneAuthCredential)
+    required TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)
         verificationCompleted,
     required TResult Function(FirebaseAuthException firebaseAuthException)
         verificationFailed,
@@ -934,8 +997,11 @@ class _$_CodeSent implements _CodeSent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult? Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult? Function(
+            String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult? Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult? Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -951,8 +1017,10 @@ class _$_CodeSent implements _CodeSent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult Function(String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -1094,9 +1162,11 @@ class _$_CodeAutoRetrievalTimeout implements _CodeAutoRetrievalTimeout {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber, int? forceResendingToken)
         sendPhoneNumber,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(
+            String verificationId, String smsCode, String phoneNumber)
         verifyPhoneNumber,
-    required TResult Function(PhoneAuthCredential phoneAuthCredential)
+    required TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)
         verificationCompleted,
     required TResult Function(FirebaseAuthException firebaseAuthException)
         verificationFailed,
@@ -1112,8 +1182,11 @@ class _$_CodeAutoRetrievalTimeout implements _CodeAutoRetrievalTimeout {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult? Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult? Function(
+            String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult? Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult? Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
@@ -1129,8 +1202,10 @@ class _$_CodeAutoRetrievalTimeout implements _CodeAutoRetrievalTimeout {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber, int? forceResendingToken)?
         sendPhoneNumber,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    TResult Function(PhoneAuthCredential phoneAuthCredential)?
+    TResult Function(String verificationId, String smsCode, String phoneNumber)?
+        verifyPhoneNumber,
+    TResult Function(
+            PhoneAuthCredential phoneAuthCredential, String phoneNumber)?
         verificationCompleted,
     TResult Function(FirebaseAuthException firebaseAuthException)?
         verificationFailed,
