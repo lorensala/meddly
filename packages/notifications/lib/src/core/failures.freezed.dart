@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'failures.dart';
 
@@ -27,6 +27,8 @@ mixin _$NotificationFailure {
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +42,8 @@ mixin _$NotificationFailure {
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +57,8 @@ mixin _$NotificationFailure {
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,6 +75,10 @@ mixin _$NotificationFailure {
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +92,8 @@ mixin _$NotificationFailure {
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,6 +107,8 @@ mixin _$NotificationFailure {
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,6 +183,8 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
   }) {
     return notFound();
   }
@@ -185,6 +201,8 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
   }) {
     return notFound?.call();
   }
@@ -201,6 +219,8 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -223,6 +243,10 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
   }) {
     return notFound(this);
   }
@@ -239,6 +263,8 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
   }) {
     return notFound?.call(this);
   }
@@ -255,6 +281,8 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -319,6 +347,8 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
   }) {
     return timeout();
   }
@@ -335,6 +365,8 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
   }) {
     return timeout?.call();
   }
@@ -351,6 +383,8 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -373,6 +407,10 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
   }) {
     return timeout(this);
   }
@@ -389,6 +427,8 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
   }) {
     return timeout?.call(this);
   }
@@ -405,6 +445,8 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
     required TResult orElse(),
   }) {
     if (timeout != null) {
@@ -470,6 +512,8 @@ class _$NotificationSerializationFailure
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
   }) {
     return serialization();
   }
@@ -486,6 +530,8 @@ class _$NotificationSerializationFailure
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
   }) {
     return serialization?.call();
   }
@@ -502,6 +548,8 @@ class _$NotificationSerializationFailure
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
     required TResult orElse(),
   }) {
     if (serialization != null) {
@@ -524,6 +572,10 @@ class _$NotificationSerializationFailure
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
   }) {
     return serialization(this);
   }
@@ -540,6 +592,8 @@ class _$NotificationSerializationFailure
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
   }) {
     return serialization?.call(this);
   }
@@ -556,6 +610,8 @@ class _$NotificationSerializationFailure
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
     required TResult orElse(),
   }) {
     if (serialization != null) {
@@ -622,6 +678,8 @@ class _$NotificationSendTimeoutFailure
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
   }) {
     return sendTimeout();
   }
@@ -638,6 +696,8 @@ class _$NotificationSendTimeoutFailure
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
   }) {
     return sendTimeout?.call();
   }
@@ -654,6 +714,8 @@ class _$NotificationSendTimeoutFailure
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
     required TResult orElse(),
   }) {
     if (sendTimeout != null) {
@@ -676,6 +738,10 @@ class _$NotificationSendTimeoutFailure
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
   }) {
     return sendTimeout(this);
   }
@@ -692,6 +758,8 @@ class _$NotificationSendTimeoutFailure
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
   }) {
     return sendTimeout?.call(this);
   }
@@ -708,6 +776,8 @@ class _$NotificationSendTimeoutFailure
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
     required TResult orElse(),
   }) {
     if (sendTimeout != null) {
@@ -774,6 +844,8 @@ class _$NotificationReceiveTimeoutFailure
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
   }) {
     return receiveTimeout();
   }
@@ -790,6 +862,8 @@ class _$NotificationReceiveTimeoutFailure
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
   }) {
     return receiveTimeout?.call();
   }
@@ -806,6 +880,8 @@ class _$NotificationReceiveTimeoutFailure
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
     required TResult orElse(),
   }) {
     if (receiveTimeout != null) {
@@ -828,6 +904,10 @@ class _$NotificationReceiveTimeoutFailure
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
   }) {
     return receiveTimeout(this);
   }
@@ -844,6 +924,8 @@ class _$NotificationReceiveTimeoutFailure
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
   }) {
     return receiveTimeout?.call(this);
   }
@@ -860,6 +942,8 @@ class _$NotificationReceiveTimeoutFailure
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
     required TResult orElse(),
   }) {
     if (receiveTimeout != null) {
@@ -926,6 +1010,8 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
   }) {
     return response();
   }
@@ -942,6 +1028,8 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
   }) {
     return response?.call();
   }
@@ -958,6 +1046,8 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
     required TResult orElse(),
   }) {
     if (response != null) {
@@ -980,6 +1070,10 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
   }) {
     return response(this);
   }
@@ -996,6 +1090,8 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
   }) {
     return response?.call(this);
   }
@@ -1012,6 +1108,8 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
     required TResult orElse(),
   }) {
     if (response != null) {
@@ -1074,6 +1172,8 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
   }) {
     return cancel();
   }
@@ -1090,6 +1190,8 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
   }) {
     return cancel?.call();
   }
@@ -1106,6 +1208,8 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
     required TResult orElse(),
   }) {
     if (cancel != null) {
@@ -1128,6 +1232,10 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
   }) {
     return cancel(this);
   }
@@ -1144,6 +1252,8 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
   }) {
     return cancel?.call(this);
   }
@@ -1160,6 +1270,8 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
     required TResult orElse(),
   }) {
     if (cancel != null) {
@@ -1221,6 +1333,8 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
   }) {
     return cache();
   }
@@ -1237,6 +1351,8 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
   }) {
     return cache?.call();
   }
@@ -1253,6 +1369,8 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
     required TResult orElse(),
   }) {
     if (cache != null) {
@@ -1275,6 +1393,10 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
   }) {
     return cache(this);
   }
@@ -1291,6 +1413,8 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
   }) {
     return cache?.call(this);
   }
@@ -1307,6 +1431,8 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
     required TResult orElse(),
   }) {
     if (cache != null) {
@@ -1371,6 +1497,8 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
   }) {
     return unknown();
   }
@@ -1387,6 +1515,8 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
   }) {
     return unknown?.call();
   }
@@ -1403,6 +1533,8 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -1425,6 +1557,10 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
   }) {
     return unknown(this);
   }
@@ -1441,6 +1577,8 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
   }) {
     return unknown?.call(this);
   }
@@ -1457,6 +1595,8 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -1468,4 +1608,336 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
 
 abstract class NotificationUnknownFailure implements NotificationFailure {
   const factory NotificationUnknownFailure() = _$NotificationUnknownFailure;
+}
+
+/// @nodoc
+abstract class _$$NotificationAlreadyExistsFailureCopyWith<$Res> {
+  factory _$$NotificationAlreadyExistsFailureCopyWith(
+          _$NotificationAlreadyExistsFailure value,
+          $Res Function(_$NotificationAlreadyExistsFailure) then) =
+      __$$NotificationAlreadyExistsFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NotificationAlreadyExistsFailureCopyWithImpl<$Res>
+    extends _$NotificationFailureCopyWithImpl<$Res,
+        _$NotificationAlreadyExistsFailure>
+    implements _$$NotificationAlreadyExistsFailureCopyWith<$Res> {
+  __$$NotificationAlreadyExistsFailureCopyWithImpl(
+      _$NotificationAlreadyExistsFailure _value,
+      $Res Function(_$NotificationAlreadyExistsFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$NotificationAlreadyExistsFailure
+    implements NotificationAlreadyExistsFailure {
+  const _$NotificationAlreadyExistsFailure();
+
+  @override
+  String toString() {
+    return 'NotificationFailure.alreadyExists()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NotificationAlreadyExistsFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notFound,
+    required TResult Function() timeout,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
+  }) {
+    return alreadyExists();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? notFound,
+    TResult? Function()? timeout,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
+  }) {
+    return alreadyExists?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notFound,
+    TResult Function()? timeout,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
+    required TResult orElse(),
+  }) {
+    if (alreadyExists != null) {
+      return alreadyExists();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NotificationNotFoundFailure value) notFound,
+    required TResult Function(NotificationTimeoutFailure value) timeout,
+    required TResult Function(NotificationSerializationFailure value)
+        serialization,
+    required TResult Function(NotificationSendTimeoutFailure value) sendTimeout,
+    required TResult Function(NotificationReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationCancelFailure value) cancel,
+    required TResult Function(NotificationCacheFailure value) cache,
+    required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
+  }) {
+    return alreadyExists(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(NotificationNotFoundFailure value)? notFound,
+    TResult? Function(NotificationTimeoutFailure value)? timeout,
+    TResult? Function(NotificationSerializationFailure value)? serialization,
+    TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationCancelFailure value)? cancel,
+    TResult? Function(NotificationCacheFailure value)? cache,
+    TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
+  }) {
+    return alreadyExists?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NotificationNotFoundFailure value)? notFound,
+    TResult Function(NotificationTimeoutFailure value)? timeout,
+    TResult Function(NotificationSerializationFailure value)? serialization,
+    TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
+    TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationCancelFailure value)? cancel,
+    TResult Function(NotificationCacheFailure value)? cache,
+    TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
+    required TResult orElse(),
+  }) {
+    if (alreadyExists != null) {
+      return alreadyExists(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotificationAlreadyExistsFailure implements NotificationFailure {
+  const factory NotificationAlreadyExistsFailure() =
+      _$NotificationAlreadyExistsFailure;
+}
+
+/// @nodoc
+abstract class _$$NotificationDoesNotExistFailureCopyWith<$Res> {
+  factory _$$NotificationDoesNotExistFailureCopyWith(
+          _$NotificationDoesNotExistFailure value,
+          $Res Function(_$NotificationDoesNotExistFailure) then) =
+      __$$NotificationDoesNotExistFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NotificationDoesNotExistFailureCopyWithImpl<$Res>
+    extends _$NotificationFailureCopyWithImpl<$Res,
+        _$NotificationDoesNotExistFailure>
+    implements _$$NotificationDoesNotExistFailureCopyWith<$Res> {
+  __$$NotificationDoesNotExistFailureCopyWithImpl(
+      _$NotificationDoesNotExistFailure _value,
+      $Res Function(_$NotificationDoesNotExistFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$NotificationDoesNotExistFailure
+    implements NotificationDoesNotExistFailure {
+  const _$NotificationDoesNotExistFailure();
+
+  @override
+  String toString() {
+    return 'NotificationFailure.doesNotExist()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NotificationDoesNotExistFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notFound,
+    required TResult Function() timeout,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
+  }) {
+    return doesNotExist();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? notFound,
+    TResult? Function()? timeout,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
+  }) {
+    return doesNotExist?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notFound,
+    TResult Function()? timeout,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
+    required TResult orElse(),
+  }) {
+    if (doesNotExist != null) {
+      return doesNotExist();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NotificationNotFoundFailure value) notFound,
+    required TResult Function(NotificationTimeoutFailure value) timeout,
+    required TResult Function(NotificationSerializationFailure value)
+        serialization,
+    required TResult Function(NotificationSendTimeoutFailure value) sendTimeout,
+    required TResult Function(NotificationReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationCancelFailure value) cancel,
+    required TResult Function(NotificationCacheFailure value) cache,
+    required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
+  }) {
+    return doesNotExist(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(NotificationNotFoundFailure value)? notFound,
+    TResult? Function(NotificationTimeoutFailure value)? timeout,
+    TResult? Function(NotificationSerializationFailure value)? serialization,
+    TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationCancelFailure value)? cancel,
+    TResult? Function(NotificationCacheFailure value)? cache,
+    TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
+  }) {
+    return doesNotExist?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NotificationNotFoundFailure value)? notFound,
+    TResult Function(NotificationTimeoutFailure value)? timeout,
+    TResult Function(NotificationSerializationFailure value)? serialization,
+    TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
+    TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationCancelFailure value)? cancel,
+    TResult Function(NotificationCacheFailure value)? cache,
+    TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
+    required TResult orElse(),
+  }) {
+    if (doesNotExist != null) {
+      return doesNotExist(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotificationDoesNotExistFailure implements NotificationFailure {
+  const factory NotificationDoesNotExistFailure() =
+      _$NotificationDoesNotExistFailure;
 }

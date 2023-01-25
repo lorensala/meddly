@@ -10,18 +10,23 @@ class NotificationsCache {
   /// {@macro notification_cache}
   NotificationsCache(this._box);
 
-  final Box<List<NotificationPreferenceDto>> _box;
+  final Box<List<String>> _box;
 
   /// Stream of [NotificationPreferenceDto]s.
-  Stream<List<NotificationPreferenceDto>> get notificationPreferences {
+  Stream<NotificationPreferenceDto> get notificationPreferences {
     try {
-      return _box.watch(key: preferencesBoxKey).map(
-        (event) {
-          return event.value == null
-              ? <NotificationPreferenceDto>[]
-              : event.value as List<NotificationPreferenceDto>;
-        },
-      ).startWith(read());
+      return _box
+          .watch(key: preferencesBoxKey)
+          .map(
+            (BoxEvent event) => event.value as List<String>?,
+          )
+          .map((preferences) {
+        if (preferences == null) {
+          return const NotificationPreferenceDto(preferences: []);
+        } else {
+          return NotificationPreferenceDto(preferences: preferences);
+        }
+      }).startWith(read());
     } catch (e) {
       return Stream.error(e);
     }
@@ -31,10 +36,13 @@ class NotificationsCache {
   ///
   /// Throws a [NotificationCacheException] if any error occurs.
   Future<void> write(
-    List<NotificationPreferenceDto> notificationPreferenceDtoList,
+    NotificationPreferenceDto notificationPreferenceDto,
   ) async {
     try {
-      await _box.add(notificationPreferenceDtoList);
+      await _box.put(
+        preferencesBoxKey,
+        notificationPreferenceDto.preferences,
+      );
     } catch (e) {
       throw NotificationCacheException();
     }
@@ -43,10 +51,52 @@ class NotificationsCache {
   /// Reads all the notification preferences.
   ///
   /// Throws a [NotificationCacheException] if any error occurs.
-  List<NotificationPreferenceDto> read() {
+  NotificationPreferenceDto read() {
     try {
-      final preferences = _box.get(preferencesBoxKey, defaultValue: [])!;
-      return preferences;
+      final preferences = _box.get(preferencesBoxKey) ?? <String>[];
+
+      return NotificationPreferenceDto(preferences: preferences);
+    } catch (e) {
+      throw NotificationCacheException();
+    }
+  }
+
+  /// Adds a notification preference.
+  ///
+  /// Throws a [NotificationCacheException] if any error occurs.
+  Future<void> add(
+    NotificationPreferenceDto notificationPreferenceDto,
+  ) async {
+    try {
+      final preferences = _box.get(preferencesBoxKey) ?? <String>[];
+
+      await _box.put(
+        preferencesBoxKey,
+        [...preferences, notificationPreferenceDto.preferences.first],
+      );
+    } catch (e) {
+      throw NotificationCacheException();
+    }
+  }
+
+  /// Removes a notification preference.
+  ///
+  /// Throws a [NotificationCacheException] if any error occurs.
+  Future<void> remove(
+    NotificationPreferenceDto notificationPreferenceDto,
+  ) async {
+    try {
+      final preferences = _box.get(preferencesBoxKey) ?? <String>[];
+
+      await _box.put(
+        preferencesBoxKey,
+        preferences
+            .where(
+              (preference) =>
+                  preference != notificationPreferenceDto.preferences.first,
+            )
+            .toList(),
+      );
     } catch (e) {
       throw NotificationCacheException();
     }
@@ -59,7 +109,7 @@ class NotificationsCache {
     NotificationPreferenceDto notificationPreferenceDto,
   ) async {
     try {
-      await _box.delete(notificationPreferenceDto.preference);
+      await _box.delete(preferencesBoxKey);
     } catch (e) {
       throw NotificationCacheException();
     }

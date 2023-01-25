@@ -36,4 +36,12 @@ class NotificationFailure with _$NotificationFailure {
 
   /// {@macro notification_failure}
   const factory NotificationFailure.unknown() = NotificationUnknownFailure;
+
+  /// {@macro notification_failure}
+  const factory NotificationFailure.alreadyExists() =
+      NotificationAlreadyExistsFailure;
+
+  /// {@macro notification_failure}
+  const factory NotificationFailure.doesNotExist() =
+      NotificationDoesNotExistFailure;
 }

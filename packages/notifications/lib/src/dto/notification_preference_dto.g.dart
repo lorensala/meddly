@@ -7,15 +7,16 @@ part of 'notification_preference_dto.dart';
 // **************************************************************************
 
 _$_NotificationPrefenceDto _$$_NotificationPrefenceDtoFromJson(
-  Map<String, dynamic> json,
-) =>
+        Map<String, dynamic> json) =>
     _$_NotificationPrefenceDto(
-      preference: json['preference'] as String,
+      preferences: (json['preferences'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$_NotificationPrefenceDtoToJson(
-  _$_NotificationPrefenceDto instance,
-) =>
+        _$_NotificationPrefenceDto instance) =>
     <String, dynamic>{
-      'preference': instance.preference,
+      'preferences': instance.preferences,
     };

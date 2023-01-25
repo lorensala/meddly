@@ -11,8 +11,17 @@ part 'notification_preference_dto.g.dart';
 class NotificationPreferenceDto with _$NotificationPreferenceDto {
   /// {@macro notification_preference_dto}
   const factory NotificationPreferenceDto({
-    required String preference,
+    @Default([]) List<String> preferences,
   }) = _NotificationPrefenceDto;
+
+  /// Converts the [NotificationPreference] to a [NotificationPreferenceDto]
+  factory NotificationPreferenceDto.fromDomain(
+    List<NotificationPreference> preference,
+  ) {
+    return NotificationPreferenceDto(
+      preferences: preference.map((e) => e.name).toList(),
+    );
+  }
 
   /// {@macro notification_preference_dto}
   factory NotificationPreferenceDto.fromJson(Map<String, dynamic> json) =>
@@ -21,9 +30,11 @@ class NotificationPreferenceDto with _$NotificationPreferenceDto {
   const NotificationPreferenceDto._();
 
   /// Converts the [NotificationPreferenceDto] to a [NotificationPreference]
-  NotificationPreference toDomain() {
-    return NotificationPreference.values.firstWhere(
-      (element) => element.toString() == 'NotificationPreference.$preference',
-    );
+  List<NotificationPreference> toDomain() {
+    return preferences
+        .map(
+          (e) => NotificationPreference.values.firstWhere((p) => p.name == e),
+        )
+        .toList();
   }
 }

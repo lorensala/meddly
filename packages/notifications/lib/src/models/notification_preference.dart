@@ -3,13 +3,10 @@
 /// {@endtemplate}
 enum NotificationPreference {
   /// {@macro notification_preference}
-  sms(isActive: false),
-
-  /// {@macro notification_preference}
   email(isActive: false),
 
   /// {@macro notification_preference}
-  whastapp(isActive: false);
+  whatsapp(isActive: false);
 
   //// {@macro notification_preference}
   const NotificationPreference({required this.isActive});

@@ -8,8 +8,7 @@ import 'package:user/user.dart';
 
 Future<void> inject() async {
   final userBox = await Hive.openBox<UserDto>(userBoxKey);
-  final notificationsBox =
-      await Hive.openBox<List<NotificationPreferenceDto>>(preferencesBoxKey);
+  final notificationsBox = await Hive.openBox<List<String>>(preferencesBoxKey);
 
   GetIt.I
     // Dio

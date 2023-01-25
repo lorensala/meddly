@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'notification_preference_dto.dart';
 
@@ -21,7 +21,7 @@ NotificationPreferenceDto _$NotificationPreferenceDtoFromJson(
 
 /// @nodoc
 mixin _$NotificationPreferenceDto {
-  String get preference => throw _privateConstructorUsedError;
+  List<String> get preferences => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $NotificationPreferenceDtoCopyWith<$Res> {
           $Res Function(NotificationPreferenceDto) then) =
       _$NotificationPreferenceDtoCopyWithImpl<$Res, NotificationPreferenceDto>;
   @useResult
-  $Res call({String preference});
+  $Res call({List<String> preferences});
 }
 
 /// @nodoc
@@ -52,13 +52,13 @@ class _$NotificationPreferenceDtoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? preference = null,
+    Object? preferences = null,
   }) {
     return _then(_value.copyWith(
-      preference: null == preference
-          ? _value.preference
-          : preference // ignore: cast_nullable_to_non_nullable
-              as String,
+      preferences: null == preferences
+          ? _value.preferences
+          : preferences // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -71,7 +71,7 @@ abstract class _$$_NotificationPrefenceDtoCopyWith<$Res>
       __$$_NotificationPrefenceDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String preference});
+  $Res call({List<String> preferences});
 }
 
 /// @nodoc
@@ -86,13 +86,13 @@ class __$$_NotificationPrefenceDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? preference = null,
+    Object? preferences = null,
   }) {
     return _then(_$_NotificationPrefenceDto(
-      preference: null == preference
-          ? _value.preference
-          : preference // ignore: cast_nullable_to_non_nullable
-              as String,
+      preferences: null == preferences
+          ? _value._preferences
+          : preferences // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -100,17 +100,25 @@ class __$$_NotificationPrefenceDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_NotificationPrefenceDto extends _NotificationPrefenceDto {
-  const _$_NotificationPrefenceDto({required this.preference}) : super._();
+  const _$_NotificationPrefenceDto({final List<String> preferences = const []})
+      : _preferences = preferences,
+        super._();
 
   factory _$_NotificationPrefenceDto.fromJson(Map<String, dynamic> json) =>
       _$$_NotificationPrefenceDtoFromJson(json);
 
+  final List<String> _preferences;
   @override
-  final String preference;
+  @JsonKey()
+  List<String> get preferences {
+    if (_preferences is EqualUnmodifiableListView) return _preferences;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_preferences);
+  }
 
   @override
   String toString() {
-    return 'NotificationPreferenceDto(preference: $preference)';
+    return 'NotificationPreferenceDto(preferences: $preferences)';
   }
 
   @override
@@ -118,13 +126,14 @@ class _$_NotificationPrefenceDto extends _NotificationPrefenceDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NotificationPrefenceDto &&
-            (identical(other.preference, preference) ||
-                other.preference == preference));
+            const DeepCollectionEquality()
+                .equals(other._preferences, _preferences));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, preference);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_preferences));
 
   @JsonKey(ignore: true)
   @override
@@ -143,7 +152,7 @@ class _$_NotificationPrefenceDto extends _NotificationPrefenceDto {
 }
 
 abstract class _NotificationPrefenceDto extends NotificationPreferenceDto {
-  const factory _NotificationPrefenceDto({required final String preference}) =
+  const factory _NotificationPrefenceDto({final List<String> preferences}) =
       _$_NotificationPrefenceDto;
   const _NotificationPrefenceDto._() : super._();
 
@@ -151,7 +160,7 @@ abstract class _NotificationPrefenceDto extends NotificationPreferenceDto {
       _$_NotificationPrefenceDto.fromJson;
 
   @override
-  String get preference;
+  List<String> get preferences;
   @override
   @JsonKey(ignore: true)
   _$$_NotificationPrefenceDtoCopyWith<_$_NotificationPrefenceDto>

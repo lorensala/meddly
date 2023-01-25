@@ -1,2 +1,2 @@
 /// Notifications path
-const String notificationsPath = '/notifications/';
+const String notificationsPath = '/notification/';

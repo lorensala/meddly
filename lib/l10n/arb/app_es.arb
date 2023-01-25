@@ -83,5 +83,8 @@
     "enterCodeDescription": "¿No has recibido el código? Toca en \"Reenviar código\"",
     "skip": "Saltar",
     "resendCode": "Reenviar código",
-    "codeWillBeResent": "El código se reenviará en"
+    "codeWillBeResent": "El código se reenviará en",
+    "notificationPreferenceNotFound": "No se ha encontrado la preferencia de notificación",
+    "notificationPreferenceAlreadyExistsError": "La preferencia de notificación ya existe",
+    "notificationPreferenceDoesNotExistError": "La preferencia de notificación no existe"
 }

@@ -332,6 +332,18 @@
     "codeWillBeResent": "Code will be resent in",
     "@codeWillBeResent": {
         "description": "Text shown on the code will be resent page"
+    },
+    "notificationPreferenceNotFound": "Notification preference not found",
+    "@notificationPreferenceNotFound": {
+        "description": "Text shown when the notification preference is not found"
+    },
+    "notificationPreferenceAlreadyExistsError": "Notification preference already exists",
+    "@notificationPreferenceAlreadyExistsError": {
+        "description": "Text shown when the notification preference already exists"
+    },
+    "notificationPreferenceDoesNotExistError": "Notification preference does not exist",
+    "@notificationPreferenceDoesNotExistError": {
+        "description": "Text shown when the notification preference does not exist"
     }
    
 }
