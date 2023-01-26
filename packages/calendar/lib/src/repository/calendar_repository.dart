@@ -1,0 +1,419 @@
+import 'package:calendar/src/api/calendar_api.dart';
+import 'package:calendar/src/cache/calendar_cache.dart';
+import 'package:calendar/src/core/core.dart';
+import 'package:calendar/src/dto/dto.dart';
+import 'package:calendar/src/models/models.dart';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+
+/// {@template calendar_repository}
+/// Repository for the calendar.
+/// {@endtemplate}
+class CalendarRepository {
+  /// {@macro calendar_repository}
+  CalendarRepository({
+    required CalendarCache cache,
+    required CalendarApi api,
+  })  : _cache = cache,
+        _api = api;
+
+  final CalendarCache _cache;
+  final CalendarApi _api;
+
+  /// Stream of list of [Appointment]s.
+  ///
+  /// Emits a list of [Appointment]s whenever the list of [AppointmentDto]s
+  /// changes.
+  ///
+  /// Emits a [CalendarFailure] if the list of [AppointmentDto]s fails to load.
+  Stream<Either<CalendarFailure, List<Appointment>>> get appointments =>
+      _cache.appointments.map<Either<CalendarFailure, List<Appointment>>>(
+        (appointments) {
+          return right(
+            appointments.map((appointment) => appointment.toDomain()).toList(),
+          );
+        },
+      );
+
+  /// Stream of list of [Measurement]s.
+  ///
+  /// Emits a list of [Measurement]s whenever the list of [MeasurementDto]s
+  /// changes.
+  ///
+  /// Emits a [CalendarFailure] if the list of [MeasurementDto]s fails to load.
+  Stream<Either<CalendarFailure, List<Measurement>>> get measurements =>
+      _cache.measurements.map<Either<CalendarFailure, List<Measurement>>>(
+        (measurements) {
+          return right(
+            measurements.map((measurement) => measurement.toDomain()).toList(),
+          );
+        },
+      );
+
+  /// Stream of list of [Medicine]s.
+  ///
+  /// Emits a list of [Medicine]s whenever the list of [MedicineDto]s
+  /// changes.
+  ///
+  /// Emits a [CalendarFailure] if the list of [MedicineDto]s fails to load.
+  Stream<Either<CalendarFailure, List<Medicine>>> get medicines =>
+      _cache.medicines.map<Either<CalendarFailure, List<Medicine>>>(
+        (medicines) {
+          return right(
+            medicines.map((medicine) => medicine.toDomain()).toList(),
+          );
+        },
+      );
+
+  /// Stream of list of [Consumption]s.
+  ///
+  /// Emits a list of [Consumption]s whenever the list of [ConsumptionDto]s
+  /// changes.
+  ///
+  /// Emits a [CalendarFailure] if the list of [ConsumptionDto]s fails to load.
+  Stream<Either<CalendarFailure, List<Consumption>>> get consumptions =>
+      _cache.consumptions.map<Either<CalendarFailure, List<Consumption>>>(
+        (consumptions) {
+          return right(
+            consumptions.map((consumption) => consumption.toDomain()).toList(),
+          );
+        },
+      );
+
+  /// Fetches the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Calendar] fails to load.
+  Future<Either<CalendarFailure, Unit>> fetchAppointments() async {
+    try {
+      final appointments = await _api.fetchAll();
+
+      await _cache.writeCalendar(appointments);
+      return right(unit);
+    } on CalendarCacheException {
+      return left(const CalendarFailure.cache());
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    } on CalendarSerializationException {
+      return left(const CalendarFailure.serialization());
+    }
+  }
+
+  /// Adds an [Appointment] to the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Appointment] fails to add.
+  Future<Either<CalendarFailure, Unit>> addAppointment(
+    Appointment appointment,
+  ) async {
+    try {
+      final dto = AppointmentDto.fromDomain(appointment);
+      await _api.addAppointment(dto);
+
+      await _cache.writeAppointment(dto);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+
+  /// Adds a [Measurement] to the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Measurement] fails to add.
+  Future<Either<CalendarFailure, Unit>> addMeasurement(
+    Measurement measurement,
+  ) async {
+    try {
+      final dto = MeasurementDto.fromDomain(measurement);
+      await _api.addMeasurement(dto);
+
+      await _cache.writeMeasurement(dto);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+
+  /// Adds a [Medicine] to the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Medicine] fails to add.
+  Future<Either<CalendarFailure, Unit>> addMedicine(
+    Medicine medicine,
+  ) async {
+    try {
+      final dto = MedicineDto.fromDomain(medicine);
+      await _api.addMedicine(dto);
+
+      await _cache.writeMedicine(dto);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+
+  /// Adds a [Consumption] to the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Consumption] fails to add.
+  Future<Either<CalendarFailure, Unit>> addConsumption(
+    Consumption consumption,
+  ) async {
+    try {
+      final dto = ConsumptionDto.fromDomain(consumption);
+      await _api.addConsumption(dto);
+
+      await _cache.writeConsumption(dto);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+
+  /// Deletes an [Appointment] from the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Appointment] fails to delete.
+  Future<Either<CalendarFailure, Unit>> deleteAppointment(
+    Appointment appointment,
+  ) async {
+    try {
+      final dto = AppointmentDto.fromDomain(appointment);
+      await _api.deleteAppointment(dto);
+
+      await _cache.deleteAppointment(dto.id);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+
+  /// Deletes a [Measurement] from the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Measurement] fails to delete.
+  Future<Either<CalendarFailure, Unit>> deleteMeasurement(
+    Measurement measurement,
+  ) async {
+    try {
+      final dto = MeasurementDto.fromDomain(measurement);
+      await _api.deleteMeasurement(dto);
+
+      await _cache.deleteMeasurement(dto.id);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+
+  /// Deletes a [Medicine] from the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Medicine] fails to delete.
+  Future<Either<CalendarFailure, Unit>> deleteMedicine(
+    Medicine medicine,
+  ) async {
+    try {
+      final dto = MedicineDto.fromDomain(medicine);
+      await _api.deleteMedicine(dto);
+
+      await _cache.deleteMedicine(dto.id);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+
+  /// Deletes a [Consumption] from the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Consumption] fails to delete.
+  Future<Either<CalendarFailure, Unit>> deleteConsumption(
+    Consumption consumption,
+  ) async {
+    try {
+      final dto = ConsumptionDto.fromDomain(consumption);
+      await _api.deleteConsumption(dto);
+
+      await _cache.deleteConsumption(dto.id);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+
+  /// Updates an [Appointment] in the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Appointment] fails to update.
+  Future<Either<CalendarFailure, Unit>> updateAppointment(
+    Appointment appointment,
+  ) async {
+    try {
+      final dto = AppointmentDto.fromDomain(appointment);
+      await _api.updateAppointment(dto);
+
+      await _cache.writeAppointment(dto);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+
+  /// Updates a [Measurement] in the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Measurement] fails to update.
+  Future<Either<CalendarFailure, Unit>> updateMeasurement(
+    Measurement measurement,
+  ) async {
+    try {
+      final dto = MeasurementDto.fromDomain(measurement);
+      await _api.updateMeasurement(dto);
+
+      await _cache.writeMeasurement(dto);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+
+  /// Updates a [Medicine] in the calendar.
+  ///
+  /// Returns a [CalendarFailure] if the [Medicine] fails to update.
+  Future<Either<CalendarFailure, Unit>> updateMedicine(
+    Medicine medicine,
+  ) async {
+    try {
+      final dto = MedicineDto.fromDomain(medicine);
+      await _api.updateMedicine(dto);
+
+      await _cache.writeMedicine(dto);
+      return right(unit);
+    } on CalendarDioException catch (e) {
+      switch (e.error.type) {
+        case DioErrorType.connectTimeout:
+        case DioErrorType.receiveTimeout:
+        case DioErrorType.sendTimeout:
+          return left(const CalendarFailure.timeout());
+        case DioErrorType.response:
+          return left(const CalendarFailure.response());
+        case DioErrorType.cancel:
+          return left(const CalendarFailure.cancel());
+        case DioErrorType.other:
+          return left(const CalendarFailure.unknown());
+      }
+    }
+  }
+}
