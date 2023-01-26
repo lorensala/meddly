@@ -2,8 +2,8 @@ import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meddly/features/auth/bloc/auth_bloc.dart';
-import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/features/phone/phone.dart';
+import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/theme/theme.dart';
@@ -40,7 +40,7 @@ class App extends StatelessWidget {
         theme: ThemeManager.lightTheme,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        home: const NotificationsPage(),
+        home: const PredictionsPage(),
 
         //user == null ? const OnboardingPage() : const UserPage(),
       ),

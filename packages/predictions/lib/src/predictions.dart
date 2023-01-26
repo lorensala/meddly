@@ -1,7 +1,4 @@
-/// {@template predictions}
-/// A Very Good Project created by Very Good CLI.
-/// {@endtemplate}
-class Predictions {
-  /// {@macro predictions}
-  const Predictions();
-}
+export 'api/api.dart';
+export 'core/core.dart';
+export 'predictions.dart';
+export 'repository/repository.dart';

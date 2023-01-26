@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:meddly/core/core.dart';
 import 'package:notifications/notifications.dart';
+import 'package:predictions/predictions.dart';
 import 'package:user/user.dart';
 
 Future<void> inject() async {
@@ -25,6 +26,9 @@ Future<void> inject() async {
     ..registerLazySingleton<NotificationsApi>(
       () => NotificationsApi(GetIt.I.get<Dio>(), baseUrl: Strings.baseUrl),
     )
+    ..registerLazySingleton<PredictionsApi>(
+      () => PredictionsApi(GetIt.I.get<Dio>(), baseUrl: Strings.baseUrl),
+    )
     // Repositories
     ..registerLazySingleton(AuthRepository.new)
     ..registerLazySingleton<UserRepository>(
@@ -37,6 +41,11 @@ Future<void> inject() async {
       () => NotificationsRepository(
         api: GetIt.I.get<NotificationsApi>(),
         cache: GetIt.I.get<NotificationsCache>(),
+      ),
+    )
+    ..registerLazySingleton<PredictionsRepository>(
+      () => PredictionsRepository(
+        api: GetIt.I.get<PredictionsApi>(),
       ),
     )
     ..get<Dio>().interceptors.addAll([
