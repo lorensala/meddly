@@ -45,7 +45,8 @@ class _SendOTPButton extends StatelessWidget {
           isValid: isValid,
           onPressed: () => context.read<PhoneBloc>().add(
                 PhoneEvent.sendPhoneNumber(
-                  phoneNumber: '${state.countryCode}${state.phoneNumber.value}',
+                  phoneNumber:
+                      '${state.countryCode.code}${state.phoneNumber.value}',
                 ),
               ),
           label: context.l10n.sendOTP,

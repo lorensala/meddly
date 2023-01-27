@@ -27,7 +27,8 @@ class CalendarList extends StatelessWidget {
                       const CalendarEvent.fetchAll(),
                     );
               },
-              child: ListView.builder(
+              child: ListView.separated(
+                separatorBuilder: (_, __) => const Divider(),
                 itemCount: consumptions.length +
                     appointments.length +
                     measurements.length,

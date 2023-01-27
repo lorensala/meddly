@@ -101,6 +101,8 @@ class _OtpButton extends StatelessWidget {
     final otp = context.select((OtpFormCubit cubit) => cubit.state.otp);
     final phoneNumber =
         context.select((PhoneFormCubit cubit) => cubit.state.phoneNumber);
+    final countryCode =
+        context.select((PhoneFormCubit cubit) => cubit.state.countryCode);
     final isLoading = context.select((PhoneBloc bloc) => bloc.state.isLoading);
     final verificationId = context.select(
       (PhoneBloc bloc) => bloc.state.maybeWhen(
@@ -118,7 +120,7 @@ class _OtpButton extends StatelessWidget {
               PhoneEvent.verifyPhoneNumber(
                 verificationId: verificationId ?? '',
                 smsCode: otp.value,
-                phoneNumber: phoneNumber.value,
+                phoneNumber: '${countryCode.code}${phoneNumber.value}',
               ),
             );
       },

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/bloc/bloc.dart';
+import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/setup/view/setup_page.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 /// {@template user_body}
 /// Body of the UserPage.
@@ -46,35 +48,60 @@ class UserBody extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        return state.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          failure: (failure) {
-            return Center(
+        return Padding(
+          padding: Sizes.padding,
+          child: state.when(
+            loading: () => const Center(
+              child: RepaintBoundary(child: CircularProgressIndicator()),
+            ),
+            failure: (failure) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(failure.toString()),
+                    const SizedBox(height: Sizes.mediumSpacing),
+                    Button(
+                      onPressed: () => context
+                          .read<UserBloc>()
+                          .add(const UserEvent.logout()),
+                      label: 'logout',
+                    ),
+                  ],
+                ),
+              );
+            },
+            success: (user) => Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(failure.toString()),
+                  Text(user.toString()),
                   const SizedBox(height: Sizes.mediumSpacing),
-                  ElevatedButton(
+                  Button(
                     onPressed: () =>
                         context.read<UserBloc>().add(const UserEvent.logout()),
-                    child: const Text('logout'),
+                    label: 'logout',
+                  ),
+                  const SizedBox(height: Sizes.mediumSpacing),
+                  Button(
+                    onPressed: () =>
+                        Navigator.of(context).push(SetupPage.route()),
+                    label: 'setup',
+                  ),
+                  const SizedBox(height: Sizes.mediumSpacing),
+                  Button(
+                    onPressed: () =>
+                        Navigator.of(context).push(PhonePage.route()),
+                    label: 'phone',
+                  ),
+                  const SizedBox(height: Sizes.mediumSpacing),
+                  Button(
+                    onPressed: () =>
+                        Navigator.of(context).push(CalendarPage.route()),
+                    label: 'calendar',
                   ),
                 ],
               ),
-            );
-          },
-          success: (user) => Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(user.toString()),
-                ElevatedButton(
-                  onPressed: () =>
-                      context.read<UserBloc>().add(const UserEvent.logout()),
-                  child: const Text('logout'),
-                ),
-              ],
             ),
           ),
         );
