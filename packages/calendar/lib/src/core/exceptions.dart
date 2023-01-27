@@ -3,6 +3,11 @@ import 'package:dio/dio.dart';
 /// {@template calendar_dto_exception}
 /// Calendar dto exception when the calendar can't be converted to domain.
 /// {@endtemplate}
+class CalendarDtoException implements Exception {}
+
+/// {@template calendar_dto_exception}
+/// Calendar dto exception when the calendar can't be converted to domain.
+/// {@endtemplate}
 class ConsumptionDtoException implements Exception {}
 
 /// {@template medicine_dto_exception}

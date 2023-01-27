@@ -18,7 +18,6 @@ class ConsumptionDto with _$ConsumptionDto {
     @HiveField(1) required String realConsumptionDate,
     @HiveField(2) required int medicineId,
     @HiveField(3) required bool consumed,
-    @HiveField(4) required int id,
   }) = _ConsumptionDto;
 
   /// Creates a [ConsumptionDto] from a [Consumption].
@@ -29,7 +28,6 @@ class ConsumptionDto with _$ConsumptionDto {
         realConsumptionDate: consumption.realConsumptionDate.toIso8601String(),
         medicineId: consumption.medicineId,
         consumed: consumption.consumed,
-        id: consumption.id,
       );
     } catch (e) {
       throw ConsumptionDtoException();
@@ -50,7 +48,6 @@ class ConsumptionDto with _$ConsumptionDto {
         realConsumptionDate: DateTime.parse(realConsumptionDate),
         medicineId: medicineId,
         consumed: consumed,
-        id: id,
       );
     } catch (e) {
       throw ConsumptionDtoException();

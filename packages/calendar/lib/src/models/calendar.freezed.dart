@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Calendar {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get color => throw _privateConstructorUsedError;
-  int get userId => throw _privateConstructorUsedError;
+  List<Medicine> get activeMedicines => throw _privateConstructorUsedError;
+  List<Appointment> get appointments => throw _privateConstructorUsedError;
+  List<Measurement> get measurements => throw _privateConstructorUsedError;
+  List<Consumption> get consumptions => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CalendarCopyWith<Calendar> get copyWith =>
@@ -31,7 +31,11 @@ abstract class $CalendarCopyWith<$Res> {
   factory $CalendarCopyWith(Calendar value, $Res Function(Calendar) then) =
       _$CalendarCopyWithImpl<$Res, Calendar>;
   @useResult
-  $Res call({int id, String name, String color, int userId});
+  $Res call(
+      {List<Medicine> activeMedicines,
+      List<Appointment> appointments,
+      List<Measurement> measurements,
+      List<Consumption> consumptions});
 }
 
 /// @nodoc
@@ -47,28 +51,28 @@ class _$CalendarCopyWithImpl<$Res, $Val extends Calendar>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? color = null,
-    Object? userId = null,
+    Object? activeMedicines = null,
+    Object? appointments = null,
+    Object? measurements = null,
+    Object? consumptions = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+      activeMedicines: null == activeMedicines
+          ? _value.activeMedicines
+          : activeMedicines // ignore: cast_nullable_to_non_nullable
+              as List<Medicine>,
+      appointments: null == appointments
+          ? _value.appointments
+          : appointments // ignore: cast_nullable_to_non_nullable
+              as List<Appointment>,
+      measurements: null == measurements
+          ? _value.measurements
+          : measurements // ignore: cast_nullable_to_non_nullable
+              as List<Measurement>,
+      consumptions: null == consumptions
+          ? _value.consumptions
+          : consumptions // ignore: cast_nullable_to_non_nullable
+              as List<Consumption>,
     ) as $Val);
   }
 }
@@ -80,7 +84,11 @@ abstract class _$$_CalendarCopyWith<$Res> implements $CalendarCopyWith<$Res> {
       __$$_CalendarCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String color, int userId});
+  $Res call(
+      {List<Medicine> activeMedicines,
+      List<Appointment> appointments,
+      List<Measurement> measurements,
+      List<Consumption> consumptions});
 }
 
 /// @nodoc
@@ -94,28 +102,28 @@ class __$$_CalendarCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? color = null,
-    Object? userId = null,
+    Object? activeMedicines = null,
+    Object? appointments = null,
+    Object? measurements = null,
+    Object? consumptions = null,
   }) {
     return _then(_$_Calendar(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+      activeMedicines: null == activeMedicines
+          ? _value._activeMedicines
+          : activeMedicines // ignore: cast_nullable_to_non_nullable
+              as List<Medicine>,
+      appointments: null == appointments
+          ? _value._appointments
+          : appointments // ignore: cast_nullable_to_non_nullable
+              as List<Appointment>,
+      measurements: null == measurements
+          ? _value._measurements
+          : measurements // ignore: cast_nullable_to_non_nullable
+              as List<Measurement>,
+      consumptions: null == consumptions
+          ? _value._consumptions
+          : consumptions // ignore: cast_nullable_to_non_nullable
+              as List<Consumption>,
     ));
   }
 }
@@ -124,24 +132,51 @@ class __$$_CalendarCopyWithImpl<$Res>
 
 class _$_Calendar extends _Calendar {
   const _$_Calendar(
-      {required this.id,
-      required this.name,
-      required this.color,
-      required this.userId})
-      : super._();
+      {required final List<Medicine> activeMedicines,
+      required final List<Appointment> appointments,
+      required final List<Measurement> measurements,
+      required final List<Consumption> consumptions})
+      : _activeMedicines = activeMedicines,
+        _appointments = appointments,
+        _measurements = measurements,
+        _consumptions = consumptions,
+        super._();
 
+  final List<Medicine> _activeMedicines;
   @override
-  final int id;
+  List<Medicine> get activeMedicines {
+    if (_activeMedicines is EqualUnmodifiableListView) return _activeMedicines;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_activeMedicines);
+  }
+
+  final List<Appointment> _appointments;
   @override
-  final String name;
+  List<Appointment> get appointments {
+    if (_appointments is EqualUnmodifiableListView) return _appointments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_appointments);
+  }
+
+  final List<Measurement> _measurements;
   @override
-  final String color;
+  List<Measurement> get measurements {
+    if (_measurements is EqualUnmodifiableListView) return _measurements;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_measurements);
+  }
+
+  final List<Consumption> _consumptions;
   @override
-  final int userId;
+  List<Consumption> get consumptions {
+    if (_consumptions is EqualUnmodifiableListView) return _consumptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_consumptions);
+  }
 
   @override
   String toString() {
-    return 'Calendar(id: $id, name: $name, color: $color, userId: $userId)';
+    return 'Calendar(activeMedicines: $activeMedicines, appointments: $appointments, measurements: $measurements, consumptions: $consumptions)';
   }
 
   @override
@@ -149,14 +184,23 @@ class _$_Calendar extends _Calendar {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Calendar &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.userId, userId) || other.userId == userId));
+            const DeepCollectionEquality()
+                .equals(other._activeMedicines, _activeMedicines) &&
+            const DeepCollectionEquality()
+                .equals(other._appointments, _appointments) &&
+            const DeepCollectionEquality()
+                .equals(other._measurements, _measurements) &&
+            const DeepCollectionEquality()
+                .equals(other._consumptions, _consumptions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, color, userId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_activeMedicines),
+      const DeepCollectionEquality().hash(_appointments),
+      const DeepCollectionEquality().hash(_measurements),
+      const DeepCollectionEquality().hash(_consumptions));
 
   @JsonKey(ignore: true)
   @override
@@ -167,20 +211,20 @@ class _$_Calendar extends _Calendar {
 
 abstract class _Calendar extends Calendar {
   const factory _Calendar(
-      {required final int id,
-      required final String name,
-      required final String color,
-      required final int userId}) = _$_Calendar;
+      {required final List<Medicine> activeMedicines,
+      required final List<Appointment> appointments,
+      required final List<Measurement> measurements,
+      required final List<Consumption> consumptions}) = _$_Calendar;
   const _Calendar._() : super._();
 
   @override
-  int get id;
+  List<Medicine> get activeMedicines;
   @override
-  String get name;
+  List<Appointment> get appointments;
   @override
-  String get color;
+  List<Measurement> get measurements;
   @override
-  int get userId;
+  List<Consumption> get consumptions;
   @override
   @JsonKey(ignore: true)
   _$$_CalendarCopyWith<_$_Calendar> get copyWith =>

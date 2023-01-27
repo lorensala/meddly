@@ -28,8 +28,6 @@ mixin _$ConsumptionDto {
   int get medicineId => throw _privateConstructorUsedError;
   @HiveField(3)
   bool get consumed => throw _privateConstructorUsedError;
-  @HiveField(4)
-  int get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,8 +45,7 @@ abstract class $ConsumptionDtoCopyWith<$Res> {
       {@HiveField(0) String date,
       @HiveField(1) String realConsumptionDate,
       @HiveField(2) int medicineId,
-      @HiveField(3) bool consumed,
-      @HiveField(4) int id});
+      @HiveField(3) bool consumed});
 }
 
 /// @nodoc
@@ -68,7 +65,6 @@ class _$ConsumptionDtoCopyWithImpl<$Res, $Val extends ConsumptionDto>
     Object? realConsumptionDate = null,
     Object? medicineId = null,
     Object? consumed = null,
-    Object? id = null,
   }) {
     return _then(_value.copyWith(
       date: null == date
@@ -87,10 +83,6 @@ class _$ConsumptionDtoCopyWithImpl<$Res, $Val extends ConsumptionDto>
           ? _value.consumed
           : consumed // ignore: cast_nullable_to_non_nullable
               as bool,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -107,8 +99,7 @@ abstract class _$$_ConsumptionDtoCopyWith<$Res>
       {@HiveField(0) String date,
       @HiveField(1) String realConsumptionDate,
       @HiveField(2) int medicineId,
-      @HiveField(3) bool consumed,
-      @HiveField(4) int id});
+      @HiveField(3) bool consumed});
 }
 
 /// @nodoc
@@ -126,7 +117,6 @@ class __$$_ConsumptionDtoCopyWithImpl<$Res>
     Object? realConsumptionDate = null,
     Object? medicineId = null,
     Object? consumed = null,
-    Object? id = null,
   }) {
     return _then(_$_ConsumptionDto(
       date: null == date
@@ -145,10 +135,6 @@ class __$$_ConsumptionDtoCopyWithImpl<$Res>
           ? _value.consumed
           : consumed // ignore: cast_nullable_to_non_nullable
               as bool,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -160,8 +146,7 @@ class _$_ConsumptionDto extends _ConsumptionDto {
       {@HiveField(0) required this.date,
       @HiveField(1) required this.realConsumptionDate,
       @HiveField(2) required this.medicineId,
-      @HiveField(3) required this.consumed,
-      @HiveField(4) required this.id})
+      @HiveField(3) required this.consumed})
       : super._();
 
   factory _$_ConsumptionDto.fromJson(Map<String, dynamic> json) =>
@@ -179,13 +164,10 @@ class _$_ConsumptionDto extends _ConsumptionDto {
   @override
   @HiveField(3)
   final bool consumed;
-  @override
-  @HiveField(4)
-  final int id;
 
   @override
   String toString() {
-    return 'ConsumptionDto(date: $date, realConsumptionDate: $realConsumptionDate, medicineId: $medicineId, consumed: $consumed, id: $id)';
+    return 'ConsumptionDto(date: $date, realConsumptionDate: $realConsumptionDate, medicineId: $medicineId, consumed: $consumed)';
   }
 
   @override
@@ -199,14 +181,13 @@ class _$_ConsumptionDto extends _ConsumptionDto {
             (identical(other.medicineId, medicineId) ||
                 other.medicineId == medicineId) &&
             (identical(other.consumed, consumed) ||
-                other.consumed == consumed) &&
-            (identical(other.id, id) || other.id == id));
+                other.consumed == consumed));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, date, realConsumptionDate, medicineId, consumed, id);
+  int get hashCode =>
+      Object.hash(runtimeType, date, realConsumptionDate, medicineId, consumed);
 
   @JsonKey(ignore: true)
   @override
@@ -227,8 +208,7 @@ abstract class _ConsumptionDto extends ConsumptionDto {
       {@HiveField(0) required final String date,
       @HiveField(1) required final String realConsumptionDate,
       @HiveField(2) required final int medicineId,
-      @HiveField(3) required final bool consumed,
-      @HiveField(4) required final int id}) = _$_ConsumptionDto;
+      @HiveField(3) required final bool consumed}) = _$_ConsumptionDto;
   const _ConsumptionDto._() : super._();
 
   factory _ConsumptionDto.fromJson(Map<String, dynamic> json) =
@@ -246,9 +226,6 @@ abstract class _ConsumptionDto extends ConsumptionDto {
   @override
   @HiveField(3)
   bool get consumed;
-  @override
-  @HiveField(4)
-  int get id;
   @override
   @JsonKey(ignore: true)
   _$$_ConsumptionDtoCopyWith<_$_ConsumptionDto> get copyWith =>

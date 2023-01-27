@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_single_quotes
+
 import 'package:calendar/src/core/core.dart';
 import 'package:calendar/src/dto/dto.dart';
 import 'package:dio/dio.dart';
@@ -38,6 +40,7 @@ class CalendarApi {
           activeMedicines: [],
           appointments: [],
           measurements: [],
+          consumptions: [],
         );
       }
       return CalendarDto.fromJson(res.data as Map<String, dynamic>);
@@ -199,7 +202,7 @@ class CalendarApi {
   Future<void> deleteConsumption(ConsumptionDto consumptionDto) async {
     late final Response<dynamic> res;
     try {
-      res = await _dio.delete(
+      res = await _dio.post(
         deleteConsumptionPath,
         data: consumptionDto.toJson(),
       );

@@ -9,7 +9,6 @@ part 'consumption.freezed.dart';
 class Consumption with _$Consumption {
   /// {@macro consumption}
   const factory Consumption({
-    required int id,
     required int medicineId,
     required DateTime date,
     required DateTime realConsumptionDate,

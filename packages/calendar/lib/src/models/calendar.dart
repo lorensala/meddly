@@ -1,3 +1,4 @@
+import 'package:calendar/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'calendar.freezed.dart';
@@ -9,10 +10,10 @@ part 'calendar.freezed.dart';
 class Calendar with _$Calendar {
   /// {@macro calendar}
   const factory Calendar({
-    required int id,
-    required String name,
-    required String color,
-    required int userId,
+    required List<Medicine> activeMedicines,
+    required List<Appointment> appointments,
+    required List<Measurement> measurements,
+    required List<Consumption> consumptions,
   }) = _Calendar;
   const Calendar._();
 }

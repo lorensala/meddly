@@ -5,6 +5,7 @@ import 'package:calendar/src/dto/dto.dart';
 import 'package:calendar/src/models/models.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:rxdart/rxdart.dart';
 
 /// {@template calendar_repository}
 /// Repository for the calendar.
@@ -20,20 +21,44 @@ class CalendarRepository {
   final CalendarCache _cache;
   final CalendarApi _api;
 
+  /// Stream of [CalendarDto].
+  ///
+  /// Emits a [CalendarDto] whenever the calendar cache changes.
+  ///
+  /// Emits a [CalendarFailure] if the calendar cache fails to load.
+  Stream<Either<CalendarFailure, Option<Calendar>>> get calendar =>
+      _cache.calendar.map<Either<CalendarFailure, Option<Calendar>>>(
+        (calendar) {
+          if (calendar == null) {
+            return Right(none());
+          }
+
+          return Right(some(calendar.toDomain()));
+        },
+      ).onErrorReturnWith((error, stackTrace) {
+        if (error is CalendarCacheException) {
+          return const Left(CalendarFailure.cache());
+        } else if (error is CalendarSerializationException) {
+          return const Left(CalendarFailure.serialization());
+        }
+
+        return const Left(CalendarFailure.unknown());
+      });
+
   /// Stream of list of [Appointment]s.
   ///
   /// Emits a list of [Appointment]s whenever the list of [AppointmentDto]s
   /// changes.
   ///
   /// Emits a [CalendarFailure] if the list of [AppointmentDto]s fails to load.
-  Stream<Either<CalendarFailure, List<Appointment>>> get appointments =>
-      _cache.appointments.map<Either<CalendarFailure, List<Appointment>>>(
-        (appointments) {
-          return right(
-            appointments.map((appointment) => appointment.toDomain()).toList(),
-          );
-        },
-      );
+  // Stream<Either<CalendarFailure, List<Appointment>>> get appointments =>
+  //     _cache.appointments.map<Either<CalendarFailure, List<Appointment>>>(
+  //       (appointments) {
+  //         return right(
+  //           appointments.map((appointment) => appointment.toDomain()).toList(),
+  //         );
+  //       },
+  //     );
 
   /// Stream of list of [Measurement]s.
   ///
@@ -41,14 +66,14 @@ class CalendarRepository {
   /// changes.
   ///
   /// Emits a [CalendarFailure] if the list of [MeasurementDto]s fails to load.
-  Stream<Either<CalendarFailure, List<Measurement>>> get measurements =>
-      _cache.measurements.map<Either<CalendarFailure, List<Measurement>>>(
-        (measurements) {
-          return right(
-            measurements.map((measurement) => measurement.toDomain()).toList(),
-          );
-        },
-      );
+  // Stream<Either<CalendarFailure, List<Measurement>>> get measurements =>
+  //     _cache.measurements.map<Either<CalendarFailure, List<Measurement>>>(
+  //       (measurements) {
+  //         return right(
+  //           measurements.map((measurement) => measurement.toDomain()).toList(),
+  //         );
+  //       },
+  //     );
 
   /// Stream of list of [Medicine]s.
   ///
@@ -56,14 +81,14 @@ class CalendarRepository {
   /// changes.
   ///
   /// Emits a [CalendarFailure] if the list of [MedicineDto]s fails to load.
-  Stream<Either<CalendarFailure, List<Medicine>>> get medicines =>
-      _cache.medicines.map<Either<CalendarFailure, List<Medicine>>>(
-        (medicines) {
-          return right(
-            medicines.map((medicine) => medicine.toDomain()).toList(),
-          );
-        },
-      );
+  // Stream<Either<CalendarFailure, List<Medicine>>> get medicines =>
+  //     _cache.medicines.map<Either<CalendarFailure, List<Medicine>>>(
+  //       (medicines) {
+  //         return right(
+  //           medicines.map((medicine) => medicine.toDomain()).toList(),
+  //         );
+  //       },
+  //     );
 
   /// Stream of list of [Consumption]s.
   ///
@@ -71,19 +96,19 @@ class CalendarRepository {
   /// changes.
   ///
   /// Emits a [CalendarFailure] if the list of [ConsumptionDto]s fails to load.
-  Stream<Either<CalendarFailure, List<Consumption>>> get consumptions =>
-      _cache.consumptions.map<Either<CalendarFailure, List<Consumption>>>(
-        (consumptions) {
-          return right(
-            consumptions.map((consumption) => consumption.toDomain()).toList(),
-          );
-        },
-      );
+  // Stream<Either<CalendarFailure, List<Consumption>>> get consumptions =>
+  //     _cache.consumptions.map<Either<CalendarFailure, List<Consumption>>>(
+  //       (consumptions) {
+  //         return right(
+  //           consumptions.map((consumption) => consumption.toDomain()).toList(),
+  //         );
+  //       },
+  //     );
 
-  /// Fetches the calendar.
+  /// Fetches the [Calendar]s from the [CalendarApi]
   ///
   /// Returns a [CalendarFailure] if the [Calendar] fails to load.
-  Future<Either<CalendarFailure, Unit>> fetchAppointments() async {
+  Future<Either<CalendarFailure, Unit>> fetchCalendar() async {
     try {
       final appointments = await _api.fetchAll();
 
@@ -119,7 +144,18 @@ class CalendarRepository {
       final dto = AppointmentDto.fromDomain(appointment);
       await _api.addAppointment(dto);
 
-      await _cache.writeAppointment(dto);
+      final calendar = await _cache.readCalendar();
+
+      if (calendar == null) {
+        await _cache.writeCalendar(
+          CalendarDto(appointments: [dto]),
+        );
+      } else {
+        await _cache.writeCalendar(
+          calendar.copyWith(appointments: [...calendar.appointments, dto]),
+        );
+      }
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {
@@ -147,7 +183,17 @@ class CalendarRepository {
       final dto = MeasurementDto.fromDomain(measurement);
       await _api.addMeasurement(dto);
 
-      await _cache.writeMeasurement(dto);
+      final calendar = await _cache.readCalendar();
+      if (calendar == null) {
+        await _cache.writeCalendar(
+          CalendarDto(measurements: [dto]),
+        );
+      } else {
+        await _cache.writeCalendar(
+          calendar.copyWith(measurements: [...calendar.measurements, dto]),
+        );
+      }
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {
@@ -175,7 +221,19 @@ class CalendarRepository {
       final dto = MedicineDto.fromDomain(medicine);
       await _api.addMedicine(dto);
 
-      await _cache.writeMedicine(dto);
+      final calendar = await _cache.readCalendar();
+
+      if (calendar == null) {
+        await _cache.writeCalendar(
+          CalendarDto(activeMedicines: [dto]),
+        );
+      } else {
+        await _cache.writeCalendar(
+          calendar
+              .copyWith(activeMedicines: [...calendar.activeMedicines, dto]),
+        );
+      }
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {
@@ -204,6 +262,7 @@ class CalendarRepository {
       await _api.addConsumption(dto);
 
       await _cache.writeConsumption(dto);
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {
@@ -212,6 +271,13 @@ class CalendarRepository {
         case DioErrorType.sendTimeout:
           return left(const CalendarFailure.timeout());
         case DioErrorType.response:
+          // ignore: avoid_dynamic_calls
+          // switch(e.error.response?.data?['detail']['code'] as int ) {
+          //   case 400:
+          //     return left(const CalendarFailure.invalidConsumption());
+          //   default:
+          //     return left(const CalendarFailure.response());
+          // }
           return left(const CalendarFailure.response());
         case DioErrorType.cancel:
           return left(const CalendarFailure.cancel());
@@ -231,7 +297,20 @@ class CalendarRepository {
       final dto = AppointmentDto.fromDomain(appointment);
       await _api.deleteAppointment(dto);
 
-      await _cache.deleteAppointment(dto.id);
+      final calendar = await _cache.readCalendar();
+
+      if (calendar == null) {
+        return right(unit);
+      } else {
+        await _cache.writeCalendar(
+          calendar.copyWith(
+            appointments: calendar.appointments
+                .where((element) => element.id != dto.id)
+                .toList(),
+          ),
+        );
+      }
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {
@@ -259,7 +338,20 @@ class CalendarRepository {
       final dto = MeasurementDto.fromDomain(measurement);
       await _api.deleteMeasurement(dto);
 
-      await _cache.deleteMeasurement(dto.id);
+      final calendar = await _cache.readCalendar();
+
+      if (calendar == null) {
+        return right(unit);
+      } else {
+        await _cache.writeCalendar(
+          calendar.copyWith(
+            measurements: calendar.measurements
+                .where((element) => element.id != dto.id)
+                .toList(),
+          ),
+        );
+      }
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {
@@ -287,7 +379,20 @@ class CalendarRepository {
       final dto = MedicineDto.fromDomain(medicine);
       await _api.deleteMedicine(dto);
 
-      await _cache.deleteMedicine(dto.id);
+      final calendar = await _cache.readCalendar();
+
+      if (calendar == null) {
+        return right(unit);
+      } else {
+        await _cache.writeCalendar(
+          calendar.copyWith(
+            activeMedicines: calendar.activeMedicines
+                .where((element) => element.id != dto.id)
+                .toList(),
+          ),
+        );
+      }
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {
@@ -315,7 +420,8 @@ class CalendarRepository {
       final dto = ConsumptionDto.fromDomain(consumption);
       await _api.deleteConsumption(dto);
 
-      await _cache.deleteConsumption(dto.id);
+      await _cache.deleteConsumption(dto);
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {
@@ -343,7 +449,20 @@ class CalendarRepository {
       final dto = AppointmentDto.fromDomain(appointment);
       await _api.updateAppointment(dto);
 
-      await _cache.writeAppointment(dto);
+      final calendar = await _cache.readCalendar();
+
+      if (calendar == null) {
+        return right(unit);
+      } else {
+        await _cache.writeCalendar(
+          calendar.copyWith(
+            appointments: calendar.appointments
+                .map((element) => element.id == dto.id ? dto : element)
+                .toList(),
+          ),
+        );
+      }
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {
@@ -371,7 +490,20 @@ class CalendarRepository {
       final dto = MeasurementDto.fromDomain(measurement);
       await _api.updateMeasurement(dto);
 
-      await _cache.writeMeasurement(dto);
+      final calendar = await _cache.readCalendar();
+
+      if (calendar == null) {
+        return right(unit);
+      } else {
+        await _cache.writeCalendar(
+          calendar.copyWith(
+            measurements: calendar.measurements
+                .map((element) => element.id == dto.id ? dto : element)
+                .toList(),
+          ),
+        );
+      }
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {
@@ -399,7 +531,20 @@ class CalendarRepository {
       final dto = MedicineDto.fromDomain(medicine);
       await _api.updateMedicine(dto);
 
-      await _cache.writeMedicine(dto);
+      final calendar = await _cache.readCalendar();
+
+      if (calendar == null) {
+        return right(unit);
+      } else {
+        await _cache.writeCalendar(
+          calendar.copyWith(
+            activeMedicines: calendar.activeMedicines
+                .map((element) => element.id == dto.id ? dto : element)
+                .toList(),
+          ),
+        );
+      }
+
       return right(unit);
     } on CalendarDioException catch (e) {
       switch (e.error.type) {

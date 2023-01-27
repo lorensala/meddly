@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:calendar/calendar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 // ignore: depend_on_referenced_packages
@@ -39,7 +40,13 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   await Hive.initFlutter();
 
-  Hive.registerAdapter(UserDtoAdapter());
+  Hive
+    ..registerAdapter(UserDtoAdapter())
+    ..registerAdapter(CalendarDtoAdapter())
+    ..registerAdapter(ConsumptionDtoAdapter())
+    ..registerAdapter(MedicineDtoAdapter())
+    ..registerAdapter(MeasurementDtoAdapter())
+    ..registerAdapter(AppointmentDtoAdapter());
 
   await inject();
 

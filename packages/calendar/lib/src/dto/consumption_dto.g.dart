@@ -21,14 +21,13 @@ class ConsumptionDtoAdapter extends TypeAdapter<ConsumptionDto> {
       realConsumptionDate: fields[1] as String,
       medicineId: fields[2] as int,
       consumed: fields[3] as bool,
-      id: fields[4] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, ConsumptionDto obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.date)
       ..writeByte(1)
@@ -36,9 +35,7 @@ class ConsumptionDtoAdapter extends TypeAdapter<ConsumptionDto> {
       ..writeByte(2)
       ..write(obj.medicineId)
       ..writeByte(3)
-      ..write(obj.consumed)
-      ..writeByte(4)
-      ..write(obj.id);
+      ..write(obj.consumed);
   }
 
   @override
@@ -62,7 +59,6 @@ _$_ConsumptionDto _$$_ConsumptionDtoFromJson(Map<String, dynamic> json) =>
       realConsumptionDate: json['real_consumption_date'] as String,
       medicineId: json['medicine_id'] as int,
       consumed: json['consumed'] as bool,
-      id: json['id'] as int,
     );
 
 Map<String, dynamic> _$$_ConsumptionDtoToJson(_$_ConsumptionDto instance) =>
@@ -71,5 +67,4 @@ Map<String, dynamic> _$$_ConsumptionDtoToJson(_$_ConsumptionDto instance) =>
       'real_consumption_date': instance.realConsumptionDate,
       'medicine_id': instance.medicineId,
       'consumed': instance.consumed,
-      'id': instance.id,
     };

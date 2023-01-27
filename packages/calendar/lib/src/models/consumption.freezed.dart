@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Consumption {
-  int get id => throw _privateConstructorUsedError;
   int get medicineId => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   DateTime get realConsumptionDate => throw _privateConstructorUsedError;
@@ -34,8 +33,7 @@ abstract class $ConsumptionCopyWith<$Res> {
       _$ConsumptionCopyWithImpl<$Res, Consumption>;
   @useResult
   $Res call(
-      {int id,
-      int medicineId,
+      {int medicineId,
       DateTime date,
       DateTime realConsumptionDate,
       bool consumed});
@@ -54,17 +52,12 @@ class _$ConsumptionCopyWithImpl<$Res, $Val extends Consumption>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? medicineId = null,
     Object? date = null,
     Object? realConsumptionDate = null,
     Object? consumed = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       medicineId: null == medicineId
           ? _value.medicineId
           : medicineId // ignore: cast_nullable_to_non_nullable
@@ -94,8 +87,7 @@ abstract class _$$_ConsumptionCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      int medicineId,
+      {int medicineId,
       DateTime date,
       DateTime realConsumptionDate,
       bool consumed});
@@ -112,17 +104,12 @@ class __$$_ConsumptionCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? medicineId = null,
     Object? date = null,
     Object? realConsumptionDate = null,
     Object? consumed = null,
   }) {
     return _then(_$_Consumption(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       medicineId: null == medicineId
           ? _value.medicineId
           : medicineId // ignore: cast_nullable_to_non_nullable
@@ -147,15 +134,12 @@ class __$$_ConsumptionCopyWithImpl<$Res>
 
 class _$_Consumption extends _Consumption {
   const _$_Consumption(
-      {required this.id,
-      required this.medicineId,
+      {required this.medicineId,
       required this.date,
       required this.realConsumptionDate,
       required this.consumed})
       : super._();
 
-  @override
-  final int id;
   @override
   final int medicineId;
   @override
@@ -167,7 +151,7 @@ class _$_Consumption extends _Consumption {
 
   @override
   String toString() {
-    return 'Consumption(id: $id, medicineId: $medicineId, date: $date, realConsumptionDate: $realConsumptionDate, consumed: $consumed)';
+    return 'Consumption(medicineId: $medicineId, date: $date, realConsumptionDate: $realConsumptionDate, consumed: $consumed)';
   }
 
   @override
@@ -175,7 +159,6 @@ class _$_Consumption extends _Consumption {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Consumption &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.medicineId, medicineId) ||
                 other.medicineId == medicineId) &&
             (identical(other.date, date) || other.date == date) &&
@@ -186,8 +169,8 @@ class _$_Consumption extends _Consumption {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, medicineId, date, realConsumptionDate, consumed);
+  int get hashCode =>
+      Object.hash(runtimeType, medicineId, date, realConsumptionDate, consumed);
 
   @JsonKey(ignore: true)
   @override
@@ -198,15 +181,12 @@ class _$_Consumption extends _Consumption {
 
 abstract class _Consumption extends Consumption {
   const factory _Consumption(
-      {required final int id,
-      required final int medicineId,
+      {required final int medicineId,
       required final DateTime date,
       required final DateTime realConsumptionDate,
       required final bool consumed}) = _$_Consumption;
   const _Consumption._() : super._();
 
-  @override
-  int get id;
   @override
   int get medicineId;
   @override
