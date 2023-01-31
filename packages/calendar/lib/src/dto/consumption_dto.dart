@@ -53,4 +53,19 @@ class ConsumptionDto with _$ConsumptionDto {
       throw ConsumptionDtoException();
     }
   }
+
+  /// Creates a [Event] from a [ConsumptionDto].
+  Event toEvent(Medicine medicineAssociatedWithConsumption) {
+    try {
+      return Event.fromConsumption(
+        id: medicineId,
+        date: DateTime.parse(date),
+        title: medicineAssociatedWithConsumption.name,
+        description: medicineAssociatedWithConsumption.presentation,
+        consumed: consumed,
+      );
+    } catch (e) {
+      throw ConsumptionDtoException();
+    }
+  }
 }

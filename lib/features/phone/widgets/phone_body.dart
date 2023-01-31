@@ -99,7 +99,8 @@ class _PhoneSection extends StatelessWidget {
             const SizedBox(height: Sizes.largeSpacing),
             Center(
               child: GestureDetector(
-                onTap: () => Navigator.of(context).push(UserPage.route()),
+                onTap: () => Navigator.of(context)
+                    .pushAndRemoveUntil(UserPage.route(), (_) => false),
                 child: Text(
                   context.l10n.skip,
                   style: TextStyle(

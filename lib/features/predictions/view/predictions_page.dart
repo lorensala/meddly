@@ -18,8 +18,11 @@ class PredictionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PredictionsBloc(),
-      child: const Scaffold(
-        body: PredictionsView(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Predictions'),
+        ),
+        body: const PredictionsView(),
       ),
     );
   }

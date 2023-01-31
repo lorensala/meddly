@@ -43,4 +43,23 @@ class CalendarDto with _$CalendarDto {
       throw CalendarDtoException();
     }
   }
+
+  /// Creates a list of [Event] from a [CalendarDto].
+  List<Event> toEvents() {
+    final events = <Event>[];
+
+    // ignore: cascade_invocations
+    events
+      ..addAll(appointments.map((a) => a.toEvent()))
+      ..addAll(measurements.map((m) => m.toEvent()))
+      ..addAll(
+        consumptions.map(
+          (c) => c.toEvent(
+            activeMedicines.firstWhere((m) => m.id == c.medicineId).toDomain(),
+          ),
+        ),
+      );
+
+    return events;
+  }
 }

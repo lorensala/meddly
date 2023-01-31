@@ -22,6 +22,7 @@ mixin _$CalendarEvent {
     required TResult Function(Consumption consumption) addConsumption,
     required TResult Function(Consumption consumption) deleteConsumption,
     required TResult Function() fetchAll,
+    required TResult Function(DateTime selectedDate) selectedDateChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$CalendarEvent {
     TResult? Function(Consumption consumption)? addConsumption,
     TResult? Function(Consumption consumption)? deleteConsumption,
     TResult? Function()? fetchAll,
+    TResult? Function(DateTime selectedDate)? selectedDateChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$CalendarEvent {
     TResult Function(Consumption consumption)? addConsumption,
     TResult Function(Consumption consumption)? deleteConsumption,
     TResult Function()? fetchAll,
+    TResult Function(DateTime selectedDate)? selectedDateChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$CalendarEvent {
     required TResult Function(_AddConsumption value) addConsumption,
     required TResult Function(_DeleteConsumption value) deleteConsumption,
     required TResult Function(_FetchAll value) fetchAll,
+    required TResult Function(_SelectedDateChanged value) selectedDateChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$CalendarEvent {
     TResult? Function(_AddConsumption value)? addConsumption,
     TResult? Function(_DeleteConsumption value)? deleteConsumption,
     TResult? Function(_FetchAll value)? fetchAll,
+    TResult? Function(_SelectedDateChanged value)? selectedDateChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$CalendarEvent {
     TResult Function(_AddConsumption value)? addConsumption,
     TResult Function(_DeleteConsumption value)? deleteConsumption,
     TResult Function(_FetchAll value)? fetchAll,
+    TResult Function(_SelectedDateChanged value)? selectedDateChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,6 +132,7 @@ class _$_Watch implements _Watch {
     required TResult Function(Consumption consumption) addConsumption,
     required TResult Function(Consumption consumption) deleteConsumption,
     required TResult Function() fetchAll,
+    required TResult Function(DateTime selectedDate) selectedDateChanged,
   }) {
     return watch();
   }
@@ -137,6 +144,7 @@ class _$_Watch implements _Watch {
     TResult? Function(Consumption consumption)? addConsumption,
     TResult? Function(Consumption consumption)? deleteConsumption,
     TResult? Function()? fetchAll,
+    TResult? Function(DateTime selectedDate)? selectedDateChanged,
   }) {
     return watch?.call();
   }
@@ -148,6 +156,7 @@ class _$_Watch implements _Watch {
     TResult Function(Consumption consumption)? addConsumption,
     TResult Function(Consumption consumption)? deleteConsumption,
     TResult Function()? fetchAll,
+    TResult Function(DateTime selectedDate)? selectedDateChanged,
     required TResult orElse(),
   }) {
     if (watch != null) {
@@ -163,6 +172,7 @@ class _$_Watch implements _Watch {
     required TResult Function(_AddConsumption value) addConsumption,
     required TResult Function(_DeleteConsumption value) deleteConsumption,
     required TResult Function(_FetchAll value) fetchAll,
+    required TResult Function(_SelectedDateChanged value) selectedDateChanged,
   }) {
     return watch(this);
   }
@@ -174,6 +184,7 @@ class _$_Watch implements _Watch {
     TResult? Function(_AddConsumption value)? addConsumption,
     TResult? Function(_DeleteConsumption value)? deleteConsumption,
     TResult? Function(_FetchAll value)? fetchAll,
+    TResult? Function(_SelectedDateChanged value)? selectedDateChanged,
   }) {
     return watch?.call(this);
   }
@@ -185,6 +196,7 @@ class _$_Watch implements _Watch {
     TResult Function(_AddConsumption value)? addConsumption,
     TResult Function(_DeleteConsumption value)? deleteConsumption,
     TResult Function(_FetchAll value)? fetchAll,
+    TResult Function(_SelectedDateChanged value)? selectedDateChanged,
     required TResult orElse(),
   }) {
     if (watch != null) {
@@ -277,6 +289,7 @@ class _$_AddConsumption implements _AddConsumption {
     required TResult Function(Consumption consumption) addConsumption,
     required TResult Function(Consumption consumption) deleteConsumption,
     required TResult Function() fetchAll,
+    required TResult Function(DateTime selectedDate) selectedDateChanged,
   }) {
     return addConsumption(consumption);
   }
@@ -288,6 +301,7 @@ class _$_AddConsumption implements _AddConsumption {
     TResult? Function(Consumption consumption)? addConsumption,
     TResult? Function(Consumption consumption)? deleteConsumption,
     TResult? Function()? fetchAll,
+    TResult? Function(DateTime selectedDate)? selectedDateChanged,
   }) {
     return addConsumption?.call(consumption);
   }
@@ -299,6 +313,7 @@ class _$_AddConsumption implements _AddConsumption {
     TResult Function(Consumption consumption)? addConsumption,
     TResult Function(Consumption consumption)? deleteConsumption,
     TResult Function()? fetchAll,
+    TResult Function(DateTime selectedDate)? selectedDateChanged,
     required TResult orElse(),
   }) {
     if (addConsumption != null) {
@@ -314,6 +329,7 @@ class _$_AddConsumption implements _AddConsumption {
     required TResult Function(_AddConsumption value) addConsumption,
     required TResult Function(_DeleteConsumption value) deleteConsumption,
     required TResult Function(_FetchAll value) fetchAll,
+    required TResult Function(_SelectedDateChanged value) selectedDateChanged,
   }) {
     return addConsumption(this);
   }
@@ -325,6 +341,7 @@ class _$_AddConsumption implements _AddConsumption {
     TResult? Function(_AddConsumption value)? addConsumption,
     TResult? Function(_DeleteConsumption value)? deleteConsumption,
     TResult? Function(_FetchAll value)? fetchAll,
+    TResult? Function(_SelectedDateChanged value)? selectedDateChanged,
   }) {
     return addConsumption?.call(this);
   }
@@ -336,6 +353,7 @@ class _$_AddConsumption implements _AddConsumption {
     TResult Function(_AddConsumption value)? addConsumption,
     TResult Function(_DeleteConsumption value)? deleteConsumption,
     TResult Function(_FetchAll value)? fetchAll,
+    TResult Function(_SelectedDateChanged value)? selectedDateChanged,
     required TResult orElse(),
   }) {
     if (addConsumption != null) {
@@ -435,6 +453,7 @@ class _$_DeleteConsumption implements _DeleteConsumption {
     required TResult Function(Consumption consumption) addConsumption,
     required TResult Function(Consumption consumption) deleteConsumption,
     required TResult Function() fetchAll,
+    required TResult Function(DateTime selectedDate) selectedDateChanged,
   }) {
     return deleteConsumption(consumption);
   }
@@ -446,6 +465,7 @@ class _$_DeleteConsumption implements _DeleteConsumption {
     TResult? Function(Consumption consumption)? addConsumption,
     TResult? Function(Consumption consumption)? deleteConsumption,
     TResult? Function()? fetchAll,
+    TResult? Function(DateTime selectedDate)? selectedDateChanged,
   }) {
     return deleteConsumption?.call(consumption);
   }
@@ -457,6 +477,7 @@ class _$_DeleteConsumption implements _DeleteConsumption {
     TResult Function(Consumption consumption)? addConsumption,
     TResult Function(Consumption consumption)? deleteConsumption,
     TResult Function()? fetchAll,
+    TResult Function(DateTime selectedDate)? selectedDateChanged,
     required TResult orElse(),
   }) {
     if (deleteConsumption != null) {
@@ -472,6 +493,7 @@ class _$_DeleteConsumption implements _DeleteConsumption {
     required TResult Function(_AddConsumption value) addConsumption,
     required TResult Function(_DeleteConsumption value) deleteConsumption,
     required TResult Function(_FetchAll value) fetchAll,
+    required TResult Function(_SelectedDateChanged value) selectedDateChanged,
   }) {
     return deleteConsumption(this);
   }
@@ -483,6 +505,7 @@ class _$_DeleteConsumption implements _DeleteConsumption {
     TResult? Function(_AddConsumption value)? addConsumption,
     TResult? Function(_DeleteConsumption value)? deleteConsumption,
     TResult? Function(_FetchAll value)? fetchAll,
+    TResult? Function(_SelectedDateChanged value)? selectedDateChanged,
   }) {
     return deleteConsumption?.call(this);
   }
@@ -494,6 +517,7 @@ class _$_DeleteConsumption implements _DeleteConsumption {
     TResult Function(_AddConsumption value)? addConsumption,
     TResult Function(_DeleteConsumption value)? deleteConsumption,
     TResult Function(_FetchAll value)? fetchAll,
+    TResult Function(_SelectedDateChanged value)? selectedDateChanged,
     required TResult orElse(),
   }) {
     if (deleteConsumption != null) {
@@ -555,6 +579,7 @@ class _$_FetchAll implements _FetchAll {
     required TResult Function(Consumption consumption) addConsumption,
     required TResult Function(Consumption consumption) deleteConsumption,
     required TResult Function() fetchAll,
+    required TResult Function(DateTime selectedDate) selectedDateChanged,
   }) {
     return fetchAll();
   }
@@ -566,6 +591,7 @@ class _$_FetchAll implements _FetchAll {
     TResult? Function(Consumption consumption)? addConsumption,
     TResult? Function(Consumption consumption)? deleteConsumption,
     TResult? Function()? fetchAll,
+    TResult? Function(DateTime selectedDate)? selectedDateChanged,
   }) {
     return fetchAll?.call();
   }
@@ -577,6 +603,7 @@ class _$_FetchAll implements _FetchAll {
     TResult Function(Consumption consumption)? addConsumption,
     TResult Function(Consumption consumption)? deleteConsumption,
     TResult Function()? fetchAll,
+    TResult Function(DateTime selectedDate)? selectedDateChanged,
     required TResult orElse(),
   }) {
     if (fetchAll != null) {
@@ -592,6 +619,7 @@ class _$_FetchAll implements _FetchAll {
     required TResult Function(_AddConsumption value) addConsumption,
     required TResult Function(_DeleteConsumption value) deleteConsumption,
     required TResult Function(_FetchAll value) fetchAll,
+    required TResult Function(_SelectedDateChanged value) selectedDateChanged,
   }) {
     return fetchAll(this);
   }
@@ -603,6 +631,7 @@ class _$_FetchAll implements _FetchAll {
     TResult? Function(_AddConsumption value)? addConsumption,
     TResult? Function(_DeleteConsumption value)? deleteConsumption,
     TResult? Function(_FetchAll value)? fetchAll,
+    TResult? Function(_SelectedDateChanged value)? selectedDateChanged,
   }) {
     return fetchAll?.call(this);
   }
@@ -614,6 +643,7 @@ class _$_FetchAll implements _FetchAll {
     TResult Function(_AddConsumption value)? addConsumption,
     TResult Function(_DeleteConsumption value)? deleteConsumption,
     TResult Function(_FetchAll value)? fetchAll,
+    TResult Function(_SelectedDateChanged value)? selectedDateChanged,
     required TResult orElse(),
   }) {
     if (fetchAll != null) {
@@ -628,16 +658,166 @@ abstract class _FetchAll implements CalendarEvent {
 }
 
 /// @nodoc
+abstract class _$$_SelectedDateChangedCopyWith<$Res> {
+  factory _$$_SelectedDateChangedCopyWith(_$_SelectedDateChanged value,
+          $Res Function(_$_SelectedDateChanged) then) =
+      __$$_SelectedDateChangedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime selectedDate});
+}
+
+/// @nodoc
+class __$$_SelectedDateChangedCopyWithImpl<$Res>
+    extends _$CalendarEventCopyWithImpl<$Res, _$_SelectedDateChanged>
+    implements _$$_SelectedDateChangedCopyWith<$Res> {
+  __$$_SelectedDateChangedCopyWithImpl(_$_SelectedDateChanged _value,
+      $Res Function(_$_SelectedDateChanged) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedDate = null,
+  }) {
+    return _then(_$_SelectedDateChanged(
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SelectedDateChanged implements _SelectedDateChanged {
+  const _$_SelectedDateChanged({required this.selectedDate});
+
+  @override
+  final DateTime selectedDate;
+
+  @override
+  String toString() {
+    return 'CalendarEvent.selectedDateChanged(selectedDate: $selectedDate)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SelectedDateChanged &&
+            (identical(other.selectedDate, selectedDate) ||
+                other.selectedDate == selectedDate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SelectedDateChangedCopyWith<_$_SelectedDateChanged> get copyWith =>
+      __$$_SelectedDateChangedCopyWithImpl<_$_SelectedDateChanged>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() watch,
+    required TResult Function(Consumption consumption) addConsumption,
+    required TResult Function(Consumption consumption) deleteConsumption,
+    required TResult Function() fetchAll,
+    required TResult Function(DateTime selectedDate) selectedDateChanged,
+  }) {
+    return selectedDateChanged(selectedDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? watch,
+    TResult? Function(Consumption consumption)? addConsumption,
+    TResult? Function(Consumption consumption)? deleteConsumption,
+    TResult? Function()? fetchAll,
+    TResult? Function(DateTime selectedDate)? selectedDateChanged,
+  }) {
+    return selectedDateChanged?.call(selectedDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? watch,
+    TResult Function(Consumption consumption)? addConsumption,
+    TResult Function(Consumption consumption)? deleteConsumption,
+    TResult Function()? fetchAll,
+    TResult Function(DateTime selectedDate)? selectedDateChanged,
+    required TResult orElse(),
+  }) {
+    if (selectedDateChanged != null) {
+      return selectedDateChanged(selectedDate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Watch value) watch,
+    required TResult Function(_AddConsumption value) addConsumption,
+    required TResult Function(_DeleteConsumption value) deleteConsumption,
+    required TResult Function(_FetchAll value) fetchAll,
+    required TResult Function(_SelectedDateChanged value) selectedDateChanged,
+  }) {
+    return selectedDateChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Watch value)? watch,
+    TResult? Function(_AddConsumption value)? addConsumption,
+    TResult? Function(_DeleteConsumption value)? deleteConsumption,
+    TResult? Function(_FetchAll value)? fetchAll,
+    TResult? Function(_SelectedDateChanged value)? selectedDateChanged,
+  }) {
+    return selectedDateChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Watch value)? watch,
+    TResult Function(_AddConsumption value)? addConsumption,
+    TResult Function(_DeleteConsumption value)? deleteConsumption,
+    TResult Function(_FetchAll value)? fetchAll,
+    TResult Function(_SelectedDateChanged value)? selectedDateChanged,
+    required TResult orElse(),
+  }) {
+    if (selectedDateChanged != null) {
+      return selectedDateChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectedDateChanged implements CalendarEvent {
+  const factory _SelectedDateChanged({required final DateTime selectedDate}) =
+      _$_SelectedDateChanged;
+
+  DateTime get selectedDate;
+  @JsonKey(ignore: true)
+  _$$_SelectedDateChangedCopyWith<_$_SelectedDateChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CalendarState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)
-        success,
+    required TResult Function(List<Event> events) success,
     required TResult Function(CalendarFailure failure) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -645,11 +825,7 @@ mixin _$CalendarState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)?
-        success,
+    TResult? Function(List<Event> events)? success,
     TResult? Function(CalendarFailure failure)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -657,11 +833,7 @@ mixin _$CalendarState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)?
-        success,
+    TResult Function(List<Event> events)? success,
     TResult Function(CalendarFailure failure)? failure,
     required TResult orElse(),
   }) =>
@@ -750,11 +922,7 @@ class _$_Initial extends _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)
-        success,
+    required TResult Function(List<Event> events) success,
     required TResult Function(CalendarFailure failure) failure,
   }) {
     return initial();
@@ -765,11 +933,7 @@ class _$_Initial extends _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)?
-        success,
+    TResult? Function(List<Event> events)? success,
     TResult? Function(CalendarFailure failure)? failure,
   }) {
     return initial?.call();
@@ -780,11 +944,7 @@ class _$_Initial extends _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)?
-        success,
+    TResult Function(List<Event> events)? success,
     TResult Function(CalendarFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -876,11 +1036,7 @@ class _$_Loading extends _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)
-        success,
+    required TResult Function(List<Event> events) success,
     required TResult Function(CalendarFailure failure) failure,
   }) {
     return loading();
@@ -891,11 +1047,7 @@ class _$_Loading extends _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)?
-        success,
+    TResult? Function(List<Event> events)? success,
     TResult? Function(CalendarFailure failure)? failure,
   }) {
     return loading?.call();
@@ -906,11 +1058,7 @@ class _$_Loading extends _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)?
-        success,
+    TResult Function(List<Event> events)? success,
     TResult Function(CalendarFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -969,10 +1117,7 @@ abstract class _$$_SuccessCopyWith<$Res> {
           _$_Success value, $Res Function(_$_Success) then) =
       __$$_SuccessCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-              List<Consumption>>
-          events});
+  $Res call({List<Event> events});
 }
 
 /// @nodoc
@@ -989,10 +1134,9 @@ class __$$_SuccessCopyWithImpl<$Res>
   }) {
     return _then(_$_Success(
       events: null == events
-          ? _value.events
+          ? _value._events
           : events // ignore: cast_nullable_to_non_nullable
-              as Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                  List<Consumption>>,
+              as List<Event>,
     ));
   }
 }
@@ -1000,11 +1144,17 @@ class __$$_SuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Success extends _Success {
-  const _$_Success({required this.events}) : super._();
+  const _$_Success({required final List<Event> events})
+      : _events = events,
+        super._();
 
+  final List<Event> _events;
   @override
-  final Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-      List<Consumption>> events;
+  List<Event> get events {
+    if (_events is EqualUnmodifiableListView) return _events;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_events);
+  }
 
   @override
   String toString() {
@@ -1016,11 +1166,12 @@ class _$_Success extends _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Success &&
-            (identical(other.events, events) || other.events == events));
+            const DeepCollectionEquality().equals(other._events, _events));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, events);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_events));
 
   @JsonKey(ignore: true)
   @override
@@ -1033,11 +1184,7 @@ class _$_Success extends _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)
-        success,
+    required TResult Function(List<Event> events) success,
     required TResult Function(CalendarFailure failure) failure,
   }) {
     return success(events);
@@ -1048,11 +1195,7 @@ class _$_Success extends _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)?
-        success,
+    TResult? Function(List<Event> events)? success,
     TResult? Function(CalendarFailure failure)? failure,
   }) {
     return success?.call(events);
@@ -1063,11 +1206,7 @@ class _$_Success extends _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)?
-        success,
+    TResult Function(List<Event> events)? success,
     TResult Function(CalendarFailure failure)? failure,
     required TResult orElse(),
   }) {
@@ -1116,14 +1255,10 @@ class _$_Success extends _Success {
 }
 
 abstract class _Success extends CalendarState {
-  const factory _Success(
-      {required final Tuple4<List<Medicine>, List<Appointment>,
-              List<Measurement>, List<Consumption>>
-          events}) = _$_Success;
+  const factory _Success({required final List<Event> events}) = _$_Success;
   const _Success._() : super._();
 
-  Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-      List<Consumption>> get events;
+  List<Event> get events;
   @JsonKey(ignore: true)
   _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1204,11 +1339,7 @@ class _$_Failure extends _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)
-        success,
+    required TResult Function(List<Event> events) success,
     required TResult Function(CalendarFailure failure) failure,
   }) {
     return failure(this.failure);
@@ -1219,11 +1350,7 @@ class _$_Failure extends _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)?
-        success,
+    TResult? Function(List<Event> events)? success,
     TResult? Function(CalendarFailure failure)? failure,
   }) {
     return failure?.call(this.failure);
@@ -1234,11 +1361,7 @@ class _$_Failure extends _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            Tuple4<List<Medicine>, List<Appointment>, List<Measurement>,
-                    List<Consumption>>
-                events)?
-        success,
+    TResult Function(List<Event> events)? success,
     TResult Function(CalendarFailure failure)? failure,
     required TResult orElse(),
   }) {

@@ -24,8 +24,11 @@ class SetupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SetupCubit(GetIt.I.get<UserRepository>()),
-      child: const Scaffold(
-        body: SetupView(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Setup'),
+        ),
+        body: const SetupView(),
       ),
     );
   }

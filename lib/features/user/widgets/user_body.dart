@@ -3,7 +3,8 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/bloc/bloc.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/phone/phone.dart';
-import 'package:meddly/features/setup/view/setup_page.dart';
+import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/features/setup/setup.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -99,6 +100,12 @@ class UserBody extends StatelessWidget {
                     onPressed: () =>
                         Navigator.of(context).push(CalendarPage.route()),
                     label: 'calendar',
+                  ),
+                  const SizedBox(height: Sizes.mediumSpacing),
+                  Button(
+                    onPressed: () =>
+                        Navigator.of(context).push(PredictionsPage.route()),
+                    label: 'predictions',
                   ),
                 ],
               ),

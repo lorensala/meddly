@@ -26,14 +26,14 @@ class CalendarRepository {
   /// Emits a [CalendarDto] whenever the calendar cache changes.
   ///
   /// Emits a [CalendarFailure] if the calendar cache fails to load.
-  Stream<Either<CalendarFailure, Option<Calendar>>> get calendar =>
-      _cache.calendar.map<Either<CalendarFailure, Option<Calendar>>>(
+  Stream<Either<CalendarFailure, List<Event>>> get events =>
+      _cache.calendar.map<Either<CalendarFailure, List<Event>>>(
         (calendar) {
           if (calendar == null) {
-            return Right(none());
+            return const Right(<Event>[]);
           }
 
-          return Right(some(calendar.toDomain()));
+          return Right(calendar.toEvents());
         },
       ).onErrorReturnWith((error, stackTrace) {
         if (error is CalendarCacheException) {

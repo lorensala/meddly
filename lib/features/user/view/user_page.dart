@@ -29,8 +29,11 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: UserView(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('User'),
+      ),
+      body: const UserView(),
     );
   }
 }

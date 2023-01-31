@@ -62,4 +62,18 @@ class AppointmentDto with _$AppointmentDto {
       throw AppointmentDtoException();
     }
   }
+
+  /// Converts a [AppointmentDto] to a [Event].
+  Event toEvent() {
+    try {
+      return Event.fromAppointment(
+        id: id,
+        date: DateTime.parse(date),
+        title: name,
+        description: doctor.toString(),
+      );
+    } catch (e) {
+      throw AppointmentDtoException();
+    }
+  }
 }

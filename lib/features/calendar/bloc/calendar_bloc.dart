@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:calendar/calendar.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meddly/core/core.dart';
 
 part 'calendar_bloc.freezed.dart';
 part 'calendar_event.dart';
@@ -27,6 +27,8 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
     _FetchAll event,
     Emitter<CalendarState> emit,
   ) async {
+    emit(const _Loading());
+
     final possibleFailureOrUnit = await _repository.fetchCalendar();
 
     possibleFailureOrUnit.fold(
@@ -37,21 +39,15 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
 
   FutureOr<void> _onWatch(_Watch event, Emitter<CalendarState> emit) async {
     await emit.forEach(
-      _repository.calendar,
-      onData: (possibleFailureOrOptionCalendar) {
-        return possibleFailureOrOptionCalendar.fold(
+      _repository.events,
+      onData: (possibleFailureOrEvents) {
+        return possibleFailureOrEvents.fold(
           (failure) => _Failure(failure: failure),
-          (optionCalendar) => optionCalendar.fold(
-            _Initial.new,
-            (calendar) => _Success(
-              events: Tuple4(
-                calendar.activeMedicines,
-                calendar.appointments,
-                calendar.measurements,
-                calendar.consumptions,
-              ),
-            ),
-          ),
+          (events) => events.isEmpty
+              ? const _Initial()
+              : _Success(
+                  events: events,
+                ),
         );
       },
     );

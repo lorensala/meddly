@@ -63,4 +63,18 @@ class MeasurementDto with _$MeasurementDto {
       throw MeasurementDtoException();
     }
   }
+
+  /// Creates an [Event] from a [MeasurementDto].
+  Event toEvent() {
+    try {
+      return Event.fromMeasurement(
+        id: id,
+        date: DateTime.parse(date),
+        title: type,
+        description: value.toString(),
+      );
+    } catch (e) {
+      throw MeasurementDtoException();
+    }
+  }
 }

@@ -1,7 +1,9 @@
-import 'package:calendar/calendar.dart';
-import 'package:collection/collection.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/bloc/bloc.dart';
+import 'package:meddly/features/calendar/cubit/cubit.dart';
+import 'package:meddly/features/calendar/widgets/widgets.dart';
 
 class CalendarList extends StatelessWidget {
   const CalendarList({super.key});
@@ -15,102 +17,40 @@ class CalendarList extends StatelessWidget {
           loading: () => const Center(
             child: RepaintBoundary(child: CircularProgressIndicator()),
           ),
-          success: (calendar) {
-            final activeMedicines = calendar.value1;
-            final appointments = calendar.value2;
-            final measurements = calendar.value3;
-            final consumptions = calendar.value4;
+          success: (events) {
+            final selectedDate = context.select<SelectedDateCubit, DateTime?>(
+              (cubit) => cubit.state.selectedDate,
+            );
+            final filteredEvents = events
+                .where(
+                  (event) =>
+                      event.date.day == selectedDate!.day &&
+                      event.date.month == selectedDate.month &&
+                      event.date.year == selectedDate.year,
+                )
+                .toList();
 
-            return RefreshIndicator(
-              onRefresh: () async {
-                context.read<CalendarBloc>().add(
-                      const CalendarEvent.fetchAll(),
-                    );
-              },
-              child: ListView.separated(
-                separatorBuilder: (_, __) => const Divider(),
-                itemCount: consumptions.length +
-                    appointments.length +
-                    measurements.length,
-                itemBuilder: (context, index) {
-                  if (index < consumptions.length) {
-                    final consumption = consumptions[index];
-                    final medicineAssociatedWithConsumption =
-                        activeMedicines.firstWhereOrNull(
-                      (medicine) => medicine.id == consumption.medicineId,
-                    );
-                    final event = Event.fromConsumption(
-                      id: consumption.medicineId,
-                      date: consumption.date,
-                      title: medicineAssociatedWithConsumption?.name ?? '',
-                      description:
-                          medicineAssociatedWithConsumption?.presentation ?? '',
-                      consumed: consumption.consumed,
-                    );
-
-                    return ListTile(
-                      title: Text(event.title),
-                      subtitle: Text(event.description),
-                      leading: Text(
-                        '${event.date.hour.toString().padLeft(2, '0')}:${event.date.minute.toString().padLeft(2, '0')}',
-                      ),
-                      trailing: event.mapOrNull(
-                        fromConsumption: (c) {
-                          return Checkbox(
-                            value: c.consumed,
-                            onChanged: (value) {
-                              if (value!) {
-                                context.read<CalendarBloc>().add(
-                                      CalendarEvent.addConsumption(
-                                        consumption: consumption.copyWith(
-                                          realConsumptionDate: DateTime.now(),
-                                        ),
-                                      ),
-                                    );
-                              } else {
-                                context.read<CalendarBloc>().add(
-                                      CalendarEvent.deleteConsumption(
-                                        consumption: consumption.copyWith(
-                                          realConsumptionDate: DateTime.now(),
-                                        ),
-                                      ),
-                                    );
-                              }
-                            },
-                          );
-                        },
-                      ),
-                    );
-                  } else if (index <
-                      consumptions.length + appointments.length) {
-                    return ListTile(
-                      title: Text(
-                        appointments[index - consumptions.length].name,
-                      ),
-                      subtitle: Text(
-                        appointments[index - consumptions.length]
-                            .doctor
-                            .toString(),
-                      ),
-                    );
-                  } else {
-                    return ListTile(
-                      title: Text(
-                        measurements[index -
-                                consumptions.length -
-                                appointments.length]
-                            .type,
-                      ),
-                      subtitle: Text(
-                        measurements[index -
-                                consumptions.length -
-                                appointments.length]
-                            .value
-                            .toString(),
-                      ),
-                    );
-                  }
-                },
+            return Expanded(
+              flex: 2,
+              child: ColoredBox(
+                color: context.colorScheme.background,
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    context.read<CalendarBloc>().add(
+                          const CalendarEvent.fetchAll(),
+                        );
+                  },
+                  child: ListView.separated(
+                    separatorBuilder: (_, __) =>
+                        const SizedBox(height: Sizes.mediumSpacing),
+                    itemCount: filteredEvents.length,
+                    itemBuilder: (context, index) {
+                      return CalendarListItem(
+                        event: filteredEvents[index],
+                      );
+                    },
+                  ),
+                ),
               ),
             );
           },

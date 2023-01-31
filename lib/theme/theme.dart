@@ -6,7 +6,6 @@ const String fontFamily = 'Be Vietnam Pro';
 class ThemeManager {
   static ThemeData lightTheme = ThemeData.light().copyWith(
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
-    bottomAppBarColor: AppColors.secondary,
     switchTheme: SwitchThemeData(
       thumbColor: MaterialStateProperty.all(AppColors.primary),
       trackColor: MaterialStateProperty.all(AppColors.scaffoldBackgroundColor),
@@ -93,6 +92,14 @@ class ThemeManager {
       error: AppColors.error,
       onError: Colors.white,
     ),
+    listTileTheme: ListTileThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(Sizes.borderRadius),
+      ),
+      selectedColor: AppColors.primary,
+      selectedTileColor: AppColors.primary.withOpacity(0.1),
+      tileColor: AppColors.secondary,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         elevation: 0,
@@ -100,7 +107,7 @@ class ThemeManager {
         disabledForegroundColor: Colors.white,
         splashFactory: NoSplash.splashFactory,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(Sizes.borderRadius),
         ),
         textStyle: textTheme.bodyMedium,
         padding: Sizes.buttonPadding,

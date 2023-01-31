@@ -6,7 +6,8 @@ class Sizes {
   static const largeSpacing = 32.0;
   static const padding = EdgeInsets.all(16);
   static const horizontalPadding = EdgeInsets.symmetric(horizontal: 16);
+  static const verticalPadding = EdgeInsets.symmetric(vertical: 16);
   static const buttonHeight = 60.0;
   static const borderRadius = 20.0;
-  static const buttonPadding = EdgeInsets.symmetric(vertical: 20);
+  static const buttonPadding = EdgeInsets.all(16);
 }
