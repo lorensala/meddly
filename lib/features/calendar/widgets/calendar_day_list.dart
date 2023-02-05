@@ -18,10 +18,8 @@ class _CalendarDayListState extends State<CalendarDayList> {
     final selectedDate = context.read<SelectedDateCubit>().state.selectedDate;
     _controller = PageController(
       viewportFraction: 1 / 6,
-      initialPage: getAllDaysInYear().indexOf(
-        getAllDaysInYear().firstWhere(
-          (date) => date.day == selectedDate!.day,
-        ),
+      initialPage: getAllDaysInYear().indexWhere(
+        (date) => date.isSameDay(selectedDate!),
       ),
     );
     super.initState();

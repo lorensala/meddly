@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
 
 extension StringX on String {
-  String get capitalizeFullName => split(' ').map((word) {
+  String capitalize() => split(' ').map((word) {
         return word.substring(0, 1).toUpperCase() +
             word.substring(1).toLowerCase();
       }).join(' ');
 
   String get dateTimeStringFormat =>
       '${substring(8, 10)}/${substring(5, 7)}/${substring(0, 4)}';
+}
+
+extension IntX on int {
+  String toDaysString() {
+    if (this == 1) {
+      return 'Day';
+    } else if (this == 2) {
+      return 'Other day';
+    } else {
+      return '$this Days';
+    }
+  }
 }
 
 extension BuildContextX on BuildContext {

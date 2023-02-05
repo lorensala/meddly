@@ -1,2 +1,2 @@
 /// Predictions path
-const String predictionsPath = '/predictionsymptom/';
+const String predictionsSearchPath = '/prediction/symptom_search/';

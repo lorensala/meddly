@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:predictions/src/core/core.dart';
+import 'package:predictions/src/dto/dto.dart';
 
 /// {@template predictions_api}
 /// API for predictions operations.
@@ -21,11 +22,11 @@ class PredictionsApi {
   /// Throws a [PredictionDioException] if any other DioError occurs.
   /// Throws a [PredictionSerializationException] if the response cannot be
   /// serialized.
-  Future<List<String>> search(String query) async {
-    late final Response<Map<String, dynamic>> res;
+  Future<List<SymptomSearchResultDto>> search(String query) async {
+    late final Response<List<dynamic>> res;
     try {
-      res = await _dio.post<Map<String, dynamic>>(
-        predictionsPath,
+      res = await _dio.post<List<dynamic>>(
+        predictionsSearchPath,
         cancelToken: _cancelToken,
         queryParameters: {
           'symptom': query,
@@ -40,10 +41,14 @@ class PredictionsApi {
     }
 
     try {
-      if (res.data == null) return <String>[];
-      final results = res.data!['results'] as List<dynamic>;
+      if (res.data == null) return <SymptomSearchResultDto>[];
+      final results = res.data!;
 
-      return results.map((e) => e as String).toList();
+      return results
+          .map(
+            (e) => SymptomSearchResultDto.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
     } catch (e) {
       throw PredictionSerializationException();
     }

@@ -1,5 +1,10 @@
 import 'package:dio/dio.dart';
 
+/// {@template SymptomSearchResultDto_exception}
+/// Exception thrown when a symptom search result dto operation fails.
+/// {@endtemplate}
+class SymptomSearchResultDtoException implements Exception {}
+
 /// {@template Prediction_not_found_exception}
 /// Exception thrown when a prediction is not found.
 /// {@endtemplate}

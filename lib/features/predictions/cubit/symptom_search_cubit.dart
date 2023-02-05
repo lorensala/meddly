@@ -16,6 +16,10 @@ class SymptomSearchCubit extends Cubit<SymptomSearchState> {
   final PredictionsRepository _repository;
 
   void queryChanged(String value) {
+    if (value.isEmpty) {
+      clear();
+      return;
+    }
     final query = Name.dirty(value.toUpperCase());
     emit(
       state.copyWith(
@@ -39,7 +43,12 @@ class SymptomSearchCubit extends Cubit<SymptomSearchState> {
     final possibleFailureOrResults =
         await _repository.search(state.query.value);
     possibleFailureOrResults.fold(
-      (failure) => emit(state.copyWith(status: FormzStatus.submissionFailure)),
+      (failure) => emit(
+        state.copyWith(
+          status: FormzStatus.submissionFailure,
+          failure: failure,
+        ),
+      ),
       (results) {
         emit(
           state.copyWith(

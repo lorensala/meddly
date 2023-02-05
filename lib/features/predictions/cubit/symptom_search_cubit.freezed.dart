@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SymptomSearchState {
   Name get query => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
-  List<String> get results => throw _privateConstructorUsedError;
+  List<SymptomSearchResult> get results => throw _privateConstructorUsedError;
+  PredictionFailure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SymptomSearchStateCopyWith<SymptomSearchState> get copyWith =>
@@ -31,7 +32,13 @@ abstract class $SymptomSearchStateCopyWith<$Res> {
           SymptomSearchState value, $Res Function(SymptomSearchState) then) =
       _$SymptomSearchStateCopyWithImpl<$Res, SymptomSearchState>;
   @useResult
-  $Res call({Name query, FormzStatus status, List<String> results});
+  $Res call(
+      {Name query,
+      FormzStatus status,
+      List<SymptomSearchResult> results,
+      PredictionFailure? failure});
+
+  $PredictionFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -50,6 +57,7 @@ class _$SymptomSearchStateCopyWithImpl<$Res, $Val extends SymptomSearchState>
     Object? query = null,
     Object? status = null,
     Object? results = null,
+    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       query: null == query
@@ -63,8 +71,24 @@ class _$SymptomSearchStateCopyWithImpl<$Res, $Val extends SymptomSearchState>
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<SymptomSearchResult>,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as PredictionFailure?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PredictionFailureCopyWith<$Res>? get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+
+    return $PredictionFailureCopyWith<$Res>(_value.failure!, (value) {
+      return _then(_value.copyWith(failure: value) as $Val);
+    });
   }
 }
 
@@ -76,7 +100,14 @@ abstract class _$$_SymptomSearchStateCopyWith<$Res>
       __$$_SymptomSearchStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Name query, FormzStatus status, List<String> results});
+  $Res call(
+      {Name query,
+      FormzStatus status,
+      List<SymptomSearchResult> results,
+      PredictionFailure? failure});
+
+  @override
+  $PredictionFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -93,6 +124,7 @@ class __$$_SymptomSearchStateCopyWithImpl<$Res>
     Object? query = null,
     Object? status = null,
     Object? results = null,
+    Object? failure = freezed,
   }) {
     return _then(_$_SymptomSearchState(
       query: null == query
@@ -106,7 +138,11 @@ class __$$_SymptomSearchStateCopyWithImpl<$Res>
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<SymptomSearchResult>,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as PredictionFailure?,
     ));
   }
 }
@@ -117,7 +153,8 @@ class _$_SymptomSearchState implements _SymptomSearchState {
   const _$_SymptomSearchState(
       {this.query = const Name.pure(),
       this.status = FormzStatus.pure,
-      final List<String> results = const <String>[]})
+      final List<SymptomSearchResult> results = const <SymptomSearchResult>[],
+      this.failure})
       : _results = results;
 
   @override
@@ -126,18 +163,21 @@ class _$_SymptomSearchState implements _SymptomSearchState {
   @override
   @JsonKey()
   final FormzStatus status;
-  final List<String> _results;
+  final List<SymptomSearchResult> _results;
   @override
   @JsonKey()
-  List<String> get results {
+  List<SymptomSearchResult> get results {
     if (_results is EqualUnmodifiableListView) return _results;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_results);
   }
 
   @override
+  final PredictionFailure? failure;
+
+  @override
   String toString() {
-    return 'SymptomSearchState(query: $query, status: $status, results: $results)';
+    return 'SymptomSearchState(query: $query, status: $status, results: $results, failure: $failure)';
   }
 
   @override
@@ -147,12 +187,13 @@ class _$_SymptomSearchState implements _SymptomSearchState {
             other is _$_SymptomSearchState &&
             (identical(other.query, query) || other.query == query) &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other._results, _results));
+            const DeepCollectionEquality().equals(other._results, _results) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, query, status,
-      const DeepCollectionEquality().hash(_results));
+      const DeepCollectionEquality().hash(_results), failure);
 
   @JsonKey(ignore: true)
   @override
@@ -166,14 +207,17 @@ abstract class _SymptomSearchState implements SymptomSearchState {
   const factory _SymptomSearchState(
       {final Name query,
       final FormzStatus status,
-      final List<String> results}) = _$_SymptomSearchState;
+      final List<SymptomSearchResult> results,
+      final PredictionFailure? failure}) = _$_SymptomSearchState;
 
   @override
   Name get query;
   @override
   FormzStatus get status;
   @override
-  List<String> get results;
+  List<SymptomSearchResult> get results;
+  @override
+  PredictionFailure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$_SymptomSearchStateCopyWith<_$_SymptomSearchState> get copyWith =>

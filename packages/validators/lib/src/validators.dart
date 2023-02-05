@@ -4,6 +4,7 @@ export 'email.dart';
 export 'height.dart';
 export 'lastname.dart';
 export 'name.dart';
+export 'not_negative_int_number.dart';
 export 'otp.dart';
 export 'password.dart';
 export 'phone_number.dart';

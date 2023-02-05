@@ -146,7 +146,7 @@ class SetupCubit extends Cubit<SetupState> {
 
     try {
       final editedUser = currentUserOrNull.copyWith(
-        firstName: state.name.value.capitalizeFullName.trim(),
+        firstName: state.name.value.capitalize().trim(),
         lastName: state.lastname.value.trim(),
         birth: state.birthdate.value,
         sex: state.sex.value ? const Sex.female() : const Sex.male(),

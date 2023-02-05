@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/cubit/cubit.dart';
-import 'package:predictions/predictions.dart';
 
 class SymptomSearchForm extends StatelessWidget {
   const SymptomSearchForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          SymptomSearchCubit(repository: GetIt.I.get<PredictionsRepository>()),
-      child: Column(
-        children: const [
-          Center(child: _SearchField()),
-          Expanded(child: _Results()),
-        ],
-      ),
+    return Column(
+      children: const [
+        Center(child: _SearchField()),
+        SizedBox(height: Sizes.smallSpacing),
+        Expanded(child: _Results()),
+      ],
     );
   }
 }
@@ -29,13 +24,16 @@ class _Results extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SymptomSearchCubit, SymptomSearchState>(
       builder: (context, state) {
-        return ListView.builder(
+        return ListView.separated(
           itemCount: state.results.length,
           itemBuilder: (context, index) {
             final result = state.results[index];
             return ListTile(
-              title: Text(result),
+              title: Text(result.description),
             );
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return const SizedBox(height: 10);
           },
         );
       },

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:predictions/src/api/api.dart';
 import 'package:predictions/src/core/core.dart';
+import 'package:predictions/src/models/models.dart';
 
 /// {@template predictions_repository}
 /// Repository for predictions operations.
@@ -15,15 +16,19 @@ class PredictionsRepository {
   ///
   /// Returns a [List] of [String] if the search is successful.
   /// Returns a [PredictionFailure] if the search is not successful.
-  Future<Either<PredictionFailure, List<String>>> search(String query) async {
+  Future<Either<PredictionFailure, List<SymptomSearchResult>>> search(
+    String query,
+  ) async {
     try {
       final predictions = await _api.search(query);
-      return right(predictions);
+      return right(predictions.map((e) => e.toDomain()).toList());
     } on PredictionNotFoundException {
       return left(const PredictionFailure.notFound());
     } on PredictionDioException {
       return left(const PredictionFailure.response());
     } on PredictionSerializationException {
+      return left(const PredictionFailure.serialization());
+    } on SymptomSearchResultDtoException {
       return left(const PredictionFailure.serialization());
     }
   }

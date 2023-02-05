@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/bloc/bloc.dart';
 import 'package:meddly/features/calendar/calendar.dart';
+import 'package:meddly/features/medicine/view/medicine_page.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/features/setup/setup.dart';
@@ -106,6 +107,12 @@ class UserBody extends StatelessWidget {
                     onPressed: () =>
                         Navigator.of(context).push(PredictionsPage.route()),
                     label: 'predictions',
+                  ),
+                  const SizedBox(height: Sizes.mediumSpacing),
+                  Button(
+                    onPressed: () =>
+                        Navigator.of(context).push(MedicinePage.route()),
+                    label: 'medicine',
                   ),
                 ],
               ),

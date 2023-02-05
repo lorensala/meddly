@@ -19,23 +19,4 @@ class SelectedDateCubit extends Cubit<SelectedDateState> {
           selectedDate: date,
         ),
       );
-
-  // @override
-  // SelectedDateState? fromJson(Map<String, dynamic> json) {
-  //   return SelectedDateState(
-  //     selectedDate: DateTime.parse(json['selectedDate'] as String),
-  //     daysOfTheYear: (json['daysOfTheYear'] as List<dynamic>)
-  //         .map((e) => DateTime.parse(e as String))
-  //         .toList(),
-  //   );
-  // }
-
-  // @override
-  // Map<String, dynamic>? toJson(SelectedDateState state) {
-  //   return {
-  //     'selectedDate': state.selectedDate?.toIso8601String(),
-  //     'daysOfTheYear':
-  //         state.daysOfTheYear.map((e) => e.toIso8601String()).toList(),
-  //   };
-  // }
 }

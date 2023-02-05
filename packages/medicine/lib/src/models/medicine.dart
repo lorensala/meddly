@@ -1,4 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:medicine/src/models/medicine_days.dart';
+import 'package:medicine/src/models/medicine_dosis_unit.dart';
+import 'package:medicine/src/models/medicine_presentation.dart';
 
 part 'medicine.freezed.dart';
 
@@ -15,12 +18,12 @@ class Medicine with _$Medicine {
     DateTime? endDate,
     int? stock,
     int? stockWarning,
-    required String presentation,
-    required String dosisUnit,
+    required MedicinePresentation presentation,
+    required MedicineDosisUnit dosisUnit,
     required double dosis,
     int? interval,
-    List<int>? days,
-    List<String>? hours,
+    List<MedicineDay>? days,
+    List<DateTime>? hours,
     String? instructions,
   }) = _Medicine;
 }

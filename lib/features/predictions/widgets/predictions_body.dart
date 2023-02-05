@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/predictions/bloc/bloc.dart';
 import 'package:meddly/features/predictions/widgets/widgets.dart';
 
 /// {@template predictions_body}
@@ -14,15 +13,11 @@ class PredictionsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PredictionsBloc, PredictionsState>(
-      builder: (context, state) {
-        return const SafeArea(
-          child: Padding(
-            padding: Sizes.padding,
-            child: Center(child: SymptomSearchForm()),
-          ),
-        );
-      },
+    return const SafeArea(
+      child: Padding(
+        padding: Sizes.padding,
+        child: Center(child: SymptomSearchForm()),
+      ),
     );
   }
 }

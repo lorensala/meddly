@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'medicine.dart';
 
@@ -22,12 +22,12 @@ mixin _$Medicine {
   DateTime? get endDate => throw _privateConstructorUsedError;
   int? get stock => throw _privateConstructorUsedError;
   int? get stockWarning => throw _privateConstructorUsedError;
-  String get presentation => throw _privateConstructorUsedError;
-  String get dosisUnit => throw _privateConstructorUsedError;
+  MedicinePresentation get presentation => throw _privateConstructorUsedError;
+  MedicineDosisUnit get dosisUnit => throw _privateConstructorUsedError;
   double get dosis => throw _privateConstructorUsedError;
   int? get interval => throw _privateConstructorUsedError;
-  List<int>? get days => throw _privateConstructorUsedError;
-  List<String>? get hours => throw _privateConstructorUsedError;
+  List<MedicineDay>? get days => throw _privateConstructorUsedError;
+  List<DateTime>? get hours => throw _privateConstructorUsedError;
   String? get instructions => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -47,12 +47,12 @@ abstract class $MedicineCopyWith<$Res> {
       DateTime? endDate,
       int? stock,
       int? stockWarning,
-      String presentation,
-      String dosisUnit,
+      MedicinePresentation presentation,
+      MedicineDosisUnit dosisUnit,
       double dosis,
       int? interval,
-      List<int>? days,
-      List<String>? hours,
+      List<MedicineDay>? days,
+      List<DateTime>? hours,
       String? instructions});
 }
 
@@ -111,11 +111,11 @@ class _$MedicineCopyWithImpl<$Res, $Val extends Medicine>
       presentation: null == presentation
           ? _value.presentation
           : presentation // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MedicinePresentation,
       dosisUnit: null == dosisUnit
           ? _value.dosisUnit
           : dosisUnit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MedicineDosisUnit,
       dosis: null == dosis
           ? _value.dosis
           : dosis // ignore: cast_nullable_to_non_nullable
@@ -127,11 +127,11 @@ class _$MedicineCopyWithImpl<$Res, $Val extends Medicine>
       days: freezed == days
           ? _value.days
           : days // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<MedicineDay>?,
       hours: freezed == hours
           ? _value.hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<DateTime>?,
       instructions: freezed == instructions
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
@@ -154,12 +154,12 @@ abstract class _$$_MedicineCopyWith<$Res> implements $MedicineCopyWith<$Res> {
       DateTime? endDate,
       int? stock,
       int? stockWarning,
-      String presentation,
-      String dosisUnit,
+      MedicinePresentation presentation,
+      MedicineDosisUnit dosisUnit,
       double dosis,
       int? interval,
-      List<int>? days,
-      List<String>? hours,
+      List<MedicineDay>? days,
+      List<DateTime>? hours,
       String? instructions});
 }
 
@@ -216,11 +216,11 @@ class __$$_MedicineCopyWithImpl<$Res>
       presentation: null == presentation
           ? _value.presentation
           : presentation // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MedicinePresentation,
       dosisUnit: null == dosisUnit
           ? _value.dosisUnit
           : dosisUnit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MedicineDosisUnit,
       dosis: null == dosis
           ? _value.dosis
           : dosis // ignore: cast_nullable_to_non_nullable
@@ -232,11 +232,11 @@ class __$$_MedicineCopyWithImpl<$Res>
       days: freezed == days
           ? _value._days
           : days // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<MedicineDay>?,
       hours: freezed == hours
           ? _value._hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<DateTime>?,
       instructions: freezed == instructions
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
@@ -259,8 +259,8 @@ class _$_Medicine implements _Medicine {
       required this.dosisUnit,
       required this.dosis,
       this.interval,
-      final List<int>? days,
-      final List<String>? hours,
+      final List<MedicineDay>? days,
+      final List<DateTime>? hours,
       this.instructions})
       : _days = days,
         _hours = hours;
@@ -278,27 +278,29 @@ class _$_Medicine implements _Medicine {
   @override
   final int? stockWarning;
   @override
-  final String presentation;
+  final MedicinePresentation presentation;
   @override
-  final String dosisUnit;
+  final MedicineDosisUnit dosisUnit;
   @override
   final double dosis;
   @override
   final int? interval;
-  final List<int>? _days;
+  final List<MedicineDay>? _days;
   @override
-  List<int>? get days {
+  List<MedicineDay>? get days {
     final value = _days;
     if (value == null) return null;
+    if (_days is EqualUnmodifiableListView) return _days;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  final List<String>? _hours;
+  final List<DateTime>? _hours;
   @override
-  List<String>? get hours {
+  List<DateTime>? get hours {
     final value = _hours;
     if (value == null) return null;
+    if (_hours is EqualUnmodifiableListView) return _hours;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -369,12 +371,12 @@ abstract class _Medicine implements Medicine {
       final DateTime? endDate,
       final int? stock,
       final int? stockWarning,
-      required final String presentation,
-      required final String dosisUnit,
+      required final MedicinePresentation presentation,
+      required final MedicineDosisUnit dosisUnit,
       required final double dosis,
       final int? interval,
-      final List<int>? days,
-      final List<String>? hours,
+      final List<MedicineDay>? days,
+      final List<DateTime>? hours,
       final String? instructions}) = _$_Medicine;
 
   @override
@@ -390,17 +392,17 @@ abstract class _Medicine implements Medicine {
   @override
   int? get stockWarning;
   @override
-  String get presentation;
+  MedicinePresentation get presentation;
   @override
-  String get dosisUnit;
+  MedicineDosisUnit get dosisUnit;
   @override
   double get dosis;
   @override
   int? get interval;
   @override
-  List<int>? get days;
+  List<MedicineDay>? get days;
   @override
-  List<String>? get hours;
+  List<DateTime>? get hours;
   @override
   String? get instructions;
   @override

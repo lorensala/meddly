@@ -22,44 +22,6 @@ class CalendarBody extends StatelessWidget {
             CalendarDayList(),
             SizedBox(height: Sizes.mediumSpacing),
             CalendarList(),
-            // Expanded(
-            //   child: DecoratedBox(
-            //     decoration: BoxDecoration(
-            //       color: context.colorScheme.secondary,
-            //       borderRadius: const BorderRadius.only(
-            //         topLeft: Radius.circular(Sizes.largeSpacing),
-            //         topRight: Radius.circular(Sizes.largeSpacing),
-            //       ),
-            //     ),
-            //     child: Column(
-            //       children: [
-            //         const SizedBox(height: Sizes.mediumSpacing),
-            //         SizedBox(
-            //           height: 5,
-            //           width: 100,
-            //           child: DecoratedBox(
-            //             decoration: BoxDecoration(
-            //               color: context.colorScheme.background,
-            //               borderRadius: const BorderRadius.all(
-            //                 Radius.circular(Sizes.borderRadius),
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //         const SizedBox(height: Sizes.mediumSpacing),
-            //         Expanded(
-            //           child: ListView.builder(
-            //             shrinkWrap: true,
-            //             itemCount:,
-            //             itemBuilder: (context, index) {
-            //               return Container();
-            //             },
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // )
           ],
         );
       },

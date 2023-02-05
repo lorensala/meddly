@@ -39,12 +39,12 @@ class MedicineDto with _$MedicineDto {
         endDate: medicine.endDate,
         stock: medicine.stock,
         stockWarning: medicine.stockWarning,
-        presentation: medicine.presentation,
-        dosisUnit: medicine.dosisUnit,
+        presentation: medicine.presentation.name,
+        dosisUnit: medicine.dosisUnit.value,
         dosis: medicine.dosis,
         interval: medicine.interval,
-        days: medicine.days,
-        hours: medicine.hours,
+        days: medicine.days?.map((e) => e.value).toList(),
+        hours: medicine.hours?.map((e) => e.toIso8601String()).toList(),
         instructions: medicine.instructions,
       );
     } catch (e) {
@@ -70,12 +70,12 @@ class MedicineDto with _$MedicineDto {
         endDate: endDate,
         stock: stock,
         stockWarning: stockWarning,
-        presentation: presentation,
-        dosisUnit: dosisUnit,
+        presentation: MedicinePresentation.fromString(presentation),
+        dosisUnit: MedicineDosisUnit.fromString(dosisUnit),
         dosis: dosis,
         interval: interval,
-        days: days,
-        hours: hours,
+        days: days?.map(MedicineDay.fromInt).toList(),
+        hours: hours?.map(DateTime.parse).toList(),
         instructions: instructions,
       );
     } catch (e) {
