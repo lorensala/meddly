@@ -3,7 +3,6 @@ import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meddly/core/core.dart';
 import 'package:validators/validators.dart';
 
 part 'medicine_form_cubit.freezed.dart';
@@ -144,7 +143,7 @@ class MedicineFormCubit extends Cubit<MedicineFormState> {
       stockWarning: int.tryParse(state.stockWarning.value),
       dosis: double.tryParse(state.dosis.value) ?? 0.0,
       days: state.days,
-      hours: state.hours.map((time) => time.toDateTime()).toList(),
+      hours: state.hours,
       interval: state.frecuencyValue,
       instructions: state.instructions.value,
     );

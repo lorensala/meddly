@@ -1,5 +1,6 @@
 import 'package:calendar/src/core/core.dart';
 import 'package:calendar/src/models/models.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
@@ -46,7 +47,7 @@ class MedicineDto with _$MedicineDto {
         dosis: medicine.dosis,
         interval: medicine.interval,
         days: medicine.days?.map((e) => e.value).toList(),
-        hours: medicine.hours?.map((e) => e.toIso8601String()).toList(),
+        hours: medicine.hours?.map((e) => e.toString()).toList(),
         instructions: medicine.instructions,
       );
     } catch (e) {
@@ -77,11 +78,20 @@ class MedicineDto with _$MedicineDto {
         dosis: dosis,
         interval: interval,
         days: days?.map(MedicineDay.fromInt).toList(),
-        hours: hours?.map(DateTime.parse).toList(),
+        hours: hours?.map(fromString).toList(),
         instructions: instructions,
       );
     } catch (e) {
       throw MedicineDtoException();
     }
   }
+}
+
+/// --
+TimeOfDay fromString(String s) {
+  // string in format "08:10:"
+  final hour = int.parse(s.substring(0, 2));
+  final minute = int.parse(s.substring(3, 5));
+
+  return TimeOfDay(hour: hour, minute: minute);
 }

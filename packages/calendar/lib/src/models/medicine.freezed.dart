@@ -27,7 +27,7 @@ mixin _$Medicine {
   double get dosis => throw _privateConstructorUsedError;
   int? get interval => throw _privateConstructorUsedError;
   List<MedicineDay>? get days => throw _privateConstructorUsedError;
-  List<DateTime>? get hours => throw _privateConstructorUsedError;
+  List<TimeOfDay>? get hours => throw _privateConstructorUsedError;
   String? get instructions => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -52,7 +52,7 @@ abstract class $MedicineCopyWith<$Res> {
       double dosis,
       int? interval,
       List<MedicineDay>? days,
-      List<DateTime>? hours,
+      List<TimeOfDay>? hours,
       String? instructions});
 }
 
@@ -131,7 +131,7 @@ class _$MedicineCopyWithImpl<$Res, $Val extends Medicine>
       hours: freezed == hours
           ? _value.hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>?,
+              as List<TimeOfDay>?,
       instructions: freezed == instructions
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
@@ -159,7 +159,7 @@ abstract class _$$_MedicineCopyWith<$Res> implements $MedicineCopyWith<$Res> {
       double dosis,
       int? interval,
       List<MedicineDay>? days,
-      List<DateTime>? hours,
+      List<TimeOfDay>? hours,
       String? instructions});
 }
 
@@ -236,7 +236,7 @@ class __$$_MedicineCopyWithImpl<$Res>
       hours: freezed == hours
           ? _value._hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>?,
+              as List<TimeOfDay>?,
       instructions: freezed == instructions
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
@@ -260,7 +260,7 @@ class _$_Medicine implements _Medicine {
       required this.dosis,
       this.interval,
       final List<MedicineDay>? days,
-      final List<DateTime>? hours,
+      final List<TimeOfDay>? hours,
       this.instructions})
       : _days = days,
         _hours = hours;
@@ -295,9 +295,9 @@ class _$_Medicine implements _Medicine {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<DateTime>? _hours;
+  final List<TimeOfDay>? _hours;
   @override
-  List<DateTime>? get hours {
+  List<TimeOfDay>? get hours {
     final value = _hours;
     if (value == null) return null;
     if (_hours is EqualUnmodifiableListView) return _hours;
@@ -376,7 +376,7 @@ abstract class _Medicine implements Medicine {
       required final double dosis,
       final int? interval,
       final List<MedicineDay>? days,
-      final List<DateTime>? hours,
+      final List<TimeOfDay>? hours,
       final String? instructions}) = _$_Medicine;
 
   @override
@@ -402,7 +402,7 @@ abstract class _Medicine implements Medicine {
   @override
   List<MedicineDay>? get days;
   @override
-  List<DateTime>? get hours;
+  List<TimeOfDay>? get hours;
   @override
   String? get instructions;
   @override

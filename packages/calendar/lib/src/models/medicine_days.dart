@@ -38,8 +38,10 @@ enum MedicineDay {
   ///
   /// Returns a [MedicineDay] from an [int].
   static MedicineDay fromInt(int day) {
-    if (day < 1 || day > 7) throw ArgumentError('day must be between 1 and 7');
+    if (day < 1 || day > 7) {
+      throw ArgumentError('day must be between 1 and 7');
+    }
 
-    return MedicineDay.values[day];
+    return MedicineDay.values[day - 1];
   }
 }

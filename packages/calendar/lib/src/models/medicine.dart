@@ -1,6 +1,7 @@
 import 'package:calendar/src/models/medicine_days.dart';
 import 'package:calendar/src/models/medicine_dosis_unit.dart';
 import 'package:calendar/src/models/medicine_presentation.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'medicine.freezed.dart';
@@ -23,7 +24,7 @@ class Medicine with _$Medicine {
     required double dosis,
     int? interval,
     List<MedicineDay>? days,
-    List<DateTime>? hours,
+    List<TimeOfDay>? hours,
     String? instructions,
   }) = _Medicine;
 }

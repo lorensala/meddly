@@ -144,7 +144,7 @@ class CalendarRepository {
       final dto = AppointmentDto.fromDomain(appointment);
       await _api.addAppointment(dto);
 
-      final calendar = await _cache.readCalendar();
+      final calendar = _cache.readCalendar();
 
       if (calendar == null) {
         await _cache.writeCalendar(
@@ -183,7 +183,7 @@ class CalendarRepository {
       final dto = MeasurementDto.fromDomain(measurement);
       await _api.addMeasurement(dto);
 
-      final calendar = await _cache.readCalendar();
+      final calendar = _cache.readCalendar();
       if (calendar == null) {
         await _cache.writeCalendar(
           CalendarDto(measurements: [dto]),
@@ -257,7 +257,7 @@ class CalendarRepository {
       final dto = AppointmentDto.fromDomain(appointment);
       await _api.deleteAppointment(dto);
 
-      final calendar = await _cache.readCalendar();
+      final calendar = _cache.readCalendar();
 
       if (calendar == null) {
         return right(unit);
@@ -298,7 +298,7 @@ class CalendarRepository {
       final dto = MeasurementDto.fromDomain(measurement);
       await _api.deleteMeasurement(dto);
 
-      final calendar = await _cache.readCalendar();
+      final calendar = _cache.readCalendar();
 
       if (calendar == null) {
         return right(unit);
@@ -368,7 +368,7 @@ class CalendarRepository {
       final dto = AppointmentDto.fromDomain(appointment);
       await _api.updateAppointment(dto);
 
-      final calendar = await _cache.readCalendar();
+      final calendar = _cache.readCalendar();
 
       if (calendar == null) {
         return right(unit);
@@ -409,7 +409,7 @@ class CalendarRepository {
       final dto = MeasurementDto.fromDomain(measurement);
       await _api.updateMeasurement(dto);
 
-      final calendar = await _cache.readCalendar();
+      final calendar = _cache.readCalendar();
 
       if (calendar == null) {
         return right(unit);

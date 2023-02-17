@@ -1,5 +1,6 @@
+import 'dart:async';
+
 import 'package:calendar/src/core/core.dart';
-import 'package:calendar/src/core/extensions.dart';
 import 'package:calendar/src/dto/dto.dart';
 import 'package:hive/hive.dart';
 import 'package:rxdart/rxdart.dart';
@@ -19,7 +20,7 @@ class CalendarCache {
   Stream<CalendarDto?> get calendar => _box
       .watch(key: calendarBoxKey)
       .map((BoxEvent event) => event.value as CalendarDto?)
-      .startWith(_box.get(calendarBoxKey));
+      .startWith(readCalendar());
 
   /// Writes an [AppointmentDto] to the cache.
   ///
@@ -75,7 +76,7 @@ class CalendarCache {
   /// Throws a [CalendarCacheException] if the write fails.
   Future<void> writeConsumption(ConsumptionDto consumptionDto) async {
     try {
-      final calendar = await readCalendar();
+      final calendar = readCalendar();
 
       if (calendar == null) throw CalendarCacheException();
 
@@ -123,7 +124,7 @@ class CalendarCache {
   ///
   /// Returns `null` if the [CalendarDto] does not exist.
   /// Throws a [CalendarCacheException] if the read fails.
-  Future<CalendarDto?> readCalendar() async {
+  CalendarDto? readCalendar() {
     try {
       return _box.get(calendarBoxKey);
     } catch (e) {
@@ -193,7 +194,7 @@ class CalendarCache {
   /// Throws a [CalendarCacheException] if the read fails.
   Future<void> deleteConsumption(ConsumptionDto consumptionDto) async {
     try {
-      final calendar = await readCalendar();
+      final calendar = readCalendar();
 
       if (calendar == null) throw CalendarCacheException();
 

@@ -35,6 +35,14 @@ extension TimeOfDayX on TimeOfDay {
     final now = DateTime.now();
     return DateTime(now.year, now.month, now.day, hour, minute);
   }
+
+  TimeOfDay fromString(String s) {
+    // string in format "08:10:"
+    final hour = int.parse(s.substring(0, 2));
+    final minute = int.parse(s.substring(3, 5));
+
+    return TimeOfDay(hour: hour, minute: minute);
+  }
 }
 
 extension BuildContextX on BuildContext {
