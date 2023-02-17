@@ -5,6 +5,7 @@ import 'package:meddly/features/medicine/cubit/medicine_form_cubit.dart';
 import 'package:meddly/features/medicine/widgets/widgets.dart';
 import 'package:meddly/features/user/view/user_page.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 /// {@template medicine_page}
 /// A description for MedicineReviewDetailsPage
@@ -29,6 +30,12 @@ class MedicineReviewDetailsPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Medicine'),
+          actions: [
+            CancelButton(
+              onConfirm: () => Navigator.of(context)
+                  .pushAndRemoveUntil(UserPage.route(), (route) => false),
+            ),
+          ],
         ),
         body: const MedicineReviewDetailsView(),
       ),

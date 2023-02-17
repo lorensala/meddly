@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/features/medicine/cubit/cubit.dart';
 import 'package:meddly/features/medicine/widgets/widgets.dart';
+import 'package:meddly/features/user/view/view.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 /// {@template medicine_page}
 /// A description for MedicineFrecuencyPage
@@ -25,6 +27,12 @@ class MedicineFrecuencyPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Medicine'),
+          actions: [
+            CancelButton(
+              onConfirm: () => Navigator.of(context)
+                  .pushAndRemoveUntil(UserPage.route(), (route) => false),
+            ),
+          ],
         ),
         body: const MedicineFrecuencyView(),
       ),

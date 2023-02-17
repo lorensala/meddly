@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/cubit/cubit.dart';
 import 'package:meddly/features/medicine/widgets/widgets.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 /// {@template medicine_page}
 /// A description for MedicineDosisPage
@@ -27,21 +27,9 @@ class MedicineDosisPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           actions: [
-            // cancel button that navigates to home page
-            // TODO: add a confirmation dialog
-            // TODO: add in all the other pages
-            GestureDetector(
-              onTap: () => Navigator.of(context)
-                  .pushAndRemoveUntil(UserPage.route(), (_) => false),
-              child: Padding(
-                padding: Sizes.padding,
-                child: Center(
-                  child: Text(
-                    'Cancel',
-                    style: context.textTheme.bodyLarge,
-                  ),
-                ),
-              ),
+            CancelButton(
+              onConfirm: () => Navigator.of(context)
+                  .pushAndRemoveUntil(UserPage.route(), (route) => false),
             ),
           ],
         ),
