@@ -344,6 +344,160 @@
     "notificationPreferenceDoesNotExistError": "Notification preference does not exist",
     "@notificationPreferenceDoesNotExistError": {
         "description": "Text shown when the notification preference does not exist"
+    },
+    "invalidMedicineName": "Medicine name is invalid",
+    "@invalidMedicineName": {
+        "description": "Text shown when the medicine name is invalid"
+    },
+    "medicineNameEmpty": "Medicine name cannot be empty",
+    "@medicineNameEmpty": {
+        "description": "Text shown when the medicine name is empty"
+    },
+    "medicineNameTooLong": "Medicine name must be at most 100 characters",
+    "@medicineNameTooLong": {
+        "description": "Text shown when the medicine name is too long"
+    },
+    "next": "Next",
+    "@next": {
+        "description": "Text shown on the next button"
+    },
+    "commonPresentations": "Common presentations",
+    "@commonPresentations": {
+        "description": "Text shown on the common presentations button"
+    },
+    "otherPresentations": "Other presentations",
+    "@otherPresentations": {
+        "description": "Text shown on the other presentations button"
+    },
+    "medicineFrecuencyRegular": "Regular",
+    "@medicineFrecuencyRegular": {
+        "description": "Text shown on the regular medicine frecuency button"
+    },
+    "medicineFrecuencySpecificDays": "Specific days",
+    "@medicineFrecuencySpecificDays": {
+        "description": "Text shown on the specific days medicine frecuency button"
+    },
+    "medicineFrecuencyAsNeeded": "As needed",
+    "@medicineFrecuencyAsNeeded": {
+        "description": "Text shown on the as needed medicine frecuency button"
+    },
+    "howOftenDoYouWantToTakeThisMedicine": "How often do you want to take this medicine?",
+    "@howOftenDoYouWantToTakeThisMedicine": {
+        "description": "Text shown on the how often do you want to take this medicine page"
+    },
+    "every": "Every",
+    "@every": {
+        "description": "Text shown on the every button"
+    },
+    "selectAtLeastOneDay": "Select at least one day",
+    "@selectAtLeastOneDay": {
+        "description": "Text shown when the user tries to select at least one day"
+    },
+    "chooseTheIntervalBetweenDoses": "Choose the interval between doses",
+    "@chooseTheIntervalBetweenDoses": {
+        "description": "Text shown on the choose the interval between doses page"
+    },
+    "selectTheHoursYouWantToTakeThisMedicine": "Select the hours you want to take this medicine",
+    "@selectTheHoursYouWantToTakeThisMedicine": {
+        "description": "Text shown on the select the hours you want to take this medicine page"
+    },
+    "everyXdays": "Every {days} days",
+    "@everyXdays": {
+        "placeholders": {
+            "days": {
+                "type": "int",
+                "example": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+            }
+        },
+        "description": "Text shown on the every X days page"
+    },
+    "everyX": "Every {days}",
+    "@everyX": {
+        "placeholders": {
+            "days": {
+                "type": "String",
+                "example": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"
+            }
+        },
+        "description": "Text shown on the on X page"
+    },
+    "asNeeded": "As needed",
+    "@asNeeded": {
+        "description": "Text shown on the as needed page"
+    },
+    "addHour": "Add hour",
+    "@addHour": {
+        "description": "Text shown on the add hour button"
+    },
+    "startDate": "Start date",
+    "@startDate": {
+        "description": "Text shown on the start date field"
+    },
+    "medicineName": "Medicine name",
+    "@medicineName": {
+        "description": "Text shown on the medicine name field"
+    },
+    "medicineDescription": "e.g. Ibuprofen",
+    "@medicineDescription": {
+        "description": "Text shown on the medicine description field"
+    },
+    "dosis": "Dosis",
+    "@dosis": {
+        "description": "Text shown on the dosis field"
+    },
+    "dosisDescription": "As it appears on the medicine prospect",
+    "@dosisDescription": {
+        "description": "Text shown on the dosis description field"
+    },
+    "invalidDosis": "Dosis is invalid",
+    "@invalidDosis": {
+        "description": "Text shown when the dosis is invalid"
+    },
+    "save": "Save",
+    "@save": {
+        "description": "Text shown on the save button"
+    },
+    "stockWarning": "Stock warning",
+    "@stockWarning": {
+        "description": "Text shown on the stock warning field"
+    },
+    "stockWarningDescription": "When the stock is below this value, you will receive a notification",
+    "@stockWarningDescription": {
+        "description": "Text shown on the stock warning description field"
+    },
+    "invalidStockWarning": "Stock warning is invalid",
+    "@invalidStockWarning": {
+        "description": "Text shown when the stock warning is invalid"
+    },
+    "currentStock": "Current stock",
+    "@currentStock": {
+        "description": "Text shown on the current stock field"
+    },
+    "currentStockDescription": "How many units do you have now?",
+    "@currentStockDescription": {
+        "description": "Text shown on the current stock description field"
+    },
+    "invalidCurrentStock": "Current stock is invalid",
+    "@invalidCurrentStock": {
+        "description": "Text shown when the current stock is invalid"
+    },
+    "instructions": "Instructions",
+    "@instructions": {
+        "description": "Text shown on the instructions field"
+    },
+    "instructionsHint": "e.g. Take with food",
+    "@instructionsHint": {
+        "description": "Text shown on the instructions hint field"
+    },
+    "invalidInstructions": "Instructions are invalid",
+    "@invalidInstructions": {
+        "description": "Text shown when the instructions are invalid"
+    },
+    "instructionsTooLong": "Instructions must be at most 100 characters",
+    "@instructionsTooLong": {
+        "description": "Text shown when the instructions are too long"
     }
+
+
    
 }

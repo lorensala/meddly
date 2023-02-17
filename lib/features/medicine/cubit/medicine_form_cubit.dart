@@ -1,14 +1,20 @@
 import 'package:bloc/bloc.dart';
+import 'package:calendar/calendar.dart';
+import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:medicine/medicine.dart';
+import 'package:meddly/core/core.dart';
 import 'package:validators/validators.dart';
 
 part 'medicine_form_cubit.freezed.dart';
 part 'medicine_form_state.dart';
 
 class MedicineFormCubit extends Cubit<MedicineFormState> {
-  MedicineFormCubit() : super(const MedicineFormState());
+  MedicineFormCubit({required MedicineRepository medicineRepository})
+      : _repository = medicineRepository,
+        super(const MedicineFormState());
+
+  final MedicineRepository _repository;
 
   void nameChanged(String value) {
     final name = Name.dirty(value);
@@ -98,7 +104,7 @@ class MedicineFormCubit extends Cubit<MedicineFormState> {
     );
   }
 
-  void hoursChanged(List<DateTime> value) {
+  void hoursChanged(List<TimeOfDay> value) {
     emit(
       state.copyWith(
         hours: value,
@@ -114,5 +120,45 @@ class MedicineFormCubit extends Cubit<MedicineFormState> {
     );
   }
 
-  void submit() {}
+  void instructionsChanged(String value) {
+    final instructions = Instructions.dirty(value);
+    emit(
+      state.copyWith(
+        instructions: instructions,
+      ),
+    );
+  }
+
+  Future<void> submit() async {
+    // if (!state.status.isValidated) return;
+    emit(state.copyWith(status: FormzStatus.submissionInProgress));
+
+    final medicine = Medicine(
+      id: 0,
+      name: state.name.value,
+      presentation: state.presentation,
+      dosisUnit: state.dosisUnit,
+      startDate: state.startDate!,
+      endDate: state.endDate ?? DateTime.now(),
+      stock: int.tryParse(state.stock.value),
+      stockWarning: int.tryParse(state.stockWarning.value),
+      dosis: double.tryParse(state.dosis.value) ?? 0.0,
+      days: state.days,
+      hours: state.hours.map((time) => time.toDateTime()).toList(),
+      interval: state.frecuencyValue,
+      instructions: state.instructions.value,
+    );
+
+    final possibleFailureOrUnit = await _repository.addMedicine(medicine);
+
+    possibleFailureOrUnit.fold(
+      (failure) => emit(
+        state.copyWith(
+          status: FormzStatus.submissionFailure,
+          failure: failure,
+        ),
+      ),
+      (unit) => emit(state.copyWith(status: FormzStatus.submissionSuccess)),
+    );
+  }
 }

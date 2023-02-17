@@ -7,74 +7,78 @@ part 'medicine_dto.freezed.dart';
 part 'medicine_dto.g.dart';
 
 /// {@template medicine_dto}
-/// Data Transfer Object for Medicine.
+/// Data transfer object for medicine.
 /// {@endtemplate}
 @freezed
 @HiveType(typeId: 4)
 class MedicineDto with _$MedicineDto {
   /// {@macro medicine_dto}
   const factory MedicineDto({
-    @HiveField(0) required String name,
-    @HiveField(1) required String startDate,
-    @HiveField(2) String? endDate,
-    @HiveField(3) int? stock,
-    @HiveField(4) int? stockWarning,
-    @HiveField(5) required String presentation,
-    @HiveField(6) required String dosisUnit,
-    @HiveField(7) required double dosis,
-    @HiveField(8) int? interval,
-    @HiveField(9) List<int>? days,
-    @HiveField(10) List<String>? hours,
-    @HiveField(11) String? instructions,
-    @HiveField(12) required int id,
+    @HiveField(0) required int id,
+    @HiveField(1) required String name,
+    @HiveField(2) required String startDate,
+    @HiveField(3) String? endDate,
+    @HiveField(4) int? stock,
+    @HiveField(5) int? stockWarning,
+    @HiveField(6) required String presentation,
+    @HiveField(7) required String dosisUnit,
+    @HiveField(8) required double dosis,
+    @HiveField(9) int? interval,
+    @HiveField(10) List<int>? days,
+    @HiveField(11) List<String>? hours,
+    @HiveField(12) String? instructions,
   }) = _MedicineDto;
 
-  /// Converts a [Medicine] to a [MedicineDto].
+  /// Converts a [Medicine] object to a [MedicineDto] object.
+  /// Returns a [MedicineDto] object.
+  /// Throws a [MedicineDtoException] if the conversion fails.
   factory MedicineDto.fromDomain(Medicine medicine) {
     try {
       return MedicineDto(
+        id: medicine.id,
         name: medicine.name,
         startDate: medicine.startDate.toIso8601String(),
         endDate: medicine.endDate?.toIso8601String(),
         stock: medicine.stock,
         stockWarning: medicine.stockWarning,
-        presentation: medicine.presentation,
-        dosisUnit: medicine.dosisUnit,
+        presentation: medicine.presentation.name,
+        dosisUnit: medicine.dosisUnit.value,
         dosis: medicine.dosis,
         interval: medicine.interval,
-        days: medicine.days,
-        hours: medicine.hours,
+        days: medicine.days?.map((e) => e.value).toList(),
+        hours: medicine.hours?.map((e) => e.toIso8601String()).toList(),
         instructions: medicine.instructions,
-        id: medicine.id,
       );
     } catch (e) {
       throw MedicineDtoException();
     }
   }
 
-  /// Creates a [MedicineDto] from a JSON object.
+  /// {@macro medicine_dto}
   factory MedicineDto.fromJson(Map<String, dynamic> json) =>
       _$MedicineDtoFromJson(json);
 
   const MedicineDto._();
 
-  /// Converts a [MedicineDto] to a [Medicine].
+  /// Converts this object to a [Medicine] object.
+  /// Returns a [Medicine] object.
+  /// Throws a [MedicineDtoException] if the conversion fails.
   Medicine toDomain() {
     try {
       return Medicine(
+        id: id,
         name: name,
         startDate: DateTime.parse(startDate),
-        endDate: endDate != null ? DateTime.parse(endDate!) : null,
+        endDate: endDate != null ? DateTime.tryParse(endDate!) : null,
         stock: stock,
         stockWarning: stockWarning,
-        presentation: presentation,
-        dosisUnit: dosisUnit,
+        presentation: MedicinePresentation.fromString(presentation),
+        dosisUnit: MedicineDosisUnit.fromString(dosisUnit),
         dosis: dosis,
         interval: interval,
-        days: days,
-        hours: hours,
+        days: days?.map(MedicineDay.fromInt).toList(),
+        hours: hours?.map(DateTime.parse).toList(),
         instructions: instructions,
-        id: id,
       );
     } catch (e) {
       throw MedicineDtoException();

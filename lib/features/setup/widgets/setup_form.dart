@@ -178,7 +178,8 @@ class _BirthdateInputState extends State<_BirthdateInput> {
                     lastDate: DateTime.now(),
                   ).then((value) {
                     if (value != null) {
-                      _controller.text = value.toString().dateTimeStringFormat;
+                      _controller.text =
+                          value.toString().dateTimeStringFormat();
                       context
                           .read<SetupCubit>()
                           .birthdateChanged(value.toString());
@@ -202,7 +203,7 @@ class _BirthdateInputState extends State<_BirthdateInput> {
                                 maximumDate: DateTime.now(),
                                 onDateTimeChanged: (value) {
                                   _controller.text =
-                                      value.toString().dateTimeStringFormat;
+                                      value.toString().dateTimeStringFormat();
                                   context
                                       .read<SetupCubit>()
                                       .birthdateChanged(value.toString());

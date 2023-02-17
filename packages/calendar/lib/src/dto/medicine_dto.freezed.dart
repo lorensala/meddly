@@ -21,31 +21,31 @@ MedicineDto _$MedicineDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MedicineDto {
   @HiveField(0)
-  String get name => throw _privateConstructorUsedError;
-  @HiveField(1)
-  String get startDate => throw _privateConstructorUsedError;
-  @HiveField(2)
-  String? get endDate => throw _privateConstructorUsedError;
-  @HiveField(3)
-  int? get stock => throw _privateConstructorUsedError;
-  @HiveField(4)
-  int? get stockWarning => throw _privateConstructorUsedError;
-  @HiveField(5)
-  String get presentation => throw _privateConstructorUsedError;
-  @HiveField(6)
-  String get dosisUnit => throw _privateConstructorUsedError;
-  @HiveField(7)
-  double get dosis => throw _privateConstructorUsedError;
-  @HiveField(8)
-  int? get interval => throw _privateConstructorUsedError;
-  @HiveField(9)
-  List<int>? get days => throw _privateConstructorUsedError;
-  @HiveField(10)
-  List<String>? get hours => throw _privateConstructorUsedError;
-  @HiveField(11)
-  String? get instructions => throw _privateConstructorUsedError;
-  @HiveField(12)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
+  String get name => throw _privateConstructorUsedError;
+  @HiveField(2)
+  String get startDate => throw _privateConstructorUsedError;
+  @HiveField(3)
+  String? get endDate => throw _privateConstructorUsedError;
+  @HiveField(4)
+  int? get stock => throw _privateConstructorUsedError;
+  @HiveField(5)
+  int? get stockWarning => throw _privateConstructorUsedError;
+  @HiveField(6)
+  String get presentation => throw _privateConstructorUsedError;
+  @HiveField(7)
+  String get dosisUnit => throw _privateConstructorUsedError;
+  @HiveField(8)
+  double get dosis => throw _privateConstructorUsedError;
+  @HiveField(9)
+  int? get interval => throw _privateConstructorUsedError;
+  @HiveField(10)
+  List<int>? get days => throw _privateConstructorUsedError;
+  @HiveField(11)
+  List<String>? get hours => throw _privateConstructorUsedError;
+  @HiveField(12)
+  String? get instructions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,19 +60,19 @@ abstract class $MedicineDtoCopyWith<$Res> {
       _$MedicineDtoCopyWithImpl<$Res, MedicineDto>;
   @useResult
   $Res call(
-      {@HiveField(0) String name,
-      @HiveField(1) String startDate,
-      @HiveField(2) String? endDate,
-      @HiveField(3) int? stock,
-      @HiveField(4) int? stockWarning,
-      @HiveField(5) String presentation,
-      @HiveField(6) String dosisUnit,
-      @HiveField(7) double dosis,
-      @HiveField(8) int? interval,
-      @HiveField(9) List<int>? days,
-      @HiveField(10) List<String>? hours,
-      @HiveField(11) String? instructions,
-      @HiveField(12) int id});
+      {@HiveField(0) int id,
+      @HiveField(1) String name,
+      @HiveField(2) String startDate,
+      @HiveField(3) String? endDate,
+      @HiveField(4) int? stock,
+      @HiveField(5) int? stockWarning,
+      @HiveField(6) String presentation,
+      @HiveField(7) String dosisUnit,
+      @HiveField(8) double dosis,
+      @HiveField(9) int? interval,
+      @HiveField(10) List<int>? days,
+      @HiveField(11) List<String>? hours,
+      @HiveField(12) String? instructions});
 }
 
 /// @nodoc
@@ -88,6 +88,7 @@ class _$MedicineDtoCopyWithImpl<$Res, $Val extends MedicineDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? startDate = null,
     Object? endDate = freezed,
@@ -100,9 +101,12 @@ class _$MedicineDtoCopyWithImpl<$Res, $Val extends MedicineDto>
     Object? days = freezed,
     Object? hours = freezed,
     Object? instructions = freezed,
-    Object? id = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -151,10 +155,6 @@ class _$MedicineDtoCopyWithImpl<$Res, $Val extends MedicineDto>
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -168,19 +168,19 @@ abstract class _$$_MedicineDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String name,
-      @HiveField(1) String startDate,
-      @HiveField(2) String? endDate,
-      @HiveField(3) int? stock,
-      @HiveField(4) int? stockWarning,
-      @HiveField(5) String presentation,
-      @HiveField(6) String dosisUnit,
-      @HiveField(7) double dosis,
-      @HiveField(8) int? interval,
-      @HiveField(9) List<int>? days,
-      @HiveField(10) List<String>? hours,
-      @HiveField(11) String? instructions,
-      @HiveField(12) int id});
+      {@HiveField(0) int id,
+      @HiveField(1) String name,
+      @HiveField(2) String startDate,
+      @HiveField(3) String? endDate,
+      @HiveField(4) int? stock,
+      @HiveField(5) int? stockWarning,
+      @HiveField(6) String presentation,
+      @HiveField(7) String dosisUnit,
+      @HiveField(8) double dosis,
+      @HiveField(9) int? interval,
+      @HiveField(10) List<int>? days,
+      @HiveField(11) List<String>? hours,
+      @HiveField(12) String? instructions});
 }
 
 /// @nodoc
@@ -194,6 +194,7 @@ class __$$_MedicineDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? startDate = null,
     Object? endDate = freezed,
@@ -206,9 +207,12 @@ class __$$_MedicineDtoCopyWithImpl<$Res>
     Object? days = freezed,
     Object? hours = freezed,
     Object? instructions = freezed,
-    Object? id = null,
   }) {
     return _then(_$_MedicineDto(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -257,10 +261,6 @@ class __$$_MedicineDtoCopyWithImpl<$Res>
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -269,19 +269,19 @@ class __$$_MedicineDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MedicineDto extends _MedicineDto {
   const _$_MedicineDto(
-      {@HiveField(0) required this.name,
-      @HiveField(1) required this.startDate,
-      @HiveField(2) this.endDate,
-      @HiveField(3) this.stock,
-      @HiveField(4) this.stockWarning,
-      @HiveField(5) required this.presentation,
-      @HiveField(6) required this.dosisUnit,
-      @HiveField(7) required this.dosis,
-      @HiveField(8) this.interval,
-      @HiveField(9) final List<int>? days,
-      @HiveField(10) final List<String>? hours,
-      @HiveField(11) this.instructions,
-      @HiveField(12) required this.id})
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.name,
+      @HiveField(2) required this.startDate,
+      @HiveField(3) this.endDate,
+      @HiveField(4) this.stock,
+      @HiveField(5) this.stockWarning,
+      @HiveField(6) required this.presentation,
+      @HiveField(7) required this.dosisUnit,
+      @HiveField(8) required this.dosis,
+      @HiveField(9) this.interval,
+      @HiveField(10) final List<int>? days,
+      @HiveField(11) final List<String>? hours,
+      @HiveField(12) this.instructions})
       : _days = days,
         _hours = hours,
         super._();
@@ -291,34 +291,37 @@ class _$_MedicineDto extends _MedicineDto {
 
   @override
   @HiveField(0)
-  final String name;
+  final int id;
   @override
   @HiveField(1)
-  final String startDate;
+  final String name;
   @override
   @HiveField(2)
-  final String? endDate;
+  final String startDate;
   @override
   @HiveField(3)
-  final int? stock;
+  final String? endDate;
   @override
   @HiveField(4)
-  final int? stockWarning;
+  final int? stock;
   @override
   @HiveField(5)
-  final String presentation;
+  final int? stockWarning;
   @override
   @HiveField(6)
-  final String dosisUnit;
+  final String presentation;
   @override
   @HiveField(7)
-  final double dosis;
+  final String dosisUnit;
   @override
   @HiveField(8)
+  final double dosis;
+  @override
+  @HiveField(9)
   final int? interval;
   final List<int>? _days;
   @override
-  @HiveField(9)
+  @HiveField(10)
   List<int>? get days {
     final value = _days;
     if (value == null) return null;
@@ -329,7 +332,7 @@ class _$_MedicineDto extends _MedicineDto {
 
   final List<String>? _hours;
   @override
-  @HiveField(10)
+  @HiveField(11)
   List<String>? get hours {
     final value = _hours;
     if (value == null) return null;
@@ -339,15 +342,12 @@ class _$_MedicineDto extends _MedicineDto {
   }
 
   @override
-  @HiveField(11)
-  final String? instructions;
-  @override
   @HiveField(12)
-  final int id;
+  final String? instructions;
 
   @override
   String toString() {
-    return 'MedicineDto(name: $name, startDate: $startDate, endDate: $endDate, stock: $stock, stockWarning: $stockWarning, presentation: $presentation, dosisUnit: $dosisUnit, dosis: $dosis, interval: $interval, days: $days, hours: $hours, instructions: $instructions, id: $id)';
+    return 'MedicineDto(id: $id, name: $name, startDate: $startDate, endDate: $endDate, stock: $stock, stockWarning: $stockWarning, presentation: $presentation, dosisUnit: $dosisUnit, dosis: $dosis, interval: $interval, days: $days, hours: $hours, instructions: $instructions)';
   }
 
   @override
@@ -355,6 +355,7 @@ class _$_MedicineDto extends _MedicineDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MedicineDto &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
@@ -372,14 +373,14 @@ class _$_MedicineDto extends _MedicineDto {
             const DeepCollectionEquality().equals(other._days, _days) &&
             const DeepCollectionEquality().equals(other._hours, _hours) &&
             (identical(other.instructions, instructions) ||
-                other.instructions == instructions) &&
-            (identical(other.id, id) || other.id == id));
+                other.instructions == instructions));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       startDate,
       endDate,
@@ -391,8 +392,7 @@ class _$_MedicineDto extends _MedicineDto {
       interval,
       const DeepCollectionEquality().hash(_days),
       const DeepCollectionEquality().hash(_hours),
-      instructions,
-      id);
+      instructions);
 
   @JsonKey(ignore: true)
   @override
@@ -410,19 +410,19 @@ class _$_MedicineDto extends _MedicineDto {
 
 abstract class _MedicineDto extends MedicineDto {
   const factory _MedicineDto(
-      {@HiveField(0) required final String name,
-      @HiveField(1) required final String startDate,
-      @HiveField(2) final String? endDate,
-      @HiveField(3) final int? stock,
-      @HiveField(4) final int? stockWarning,
-      @HiveField(5) required final String presentation,
-      @HiveField(6) required final String dosisUnit,
-      @HiveField(7) required final double dosis,
-      @HiveField(8) final int? interval,
-      @HiveField(9) final List<int>? days,
-      @HiveField(10) final List<String>? hours,
-      @HiveField(11) final String? instructions,
-      @HiveField(12) required final int id}) = _$_MedicineDto;
+      {@HiveField(0) required final int id,
+      @HiveField(1) required final String name,
+      @HiveField(2) required final String startDate,
+      @HiveField(3) final String? endDate,
+      @HiveField(4) final int? stock,
+      @HiveField(5) final int? stockWarning,
+      @HiveField(6) required final String presentation,
+      @HiveField(7) required final String dosisUnit,
+      @HiveField(8) required final double dosis,
+      @HiveField(9) final int? interval,
+      @HiveField(10) final List<int>? days,
+      @HiveField(11) final List<String>? hours,
+      @HiveField(12) final String? instructions}) = _$_MedicineDto;
   const _MedicineDto._() : super._();
 
   factory _MedicineDto.fromJson(Map<String, dynamic> json) =
@@ -430,43 +430,43 @@ abstract class _MedicineDto extends MedicineDto {
 
   @override
   @HiveField(0)
-  String get name;
+  int get id;
   @override
   @HiveField(1)
-  String get startDate;
+  String get name;
   @override
   @HiveField(2)
-  String? get endDate;
+  String get startDate;
   @override
   @HiveField(3)
-  int? get stock;
+  String? get endDate;
   @override
   @HiveField(4)
-  int? get stockWarning;
+  int? get stock;
   @override
   @HiveField(5)
-  String get presentation;
+  int? get stockWarning;
   @override
   @HiveField(6)
-  String get dosisUnit;
+  String get presentation;
   @override
   @HiveField(7)
-  double get dosis;
+  String get dosisUnit;
   @override
   @HiveField(8)
-  int? get interval;
+  double get dosis;
   @override
   @HiveField(9)
-  List<int>? get days;
+  int? get interval;
   @override
   @HiveField(10)
-  List<String>? get hours;
+  List<int>? get days;
   @override
   @HiveField(11)
-  String? get instructions;
+  List<String>? get hours;
   @override
   @HiveField(12)
-  int get id;
+  String? get instructions;
   @override
   @JsonKey(ignore: true)
   _$$_MedicineDtoCopyWith<_$_MedicineDto> get copyWith =>

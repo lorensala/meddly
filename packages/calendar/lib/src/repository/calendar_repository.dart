@@ -1,4 +1,4 @@
-import 'package:calendar/src/api/calendar_api.dart';
+import 'package:calendar/src/api/api.dart';
 import 'package:calendar/src/cache/calendar_cache.dart';
 import 'package:calendar/src/core/core.dart';
 import 'package:calendar/src/dto/dto.dart';
@@ -211,46 +211,6 @@ class CalendarRepository {
     }
   }
 
-  /// Adds a [Medicine] to the calendar.
-  ///
-  /// Returns a [CalendarFailure] if the [Medicine] fails to add.
-  Future<Either<CalendarFailure, Unit>> addMedicine(
-    Medicine medicine,
-  ) async {
-    try {
-      final dto = MedicineDto.fromDomain(medicine);
-      await _api.addMedicine(dto);
-
-      final calendar = await _cache.readCalendar();
-
-      if (calendar == null) {
-        await _cache.writeCalendar(
-          CalendarDto(activeMedicines: [dto]),
-        );
-      } else {
-        await _cache.writeCalendar(
-          calendar
-              .copyWith(activeMedicines: [...calendar.activeMedicines, dto]),
-        );
-      }
-
-      return right(unit);
-    } on CalendarDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.connectTimeout:
-        case DioErrorType.receiveTimeout:
-        case DioErrorType.sendTimeout:
-          return left(const CalendarFailure.timeout());
-        case DioErrorType.response:
-          return left(const CalendarFailure.response());
-        case DioErrorType.cancel:
-          return left(const CalendarFailure.cancel());
-        case DioErrorType.other:
-          return left(const CalendarFailure.unknown());
-      }
-    }
-  }
-
   /// Adds a [Consumption] to the calendar.
   ///
   /// Returns a [CalendarFailure] if the [Consumption] fails to add.
@@ -369,47 +329,6 @@ class CalendarRepository {
     }
   }
 
-  /// Deletes a [Medicine] from the calendar.
-  ///
-  /// Returns a [CalendarFailure] if the [Medicine] fails to delete.
-  Future<Either<CalendarFailure, Unit>> deleteMedicine(
-    Medicine medicine,
-  ) async {
-    try {
-      final dto = MedicineDto.fromDomain(medicine);
-      await _api.deleteMedicine(dto);
-
-      final calendar = await _cache.readCalendar();
-
-      if (calendar == null) {
-        return right(unit);
-      } else {
-        await _cache.writeCalendar(
-          calendar.copyWith(
-            activeMedicines: calendar.activeMedicines
-                .where((element) => element.id != dto.id)
-                .toList(),
-          ),
-        );
-      }
-
-      return right(unit);
-    } on CalendarDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.connectTimeout:
-        case DioErrorType.receiveTimeout:
-        case DioErrorType.sendTimeout:
-          return left(const CalendarFailure.timeout());
-        case DioErrorType.response:
-          return left(const CalendarFailure.response());
-        case DioErrorType.cancel:
-          return left(const CalendarFailure.cancel());
-        case DioErrorType.other:
-          return left(const CalendarFailure.unknown());
-      }
-    }
-  }
-
   /// Deletes a [Consumption] from the calendar.
   ///
   /// Returns a [CalendarFailure] if the [Consumption] fails to delete.
@@ -498,47 +417,6 @@ class CalendarRepository {
         await _cache.writeCalendar(
           calendar.copyWith(
             measurements: calendar.measurements
-                .map((element) => element.id == dto.id ? dto : element)
-                .toList(),
-          ),
-        );
-      }
-
-      return right(unit);
-    } on CalendarDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.connectTimeout:
-        case DioErrorType.receiveTimeout:
-        case DioErrorType.sendTimeout:
-          return left(const CalendarFailure.timeout());
-        case DioErrorType.response:
-          return left(const CalendarFailure.response());
-        case DioErrorType.cancel:
-          return left(const CalendarFailure.cancel());
-        case DioErrorType.other:
-          return left(const CalendarFailure.unknown());
-      }
-    }
-  }
-
-  /// Updates a [Medicine] in the calendar.
-  ///
-  /// Returns a [CalendarFailure] if the [Medicine] fails to update.
-  Future<Either<CalendarFailure, Unit>> updateMedicine(
-    Medicine medicine,
-  ) async {
-    try {
-      final dto = MedicineDto.fromDomain(medicine);
-      await _api.updateMedicine(dto);
-
-      final calendar = await _cache.readCalendar();
-
-      if (calendar == null) {
-        return right(unit);
-      } else {
-        await _cache.writeCalendar(
-          calendar.copyWith(
-            activeMedicines: calendar.activeMedicines
                 .map((element) => element.id == dto.id ? dto : element)
                 .toList(),
           ),

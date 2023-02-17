@@ -12,6 +12,7 @@ Future<void> inject() async {
   final userBox = await Hive.openBox<UserDto>(userBoxKey);
   final notificationsBox = await Hive.openBox<List<String>>(preferencesBoxKey);
   final calendarBox = await Hive.openBox<CalendarDto>(calendarBoxKey);
+  final medicineBox = await Hive.openBox<MedicineDto>(medicineBoxKey);
 
   GetIt.I
     // * Dio * //
@@ -46,8 +47,22 @@ Future<void> inject() async {
     )
     ..registerLazySingleton<CalendarRepository>(
       () => CalendarRepository(
-        api: GetIt.I.get<CalendarApi>(),
         cache: GetIt.I.get<CalendarCache>(),
+        api: GetIt.I.get<CalendarApi>(),
+      ),
+    )
+
+    // * Medicine * //
+    ..registerLazySingleton<MedicineApi>(
+      () => MedicineApi(GetIt.I.get<Dio>(), baseUrl: Strings.baseUrl),
+    )
+    ..registerLazySingleton<MedicineCache>(
+      () => MedicineCache(medicineBox),
+    )
+    ..registerLazySingleton<MedicineRepository>(
+      () => MedicineRepository(
+        cache: GetIt.I.get<MedicineCache>(),
+        api: GetIt.I.get<MedicineApi>(),
       ),
     )
 

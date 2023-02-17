@@ -1,7 +1,8 @@
+import 'package:calendar/src/core/constants.dart';
+import 'package:calendar/src/core/exceptions.dart';
+import 'package:calendar/src/dto/dto.dart';
+import 'package:calendar/src/dto/medicine_dto.dart';
 import 'package:dio/dio.dart';
-import 'package:medicine/src/core/constants.dart';
-import 'package:medicine/src/core/exceptions.dart';
-import 'package:medicine/src/dto/medicine_dto.dart';
 
 /// {@template treatment_api}
 /// API for medicine operations.

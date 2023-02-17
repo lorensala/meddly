@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/features/medicine/bloc/bloc.dart';
-import 'package:meddly/features/medicine/widgets/medicine_body.dart';
+import 'package:meddly/features/medicine/widgets/widgets.dart';
 
 /// {@template medicine_page}
 /// A description for MedicinePage
 /// {@endtemplate}
-class MedicinePage extends StatelessWidget {
+class MedicineNamePage extends StatelessWidget {
   /// {@macro medicine_page}
-  const MedicinePage({super.key});
+  const MedicineNamePage({super.key});
 
   /// The static route for MedicinePage
   static Route<dynamic> route() {
-    return MaterialPageRoute<dynamic>(builder: (_) => const MedicinePage());
+    return MaterialPageRoute<dynamic>(builder: (_) => const MedicineNamePage());
   }
 
   @override
@@ -22,21 +22,24 @@ class MedicinePage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Medicine'),
         ),
-        body: const MedicineView(),
+        body: const MedicineNameView(),
       ),
     );
   }
 }
 
 /// {@template medicine_view}
-/// Displays the Body of MedicineView
+/// Displays the Body of MedicineNameView
 /// {@endtemplate}
-class MedicineView extends StatelessWidget {
+class MedicineNameView extends StatelessWidget {
   /// {@macro medicine_view}
-  const MedicineView({super.key});
+  const MedicineNameView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MedicineBody();
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: const MedicineNameForm(),
+    );
   }
 }

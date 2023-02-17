@@ -1,6 +1,10 @@
+import 'package:calendar/src/api/api.dart';
+import 'package:calendar/src/cache/cache.dart';
+import 'package:calendar/src/core/core.dart';
+import 'package:calendar/src/dto/dto.dart';
+import 'package:calendar/src/models/models.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:medicine/medicine.dart';
 import 'package:rxdart/rxdart.dart';
 
 /// {@template medicine_repository}
@@ -18,14 +22,14 @@ class MedicineRepository {
   final MedicineCache _cache;
 
   /// Watches the medicines from the cache.
-  Stream<Either<MedicineFailure, List<Medicine>>> get medicines => _cache
-      .watchAll()
-      .map<Either<MedicineFailure, List<Medicine>>>(
-        (medicineDtoList) => Right(
-          medicineDtoList.map((e) => e.toDomain()).toList(),
-        ),
-      )
-      .onErrorReturnWith((error, _) => const Left(MedicineFailure.cache()));
+  Stream<Either<MedicineFailure, List<Medicine>>> get medicines =>
+      _cache.medicines
+          .map<Either<MedicineFailure, List<Medicine>>>(
+            (medicineDtoList) => Right(
+              medicineDtoList.map((e) => e.toDomain()).toList(),
+            ),
+          )
+          .onErrorReturnWith((error, _) => const Left(MedicineFailure.cache()));
 
   /// Fetches all medicines.
   ///
@@ -121,7 +125,7 @@ class MedicineRepository {
           return const Left(MedicineFailure.connectionTimeOut());
       }
     } catch (e) {
-      return left(const MedicineFailure.unknown());
+      return const Left(MedicineFailure.unknown());
     }
   }
 

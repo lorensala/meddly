@@ -17,19 +17,19 @@ class MedicineDtoAdapter extends TypeAdapter<MedicineDto> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return MedicineDto(
-      name: fields[0] as String,
-      startDate: fields[1] as String,
-      endDate: fields[2] as String?,
-      stock: fields[3] as int?,
-      stockWarning: fields[4] as int?,
-      presentation: fields[5] as String,
-      dosisUnit: fields[6] as String,
-      dosis: fields[7] as double,
-      interval: fields[8] as int?,
-      days: (fields[9] as List?)?.cast<int>(),
-      hours: (fields[10] as List?)?.cast<String>(),
-      instructions: fields[11] as String?,
-      id: fields[12] as int,
+      id: fields[0] as int,
+      name: fields[1] as String,
+      startDate: fields[2] as String,
+      endDate: fields[3] as String?,
+      stock: fields[4] as int?,
+      stockWarning: fields[5] as int?,
+      presentation: fields[6] as String,
+      dosisUnit: fields[7] as String,
+      dosis: fields[8] as double,
+      interval: fields[9] as int?,
+      days: (fields[10] as List?)?.cast<int>(),
+      hours: (fields[11] as List?)?.cast<String>(),
+      instructions: fields[12] as String?,
     );
   }
 
@@ -38,31 +38,31 @@ class MedicineDtoAdapter extends TypeAdapter<MedicineDto> {
     writer
       ..writeByte(13)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.startDate)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.endDate)
+      ..write(obj.startDate)
       ..writeByte(3)
-      ..write(obj.stock)
+      ..write(obj.endDate)
       ..writeByte(4)
-      ..write(obj.stockWarning)
+      ..write(obj.stock)
       ..writeByte(5)
-      ..write(obj.presentation)
+      ..write(obj.stockWarning)
       ..writeByte(6)
-      ..write(obj.dosisUnit)
+      ..write(obj.presentation)
       ..writeByte(7)
-      ..write(obj.dosis)
+      ..write(obj.dosisUnit)
       ..writeByte(8)
-      ..write(obj.interval)
+      ..write(obj.dosis)
       ..writeByte(9)
-      ..write(obj.days)
+      ..write(obj.interval)
       ..writeByte(10)
-      ..write(obj.hours)
+      ..write(obj.days)
       ..writeByte(11)
-      ..write(obj.instructions)
+      ..write(obj.hours)
       ..writeByte(12)
-      ..write(obj.id);
+      ..write(obj.instructions);
   }
 
   @override
@@ -82,6 +82,7 @@ class MedicineDtoAdapter extends TypeAdapter<MedicineDto> {
 
 _$_MedicineDto _$$_MedicineDtoFromJson(Map<String, dynamic> json) =>
     _$_MedicineDto(
+      id: json['id'] as int,
       name: json['name'] as String,
       startDate: json['start_date'] as String,
       endDate: json['end_date'] as String?,
@@ -95,11 +96,11 @@ _$_MedicineDto _$$_MedicineDtoFromJson(Map<String, dynamic> json) =>
       hours:
           (json['hours'] as List<dynamic>?)?.map((e) => e as String).toList(),
       instructions: json['instructions'] as String?,
-      id: json['id'] as int,
     );
 
 Map<String, dynamic> _$$_MedicineDtoToJson(_$_MedicineDto instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'start_date': instance.startDate,
       'end_date': instance.endDate,
@@ -112,5 +113,4 @@ Map<String, dynamic> _$$_MedicineDtoToJson(_$_MedicineDto instance) =>
       'days': instance.days,
       'hours': instance.hours,
       'instructions': instance.instructions,
-      'id': instance.id,
     };

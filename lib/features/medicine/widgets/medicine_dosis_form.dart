@@ -1,8 +1,10 @@
+import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/cubit/cubit.dart';
+import 'package:meddly/features/medicine/view/medicine_frecuency_page.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
-import 'package:medicine/medicine.dart';
 
 class MedicineDosisForm extends StatelessWidget {
   const MedicineDosisForm({super.key});
@@ -10,52 +12,86 @@ class MedicineDosisForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<MedicineFormCubit>();
-    return Padding(
-      padding: Sizes.padding,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          DecoratedBox(
-            decoration: BoxDecoration(
-              color: context.colorScheme.secondary,
-              borderRadius: BorderRadius.circular(Sizes.borderRadius),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: Sizes.padding,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: context.colorScheme.secondary,
+                borderRadius: BorderRadius.circular(Sizes.borderRadius),
+              ),
+              child: Padding(
+                padding: Sizes.padding,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InputLabel(label: context.l10n.dosis, isRequired: true),
+                    const SizedBox(height: Sizes.smallSpacing),
+                    const _DosisInputField(),
+                    const SizedBox(height: Sizes.smallSpacing),
+                    InputDescription(
+                      description: context.l10n.dosisDescription,
+                    ),
+                  ],
+                ),
+              ),
             ),
-            child: const Padding(
-              padding: Sizes.padding,
-              child: _DosisInputField(),
+            const SizedBox(height: Sizes.mediumSpacing),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: context.colorScheme.secondary,
+                borderRadius: BorderRadius.circular(Sizes.borderRadius),
+              ),
+              child: BlocBuilder<MedicineFormCubit, MedicineFormState>(
+                buildWhen: (previous, current) =>
+                    previous.dosisUnit != current.dosisUnit,
+                builder: (context, state) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: MedicineDosisUnit.values
+                        .map(
+                          (unit) => ListTile(
+                            title: Text(unit.value),
+                            trailing: cubit.state.dosisUnit == unit
+                                ? const Icon(Icons.check)
+                                : null,
+                            onTap: () => cubit.dosisUnitChanged(unit),
+                          ),
+                        )
+                        .toList(),
+                  );
+                },
+              ),
             ),
-          ),
-          const SizedBox(height: Sizes.mediumSpacing),
-          DecoratedBox(
-            decoration: BoxDecoration(
-              color: context.colorScheme.secondary,
-              borderRadius: BorderRadius.circular(Sizes.borderRadius),
-            ),
-            child: BlocBuilder<MedicineFormCubit, MedicineFormState>(
-              buildWhen: (previous, current) =>
-                  previous.dosisUnit != current.dosisUnit,
-              builder: (context, state) {
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: MedicineDosisUnit.values
-                      .map(
-                        (unit) => ListTile(
-                          title: Text(unit.value),
-                          trailing: cubit.state.dosisUnit == unit
-                              ? const Icon(Icons.check)
-                              : null,
-                          onTap: () => cubit.dosisUnitChanged(unit),
-                        ),
-                      )
-                      .toList(),
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: Sizes.largeSpacing),
-          Button(onPressed: () {}, label: 'Next'),
-        ],
+            const SizedBox(height: Sizes.mediumSpacing),
+            const _NextButton(),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class _NextButton extends StatelessWidget {
+  const _NextButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MedicineFormCubit, MedicineFormState>(
+      buildWhen: (previous, current) =>
+          previous.dosis != current.dosis ||
+          previous.dosisUnit != current.dosisUnit,
+      builder: (context, state) {
+        return Button(
+          isValid: state.dosis.valid,
+          onPressed: () =>
+              Navigator.of(context).push(MedicineFrecuencyPage.route()),
+          label: context.l10n.next,
+        );
+      },
     );
   }
 }
@@ -66,11 +102,17 @@ class _DosisInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<MedicineFormCubit>();
-    return TextFormField(
-      onChanged: cubit.dosisChanged,
-      decoration: const InputDecoration(
-        hintText: 'Dosis',
-      ),
+    return BlocBuilder<MedicineFormCubit, MedicineFormState>(
+      buildWhen: (previous, current) => previous.dosis != current.dosis,
+      builder: (context, state) {
+        return TextFormField(
+          onChanged: cubit.dosisChanged,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            errorText: state.dosis.invalid ? context.l10n.invalidDosis : null,
+          ),
+        );
+      },
     );
   }
 }

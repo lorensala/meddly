@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MedicineFormState {
   Name get name => throw _privateConstructorUsedError;
+  Instructions get instructions => throw _privateConstructorUsedError;
   MedicinePresentation get presentation => throw _privateConstructorUsedError;
   MedicineDosisUnit get dosisUnit => throw _privateConstructorUsedError;
   DateTime? get startDate => throw _privateConstructorUsedError;
@@ -26,9 +27,10 @@ mixin _$MedicineFormState {
   NotNegativeIntNumber get dosis => throw _privateConstructorUsedError;
   MedicineFrecuency get frecuency => throw _privateConstructorUsedError;
   List<MedicineDay> get days => throw _privateConstructorUsedError;
-  List<DateTime> get hours => throw _privateConstructorUsedError;
+  List<TimeOfDay> get hours => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
   int get frecuencyValue => throw _privateConstructorUsedError;
+  MedicineFailure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MedicineFormStateCopyWith<MedicineFormState> get copyWith =>
@@ -43,6 +45,7 @@ abstract class $MedicineFormStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Name name,
+      Instructions instructions,
       MedicinePresentation presentation,
       MedicineDosisUnit dosisUnit,
       DateTime? startDate,
@@ -52,9 +55,12 @@ abstract class $MedicineFormStateCopyWith<$Res> {
       NotNegativeIntNumber dosis,
       MedicineFrecuency frecuency,
       List<MedicineDay> days,
-      List<DateTime> hours,
+      List<TimeOfDay> hours,
       FormzStatus status,
-      int frecuencyValue});
+      int frecuencyValue,
+      MedicineFailure? failure});
+
+  $MedicineFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -71,6 +77,7 @@ class _$MedicineFormStateCopyWithImpl<$Res, $Val extends MedicineFormState>
   @override
   $Res call({
     Object? name = null,
+    Object? instructions = null,
     Object? presentation = null,
     Object? dosisUnit = null,
     Object? startDate = freezed,
@@ -83,12 +90,17 @@ class _$MedicineFormStateCopyWithImpl<$Res, $Val extends MedicineFormState>
     Object? hours = null,
     Object? status = null,
     Object? frecuencyValue = null,
+    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as Name,
+      instructions: null == instructions
+          ? _value.instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as Instructions,
       presentation: null == presentation
           ? _value.presentation
           : presentation // ignore: cast_nullable_to_non_nullable
@@ -128,7 +140,7 @@ class _$MedicineFormStateCopyWithImpl<$Res, $Val extends MedicineFormState>
       hours: null == hours
           ? _value.hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>,
+              as List<TimeOfDay>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -137,7 +149,23 @@ class _$MedicineFormStateCopyWithImpl<$Res, $Val extends MedicineFormState>
           ? _value.frecuencyValue
           : frecuencyValue // ignore: cast_nullable_to_non_nullable
               as int,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as MedicineFailure?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MedicineFailureCopyWith<$Res>? get failure {
+    if (_value.failure == null) {
+      return null;
+    }
+
+    return $MedicineFailureCopyWith<$Res>(_value.failure!, (value) {
+      return _then(_value.copyWith(failure: value) as $Val);
+    });
   }
 }
 
@@ -151,6 +179,7 @@ abstract class _$$_InitialCopyWith<$Res>
   @useResult
   $Res call(
       {Name name,
+      Instructions instructions,
       MedicinePresentation presentation,
       MedicineDosisUnit dosisUnit,
       DateTime? startDate,
@@ -160,9 +189,13 @@ abstract class _$$_InitialCopyWith<$Res>
       NotNegativeIntNumber dosis,
       MedicineFrecuency frecuency,
       List<MedicineDay> days,
-      List<DateTime> hours,
+      List<TimeOfDay> hours,
       FormzStatus status,
-      int frecuencyValue});
+      int frecuencyValue,
+      MedicineFailure? failure});
+
+  @override
+  $MedicineFailureCopyWith<$Res>? get failure;
 }
 
 /// @nodoc
@@ -176,6 +209,7 @@ class __$$_InitialCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? instructions = null,
     Object? presentation = null,
     Object? dosisUnit = null,
     Object? startDate = freezed,
@@ -188,12 +222,17 @@ class __$$_InitialCopyWithImpl<$Res>
     Object? hours = null,
     Object? status = null,
     Object? frecuencyValue = null,
+    Object? failure = freezed,
   }) {
     return _then(_$_Initial(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as Name,
+      instructions: null == instructions
+          ? _value.instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as Instructions,
       presentation: null == presentation
           ? _value.presentation
           : presentation // ignore: cast_nullable_to_non_nullable
@@ -233,7 +272,7 @@ class __$$_InitialCopyWithImpl<$Res>
       hours: null == hours
           ? _value._hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>,
+              as List<TimeOfDay>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -242,15 +281,20 @@ class __$$_InitialCopyWithImpl<$Res>
           ? _value.frecuencyValue
           : frecuencyValue // ignore: cast_nullable_to_non_nullable
               as int,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as MedicineFailure?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
+class _$_Initial extends _Initial {
   const _$_Initial(
       {this.name = const Name.pure(),
+      this.instructions = const Instructions.pure(),
       this.presentation = MedicinePresentation.capusle,
       this.dosisUnit = MedicineDosisUnit.mg,
       this.startDate,
@@ -260,15 +304,20 @@ class _$_Initial implements _Initial {
       this.dosis = const NotNegativeIntNumber.pure(),
       this.frecuency = MedicineFrecuency.regular,
       final List<MedicineDay> days = const [MedicineDay.monday],
-      final List<DateTime> hours = const [],
+      final List<TimeOfDay> hours = const [],
       this.status = FormzStatus.pure,
-      this.frecuencyValue = 1})
+      this.frecuencyValue = 1,
+      this.failure})
       : _days = days,
-        _hours = hours;
+        _hours = hours,
+        super._();
 
   @override
   @JsonKey()
   final Name name;
+  @override
+  @JsonKey()
+  final Instructions instructions;
   @override
   @JsonKey()
   final MedicinePresentation presentation;
@@ -300,10 +349,10 @@ class _$_Initial implements _Initial {
     return EqualUnmodifiableListView(_days);
   }
 
-  final List<DateTime> _hours;
+  final List<TimeOfDay> _hours;
   @override
   @JsonKey()
-  List<DateTime> get hours {
+  List<TimeOfDay> get hours {
     if (_hours is EqualUnmodifiableListView) return _hours;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_hours);
@@ -315,10 +364,12 @@ class _$_Initial implements _Initial {
   @override
   @JsonKey()
   final int frecuencyValue;
+  @override
+  final MedicineFailure? failure;
 
   @override
   String toString() {
-    return 'MedicineFormState(name: $name, presentation: $presentation, dosisUnit: $dosisUnit, startDate: $startDate, endDate: $endDate, stock: $stock, stockWarning: $stockWarning, dosis: $dosis, frecuency: $frecuency, days: $days, hours: $hours, status: $status, frecuencyValue: $frecuencyValue)';
+    return 'MedicineFormState(name: $name, instructions: $instructions, presentation: $presentation, dosisUnit: $dosisUnit, startDate: $startDate, endDate: $endDate, stock: $stock, stockWarning: $stockWarning, dosis: $dosis, frecuency: $frecuency, days: $days, hours: $hours, status: $status, frecuencyValue: $frecuencyValue, failure: $failure)';
   }
 
   @override
@@ -327,6 +378,8 @@ class _$_Initial implements _Initial {
         (other.runtimeType == runtimeType &&
             other is _$_Initial &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.instructions, instructions) ||
+                other.instructions == instructions) &&
             (identical(other.presentation, presentation) ||
                 other.presentation == presentation) &&
             (identical(other.dosisUnit, dosisUnit) ||
@@ -344,13 +397,15 @@ class _$_Initial implements _Initial {
             const DeepCollectionEquality().equals(other._hours, _hours) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.frecuencyValue, frecuencyValue) ||
-                other.frecuencyValue == frecuencyValue));
+                other.frecuencyValue == frecuencyValue) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       name,
+      instructions,
       presentation,
       dosisUnit,
       startDate,
@@ -362,7 +417,8 @@ class _$_Initial implements _Initial {
       const DeepCollectionEquality().hash(_days),
       const DeepCollectionEquality().hash(_hours),
       status,
-      frecuencyValue);
+      frecuencyValue,
+      failure);
 
   @JsonKey(ignore: true)
   @override
@@ -371,9 +427,10 @@ class _$_Initial implements _Initial {
       __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
 }
 
-abstract class _Initial implements MedicineFormState {
+abstract class _Initial extends MedicineFormState {
   const factory _Initial(
       {final Name name,
+      final Instructions instructions,
       final MedicinePresentation presentation,
       final MedicineDosisUnit dosisUnit,
       final DateTime? startDate,
@@ -383,12 +440,16 @@ abstract class _Initial implements MedicineFormState {
       final NotNegativeIntNumber dosis,
       final MedicineFrecuency frecuency,
       final List<MedicineDay> days,
-      final List<DateTime> hours,
+      final List<TimeOfDay> hours,
       final FormzStatus status,
-      final int frecuencyValue}) = _$_Initial;
+      final int frecuencyValue,
+      final MedicineFailure? failure}) = _$_Initial;
+  const _Initial._() : super._();
 
   @override
   Name get name;
+  @override
+  Instructions get instructions;
   @override
   MedicinePresentation get presentation;
   @override
@@ -408,11 +469,13 @@ abstract class _Initial implements MedicineFormState {
   @override
   List<MedicineDay> get days;
   @override
-  List<DateTime> get hours;
+  List<TimeOfDay> get hours;
   @override
   FormzStatus get status;
   @override
   int get frecuencyValue;
+  @override
+  MedicineFailure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

@@ -16,19 +16,19 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Medicine {
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   DateTime get startDate => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
   int? get stock => throw _privateConstructorUsedError;
   int? get stockWarning => throw _privateConstructorUsedError;
-  String get presentation => throw _privateConstructorUsedError;
-  String get dosisUnit => throw _privateConstructorUsedError;
+  MedicinePresentation get presentation => throw _privateConstructorUsedError;
+  MedicineDosisUnit get dosisUnit => throw _privateConstructorUsedError;
   double get dosis => throw _privateConstructorUsedError;
   int? get interval => throw _privateConstructorUsedError;
-  List<int>? get days => throw _privateConstructorUsedError;
-  List<String>? get hours => throw _privateConstructorUsedError;
+  List<MedicineDay>? get days => throw _privateConstructorUsedError;
+  List<DateTime>? get hours => throw _privateConstructorUsedError;
   String? get instructions => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MedicineCopyWith<Medicine> get copyWith =>
@@ -41,19 +41,19 @@ abstract class $MedicineCopyWith<$Res> {
       _$MedicineCopyWithImpl<$Res, Medicine>;
   @useResult
   $Res call(
-      {String name,
+      {int id,
+      String name,
       DateTime startDate,
       DateTime? endDate,
       int? stock,
       int? stockWarning,
-      String presentation,
-      String dosisUnit,
+      MedicinePresentation presentation,
+      MedicineDosisUnit dosisUnit,
       double dosis,
       int? interval,
-      List<int>? days,
-      List<String>? hours,
-      String? instructions,
-      int id});
+      List<MedicineDay>? days,
+      List<DateTime>? hours,
+      String? instructions});
 }
 
 /// @nodoc
@@ -69,6 +69,7 @@ class _$MedicineCopyWithImpl<$Res, $Val extends Medicine>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? startDate = null,
     Object? endDate = freezed,
@@ -81,9 +82,12 @@ class _$MedicineCopyWithImpl<$Res, $Val extends Medicine>
     Object? days = freezed,
     Object? hours = freezed,
     Object? instructions = freezed,
-    Object? id = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -107,11 +111,11 @@ class _$MedicineCopyWithImpl<$Res, $Val extends Medicine>
       presentation: null == presentation
           ? _value.presentation
           : presentation // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MedicinePresentation,
       dosisUnit: null == dosisUnit
           ? _value.dosisUnit
           : dosisUnit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MedicineDosisUnit,
       dosis: null == dosis
           ? _value.dosis
           : dosis // ignore: cast_nullable_to_non_nullable
@@ -123,19 +127,15 @@ class _$MedicineCopyWithImpl<$Res, $Val extends Medicine>
       days: freezed == days
           ? _value.days
           : days // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<MedicineDay>?,
       hours: freezed == hours
           ? _value.hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<DateTime>?,
       instructions: freezed == instructions
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -148,19 +148,19 @@ abstract class _$$_MedicineCopyWith<$Res> implements $MedicineCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
+      {int id,
+      String name,
       DateTime startDate,
       DateTime? endDate,
       int? stock,
       int? stockWarning,
-      String presentation,
-      String dosisUnit,
+      MedicinePresentation presentation,
+      MedicineDosisUnit dosisUnit,
       double dosis,
       int? interval,
-      List<int>? days,
-      List<String>? hours,
-      String? instructions,
-      int id});
+      List<MedicineDay>? days,
+      List<DateTime>? hours,
+      String? instructions});
 }
 
 /// @nodoc
@@ -174,6 +174,7 @@ class __$$_MedicineCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? startDate = null,
     Object? endDate = freezed,
@@ -186,9 +187,12 @@ class __$$_MedicineCopyWithImpl<$Res>
     Object? days = freezed,
     Object? hours = freezed,
     Object? instructions = freezed,
-    Object? id = null,
   }) {
     return _then(_$_Medicine(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -212,11 +216,11 @@ class __$$_MedicineCopyWithImpl<$Res>
       presentation: null == presentation
           ? _value.presentation
           : presentation // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MedicinePresentation,
       dosisUnit: null == dosisUnit
           ? _value.dosisUnit
           : dosisUnit // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MedicineDosisUnit,
       dosis: null == dosis
           ? _value.dosis
           : dosis // ignore: cast_nullable_to_non_nullable
@@ -228,28 +232,25 @@ class __$$_MedicineCopyWithImpl<$Res>
       days: freezed == days
           ? _value._days
           : days // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<MedicineDay>?,
       hours: freezed == hours
           ? _value._hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<DateTime>?,
       instructions: freezed == instructions
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Medicine extends _Medicine {
+class _$_Medicine implements _Medicine {
   const _$_Medicine(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.startDate,
       this.endDate,
       this.stock,
@@ -258,14 +259,14 @@ class _$_Medicine extends _Medicine {
       required this.dosisUnit,
       required this.dosis,
       this.interval,
-      final List<int>? days,
-      final List<String>? hours,
-      this.instructions,
-      required this.id})
+      final List<MedicineDay>? days,
+      final List<DateTime>? hours,
+      this.instructions})
       : _days = days,
-        _hours = hours,
-        super._();
+        _hours = hours;
 
+  @override
+  final int id;
   @override
   final String name;
   @override
@@ -277,16 +278,16 @@ class _$_Medicine extends _Medicine {
   @override
   final int? stockWarning;
   @override
-  final String presentation;
+  final MedicinePresentation presentation;
   @override
-  final String dosisUnit;
+  final MedicineDosisUnit dosisUnit;
   @override
   final double dosis;
   @override
   final int? interval;
-  final List<int>? _days;
+  final List<MedicineDay>? _days;
   @override
-  List<int>? get days {
+  List<MedicineDay>? get days {
     final value = _days;
     if (value == null) return null;
     if (_days is EqualUnmodifiableListView) return _days;
@@ -294,9 +295,9 @@ class _$_Medicine extends _Medicine {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<String>? _hours;
+  final List<DateTime>? _hours;
   @override
-  List<String>? get hours {
+  List<DateTime>? get hours {
     final value = _hours;
     if (value == null) return null;
     if (_hours is EqualUnmodifiableListView) return _hours;
@@ -306,12 +307,10 @@ class _$_Medicine extends _Medicine {
 
   @override
   final String? instructions;
-  @override
-  final int id;
 
   @override
   String toString() {
-    return 'Medicine(name: $name, startDate: $startDate, endDate: $endDate, stock: $stock, stockWarning: $stockWarning, presentation: $presentation, dosisUnit: $dosisUnit, dosis: $dosis, interval: $interval, days: $days, hours: $hours, instructions: $instructions, id: $id)';
+    return 'Medicine(id: $id, name: $name, startDate: $startDate, endDate: $endDate, stock: $stock, stockWarning: $stockWarning, presentation: $presentation, dosisUnit: $dosisUnit, dosis: $dosis, interval: $interval, days: $days, hours: $hours, instructions: $instructions)';
   }
 
   @override
@@ -319,6 +318,7 @@ class _$_Medicine extends _Medicine {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Medicine &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
@@ -336,13 +336,13 @@ class _$_Medicine extends _Medicine {
             const DeepCollectionEquality().equals(other._days, _days) &&
             const DeepCollectionEquality().equals(other._hours, _hours) &&
             (identical(other.instructions, instructions) ||
-                other.instructions == instructions) &&
-            (identical(other.id, id) || other.id == id));
+                other.instructions == instructions));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       startDate,
       endDate,
@@ -354,8 +354,7 @@ class _$_Medicine extends _Medicine {
       interval,
       const DeepCollectionEquality().hash(_days),
       const DeepCollectionEquality().hash(_hours),
-      instructions,
-      id);
+      instructions);
 
   @JsonKey(ignore: true)
   @override
@@ -364,23 +363,24 @@ class _$_Medicine extends _Medicine {
       __$$_MedicineCopyWithImpl<_$_Medicine>(this, _$identity);
 }
 
-abstract class _Medicine extends Medicine {
+abstract class _Medicine implements Medicine {
   const factory _Medicine(
-      {required final String name,
+      {required final int id,
+      required final String name,
       required final DateTime startDate,
       final DateTime? endDate,
       final int? stock,
       final int? stockWarning,
-      required final String presentation,
-      required final String dosisUnit,
+      required final MedicinePresentation presentation,
+      required final MedicineDosisUnit dosisUnit,
       required final double dosis,
       final int? interval,
-      final List<int>? days,
-      final List<String>? hours,
-      final String? instructions,
-      required final int id}) = _$_Medicine;
-  const _Medicine._() : super._();
+      final List<MedicineDay>? days,
+      final List<DateTime>? hours,
+      final String? instructions}) = _$_Medicine;
 
+  @override
+  int get id;
   @override
   String get name;
   @override
@@ -392,21 +392,19 @@ abstract class _Medicine extends Medicine {
   @override
   int? get stockWarning;
   @override
-  String get presentation;
+  MedicinePresentation get presentation;
   @override
-  String get dosisUnit;
+  MedicineDosisUnit get dosisUnit;
   @override
   double get dosis;
   @override
   int? get interval;
   @override
-  List<int>? get days;
+  List<MedicineDay>? get days;
   @override
-  List<String>? get hours;
+  List<DateTime>? get hours;
   @override
   String? get instructions;
-  @override
-  int get id;
   @override
   @JsonKey(ignore: true)
   _$$_MedicineCopyWith<_$_Medicine> get copyWith =>

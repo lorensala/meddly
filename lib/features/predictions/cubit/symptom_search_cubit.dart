@@ -7,6 +7,7 @@ import 'package:validators/validators.dart';
 part 'symptom_search_cubit.freezed.dart';
 part 'symptom_search_state.dart';
 
+// TODO: Convert to BLoC and use debouncer
 class SymptomSearchCubit extends Cubit<SymptomSearchState> {
   SymptomSearchCubit({
     required PredictionsRepository repository,

@@ -1,4 +1,4 @@
-import 'package:medicine/src/dto/dto.dart' show MedicineDto;
+import 'package:calendar/src/dto/dto.dart' show MedicineDto;
 
 /// {@template medicine_days}
 /// Days of the week for a medicine on specific days frecuency.

@@ -112,68 +112,6 @@ class CalendarApi {
   }
 
   /// {@macro calendar_api}
-  /// Adds a new medicine.
-  ///
-  /// Throws a [CalendarNotFoundException] if the calendar is not found.\
-  /// Throws a [CalendarDioException] if the operation was not successful.
-  Future<void> addMedicine(MedicineDto medicineDto) async {
-    late final Response<dynamic> res;
-    try {
-      res = await _dio.post(
-        medicinePath,
-        data: medicineDto.toJson(),
-      );
-
-      if (res.statusCode == 401) {
-        throw CalendarNotFoundException();
-      }
-    } on DioError catch (e) {
-      throw CalendarDioException(e);
-    }
-  }
-
-  /// {@macro calendar_api}
-  /// Updates a medicine.
-  ///
-  /// Throws a [CalendarNotFoundException] if the calendar is not found.\
-  /// Throws a [CalendarDioException] if the operation was not successful.
-  Future<void> updateMedicine(MedicineDto medicineDto) async {
-    late final Response<dynamic> res;
-    try {
-      res = await _dio.post(
-        '$medicinePath${medicineDto.id}/',
-        data: medicineDto.toJson(),
-      );
-
-      if (res.statusCode == 401) {
-        throw CalendarNotFoundException();
-      }
-    } on DioError catch (e) {
-      throw CalendarDioException(e);
-    }
-  }
-
-  /// {@macro calendar_api}
-  /// Deletes a medicine.
-  ///
-  /// Throws a [CalendarNotFoundException] if the calendar is not found.\
-  /// Throws a [CalendarDioException] if the operation was not successful.
-  Future<void> deleteMedicine(MedicineDto medicineDto) async {
-    late final Response<dynamic> res;
-    try {
-      res = await _dio.delete(
-        '$medicinePath${medicineDto.id}/',
-      );
-
-      if (res.statusCode == 401) {
-        throw CalendarNotFoundException();
-      }
-    } on DioError catch (e) {
-      throw CalendarDioException(e);
-    }
-  }
-
-  /// {@macro calendar_api}
   /// Adds a new consumption.
   ///
   /// Throws a [CalendarNotFoundException] if the calendar is not found.\

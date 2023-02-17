@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'email.dart';
+part of 'instructions.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,58 +15,58 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$EmailError {
+mixin _$InstructionsError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() invalid,
-    required TResult Function() empty,
+    required TResult Function() tooLong,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? invalid,
-    TResult? Function()? empty,
+    TResult? Function()? tooLong,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? invalid,
-    TResult Function()? empty,
+    TResult Function()? tooLong,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmailError value) invalid,
-    required TResult Function(EmptyEmailError value) empty,
+    required TResult Function(Invalid value) invalid,
+    required TResult Function(TooLong value) tooLong,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmailError value)? invalid,
-    TResult? Function(EmptyEmailError value)? empty,
+    TResult? Function(Invalid value)? invalid,
+    TResult? Function(TooLong value)? tooLong,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmailError value)? invalid,
-    TResult Function(EmptyEmailError value)? empty,
+    TResult Function(Invalid value)? invalid,
+    TResult Function(TooLong value)? tooLong,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EmailErrorCopyWith<$Res> {
-  factory $EmailErrorCopyWith(
-          EmailError value, $Res Function(EmailError) then) =
-      _$EmailErrorCopyWithImpl<$Res, EmailError>;
+abstract class $InstructionsErrorCopyWith<$Res> {
+  factory $InstructionsErrorCopyWith(
+          InstructionsError value, $Res Function(InstructionsError) then) =
+      _$InstructionsErrorCopyWithImpl<$Res, InstructionsError>;
 }
 
 /// @nodoc
-class _$EmailErrorCopyWithImpl<$Res, $Val extends EmailError>
-    implements $EmailErrorCopyWith<$Res> {
-  _$EmailErrorCopyWithImpl(this._value, this._then);
+class _$InstructionsErrorCopyWithImpl<$Res, $Val extends InstructionsError>
+    implements $InstructionsErrorCopyWith<$Res> {
+  _$InstructionsErrorCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -75,35 +75,33 @@ class _$EmailErrorCopyWithImpl<$Res, $Val extends EmailError>
 }
 
 /// @nodoc
-abstract class _$$InvalidEmailErrorCopyWith<$Res> {
-  factory _$$InvalidEmailErrorCopyWith(
-          _$InvalidEmailError value, $Res Function(_$InvalidEmailError) then) =
-      __$$InvalidEmailErrorCopyWithImpl<$Res>;
+abstract class _$$InvalidCopyWith<$Res> {
+  factory _$$InvalidCopyWith(_$Invalid value, $Res Function(_$Invalid) then) =
+      __$$InvalidCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$InvalidEmailErrorCopyWithImpl<$Res>
-    extends _$EmailErrorCopyWithImpl<$Res, _$InvalidEmailError>
-    implements _$$InvalidEmailErrorCopyWith<$Res> {
-  __$$InvalidEmailErrorCopyWithImpl(
-      _$InvalidEmailError _value, $Res Function(_$InvalidEmailError) _then)
+class __$$InvalidCopyWithImpl<$Res>
+    extends _$InstructionsErrorCopyWithImpl<$Res, _$Invalid>
+    implements _$$InvalidCopyWith<$Res> {
+  __$$InvalidCopyWithImpl(_$Invalid _value, $Res Function(_$Invalid) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$InvalidEmailError implements InvalidEmailError {
-  const _$InvalidEmailError();
+class _$Invalid implements Invalid {
+  const _$Invalid();
 
   @override
   String toString() {
-    return 'EmailError.invalid()';
+    return 'InstructionsError.invalid()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InvalidEmailError);
+        (other.runtimeType == runtimeType && other is _$Invalid);
   }
 
   @override
@@ -113,7 +111,7 @@ class _$InvalidEmailError implements InvalidEmailError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() invalid,
-    required TResult Function() empty,
+    required TResult Function() tooLong,
   }) {
     return invalid();
   }
@@ -122,7 +120,7 @@ class _$InvalidEmailError implements InvalidEmailError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? invalid,
-    TResult? Function()? empty,
+    TResult? Function()? tooLong,
   }) {
     return invalid?.call();
   }
@@ -131,7 +129,7 @@ class _$InvalidEmailError implements InvalidEmailError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? invalid,
-    TResult Function()? empty,
+    TResult Function()? tooLong,
     required TResult orElse(),
   }) {
     if (invalid != null) {
@@ -143,8 +141,8 @@ class _$InvalidEmailError implements InvalidEmailError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmailError value) invalid,
-    required TResult Function(EmptyEmailError value) empty,
+    required TResult Function(Invalid value) invalid,
+    required TResult Function(TooLong value) tooLong,
   }) {
     return invalid(this);
   }
@@ -152,8 +150,8 @@ class _$InvalidEmailError implements InvalidEmailError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmailError value)? invalid,
-    TResult? Function(EmptyEmailError value)? empty,
+    TResult? Function(Invalid value)? invalid,
+    TResult? Function(TooLong value)? tooLong,
   }) {
     return invalid?.call(this);
   }
@@ -161,8 +159,8 @@ class _$InvalidEmailError implements InvalidEmailError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmailError value)? invalid,
-    TResult Function(EmptyEmailError value)? empty,
+    TResult Function(Invalid value)? invalid,
+    TResult Function(TooLong value)? tooLong,
     required TResult orElse(),
   }) {
     if (invalid != null) {
@@ -172,40 +170,38 @@ class _$InvalidEmailError implements InvalidEmailError {
   }
 }
 
-abstract class InvalidEmailError implements EmailError {
-  const factory InvalidEmailError() = _$InvalidEmailError;
+abstract class Invalid implements InstructionsError {
+  const factory Invalid() = _$Invalid;
 }
 
 /// @nodoc
-abstract class _$$EmptyEmailErrorCopyWith<$Res> {
-  factory _$$EmptyEmailErrorCopyWith(
-          _$EmptyEmailError value, $Res Function(_$EmptyEmailError) then) =
-      __$$EmptyEmailErrorCopyWithImpl<$Res>;
+abstract class _$$TooLongCopyWith<$Res> {
+  factory _$$TooLongCopyWith(_$TooLong value, $Res Function(_$TooLong) then) =
+      __$$TooLongCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EmptyEmailErrorCopyWithImpl<$Res>
-    extends _$EmailErrorCopyWithImpl<$Res, _$EmptyEmailError>
-    implements _$$EmptyEmailErrorCopyWith<$Res> {
-  __$$EmptyEmailErrorCopyWithImpl(
-      _$EmptyEmailError _value, $Res Function(_$EmptyEmailError) _then)
+class __$$TooLongCopyWithImpl<$Res>
+    extends _$InstructionsErrorCopyWithImpl<$Res, _$TooLong>
+    implements _$$TooLongCopyWith<$Res> {
+  __$$TooLongCopyWithImpl(_$TooLong _value, $Res Function(_$TooLong) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$EmptyEmailError implements EmptyEmailError {
-  const _$EmptyEmailError();
+class _$TooLong implements TooLong {
+  const _$TooLong();
 
   @override
   String toString() {
-    return 'EmailError.empty()';
+    return 'InstructionsError.tooLong()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$EmptyEmailError);
+        (other.runtimeType == runtimeType && other is _$TooLong);
   }
 
   @override
@@ -215,29 +211,29 @@ class _$EmptyEmailError implements EmptyEmailError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() invalid,
-    required TResult Function() empty,
+    required TResult Function() tooLong,
   }) {
-    return empty();
+    return tooLong();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? invalid,
-    TResult? Function()? empty,
+    TResult? Function()? tooLong,
   }) {
-    return empty?.call();
+    return tooLong?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? invalid,
-    TResult Function()? empty,
+    TResult Function()? tooLong,
     required TResult orElse(),
   }) {
-    if (empty != null) {
-      return empty();
+    if (tooLong != null) {
+      return tooLong();
     }
     return orElse();
   }
@@ -245,35 +241,35 @@ class _$EmptyEmailError implements EmptyEmailError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InvalidEmailError value) invalid,
-    required TResult Function(EmptyEmailError value) empty,
+    required TResult Function(Invalid value) invalid,
+    required TResult Function(TooLong value) tooLong,
   }) {
-    return empty(this);
+    return tooLong(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InvalidEmailError value)? invalid,
-    TResult? Function(EmptyEmailError value)? empty,
+    TResult? Function(Invalid value)? invalid,
+    TResult? Function(TooLong value)? tooLong,
   }) {
-    return empty?.call(this);
+    return tooLong?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InvalidEmailError value)? invalid,
-    TResult Function(EmptyEmailError value)? empty,
+    TResult Function(Invalid value)? invalid,
+    TResult Function(TooLong value)? tooLong,
     required TResult orElse(),
   }) {
-    if (empty != null) {
-      return empty(this);
+    if (tooLong != null) {
+      return tooLong(this);
     }
     return orElse();
   }
 }
 
-abstract class EmptyEmailError implements EmailError {
-  const factory EmptyEmailError() = _$EmptyEmailError;
+abstract class TooLong implements InstructionsError {
+  const factory TooLong() = _$TooLong;
 }

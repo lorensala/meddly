@@ -1,6 +1,6 @@
+import 'package:calendar/src/core/core.dart';
+import 'package:calendar/src/dto/medicine_dto.dart';
 import 'package:hive/hive.dart';
-import 'package:medicine/src/core/core.dart';
-import 'package:medicine/src/dto/medicine_dto.dart';
 import 'package:rxdart/rxdart.dart';
 
 /// {@template medicine_cache}
@@ -10,25 +10,23 @@ class MedicineCache {
   /// {@macro medicine_cache}
   MedicineCache(this._box);
 
-  final Box<Map<String, dynamic>> _box;
+  final Box<MedicineDto> _box;
 
   /// Watches all medicines in the cache.
   ///
   /// Throws a [MedicineSerializationException] if the medicine cannot be
   /// deserialized.
-  Stream<List<MedicineDto>> watchAll() {
-    return _box.watch().map((BoxEvent event) {
-      final medicines = <MedicineDto>[];
-      for (final medicineJson in event.value as List<Map<String, dynamic>>) {
-        try {
-          medicines.add(MedicineDto.fromJson(medicineJson));
-        } catch (e) {
-          throw MedicineSerializationException();
+  Stream<List<MedicineDto>> get medicines => _box.watch().map((BoxEvent event) {
+        final medicines = <MedicineDto>[];
+        for (final medicineJson in event.value as List<Map<String, dynamic>>) {
+          try {
+            medicines.add(MedicineDto.fromJson(medicineJson));
+          } catch (e) {
+            throw MedicineSerializationException();
+          }
         }
-      }
-      return medicines;
-    }).startWith(readAll());
-  }
+        return medicines;
+      }).startWith(readAll());
 
   /// Writes a medicine to the cache.
   ///
@@ -37,15 +35,8 @@ class MedicineCache {
   /// Throws a [MedicineSerializationException] if the medicine cannot be
   /// serialized.
   Future<void> write(MedicineDto medicine) async {
-    late final Map<String, dynamic> medicineJson;
     try {
-      medicineJson = medicine.toJson();
-    } catch (e) {
-      throw MedicineSerializationException();
-    }
-
-    try {
-      await _box.put(medicine.id, medicineJson);
+      await _box.put(medicine.id, medicine);
     } catch (e) {
       throw MedicineCacheException();
     }
@@ -70,15 +61,12 @@ class MedicineCache {
   /// Throws a [MedicineSerializationException] if the medicine cannot be
   /// deserialized.
   List<MedicineDto> readAll() {
-    final medicines = <MedicineDto>[];
-    for (final medicineJson in _box.values) {
-      try {
-        medicines.add(MedicineDto.fromJson(medicineJson));
-      } catch (e) {
-        throw MedicineSerializationException();
-      }
+    try {
+      final medicines = _box.values.toList();
+      return medicines;
+    } catch (e) {
+      throw MedicineCacheException();
     }
-    return medicines;
   }
 
   /// Reads a medicine from the cache.
@@ -88,17 +76,12 @@ class MedicineCache {
   /// Throws a [MedicineSerializationException] if the medicine cannot be
   /// deserialized.
   MedicineDto read(String id) {
-    late final Map<String, dynamic> medicineJson;
     try {
-      medicineJson = _box.get(id)!;
+      final medicine = _box.get(id);
+      if (medicine == null) throw MedicineNotFoundException();
+      return medicine;
     } catch (e) {
       throw MedicineCacheException();
-    }
-
-    try {
-      return MedicineDto.fromJson(medicineJson);
-    } catch (e) {
-      throw MedicineSerializationException();
     }
   }
 

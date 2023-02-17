@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 extension StringX on String {
@@ -6,19 +7,33 @@ extension StringX on String {
             word.substring(1).toLowerCase();
       }).join(' ');
 
-  String get dateTimeStringFormat =>
+  String dateTimeStringFormat() =>
       '${substring(8, 10)}/${substring(5, 7)}/${substring(0, 4)}';
+
+  String separateWithCapitalize() {
+    final words = split(' ');
+    if (words.length == 1) {
+      return capitalize();
+    } else {
+      return words.map((word) => word.capitalize()).join(' ');
+    }
+  }
 }
 
 extension IntX on int {
   String toDaysString() {
     if (this == 1) {
-      return 'Day';
-    } else if (this == 2) {
-      return 'Other day';
+      return '$this Day';
     } else {
       return '$this Days';
     }
+  }
+}
+
+extension TimeOfDayX on TimeOfDay {
+  DateTime toDateTime() {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, now.day, hour, minute);
   }
 }
 
@@ -127,4 +142,9 @@ extension DateTimeX on DateTime {
       return '${toNamedDayString()} $day ${toNamedMonthString()}';
     }
   }
+}
+
+extension EitherX<L, R> on Either<L, R> {
+  R asRight() => (this as Right<L, R>).value; //
+  L asLeft() => (this as Left<L, R>).value;
 }

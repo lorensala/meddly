@@ -61,7 +61,7 @@ class ConsumptionDto with _$ConsumptionDto {
         id: medicineId,
         date: DateTime.parse(date),
         title: medicineAssociatedWithConsumption.name,
-        description: medicineAssociatedWithConsumption.presentation,
+        description: medicineAssociatedWithConsumption.presentation.name,
         consumed: consumed,
       );
     } catch (e) {
