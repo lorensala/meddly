@@ -11,19 +11,21 @@ import 'package:meddly/l10n/l10n.dart';
 /// {@endtemplate}
 class MedicineReviewDetailsPage extends StatelessWidget {
   /// {@macro medicine_page}
-  const MedicineReviewDetailsPage({super.key});
+  const MedicineReviewDetailsPage(this.cubit, {super.key});
+
+  final MedicineFormCubit cubit;
 
   /// The static route for MedicineReviewDetailsPage
-  static Route<dynamic> route() {
+  static Route<dynamic> route(MedicineFormCubit cubit) {
     return MaterialPageRoute<dynamic>(
-      builder: (_) => const MedicineReviewDetailsPage(),
+      builder: (_) => MedicineReviewDetailsPage(cubit),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MedicineBloc(),
+    return BlocProvider.value(
+      value: cubit,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Medicine'),

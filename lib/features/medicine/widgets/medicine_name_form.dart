@@ -65,9 +65,12 @@ class _NextButton extends StatelessWidget {
     return BlocBuilder<MedicineFormCubit, MedicineFormState>(
       builder: (context, state) {
         return Button(
-          isValid: state.name.valid,
-          onPressed: () =>
-              Navigator.of(context).push(MedicinePresentationPage.route()),
+          isValid: state.name.valid && state.name.value.isNotEmpty,
+          onPressed: () => Navigator.of(context).push(
+            MedicinePresentationPage.route(
+              context.read<MedicineFormCubit>(),
+            ),
+          ),
           label: context.l10n.next,
         );
       },

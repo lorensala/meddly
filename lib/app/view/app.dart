@@ -1,9 +1,7 @@
 import 'package:authentication/authentication.dart';
-import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meddly/features/auth/bloc/auth_bloc.dart';
-import 'package:meddly/features/medicine/cubit/cubit.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/user/user.dart';
@@ -37,11 +35,6 @@ class App extends StatelessWidget {
             userRepository: GetIt.I.get<UserRepository>(),
           ),
         ),
-        BlocProvider(
-          create: (_) => MedicineFormCubit(
-            medicineRepository: GetIt.I.get<MedicineRepository>(),
-          ),
-        )
       ],
       child: MaterialApp(
         theme: ThemeManager.lightTheme,

@@ -86,9 +86,10 @@ class _NextButton extends StatelessWidget {
           previous.dosisUnit != current.dosisUnit,
       builder: (context, state) {
         return Button(
-          isValid: state.dosis.valid,
-          onPressed: () =>
-              Navigator.of(context).push(MedicineFrecuencyPage.route()),
+          isValid: state.dosis.valid && state.dosis.value.isNotEmpty,
+          onPressed: () => Navigator.of(context).push(
+            MedicineFrecuencyPage.route(context.read<MedicineFormCubit>()),
+          ),
           label: context.l10n.next,
         );
       },

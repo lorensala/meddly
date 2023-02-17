@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/medicine/bloc/bloc.dart';
+import 'package:meddly/features/medicine/cubit/cubit.dart';
 import 'package:meddly/features/medicine/widgets/widgets.dart';
 import 'package:meddly/features/user/user.dart';
 
@@ -9,19 +9,21 @@ import 'package:meddly/features/user/user.dart';
 /// {@endtemplate}
 class MedicineDosisPage extends StatelessWidget {
   /// {@macro medicine_page}
-  const MedicineDosisPage({super.key});
+  const MedicineDosisPage(this.cubit, {super.key});
+
+  final MedicineFormCubit cubit;
 
   /// The static route for MedicinePage
-  static Route<dynamic> route() {
+  static Route<dynamic> route(MedicineFormCubit cubit) {
     return MaterialPageRoute<dynamic>(
-      builder: (_) => const MedicineDosisPage(),
+      builder: (_) => MedicineDosisPage(cubit),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MedicineBloc(),
+    return BlocProvider.value(
+      value: cubit,
       child: Scaffold(
         appBar: AppBar(
           actions: [

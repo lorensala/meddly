@@ -52,8 +52,11 @@ class _NextButton extends StatelessWidget {
       builder: (context, state) {
         return Button(
           isValid: state.isFrecuencyValid,
-          onPressed: () =>
-              Navigator.of(context).push(MedicineReviewDetailsPage.route()),
+          onPressed: () => Navigator.of(context).push(
+            MedicineReviewDetailsPage.route(
+              context.read<MedicineFormCubit>(),
+            ),
+          ),
           label: context.l10n.next,
         );
       },

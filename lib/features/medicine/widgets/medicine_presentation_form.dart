@@ -61,7 +61,8 @@ class _NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
-      onPressed: () => Navigator.of(context).push(MedicineDosisPage.route()),
+      onPressed: () => Navigator.of(context)
+          .push(MedicineDosisPage.route(context.read<MedicineFormCubit>())),
       label: context.l10n.next,
     );
   }

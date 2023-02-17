@@ -138,7 +138,7 @@ class MedicineFormCubit extends Cubit<MedicineFormState> {
       name: state.name.value,
       presentation: state.presentation,
       dosisUnit: state.dosisUnit,
-      startDate: state.startDate!,
+      startDate: state.startDate ?? DateTime.now(),
       endDate: state.endDate ?? DateTime.now(),
       stock: int.tryParse(state.stock.value),
       stockWarning: int.tryParse(state.stockWarning.value),
