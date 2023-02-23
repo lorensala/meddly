@@ -1,6 +1,6 @@
 import 'package:formz/formz.dart';
 import 'package:meddly/features/auth/auth.dart';
-import 'package:meddly/features/sign_up/cubit/cubit.dart';
+import 'package:meddly/features/sign_up/state/state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:validators/validators.dart';
 

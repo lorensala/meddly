@@ -1,3 +1,4 @@
+import 'package:formz/formz.dart';
 import 'package:meddly/features/sign_up/controller/sign_up_controller.dart';
 import 'package:meddly/l10n/provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -16,9 +17,13 @@ Password signUpPassword(SignUpPasswordRef ref) {
 }
 
 @riverpod
+TermsAndConditions termsAndConditions(TermsAndConditionsRef ref) {
+  return ref.watch(signUpControllerProvider).termsAndConditions;
+}
+
+@riverpod
 bool isSignUpFormValid(IsSignUpFormValidRef ref) {
-  return ref.watch(signUpEmailProvider).valid &&
-      ref.watch(signUpPasswordProvider).valid;
+  return ref.watch(signUpControllerProvider).status.isValid;
 }
 
 @riverpod

@@ -1,4 +1,8 @@
-part of 'sign_up_cubit.dart';
+import 'package:formz/formz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:validators/validators.dart';
+
+part 'sign_up_state.freezed.dart';
 
 @freezed
 class SignUpState with _$SignUpState {

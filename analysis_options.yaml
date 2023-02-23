@@ -3,3 +3,6 @@ linter:
   rules:
     public_member_api_docs: false
     non_constant_identifier_names: false
+analyzer:
+  plugins:
+    - custom_lint

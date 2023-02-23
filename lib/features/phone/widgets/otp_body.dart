@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meddly/features/phone/cubit/otp_form_cubit.dart';
 import 'package:meddly/features/phone/widgets/otp_form.dart';
-import 'package:meddly/features/sign_up/cubit/cubit.dart';
 
 /// {@template otp_body}
 /// Body of the OtpPage.

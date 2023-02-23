@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/sign_up/controller/sign_up_controller.dart';
-import 'package:meddly/features/sign_up/cubit/sign_up_cubit.dart';
 import 'package:meddly/features/sign_up/provider/sign_up_provider.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
@@ -126,21 +124,22 @@ class _TermsAndConditions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<SignUpCubit>(context);
     return Row(
       children: [
-        BlocBuilder<SignUpCubit, SignUpState>(
-          builder: (context, state) {
+        Consumer(
+          builder: (context, ref, _) {
+            final notifier = ref.watch(signUpControllerProvider.notifier);
+            final termsAndConditions = ref.watch(termsAndConditionsProvider);
             return Checkbox(
               materialTapTargetSize: MaterialTapTargetSize.padded,
               activeColor: context.colorScheme.primary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(3),
               ),
-              value: state.termsAndConditions.value,
+              value: termsAndConditions.value,
               onChanged: (bool? value) {
                 HapticFeedback.lightImpact();
-                cubit.onTermsAcceptedChanged(value: value!);
+                notifier.onTermsAcceptedChanged(value: value!);
               },
             );
           },

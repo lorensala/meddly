@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:get_it/get_it.dart';
 import 'package:meddly/features/setup/cubit/cubit.dart';
 import 'package:meddly/features/setup/widgets/setup_body.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:user/user.dart';
 
 /// {@template setup_page}
 /// A description for SetupPage
@@ -22,14 +20,11 @@ class SetupPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SetupCubit(GetIt.I.get<UserRepository>()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Setup'),
-        ),
-        body: const SetupView(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Setup'),
       ),
+      body: const SetupView(),
     );
   }
 }
@@ -73,7 +68,6 @@ class SetupView extends StatelessWidget {
         }
       },
       child: GestureDetector(
-        // Dismisses the keyboard when the user taps outside of the text field
         onTap: () => FocusScope.of(context).unfocus(),
         child: const SetupBody(),
       ),

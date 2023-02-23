@@ -35,7 +35,24 @@ final signUpPasswordProvider = AutoDisposeProvider<Password>.internal(
 );
 
 typedef SignUpPasswordRef = AutoDisposeProviderRef<Password>;
-String _$isSignUpFormValidHash() => r'c3f6e1b49497ce759da97cb4ae2e593e93b1c7da';
+String _$termsAndConditionsHash() =>
+    r'29704caf5029131e9c187a302eb55bb34ca1c0cc';
+
+/// See also [termsAndConditions].
+@ProviderFor(termsAndConditions)
+final termsAndConditionsProvider =
+    AutoDisposeProvider<TermsAndConditions>.internal(
+  termsAndConditions,
+  name: r'termsAndConditionsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$termsAndConditionsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef TermsAndConditionsRef = AutoDisposeProviderRef<TermsAndConditions>;
+String _$isSignUpFormValidHash() => r'24db3159aa86b8462cfd4949d353182b06268f7b';
 
 /// See also [isSignUpFormValid].
 @ProviderFor(isSignUpFormValid)

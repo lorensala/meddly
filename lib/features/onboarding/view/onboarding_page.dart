@@ -35,6 +35,7 @@ class OnboardingView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(authControllerProvider, (_, state) {
       state.whenOrNull(
+        //TODO(lorenzo): navigate ... data: (data) => Navigate.toHome(),
         error: (err, stackTrace) => ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(
