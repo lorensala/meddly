@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/login/login.dart';
-import 'package:meddly/features/onboarding/cubit/cubit.dart';
 import 'package:meddly/features/onboarding/widgets/widgets.dart';
-import 'package:meddly/features/sign_up/cubit/cubit.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -27,6 +25,7 @@ class _OnboardingBodyState extends State<OnboardingBody> {
   late final Timer _timer;
   int _currentPage = 0;
 
+  // TODO(lorenzo): use Hooks...
   @override
   void initState() {
     _pageController = PageController();
@@ -60,10 +59,7 @@ class _OnboardingBodyState extends State<OnboardingBody> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                GoogleButton(
-                  onPressed: () =>
-                      context.read<OnboardingCubit>().logInWithGoogle(),
-                ),
+                const GoogleButton(),
                 const SizedBox(height: 20),
                 Button(
                   label: context.l10n.loginWithEmailAddress,

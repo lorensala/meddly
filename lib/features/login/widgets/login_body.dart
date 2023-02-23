@@ -1,8 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/login/cubit/cubit.dart';
 import 'package:meddly/features/login/widgets/login_form.dart';
 import 'package:meddly/features/sign_up/view/view.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -18,19 +16,15 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
-      builder: (context, state) {
-        return Padding(
-          padding: Sizes.padding,
-          child: Column(
-            children: const [
-              Center(child: LoginForm()),
-              SizedBox(height: Sizes.mediumSpacing),
-              _DontHaveAccountSignUp(),
-            ],
-          ),
-        );
-      },
+    return Padding(
+      padding: Sizes.padding,
+      child: Column(
+        children: const [
+          Center(child: LoginForm()),
+          SizedBox(height: Sizes.mediumSpacing),
+          _DontHaveAccountSignUp(),
+        ],
+      ),
     );
   }
 }

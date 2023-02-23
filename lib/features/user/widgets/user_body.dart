@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/auth/bloc/bloc.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/medicine/view/medicine_name_page.dart';
 import 'package:meddly/features/phone/phone.dart';
@@ -39,13 +38,14 @@ class UserBody extends StatelessWidget {
             }
           },
           failure: (failure) => failure.whenOrNull(
-            notFound: () => context.read<AuthBloc>().state.whenOrNull(
-                  authenticated: (_) async =>
-                      Navigator.of(context).pushAndRemoveUntil(
-                    SetupPage.route(),
-                    (_) => false,
-                  ),
-                ),
+            notFound: () {},
+            // context.read<AuthBloc>().state.whenOrNull(
+            //       authenticated: (_) async =>
+            //           Navigator.of(context).pushAndRemoveUntil(
+            //         SetupPage.route(),
+            //         (_) => false,
+            //       ),
+            //     ),
           ),
         );
       },

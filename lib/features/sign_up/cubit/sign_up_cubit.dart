@@ -45,26 +45,26 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   void togglePasswordVisibility() {
-    emit(state.copyWith(obscurePassword: !state.obscurePassword));
+    // emit(state.copyWith(obscurePassword: !state.obscurePassword));
   }
 
-  Future<void> signUp() async {
-    if (state.status.isSubmissionInProgress) return;
+  // Future<void> signUp() async {
+  //   if (state.status.isSubmissionInProgress) return;
 
-    emit(state.copyWith(status: FormzStatus.submissionInProgress));
-    final result = await _authenticationRepository.registerWithEmailAndPassword(
-      email: state.email.value.trim().toLowerCase(),
-      password: state.password.value.trim(),
-    );
+  //   emit(state.copyWith(status: FormzStatus.submissionInProgress));
+  //   final result = await _authenticationRepository.registerWithEmailAndPassword(
+  //     email: state.email.value.trim().toLowerCase(),
+  //     password: state.password.value.trim(),
+  //   );
 
-    result.fold(
-      (failure) => emit(
-        state.copyWith(
-          status: FormzStatus.submissionFailure,
-          failure: failure,
-        ),
-      ),
-      (_) => emit(state.copyWith(status: FormzStatus.submissionSuccess)),
-    );
-  }
+  //   result.fold(
+  //     (failure) => emit(
+  //       state.copyWith(
+  //         status: FormzStatus.submissionFailure,
+  //         failure: failure,
+  //       ),
+  //     ),
+  //     (_) => emit(state.copyWith(status: FormzStatus.submissionSuccess)),
+  //   );
+  // }
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'login_cubit.dart';
+part of 'login_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -18,9 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoginState {
   Email get email => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
-  AuthFailure? get failure => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
-  bool get obscurePassword => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -33,14 +31,7 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call(
-      {Email email,
-      Password password,
-      AuthFailure? failure,
-      FormzStatus status,
-      bool obscurePassword});
-
-  $AuthFailureCopyWith<$Res>? get failure;
+  $Res call({Email email, Password password, FormzStatus status});
 }
 
 /// @nodoc
@@ -58,9 +49,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? failure = freezed,
     Object? status = null,
-    Object? obscurePassword = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -71,31 +60,11 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as AuthFailure?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      obscurePassword: null == obscurePassword
-          ? _value.obscurePassword
-          : obscurePassword // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AuthFailureCopyWith<$Res>? get failure {
-    if (_value.failure == null) {
-      return null;
-    }
-
-    return $AuthFailureCopyWith<$Res>(_value.failure!, (value) {
-      return _then(_value.copyWith(failure: value) as $Val);
-    });
   }
 }
 
@@ -107,15 +76,7 @@ abstract class _$$_LoginStateCopyWith<$Res>
       __$$_LoginStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Email email,
-      Password password,
-      AuthFailure? failure,
-      FormzStatus status,
-      bool obscurePassword});
-
-  @override
-  $AuthFailureCopyWith<$Res>? get failure;
+  $Res call({Email email, Password password, FormzStatus status});
 }
 
 /// @nodoc
@@ -131,9 +92,7 @@ class __$$_LoginStateCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? failure = freezed,
     Object? status = null,
-    Object? obscurePassword = null,
   }) {
     return _then(_$_LoginState(
       email: null == email
@@ -144,18 +103,10 @@ class __$$_LoginStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as AuthFailure?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      obscurePassword: null == obscurePassword
-          ? _value.obscurePassword
-          : obscurePassword // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -166,9 +117,7 @@ class _$_LoginState implements _LoginState {
   const _$_LoginState(
       {this.email = const Email.pure(),
       this.password = const Password.pure(),
-      this.failure,
-      this.status = FormzStatus.pure,
-      this.obscurePassword = true});
+      this.status = FormzStatus.pure});
 
   @override
   @JsonKey()
@@ -177,17 +126,12 @@ class _$_LoginState implements _LoginState {
   @JsonKey()
   final Password password;
   @override
-  final AuthFailure? failure;
-  @override
   @JsonKey()
   final FormzStatus status;
-  @override
-  @JsonKey()
-  final bool obscurePassword;
 
   @override
   String toString() {
-    return 'LoginState(email: $email, password: $password, failure: $failure, status: $status, obscurePassword: $obscurePassword)';
+    return 'LoginState(email: $email, password: $password, status: $status)';
   }
 
   @override
@@ -198,15 +142,11 @@ class _$_LoginState implements _LoginState {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.failure, failure) || other.failure == failure) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.obscurePassword, obscurePassword) ||
-                other.obscurePassword == obscurePassword));
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, password, failure, status, obscurePassword);
+  int get hashCode => Object.hash(runtimeType, email, password, status);
 
   @JsonKey(ignore: true)
   @override
@@ -219,20 +159,14 @@ abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {final Email email,
       final Password password,
-      final AuthFailure? failure,
-      final FormzStatus status,
-      final bool obscurePassword}) = _$_LoginState;
+      final FormzStatus status}) = _$_LoginState;
 
   @override
   Email get email;
   @override
   Password get password;
   @override
-  AuthFailure? get failure;
-  @override
   FormzStatus get status;
-  @override
-  bool get obscurePassword;
   @override
   @JsonKey(ignore: true)
   _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>

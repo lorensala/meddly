@@ -20,9 +20,7 @@ mixin _$SignUpState {
   Password get password => throw _privateConstructorUsedError;
   TermsAndConditions get termsAndConditions =>
       throw _privateConstructorUsedError;
-  AuthFailure? get failure => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
-  bool get obscurePassword => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpStateCopyWith<SignUpState> get copyWith =>
@@ -39,11 +37,7 @@ abstract class $SignUpStateCopyWith<$Res> {
       {Email email,
       Password password,
       TermsAndConditions termsAndConditions,
-      AuthFailure? failure,
-      FormzStatus status,
-      bool obscurePassword});
-
-  $AuthFailureCopyWith<$Res>? get failure;
+      FormzStatus status});
 }
 
 /// @nodoc
@@ -62,9 +56,7 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? email = null,
     Object? password = null,
     Object? termsAndConditions = null,
-    Object? failure = freezed,
     Object? status = null,
-    Object? obscurePassword = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -79,31 +71,11 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as AuthFailure?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      obscurePassword: null == obscurePassword
-          ? _value.obscurePassword
-          : obscurePassword // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AuthFailureCopyWith<$Res>? get failure {
-    if (_value.failure == null) {
-      return null;
-    }
-
-    return $AuthFailureCopyWith<$Res>(_value.failure!, (value) {
-      return _then(_value.copyWith(failure: value) as $Val);
-    });
   }
 }
 
@@ -119,12 +91,7 @@ abstract class _$$_SignUpStateCopyWith<$Res>
       {Email email,
       Password password,
       TermsAndConditions termsAndConditions,
-      AuthFailure? failure,
-      FormzStatus status,
-      bool obscurePassword});
-
-  @override
-  $AuthFailureCopyWith<$Res>? get failure;
+      FormzStatus status});
 }
 
 /// @nodoc
@@ -141,9 +108,7 @@ class __$$_SignUpStateCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? termsAndConditions = null,
-    Object? failure = freezed,
     Object? status = null,
-    Object? obscurePassword = null,
   }) {
     return _then(_$_SignUpState(
       email: null == email
@@ -158,18 +123,10 @@ class __$$_SignUpStateCopyWithImpl<$Res>
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as AuthFailure?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      obscurePassword: null == obscurePassword
-          ? _value.obscurePassword
-          : obscurePassword // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -181,9 +138,7 @@ class _$_SignUpState implements _SignUpState {
       {this.email = const Email.pure(),
       this.password = const Password.pure(),
       this.termsAndConditions = const TermsAndConditions.pure(),
-      this.failure,
-      this.status = FormzStatus.pure,
-      this.obscurePassword = true});
+      this.status = FormzStatus.pure});
 
   @override
   @JsonKey()
@@ -195,17 +150,12 @@ class _$_SignUpState implements _SignUpState {
   @JsonKey()
   final TermsAndConditions termsAndConditions;
   @override
-  final AuthFailure? failure;
-  @override
   @JsonKey()
   final FormzStatus status;
-  @override
-  @JsonKey()
-  final bool obscurePassword;
 
   @override
   String toString() {
-    return 'SignUpState(email: $email, password: $password, termsAndConditions: $termsAndConditions, failure: $failure, status: $status, obscurePassword: $obscurePassword)';
+    return 'SignUpState(email: $email, password: $password, termsAndConditions: $termsAndConditions, status: $status)';
   }
 
   @override
@@ -218,15 +168,12 @@ class _$_SignUpState implements _SignUpState {
                 other.password == password) &&
             (identical(other.termsAndConditions, termsAndConditions) ||
                 other.termsAndConditions == termsAndConditions) &&
-            (identical(other.failure, failure) || other.failure == failure) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.obscurePassword, obscurePassword) ||
-                other.obscurePassword == obscurePassword));
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password,
-      termsAndConditions, failure, status, obscurePassword);
+  int get hashCode =>
+      Object.hash(runtimeType, email, password, termsAndConditions, status);
 
   @JsonKey(ignore: true)
   @override
@@ -240,9 +187,7 @@ abstract class _SignUpState implements SignUpState {
       {final Email email,
       final Password password,
       final TermsAndConditions termsAndConditions,
-      final AuthFailure? failure,
-      final FormzStatus status,
-      final bool obscurePassword}) = _$_SignUpState;
+      final FormzStatus status}) = _$_SignUpState;
 
   @override
   Email get email;
@@ -251,11 +196,7 @@ abstract class _SignUpState implements SignUpState {
   @override
   TermsAndConditions get termsAndConditions;
   @override
-  AuthFailure? get failure;
-  @override
   FormzStatus get status;
-  @override
-  bool get obscurePassword;
   @override
   @JsonKey(ignore: true)
   _$$_SignUpStateCopyWith<_$_SignUpState> get copyWith =>

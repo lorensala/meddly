@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meddly/features/auth/bloc/bloc.dart';
-import 'package:meddly/features/onboarding/onboarding.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/user/user.dart';
 
 /// {@template user_page}
@@ -41,20 +40,12 @@ class _UserPageState extends State<UserPage> {
 /// {@template user_view}
 /// Displays the Body of UserView
 /// {@endtemplate}
-class UserView extends StatelessWidget {
+class UserView extends ConsumerWidget {
   /// {@macro user_view}
   const UserView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        state.whenOrNull(
-          unauthenticated: () => Navigator.of(context)
-              .pushAndRemoveUntil(OnboardingPage.route(), (_) => false),
-        );
-      },
-      child: const UserBody(),
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    return const UserBody();
   }
 }
