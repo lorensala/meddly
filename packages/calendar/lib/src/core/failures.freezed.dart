@@ -1478,41 +1478,44 @@ mixin _$MedicineFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_Serialization value) serialization,
-    required TResult Function(_SendTimeout value) sendTimeout,
-    required TResult Function(_ReceiveTimeout value) receiveTimeout,
-    required TResult Function(_Response value) response,
-    required TResult Function(_Cancel value) cancel,
-    required TResult Function(_Cache value) cache,
-    required TResult Function(_ConnectionTimeOut value) connectionTimeOut,
+    required TResult Function(MedicineUnknownFailure value) unknown,
+    required TResult Function(MedicineNotFoundFailure value) notFound,
+    required TResult Function(MedicineSerializationFailure value) serialization,
+    required TResult Function(MedicineSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MedicineReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MedicineResponseFailure value) response,
+    required TResult Function(MedicineCancelFailure value) cancel,
+    required TResult Function(MedicineCacheFailure value) cache,
+    required TResult Function(MedicineConnectionTimeOutFailure value)
+        connectionTimeOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_Serialization value)? serialization,
-    TResult? Function(_SendTimeout value)? sendTimeout,
-    TResult? Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult? Function(_Response value)? response,
-    TResult? Function(_Cancel value)? cancel,
-    TResult? Function(_Cache value)? cache,
-    TResult? Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult? Function(MedicineUnknownFailure value)? unknown,
+    TResult? Function(MedicineNotFoundFailure value)? notFound,
+    TResult? Function(MedicineSerializationFailure value)? serialization,
+    TResult? Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MedicineResponseFailure value)? response,
+    TResult? Function(MedicineCancelFailure value)? cancel,
+    TResult? Function(MedicineCacheFailure value)? cache,
+    TResult? Function(MedicineConnectionTimeOutFailure value)?
+        connectionTimeOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unknown value)? unknown,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_Serialization value)? serialization,
-    TResult Function(_SendTimeout value)? sendTimeout,
-    TResult Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult Function(_Response value)? response,
-    TResult Function(_Cancel value)? cancel,
-    TResult Function(_Cache value)? cache,
-    TResult Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult Function(MedicineUnknownFailure value)? unknown,
+    TResult Function(MedicineNotFoundFailure value)? notFound,
+    TResult Function(MedicineSerializationFailure value)? serialization,
+    TResult Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MedicineResponseFailure value)? response,
+    TResult Function(MedicineCancelFailure value)? cancel,
+    TResult Function(MedicineCacheFailure value)? cache,
+    TResult Function(MedicineConnectionTimeOutFailure value)? connectionTimeOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1537,24 +1540,25 @@ class _$MedicineFailureCopyWithImpl<$Res, $Val extends MedicineFailure>
 }
 
 /// @nodoc
-abstract class _$$_UnknownCopyWith<$Res> {
-  factory _$$_UnknownCopyWith(
-          _$_Unknown value, $Res Function(_$_Unknown) then) =
-      __$$_UnknownCopyWithImpl<$Res>;
+abstract class _$$MedicineUnknownFailureCopyWith<$Res> {
+  factory _$$MedicineUnknownFailureCopyWith(_$MedicineUnknownFailure value,
+          $Res Function(_$MedicineUnknownFailure) then) =
+      __$$MedicineUnknownFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_UnknownCopyWithImpl<$Res>
-    extends _$MedicineFailureCopyWithImpl<$Res, _$_Unknown>
-    implements _$$_UnknownCopyWith<$Res> {
-  __$$_UnknownCopyWithImpl(_$_Unknown _value, $Res Function(_$_Unknown) _then)
+class __$$MedicineUnknownFailureCopyWithImpl<$Res>
+    extends _$MedicineFailureCopyWithImpl<$Res, _$MedicineUnknownFailure>
+    implements _$$MedicineUnknownFailureCopyWith<$Res> {
+  __$$MedicineUnknownFailureCopyWithImpl(_$MedicineUnknownFailure _value,
+      $Res Function(_$MedicineUnknownFailure) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Unknown implements _Unknown {
-  const _$_Unknown();
+class _$MedicineUnknownFailure implements MedicineUnknownFailure {
+  const _$MedicineUnknownFailure();
 
   @override
   String toString() {
@@ -1564,7 +1568,7 @@ class _$_Unknown implements _Unknown {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Unknown);
+        (other.runtimeType == runtimeType && other is _$MedicineUnknownFailure);
   }
 
   @override
@@ -1625,15 +1629,17 @@ class _$_Unknown implements _Unknown {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_Serialization value) serialization,
-    required TResult Function(_SendTimeout value) sendTimeout,
-    required TResult Function(_ReceiveTimeout value) receiveTimeout,
-    required TResult Function(_Response value) response,
-    required TResult Function(_Cancel value) cancel,
-    required TResult Function(_Cache value) cache,
-    required TResult Function(_ConnectionTimeOut value) connectionTimeOut,
+    required TResult Function(MedicineUnknownFailure value) unknown,
+    required TResult Function(MedicineNotFoundFailure value) notFound,
+    required TResult Function(MedicineSerializationFailure value) serialization,
+    required TResult Function(MedicineSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MedicineReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MedicineResponseFailure value) response,
+    required TResult Function(MedicineCancelFailure value) cancel,
+    required TResult Function(MedicineCacheFailure value) cache,
+    required TResult Function(MedicineConnectionTimeOutFailure value)
+        connectionTimeOut,
   }) {
     return unknown(this);
   }
@@ -1641,15 +1647,16 @@ class _$_Unknown implements _Unknown {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_Serialization value)? serialization,
-    TResult? Function(_SendTimeout value)? sendTimeout,
-    TResult? Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult? Function(_Response value)? response,
-    TResult? Function(_Cancel value)? cancel,
-    TResult? Function(_Cache value)? cache,
-    TResult? Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult? Function(MedicineUnknownFailure value)? unknown,
+    TResult? Function(MedicineNotFoundFailure value)? notFound,
+    TResult? Function(MedicineSerializationFailure value)? serialization,
+    TResult? Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MedicineResponseFailure value)? response,
+    TResult? Function(MedicineCancelFailure value)? cancel,
+    TResult? Function(MedicineCacheFailure value)? cache,
+    TResult? Function(MedicineConnectionTimeOutFailure value)?
+        connectionTimeOut,
   }) {
     return unknown?.call(this);
   }
@@ -1657,15 +1664,15 @@ class _$_Unknown implements _Unknown {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unknown value)? unknown,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_Serialization value)? serialization,
-    TResult Function(_SendTimeout value)? sendTimeout,
-    TResult Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult Function(_Response value)? response,
-    TResult Function(_Cancel value)? cancel,
-    TResult Function(_Cache value)? cache,
-    TResult Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult Function(MedicineUnknownFailure value)? unknown,
+    TResult Function(MedicineNotFoundFailure value)? notFound,
+    TResult Function(MedicineSerializationFailure value)? serialization,
+    TResult Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MedicineResponseFailure value)? response,
+    TResult Function(MedicineCancelFailure value)? cancel,
+    TResult Function(MedicineCacheFailure value)? cache,
+    TResult Function(MedicineConnectionTimeOutFailure value)? connectionTimeOut,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -1675,30 +1682,30 @@ class _$_Unknown implements _Unknown {
   }
 }
 
-abstract class _Unknown implements MedicineFailure {
-  const factory _Unknown() = _$_Unknown;
+abstract class MedicineUnknownFailure implements MedicineFailure {
+  const factory MedicineUnknownFailure() = _$MedicineUnknownFailure;
 }
 
 /// @nodoc
-abstract class _$$_NotFoundCopyWith<$Res> {
-  factory _$$_NotFoundCopyWith(
-          _$_NotFound value, $Res Function(_$_NotFound) then) =
-      __$$_NotFoundCopyWithImpl<$Res>;
+abstract class _$$MedicineNotFoundFailureCopyWith<$Res> {
+  factory _$$MedicineNotFoundFailureCopyWith(_$MedicineNotFoundFailure value,
+          $Res Function(_$MedicineNotFoundFailure) then) =
+      __$$MedicineNotFoundFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NotFoundCopyWithImpl<$Res>
-    extends _$MedicineFailureCopyWithImpl<$Res, _$_NotFound>
-    implements _$$_NotFoundCopyWith<$Res> {
-  __$$_NotFoundCopyWithImpl(
-      _$_NotFound _value, $Res Function(_$_NotFound) _then)
+class __$$MedicineNotFoundFailureCopyWithImpl<$Res>
+    extends _$MedicineFailureCopyWithImpl<$Res, _$MedicineNotFoundFailure>
+    implements _$$MedicineNotFoundFailureCopyWith<$Res> {
+  __$$MedicineNotFoundFailureCopyWithImpl(_$MedicineNotFoundFailure _value,
+      $Res Function(_$MedicineNotFoundFailure) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_NotFound implements _NotFound {
-  const _$_NotFound();
+class _$MedicineNotFoundFailure implements MedicineNotFoundFailure {
+  const _$MedicineNotFoundFailure();
 
   @override
   String toString() {
@@ -1708,7 +1715,8 @@ class _$_NotFound implements _NotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_NotFound);
+        (other.runtimeType == runtimeType &&
+            other is _$MedicineNotFoundFailure);
   }
 
   @override
@@ -1769,15 +1777,17 @@ class _$_NotFound implements _NotFound {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_Serialization value) serialization,
-    required TResult Function(_SendTimeout value) sendTimeout,
-    required TResult Function(_ReceiveTimeout value) receiveTimeout,
-    required TResult Function(_Response value) response,
-    required TResult Function(_Cancel value) cancel,
-    required TResult Function(_Cache value) cache,
-    required TResult Function(_ConnectionTimeOut value) connectionTimeOut,
+    required TResult Function(MedicineUnknownFailure value) unknown,
+    required TResult Function(MedicineNotFoundFailure value) notFound,
+    required TResult Function(MedicineSerializationFailure value) serialization,
+    required TResult Function(MedicineSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MedicineReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MedicineResponseFailure value) response,
+    required TResult Function(MedicineCancelFailure value) cancel,
+    required TResult Function(MedicineCacheFailure value) cache,
+    required TResult Function(MedicineConnectionTimeOutFailure value)
+        connectionTimeOut,
   }) {
     return notFound(this);
   }
@@ -1785,15 +1795,16 @@ class _$_NotFound implements _NotFound {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_Serialization value)? serialization,
-    TResult? Function(_SendTimeout value)? sendTimeout,
-    TResult? Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult? Function(_Response value)? response,
-    TResult? Function(_Cancel value)? cancel,
-    TResult? Function(_Cache value)? cache,
-    TResult? Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult? Function(MedicineUnknownFailure value)? unknown,
+    TResult? Function(MedicineNotFoundFailure value)? notFound,
+    TResult? Function(MedicineSerializationFailure value)? serialization,
+    TResult? Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MedicineResponseFailure value)? response,
+    TResult? Function(MedicineCancelFailure value)? cancel,
+    TResult? Function(MedicineCacheFailure value)? cache,
+    TResult? Function(MedicineConnectionTimeOutFailure value)?
+        connectionTimeOut,
   }) {
     return notFound?.call(this);
   }
@@ -1801,15 +1812,15 @@ class _$_NotFound implements _NotFound {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unknown value)? unknown,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_Serialization value)? serialization,
-    TResult Function(_SendTimeout value)? sendTimeout,
-    TResult Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult Function(_Response value)? response,
-    TResult Function(_Cancel value)? cancel,
-    TResult Function(_Cache value)? cache,
-    TResult Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult Function(MedicineUnknownFailure value)? unknown,
+    TResult Function(MedicineNotFoundFailure value)? notFound,
+    TResult Function(MedicineSerializationFailure value)? serialization,
+    TResult Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MedicineResponseFailure value)? response,
+    TResult Function(MedicineCancelFailure value)? cancel,
+    TResult Function(MedicineCacheFailure value)? cache,
+    TResult Function(MedicineConnectionTimeOutFailure value)? connectionTimeOut,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -1819,30 +1830,32 @@ class _$_NotFound implements _NotFound {
   }
 }
 
-abstract class _NotFound implements MedicineFailure {
-  const factory _NotFound() = _$_NotFound;
+abstract class MedicineNotFoundFailure implements MedicineFailure {
+  const factory MedicineNotFoundFailure() = _$MedicineNotFoundFailure;
 }
 
 /// @nodoc
-abstract class _$$_SerializationCopyWith<$Res> {
-  factory _$$_SerializationCopyWith(
-          _$_Serialization value, $Res Function(_$_Serialization) then) =
-      __$$_SerializationCopyWithImpl<$Res>;
+abstract class _$$MedicineSerializationFailureCopyWith<$Res> {
+  factory _$$MedicineSerializationFailureCopyWith(
+          _$MedicineSerializationFailure value,
+          $Res Function(_$MedicineSerializationFailure) then) =
+      __$$MedicineSerializationFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SerializationCopyWithImpl<$Res>
-    extends _$MedicineFailureCopyWithImpl<$Res, _$_Serialization>
-    implements _$$_SerializationCopyWith<$Res> {
-  __$$_SerializationCopyWithImpl(
-      _$_Serialization _value, $Res Function(_$_Serialization) _then)
+class __$$MedicineSerializationFailureCopyWithImpl<$Res>
+    extends _$MedicineFailureCopyWithImpl<$Res, _$MedicineSerializationFailure>
+    implements _$$MedicineSerializationFailureCopyWith<$Res> {
+  __$$MedicineSerializationFailureCopyWithImpl(
+      _$MedicineSerializationFailure _value,
+      $Res Function(_$MedicineSerializationFailure) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Serialization implements _Serialization {
-  const _$_Serialization();
+class _$MedicineSerializationFailure implements MedicineSerializationFailure {
+  const _$MedicineSerializationFailure();
 
   @override
   String toString() {
@@ -1852,7 +1865,8 @@ class _$_Serialization implements _Serialization {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Serialization);
+        (other.runtimeType == runtimeType &&
+            other is _$MedicineSerializationFailure);
   }
 
   @override
@@ -1913,15 +1927,17 @@ class _$_Serialization implements _Serialization {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_Serialization value) serialization,
-    required TResult Function(_SendTimeout value) sendTimeout,
-    required TResult Function(_ReceiveTimeout value) receiveTimeout,
-    required TResult Function(_Response value) response,
-    required TResult Function(_Cancel value) cancel,
-    required TResult Function(_Cache value) cache,
-    required TResult Function(_ConnectionTimeOut value) connectionTimeOut,
+    required TResult Function(MedicineUnknownFailure value) unknown,
+    required TResult Function(MedicineNotFoundFailure value) notFound,
+    required TResult Function(MedicineSerializationFailure value) serialization,
+    required TResult Function(MedicineSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MedicineReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MedicineResponseFailure value) response,
+    required TResult Function(MedicineCancelFailure value) cancel,
+    required TResult Function(MedicineCacheFailure value) cache,
+    required TResult Function(MedicineConnectionTimeOutFailure value)
+        connectionTimeOut,
   }) {
     return serialization(this);
   }
@@ -1929,15 +1945,16 @@ class _$_Serialization implements _Serialization {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_Serialization value)? serialization,
-    TResult? Function(_SendTimeout value)? sendTimeout,
-    TResult? Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult? Function(_Response value)? response,
-    TResult? Function(_Cancel value)? cancel,
-    TResult? Function(_Cache value)? cache,
-    TResult? Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult? Function(MedicineUnknownFailure value)? unknown,
+    TResult? Function(MedicineNotFoundFailure value)? notFound,
+    TResult? Function(MedicineSerializationFailure value)? serialization,
+    TResult? Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MedicineResponseFailure value)? response,
+    TResult? Function(MedicineCancelFailure value)? cancel,
+    TResult? Function(MedicineCacheFailure value)? cache,
+    TResult? Function(MedicineConnectionTimeOutFailure value)?
+        connectionTimeOut,
   }) {
     return serialization?.call(this);
   }
@@ -1945,15 +1962,15 @@ class _$_Serialization implements _Serialization {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unknown value)? unknown,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_Serialization value)? serialization,
-    TResult Function(_SendTimeout value)? sendTimeout,
-    TResult Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult Function(_Response value)? response,
-    TResult Function(_Cancel value)? cancel,
-    TResult Function(_Cache value)? cache,
-    TResult Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult Function(MedicineUnknownFailure value)? unknown,
+    TResult Function(MedicineNotFoundFailure value)? notFound,
+    TResult Function(MedicineSerializationFailure value)? serialization,
+    TResult Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MedicineResponseFailure value)? response,
+    TResult Function(MedicineCancelFailure value)? cancel,
+    TResult Function(MedicineCacheFailure value)? cache,
+    TResult Function(MedicineConnectionTimeOutFailure value)? connectionTimeOut,
     required TResult orElse(),
   }) {
     if (serialization != null) {
@@ -1963,30 +1980,32 @@ class _$_Serialization implements _Serialization {
   }
 }
 
-abstract class _Serialization implements MedicineFailure {
-  const factory _Serialization() = _$_Serialization;
+abstract class MedicineSerializationFailure implements MedicineFailure {
+  const factory MedicineSerializationFailure() = _$MedicineSerializationFailure;
 }
 
 /// @nodoc
-abstract class _$$_SendTimeoutCopyWith<$Res> {
-  factory _$$_SendTimeoutCopyWith(
-          _$_SendTimeout value, $Res Function(_$_SendTimeout) then) =
-      __$$_SendTimeoutCopyWithImpl<$Res>;
+abstract class _$$MedicineSendTimeoutFailureCopyWith<$Res> {
+  factory _$$MedicineSendTimeoutFailureCopyWith(
+          _$MedicineSendTimeoutFailure value,
+          $Res Function(_$MedicineSendTimeoutFailure) then) =
+      __$$MedicineSendTimeoutFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SendTimeoutCopyWithImpl<$Res>
-    extends _$MedicineFailureCopyWithImpl<$Res, _$_SendTimeout>
-    implements _$$_SendTimeoutCopyWith<$Res> {
-  __$$_SendTimeoutCopyWithImpl(
-      _$_SendTimeout _value, $Res Function(_$_SendTimeout) _then)
+class __$$MedicineSendTimeoutFailureCopyWithImpl<$Res>
+    extends _$MedicineFailureCopyWithImpl<$Res, _$MedicineSendTimeoutFailure>
+    implements _$$MedicineSendTimeoutFailureCopyWith<$Res> {
+  __$$MedicineSendTimeoutFailureCopyWithImpl(
+      _$MedicineSendTimeoutFailure _value,
+      $Res Function(_$MedicineSendTimeoutFailure) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SendTimeout implements _SendTimeout {
-  const _$_SendTimeout();
+class _$MedicineSendTimeoutFailure implements MedicineSendTimeoutFailure {
+  const _$MedicineSendTimeoutFailure();
 
   @override
   String toString() {
@@ -1996,7 +2015,8 @@ class _$_SendTimeout implements _SendTimeout {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SendTimeout);
+        (other.runtimeType == runtimeType &&
+            other is _$MedicineSendTimeoutFailure);
   }
 
   @override
@@ -2057,15 +2077,17 @@ class _$_SendTimeout implements _SendTimeout {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_Serialization value) serialization,
-    required TResult Function(_SendTimeout value) sendTimeout,
-    required TResult Function(_ReceiveTimeout value) receiveTimeout,
-    required TResult Function(_Response value) response,
-    required TResult Function(_Cancel value) cancel,
-    required TResult Function(_Cache value) cache,
-    required TResult Function(_ConnectionTimeOut value) connectionTimeOut,
+    required TResult Function(MedicineUnknownFailure value) unknown,
+    required TResult Function(MedicineNotFoundFailure value) notFound,
+    required TResult Function(MedicineSerializationFailure value) serialization,
+    required TResult Function(MedicineSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MedicineReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MedicineResponseFailure value) response,
+    required TResult Function(MedicineCancelFailure value) cancel,
+    required TResult Function(MedicineCacheFailure value) cache,
+    required TResult Function(MedicineConnectionTimeOutFailure value)
+        connectionTimeOut,
   }) {
     return sendTimeout(this);
   }
@@ -2073,15 +2095,16 @@ class _$_SendTimeout implements _SendTimeout {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_Serialization value)? serialization,
-    TResult? Function(_SendTimeout value)? sendTimeout,
-    TResult? Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult? Function(_Response value)? response,
-    TResult? Function(_Cancel value)? cancel,
-    TResult? Function(_Cache value)? cache,
-    TResult? Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult? Function(MedicineUnknownFailure value)? unknown,
+    TResult? Function(MedicineNotFoundFailure value)? notFound,
+    TResult? Function(MedicineSerializationFailure value)? serialization,
+    TResult? Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MedicineResponseFailure value)? response,
+    TResult? Function(MedicineCancelFailure value)? cancel,
+    TResult? Function(MedicineCacheFailure value)? cache,
+    TResult? Function(MedicineConnectionTimeOutFailure value)?
+        connectionTimeOut,
   }) {
     return sendTimeout?.call(this);
   }
@@ -2089,15 +2112,15 @@ class _$_SendTimeout implements _SendTimeout {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unknown value)? unknown,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_Serialization value)? serialization,
-    TResult Function(_SendTimeout value)? sendTimeout,
-    TResult Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult Function(_Response value)? response,
-    TResult Function(_Cancel value)? cancel,
-    TResult Function(_Cache value)? cache,
-    TResult Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult Function(MedicineUnknownFailure value)? unknown,
+    TResult Function(MedicineNotFoundFailure value)? notFound,
+    TResult Function(MedicineSerializationFailure value)? serialization,
+    TResult Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MedicineResponseFailure value)? response,
+    TResult Function(MedicineCancelFailure value)? cancel,
+    TResult Function(MedicineCacheFailure value)? cache,
+    TResult Function(MedicineConnectionTimeOutFailure value)? connectionTimeOut,
     required TResult orElse(),
   }) {
     if (sendTimeout != null) {
@@ -2107,30 +2130,32 @@ class _$_SendTimeout implements _SendTimeout {
   }
 }
 
-abstract class _SendTimeout implements MedicineFailure {
-  const factory _SendTimeout() = _$_SendTimeout;
+abstract class MedicineSendTimeoutFailure implements MedicineFailure {
+  const factory MedicineSendTimeoutFailure() = _$MedicineSendTimeoutFailure;
 }
 
 /// @nodoc
-abstract class _$$_ReceiveTimeoutCopyWith<$Res> {
-  factory _$$_ReceiveTimeoutCopyWith(
-          _$_ReceiveTimeout value, $Res Function(_$_ReceiveTimeout) then) =
-      __$$_ReceiveTimeoutCopyWithImpl<$Res>;
+abstract class _$$MedicineReceiveTimeoutFailureCopyWith<$Res> {
+  factory _$$MedicineReceiveTimeoutFailureCopyWith(
+          _$MedicineReceiveTimeoutFailure value,
+          $Res Function(_$MedicineReceiveTimeoutFailure) then) =
+      __$$MedicineReceiveTimeoutFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ReceiveTimeoutCopyWithImpl<$Res>
-    extends _$MedicineFailureCopyWithImpl<$Res, _$_ReceiveTimeout>
-    implements _$$_ReceiveTimeoutCopyWith<$Res> {
-  __$$_ReceiveTimeoutCopyWithImpl(
-      _$_ReceiveTimeout _value, $Res Function(_$_ReceiveTimeout) _then)
+class __$$MedicineReceiveTimeoutFailureCopyWithImpl<$Res>
+    extends _$MedicineFailureCopyWithImpl<$Res, _$MedicineReceiveTimeoutFailure>
+    implements _$$MedicineReceiveTimeoutFailureCopyWith<$Res> {
+  __$$MedicineReceiveTimeoutFailureCopyWithImpl(
+      _$MedicineReceiveTimeoutFailure _value,
+      $Res Function(_$MedicineReceiveTimeoutFailure) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ReceiveTimeout implements _ReceiveTimeout {
-  const _$_ReceiveTimeout();
+class _$MedicineReceiveTimeoutFailure implements MedicineReceiveTimeoutFailure {
+  const _$MedicineReceiveTimeoutFailure();
 
   @override
   String toString() {
@@ -2140,7 +2165,8 @@ class _$_ReceiveTimeout implements _ReceiveTimeout {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ReceiveTimeout);
+        (other.runtimeType == runtimeType &&
+            other is _$MedicineReceiveTimeoutFailure);
   }
 
   @override
@@ -2201,15 +2227,17 @@ class _$_ReceiveTimeout implements _ReceiveTimeout {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_Serialization value) serialization,
-    required TResult Function(_SendTimeout value) sendTimeout,
-    required TResult Function(_ReceiveTimeout value) receiveTimeout,
-    required TResult Function(_Response value) response,
-    required TResult Function(_Cancel value) cancel,
-    required TResult Function(_Cache value) cache,
-    required TResult Function(_ConnectionTimeOut value) connectionTimeOut,
+    required TResult Function(MedicineUnknownFailure value) unknown,
+    required TResult Function(MedicineNotFoundFailure value) notFound,
+    required TResult Function(MedicineSerializationFailure value) serialization,
+    required TResult Function(MedicineSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MedicineReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MedicineResponseFailure value) response,
+    required TResult Function(MedicineCancelFailure value) cancel,
+    required TResult Function(MedicineCacheFailure value) cache,
+    required TResult Function(MedicineConnectionTimeOutFailure value)
+        connectionTimeOut,
   }) {
     return receiveTimeout(this);
   }
@@ -2217,15 +2245,16 @@ class _$_ReceiveTimeout implements _ReceiveTimeout {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_Serialization value)? serialization,
-    TResult? Function(_SendTimeout value)? sendTimeout,
-    TResult? Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult? Function(_Response value)? response,
-    TResult? Function(_Cancel value)? cancel,
-    TResult? Function(_Cache value)? cache,
-    TResult? Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult? Function(MedicineUnknownFailure value)? unknown,
+    TResult? Function(MedicineNotFoundFailure value)? notFound,
+    TResult? Function(MedicineSerializationFailure value)? serialization,
+    TResult? Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MedicineResponseFailure value)? response,
+    TResult? Function(MedicineCancelFailure value)? cancel,
+    TResult? Function(MedicineCacheFailure value)? cache,
+    TResult? Function(MedicineConnectionTimeOutFailure value)?
+        connectionTimeOut,
   }) {
     return receiveTimeout?.call(this);
   }
@@ -2233,15 +2262,15 @@ class _$_ReceiveTimeout implements _ReceiveTimeout {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unknown value)? unknown,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_Serialization value)? serialization,
-    TResult Function(_SendTimeout value)? sendTimeout,
-    TResult Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult Function(_Response value)? response,
-    TResult Function(_Cancel value)? cancel,
-    TResult Function(_Cache value)? cache,
-    TResult Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult Function(MedicineUnknownFailure value)? unknown,
+    TResult Function(MedicineNotFoundFailure value)? notFound,
+    TResult Function(MedicineSerializationFailure value)? serialization,
+    TResult Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MedicineResponseFailure value)? response,
+    TResult Function(MedicineCancelFailure value)? cancel,
+    TResult Function(MedicineCacheFailure value)? cache,
+    TResult Function(MedicineConnectionTimeOutFailure value)? connectionTimeOut,
     required TResult orElse(),
   }) {
     if (receiveTimeout != null) {
@@ -2251,30 +2280,31 @@ class _$_ReceiveTimeout implements _ReceiveTimeout {
   }
 }
 
-abstract class _ReceiveTimeout implements MedicineFailure {
-  const factory _ReceiveTimeout() = _$_ReceiveTimeout;
+abstract class MedicineReceiveTimeoutFailure implements MedicineFailure {
+  const factory MedicineReceiveTimeoutFailure() =
+      _$MedicineReceiveTimeoutFailure;
 }
 
 /// @nodoc
-abstract class _$$_ResponseCopyWith<$Res> {
-  factory _$$_ResponseCopyWith(
-          _$_Response value, $Res Function(_$_Response) then) =
-      __$$_ResponseCopyWithImpl<$Res>;
+abstract class _$$MedicineResponseFailureCopyWith<$Res> {
+  factory _$$MedicineResponseFailureCopyWith(_$MedicineResponseFailure value,
+          $Res Function(_$MedicineResponseFailure) then) =
+      __$$MedicineResponseFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ResponseCopyWithImpl<$Res>
-    extends _$MedicineFailureCopyWithImpl<$Res, _$_Response>
-    implements _$$_ResponseCopyWith<$Res> {
-  __$$_ResponseCopyWithImpl(
-      _$_Response _value, $Res Function(_$_Response) _then)
+class __$$MedicineResponseFailureCopyWithImpl<$Res>
+    extends _$MedicineFailureCopyWithImpl<$Res, _$MedicineResponseFailure>
+    implements _$$MedicineResponseFailureCopyWith<$Res> {
+  __$$MedicineResponseFailureCopyWithImpl(_$MedicineResponseFailure _value,
+      $Res Function(_$MedicineResponseFailure) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Response implements _Response {
-  const _$_Response();
+class _$MedicineResponseFailure implements MedicineResponseFailure {
+  const _$MedicineResponseFailure();
 
   @override
   String toString() {
@@ -2284,7 +2314,8 @@ class _$_Response implements _Response {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Response);
+        (other.runtimeType == runtimeType &&
+            other is _$MedicineResponseFailure);
   }
 
   @override
@@ -2345,15 +2376,17 @@ class _$_Response implements _Response {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_Serialization value) serialization,
-    required TResult Function(_SendTimeout value) sendTimeout,
-    required TResult Function(_ReceiveTimeout value) receiveTimeout,
-    required TResult Function(_Response value) response,
-    required TResult Function(_Cancel value) cancel,
-    required TResult Function(_Cache value) cache,
-    required TResult Function(_ConnectionTimeOut value) connectionTimeOut,
+    required TResult Function(MedicineUnknownFailure value) unknown,
+    required TResult Function(MedicineNotFoundFailure value) notFound,
+    required TResult Function(MedicineSerializationFailure value) serialization,
+    required TResult Function(MedicineSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MedicineReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MedicineResponseFailure value) response,
+    required TResult Function(MedicineCancelFailure value) cancel,
+    required TResult Function(MedicineCacheFailure value) cache,
+    required TResult Function(MedicineConnectionTimeOutFailure value)
+        connectionTimeOut,
   }) {
     return response(this);
   }
@@ -2361,15 +2394,16 @@ class _$_Response implements _Response {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_Serialization value)? serialization,
-    TResult? Function(_SendTimeout value)? sendTimeout,
-    TResult? Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult? Function(_Response value)? response,
-    TResult? Function(_Cancel value)? cancel,
-    TResult? Function(_Cache value)? cache,
-    TResult? Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult? Function(MedicineUnknownFailure value)? unknown,
+    TResult? Function(MedicineNotFoundFailure value)? notFound,
+    TResult? Function(MedicineSerializationFailure value)? serialization,
+    TResult? Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MedicineResponseFailure value)? response,
+    TResult? Function(MedicineCancelFailure value)? cancel,
+    TResult? Function(MedicineCacheFailure value)? cache,
+    TResult? Function(MedicineConnectionTimeOutFailure value)?
+        connectionTimeOut,
   }) {
     return response?.call(this);
   }
@@ -2377,15 +2411,15 @@ class _$_Response implements _Response {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unknown value)? unknown,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_Serialization value)? serialization,
-    TResult Function(_SendTimeout value)? sendTimeout,
-    TResult Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult Function(_Response value)? response,
-    TResult Function(_Cancel value)? cancel,
-    TResult Function(_Cache value)? cache,
-    TResult Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult Function(MedicineUnknownFailure value)? unknown,
+    TResult Function(MedicineNotFoundFailure value)? notFound,
+    TResult Function(MedicineSerializationFailure value)? serialization,
+    TResult Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MedicineResponseFailure value)? response,
+    TResult Function(MedicineCancelFailure value)? cancel,
+    TResult Function(MedicineCacheFailure value)? cache,
+    TResult Function(MedicineConnectionTimeOutFailure value)? connectionTimeOut,
     required TResult orElse(),
   }) {
     if (response != null) {
@@ -2395,28 +2429,30 @@ class _$_Response implements _Response {
   }
 }
 
-abstract class _Response implements MedicineFailure {
-  const factory _Response() = _$_Response;
+abstract class MedicineResponseFailure implements MedicineFailure {
+  const factory MedicineResponseFailure() = _$MedicineResponseFailure;
 }
 
 /// @nodoc
-abstract class _$$_CancelCopyWith<$Res> {
-  factory _$$_CancelCopyWith(_$_Cancel value, $Res Function(_$_Cancel) then) =
-      __$$_CancelCopyWithImpl<$Res>;
+abstract class _$$MedicineCancelFailureCopyWith<$Res> {
+  factory _$$MedicineCancelFailureCopyWith(_$MedicineCancelFailure value,
+          $Res Function(_$MedicineCancelFailure) then) =
+      __$$MedicineCancelFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_CancelCopyWithImpl<$Res>
-    extends _$MedicineFailureCopyWithImpl<$Res, _$_Cancel>
-    implements _$$_CancelCopyWith<$Res> {
-  __$$_CancelCopyWithImpl(_$_Cancel _value, $Res Function(_$_Cancel) _then)
+class __$$MedicineCancelFailureCopyWithImpl<$Res>
+    extends _$MedicineFailureCopyWithImpl<$Res, _$MedicineCancelFailure>
+    implements _$$MedicineCancelFailureCopyWith<$Res> {
+  __$$MedicineCancelFailureCopyWithImpl(_$MedicineCancelFailure _value,
+      $Res Function(_$MedicineCancelFailure) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Cancel implements _Cancel {
-  const _$_Cancel();
+class _$MedicineCancelFailure implements MedicineCancelFailure {
+  const _$MedicineCancelFailure();
 
   @override
   String toString() {
@@ -2426,7 +2462,7 @@ class _$_Cancel implements _Cancel {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Cancel);
+        (other.runtimeType == runtimeType && other is _$MedicineCancelFailure);
   }
 
   @override
@@ -2487,15 +2523,17 @@ class _$_Cancel implements _Cancel {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_Serialization value) serialization,
-    required TResult Function(_SendTimeout value) sendTimeout,
-    required TResult Function(_ReceiveTimeout value) receiveTimeout,
-    required TResult Function(_Response value) response,
-    required TResult Function(_Cancel value) cancel,
-    required TResult Function(_Cache value) cache,
-    required TResult Function(_ConnectionTimeOut value) connectionTimeOut,
+    required TResult Function(MedicineUnknownFailure value) unknown,
+    required TResult Function(MedicineNotFoundFailure value) notFound,
+    required TResult Function(MedicineSerializationFailure value) serialization,
+    required TResult Function(MedicineSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MedicineReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MedicineResponseFailure value) response,
+    required TResult Function(MedicineCancelFailure value) cancel,
+    required TResult Function(MedicineCacheFailure value) cache,
+    required TResult Function(MedicineConnectionTimeOutFailure value)
+        connectionTimeOut,
   }) {
     return cancel(this);
   }
@@ -2503,15 +2541,16 @@ class _$_Cancel implements _Cancel {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_Serialization value)? serialization,
-    TResult? Function(_SendTimeout value)? sendTimeout,
-    TResult? Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult? Function(_Response value)? response,
-    TResult? Function(_Cancel value)? cancel,
-    TResult? Function(_Cache value)? cache,
-    TResult? Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult? Function(MedicineUnknownFailure value)? unknown,
+    TResult? Function(MedicineNotFoundFailure value)? notFound,
+    TResult? Function(MedicineSerializationFailure value)? serialization,
+    TResult? Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MedicineResponseFailure value)? response,
+    TResult? Function(MedicineCancelFailure value)? cancel,
+    TResult? Function(MedicineCacheFailure value)? cache,
+    TResult? Function(MedicineConnectionTimeOutFailure value)?
+        connectionTimeOut,
   }) {
     return cancel?.call(this);
   }
@@ -2519,15 +2558,15 @@ class _$_Cancel implements _Cancel {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unknown value)? unknown,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_Serialization value)? serialization,
-    TResult Function(_SendTimeout value)? sendTimeout,
-    TResult Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult Function(_Response value)? response,
-    TResult Function(_Cancel value)? cancel,
-    TResult Function(_Cache value)? cache,
-    TResult Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult Function(MedicineUnknownFailure value)? unknown,
+    TResult Function(MedicineNotFoundFailure value)? notFound,
+    TResult Function(MedicineSerializationFailure value)? serialization,
+    TResult Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MedicineResponseFailure value)? response,
+    TResult Function(MedicineCancelFailure value)? cancel,
+    TResult Function(MedicineCacheFailure value)? cache,
+    TResult Function(MedicineConnectionTimeOutFailure value)? connectionTimeOut,
     required TResult orElse(),
   }) {
     if (cancel != null) {
@@ -2537,28 +2576,30 @@ class _$_Cancel implements _Cancel {
   }
 }
 
-abstract class _Cancel implements MedicineFailure {
-  const factory _Cancel() = _$_Cancel;
+abstract class MedicineCancelFailure implements MedicineFailure {
+  const factory MedicineCancelFailure() = _$MedicineCancelFailure;
 }
 
 /// @nodoc
-abstract class _$$_CacheCopyWith<$Res> {
-  factory _$$_CacheCopyWith(_$_Cache value, $Res Function(_$_Cache) then) =
-      __$$_CacheCopyWithImpl<$Res>;
+abstract class _$$MedicineCacheFailureCopyWith<$Res> {
+  factory _$$MedicineCacheFailureCopyWith(_$MedicineCacheFailure value,
+          $Res Function(_$MedicineCacheFailure) then) =
+      __$$MedicineCacheFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_CacheCopyWithImpl<$Res>
-    extends _$MedicineFailureCopyWithImpl<$Res, _$_Cache>
-    implements _$$_CacheCopyWith<$Res> {
-  __$$_CacheCopyWithImpl(_$_Cache _value, $Res Function(_$_Cache) _then)
+class __$$MedicineCacheFailureCopyWithImpl<$Res>
+    extends _$MedicineFailureCopyWithImpl<$Res, _$MedicineCacheFailure>
+    implements _$$MedicineCacheFailureCopyWith<$Res> {
+  __$$MedicineCacheFailureCopyWithImpl(_$MedicineCacheFailure _value,
+      $Res Function(_$MedicineCacheFailure) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Cache implements _Cache {
-  const _$_Cache();
+class _$MedicineCacheFailure implements MedicineCacheFailure {
+  const _$MedicineCacheFailure();
 
   @override
   String toString() {
@@ -2568,7 +2609,7 @@ class _$_Cache implements _Cache {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Cache);
+        (other.runtimeType == runtimeType && other is _$MedicineCacheFailure);
   }
 
   @override
@@ -2629,15 +2670,17 @@ class _$_Cache implements _Cache {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_Serialization value) serialization,
-    required TResult Function(_SendTimeout value) sendTimeout,
-    required TResult Function(_ReceiveTimeout value) receiveTimeout,
-    required TResult Function(_Response value) response,
-    required TResult Function(_Cancel value) cancel,
-    required TResult Function(_Cache value) cache,
-    required TResult Function(_ConnectionTimeOut value) connectionTimeOut,
+    required TResult Function(MedicineUnknownFailure value) unknown,
+    required TResult Function(MedicineNotFoundFailure value) notFound,
+    required TResult Function(MedicineSerializationFailure value) serialization,
+    required TResult Function(MedicineSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MedicineReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MedicineResponseFailure value) response,
+    required TResult Function(MedicineCancelFailure value) cancel,
+    required TResult Function(MedicineCacheFailure value) cache,
+    required TResult Function(MedicineConnectionTimeOutFailure value)
+        connectionTimeOut,
   }) {
     return cache(this);
   }
@@ -2645,15 +2688,16 @@ class _$_Cache implements _Cache {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_Serialization value)? serialization,
-    TResult? Function(_SendTimeout value)? sendTimeout,
-    TResult? Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult? Function(_Response value)? response,
-    TResult? Function(_Cancel value)? cancel,
-    TResult? Function(_Cache value)? cache,
-    TResult? Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult? Function(MedicineUnknownFailure value)? unknown,
+    TResult? Function(MedicineNotFoundFailure value)? notFound,
+    TResult? Function(MedicineSerializationFailure value)? serialization,
+    TResult? Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MedicineResponseFailure value)? response,
+    TResult? Function(MedicineCancelFailure value)? cancel,
+    TResult? Function(MedicineCacheFailure value)? cache,
+    TResult? Function(MedicineConnectionTimeOutFailure value)?
+        connectionTimeOut,
   }) {
     return cache?.call(this);
   }
@@ -2661,15 +2705,15 @@ class _$_Cache implements _Cache {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unknown value)? unknown,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_Serialization value)? serialization,
-    TResult Function(_SendTimeout value)? sendTimeout,
-    TResult Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult Function(_Response value)? response,
-    TResult Function(_Cancel value)? cancel,
-    TResult Function(_Cache value)? cache,
-    TResult Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult Function(MedicineUnknownFailure value)? unknown,
+    TResult Function(MedicineNotFoundFailure value)? notFound,
+    TResult Function(MedicineSerializationFailure value)? serialization,
+    TResult Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MedicineResponseFailure value)? response,
+    TResult Function(MedicineCancelFailure value)? cancel,
+    TResult Function(MedicineCacheFailure value)? cache,
+    TResult Function(MedicineConnectionTimeOutFailure value)? connectionTimeOut,
     required TResult orElse(),
   }) {
     if (cache != null) {
@@ -2679,30 +2723,34 @@ class _$_Cache implements _Cache {
   }
 }
 
-abstract class _Cache implements MedicineFailure {
-  const factory _Cache() = _$_Cache;
+abstract class MedicineCacheFailure implements MedicineFailure {
+  const factory MedicineCacheFailure() = _$MedicineCacheFailure;
 }
 
 /// @nodoc
-abstract class _$$_ConnectionTimeOutCopyWith<$Res> {
-  factory _$$_ConnectionTimeOutCopyWith(_$_ConnectionTimeOut value,
-          $Res Function(_$_ConnectionTimeOut) then) =
-      __$$_ConnectionTimeOutCopyWithImpl<$Res>;
+abstract class _$$MedicineConnectionTimeOutFailureCopyWith<$Res> {
+  factory _$$MedicineConnectionTimeOutFailureCopyWith(
+          _$MedicineConnectionTimeOutFailure value,
+          $Res Function(_$MedicineConnectionTimeOutFailure) then) =
+      __$$MedicineConnectionTimeOutFailureCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ConnectionTimeOutCopyWithImpl<$Res>
-    extends _$MedicineFailureCopyWithImpl<$Res, _$_ConnectionTimeOut>
-    implements _$$_ConnectionTimeOutCopyWith<$Res> {
-  __$$_ConnectionTimeOutCopyWithImpl(
-      _$_ConnectionTimeOut _value, $Res Function(_$_ConnectionTimeOut) _then)
+class __$$MedicineConnectionTimeOutFailureCopyWithImpl<$Res>
+    extends _$MedicineFailureCopyWithImpl<$Res,
+        _$MedicineConnectionTimeOutFailure>
+    implements _$$MedicineConnectionTimeOutFailureCopyWith<$Res> {
+  __$$MedicineConnectionTimeOutFailureCopyWithImpl(
+      _$MedicineConnectionTimeOutFailure _value,
+      $Res Function(_$MedicineConnectionTimeOutFailure) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ConnectionTimeOut implements _ConnectionTimeOut {
-  const _$_ConnectionTimeOut();
+class _$MedicineConnectionTimeOutFailure
+    implements MedicineConnectionTimeOutFailure {
+  const _$MedicineConnectionTimeOutFailure();
 
   @override
   String toString() {
@@ -2712,7 +2760,8 @@ class _$_ConnectionTimeOut implements _ConnectionTimeOut {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ConnectionTimeOut);
+        (other.runtimeType == runtimeType &&
+            other is _$MedicineConnectionTimeOutFailure);
   }
 
   @override
@@ -2773,15 +2822,17 @@ class _$_ConnectionTimeOut implements _ConnectionTimeOut {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_Serialization value) serialization,
-    required TResult Function(_SendTimeout value) sendTimeout,
-    required TResult Function(_ReceiveTimeout value) receiveTimeout,
-    required TResult Function(_Response value) response,
-    required TResult Function(_Cancel value) cancel,
-    required TResult Function(_Cache value) cache,
-    required TResult Function(_ConnectionTimeOut value) connectionTimeOut,
+    required TResult Function(MedicineUnknownFailure value) unknown,
+    required TResult Function(MedicineNotFoundFailure value) notFound,
+    required TResult Function(MedicineSerializationFailure value) serialization,
+    required TResult Function(MedicineSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MedicineReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MedicineResponseFailure value) response,
+    required TResult Function(MedicineCancelFailure value) cancel,
+    required TResult Function(MedicineCacheFailure value) cache,
+    required TResult Function(MedicineConnectionTimeOutFailure value)
+        connectionTimeOut,
   }) {
     return connectionTimeOut(this);
   }
@@ -2789,15 +2840,16 @@ class _$_ConnectionTimeOut implements _ConnectionTimeOut {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_Serialization value)? serialization,
-    TResult? Function(_SendTimeout value)? sendTimeout,
-    TResult? Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult? Function(_Response value)? response,
-    TResult? Function(_Cancel value)? cancel,
-    TResult? Function(_Cache value)? cache,
-    TResult? Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult? Function(MedicineUnknownFailure value)? unknown,
+    TResult? Function(MedicineNotFoundFailure value)? notFound,
+    TResult? Function(MedicineSerializationFailure value)? serialization,
+    TResult? Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MedicineResponseFailure value)? response,
+    TResult? Function(MedicineCancelFailure value)? cancel,
+    TResult? Function(MedicineCacheFailure value)? cache,
+    TResult? Function(MedicineConnectionTimeOutFailure value)?
+        connectionTimeOut,
   }) {
     return connectionTimeOut?.call(this);
   }
@@ -2805,15 +2857,15 @@ class _$_ConnectionTimeOut implements _ConnectionTimeOut {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Unknown value)? unknown,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_Serialization value)? serialization,
-    TResult Function(_SendTimeout value)? sendTimeout,
-    TResult Function(_ReceiveTimeout value)? receiveTimeout,
-    TResult Function(_Response value)? response,
-    TResult Function(_Cancel value)? cancel,
-    TResult Function(_Cache value)? cache,
-    TResult Function(_ConnectionTimeOut value)? connectionTimeOut,
+    TResult Function(MedicineUnknownFailure value)? unknown,
+    TResult Function(MedicineNotFoundFailure value)? notFound,
+    TResult Function(MedicineSerializationFailure value)? serialization,
+    TResult Function(MedicineSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MedicineReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MedicineResponseFailure value)? response,
+    TResult Function(MedicineCancelFailure value)? cancel,
+    TResult Function(MedicineCacheFailure value)? cache,
+    TResult Function(MedicineConnectionTimeOutFailure value)? connectionTimeOut,
     required TResult orElse(),
   }) {
     if (connectionTimeOut != null) {
@@ -2823,6 +2875,1489 @@ class _$_ConnectionTimeOut implements _ConnectionTimeOut {
   }
 }
 
-abstract class _ConnectionTimeOut implements MedicineFailure {
-  const factory _ConnectionTimeOut() = _$_ConnectionTimeOut;
+abstract class MedicineConnectionTimeOutFailure implements MedicineFailure {
+  const factory MedicineConnectionTimeOutFailure() =
+      _$MedicineConnectionTimeOutFailure;
+}
+
+/// @nodoc
+mixin _$MeasurementFailure {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notFound,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() connectionTimeOut,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notFound,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? connectionTimeOut,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notFound,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? connectionTimeOut,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeasurementUnknownFailure value) unknown,
+    required TResult Function(MeasurementNotFoundFailure value) notFound,
+    required TResult Function(MeasurementSerializationFailure value)
+        serialization,
+    required TResult Function(MeasurementSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MeasurementReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MeasurementResponseFailure value) response,
+    required TResult Function(MeasurementCancelFailure value) cancel,
+    required TResult Function(MeasurementCacheFailure value) cache,
+    required TResult Function(MeasurementConnectionTimeOutFailure value)
+        connectionTimeOut,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeasurementUnknownFailure value)? unknown,
+    TResult? Function(MeasurementNotFoundFailure value)? notFound,
+    TResult? Function(MeasurementSerializationFailure value)? serialization,
+    TResult? Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MeasurementResponseFailure value)? response,
+    TResult? Function(MeasurementCancelFailure value)? cancel,
+    TResult? Function(MeasurementCacheFailure value)? cache,
+    TResult? Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeasurementUnknownFailure value)? unknown,
+    TResult Function(MeasurementNotFoundFailure value)? notFound,
+    TResult Function(MeasurementSerializationFailure value)? serialization,
+    TResult Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MeasurementResponseFailure value)? response,
+    TResult Function(MeasurementCancelFailure value)? cancel,
+    TResult Function(MeasurementCacheFailure value)? cache,
+    TResult Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MeasurementFailureCopyWith<$Res> {
+  factory $MeasurementFailureCopyWith(
+          MeasurementFailure value, $Res Function(MeasurementFailure) then) =
+      _$MeasurementFailureCopyWithImpl<$Res, MeasurementFailure>;
+}
+
+/// @nodoc
+class _$MeasurementFailureCopyWithImpl<$Res, $Val extends MeasurementFailure>
+    implements $MeasurementFailureCopyWith<$Res> {
+  _$MeasurementFailureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$MeasurementUnknownFailureCopyWith<$Res> {
+  factory _$$MeasurementUnknownFailureCopyWith(
+          _$MeasurementUnknownFailure value,
+          $Res Function(_$MeasurementUnknownFailure) then) =
+      __$$MeasurementUnknownFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeasurementUnknownFailureCopyWithImpl<$Res>
+    extends _$MeasurementFailureCopyWithImpl<$Res, _$MeasurementUnknownFailure>
+    implements _$$MeasurementUnknownFailureCopyWith<$Res> {
+  __$$MeasurementUnknownFailureCopyWithImpl(_$MeasurementUnknownFailure _value,
+      $Res Function(_$MeasurementUnknownFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeasurementUnknownFailure implements MeasurementUnknownFailure {
+  const _$MeasurementUnknownFailure();
+
+  @override
+  String toString() {
+    return 'MeasurementFailure.unknown()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeasurementUnknownFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notFound,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() connectionTimeOut,
+  }) {
+    return unknown();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notFound,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? connectionTimeOut,
+  }) {
+    return unknown?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notFound,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (unknown != null) {
+      return unknown();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeasurementUnknownFailure value) unknown,
+    required TResult Function(MeasurementNotFoundFailure value) notFound,
+    required TResult Function(MeasurementSerializationFailure value)
+        serialization,
+    required TResult Function(MeasurementSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MeasurementReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MeasurementResponseFailure value) response,
+    required TResult Function(MeasurementCancelFailure value) cancel,
+    required TResult Function(MeasurementCacheFailure value) cache,
+    required TResult Function(MeasurementConnectionTimeOutFailure value)
+        connectionTimeOut,
+  }) {
+    return unknown(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeasurementUnknownFailure value)? unknown,
+    TResult? Function(MeasurementNotFoundFailure value)? notFound,
+    TResult? Function(MeasurementSerializationFailure value)? serialization,
+    TResult? Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MeasurementResponseFailure value)? response,
+    TResult? Function(MeasurementCancelFailure value)? cancel,
+    TResult? Function(MeasurementCacheFailure value)? cache,
+    TResult? Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+  }) {
+    return unknown?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeasurementUnknownFailure value)? unknown,
+    TResult Function(MeasurementNotFoundFailure value)? notFound,
+    TResult Function(MeasurementSerializationFailure value)? serialization,
+    TResult Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MeasurementResponseFailure value)? response,
+    TResult Function(MeasurementCancelFailure value)? cancel,
+    TResult Function(MeasurementCacheFailure value)? cache,
+    TResult Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (unknown != null) {
+      return unknown(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeasurementUnknownFailure implements MeasurementFailure {
+  const factory MeasurementUnknownFailure() = _$MeasurementUnknownFailure;
+}
+
+/// @nodoc
+abstract class _$$MeasurementNotFoundFailureCopyWith<$Res> {
+  factory _$$MeasurementNotFoundFailureCopyWith(
+          _$MeasurementNotFoundFailure value,
+          $Res Function(_$MeasurementNotFoundFailure) then) =
+      __$$MeasurementNotFoundFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeasurementNotFoundFailureCopyWithImpl<$Res>
+    extends _$MeasurementFailureCopyWithImpl<$Res, _$MeasurementNotFoundFailure>
+    implements _$$MeasurementNotFoundFailureCopyWith<$Res> {
+  __$$MeasurementNotFoundFailureCopyWithImpl(
+      _$MeasurementNotFoundFailure _value,
+      $Res Function(_$MeasurementNotFoundFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeasurementNotFoundFailure implements MeasurementNotFoundFailure {
+  const _$MeasurementNotFoundFailure();
+
+  @override
+  String toString() {
+    return 'MeasurementFailure.notFound()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeasurementNotFoundFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notFound,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() connectionTimeOut,
+  }) {
+    return notFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notFound,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? connectionTimeOut,
+  }) {
+    return notFound?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notFound,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (notFound != null) {
+      return notFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeasurementUnknownFailure value) unknown,
+    required TResult Function(MeasurementNotFoundFailure value) notFound,
+    required TResult Function(MeasurementSerializationFailure value)
+        serialization,
+    required TResult Function(MeasurementSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MeasurementReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MeasurementResponseFailure value) response,
+    required TResult Function(MeasurementCancelFailure value) cancel,
+    required TResult Function(MeasurementCacheFailure value) cache,
+    required TResult Function(MeasurementConnectionTimeOutFailure value)
+        connectionTimeOut,
+  }) {
+    return notFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeasurementUnknownFailure value)? unknown,
+    TResult? Function(MeasurementNotFoundFailure value)? notFound,
+    TResult? Function(MeasurementSerializationFailure value)? serialization,
+    TResult? Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MeasurementResponseFailure value)? response,
+    TResult? Function(MeasurementCancelFailure value)? cancel,
+    TResult? Function(MeasurementCacheFailure value)? cache,
+    TResult? Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+  }) {
+    return notFound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeasurementUnknownFailure value)? unknown,
+    TResult Function(MeasurementNotFoundFailure value)? notFound,
+    TResult Function(MeasurementSerializationFailure value)? serialization,
+    TResult Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MeasurementResponseFailure value)? response,
+    TResult Function(MeasurementCancelFailure value)? cancel,
+    TResult Function(MeasurementCacheFailure value)? cache,
+    TResult Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (notFound != null) {
+      return notFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeasurementNotFoundFailure implements MeasurementFailure {
+  const factory MeasurementNotFoundFailure() = _$MeasurementNotFoundFailure;
+}
+
+/// @nodoc
+abstract class _$$MeasurementSerializationFailureCopyWith<$Res> {
+  factory _$$MeasurementSerializationFailureCopyWith(
+          _$MeasurementSerializationFailure value,
+          $Res Function(_$MeasurementSerializationFailure) then) =
+      __$$MeasurementSerializationFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeasurementSerializationFailureCopyWithImpl<$Res>
+    extends _$MeasurementFailureCopyWithImpl<$Res,
+        _$MeasurementSerializationFailure>
+    implements _$$MeasurementSerializationFailureCopyWith<$Res> {
+  __$$MeasurementSerializationFailureCopyWithImpl(
+      _$MeasurementSerializationFailure _value,
+      $Res Function(_$MeasurementSerializationFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeasurementSerializationFailure
+    implements MeasurementSerializationFailure {
+  const _$MeasurementSerializationFailure();
+
+  @override
+  String toString() {
+    return 'MeasurementFailure.serialization()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeasurementSerializationFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notFound,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() connectionTimeOut,
+  }) {
+    return serialization();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notFound,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? connectionTimeOut,
+  }) {
+    return serialization?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notFound,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (serialization != null) {
+      return serialization();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeasurementUnknownFailure value) unknown,
+    required TResult Function(MeasurementNotFoundFailure value) notFound,
+    required TResult Function(MeasurementSerializationFailure value)
+        serialization,
+    required TResult Function(MeasurementSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MeasurementReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MeasurementResponseFailure value) response,
+    required TResult Function(MeasurementCancelFailure value) cancel,
+    required TResult Function(MeasurementCacheFailure value) cache,
+    required TResult Function(MeasurementConnectionTimeOutFailure value)
+        connectionTimeOut,
+  }) {
+    return serialization(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeasurementUnknownFailure value)? unknown,
+    TResult? Function(MeasurementNotFoundFailure value)? notFound,
+    TResult? Function(MeasurementSerializationFailure value)? serialization,
+    TResult? Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MeasurementResponseFailure value)? response,
+    TResult? Function(MeasurementCancelFailure value)? cancel,
+    TResult? Function(MeasurementCacheFailure value)? cache,
+    TResult? Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+  }) {
+    return serialization?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeasurementUnknownFailure value)? unknown,
+    TResult Function(MeasurementNotFoundFailure value)? notFound,
+    TResult Function(MeasurementSerializationFailure value)? serialization,
+    TResult Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MeasurementResponseFailure value)? response,
+    TResult Function(MeasurementCancelFailure value)? cancel,
+    TResult Function(MeasurementCacheFailure value)? cache,
+    TResult Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (serialization != null) {
+      return serialization(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeasurementSerializationFailure implements MeasurementFailure {
+  const factory MeasurementSerializationFailure() =
+      _$MeasurementSerializationFailure;
+}
+
+/// @nodoc
+abstract class _$$MeasurementSendTimeoutFailureCopyWith<$Res> {
+  factory _$$MeasurementSendTimeoutFailureCopyWith(
+          _$MeasurementSendTimeoutFailure value,
+          $Res Function(_$MeasurementSendTimeoutFailure) then) =
+      __$$MeasurementSendTimeoutFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeasurementSendTimeoutFailureCopyWithImpl<$Res>
+    extends _$MeasurementFailureCopyWithImpl<$Res,
+        _$MeasurementSendTimeoutFailure>
+    implements _$$MeasurementSendTimeoutFailureCopyWith<$Res> {
+  __$$MeasurementSendTimeoutFailureCopyWithImpl(
+      _$MeasurementSendTimeoutFailure _value,
+      $Res Function(_$MeasurementSendTimeoutFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeasurementSendTimeoutFailure implements MeasurementSendTimeoutFailure {
+  const _$MeasurementSendTimeoutFailure();
+
+  @override
+  String toString() {
+    return 'MeasurementFailure.sendTimeout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeasurementSendTimeoutFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notFound,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() connectionTimeOut,
+  }) {
+    return sendTimeout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notFound,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? connectionTimeOut,
+  }) {
+    return sendTimeout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notFound,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (sendTimeout != null) {
+      return sendTimeout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeasurementUnknownFailure value) unknown,
+    required TResult Function(MeasurementNotFoundFailure value) notFound,
+    required TResult Function(MeasurementSerializationFailure value)
+        serialization,
+    required TResult Function(MeasurementSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MeasurementReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MeasurementResponseFailure value) response,
+    required TResult Function(MeasurementCancelFailure value) cancel,
+    required TResult Function(MeasurementCacheFailure value) cache,
+    required TResult Function(MeasurementConnectionTimeOutFailure value)
+        connectionTimeOut,
+  }) {
+    return sendTimeout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeasurementUnknownFailure value)? unknown,
+    TResult? Function(MeasurementNotFoundFailure value)? notFound,
+    TResult? Function(MeasurementSerializationFailure value)? serialization,
+    TResult? Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MeasurementResponseFailure value)? response,
+    TResult? Function(MeasurementCancelFailure value)? cancel,
+    TResult? Function(MeasurementCacheFailure value)? cache,
+    TResult? Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+  }) {
+    return sendTimeout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeasurementUnknownFailure value)? unknown,
+    TResult Function(MeasurementNotFoundFailure value)? notFound,
+    TResult Function(MeasurementSerializationFailure value)? serialization,
+    TResult Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MeasurementResponseFailure value)? response,
+    TResult Function(MeasurementCancelFailure value)? cancel,
+    TResult Function(MeasurementCacheFailure value)? cache,
+    TResult Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (sendTimeout != null) {
+      return sendTimeout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeasurementSendTimeoutFailure implements MeasurementFailure {
+  const factory MeasurementSendTimeoutFailure() =
+      _$MeasurementSendTimeoutFailure;
+}
+
+/// @nodoc
+abstract class _$$MeasurementReceiveTimeoutFailureCopyWith<$Res> {
+  factory _$$MeasurementReceiveTimeoutFailureCopyWith(
+          _$MeasurementReceiveTimeoutFailure value,
+          $Res Function(_$MeasurementReceiveTimeoutFailure) then) =
+      __$$MeasurementReceiveTimeoutFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeasurementReceiveTimeoutFailureCopyWithImpl<$Res>
+    extends _$MeasurementFailureCopyWithImpl<$Res,
+        _$MeasurementReceiveTimeoutFailure>
+    implements _$$MeasurementReceiveTimeoutFailureCopyWith<$Res> {
+  __$$MeasurementReceiveTimeoutFailureCopyWithImpl(
+      _$MeasurementReceiveTimeoutFailure _value,
+      $Res Function(_$MeasurementReceiveTimeoutFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeasurementReceiveTimeoutFailure
+    implements MeasurementReceiveTimeoutFailure {
+  const _$MeasurementReceiveTimeoutFailure();
+
+  @override
+  String toString() {
+    return 'MeasurementFailure.receiveTimeout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeasurementReceiveTimeoutFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notFound,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() connectionTimeOut,
+  }) {
+    return receiveTimeout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notFound,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? connectionTimeOut,
+  }) {
+    return receiveTimeout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notFound,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (receiveTimeout != null) {
+      return receiveTimeout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeasurementUnknownFailure value) unknown,
+    required TResult Function(MeasurementNotFoundFailure value) notFound,
+    required TResult Function(MeasurementSerializationFailure value)
+        serialization,
+    required TResult Function(MeasurementSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MeasurementReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MeasurementResponseFailure value) response,
+    required TResult Function(MeasurementCancelFailure value) cancel,
+    required TResult Function(MeasurementCacheFailure value) cache,
+    required TResult Function(MeasurementConnectionTimeOutFailure value)
+        connectionTimeOut,
+  }) {
+    return receiveTimeout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeasurementUnknownFailure value)? unknown,
+    TResult? Function(MeasurementNotFoundFailure value)? notFound,
+    TResult? Function(MeasurementSerializationFailure value)? serialization,
+    TResult? Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MeasurementResponseFailure value)? response,
+    TResult? Function(MeasurementCancelFailure value)? cancel,
+    TResult? Function(MeasurementCacheFailure value)? cache,
+    TResult? Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+  }) {
+    return receiveTimeout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeasurementUnknownFailure value)? unknown,
+    TResult Function(MeasurementNotFoundFailure value)? notFound,
+    TResult Function(MeasurementSerializationFailure value)? serialization,
+    TResult Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MeasurementResponseFailure value)? response,
+    TResult Function(MeasurementCancelFailure value)? cancel,
+    TResult Function(MeasurementCacheFailure value)? cache,
+    TResult Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (receiveTimeout != null) {
+      return receiveTimeout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeasurementReceiveTimeoutFailure implements MeasurementFailure {
+  const factory MeasurementReceiveTimeoutFailure() =
+      _$MeasurementReceiveTimeoutFailure;
+}
+
+/// @nodoc
+abstract class _$$MeasurementResponseFailureCopyWith<$Res> {
+  factory _$$MeasurementResponseFailureCopyWith(
+          _$MeasurementResponseFailure value,
+          $Res Function(_$MeasurementResponseFailure) then) =
+      __$$MeasurementResponseFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeasurementResponseFailureCopyWithImpl<$Res>
+    extends _$MeasurementFailureCopyWithImpl<$Res, _$MeasurementResponseFailure>
+    implements _$$MeasurementResponseFailureCopyWith<$Res> {
+  __$$MeasurementResponseFailureCopyWithImpl(
+      _$MeasurementResponseFailure _value,
+      $Res Function(_$MeasurementResponseFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeasurementResponseFailure implements MeasurementResponseFailure {
+  const _$MeasurementResponseFailure();
+
+  @override
+  String toString() {
+    return 'MeasurementFailure.response()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeasurementResponseFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notFound,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() connectionTimeOut,
+  }) {
+    return response();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notFound,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? connectionTimeOut,
+  }) {
+    return response?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notFound,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (response != null) {
+      return response();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeasurementUnknownFailure value) unknown,
+    required TResult Function(MeasurementNotFoundFailure value) notFound,
+    required TResult Function(MeasurementSerializationFailure value)
+        serialization,
+    required TResult Function(MeasurementSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MeasurementReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MeasurementResponseFailure value) response,
+    required TResult Function(MeasurementCancelFailure value) cancel,
+    required TResult Function(MeasurementCacheFailure value) cache,
+    required TResult Function(MeasurementConnectionTimeOutFailure value)
+        connectionTimeOut,
+  }) {
+    return response(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeasurementUnknownFailure value)? unknown,
+    TResult? Function(MeasurementNotFoundFailure value)? notFound,
+    TResult? Function(MeasurementSerializationFailure value)? serialization,
+    TResult? Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MeasurementResponseFailure value)? response,
+    TResult? Function(MeasurementCancelFailure value)? cancel,
+    TResult? Function(MeasurementCacheFailure value)? cache,
+    TResult? Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+  }) {
+    return response?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeasurementUnknownFailure value)? unknown,
+    TResult Function(MeasurementNotFoundFailure value)? notFound,
+    TResult Function(MeasurementSerializationFailure value)? serialization,
+    TResult Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MeasurementResponseFailure value)? response,
+    TResult Function(MeasurementCancelFailure value)? cancel,
+    TResult Function(MeasurementCacheFailure value)? cache,
+    TResult Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (response != null) {
+      return response(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeasurementResponseFailure implements MeasurementFailure {
+  const factory MeasurementResponseFailure() = _$MeasurementResponseFailure;
+}
+
+/// @nodoc
+abstract class _$$MeasurementCancelFailureCopyWith<$Res> {
+  factory _$$MeasurementCancelFailureCopyWith(_$MeasurementCancelFailure value,
+          $Res Function(_$MeasurementCancelFailure) then) =
+      __$$MeasurementCancelFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeasurementCancelFailureCopyWithImpl<$Res>
+    extends _$MeasurementFailureCopyWithImpl<$Res, _$MeasurementCancelFailure>
+    implements _$$MeasurementCancelFailureCopyWith<$Res> {
+  __$$MeasurementCancelFailureCopyWithImpl(_$MeasurementCancelFailure _value,
+      $Res Function(_$MeasurementCancelFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeasurementCancelFailure implements MeasurementCancelFailure {
+  const _$MeasurementCancelFailure();
+
+  @override
+  String toString() {
+    return 'MeasurementFailure.cancel()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeasurementCancelFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notFound,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() connectionTimeOut,
+  }) {
+    return cancel();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notFound,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? connectionTimeOut,
+  }) {
+    return cancel?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notFound,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (cancel != null) {
+      return cancel();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeasurementUnknownFailure value) unknown,
+    required TResult Function(MeasurementNotFoundFailure value) notFound,
+    required TResult Function(MeasurementSerializationFailure value)
+        serialization,
+    required TResult Function(MeasurementSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MeasurementReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MeasurementResponseFailure value) response,
+    required TResult Function(MeasurementCancelFailure value) cancel,
+    required TResult Function(MeasurementCacheFailure value) cache,
+    required TResult Function(MeasurementConnectionTimeOutFailure value)
+        connectionTimeOut,
+  }) {
+    return cancel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeasurementUnknownFailure value)? unknown,
+    TResult? Function(MeasurementNotFoundFailure value)? notFound,
+    TResult? Function(MeasurementSerializationFailure value)? serialization,
+    TResult? Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MeasurementResponseFailure value)? response,
+    TResult? Function(MeasurementCancelFailure value)? cancel,
+    TResult? Function(MeasurementCacheFailure value)? cache,
+    TResult? Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+  }) {
+    return cancel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeasurementUnknownFailure value)? unknown,
+    TResult Function(MeasurementNotFoundFailure value)? notFound,
+    TResult Function(MeasurementSerializationFailure value)? serialization,
+    TResult Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MeasurementResponseFailure value)? response,
+    TResult Function(MeasurementCancelFailure value)? cancel,
+    TResult Function(MeasurementCacheFailure value)? cache,
+    TResult Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (cancel != null) {
+      return cancel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeasurementCancelFailure implements MeasurementFailure {
+  const factory MeasurementCancelFailure() = _$MeasurementCancelFailure;
+}
+
+/// @nodoc
+abstract class _$$MeasurementCacheFailureCopyWith<$Res> {
+  factory _$$MeasurementCacheFailureCopyWith(_$MeasurementCacheFailure value,
+          $Res Function(_$MeasurementCacheFailure) then) =
+      __$$MeasurementCacheFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeasurementCacheFailureCopyWithImpl<$Res>
+    extends _$MeasurementFailureCopyWithImpl<$Res, _$MeasurementCacheFailure>
+    implements _$$MeasurementCacheFailureCopyWith<$Res> {
+  __$$MeasurementCacheFailureCopyWithImpl(_$MeasurementCacheFailure _value,
+      $Res Function(_$MeasurementCacheFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeasurementCacheFailure implements MeasurementCacheFailure {
+  const _$MeasurementCacheFailure();
+
+  @override
+  String toString() {
+    return 'MeasurementFailure.cache()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeasurementCacheFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notFound,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() connectionTimeOut,
+  }) {
+    return cache();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notFound,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? connectionTimeOut,
+  }) {
+    return cache?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notFound,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (cache != null) {
+      return cache();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeasurementUnknownFailure value) unknown,
+    required TResult Function(MeasurementNotFoundFailure value) notFound,
+    required TResult Function(MeasurementSerializationFailure value)
+        serialization,
+    required TResult Function(MeasurementSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MeasurementReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MeasurementResponseFailure value) response,
+    required TResult Function(MeasurementCancelFailure value) cancel,
+    required TResult Function(MeasurementCacheFailure value) cache,
+    required TResult Function(MeasurementConnectionTimeOutFailure value)
+        connectionTimeOut,
+  }) {
+    return cache(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeasurementUnknownFailure value)? unknown,
+    TResult? Function(MeasurementNotFoundFailure value)? notFound,
+    TResult? Function(MeasurementSerializationFailure value)? serialization,
+    TResult? Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MeasurementResponseFailure value)? response,
+    TResult? Function(MeasurementCancelFailure value)? cancel,
+    TResult? Function(MeasurementCacheFailure value)? cache,
+    TResult? Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+  }) {
+    return cache?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeasurementUnknownFailure value)? unknown,
+    TResult Function(MeasurementNotFoundFailure value)? notFound,
+    TResult Function(MeasurementSerializationFailure value)? serialization,
+    TResult Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MeasurementResponseFailure value)? response,
+    TResult Function(MeasurementCancelFailure value)? cancel,
+    TResult Function(MeasurementCacheFailure value)? cache,
+    TResult Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (cache != null) {
+      return cache(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeasurementCacheFailure implements MeasurementFailure {
+  const factory MeasurementCacheFailure() = _$MeasurementCacheFailure;
+}
+
+/// @nodoc
+abstract class _$$MeasurementConnectionTimeOutFailureCopyWith<$Res> {
+  factory _$$MeasurementConnectionTimeOutFailureCopyWith(
+          _$MeasurementConnectionTimeOutFailure value,
+          $Res Function(_$MeasurementConnectionTimeOutFailure) then) =
+      __$$MeasurementConnectionTimeOutFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MeasurementConnectionTimeOutFailureCopyWithImpl<$Res>
+    extends _$MeasurementFailureCopyWithImpl<$Res,
+        _$MeasurementConnectionTimeOutFailure>
+    implements _$$MeasurementConnectionTimeOutFailureCopyWith<$Res> {
+  __$$MeasurementConnectionTimeOutFailureCopyWithImpl(
+      _$MeasurementConnectionTimeOutFailure _value,
+      $Res Function(_$MeasurementConnectionTimeOutFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MeasurementConnectionTimeOutFailure
+    implements MeasurementConnectionTimeOutFailure {
+  const _$MeasurementConnectionTimeOutFailure();
+
+  @override
+  String toString() {
+    return 'MeasurementFailure.connectionTimeOut()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MeasurementConnectionTimeOutFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() notFound,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() connectionTimeOut,
+  }) {
+    return connectionTimeOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? notFound,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? connectionTimeOut,
+  }) {
+    return connectionTimeOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? notFound,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (connectionTimeOut != null) {
+      return connectionTimeOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MeasurementUnknownFailure value) unknown,
+    required TResult Function(MeasurementNotFoundFailure value) notFound,
+    required TResult Function(MeasurementSerializationFailure value)
+        serialization,
+    required TResult Function(MeasurementSendTimeoutFailure value) sendTimeout,
+    required TResult Function(MeasurementReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(MeasurementResponseFailure value) response,
+    required TResult Function(MeasurementCancelFailure value) cancel,
+    required TResult Function(MeasurementCacheFailure value) cache,
+    required TResult Function(MeasurementConnectionTimeOutFailure value)
+        connectionTimeOut,
+  }) {
+    return connectionTimeOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MeasurementUnknownFailure value)? unknown,
+    TResult? Function(MeasurementNotFoundFailure value)? notFound,
+    TResult? Function(MeasurementSerializationFailure value)? serialization,
+    TResult? Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(MeasurementResponseFailure value)? response,
+    TResult? Function(MeasurementCancelFailure value)? cancel,
+    TResult? Function(MeasurementCacheFailure value)? cache,
+    TResult? Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+  }) {
+    return connectionTimeOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MeasurementUnknownFailure value)? unknown,
+    TResult Function(MeasurementNotFoundFailure value)? notFound,
+    TResult Function(MeasurementSerializationFailure value)? serialization,
+    TResult Function(MeasurementSendTimeoutFailure value)? sendTimeout,
+    TResult Function(MeasurementReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(MeasurementResponseFailure value)? response,
+    TResult Function(MeasurementCancelFailure value)? cancel,
+    TResult Function(MeasurementCacheFailure value)? cache,
+    TResult Function(MeasurementConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    required TResult orElse(),
+  }) {
+    if (connectionTimeOut != null) {
+      return connectionTimeOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MeasurementConnectionTimeOutFailure
+    implements MeasurementFailure {
+  const factory MeasurementConnectionTimeOutFailure() =
+      _$MeasurementConnectionTimeOutFailure;
 }

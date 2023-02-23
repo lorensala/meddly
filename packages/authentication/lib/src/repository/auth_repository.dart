@@ -63,12 +63,11 @@ class AuthRepository {
   /// Starts the Sign In with Google Flow.
   ///
   /// Throws a [AuthFailure] if an exception occurs.\
-  /// Returns [bool] if the user is New.
-  Future<Either<AuthFailure, bool>> logInWithGoogle() async {
+  Future<Either<AuthFailure, Unit>> logInWithGoogle() async {
     try {
       final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
-        return right(false);
+        return right(unit);
       }
       final googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
@@ -76,11 +75,9 @@ class AuthRepository {
         idToken: googleAuth.idToken,
       );
 
-      final userCredential =
-          await _firebaseAuth.signInWithCredential(credential);
+      await _firebaseAuth.signInWithCredential(credential);
 
-      //check if user is new and return
-      return right(userCredential.additionalUserInfo!.isNewUser);
+      return right(unit);
     } on FirebaseAuthException catch (e) {
       return left(AuthFailure.fromCode(e.code));
     } catch (_) {

@@ -36,32 +36,74 @@ class CalendarFailure with _$CalendarFailure {
   const factory CalendarFailure.unknown() = CalendarUnknownFailure;
 }
 
+/// {@template medicine_failure}
+/// Failure for Medicine operations.
+/// {@endtemplate}
 @freezed
 class MedicineFailure with _$MedicineFailure {
   /// {@macro medicine_failure}
-  const factory MedicineFailure.unknown() = _Unknown;
+  const factory MedicineFailure.unknown() = MedicineUnknownFailure;
 
   /// {@macro medicine_failure}
-  const factory MedicineFailure.notFound() = _NotFound;
+  const factory MedicineFailure.notFound() = MedicineNotFoundFailure;
 
   /// {@macro medicine_failure}
-  const factory MedicineFailure.serialization() = _Serialization;
+  const factory MedicineFailure.serialization() = MedicineSerializationFailure;
 
   /// {@macro medicine_failure}
-  const factory MedicineFailure.sendTimeout() = _SendTimeout;
+  const factory MedicineFailure.sendTimeout() = MedicineSendTimeoutFailure;
 
   /// {@macro medicine_failure}
-  const factory MedicineFailure.receiveTimeout() = _ReceiveTimeout;
+  const factory MedicineFailure.receiveTimeout() =
+      MedicineReceiveTimeoutFailure;
 
   /// {@macro medicine_failure}
-  const factory MedicineFailure.response() = _Response;
+  const factory MedicineFailure.response() = MedicineResponseFailure;
 
   /// {@macro medicine_failure}
-  const factory MedicineFailure.cancel() = _Cancel;
+  const factory MedicineFailure.cancel() = MedicineCancelFailure;
 
   /// {@macro medicine_failure}
-  const factory MedicineFailure.cache() = _Cache;
+  const factory MedicineFailure.cache() = MedicineCacheFailure;
 
   /// {@macro medicine_failure}
-  const factory MedicineFailure.connectionTimeOut() = _ConnectionTimeOut;
+  const factory MedicineFailure.connectionTimeOut() =
+      MedicineConnectionTimeOutFailure;
+}
+
+/// {@template measurement_failure}
+/// Failure for Measurement operations.
+/// {@endtemplate}
+@freezed
+class MeasurementFailure with _$MeasurementFailure {
+  /// {@macro medicine_failure}
+  const factory MeasurementFailure.unknown() = MeasurementUnknownFailure;
+
+  /// {@macro medicine_failure}
+  const factory MeasurementFailure.notFound() = MeasurementNotFoundFailure;
+
+  /// {@macro medicine_failure}
+  const factory MeasurementFailure.serialization() =
+      MeasurementSerializationFailure;
+
+  /// {@macro medicine_failure}
+  const factory MeasurementFailure.sendTimeout() =
+      MeasurementSendTimeoutFailure;
+
+  /// {@macro medicine_failure}
+  const factory MeasurementFailure.receiveTimeout() =
+      MeasurementReceiveTimeoutFailure;
+
+  /// {@macro medicine_failure}
+  const factory MeasurementFailure.response() = MeasurementResponseFailure;
+
+  /// {@macro medicine_failure}
+  const factory MeasurementFailure.cancel() = MeasurementCancelFailure;
+
+  /// {@macro medicine_failure}
+  const factory MeasurementFailure.cache() = MeasurementCacheFailure;
+
+  /// {@macro medicine_failure}
+  const factory MeasurementFailure.connectionTimeOut() =
+      MeasurementConnectionTimeOutFailure;
 }
