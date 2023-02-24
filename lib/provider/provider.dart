@@ -21,24 +21,6 @@ Dio dio(DioRef ref) {
 }
 
 @riverpod
-Future<void> initHive(InitHiveRef ref) async {
-  await Hive.initFlutter();
-
-  Hive
-    ..registerAdapter(UserDtoAdapter())
-    ..registerAdapter(CalendarDtoAdapter())
-    ..registerAdapter(ConsumptionDtoAdapter())
-    ..registerAdapter(MedicineDtoAdapter())
-    ..registerAdapter(MeasurementDtoAdapter())
-    ..registerAdapter(AppointmentDtoAdapter());
-
-  await Hive.openBox<UserDto>(userBoxKey);
-  await Hive.openBox<List<String>>(preferencesBoxKey);
-  await Hive.openBox<CalendarDto>(calendarBoxKey);
-  await Hive.openBox<MedicineDto>(medicineBoxKey);
-}
-
-@riverpod
 Box<UserDto> userBox(UserBoxRef ref) {
   return Hive.box<UserDto>(userBoxKey);
 }

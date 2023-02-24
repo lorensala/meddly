@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:calendar/calendar.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meddly/core/core.dart';
 
 part 'calendar_bloc.freezed.dart';
 part 'calendar_event.dart';

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
+import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/features/setup/view/setup_page.dart';
+
+import '../../medicine/medicine.dart';
 
 class Features extends StatelessWidget {
   const Features({
@@ -38,14 +41,20 @@ class Features extends StatelessWidget {
               ),
               const SizedBox(width: Sizes.mediumSpacing),
               FeatureCard(
-                name: 'Symptoms',
+                name: 'Medicine',
                 onPressed: () =>
-                    Navigator.of(context).push(CalendarPage.route()),
+                    Navigator.of(context).push(MedicineNamePage.route()),
               ),
               const SizedBox(width: Sizes.mediumSpacing),
               FeatureCard(
                 name: 'Setup',
                 onPressed: () => Navigator.of(context).push(SetupPage.route()),
+              ),
+              const SizedBox(width: Sizes.mediumSpacing),
+              FeatureCard(
+                name: 'Notifications',
+                onPressed: () =>
+                    Navigator.of(context).push(NotificationsPage.route()),
               ),
             ],
           ),

@@ -20,20 +20,6 @@ final dioProvider = AutoDisposeProvider<Dio>.internal(
 );
 
 typedef DioRef = AutoDisposeProviderRef<Dio>;
-String _$initHiveHash() => r'9caa3ee14134ff98b59c0ed2f1659795526a4f47';
-
-/// See also [initHive].
-@ProviderFor(initHive)
-final initHiveProvider = AutoDisposeFutureProvider<void>.internal(
-  initHive,
-  name: r'initHiveProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$initHiveHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef InitHiveRef = AutoDisposeFutureProviderRef<void>;
 String _$userBoxHash() => r'e8d7c94af27d41667eb35791193d389a3ce79217';
 
 /// See also [userBox].

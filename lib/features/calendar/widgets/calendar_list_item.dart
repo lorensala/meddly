@@ -123,48 +123,5 @@ class CalendarListItem extends StatelessWidget {
         ],
       ),
     );
-
-    return Padding(
-      padding: Sizes.horizontalPadding,
-      child: ListTile(
-        title: Text(event.title),
-        subtitle: Text(event.description),
-        leading: Text(
-          event.date.toHoursAndMinutesString(),
-        ),
-        trailing: event.mapOrNull(
-          fromConsumption: (c) {
-            return Checkbox(
-              value: c.consumed,
-              onChanged: (value) {
-                if (value!) {
-                  context.read<CalendarBloc>().add(
-                        CalendarEvent.addConsumption(
-                          consumption: Consumption(
-                            realConsumptionDate: DateTime.now(),
-                            date: c.date,
-                            consumed: false,
-                            medicineId: c.id,
-                          ),
-                        ),
-                      );
-                } else {
-                  context.read<CalendarBloc>().add(
-                        CalendarEvent.deleteConsumption(
-                          consumption: Consumption(
-                            realConsumptionDate: DateTime.now(),
-                            date: c.date,
-                            consumed: true,
-                            medicineId: c.id,
-                          ),
-                        ),
-                      );
-                }
-              },
-            );
-          },
-        ),
-      ),
-    );
   }
 }

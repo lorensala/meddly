@@ -10,6 +10,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/firebase_options.dart';
 import 'package:meddly/inject.dart';
+import 'package:notifications/notifications.dart';
 import 'package:user/user.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -48,6 +49,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     ..registerAdapter(MedicineDtoAdapter())
     ..registerAdapter(MeasurementDtoAdapter())
     ..registerAdapter(AppointmentDtoAdapter());
+
+  await Hive.openBox<UserDto>(userBoxKey);
+  await Hive.openBox<List<String>>(preferencesBoxKey);
+  await Hive.openBox<CalendarDto>(calendarBoxKey);
+  await Hive.openBox<MedicineDto>(medicineBoxKey);
 
   await inject();
 

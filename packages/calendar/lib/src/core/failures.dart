@@ -36,6 +36,9 @@ class CalendarFailure with _$CalendarFailure {
   const factory CalendarFailure.unknown() = CalendarUnknownFailure;
 }
 
+/// {@template medicine_failure}
+/// Failure for Medicine operations.
+/// {@endtemplate}
 @freezed
 class MedicineFailure with _$MedicineFailure {
   /// {@macro medicine_failure}
