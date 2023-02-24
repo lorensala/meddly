@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-import 'package:meddly/features/setup/cubit/cubit.dart';
 import 'package:meddly/features/setup/widgets/setup_body.dart';
-import 'package:meddly/features/user/user.dart';
-import 'package:meddly/l10n/l10n.dart';
 
 /// {@template setup_page}
 /// A description for SetupPage
@@ -38,39 +33,39 @@ class SetupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SetupCubit, SetupState>(
-      listener: (context, state) {
-        if (state.status.isSubmissionSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(
-                'User created successfully!',
-              ),
-            ),
-          );
-          Navigator.of(context)
-              .pushAndRemoveUntil(UserPage.route(), (_) => false);
-        }
-        if (state.status.isSubmissionFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                state.failure!.maybeWhen(
-                  notFound: () => context.l10n.userNotFound,
-                  timeout: () => context.l10n.timeout,
-                  sendTimeout: () => context.l10n.timeout,
-                  receiveTimeout: () => context.l10n.timeout,
-                  orElse: () => context.l10n.unknownError,
-                ),
-              ),
-            ),
-          );
-        }
-      },
-      child: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: const SetupBody(),
-      ),
+    // return BlocListener<SetupCubit, SetupState>(
+    //   listener: (context, state) {
+    //     if (state.status.isSubmissionSuccess) {
+    //       ScaffoldMessenger.of(context).showSnackBar(
+    //         const SnackBar(
+    //           content: Text(
+    //             'User created successfully!',
+    //           ),
+    //         ),
+    //       );
+    //       Navigator.of(context)
+    //           .pushAndRemoveUntil(UserPage.route(), (_) => false);
+    //     }
+    //     if (state.status.isSubmissionFailure) {
+    //       ScaffoldMessenger.of(context).showSnackBar(
+    //         SnackBar(
+    //           content: Text(
+    //             state.failure!.maybeWhen(
+    //               notFound: () => context.l10n.userNotFound,
+    //               timeout: () => context.l10n.timeout,
+    //               sendTimeout: () => context.l10n.timeout,
+    //               receiveTimeout: () => context.l10n.timeout,
+    //               orElse: () => context.l10n.unknownError,
+    //             ),
+    //           ),
+    //         ),
+    //       );
+    //     }
+    //   },
+    //   child:
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: const SetupBody(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/user/provider/user_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:user/user.dart';
@@ -15,9 +16,21 @@ class UserController extends _$UserController {
 
     final res = await repository.createUser(user);
 
-    res.fold(
-      (l) => state = AsyncError(l, StackTrace.current),
-      (_) => state = const AsyncData(null),
+    state = res.fold(
+      (l) => AsyncError(l, StackTrace.current),
+      (_) => const AsyncData(null),
+    );
+  }
+
+  Future<void> logout() async {
+    state = const AsyncLoading();
+    ref.read(userRepositoryProvider).clearCache();
+
+    final res = await ref.read(authRepositoryProvider).signOut();
+
+    state = res.fold(
+      (l) => AsyncError(l, StackTrace.current),
+      (_) => const AsyncData(null),
     );
   }
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'setup_cubit.dart';
+part of 'setup_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -23,7 +23,6 @@ mixin _$SetupState {
   SexInput get sex => throw _privateConstructorUsedError;
   Birthdate get birthdate => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
-  UserFailure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SetupStateCopyWith<SetupState> get copyWith =>
@@ -43,10 +42,7 @@ abstract class $SetupStateCopyWith<$Res> {
       Weight weight,
       SexInput sex,
       Birthdate birthdate,
-      FormzStatus status,
-      UserFailure? failure});
-
-  $UserFailureCopyWith<$Res>? get failure;
+      FormzStatus status});
 }
 
 /// @nodoc
@@ -69,7 +65,6 @@ class _$SetupStateCopyWithImpl<$Res, $Val extends SetupState>
     Object? sex = null,
     Object? birthdate = null,
     Object? status = null,
-    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -100,23 +95,7 @@ class _$SetupStateCopyWithImpl<$Res, $Val extends SetupState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as UserFailure?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserFailureCopyWith<$Res>? get failure {
-    if (_value.failure == null) {
-      return null;
-    }
-
-    return $UserFailureCopyWith<$Res>(_value.failure!, (value) {
-      return _then(_value.copyWith(failure: value) as $Val);
-    });
   }
 }
 
@@ -135,11 +114,7 @@ abstract class _$$_SetupStateCopyWith<$Res>
       Weight weight,
       SexInput sex,
       Birthdate birthdate,
-      FormzStatus status,
-      UserFailure? failure});
-
-  @override
-  $UserFailureCopyWith<$Res>? get failure;
+      FormzStatus status});
 }
 
 /// @nodoc
@@ -160,7 +135,6 @@ class __$$_SetupStateCopyWithImpl<$Res>
     Object? sex = null,
     Object? birthdate = null,
     Object? status = null,
-    Object? failure = freezed,
   }) {
     return _then(_$_SetupState(
       name: null == name
@@ -191,17 +165,13 @@ class __$$_SetupStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as UserFailure?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_SetupState extends _SetupState {
+class _$_SetupState implements _SetupState {
   const _$_SetupState(
       {this.name = const Name.pure(),
       this.lastname = const Lastname.pure(),
@@ -209,9 +179,7 @@ class _$_SetupState extends _SetupState {
       this.weight = const Weight.pure(),
       this.sex = const SexInput.pure(),
       this.birthdate = const Birthdate.pure(),
-      this.status = FormzStatus.pure,
-      this.failure})
-      : super._();
+      this.status = FormzStatus.pure});
 
   @override
   @JsonKey()
@@ -234,12 +202,10 @@ class _$_SetupState extends _SetupState {
   @override
   @JsonKey()
   final FormzStatus status;
-  @override
-  final UserFailure? failure;
 
   @override
   String toString() {
-    return 'SetupState(name: $name, lastname: $lastname, height: $height, weight: $weight, sex: $sex, birthdate: $birthdate, status: $status, failure: $failure)';
+    return 'SetupState(name: $name, lastname: $lastname, height: $height, weight: $weight, sex: $sex, birthdate: $birthdate, status: $status)';
   }
 
   @override
@@ -255,13 +221,12 @@ class _$_SetupState extends _SetupState {
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.birthdate, birthdate) ||
                 other.birthdate == birthdate) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.failure, failure) || other.failure == failure));
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, lastname, height, weight,
-      sex, birthdate, status, failure);
+  int get hashCode => Object.hash(
+      runtimeType, name, lastname, height, weight, sex, birthdate, status);
 
   @JsonKey(ignore: true)
   @override
@@ -270,7 +235,7 @@ class _$_SetupState extends _SetupState {
       __$$_SetupStateCopyWithImpl<_$_SetupState>(this, _$identity);
 }
 
-abstract class _SetupState extends SetupState {
+abstract class _SetupState implements SetupState {
   const factory _SetupState(
       {final Name name,
       final Lastname lastname,
@@ -278,9 +243,7 @@ abstract class _SetupState extends SetupState {
       final Weight weight,
       final SexInput sex,
       final Birthdate birthdate,
-      final FormzStatus status,
-      final UserFailure? failure}) = _$_SetupState;
-  const _SetupState._() : super._();
+      final FormzStatus status}) = _$_SetupState;
 
   @override
   Name get name;
@@ -296,8 +259,6 @@ abstract class _SetupState extends SetupState {
   Birthdate get birthdate;
   @override
   FormzStatus get status;
-  @override
-  UserFailure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$_SetupStateCopyWith<_$_SetupState> get copyWith =>

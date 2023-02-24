@@ -1,4 +1,8 @@
-part of 'setup_cubit.dart';
+import 'package:formz/formz.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:validators/validators.dart';
+
+part 'setup_state.freezed.dart';
 
 @freezed
 class SetupState with _$SetupState {
@@ -10,11 +14,5 @@ class SetupState with _$SetupState {
     @Default(SexInput.pure()) SexInput sex,
     @Default(Birthdate.pure()) Birthdate birthdate,
     @Default(FormzStatus.pure) FormzStatus status,
-    UserFailure? failure,
   }) = _SetupState;
-
-  const SetupState._();
-
-  bool get requiredFieldsAreValid =>
-      name.valid && lastname.valid && birthdate.valid && sex.valid;
 }

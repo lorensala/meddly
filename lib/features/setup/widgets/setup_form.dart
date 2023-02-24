@@ -2,14 +2,12 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/setup/controller/setup_controller.dart';
-import 'package:meddly/features/setup/cubit/cubit.dart';
-import 'package:meddly/features/setup/provider/setup_provider.dart';
-import 'package:meddly/features/user/controller/user_controller.dart';
+import 'package:meddly/features/setup/controller/controller.dart';
+import 'package:meddly/features/setup/provider/provider.dart';
+import 'package:meddly/features/user/controller/controller.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -40,15 +38,15 @@ class SetupForm extends StatelessWidget {
           SizedBox(height: Sizes.mediumSpacing),
           _WeightInput(),
           SizedBox(height: Sizes.mediumSpacing),
-          _CreateAccountButton()
+          _SaveButton()
         ],
       ),
     );
   }
 }
 
-class _CreateAccountButton extends ConsumerWidget {
-  const _CreateAccountButton();
+class _SaveButton extends ConsumerWidget {
+  const _SaveButton();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -132,6 +130,7 @@ class _BirthdateInput extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController();
+    final notifier = ref.watch(setupControllerProvider.notifier);
     final birthdate = ref.watch(setupBirthdateProvider);
     final errorText = ref.watch(birthdateErrorMessageProvider);
 
@@ -158,7 +157,7 @@ class _BirthdateInput extends HookConsumerWidget {
               ).then((value) {
                 if (value != null) {
                   controller.text = value.toString().dateTimeStringFormat();
-                  context.read<SetupCubit>().birthdateChanged(value.toString());
+                  notifier.birthdateChanged(value.toString());
                 }
               });
             } else {
@@ -179,9 +178,7 @@ class _BirthdateInput extends HookConsumerWidget {
                             onDateTimeChanged: (value) {
                               controller.text =
                                   value.toString().dateTimeStringFormat();
-                              context
-                                  .read<SetupCubit>()
-                                  .birthdateChanged(value.toString());
+                              notifier.birthdateChanged(value.toString());
                             },
                           ),
                         ),
