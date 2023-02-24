@@ -20,7 +20,7 @@ final greetingProvider = AutoDisposeProvider<String>.internal(
 );
 
 typedef GreetingRef = AutoDisposeProviderRef<String>;
-String _$userInitialsHash() => r'6155ca2cf4684e51d3d7345841e28b2545ef9e40';
+String _$userInitialsHash() => r'0a1f58127eb8cfc4828b49d9595678759104e0f6';
 
 /// See also [userInitials].
 @ProviderFor(userInitials)

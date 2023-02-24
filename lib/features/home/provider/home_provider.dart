@@ -20,7 +20,7 @@ String greeting(GreetingRef ref) {
 @riverpod
 String userInitials(UserInitialsRef ref) {
   return ref.watch(userProvider).fold(
-    () => 'AN',
+    () => 'NN',
     (user) {
       return '${user.firstName[0]}${user.lastName[0]}';
     },

@@ -39,38 +39,6 @@ class SignUpView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // if (state.status.isSubmissionSuccess) {
-    //   Navigator.of(context)
-    //       .pushAndRemoveUntil(UserPage.route(), (_) => false);
-    // }
-    // if (state.status.isSubmissionFailure) {
-    //   ScaffoldMessenger.of(context)
-    //     ..hideCurrentSnackBar()
-    //     ..showSnackBar(
-    //       SnackBar(
-    //         content: Text(
-    //           state.failure!.maybeWhen(
-    //             orElse: () => context.l10n.unknownError,
-    //             accountsExistsWithDifferentCredentials: () =>
-    //                 context.l10n.accountsExistsWithDifferentCredentials,
-    //             serverError: () => context.l10n.serverError,
-    //             emailAlreadyInUse: () => context.l10n.emailAlreadyInUse,
-    //             operationNotAllowed: () => context.l10n.operationNotAllowed,
-    //             userDisabled: () => context.l10n.userDisabled,
-    //             userNotFound: () => context.l10n.userNotFound,
-    //             wrongPassword: () => context.l10n.wrongPassword,
-    //             tooManyRequests: () => context.l10n.tooManyRequests,
-    //             invalidEmailAndPasswordCombination: () =>
-    //                 context.l10n.invalidEmailAndPasswordCombination,
-    //             invalidEmail: () => context.l10n.invalidEmail,
-    //           ),
-    //         ),
-    //       ),
-    //     );
-    // }
-
-    // TODO(lorenzo): listen to firebase auth to navigate or use navigator with riverpod
-
     ref.listen(authControllerProvider, (_, state) {
       state.whenOrNull(
         error: (err, stackTrace) => ScaffoldMessenger.of(context)

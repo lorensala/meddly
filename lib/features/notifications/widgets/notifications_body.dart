@@ -24,6 +24,7 @@ class NotificationsBody extends ConsumerWidget {
         return Padding(
           padding: Sizes.padding,
           child: ListView.separated(
+            physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               final preference = NotificationPreference.values[index];
               return ProviderScope(overrides: [

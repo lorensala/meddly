@@ -1,29 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/user/user.dart';
 
 /// {@template user_page}
 /// A description for UserPage
 /// {@endtemplate}
-class UserPage extends StatefulWidget {
+class UserPage extends StatelessWidget {
   /// {@macro user_page}
   const UserPage({super.key});
 
   /// The static route for UserPage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const UserPage());
-  }
-
-  @override
-  State<UserPage> createState() => _UserPageState();
-}
-
-class _UserPageState extends State<UserPage> {
-  @override
-  void initState() {
-    context.read<UserBloc>().add(const UserEvent.checkIfUserExists());
-    super.initState();
   }
 
   @override
