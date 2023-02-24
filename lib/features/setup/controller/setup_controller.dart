@@ -117,7 +117,7 @@ class SetupController extends _$SetupController {
       weight: double.tryParse(state.weight.value),
     );
 
-    ref.watch(userControllerProvider.notifier).createUser(newUser);
+    ref.read(userControllerProvider.notifier).createUser(newUser);
 
     // if (state.status == FormzStatus.submissionInProgress) return;
     // emit(state.copyWith(status: FormzStatus.submissionInProgress));

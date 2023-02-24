@@ -1,8 +1,8 @@
 import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/auth/provider/auth_provider.dart';
+import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/user/user.dart';
@@ -36,7 +36,7 @@ class App extends ConsumerWidget {
         theme: ThemeManager.lightTheme,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        home: user == null ? const OnboardingPage() : const UserPage(),
+        home: user == null ? const OnboardingPage() : const HomePage(),
       ),
     );
   }

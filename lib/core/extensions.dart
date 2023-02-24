@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 extension StringX on String {
   String capitalize() => split(' ').map((word) {
@@ -155,4 +158,22 @@ extension DateTimeX on DateTime {
 extension EitherX<L, R> on Either<L, R> {
   R asRight() => (this as Right<L, R>).value; //
   L asLeft() => (this as Left<L, R>).value;
+}
+
+extension RefDebounceX on Ref {
+  /// Delays an execution by a bit such that if a dependency changes multiple
+  /// time rapidly, the rest of the code is only run once.
+  Future<void> debounce(Duration duration) {
+    final completer = Completer<void>();
+    final timer = Timer(duration, () {
+      if (!completer.isCompleted) completer.complete();
+    });
+    onDispose(() {
+      timer.cancel();
+      if (!completer.isCompleted) {
+        completer.completeError(StateError('Cancelled'));
+      }
+    });
+    return completer.future;
+  }
 }

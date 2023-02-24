@@ -16,11 +16,7 @@ class SetupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
-      ),
+    return Padding(
       padding: Sizes.padding,
       child: Column(
         mainAxisSize: MainAxisSize.min,

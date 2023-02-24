@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:formz/formz.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/forgot_password/cubit/cubit.dart';
+import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/forgot_password/controller/forgot_password_controller.dart';
+import 'package:meddly/features/forgot_password/provider/forgot_password_provider.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -28,49 +30,41 @@ class ForgotPasswordForm extends StatelessWidget {
   }
 }
 
-class _SendPasswordResetEmailButton extends StatelessWidget {
+class _SendPasswordResetEmailButton extends ConsumerWidget {
   const _SendPasswordResetEmailButton();
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
-      buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) {
-        final cubit = context.watch<ForgotPasswordCubit>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(forgotPasswordControllerProvider.notifier);
+    final isLoading = ref.watch(authControllerProvider).isLoading;
+    final l10n = ref.watch(l10nProvider);
+    final isValid = ref.watch(isForgotPasswordEmailValidProvider);
 
-        return Button(
-          isValid: state.email.valid,
-          isLoading: state.status.isSubmissionInProgress,
-          onPressed: cubit.sendPasswordResetEmail,
-          label: context.l10n.sendPasswordResetEmail,
-        );
-      },
+    return Button(
+      isValid: isValid,
+      isLoading: isLoading,
+      onPressed: notifier.sendPasswordResetEmail,
+      label: l10n.sendPasswordResetEmail,
     );
   }
 }
 
-class _EmailInput extends StatelessWidget {
+class _EmailInput extends ConsumerWidget {
   const _EmailInput();
 
   @override
-  Widget build(BuildContext context) {
-    final cubit = context.watch<ForgotPasswordCubit>();
-    return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
-      builder: (context, state) {
-        return TextFormField(
-          style: Theme.of(context).textTheme.bodyMedium,
-          onChanged: cubit.onEmailChanged,
-          decoration: InputDecoration(
-            errorText: !state.email.pure
-                ? state.email.error?.when(
-                    invalid: () => context.l10n.invalidEmail,
-                    empty: () => context.l10n.emailEmpty,
-                  )
-                : null,
-            hintText: context.l10n.emailHint,
-          ),
-        );
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(forgotPasswordControllerProvider.notifier);
+    final errorText = ref.watch(forgotPasswordEmailErrorProvider);
+    final l10n = ref.watch(l10nProvider);
+
+    return TextFormField(
+      style: Theme.of(context).textTheme.bodyMedium,
+      onChanged: notifier.onEmailChanged,
+      decoration: InputDecoration(
+        errorText: errorText,
+        hintText: l10n.emailHint,
+      ),
     );
   }
 }

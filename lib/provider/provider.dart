@@ -13,6 +13,7 @@ part 'provider.g.dart';
 Dio dio(DioRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return Dio()
+    ..options.baseUrl = 'http://localhost:11001'
     ..interceptors.addAll([
       AuthInterceptor(authRepository),
       LogInterceptor(requestBody: true, responseBody: true)

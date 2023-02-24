@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/widgets/onboarding_body.dart';
 
 /// {@template onboarding_page}
@@ -35,7 +35,7 @@ class OnboardingView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(authControllerProvider, (_, state) {
       state.whenOrNull(
-        //TODO(lorenzo): navigate ... data: (data) => Navigate.toHome(),
+        data: (_) => Navigator.of(context).pushReplacement(HomePage.route()),
         error: (err, stackTrace) => ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(

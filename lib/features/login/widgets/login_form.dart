@@ -16,12 +16,8 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: Sizes.padding,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(20),
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: const [

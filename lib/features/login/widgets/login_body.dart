@@ -16,9 +16,9 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Sizes.padding,
+    return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: const [
           Center(child: LoginForm()),
           SizedBox(height: Sizes.mediumSpacing),

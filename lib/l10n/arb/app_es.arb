@@ -121,5 +121,8 @@
     "instructions": "Instrucciones",
     "instructionsHint": "Ej. Tomar con agua",
     "invalidInstructions": "Las instrucciones son inválidas",
-    "instructionsTooLong": "Las instrucciones no pueden tener más de 100 caracteres"
+    "instructionsTooLong": "Las instrucciones no pueden tener más de 100 caracteres",
+    "greetingMorning": "Buenos días",
+    "greetingAfternoon": "Buenas tardes",
+    "greetingEvening": "Buenas noches"
 }

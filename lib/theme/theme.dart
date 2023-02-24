@@ -45,7 +45,7 @@ class ThemeManager {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.scaffoldBackgroundColor,
+      fillColor: AppColors.secondary,
       hintStyle: textTheme.bodyMedium!.copyWith(
         color: textTheme.bodyMedium!.color!.withOpacity(0.4),
       ),

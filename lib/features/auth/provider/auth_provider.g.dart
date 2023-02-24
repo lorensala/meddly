@@ -35,18 +35,4 @@ final currentUserProvider = AutoDisposeProvider<User?>.internal(
 );
 
 typedef CurrentUserRef = AutoDisposeProviderRef<User?>;
-String _$authChangesHash() => r'b42669aa1238a45fc3705916006621962b22658d';
-
-/// See also [authChanges].
-@ProviderFor(authChanges)
-final authChangesProvider = AutoDisposeProvider<Stream<Option<User>>>.internal(
-  authChanges,
-  name: r'authChangesProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$authChangesHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef AuthChangesRef = AutoDisposeProviderRef<Stream<Option<User>>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

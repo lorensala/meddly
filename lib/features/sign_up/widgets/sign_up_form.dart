@@ -15,12 +15,8 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: Sizes.padding,
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(20),
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: const [

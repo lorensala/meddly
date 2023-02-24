@@ -34,6 +34,20 @@ final userCacheProvider = AutoDisposeProvider<UserCache>.internal(
 );
 
 typedef UserCacheRef = AutoDisposeProviderRef<UserCache>;
+String _$userHash() => r'6925ffb4ade837086923c2782694e7a57d7ed6c5';
+
+/// See also [user].
+@ProviderFor(user)
+final userProvider = AutoDisposeProvider<Option<User>>.internal(
+  user,
+  name: r'userProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$userHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UserRef = AutoDisposeProviderRef<Option<User>>;
 String _$userRepositoryHash() => r'2eb62b7befa9c63f0b1cfb68394825ddf57cb53a';
 
 /// See also [userRepository].
