@@ -1,62 +1,48 @@
 // ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/calendar/bloc/bloc.dart';
-import 'package:meddly/features/calendar/cubit/cubit.dart';
+import 'package:meddly/features/calendar/controller/calendar_controller.dart';
 import 'package:meddly/features/calendar/widgets/widgets.dart';
 
-class CalendarList extends StatelessWidget {
+import '../provider/provider.dart';
+
+class CalendarList extends ConsumerWidget {
   const CalendarList({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<CalendarBloc, CalendarState>(
-      builder: (context, state) {
-        return state.when(
-          initial: () => const Center(child: Text('Empty')),
-          loading: () => const Center(
-            child: RepaintBoundary(child: CircularProgressIndicator()),
-          ),
-          success: (events) {
-            final selectedDate = context.select<SelectedDateCubit, DateTime?>(
-              (cubit) => cubit.state.selectedDate,
-            );
-            final filteredEvents = events
-                .where(
-                  (event) =>
-                      event.date.day == selectedDate!.day &&
-                      event.date.month == selectedDate.month &&
-                      event.date.year == selectedDate.year,
-                )
-                .toList();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final calendarEvents = ref.watch(calendarEventsProvider);
+    final selectedDate = ref.watch(selectedDateProvider);
 
-            return Expanded(
-              flex: 2,
-              child: ColoredBox(
-                color: context.colorScheme.background,
-                child: RefreshIndicator(
-                  onRefresh: () async {
-                    context.read<CalendarBloc>().add(
-                          const CalendarEvent.fetchAll(),
-                        );
-                  },
-                  child: ListView.separated(
-                    separatorBuilder: (_, __) =>
-                        const SizedBox(height: Sizes.mediumSpacing),
-                    itemCount: filteredEvents.length,
-                    itemBuilder: (context, index) {
-                      return CalendarListItem(
-                        event: filteredEvents[index],
-                      );
-                    },
-                  ),
-                ),
-              ),
-            );
+    if (calendarEvents.isEmpty) return const SizedBox.shrink();
+
+    final filteredEvents = calendarEvents
+        .where(
+          (event) => event.date.isSameDay(selectedDate),
+        )
+        .toList();
+
+    return Expanded(
+      flex: 2,
+      child: ColoredBox(
+        color: context.colorScheme.background,
+        child: RefreshIndicator(
+          onRefresh: () async {
+            ref.read(calendarControllerProvider.notifier).refresh();
           },
-          failure: (failure) => Center(child: Text(failure.toString())),
-        );
-      },
+          child: ListView.separated(
+            separatorBuilder: (_, __) =>
+                const SizedBox(height: Sizes.mediumSpacing),
+            itemCount: filteredEvents.length,
+            itemBuilder: (context, index) {
+              return CalendarListItem(
+                event: filteredEvents[index],
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }

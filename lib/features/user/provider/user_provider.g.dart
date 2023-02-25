@@ -63,11 +63,11 @@ final userRepositoryProvider = AutoDisposeProvider<UserRepository>.internal(
 );
 
 typedef UserRepositoryRef = AutoDisposeProviderRef<UserRepository>;
-String _$checkIfUserExistHash() => r'66538626e8d38a7b3509d2bc5c0b9a66a5a2f161';
+String _$checkIfUserExistHash() => r'959ca1542d2d8f5800ad17bb869a6183a3275945';
 
 /// See also [checkIfUserExist].
 @ProviderFor(checkIfUserExist)
-final checkIfUserExistProvider = AutoDisposeProvider<bool>.internal(
+final checkIfUserExistProvider = AutoDisposeFutureProvider<bool>.internal(
   checkIfUserExist,
   name: r'checkIfUserExistProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -77,5 +77,5 @@ final checkIfUserExistProvider = AutoDisposeProvider<bool>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef CheckIfUserExistRef = AutoDisposeProviderRef<bool>;
+typedef CheckIfUserExistRef = AutoDisposeFutureProviderRef<bool>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

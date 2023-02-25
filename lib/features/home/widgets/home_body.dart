@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/home/provider/provider.dart';
 import 'package:meddly/features/home/widgets/widgets.dart';
@@ -24,80 +23,33 @@ class HomeBody extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const AvatarAndSettings(),
-              const SizedBox(height: Sizes.largeSpacing),
-              const UserGreetings(),
-              const SizedBox(height: Sizes.largeSpacing),
-              Text(
-                'Today events',
-                style: context.textTheme.titleLarge,
-              ),
-              const SizedBox(height: Sizes.mediumSpacing),
-              ListView(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  Container(
-                    padding: Sizes.padding,
-                    decoration: BoxDecoration(
-                      color: context.colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(Sizes.borderRadius),
-                    ),
-                    child: Row(
-                      children: [
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: context.colorScheme.background,
-                            borderRadius:
-                                BorderRadius.circular(Sizes.borderRadius),
-                          ),
-                          child: const SizedBox(
-                            height: 48,
-                            width: 48,
-                            child: Icon(
-                              Icons.medication_rounded,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: Sizes.mediumSpacing),
-                        Text(
-                          'Ibuprofeno',
-                          style: context.textTheme.bodyLarge,
-                        ),
-                        const Spacer(),
-                        // chevron right
-                        SizedBox(
-                          height: 48,
-                          width: 48,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: context.colorScheme.background,
-                              borderRadius:
-                                  BorderRadius.circular(Sizes.borderRadius),
-                            ),
-                            child: Center(
-                              child: SvgPicture.asset(
-                                Assets.chevron,
-                                width: 16,
-                                height: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: Sizes.mediumSpacing),
-              const Features(),
-              const SizedBox(height: Sizes.mediumSpacing),
-              const YourLastPredictions()
+              UserGreetings(),
+              SizedBox(height: Sizes.largeSpacing),
+              HomeTitle(title: 'Today events'),
+              SizedBox(height: Sizes.mediumSpacing),
+              TodayEventsList(),
+              SizedBox(height: Sizes.mediumSpacing),
+              Features(),
+              SizedBox(height: Sizes.mediumSpacing),
+              YourLastPredictions()
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class HomeTitle extends StatelessWidget {
+  const HomeTitle({super.key, required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: context.textTheme.titleLarge,
     );
   }
 }
@@ -112,10 +64,6 @@ class YourLastPredictions extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Your last predictions',
-          style: context.textTheme.titleLarge,
-        ),
         const SizedBox(height: Sizes.mediumSpacing),
         ListView(
           physics: const NeverScrollableScrollPhysics(),

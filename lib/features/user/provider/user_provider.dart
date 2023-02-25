@@ -40,19 +40,26 @@ UserRepository userRepository(UserRepositoryRef ref) {
 }
 
 @riverpod
-bool checkIfUserExist(CheckIfUserExistRef ref) {
+Future<bool> checkIfUserExist(CheckIfUserExistRef ref) async {
   final repository = ref.watch(userRepositoryProvider);
 
   final res = repository.getUser();
 
   if (res.isLeft()) {
-    return false;
+    return Future.value(false);
   }
 
   final userOrNull = res.asRight();
 
   if (userOrNull == null) {
-    return false;
+    final res = await repository.fetchUser();
+
+    res.fold(
+      (l) => false,
+      (r) => true,
+    );
+
+    ref.invalidateSelf();
   }
 
   return true;

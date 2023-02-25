@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/widgets/onboarding_body.dart';
+import 'package:meddly/features/splash/splash.dart';
 
 /// {@template onboarding_page}
 /// A description for OnboardingPage
@@ -35,7 +36,7 @@ class OnboardingView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(authControllerProvider, (_, state) {
       state.whenOrNull(
-        data: (_) => Navigator.of(context).pushReplacement(HomePage.route()),
+        data: (_) => Navigator.of(context).pushReplacement(SplashPage.route()),
         error: (err, stackTrace) => ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(

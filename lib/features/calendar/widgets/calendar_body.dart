@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/calendar/bloc/bloc.dart';
 import 'package:meddly/features/calendar/widgets/widgets.dart';
 
 /// {@template calendar_body}
@@ -14,17 +13,13 @@ class CalendarBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CalendarBloc, CalendarState>(
-      builder: (context, state) {
-        return Column(
-          children: const [
-            CalendarDateAndDayIndicator(),
-            CalendarDayList(),
-            SizedBox(height: Sizes.mediumSpacing),
-            CalendarList(),
-          ],
-        );
-      },
+    return Column(
+      children: const [
+        CalendarDateAndDayIndicator(),
+        CalendarDayList(),
+        SizedBox(height: Sizes.mediumSpacing),
+        CalendarList(),
+      ],
     );
   }
 }

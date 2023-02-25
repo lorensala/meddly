@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/calendar/calendar.dart';
-import 'package:meddly/features/calendar/cubit/selected_date_cubit.dart';
+
+import '../provider/provider.dart';
 
 class CalendarDateAndDayIndicator extends StatelessWidget {
   const CalendarDateAndDayIndicator({
@@ -16,17 +17,23 @@ class CalendarDateAndDayIndicator extends StatelessWidget {
         color: context.colorScheme.background,
         child: Column(
           children: [
-            BlocBuilder<SelectedDateCubit, SelectedDateState>(
-              builder: (_, state) {
-                return Text(
-                  state.selectedDate!.toNamedDayNumberAndMonthString(),
-                );
-              },
-            ),
+            _SelectedDateText(),
             const Icon(Icons.arrow_drop_down),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _SelectedDateText extends ConsumerWidget {
+  const _SelectedDateText();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedDate = ref.watch(selectedDateProvider);
+    return Text(
+      selectedDate.toNamedDayNumberAndMonthString(),
     );
   }
 }
