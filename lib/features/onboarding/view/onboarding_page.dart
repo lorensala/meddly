@@ -36,6 +36,7 @@ class OnboardingView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(authControllerProvider, (_, state) {
       state.whenOrNull(
+        // TODO(lorenzo): when google sign in is cancelled, it should not redirect to splash page
         data: (_) => Navigator.of(context).pushReplacement(SplashPage.route()),
         error: (err, stackTrace) => ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()

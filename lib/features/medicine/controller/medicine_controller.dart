@@ -1,4 +1,5 @@
 import 'package:calendar/calendar.dart';
+import 'package:meddly/features/calendar/provider/provider.dart';
 import 'package:meddly/features/medicine/core/extension.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/provider/l10n_provider.dart';
@@ -24,6 +25,7 @@ class MedicineController extends _$MedicineController {
       (failure) => AsyncError(failure.message(l10n), StackTrace.current),
       (_) {
         repository.fetchAll();
+        ref.watch(calendarRepositoryProvider).fetchCalendar();
         return AsyncData(null);
       },
     );

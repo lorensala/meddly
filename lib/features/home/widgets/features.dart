@@ -14,52 +14,41 @@ class Features extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Features',
-          style: context.textTheme.titleLarge,
-        ),
-        const SizedBox(height: Sizes.mediumSpacing),
-        SizedBox(
-          height: 150,
-          child: ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            children: [
-              FeatureCard(
-                name: 'Calendar',
-                onPressed: () =>
-                    Navigator.of(context).push(CalendarPage.route()),
-              ),
-              const SizedBox(width: Sizes.mediumSpacing),
-              FeatureCard(
-                name: 'Predictions',
-                onPressed: () =>
-                    Navigator.of(context).push(PredictionsPage.route()),
-              ),
-              const SizedBox(width: Sizes.mediumSpacing),
-              FeatureCard(
-                name: 'Medicine',
-                onPressed: () =>
-                    Navigator.of(context).push(MedicinePage.route()),
-              ),
-              const SizedBox(width: Sizes.mediumSpacing),
-              FeatureCard(
-                name: 'Setup',
-                onPressed: () => Navigator.of(context).push(SetupPage.route()),
-              ),
-              const SizedBox(width: Sizes.mediumSpacing),
-              FeatureCard(
-                name: 'Notifications',
-                onPressed: () =>
-                    Navigator.of(context).push(NotificationsPage.route()),
-              ),
-            ],
+    return SizedBox(
+      height: 150,
+      child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        padding: Sizes.horizontalPadding,
+        children: [
+          FeatureCard(
+            name: 'Calendar',
+            onPressed: () => Navigator.of(context).push(CalendarPage.route()),
           ),
-        ),
-      ],
+          const SizedBox(width: Sizes.mediumSpacing),
+          FeatureCard(
+            name: 'Predictions',
+            onPressed: () =>
+                Navigator.of(context).push(PredictionsPage.route()),
+          ),
+          const SizedBox(width: Sizes.mediumSpacing),
+          FeatureCard(
+            name: 'Medicine',
+            onPressed: () => Navigator.of(context).push(MedicinePage.route()),
+          ),
+          const SizedBox(width: Sizes.mediumSpacing),
+          FeatureCard(
+            name: 'Setup',
+            onPressed: () => Navigator.of(context).push(SetupPage.route()),
+          ),
+          const SizedBox(width: Sizes.mediumSpacing),
+          FeatureCard(
+            name: 'Notifications',
+            onPressed: () =>
+                Navigator.of(context).push(NotificationsPage.route()),
+          ),
+        ],
+      ),
     );
   }
 }

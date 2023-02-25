@@ -70,3 +70,30 @@ bool hasConsumedConsumption(HasConsumedConsumptionRef ref,
 List<DateTime> allDaysOfYear(AllDaysOfYearRef ref) {
   return getAllDaysInYear();
 }
+
+@riverpod
+List<Event> calendarTodayEvents(CalendarTodayEventsRef ref) {
+  final now = DateTime.now();
+  return ref.watch(calendarStreamProvider).when(
+      data: (res) {
+        return res.fold(
+          (l) => [],
+          (events) {
+            return events.where((event) {
+              return event.maybeMap(
+                fromConsumption: (consumption) =>
+                    consumption.date.isSameDay(now),
+                orElse: () => false,
+              );
+            }).toList();
+          },
+        );
+      },
+      error: (_, __) => [],
+      loading: () => []);
+}
+
+@riverpod
+Event event(EventRef ref) {
+  throw UnimplementedError();
+}

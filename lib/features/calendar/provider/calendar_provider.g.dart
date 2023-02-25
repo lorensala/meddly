@@ -187,4 +187,34 @@ final allDaysOfYearProvider = AutoDisposeProvider<List<DateTime>>.internal(
 );
 
 typedef AllDaysOfYearRef = AutoDisposeProviderRef<List<DateTime>>;
+String _$calendarTodayEventsHash() =>
+    r'96d388a538f0b7bd0c6be910b188b20706679d16';
+
+/// See also [calendarTodayEvents].
+@ProviderFor(calendarTodayEvents)
+final calendarTodayEventsProvider = AutoDisposeProvider<List<Event>>.internal(
+  calendarTodayEvents,
+  name: r'calendarTodayEventsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$calendarTodayEventsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CalendarTodayEventsRef = AutoDisposeProviderRef<List<Event>>;
+String _$eventHash() => r'330c78cb89b90259aa9f466b12907f69a4bef8c8';
+
+/// See also [event].
+@ProviderFor(event)
+final eventProvider = AutoDisposeProvider<Event>.internal(
+  event,
+  name: r'eventProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$eventHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef EventRef = AutoDisposeProviderRef<Event>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

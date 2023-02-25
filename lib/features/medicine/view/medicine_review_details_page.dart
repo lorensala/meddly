@@ -55,7 +55,7 @@ class MedicineReviewDetailsView extends ConsumerWidget {
               ),
             );
             Navigator.of(context)
-                .pushAndRemoveUntil(MedicinePage.route(), (route) => false);
+                .pushAndRemoveUntil(HomePage.route(), (route) => false);
           },
           error: (err, _) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

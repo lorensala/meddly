@@ -32,7 +32,9 @@ class NotificationsBody extends ConsumerWidget {
               ], child: NotificationPreferenceCard());
             },
             itemCount: NotificationPreference.values.length,
-            separatorBuilder: (BuildContext context, int index) => Divider(),
+            separatorBuilder: (BuildContext context, int index) => SizedBox(
+              height: Sizes.mediumSpacing,
+            ),
           ),
         );
       },

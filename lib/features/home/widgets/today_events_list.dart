@@ -1,18 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/calendar/provider/provider.dart';
+import 'package:meddly/features/home/home.dart';
 
-class TodayEventsList extends StatelessWidget {
+class TodayEventsList extends ConsumerWidget {
   const TodayEventsList({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      children: [_NoEvents()],
+  Widget build(BuildContext context, WidgetRef ref) {
+    final todayEvents = ref.watch(calendarTodayEventsProvider);
+
+    if (todayEvents.isEmpty) return _NoEvents();
+
+    final lenght = todayEvents.length > 2 ? 3 : todayEvents.length + 1;
+
+    return Padding(
+      padding: Sizes.horizontalPadding,
+      child: ListView.separated(
+        itemCount: lenght,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          if (index == lenght - 1) {
+            return Align(
+                alignment: Alignment.centerRight, child: Text('See all'));
+          }
+          final event = todayEvents[index];
+
+          return ProviderScope(overrides: [
+            eventProvider.overrideWithValue(event),
+          ], child: EventCard());
+        },
+        separatorBuilder: (BuildContext context, int index) =>
+            SizedBox(height: Sizes.mediumSpacing),
+      ),
     );
   }
 }
@@ -22,65 +45,6 @@ class _NoEvents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('No events for today');
-  }
-}
-
-class TodayEventsCard extends StatelessWidget {
-  const TodayEventsCard({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: Sizes.padding,
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
-      ),
-      child: Row(
-        children: [
-          DecoratedBox(
-            decoration: BoxDecoration(
-              color: context.colorScheme.background,
-              borderRadius: BorderRadius.circular(Sizes.borderRadius),
-            ),
-            child: const SizedBox(
-              height: 48,
-              width: 48,
-              child: Icon(
-                Icons.medication_rounded,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          const SizedBox(width: Sizes.mediumSpacing),
-          Text(
-            'Ibuprofeno',
-            style: context.textTheme.bodyLarge,
-          ),
-          const Spacer(),
-          // chevron right
-          SizedBox(
-            height: 48,
-            width: 48,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: context.colorScheme.background,
-                borderRadius: BorderRadius.circular(Sizes.borderRadius),
-              ),
-              child: Center(
-                child: SvgPicture.asset(
-                  Assets.chevron,
-                  width: 16,
-                  height: 16,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+    return Center(child: Text('No events for today'));
   }
 }
