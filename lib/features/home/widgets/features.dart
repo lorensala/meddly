@@ -43,7 +43,7 @@ class Features extends StatelessWidget {
               FeatureCard(
                 name: 'Medicine',
                 onPressed: () =>
-                    Navigator.of(context).push(MedicineNamePage.route()),
+                    Navigator.of(context).push(MedicinePage.route()),
               ),
               const SizedBox(width: Sizes.mediumSpacing),
               FeatureCard(

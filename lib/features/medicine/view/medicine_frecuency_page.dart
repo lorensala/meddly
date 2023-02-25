@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meddly/features/medicine/cubit/cubit.dart';
+import 'package:meddly/features/medicine/view/view.dart';
 import 'package:meddly/features/medicine/widgets/widgets.dart';
-import 'package:meddly/features/user/view/view.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 /// {@template medicine_page}
@@ -9,33 +8,28 @@ import 'package:meddly/widgets/widgets.dart';
 /// {@endtemplate}
 class MedicineFrecuencyPage extends StatelessWidget {
   /// {@macro medicine_page}
-  const MedicineFrecuencyPage(this.cubit, {super.key});
-
-  final MedicineFormCubit cubit;
+  const MedicineFrecuencyPage({super.key});
 
   /// The static route for MedicinePage
-  static Route<dynamic> route(MedicineFormCubit cubit) {
+  static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
-      builder: (_) => MedicineFrecuencyPage(cubit),
+      builder: (_) => MedicineFrecuencyPage(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: cubit,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Medicine'),
-          actions: [
-            CancelButton(
-              onConfirm: () => Navigator.of(context)
-                  .pushAndRemoveUntil(UserPage.route(), (route) => false),
-            ),
-          ],
-        ),
-        body: const MedicineFrecuencyView(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Medicine'),
+        actions: [
+          CancelButton(
+            onConfirm: () => Navigator.of(context)
+                .pushAndRemoveUntil(MedicinePage.route(), (route) => false),
+          ),
+        ],
       ),
+      body: const MedicineFrecuencyView(),
     );
   }
 }

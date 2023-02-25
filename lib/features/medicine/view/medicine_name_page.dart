@@ -1,7 +1,4 @@
-import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:meddly/features/medicine/cubit/cubit.dart';
 import 'package:meddly/features/medicine/widgets/widgets.dart';
 
 /// {@template medicine_page}
@@ -18,16 +15,11 @@ class MedicineNamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MedicineFormCubit(
-        medicineRepository: GetIt.I.get<MedicineRepository>(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Medicine'),
       ),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Medicine'),
-        ),
-        body: const MedicineNameView(),
-      ),
+      body: const MedicineNameView(),
     );
   }
 }

@@ -47,7 +47,7 @@ class MedicineDto with _$MedicineDto {
         dosis: medicine.dosis,
         interval: medicine.interval,
         days: medicine.days?.map((e) => e.value).toList(),
-        hours: medicine.hours?.map((e) => e.toString()).toList(),
+        hours: medicine.hours?.map((e) => e.toHHmm()).toList(),
         instructions: medicine.instructions,
       );
     } catch (e) {
@@ -89,7 +89,6 @@ class MedicineDto with _$MedicineDto {
 
 /// --
 TimeOfDay fromString(String s) {
-  // string in format "08:10:"
   final hour = int.parse(s.substring(0, 2));
   final minute = int.parse(s.substring(3, 5));
 

@@ -22,6 +22,24 @@ class CalendarCache {
       .map((BoxEvent event) => event.value as CalendarDto?)
       .startWith(readCalendar());
 
+  Stream<List<MedicineDto>> get medicines => _box
+          .watch(key: calendarBoxKey)
+          .map((BoxEvent event) => event.value as CalendarDto?)
+          .map((CalendarDto? calendar) {
+        if (calendar == null) return <MedicineDto>[];
+        return calendar.activeMedicines;
+      }).startWith(readActiveMedicines());
+
+  List<MedicineDto> readActiveMedicines() {
+    try {
+      final CalendarDto? calendar = _box.get(calendarBoxKey);
+      if (calendar == null) return <MedicineDto>[];
+      return calendar.activeMedicines;
+    } catch (e) {
+      throw CalendarCacheException();
+    }
+  }
+
   /// Writes an [AppointmentDto] to the cache.
   ///
   /// If the [AppointmentDto] already exists, it will be overwritten.

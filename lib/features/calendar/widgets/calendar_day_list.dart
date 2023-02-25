@@ -13,6 +13,8 @@ class CalendarDayList extends HookConsumerWidget {
     final daysOfTheYear = ref.watch(allDaysOfYearProvider);
     final selectedDate = ref.watch(selectedDateProvider);
 
+    useMemoized(() => daysOfTheYear);
+
     final controller = usePageController(
       viewportFraction: 1 / 6,
       initialPage: daysOfTheYear.indexWhere(

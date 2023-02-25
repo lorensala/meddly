@@ -1,8 +1,4 @@
-import 'dart:io' show Platform;
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/setup/controller/controller.dart';
@@ -125,7 +121,6 @@ class _BirthdateInput extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = useTextEditingController();
     final notifier = ref.watch(setupControllerProvider.notifier);
     final birthdate = ref.watch(setupBirthdateProvider);
     final errorText = ref.watch(birthdateErrorMessageProvider);
@@ -141,59 +136,12 @@ class _BirthdateInput extends HookConsumerWidget {
           isRequired: true,
         ),
         const SizedBox(height: Sizes.smallSpacing),
-        TextFormField(
-          controller: controller,
-          onTap: () async {
-            if (Platform.isAndroid) {
-              await showDatePicker(
-                context: context,
-                initialDate: initialDateTime,
-                firstDate: DateTime(1900),
-                lastDate: DateTime.now(),
-              ).then((value) {
-                if (value != null) {
-                  controller.text = value.toString().dateTimeStringFormat();
-                  notifier.birthdateChanged(value.toString());
-                }
-              });
-            } else {
-              await showCupertinoModalPopup<DateTime>(
-                context: context,
-                builder: (_) => Container(
-                  color: context.colorScheme.secondary,
-                  height: MediaQuery.of(context).size.height / 2,
-                  child: SafeArea(
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: CupertinoDatePicker(
-                            mode: CupertinoDatePickerMode.date,
-                            initialDateTime: initialDateTime,
-                            minimumDate: DateTime(1900),
-                            maximumDate: DateTime.now(),
-                            onDateTimeChanged: (value) {
-                              controller.text =
-                                  value.toString().dateTimeStringFormat();
-                              notifier.birthdateChanged(value.toString());
-                            },
-                          ),
-                        ),
-                        CupertinoButton(
-                          child: Text(context.l10n.accept),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
-                        const SizedBox(height: Sizes.mediumSpacing),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            }
+        DateSelector(
+          initialDateTime: initialDateTime,
+          onDateTimeChanged: (value) {
+            notifier.birthdateChanged(value.toString());
           },
-          readOnly: true,
-          decoration: InputDecoration(
-            errorText: errorText,
-          ),
+          errorText: errorText,
         ),
       ],
     );

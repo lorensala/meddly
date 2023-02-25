@@ -31,6 +31,12 @@ final calendarStreamProvider =
   return repository.events;
 });
 
+final medicinesStreamProvider =
+    StreamProvider<Either<CalendarFailure, List<Medicine>>>((ref) {
+  final repository = ref.read(calendarRepositoryProvider);
+  return repository.medicines;
+});
+
 @riverpod
 List<Event> calendarEvents(CalendarEventsRef ref) {
   return ref.watch(calendarStreamProvider).maybeWhen(

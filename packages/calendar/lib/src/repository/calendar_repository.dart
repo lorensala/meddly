@@ -81,14 +81,14 @@ class CalendarRepository {
   /// changes.
   ///
   /// Emits a [CalendarFailure] if the list of [MedicineDto]s fails to load.
-  // Stream<Either<CalendarFailure, List<Medicine>>> get medicines =>
-  //     _cache.medicines.map<Either<CalendarFailure, List<Medicine>>>(
-  //       (medicines) {
-  //         return right(
-  //           medicines.map((medicine) => medicine.toDomain()).toList(),
-  //         );
-  //       },
-  //     );
+  Stream<Either<CalendarFailure, List<Medicine>>> get medicines =>
+      _cache.medicines.map<Either<CalendarFailure, List<Medicine>>>(
+        (medicines) {
+          return right(
+            medicines.map((medicine) => medicine.toDomain()).toList(),
+          );
+        },
+      );
 
   /// Stream of list of [Consumption]s.
   ///

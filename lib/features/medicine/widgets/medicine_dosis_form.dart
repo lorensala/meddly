@@ -1,8 +1,9 @@
 import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/medicine/cubit/cubit.dart';
-import 'package:meddly/features/medicine/view/medicine_frecuency_page.dart';
+import 'package:meddly/features/medicine/controller/medicine_form_controller.dart';
+import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -11,61 +12,15 @@ class MedicineDosisForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<MedicineFormCubit>();
     return SingleChildScrollView(
       child: Padding(
         padding: Sizes.padding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: context.colorScheme.secondary,
-                borderRadius: BorderRadius.circular(Sizes.borderRadius),
-              ),
-              child: Padding(
-                padding: Sizes.padding,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    InputLabel(label: context.l10n.dosis, isRequired: true),
-                    const SizedBox(height: Sizes.smallSpacing),
-                    const _DosisInputField(),
-                    const SizedBox(height: Sizes.smallSpacing),
-                    InputDescription(
-                      description: context.l10n.dosisDescription,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            const _DosisInput(),
             const SizedBox(height: Sizes.mediumSpacing),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: context.colorScheme.secondary,
-                borderRadius: BorderRadius.circular(Sizes.borderRadius),
-              ),
-              child: BlocBuilder<MedicineFormCubit, MedicineFormState>(
-                buildWhen: (previous, current) =>
-                    previous.dosisUnit != current.dosisUnit,
-                builder: (context, state) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: MedicineDosisUnit.values
-                        .map(
-                          (unit) => ListTile(
-                            title: Text(unit.value),
-                            trailing: cubit.state.dosisUnit == unit
-                                ? const Icon(Icons.check)
-                                : null,
-                            onTap: () => cubit.dosisUnitChanged(unit),
-                          ),
-                        )
-                        .toList(),
-                  );
-                },
-              ),
-            ),
+            const _DosisUnitSelector(),
             const SizedBox(height: Sizes.mediumSpacing),
             const _NextButton(),
           ],
@@ -75,45 +30,86 @@ class MedicineDosisForm extends StatelessWidget {
   }
 }
 
-class _NextButton extends StatelessWidget {
-  const _NextButton();
+class _DosisUnitSelector extends ConsumerWidget {
+  const _DosisUnitSelector();
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MedicineFormCubit, MedicineFormState>(
-      buildWhen: (previous, current) =>
-          previous.dosis != current.dosis ||
-          previous.dosisUnit != current.dosisUnit,
-      builder: (context, state) {
-        return Button(
-          isValid: state.dosis.valid && state.dosis.value.isNotEmpty,
-          onPressed: () => Navigator.of(context).push(
-            MedicineFrecuencyPage.route(context.read<MedicineFormCubit>()),
-          ),
-          label: context.l10n.next,
-        );
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedDosisUnit = ref.watch(medicineDosisUnitProvider);
+    final notifier = ref.watch(medicineFormControllerProvider.notifier);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: context.colorScheme.secondary,
+        borderRadius: BorderRadius.circular(Sizes.borderRadius),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: MedicineDosisUnit.values
+            .map(
+              (unit) => ListTile(
+                title: Text(unit.value),
+                trailing:
+                    selectedDosisUnit == unit ? const Icon(Icons.check) : null,
+                onTap: () => notifier.dosisUnitChanged(unit),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }
 
-class _DosisInputField extends StatelessWidget {
-  const _DosisInputField();
+class _DosisInput extends StatelessWidget {
+  const _DosisInput();
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<MedicineFormCubit>();
-    return BlocBuilder<MedicineFormCubit, MedicineFormState>(
-      buildWhen: (previous, current) => previous.dosis != current.dosis,
-      builder: (context, state) {
-        return TextFormField(
-          onChanged: cubit.dosisChanged,
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            errorText: state.dosis.invalid ? context.l10n.invalidDosis : null,
-          ),
-        );
-      },
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        InputLabel(label: context.l10n.dosis, isRequired: true),
+        const SizedBox(height: Sizes.smallSpacing),
+        const _DosisInputField(),
+        const SizedBox(height: Sizes.smallSpacing),
+        InputDescription(
+          description: context.l10n.dosisDescription,
+        ),
+      ],
+    );
+  }
+}
+
+class _NextButton extends ConsumerWidget {
+  const _NextButton();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isValid = ref.watch(isMedicineDosisValidProvider);
+    return Button(
+      isValid: isValid,
+      onPressed: () => Navigator.of(context).push(
+        MedicineFrecuencyPage.route(),
+      ),
+      label: context.l10n.next,
+    );
+  }
+}
+
+class _DosisInputField extends ConsumerWidget {
+  const _DosisInputField();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.read(medicineFormControllerProvider.notifier);
+    final errorText = ref.watch(medicineDosisErrorTextProvider);
+
+    return TextFormField(
+      onChanged: notifier.dosisChanged,
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+        errorText: errorText,
+      ),
     );
   }
 }

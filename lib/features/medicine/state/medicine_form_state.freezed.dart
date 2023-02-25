@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'medicine_form_cubit.dart';
+part of 'medicine_form_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -28,9 +28,7 @@ mixin _$MedicineFormState {
   MedicineFrecuency get frecuency => throw _privateConstructorUsedError;
   List<MedicineDay> get days => throw _privateConstructorUsedError;
   List<TimeOfDay> get hours => throw _privateConstructorUsedError;
-  FormzStatus get status => throw _privateConstructorUsedError;
   int get frecuencyValue => throw _privateConstructorUsedError;
-  MedicineFailure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MedicineFormStateCopyWith<MedicineFormState> get copyWith =>
@@ -56,11 +54,7 @@ abstract class $MedicineFormStateCopyWith<$Res> {
       MedicineFrecuency frecuency,
       List<MedicineDay> days,
       List<TimeOfDay> hours,
-      FormzStatus status,
-      int frecuencyValue,
-      MedicineFailure? failure});
-
-  $MedicineFailureCopyWith<$Res>? get failure;
+      int frecuencyValue});
 }
 
 /// @nodoc
@@ -88,9 +82,7 @@ class _$MedicineFormStateCopyWithImpl<$Res, $Val extends MedicineFormState>
     Object? frecuency = null,
     Object? days = null,
     Object? hours = null,
-    Object? status = null,
     Object? frecuencyValue = null,
-    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -141,31 +133,11 @@ class _$MedicineFormStateCopyWithImpl<$Res, $Val extends MedicineFormState>
           ? _value.hours
           : hours // ignore: cast_nullable_to_non_nullable
               as List<TimeOfDay>,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
       frecuencyValue: null == frecuencyValue
           ? _value.frecuencyValue
           : frecuencyValue // ignore: cast_nullable_to_non_nullable
               as int,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as MedicineFailure?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MedicineFailureCopyWith<$Res>? get failure {
-    if (_value.failure == null) {
-      return null;
-    }
-
-    return $MedicineFailureCopyWith<$Res>(_value.failure!, (value) {
-      return _then(_value.copyWith(failure: value) as $Val);
-    });
   }
 }
 
@@ -190,12 +162,7 @@ abstract class _$$_InitialCopyWith<$Res>
       MedicineFrecuency frecuency,
       List<MedicineDay> days,
       List<TimeOfDay> hours,
-      FormzStatus status,
-      int frecuencyValue,
-      MedicineFailure? failure});
-
-  @override
-  $MedicineFailureCopyWith<$Res>? get failure;
+      int frecuencyValue});
 }
 
 /// @nodoc
@@ -220,9 +187,7 @@ class __$$_InitialCopyWithImpl<$Res>
     Object? frecuency = null,
     Object? days = null,
     Object? hours = null,
-    Object? status = null,
     Object? frecuencyValue = null,
-    Object? failure = freezed,
   }) {
     return _then(_$_Initial(
       name: null == name
@@ -273,18 +238,10 @@ class __$$_InitialCopyWithImpl<$Res>
           ? _value._hours
           : hours // ignore: cast_nullable_to_non_nullable
               as List<TimeOfDay>,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
       frecuencyValue: null == frecuencyValue
           ? _value.frecuencyValue
           : frecuencyValue // ignore: cast_nullable_to_non_nullable
               as int,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as MedicineFailure?,
     ));
   }
 }
@@ -305,9 +262,7 @@ class _$_Initial extends _Initial {
       this.frecuency = MedicineFrecuency.regular,
       final List<MedicineDay> days = const [MedicineDay.monday],
       final List<TimeOfDay> hours = const [],
-      this.status = FormzStatus.pure,
-      this.frecuencyValue = 1,
-      this.failure})
+      this.frecuencyValue = 1})
       : _days = days,
         _hours = hours,
         super._();
@@ -360,16 +315,11 @@ class _$_Initial extends _Initial {
 
   @override
   @JsonKey()
-  final FormzStatus status;
-  @override
-  @JsonKey()
   final int frecuencyValue;
-  @override
-  final MedicineFailure? failure;
 
   @override
   String toString() {
-    return 'MedicineFormState(name: $name, instructions: $instructions, presentation: $presentation, dosisUnit: $dosisUnit, startDate: $startDate, endDate: $endDate, stock: $stock, stockWarning: $stockWarning, dosis: $dosis, frecuency: $frecuency, days: $days, hours: $hours, status: $status, frecuencyValue: $frecuencyValue, failure: $failure)';
+    return 'MedicineFormState(name: $name, instructions: $instructions, presentation: $presentation, dosisUnit: $dosisUnit, startDate: $startDate, endDate: $endDate, stock: $stock, stockWarning: $stockWarning, dosis: $dosis, frecuency: $frecuency, days: $days, hours: $hours, frecuencyValue: $frecuencyValue)';
   }
 
   @override
@@ -395,10 +345,8 @@ class _$_Initial extends _Initial {
                 other.frecuency == frecuency) &&
             const DeepCollectionEquality().equals(other._days, _days) &&
             const DeepCollectionEquality().equals(other._hours, _hours) &&
-            (identical(other.status, status) || other.status == status) &&
             (identical(other.frecuencyValue, frecuencyValue) ||
-                other.frecuencyValue == frecuencyValue) &&
-            (identical(other.failure, failure) || other.failure == failure));
+                other.frecuencyValue == frecuencyValue));
   }
 
   @override
@@ -416,9 +364,7 @@ class _$_Initial extends _Initial {
       frecuency,
       const DeepCollectionEquality().hash(_days),
       const DeepCollectionEquality().hash(_hours),
-      status,
-      frecuencyValue,
-      failure);
+      frecuencyValue);
 
   @JsonKey(ignore: true)
   @override
@@ -441,9 +387,7 @@ abstract class _Initial extends MedicineFormState {
       final MedicineFrecuency frecuency,
       final List<MedicineDay> days,
       final List<TimeOfDay> hours,
-      final FormzStatus status,
-      final int frecuencyValue,
-      final MedicineFailure? failure}) = _$_Initial;
+      final int frecuencyValue}) = _$_Initial;
   const _Initial._() : super._();
 
   @override
@@ -471,11 +415,7 @@ abstract class _Initial extends MedicineFormState {
   @override
   List<TimeOfDay> get hours;
   @override
-  FormzStatus get status;
-  @override
   int get frecuencyValue;
-  @override
-  MedicineFailure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>

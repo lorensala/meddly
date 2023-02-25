@@ -1,4 +1,9 @@
-part of 'medicine_form_cubit.dart';
+import 'package:calendar/calendar.dart';
+import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:validators/validators.dart';
+
+part 'medicine_form_state.freezed.dart';
 
 @freezed
 class MedicineFormState with _$MedicineFormState {
@@ -15,9 +20,7 @@ class MedicineFormState with _$MedicineFormState {
     @Default(MedicineFrecuency.regular) MedicineFrecuency frecuency,
     @Default([MedicineDay.monday]) List<MedicineDay> days,
     @Default([]) List<TimeOfDay> hours,
-    @Default(FormzStatus.pure) FormzStatus status,
     @Default(1) int frecuencyValue,
-    MedicineFailure? failure,
   }) = _Initial;
 
   const MedicineFormState._();
