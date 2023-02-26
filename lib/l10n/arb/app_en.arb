@@ -496,6 +496,26 @@
     "instructionsTooLong": "Instructions must be at most 100 characters",
     "@instructionsTooLong": {
         "description": "Text shown when the instructions are too long"
+    },
+    "greetingMorning": "Good morning",
+    "@greetingMorning": {
+        "description": "Text shown on the morning greeting"
+    },
+    "greetingAfternoon": "Good afternoon",
+    "@greetingAfternoon": {
+        "description": "Text shown on the afternoon greeting"
+    },
+    "greetingEvening": "Good evening",
+    "@greetingEvening": {
+        "description": "Text shown on the evening greeting"
+    },
+    "medicineNotFound": "Medicine not found",
+    "@medicineNotFound": {
+        "description": "Text shown when the medicine is not found"
+    },
+    "medicineAdded": "Medicine added successfully",
+    "@medicineAdded": {
+        "description": "Text shown when the medicine is added"
     }
 
 

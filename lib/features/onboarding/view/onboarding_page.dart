@@ -1,11 +1,8 @@
-import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:meddly/features/onboarding/cubit/cubit.dart';
+import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/widgets/onboarding_body.dart';
-import 'package:meddly/features/user/user.dart';
-import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/features/splash/splash.dart';
 
 /// {@template onboarding_page}
 /// A description for OnboardingPage
@@ -21,12 +18,9 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => OnboardingCubit(GetIt.I<AuthRepository>()),
-      child: Scaffold(
-        appBar: AppBar(),
-        body: const OnboardingView(),
-      ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: const OnboardingView(),
     );
   }
 }
@@ -34,32 +28,26 @@ class OnboardingPage extends StatelessWidget {
 /// {@template onboarding_view}
 /// Displays the Body of OnboardingView
 /// {@endtemplate}
-class OnboardingView extends StatelessWidget {
+class OnboardingView extends ConsumerWidget {
   /// {@macro onboarding_view}
   const OnboardingView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocListener<OnboardingCubit, OnboardingState>(
-      listener: (context, state) {
-        state.whenOrNull(
-          error: (failure) => ScaffoldMessenger.of(context).showSnackBar(
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(authControllerProvider, (_, state) {
+      state.whenOrNull(
+        // TODO(lorenzo): when google sign in is cancelled, it should not redirect to splash page
+        data: (_) => Navigator.of(context).pushReplacement(SplashPage.route()),
+        error: (err, stackTrace) => ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
             SnackBar(
-              content: Text(
-                failure.maybeMap(
-                  cancelledByUser: (_) => context.l10n.cancelledByUser,
-                  serverError: (_) => context.l10n.serverError,
-                  userDisabled: (_) => context.l10n.userDisabled,
-                  orElse: () => context.l10n.unknownError,
-                ),
-              ),
+              content: Text(err.toString()),
             ),
           ),
-          success: () =>
-              Navigator.of(context).pushReplacement(UserPage.route()),
-        );
-      },
-      child: const OnboardingBody(),
-    );
+      );
+    });
+
+    return const OnboardingBody();
   }
 }

@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/onboarding/cubit/cubit.dart';
+import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/l10n/l10n.dart';
 
-class GoogleButton extends StatelessWidget {
-  const GoogleButton({
-    super.key,
-    required this.onPressed,
-  });
-
-  final VoidCallback onPressed;
+class GoogleButton extends ConsumerWidget {
+  const GoogleButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final isLoading = context.select(
-      (OnboardingCubit cubit) => cubit.state.isLoading,
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isLoading = ref.watch(authControllerProvider).isLoading;
+
     return Center(
       child: AnimatedContainer(
         width:
@@ -39,7 +33,7 @@ class GoogleButton extends StatelessWidget {
             onPressed: () {
               HapticFeedback.lightImpact();
               FocusScope.of(context).unfocus();
-              onPressed();
+              ref.read(authControllerProvider.notifier).logInWithGoogle();
             },
             child: isLoading
                 ? SizedBox(

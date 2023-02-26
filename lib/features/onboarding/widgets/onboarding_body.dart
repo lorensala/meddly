@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/login/login.dart';
-import 'package:meddly/features/onboarding/cubit/cubit.dart';
 import 'package:meddly/features/onboarding/widgets/widgets.dart';
-import 'package:meddly/features/sign_up/cubit/cubit.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -14,56 +13,47 @@ import 'package:meddly/widgets/widgets.dart';
 ///
 /// Add what it does
 /// {@endtemplate}
-class OnboardingBody extends StatefulWidget {
+class OnboardingBody extends HookWidget {
   /// {@macro onboarding_body}
   const OnboardingBody({super.key});
 
   @override
-  State<OnboardingBody> createState() => _OnboardingBodyState();
-}
-
-class _OnboardingBodyState extends State<OnboardingBody> {
-  late final PageController _pageController;
-  late final Timer _timer;
-  int _currentPage = 0;
-
-  @override
-  void initState() {
-    _pageController = PageController();
-    _pageController.addListener(() {
-      setState(() {
-        _currentPage = _pageController.page!.round() % 3;
-      });
-    });
-    _timer = Timer.periodic(const Duration(seconds: 9), (timer) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOut,
-      );
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final currentPage = useState(0);
+    final pageController = usePageController();
+
+    useEffect(
+      () {
+        pageController.addListener(() {
+          currentPage.value = pageController.page!.round() % 3;
+        });
+        final timer = Timer.periodic(const Duration(seconds: 9), (timer) {
+          pageController.nextPage(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        });
+
+        return timer.cancel;
+      },
+      [currentPage.value],
+    );
+
     return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Spacer(),
-          OnBoardingCards(pageController: _pageController),
+          OnBoardingCards(pageController: pageController),
           const Spacer(),
-          PageIndicators(currentPage: _currentPage),
+          PageIndicators(currentPage: currentPage.value),
           const SizedBox(height: 20),
           Container(
             padding: Sizes.padding,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                GoogleButton(
-                  onPressed: () =>
-                      context.read<OnboardingCubit>().logInWithGoogle(),
-                ),
+                const GoogleButton(),
                 const SizedBox(height: 20),
                 Button(
                   label: context.l10n.loginWithEmailAddress,
@@ -76,12 +66,5 @@ class _OnboardingBodyState extends State<OnboardingBody> {
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    _timer.cancel();
-    super.dispose();
   }
 }

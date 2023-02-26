@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/forgot_password/cubit/cubit.dart';
 import 'package:meddly/features/forgot_password/widgets/forgot_password_form.dart';
 
 /// {@template forgot_password_body}
@@ -14,15 +13,11 @@ class ForgotPasswordBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
-      builder: (context, state) {
-        return const Center(
-          child: Padding(
-            padding: Sizes.padding,
-            child: ForgotPasswordForm(),
-          ),
-        );
-      },
+    return const Center(
+      child: Padding(
+        padding: Sizes.padding,
+        child: ForgotPasswordForm(),
+      ),
     );
   }
 }

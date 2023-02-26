@@ -2,7 +2,6 @@ import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/calendar/calendar.dart';
 
 class CalendarListItem extends StatelessWidget {
   const CalendarListItem({
@@ -65,29 +64,29 @@ class CalendarListItem extends StatelessWidget {
                                     ),
                                     onPressed: () {
                                       if (!c.consumed) {
-                                        context.read<CalendarBloc>().add(
-                                              CalendarEvent.addConsumption(
-                                                consumption: Consumption(
-                                                  realConsumptionDate:
-                                                      DateTime.now(),
-                                                  date: c.date,
-                                                  consumed: false,
-                                                  medicineId: c.id,
-                                                ),
-                                              ),
-                                            );
+                                        // context.read<CalendarBloc>().add(
+                                        //       CalendarEvent.addConsumption(
+                                        //         consumption: Consumption(
+                                        //           realConsumptionDate:
+                                        //               DateTime.now(),
+                                        //           date: c.date,
+                                        //           consumed: false,
+                                        //           medicineId: c.id,
+                                        //         ),
+                                        //       ),
+                                        //     );
                                       } else {
-                                        context.read<CalendarBloc>().add(
-                                              CalendarEvent.deleteConsumption(
-                                                consumption: Consumption(
-                                                  realConsumptionDate:
-                                                      DateTime.now(),
-                                                  date: c.date,
-                                                  consumed: true,
-                                                  medicineId: c.id,
-                                                ),
-                                              ),
-                                            );
+                                        // context.read<CalendarBloc>().add(
+                                        //       CalendarEvent.deleteConsumption(
+                                        //         consumption: Consumption(
+                                        //           realConsumptionDate:
+                                        //               DateTime.now(),
+                                        //           date: c.date,
+                                        //           consumed: true,
+                                        //           medicineId: c.id,
+                                        //         ),
+                                        //       ),
+                                        //     );
                                       }
                                     },
                                     child: Row(
@@ -121,49 +120,6 @@ class CalendarListItem extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-
-    return Padding(
-      padding: Sizes.horizontalPadding,
-      child: ListTile(
-        title: Text(event.title),
-        subtitle: Text(event.description),
-        leading: Text(
-          event.date.toHoursAndMinutesString(),
-        ),
-        trailing: event.mapOrNull(
-          fromConsumption: (c) {
-            return Checkbox(
-              value: c.consumed,
-              onChanged: (value) {
-                if (value!) {
-                  context.read<CalendarBloc>().add(
-                        CalendarEvent.addConsumption(
-                          consumption: Consumption(
-                            realConsumptionDate: DateTime.now(),
-                            date: c.date,
-                            consumed: false,
-                            medicineId: c.id,
-                          ),
-                        ),
-                      );
-                } else {
-                  context.read<CalendarBloc>().add(
-                        CalendarEvent.deleteConsumption(
-                          consumption: Consumption(
-                            realConsumptionDate: DateTime.now(),
-                            date: c.date,
-                            consumed: true,
-                            medicineId: c.id,
-                          ),
-                        ),
-                      );
-                }
-              },
-            );
-          },
-        ),
       ),
     );
   }

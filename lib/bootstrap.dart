@@ -7,8 +7,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 // ignore: depend_on_referenced_packages
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/firebase_options.dart';
 import 'package:meddly/inject.dart';
+import 'package:notifications/notifications.dart';
 import 'package:user/user.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -48,10 +50,15 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     ..registerAdapter(MeasurementDtoAdapter())
     ..registerAdapter(AppointmentDtoAdapter());
 
+  await Hive.openBox<UserDto>(userBoxKey);
+  await Hive.openBox<List<String>>(preferencesBoxKey);
+  await Hive.openBox<CalendarDto>(calendarBoxKey);
+  await Hive.openBox<MedicineDto>(medicineBoxKey);
+
   await inject();
 
   await runZonedGuarded(
-    () async => runApp(await builder()),
+    () async => runApp(ProviderScope(child: await builder())),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }

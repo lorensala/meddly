@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:formz/formz.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/phone/cubit/phone_form_cubit.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
@@ -13,130 +12,121 @@ class PhoneForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: Sizes.padding,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          _PhoneNumberInput(),
-          SizedBox(height: Sizes.mediumSpacing),
-          _SendOTPButton(),
-          SizedBox(height: Sizes.largeSpacing),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: const [
+        _CountryCodePhoneNumber(),
+        SizedBox(height: Sizes.mediumSpacing),
+        _SendOTPButton(),
+        SizedBox(height: Sizes.largeSpacing),
+      ],
     );
   }
 }
 
-class _SendOTPButton extends StatelessWidget {
+class _SendOTPButton extends ConsumerWidget {
   const _SendOTPButton();
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<PhoneFormCubit, PhoneFormState>(
-      builder: (context, state) {
-        final isValid = state.status.isValid;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isValid = ref.watch(isPhoneNumberValidProvider);
+    final notifier = ref.watch(phoneControllerProvider.notifier);
 
-        return Button(
-          isValid: isValid,
-          onPressed: () => context.read<PhoneBloc>().add(
-                PhoneEvent.sendPhoneNumber(
-                  phoneNumber:
-                      '${state.countryCode.code}${state.phoneNumber.value}',
-                ),
-              ),
-          label: context.l10n.sendOTP,
-        );
-      },
+    return Button(
+      isValid: isValid,
+      onPressed: () => notifier.sendPhoneNumber(),
+      label: context.l10n.sendOTP,
     );
   }
 }
 
-class _PhoneNumberInput extends StatelessWidget {
-  const _PhoneNumberInput();
+class _CountryCodePhoneNumber extends StatelessWidget {
+  const _CountryCodePhoneNumber();
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.watch<PhoneFormCubit>();
-    return BlocBuilder<PhoneFormCubit, PhoneFormState>(
-      buildWhen: (previous, current) =>
-          previous.phoneNumber != current.phoneNumber ||
-          previous.countryCode != current.countryCode,
-      builder: (context, state) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        InputLabel(label: context.l10n.phoneNumberHint, isRequired: true),
+        const SizedBox(height: Sizes.smallSpacing),
+        Row(
           children: [
-            InputLabel(label: context.l10n.phoneNumberHint, isRequired: false),
-            const SizedBox(height: Sizes.smallSpacing),
-            Row(
-              children: [
-                Container(
-                  width: 150,
-                  padding: Sizes.horizontalPadding.copyWith(
-                    top: Sizes.smallSpacing / 2,
-                    bottom: Sizes.smallSpacing / 2,
-                  ),
-                  decoration: BoxDecoration(
-                    color: context.colorScheme.background,
-                    borderRadius: BorderRadius.circular(Sizes.borderRadius),
-                  ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<CountryCode>(
-                      style: context.textTheme.titleMedium!.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
-                      isExpanded: true,
-                      value: state.countryCode,
-                      onChanged: cubit.countryCodeChanged,
-                      items: CountryCode.values
-                          .map(
-                            (c) => DropdownMenuItem<CountryCode>(
-                              value: c,
-                              child: Text(
-                                '${c.code} (${c.name})',
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: Sizes.mediumSpacing),
-                Expanded(
-                  flex: 2,
-                  child: TextFormField(
-                    onChanged: cubit.phoneNumberChanged,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(10),
-                    ],
-                    decoration: InputDecoration(
-                      errorMaxLines: 2,
-                      errorText: !state.phoneNumber.pure
-                          ? state.phoneNumber.error?.when(
-                              invalid: () => context.l10n.invalidPhoneNumber,
-                              empty: () => context.l10n.phoneNumberEmpty,
-                              notNumeric: () =>
-                                  context.l10n.phoneNumberNotNumeric,
-                              tooLong: () => context.l10n.phoneNumberTooLong,
-                              tooShort: () => context.l10n.phoneNumberTooShort,
-                            )
-                          : null,
-                    ),
-                  ),
-                ),
-              ],
+            _CountryCodeSelector(),
+            const SizedBox(width: Sizes.mediumSpacing),
+            Expanded(
+              flex: 2,
+              child: _PhoneNumberInput(),
             ),
           ],
-        );
-      },
+        ),
+      ],
+    );
+  }
+}
+
+class _PhoneNumberInput extends ConsumerWidget {
+  const _PhoneNumberInput();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(phoneFormControllerProvider.notifier);
+    final errorText = ref.watch(phoneNumberErrorTextProvider);
+
+    return TextFormField(
+      onChanged: notifier.phoneNumberChanged,
+      keyboardType: TextInputType.number,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+        LengthLimitingTextInputFormatter(10),
+      ],
+      decoration: InputDecoration(
+        errorMaxLines: 2,
+        errorText: errorText,
+      ),
+    );
+  }
+}
+
+class _CountryCodeSelector extends ConsumerWidget {
+  const _CountryCodeSelector();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final countryCode = ref.watch(countryCodeProvider);
+    final notifier = ref.watch(phoneFormControllerProvider.notifier);
+    return Container(
+      width: 150,
+      padding: Sizes.horizontalPadding.copyWith(
+        top: Sizes.smallSpacing / 2,
+        bottom: Sizes.smallSpacing / 2,
+      ),
+      decoration: BoxDecoration(
+        color: context.colorScheme.background,
+        borderRadius: BorderRadius.circular(Sizes.borderRadius),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<CountryCode>(
+          style: context.textTheme.titleMedium!.copyWith(
+            fontWeight: FontWeight.w500,
+          ),
+          isExpanded: true,
+          value: countryCode,
+          onChanged: notifier.countryCodeChanged,
+          items: CountryCode.values
+              .map(
+                (c) => DropdownMenuItem<CountryCode>(
+                  value: c,
+                  child: Text(
+                    '${c.code} (${c.name})',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+      ),
     );
   }
 }

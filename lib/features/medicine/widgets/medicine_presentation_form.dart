@@ -1,11 +1,14 @@
 import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/medicine/cubit/cubit.dart';
+import 'package:meddly/features/medicine/controller/medicine_form_controller.dart';
 import 'package:meddly/features/medicine/view/medicine_dosis_page.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
+
+import '../provider/provider.dart';
 
 class MedicinePresentationForm extends StatelessWidget {
   const MedicinePresentationForm({super.key});
@@ -61,79 +64,68 @@ class _NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
-      onPressed: () => Navigator.of(context)
-          .push(MedicineDosisPage.route(context.read<MedicineFormCubit>())),
+      onPressed: () => Navigator.of(context).push(MedicineDosisPage.route()),
       label: context.l10n.next,
     );
   }
 }
 
-class _OtherPresentations extends StatelessWidget {
+class _OtherPresentations extends ConsumerWidget {
   const _OtherPresentations();
 
   @override
-  Widget build(BuildContext context) {
-    final cubit = context.read<MedicineFormCubit>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedPresentation = ref.watch(medicinePresentationProvider);
+    final notifier = ref.watch(medicineFormControllerProvider.notifier);
+
     return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
-      ),
-      child: BlocBuilder<MedicineFormCubit, MedicineFormState>(
-        buildWhen: (previous, current) =>
-            previous.presentation != current.presentation,
-        builder: (context, state) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: MedicinePresentation.uncommon
-                .map(
-                  (presentation) => ListTile(
-                    title: Text(presentation.name.capitalize()),
-                    trailing: cubit.state.presentation == presentation
-                        ? const Icon(Icons.check)
-                        : null,
-                    onTap: () => cubit.presentationChanged(presentation),
-                  ),
-                )
-                .toList(),
-          );
-        },
-      ),
-    );
+        decoration: BoxDecoration(
+          color: context.colorScheme.secondary,
+          borderRadius: BorderRadius.circular(Sizes.borderRadius),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: MedicinePresentation.uncommon
+              .map(
+                (presentation) => ListTile(
+                  title: Text(presentation.name.capitalize()),
+                  trailing: selectedPresentation == presentation
+                      ? const Icon(Icons.check)
+                      : null,
+                  onTap: () => notifier.presentationChanged(presentation),
+                ),
+              )
+              .toList(),
+        ));
   }
 }
 
-class _CommonPresentations extends StatelessWidget {
+class _CommonPresentations extends ConsumerWidget {
   const _CommonPresentations();
 
   @override
-  Widget build(BuildContext context) {
-    final cubit = context.read<MedicineFormCubit>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedPresentation = ref.watch(medicinePresentationProvider);
+    final notifier = ref.watch(medicineFormControllerProvider.notifier);
+
     return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
-      ),
-      child: BlocBuilder<MedicineFormCubit, MedicineFormState>(
-        buildWhen: (previous, current) =>
-            previous.presentation != current.presentation,
-        builder: (context, state) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: MedicinePresentation.common
-                .map(
-                  (presentation) => ListTile(
-                    title: Text(presentation.name.capitalize()),
-                    trailing: cubit.state.presentation == presentation
-                        ? const Icon(Icons.check)
-                        : null,
-                    onTap: () => cubit.presentationChanged(presentation),
-                  ),
-                )
-                .toList(),
-          );
-        },
-      ),
-    );
+        decoration: BoxDecoration(
+          color: context.colorScheme.secondary,
+          borderRadius: BorderRadius.circular(Sizes.borderRadius),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: MedicinePresentation.common
+              .map(
+                (presentation) => ListTile(
+                  title: Text(presentation.name.capitalize()),
+                  trailing: selectedPresentation == presentation
+                      ? const Icon(Icons.check)
+                      : null,
+                  onTap: () => notifier.presentationChanged(presentation),
+                ),
+              )
+              .toList(),
+        ));
   }
 }

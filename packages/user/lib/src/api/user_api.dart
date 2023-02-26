@@ -21,6 +21,7 @@ class UserApi {
   /// successful.
   Future<UserDto> createUser(UserDto user) async {
     late final Response<dynamic> res;
+    late final Response<dynamic> userResponse;
 
     try {
       res = await _dio.post<dynamic>(userPath, data: user.toJson());
@@ -33,7 +34,9 @@ class UserApi {
     }
 
     try {
-      return UserDto.fromJson(res.data as Map<String, dynamic>);
+      // TODO(lorenzo): esto no debería ser así....
+      userResponse = await _dio.get(userPath);
+      return UserDto.fromJson(userResponse.data as Map<String, dynamic>);
     } catch (e) {
       throw UserSerializationException();
     }

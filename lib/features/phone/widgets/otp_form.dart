@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/phone/cubit/otp_form_cubit.dart';
-import 'package:meddly/features/phone/cubit/phone_form_cubit.dart';
-import 'package:meddly/features/phone/phone.dart';
+import 'package:meddly/features/phone/controller/otp_form_controller.dart';
+import 'package:meddly/features/phone/controller/phone_controller.dart';
+import 'package:meddly/features/phone/provider/otp_form_provider.dart';
+import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -50,28 +52,28 @@ class _ResendOtpButtonState extends State<_ResendOtpButton> {
 
   @override
   void initState() {
-    final phoneNumber = context.read<PhoneFormCubit>().state.phoneNumber;
+    // final phoneNumber = context.read<PhoneFormCubit>().state.phoneNumber;
 
-    final forceResendingToken = context.read<PhoneBloc>().state.whenOrNull(
-          codeSentSuccess: (_, forceResendingToken) => forceResendingToken,
-        );
+    // final forceResendingToken = context.read<PhoneBloc>().state.whenOrNull(
+    //       codeSentSuccess: (_, forceResendingToken) => forceResendingToken,
+    //     );
 
-    _timer = Timer.periodic(
-      const Duration(seconds: 1),
-      (timer) => setState(() {
-        _start = _start - 1;
-        if (_start == 0) {
-          timer.cancel();
-          context.read<PhoneBloc>().add(
-                PhoneEvent.sendPhoneNumber(
-                  phoneNumber: phoneNumber.value,
-                  forceResendingToken: forceResendingToken,
-                ),
-              );
-          _start = 30;
-        }
-      }),
-    );
+    // _timer = Timer.periodic(
+    //   const Duration(seconds: 1),
+    //   (timer) => setState(() {
+    //     _start = _start - 1;
+    //     if (_start == 0) {
+    //       timer.cancel();
+    //       context.read<PhoneBloc>().add(
+    //             PhoneEvent.sendPhoneNumber(
+    //               phoneNumber: phoneNumber.value,
+    //               forceResendingToken: forceResendingToken,
+    //             ),
+    //           );
+    //       _start = 30;
+    //     }
+    //   }),
+    // );
     super.initState();
   }
 
@@ -93,49 +95,33 @@ class _ResendOtpButtonState extends State<_ResendOtpButton> {
   }
 }
 
-class _OtpButton extends StatelessWidget {
+class _OtpButton extends ConsumerWidget {
   const _OtpButton();
 
   @override
-  Widget build(BuildContext context) {
-    final otp = context.select((OtpFormCubit cubit) => cubit.state.otp);
-    final phoneNumber =
-        context.select((PhoneFormCubit cubit) => cubit.state.phoneNumber);
-    final countryCode =
-        context.select((PhoneFormCubit cubit) => cubit.state.countryCode);
-    final isLoading = context.select((PhoneBloc bloc) => bloc.state.isLoading);
-    final verificationId = context.select(
-      (PhoneBloc bloc) => bloc.state.maybeWhen(
-        orElse: () => null,
-        error: (verificationId, _) => verificationId,
-        codeSentSuccess: (verificationId, _) => verificationId,
-      ),
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isValid = ref.watch(isOtpValidProvider);
+    final isLoading = ref.watch(userControllerProvider).isLoading;
+    final notifier = ref.watch(phoneControllerProvider.notifier);
+    final smsCode = ref.watch(otpProvider).value;
 
     return Button(
       isLoading: isLoading,
-      isValid: otp.valid,
-      onPressed: () {
-        context.read<PhoneBloc>().add(
-              PhoneEvent.verifyPhoneNumber(
-                verificationId: verificationId ?? '',
-                smsCode: otp.value,
-                phoneNumber: '${countryCode.code}${phoneNumber.value}',
-              ),
-            );
-      },
+      isValid: isValid,
+      onPressed: () => notifier.verifyPhone(smsCode),
       label: 'Verify OTP',
     );
   }
 }
 
-class _OtpField extends StatelessWidget {
+class _OtpField extends ConsumerWidget {
   const _OtpField();
 
   @override
-  Widget build(BuildContext context) {
-    final cubit = context.read<OtpFormCubit>();
-    final otp = context.select((OtpFormCubit cubit) => cubit.state.otp);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(otpFormControllerProvider.notifier);
+    final isValid = ref.watch(otpFormControllerProvider).otp.valid;
+
     return ColoredBox(
       color: context.colorScheme.secondary,
       child: PinCodeTextField(
@@ -146,10 +132,10 @@ class _OtpField extends StatelessWidget {
         pinTheme: PinTheme(
           shape: PinCodeFieldShape.box,
           borderRadius: BorderRadius.circular(Sizes.borderRadius),
-          selectedColor: otp.valid
+          selectedColor: isValid
               ? context.colorScheme.primary
               : context.colorScheme.onSecondary,
-          activeColor: otp.valid
+          activeColor: isValid
               ? context.colorScheme.primary
               : context.colorScheme.onSecondary,
           selectedFillColor: context.colorScheme.primary,
@@ -159,7 +145,7 @@ class _OtpField extends StatelessWidget {
           inactiveFillColor: context.colorScheme.background,
         ),
         length: 6,
-        onChanged: cubit.otpChanged,
+        onChanged: notifier.otpChanged,
       ),
     );
   }

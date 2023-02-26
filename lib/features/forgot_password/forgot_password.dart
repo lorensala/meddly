@@ -1,3 +1,4 @@
-export 'cubit/cubit.dart';
-export 'view/forgot_password_page.dart';
+export 'controller/controller.dart';
+export 'state/state.dart';
+export 'view/view.dart';
 export 'widgets/widgets.dart';
