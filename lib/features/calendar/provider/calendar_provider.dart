@@ -80,11 +80,7 @@ List<Event> calendarTodayEvents(CalendarTodayEventsRef ref) {
           (l) => [],
           (events) {
             return events.where((event) {
-              return event.maybeMap(
-                fromConsumption: (consumption) =>
-                    consumption.date.isSameDay(now),
-                orElse: () => false,
-              );
+              return event.date.isSameDay(now);
             }).toList();
           },
         );

@@ -22,6 +22,18 @@ class UserController extends _$UserController {
     );
   }
 
+  Future<void> updateUser(User user) async {
+    state = const AsyncLoading();
+    final repository = ref.watch(userRepositoryProvider);
+
+    final res = await repository.updateUser(user);
+
+    state = res.fold(
+      (l) => AsyncError(l, StackTrace.current),
+      (_) => const AsyncData(null),
+    );
+  }
+
   Future<void> logout() async {
     state = const AsyncLoading();
     ref.read(userRepositoryProvider).clearCache();

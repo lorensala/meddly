@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'otp_form_cubit.dart';
+part of 'otp_form_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$OtpFormState {
   Otp get otp => throw _privateConstructorUsedError;
-  FormzStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OtpFormStateCopyWith<OtpFormState> get copyWith =>
@@ -30,7 +29,7 @@ abstract class $OtpFormStateCopyWith<$Res> {
           OtpFormState value, $Res Function(OtpFormState) then) =
       _$OtpFormStateCopyWithImpl<$Res, OtpFormState>;
   @useResult
-  $Res call({Otp otp, FormzStatus status});
+  $Res call({Otp otp});
 }
 
 /// @nodoc
@@ -47,17 +46,12 @@ class _$OtpFormStateCopyWithImpl<$Res, $Val extends OtpFormState>
   @override
   $Res call({
     Object? otp = null,
-    Object? status = null,
   }) {
     return _then(_value.copyWith(
       otp: null == otp
           ? _value.otp
           : otp // ignore: cast_nullable_to_non_nullable
               as Otp,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
     ) as $Val);
   }
 }
@@ -70,7 +64,7 @@ abstract class _$$_OtpFormStateCopyWith<$Res>
       __$$_OtpFormStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Otp otp, FormzStatus status});
+  $Res call({Otp otp});
 }
 
 /// @nodoc
@@ -85,17 +79,12 @@ class __$$_OtpFormStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? otp = null,
-    Object? status = null,
   }) {
     return _then(_$_OtpFormState(
       otp: null == otp
           ? _value.otp
           : otp // ignore: cast_nullable_to_non_nullable
               as Otp,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
     ));
   }
 }
@@ -103,19 +92,15 @@ class __$$_OtpFormStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OtpFormState implements _OtpFormState {
-  const _$_OtpFormState(
-      {this.otp = const Otp.pure(), this.status = FormzStatus.pure});
+  const _$_OtpFormState({this.otp = const Otp.pure()});
 
   @override
   @JsonKey()
   final Otp otp;
-  @override
-  @JsonKey()
-  final FormzStatus status;
 
   @override
   String toString() {
-    return 'OtpFormState(otp: $otp, status: $status)';
+    return 'OtpFormState(otp: $otp)';
   }
 
   @override
@@ -123,12 +108,11 @@ class _$_OtpFormState implements _OtpFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_OtpFormState &&
-            (identical(other.otp, otp) || other.otp == otp) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.otp, otp) || other.otp == otp));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, otp, status);
+  int get hashCode => Object.hash(runtimeType, otp);
 
   @JsonKey(ignore: true)
   @override
@@ -138,13 +122,10 @@ class _$_OtpFormState implements _OtpFormState {
 }
 
 abstract class _OtpFormState implements OtpFormState {
-  const factory _OtpFormState({final Otp otp, final FormzStatus status}) =
-      _$_OtpFormState;
+  const factory _OtpFormState({final Otp otp}) = _$_OtpFormState;
 
   @override
   Otp get otp;
-  @override
-  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_OtpFormStateCopyWith<_$_OtpFormState> get copyWith =>

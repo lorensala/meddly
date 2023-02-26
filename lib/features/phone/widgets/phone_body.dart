@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/phone/bloc/bloc.dart';
-import 'package:meddly/features/phone/cubit/otp_form_cubit.dart';
-import 'package:meddly/features/phone/cubit/phone_form_cubit.dart';
+import 'package:meddly/features/phone/controller/phone_controller.dart';
 import 'package:meddly/features/phone/widgets/otp_form.dart';
 import 'package:meddly/features/phone/widgets/phone_form.dart';
-import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 /// {@template phone_body}
@@ -13,28 +12,30 @@ import 'package:meddly/l10n/l10n.dart';
 ///
 /// Add what it does
 /// {@endtemplate}
-class PhoneBody extends StatelessWidget {
+class PhoneBody extends HookConsumerWidget {
   /// {@macro phone_body}
-  const PhoneBody({required PageController pageController, super.key})
-      : _pageController = pageController;
-
-  final PageController _pageController;
+  const PhoneBody({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => PhoneFormCubit()),
-        BlocProvider(create: (context) => OtpFormCubit()),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = usePageController();
+
+    ref.listen(phoneControllerProvider, (_, state) {
+      if (state.isLoading) {
+        controller.nextPage(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
+
+    return PageView(
+      physics: const NeverScrollableScrollPhysics(),
+      controller: controller,
+      children: const [
+        _PhoneSection(),
+        _OtpSection(),
       ],
-      child: PageView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: _pageController,
-        children: const [
-          _PhoneSection(),
-          _OtpSection(),
-        ],
-      ),
     );
   }
 }
@@ -85,33 +86,18 @@ class _PhoneSection extends StatelessWidget {
           children: [
             Text(
               context.l10n.enterPhoneNumber,
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
             ),
             const SizedBox(height: Sizes.smallSpacing),
             Text(
               context.l10n.enterPhoneNumberDescription,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: Sizes.largeSpacing),
             const PhoneForm(),
             const SizedBox(height: Sizes.largeSpacing),
-            Center(
-              child: GestureDetector(
-                onTap: () => Navigator.of(context)
-                    .pushAndRemoveUntil(UserPage.route(), (_) => false),
-                child: Text(
-                  context.l10n.skip,
-                  style: TextStyle(
-                    color: context.colorScheme.onSecondary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

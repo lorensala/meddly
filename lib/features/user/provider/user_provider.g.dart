@@ -63,7 +63,7 @@ final userRepositoryProvider = AutoDisposeProvider<UserRepository>.internal(
 );
 
 typedef UserRepositoryRef = AutoDisposeProviderRef<UserRepository>;
-String _$checkIfUserExistHash() => r'959ca1542d2d8f5800ad17bb869a6183a3275945';
+String _$checkIfUserExistHash() => r'f5f746bf69925818807a8043c71bd90a8e47eb06';
 
 /// See also [checkIfUserExist].
 @ProviderFor(checkIfUserExist)

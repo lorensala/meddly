@@ -160,6 +160,10 @@ extension EitherX<L, R> on Either<L, R> {
   L asLeft() => (this as Left<L, R>).value;
 }
 
+extension OptionX<T> on Option<T> {
+  T asSome() => (this as Some<T>).value;
+}
+
 extension RefDebounceX on Ref {
   /// Delays an execution by a bit such that if a dependency changes multiple
   /// time rapidly, the rest of the code is only run once.

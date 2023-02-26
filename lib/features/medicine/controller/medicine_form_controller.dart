@@ -16,6 +16,7 @@ class MedicineFormController extends _$MedicineFormController {
 
   void nameChanged(String value) {
     final name = Name.dirty(value);
+
     state = state.copyWith(name: name);
   }
 

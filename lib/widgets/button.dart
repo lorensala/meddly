@@ -24,7 +24,7 @@ class Button extends StatelessWidget {
             isLoading ? Sizes.buttonHeight : MediaQuery.of(context).size.width,
         duration: const Duration(milliseconds: 100),
         child: ElevatedButton(
-          onPressed: isValid
+          onPressed: isValid && !isLoading
               ? () {
                   HapticFeedback.lightImpact();
                   FocusScope.of(context).unfocus();

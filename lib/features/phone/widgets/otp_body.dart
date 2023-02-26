@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meddly/features/phone/cubit/otp_form_cubit.dart';
 import 'package:meddly/features/phone/widgets/otp_form.dart';
 
 /// {@template otp_body}
@@ -13,9 +11,6 @@ class OtpBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => OtpFormCubit(),
-      child: const Center(child: OtpForm()),
-    );
+    return const Center(child: OtpForm());
   }
 }

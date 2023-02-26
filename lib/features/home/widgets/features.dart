@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/notifications/notifications.dart';
+import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/features/setup/view/setup_page.dart';
 
@@ -46,6 +47,11 @@ class Features extends StatelessWidget {
             name: 'Notifications',
             onPressed: () =>
                 Navigator.of(context).push(NotificationsPage.route()),
+          ),
+          const SizedBox(width: Sizes.mediumSpacing),
+          FeatureCard(
+            name: 'Phone',
+            onPressed: () => Navigator.of(context).push(PhonePage.route()),
           ),
         ],
       ),

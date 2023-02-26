@@ -54,12 +54,13 @@ Future<bool> checkIfUserExist(CheckIfUserExistRef ref) async {
   if (userOrNull == null) {
     final res = await repository.fetchUser();
 
-    res.fold(
+    // TODO(lorenzo): check when there's connection.
+    return res.fold(
       (l) => false,
       (r) => true,
     );
 
-    ref.invalidateSelf();
+    // ref.invalidateSelf();
   }
 
   return true;

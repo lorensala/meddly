@@ -188,7 +188,7 @@ final allDaysOfYearProvider = AutoDisposeProvider<List<DateTime>>.internal(
 
 typedef AllDaysOfYearRef = AutoDisposeProviderRef<List<DateTime>>;
 String _$calendarTodayEventsHash() =>
-    r'96d388a538f0b7bd0c6be910b188b20706679d16';
+    r'3331a54755f0df194697d2b4930b8361eb82d17e';
 
 /// See also [calendarTodayEvents].
 @ProviderFor(calendarTodayEvents)

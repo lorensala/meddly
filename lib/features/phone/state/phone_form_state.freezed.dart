@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'phone_form_cubit.dart';
+part of 'phone_form_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -17,9 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PhoneFormState {
   PhoneNumber get phoneNumber => throw _privateConstructorUsedError;
-  FormzStatus get status => throw _privateConstructorUsedError;
   CountryCode get countryCode => throw _privateConstructorUsedError;
-  AuthFailure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PhoneFormStateCopyWith<PhoneFormState> get copyWith =>
@@ -32,13 +30,7 @@ abstract class $PhoneFormStateCopyWith<$Res> {
           PhoneFormState value, $Res Function(PhoneFormState) then) =
       _$PhoneFormStateCopyWithImpl<$Res, PhoneFormState>;
   @useResult
-  $Res call(
-      {PhoneNumber phoneNumber,
-      FormzStatus status,
-      CountryCode countryCode,
-      AuthFailure? failure});
-
-  $AuthFailureCopyWith<$Res>? get failure;
+  $Res call({PhoneNumber phoneNumber, CountryCode countryCode});
 }
 
 /// @nodoc
@@ -55,40 +47,18 @@ class _$PhoneFormStateCopyWithImpl<$Res, $Val extends PhoneFormState>
   @override
   $Res call({
     Object? phoneNumber = null,
-    Object? status = null,
     Object? countryCode = null,
-    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as PhoneNumber,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
       countryCode: null == countryCode
           ? _value.countryCode
           : countryCode // ignore: cast_nullable_to_non_nullable
               as CountryCode,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as AuthFailure?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AuthFailureCopyWith<$Res>? get failure {
-    if (_value.failure == null) {
-      return null;
-    }
-
-    return $AuthFailureCopyWith<$Res>(_value.failure!, (value) {
-      return _then(_value.copyWith(failure: value) as $Val);
-    });
   }
 }
 
@@ -100,14 +70,7 @@ abstract class _$$_PhoneFormStateCopyWith<$Res>
       __$$_PhoneFormStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {PhoneNumber phoneNumber,
-      FormzStatus status,
-      CountryCode countryCode,
-      AuthFailure? failure});
-
-  @override
-  $AuthFailureCopyWith<$Res>? get failure;
+  $Res call({PhoneNumber phoneNumber, CountryCode countryCode});
 }
 
 /// @nodoc
@@ -122,27 +85,17 @@ class __$$_PhoneFormStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phoneNumber = null,
-    Object? status = null,
     Object? countryCode = null,
-    Object? failure = freezed,
   }) {
     return _then(_$_PhoneFormState(
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as PhoneNumber,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
       countryCode: null == countryCode
           ? _value.countryCode
           : countryCode // ignore: cast_nullable_to_non_nullable
               as CountryCode,
-      failure: freezed == failure
-          ? _value.failure
-          : failure // ignore: cast_nullable_to_non_nullable
-              as AuthFailure?,
     ));
   }
 }
@@ -152,25 +105,18 @@ class __$$_PhoneFormStateCopyWithImpl<$Res>
 class _$_PhoneFormState implements _PhoneFormState {
   const _$_PhoneFormState(
       {this.phoneNumber = const PhoneNumber.pure(),
-      this.status = FormzStatus.pure,
-      this.countryCode = CountryCode.AR,
-      this.failure});
+      this.countryCode = CountryCode.AR});
 
   @override
   @JsonKey()
   final PhoneNumber phoneNumber;
   @override
   @JsonKey()
-  final FormzStatus status;
-  @override
-  @JsonKey()
   final CountryCode countryCode;
-  @override
-  final AuthFailure? failure;
 
   @override
   String toString() {
-    return 'PhoneFormState(phoneNumber: $phoneNumber, status: $status, countryCode: $countryCode, failure: $failure)';
+    return 'PhoneFormState(phoneNumber: $phoneNumber, countryCode: $countryCode)';
   }
 
   @override
@@ -180,15 +126,12 @@ class _$_PhoneFormState implements _PhoneFormState {
             other is _$_PhoneFormState &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
-            (identical(other.status, status) || other.status == status) &&
             (identical(other.countryCode, countryCode) ||
-                other.countryCode == countryCode) &&
-            (identical(other.failure, failure) || other.failure == failure));
+                other.countryCode == countryCode));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, phoneNumber, status, countryCode, failure);
+  int get hashCode => Object.hash(runtimeType, phoneNumber, countryCode);
 
   @JsonKey(ignore: true)
   @override
@@ -200,18 +143,12 @@ class _$_PhoneFormState implements _PhoneFormState {
 abstract class _PhoneFormState implements PhoneFormState {
   const factory _PhoneFormState(
       {final PhoneNumber phoneNumber,
-      final FormzStatus status,
-      final CountryCode countryCode,
-      final AuthFailure? failure}) = _$_PhoneFormState;
+      final CountryCode countryCode}) = _$_PhoneFormState;
 
   @override
   PhoneNumber get phoneNumber;
   @override
-  FormzStatus get status;
-  @override
   CountryCode get countryCode;
-  @override
-  AuthFailure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$_PhoneFormStateCopyWith<_$_PhoneFormState> get copyWith =>
