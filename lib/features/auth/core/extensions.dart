@@ -13,6 +13,8 @@ extension AuthFailureX on AuthFailure {
       userNotFound: () => l10n.userNotFound,
       wrongPassword: () => l10n.wrongPassword,
       tooManyRequests: () => l10n.tooManyRequests,
+      invalidVerificationCode: () => l10n.invalidVerificationCode,
+      invalidVerificationId: () => l10n.invalidVerificationId,
       invalidEmailAndPasswordCombination: () =>
           l10n.invalidEmailAndPasswordCombination,
       invalidEmail: () => l10n.invalidEmail,

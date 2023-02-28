@@ -1,99 +1,134 @@
 import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-import 'package:meddly/core/sizes.dart';
-import 'package:meddly/features/measurement/cubit/measurement_form_cubit.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/core.dart';
+import 'package:meddly/features/measurement/controller/measurement_controller.dart';
+import 'package:meddly/features/measurement/measurement.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
-class NewMeasurementForm extends StatelessWidget {
-  const NewMeasurementForm({
+class MeasurementForm extends StatelessWidget {
+  const MeasurementForm({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    return Padding(
+      padding: Sizes.padding,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _ValueField(),
+            const SizedBox(height: Sizes.mediumSpacing),
+            _TypeDropDownSelector(),
+            const SizedBox(height: Sizes.mediumSpacing),
+            _DateSelector(),
+            const SizedBox(height: Sizes.mediumSpacing),
+            _SaveButton()
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SaveButton extends ConsumerWidget {
+  const _SaveButton();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(measurementFormControllerProvider.notifier);
+    final isValid = ref.watch(measurementIsValidProvider);
+    final isLoading = ref.watch(measurementControllerProvider).isLoading;
+
+    return Button(
+      isValid: isValid,
+      isLoading: isLoading,
+      onPressed: notifier.save,
+      label: context.l10n.save,
+    );
+  }
+}
+
+class _DateSelector extends ConsumerWidget {
+  const _DateSelector();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(measurementFormControllerProvider.notifier);
+    final initialDateTime = DateTime.now();
+
     return Column(
-      children: const [
-        _ValueInput(),
-        SizedBox(height: Sizes.mediumSpacing),
-        _TypeInput(),
-        SizedBox(height: Sizes.mediumSpacing),
-        _DateSelector(),
-        SizedBox(height: Sizes.mediumSpacing),
-        SubmitButton(),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        InputLabel(label: 'Measurement date', isRequired: true),
+        const SizedBox(height: Sizes.smallSpacing),
+        DateSelector(
+            initialDateTime: initialDateTime,
+            onDateTimeChanged: notifier.dateChanged,
+            errorText: null),
+        const SizedBox(height: Sizes.smallSpacing),
+        InputDescription(description: 'Algo que va a escribir Sofi'),
       ],
     );
   }
 }
 
-class SubmitButton extends StatelessWidget {
-  const SubmitButton({
-    super.key,
-  });
+class _TypeDropDownSelector extends ConsumerWidget {
+  const _TypeDropDownSelector();
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MeasurementFormCubit, MeasurementFormState>(
-      builder: (context, state) {
-        return Button(
-          isValid: state.status.isValid,
-          isLoading: state.status.isSubmissionInProgress,
-          onPressed: () => context.read<MeasurementFormCubit>().submit(),
-          label: 'Añadir medición',
-        );
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(measurementFormControllerProvider.notifier);
+    final selectedType = ref.watch(measurementTypeProvider);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        InputLabel(label: 'Tipo', isRequired: true),
+        const SizedBox(height: Sizes.smallSpacing),
+        SizedBox(
+          width: double.infinity,
+          child: DropDownSelector(
+              value: selectedType,
+              items: MeasurementType.values
+                  .map((e) => DropdownMenuItem<MeasurementType>(
+                        child: Text(e.name),
+                        value: e,
+                      ))
+                  .toList(),
+              onChanged: notifier.typeChanged),
+        ),
+      ],
     );
   }
 }
 
-class _DateSelector extends StatelessWidget {
-  const _DateSelector([Key? key]) : super(key: key);
+class _ValueField extends ConsumerWidget {
+  const _ValueField();
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MeasurementFormCubit, MeasurementFormState>(
-      builder: (context, state) {
-        return TextFormField();
-        // CubitDateSelector(
-        //   onConfirm: (time) =>
-        //       context.read<MeasurementFormCubit>().onDateChanged(time),
-        //   hasError: state.date.invalid,
-        //   errorText: 'Fecha inválida',
-        //   selectedDate: state.date.value,
-        // );
-      },
-    );
-  }
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(measurementFormControllerProvider.notifier);
+    final errorText = ref.watch(measurementValueErrorProvider);
 
-class _TypeInput extends StatelessWidget {
-  const _TypeInput([Key? key]) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MeasurementFormCubit, MeasurementFormState>(
-      builder: (context, state) {
-        return DropdownButtonHideUnderline(
-          child: DropdownButton<MeasurementType>(
-            items: const [],
-            onChanged: (Object? value) {},
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        InputLabel(label: 'Valor', isRequired: true),
+        const SizedBox(height: Sizes.smallSpacing),
+        TextFormField(
+          onChanged: notifier.valueChanged,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            errorText: errorText,
           ),
-        );
-      },
-    );
-  }
-}
-
-class _ValueInput extends StatelessWidget {
-  const _ValueInput([Key? key]) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MeasurementFormCubit, MeasurementFormState>(
-      builder: (context, state) {
-        return TextFormField();
-      },
+        ),
+        const SizedBox(height: Sizes.smallSpacing),
+        InputDescription(description: 'Algo que va a escribir Sofi'),
+      ],
     );
   }
 }

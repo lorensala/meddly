@@ -82,7 +82,7 @@
     "enterCode": "Introduce el código que te enviamos a",
     "enterCodeDescription": "¿No has recibido el código? Toca en \"Reenviar código\"",
     "skip": "Saltar",
-    "resendCode": "Reenviar código",
+    "resendCode": "El código será reenviado en {seconds} segundos",
     "codeWillBeResent": "El código se reenviará en",
     "notificationPreferenceNotFound": "No se ha encontrado la preferencia de notificación",
     "notificationPreferenceAlreadyExistsError": "La preferencia de notificación ya existe",
@@ -126,6 +126,7 @@
     "greetingAfternoon": "Buenas tardes",
     "greetingEvening": "Buenas noches",
     "medicineNotFound": "No se ha encontrado el medicamento",
-    "medicineAdded": "Medicamento añadido exitosamente"
-
+    "medicineAdded": "Medicamento añadido exitosamente",
+    "invalidMeasurementValue": "El valor de la medición es inválido",
+    "measurementNotFound": "No se ha encontrado la medición"
 }

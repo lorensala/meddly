@@ -1,25 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'phone_controller.dart';
+part of 'measurement_form_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$phoneControllerHash() => r'c165157a96cc9be46784cba19fddd0a51d8571f1';
+String _$measurementFormControllerHash() =>
+    r'1134c0928391ef60bd77619a52efb11067d4aca0';
 
-/// See also [PhoneController].
-@ProviderFor(PhoneController)
-final phoneControllerProvider =
-    AutoDisposeAsyncNotifierProvider<PhoneController, void>.internal(
-  PhoneController.new,
-  name: r'phoneControllerProvider',
+/// See also [MeasurementFormController].
+@ProviderFor(MeasurementFormController)
+final measurementFormControllerProvider = AutoDisposeNotifierProvider<
+    MeasurementFormController, MeasurementState>.internal(
+  MeasurementFormController.new,
+  name: r'measurementFormControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$phoneControllerHash,
+      : _$measurementFormControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PhoneController = AutoDisposeAsyncNotifier<void>;
+typedef _$MeasurementFormController = AutoDisposeNotifier<MeasurementState>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

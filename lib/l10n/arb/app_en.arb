@@ -325,8 +325,14 @@
     "@skip": {
         "description": "Text shown on the skip button"
     },
-    "resendCode": "Resend code",
+    "resendCode": "The code will be resent in {seconds} seconds",
     "@resendCode": {
+        "placeholders": {
+            "seconds": {
+                "type": "int",
+                "example": "30"
+            }
+        },
         "description": "Text shown on the resend code button"
     },
     "codeWillBeResent": "Code will be resent in",
@@ -516,6 +522,14 @@
     "medicineAdded": "Medicine added successfully",
     "@medicineAdded": {
         "description": "Text shown when the medicine is added"
+    },
+    "invalidMeasurementValue": "Invalid measurement value",
+    "@invalidMeasurementValue": {
+        "description": "Text shown when the measurement value is invalid"
+    },
+    "measurementNotFound": "Measurement not found",
+    "@measurementNotFound": {
+        "description": "Text shown when the measurement is not found"
     }
 
 

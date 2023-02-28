@@ -9,9 +9,10 @@ import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/firebase_options.dart';
-import 'package:meddly/inject.dart';
 import 'package:notifications/notifications.dart';
 import 'package:user/user.dart';
+
+import 'log/logger.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -55,10 +56,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await Hive.openBox<CalendarDto>(calendarBoxKey);
   await Hive.openBox<MedicineDto>(medicineBoxKey);
 
-  await inject();
-
   await runZonedGuarded(
-    () async => runApp(ProviderScope(child: await builder())),
+    () async =>
+        runApp(ProviderScope(observers: [Logger()], child: await builder())),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }

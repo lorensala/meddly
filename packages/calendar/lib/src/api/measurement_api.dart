@@ -35,6 +35,18 @@ class MeasurementApi {
     }
   }
 
+  /// Updates a measurement.
+  ///
+  /// Throws a [MeasurementDioException] if the request fails.
+  Future<void> updateMeasurement(MeasurementDto measurement) async {
+    try {
+      await _dio.post<dynamic>('$measurementPath/${measurement.id}',
+          data: measurement.toJson());
+    } on DioError catch (e) {
+      throw MeasurementDioException(e);
+    }
+  }
+
   /// Fetches all measurements.
   ///
   /// Throws a [MeasurementDioException] if the request fails.\

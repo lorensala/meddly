@@ -20,8 +20,7 @@ class DateSelector extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController(
-        text: initialDateTime.toString().dateTimeStringFormat());
+    final controller = useTextEditingController(text: 'Select a date');
 
     return TextFormField(
       controller: controller,
@@ -37,6 +36,9 @@ class DateSelector extends HookWidget {
           if (value != null) {
             controller.text = value.toString().dateTimeStringFormat();
             onDateTimeChanged(value);
+          } else {
+            controller.text = 'Select a date';
+            onDateTimeChanged(initialDateTime);
           }
         } else {
           await showCupertinoModalPopup<DateTime>(
@@ -62,7 +64,14 @@ class DateSelector extends HookWidget {
                     ),
                     CupertinoButton(
                       child: Text(context.l10n.accept),
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () {
+                        if (controller.text == 'Select a date') {
+                          controller.text =
+                              initialDateTime.toString().dateTimeStringFormat();
+                          onDateTimeChanged(initialDateTime);
+                        }
+                        Navigator.of(context).pop();
+                      },
                     ),
                     const SizedBox(height: Sizes.mediumSpacing),
                   ],

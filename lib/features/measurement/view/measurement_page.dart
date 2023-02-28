@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meddly/features/measurement/bloc/bloc.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/features/measurement/controller/measurement_controller.dart';
 import 'package:meddly/features/measurement/widgets/measurement_body.dart';
 
 /// {@template measurement_page}
@@ -16,24 +17,32 @@ class MeasurementPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MeasurementBloc(),
-      child: const Scaffold(
-        body: MeasurementView(),
-      ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: MeasurementView(),
     );
-  }    
+  }
 }
 
 /// {@template measurement_view}
 /// Displays the Body of MeasurementView
 /// {@endtemplate}
-class MeasurementView extends StatelessWidget {
+class MeasurementView extends ConsumerWidget {
   /// {@macro measurement_view}
   const MeasurementView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(measurementControllerProvider, (_, state) {
+      state.whenOrNull(error: (err, _) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(err.toString()),
+          ),
+        );
+      });
+    });
+
     return const MeasurementBody();
   }
 }

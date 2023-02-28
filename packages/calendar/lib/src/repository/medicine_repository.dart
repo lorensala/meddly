@@ -5,7 +5,6 @@ import 'package:calendar/src/dto/dto.dart';
 import 'package:calendar/src/models/models.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:rxdart/rxdart.dart';
 
 /// {@template medicine_repository}
 /// Repository for medicine operations.
@@ -22,14 +21,14 @@ class MedicineRepository {
   final MedicineCache _cache;
 
   /// Watches the medicines from the cache.
-  Stream<Either<MedicineFailure, List<Medicine>>> get medicines =>
-      _cache.medicines
-          .map<Either<MedicineFailure, List<Medicine>>>(
-            (medicineDtoList) => Right(
-              medicineDtoList.map((e) => e.toDomain()).toList(),
-            ),
-          )
-          .onErrorReturnWith((error, _) => const Left(MedicineFailure.cache()));
+  // Stream<Either<MedicineFailure, List<Medicine>>> get medicines =>
+  //     _cache.medicines
+  //         .map<Either<MedicineFailure, List<Medicine>>>(
+  //           (medicineDtoList) => Right(
+  //             medicineDtoList.map((e) => e.toDomain()).toList(),
+  //           ),
+  //         )
+  //         .onErrorReturnWith((error, _) => const Left(MedicineFailure.cache()));
 
   /// Fetches all medicines.
   ///

@@ -11,10 +11,15 @@ part 'phone_controller.g.dart';
 
 @riverpod
 class PhoneController extends _$PhoneController {
+  //! TODO(lorenzo): change to PhoneState that contains a state called CodeSent()
+  //! because im unabled to show the Loading state when the button is pressed
   @override
   FutureOr<void> build() {}
 
-  final verificationId = '';
+  String _verificationId = '';
+  int? _forceResendingToken;
+
+  int? get forceResendingToken => _forceResendingToken;
 
   Future<void> sendPhoneNumber() async {
     final authRepository = ref.read(authRepositoryProvider);
@@ -33,13 +38,13 @@ class PhoneController extends _$PhoneController {
         state = AsyncError(failure.message(l10n), StackTrace.current);
       },
       codeSent: (verificationId, forceResendingToken) {
-        verificationId = verificationId;
-        forceResendingToken = forceResendingToken;
+        _verificationId = verificationId;
+        _forceResendingToken = forceResendingToken;
 
         state = AsyncLoading();
       },
       codeAutoRetrievalTimeout: (verificationId) {
-        verificationId = verificationId;
+        _verificationId = verificationId;
 
         state = AsyncLoading();
       },
@@ -52,6 +57,7 @@ class PhoneController extends _$PhoneController {
     final phoneNumber = ref.watch(phoneNumberProvider);
     final countryCode = ref.watch(countryCodeProvider);
     final user = ref.watch(userProvider);
+    final userRepository = ref.read(userRepositoryProvider);
 
     final res = await authRepository.updatePhoneNumber(credential);
     final phoneNumberWithCountryCode =
@@ -59,22 +65,29 @@ class PhoneController extends _$PhoneController {
 
     if (res.isLeft()) {
       state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+      return;
     }
 
     if (user.isNone()) {
       state = AsyncError(l10n.userNotFound, StackTrace.current);
+      return;
     }
 
     final userWithPhoneNumber = user.asSome().copyWith(
           phone: phoneNumberWithCountryCode,
         );
 
-    ref.read(userControllerProvider.notifier).updateUser(userWithPhoneNumber);
+    final res2 = await userRepository.updateUser(userWithPhoneNumber);
+
+    state = res2.fold(
+      (l) => state = AsyncError(l.message(l10n), StackTrace.current),
+      (r) => state = AsyncData(userWithPhoneNumber),
+    );
   }
 
   Future<void> verifyPhone(String smsCode) {
     final phoneAuthCredential = PhoneAuthProvider.credential(
-      verificationId: verificationId,
+      verificationId: _verificationId,
       smsCode: smsCode,
     );
 

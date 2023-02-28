@@ -1,5 +1,6 @@
 import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/controller/medicine_form_controller.dart';
@@ -197,7 +198,7 @@ class _IntervalSelector extends ConsumerWidget {
   }
 }
 
-class _IntervalBody extends ConsumerWidget {
+class _IntervalBody extends HookConsumerWidget {
   const _IntervalBody();
 
   @override
@@ -208,6 +209,14 @@ class _IntervalBody extends ConsumerWidget {
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
     final selectedDays = ref.watch(medicineDaysProvider);
 
+    final List<DropdownMenuItem<int>> items = useMemoized(() => [
+          for (var i = 1; i <= 100; i++)
+            DropdownMenuItem(
+              value: i,
+              child: Text(i.toDaysString()),
+            ),
+        ]);
+
     switch (selectedFrequency) {
       case MedicineFrecuency.regular:
         return Row(
@@ -217,28 +226,12 @@ class _IntervalBody extends ConsumerWidget {
               style: context.textTheme.titleMedium,
             ),
             const SizedBox(width: Sizes.mediumSpacing),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: context.colorScheme.secondary,
-                borderRadius: BorderRadius.circular(Sizes.borderRadius),
-              ),
-              child: Padding(
-                padding: Sizes.horizontalPadding,
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<int>(
-                    borderRadius: BorderRadius.circular(Sizes.borderRadius),
-                    value: selectedFrecuencValue,
-                    items: [
-                      for (var i = 1; i <= 100; i++)
-                        DropdownMenuItem(
-                          value: i,
-                          child: Text(i.toDaysString()),
-                        ),
-                    ],
-                    onChanged: notifier.frecuencyValueChanged,
-                  ),
-                ),
-              ),
+            DropDownSelector<int>(
+              items: items,
+              onChanged: (value) {
+                notifier.frecuencyValueChanged(value);
+              },
+              value: selectedFrecuencValue,
             ),
           ],
         );
