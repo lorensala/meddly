@@ -1,3 +1,4 @@
+import 'package:calendar/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'appointment.freezed.dart';
@@ -12,7 +13,7 @@ class Appointment with _$Appointment {
     required DateTime date,
     required String name,
     String? doctor,
-    String? speciality,
+    AppointmentSpeciality? speciality,
     String? location,
     String? notes,
     required int id,

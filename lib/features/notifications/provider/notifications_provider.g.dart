@@ -24,7 +24,7 @@ final notificationsCacheProvider =
 
 typedef NotificationsCacheRef = AutoDisposeProviderRef<NotificationsCache>;
 String _$notificationPreferenceHash() =>
-    r'98253abc016a169ad92c9d148e0fd7ecf823ce9b';
+    r'50bfa6745b139f787c4afdb42343bd7cc2ec2aa3';
 
 /// See also [notificationPreference].
 @ProviderFor(notificationPreference)
@@ -35,8 +35,8 @@ final notificationPreferenceProvider =
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$notificationPreferenceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[],
+  allTransitiveDependencies: <ProviderOrFamily>[],
 );
 
 typedef NotificationPreferenceRef
@@ -180,6 +180,24 @@ final notificationsRepositoryProvider =
 
 typedef NotificationsRepositoryRef
     = AutoDisposeProviderRef<NotificationsRepository>;
+String _$notificationPreferencesStreamHash() =>
+    r'37fa8d5ef399693a26baa219fd539cb7893eaa21';
+
+/// See also [notificationPreferencesStream].
+@ProviderFor(notificationPreferencesStream)
+final notificationPreferencesStreamProvider = AutoDisposeStreamProvider<
+    Either<NotificationFailure, List<NotificationPreference>>>.internal(
+  notificationPreferencesStream,
+  name: r'notificationPreferencesStreamProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$notificationPreferencesStreamHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef NotificationPreferencesStreamRef = AutoDisposeStreamProviderRef<
+    Either<NotificationFailure, List<NotificationPreference>>>;
 String _$notificationPreferencesHash() =>
     r'03e56be05cd93e9eeb8f55b613d54c461a5c89d2';
 

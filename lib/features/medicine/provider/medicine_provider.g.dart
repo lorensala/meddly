@@ -67,7 +67,7 @@ final medicineNameProvider = AutoDisposeProvider<Name>.internal(
 
 typedef MedicineNameRef = AutoDisposeProviderRef<Name>;
 String _$medicineNameErrorTextHash() =>
-    r'47e14d525733f5e5facc1f15351091f2b1b07375';
+    r'bb41c177c487a692230dde5dd44cbd29571cc4ca';
 
 /// See also [medicineNameErrorText].
 @ProviderFor(medicineNameErrorText)
@@ -132,7 +132,7 @@ final medicineDosisProvider =
 
 typedef MedicineDosisRef = AutoDisposeProviderRef<NotNegativeIntNumber>;
 String _$medicineDosisErrorTextHash() =>
-    r'e63f1c3f5bc91c29f23a485575ab6e29eda1d5cc';
+    r'6230fcaf9051776a93d8e22e070154b0fb0a4f2d';
 
 /// See also [medicineDosisErrorText].
 @ProviderFor(medicineDosisErrorText)
@@ -274,7 +274,7 @@ final medicineStockWarningProvider =
 
 typedef MedicineStockWarningRef = AutoDisposeProviderRef<NotNegativeIntNumber>;
 String _$medicineStockWarningErrorTextHash() =>
-    r'e54849a95755fecca9fe5e0a16bdf358d201bdc9';
+    r'b538ddfc5bf359cf4de5dbb97e4c40339d3408ca';
 
 /// See also [medicineStockWarningErrorText].
 @ProviderFor(medicineStockWarningErrorText)
@@ -291,7 +291,7 @@ final medicineStockWarningErrorTextProvider =
 
 typedef MedicineStockWarningErrorTextRef = AutoDisposeProviderRef<String?>;
 String _$medicineStockErrorTextHash() =>
-    r'1ba64aa011d79d506421aeebf23c362fcbcd9397';
+    r'9b24022c9861c8a80ea5cddb8cf10214155bc391';
 
 /// See also [medicineStockErrorText].
 @ProviderFor(medicineStockErrorText)
@@ -323,7 +323,7 @@ final medicineInstructionsProvider = AutoDisposeProvider<Instructions>.internal(
 
 typedef MedicineInstructionsRef = AutoDisposeProviderRef<Instructions>;
 String _$medicineInstructionErrorTextHash() =>
-    r'e53187046a304cf37d50a36a996f4be0168123ef';
+    r'aecf3192dc9da6ef1202b81091dca1304852844b';
 
 /// See also [medicineInstructionErrorText].
 @ProviderFor(medicineInstructionErrorText)
@@ -372,7 +372,7 @@ final isMedicineFrecuencyAndHoursValidProvider =
 );
 
 typedef IsMedicineFrecuencyAndHoursValidRef = AutoDisposeProviderRef<bool>;
-String _$medicineHash() => r'3047ba734d6eb4e4df119445fbc07f360d19e502';
+String _$medicineHash() => r'd44db858e4538240420d4eb29568280cf63371b3';
 
 /// See also [medicine].
 @ProviderFor(medicine)
@@ -381,8 +381,8 @@ final medicineProvider = AutoDisposeProvider<Medicine>.internal(
   name: r'medicineProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$medicineHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[],
+  allTransitiveDependencies: <ProviderOrFamily>[],
 );
 
 typedef MedicineRef = AutoDisposeProviderRef<Medicine>;

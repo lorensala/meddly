@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
+import 'package:meddly/features/home/widgets/widgets.dart';
 import 'package:meddly/features/measurement/measurement.dart';
+import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/features/setup/view/setup_page.dart';
 
-import '../../medicine/medicine.dart';
-
-class Features extends StatelessWidget {
-  const Features({
+class FeaturesList extends StatelessWidget {
+  const FeaturesList({
     super.key,
   });
 
@@ -61,48 +61,6 @@ class Features extends StatelessWidget {
                 Navigator.of(context).push(MeasurementPage.route()),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class FeatureCard extends StatelessWidget {
-  const FeatureCard({
-    super.key,
-    required this.onPressed,
-    required this.name,
-  });
-
-  final VoidCallback onPressed;
-  final String name;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.colorScheme.secondary,
-          borderRadius: BorderRadius.circular(Sizes.borderRadius),
-        ),
-        child: Padding(
-          padding: Sizes.padding,
-          child: SizedBox(
-            width: 150,
-            height: 150,
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: context.colorScheme.background,
-                    borderRadius: BorderRadius.circular(Sizes.borderRadius),
-                  ),
-                ),
-                Text(name)
-              ],
-            ),
-          ),
-        ),
       ),
     );
   }

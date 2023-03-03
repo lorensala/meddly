@@ -30,7 +30,7 @@ class SetupForm extends StatelessWidget {
           SizedBox(height: Sizes.mediumSpacing),
           _WeightInput(),
           SizedBox(height: Sizes.mediumSpacing),
-          _SaveButton()
+          _SaveButton(),
         ],
       ),
     );

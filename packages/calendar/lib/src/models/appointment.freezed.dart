@@ -19,7 +19,7 @@ mixin _$Appointment {
   DateTime get date => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get doctor => throw _privateConstructorUsedError;
-  String? get speciality => throw _privateConstructorUsedError;
+  AppointmentSpeciality? get speciality => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $AppointmentCopyWith<$Res> {
       {DateTime date,
       String name,
       String? doctor,
-      String? speciality,
+      AppointmentSpeciality? speciality,
       String? location,
       String? notes,
       int id});
@@ -82,7 +82,7 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
       speciality: freezed == speciality
           ? _value.speciality
           : speciality // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as AppointmentSpeciality?,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -111,7 +111,7 @@ abstract class _$$_AppointmentCopyWith<$Res>
       {DateTime date,
       String name,
       String? doctor,
-      String? speciality,
+      AppointmentSpeciality? speciality,
       String? location,
       String? notes,
       int id});
@@ -152,7 +152,7 @@ class __$$_AppointmentCopyWithImpl<$Res>
       speciality: freezed == speciality
           ? _value.speciality
           : speciality // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as AppointmentSpeciality?,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -189,7 +189,7 @@ class _$_Appointment extends _Appointment {
   @override
   final String? doctor;
   @override
-  final String? speciality;
+  final AppointmentSpeciality? speciality;
   @override
   final String? location;
   @override
@@ -234,7 +234,7 @@ abstract class _Appointment extends Appointment {
       {required final DateTime date,
       required final String name,
       final String? doctor,
-      final String? speciality,
+      final AppointmentSpeciality? speciality,
       final String? location,
       final String? notes,
       required final int id}) = _$_Appointment;
@@ -247,7 +247,7 @@ abstract class _Appointment extends Appointment {
   @override
   String? get doctor;
   @override
-  String? get speciality;
+  AppointmentSpeciality? get speciality;
   @override
   String? get location;
   @override

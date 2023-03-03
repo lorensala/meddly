@@ -17,7 +17,9 @@ class CircleCheckSuffixIcon extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         child: SvgPicture.asset(
           Assets.success,
-          color: context.colorScheme.success,
+          theme: SvgTheme(
+            currentColor: context.colorScheme.success,
+          ),
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:calendar/calendar.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
 import 'package:meddly/features/medicine/core/extension.dart';
 import 'package:meddly/features/medicine/medicine.dart';
-import 'package:meddly/l10n/provider/l10n_provider.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'medicine_controller.g.dart';
@@ -19,7 +19,7 @@ class MedicineController extends _$MedicineController {
 
     final res = await repository.addMedicine(medicine);
 
-    final l10n = ref.watch(l10nProvider);
+    final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
     state = res.fold(
       (failure) => AsyncError(failure.message(l10n), StackTrace.current),

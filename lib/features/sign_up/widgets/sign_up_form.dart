@@ -104,7 +104,7 @@ class _PasswordInput extends HookConsumerWidget {
                 isPasswordObscure.value ? Assets.eyeCrossed : Assets.eye,
                 height: 20,
                 width: 20,
-                color: context.colorScheme.onSecondary,
+                theme: SvgTheme(currentColor: context.colorScheme.onSecondary),
               ),
             ),
             if (showSuffixIcon) const CircleCheckSuffixIcon(),

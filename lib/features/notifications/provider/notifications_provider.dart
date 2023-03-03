@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:notifications/notifications.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -11,7 +10,7 @@ NotificationsCache notificationsCache(NotificationsCacheRef ref) {
   return NotificationsCache(ref.read(preferencesBoxProvider));
 }
 
-@riverpod
+@Riverpod(dependencies: [])
 NotificationPreference notificationPreference(NotificationPreferenceRef ref) {
   throw UnimplementedError();
 }
@@ -47,12 +46,12 @@ NotificationsRepository notificationsRepository(
       cache: ref.read(notificationsCacheProvider));
 }
 
-final notificationPreferencesStreamProvider =
-    StreamProvider<Either<NotificationFailure, List<NotificationPreference>>>(
-        (ref) {
+@riverpod
+Stream<Either<NotificationFailure, List<NotificationPreference>>>
+    notificationPreferencesStream(NotificationPreferencesStreamRef ref) {
   final repository = ref.read(notificationsRepositoryProvider);
   return repository.notificationPreferences;
-});
+}
 
 @riverpod
 AsyncValue<List<NotificationPreference>> notificationPreferences(

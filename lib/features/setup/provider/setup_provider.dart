@@ -14,7 +14,7 @@ Name setupName(SetupNameRef ref) {
 String? nameErrorMessage(NameErrorMessageRef ref) {
   final name = ref.watch(setupNameProvider);
 
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return !name.pure
       ? name.error?.when(
@@ -34,7 +34,7 @@ Lastname setupLastname(SetupLastnameRef ref) {
 String? lastnameErrorMessage(LastnameErrorMessageRef ref) {
   final lastName = ref.watch(setupLastnameProvider);
 
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return !lastName.pure
       ? lastName.error?.when(
@@ -54,7 +54,7 @@ Height setupHeight(SetupHeightRef ref) {
 String? heightErrorMessage(HeightErrorMessageRef ref) {
   final height = ref.watch(setupHeightProvider);
 
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return !height.pure
       ? height.error?.when(
@@ -75,7 +75,7 @@ Weight setupWeight(SetupWeightRef ref) {
 String? weightErrorMessage(WeightErrorMessageRef ref) {
   final weight = ref.watch(setupWeightProvider);
 
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return !weight.pure
       ? weight.error?.when(
@@ -101,7 +101,7 @@ Birthdate setupBirthdate(SetupBirthdateRef ref) {
 String? birthdateErrorMessage(BirthdateErrorMessageRef ref) {
   final birthdate = ref.watch(setupBirthdateProvider);
 
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return !birthdate.pure
       ? birthdate.error?.when(

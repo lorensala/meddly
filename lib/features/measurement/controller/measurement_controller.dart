@@ -15,7 +15,8 @@ class MeasurementController extends _$MeasurementController {
     state = AsyncLoading();
 
     final repository = ref.read(measurementRepositoryProvider);
-    final l10n = ref.read(l10nProvider);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+    ;
 
     final res = await repository.addMeasurement(measurement);
 

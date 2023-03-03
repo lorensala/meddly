@@ -1,5 +1,7 @@
-import 'package:meddly/features/auth/core/core.dart';
-import 'package:meddly/features/auth/provider/provider.dart';
+import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:meddly/core/extensions.dart';
+import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -8,7 +10,9 @@ part 'auth_controller.g.dart';
 @riverpod
 class AuthController extends _$AuthController {
   @override
-  FutureOr<void> build() {}
+  Stream<Option<User>> build() {
+    return ref.watch(authRepositoryProvider).user;
+  }
 
   Future<void> logInWithEmailAndPassword({
     required String email,
@@ -20,12 +24,11 @@ class AuthController extends _$AuthController {
         .read(authRepositoryProvider)
         .logInWithEmailAndPassword(email: email, password: password);
 
-    final l10n = ref.read(l10nProvider);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    state = res.fold(
-      (err) => AsyncError(err.message(l10n), StackTrace.current),
-      (_) => const AsyncData(null),
-    );
+    if (res.isLeft()) {
+      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    }
   }
 
   Future<void> logInWithGoogle() async {
@@ -33,12 +36,12 @@ class AuthController extends _$AuthController {
 
     final res = await ref.read(authRepositoryProvider).logInWithGoogle();
 
-    final l10n = ref.read(l10nProvider);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+    ;
 
-    state = res.fold(
-      (err) => AsyncError(err.message(l10n), StackTrace.current),
-      (_) => const AsyncData(null),
-    );
+    if (res.isLeft()) {
+      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    }
   }
 
   Future<void> reigsterWithEmailAndPassword({
@@ -51,12 +54,12 @@ class AuthController extends _$AuthController {
         .read(authRepositoryProvider)
         .registerWithEmailAndPassword(email: email, password: password);
 
-    final l10n = ref.read(l10nProvider);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+    ;
 
-    state = res.fold(
-      (err) => AsyncError(err.message(l10n), StackTrace.current),
-      (_) => const AsyncData(null),
-    );
+    if (res.isLeft()) {
+      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    }
   }
 
   Future<void> signOut() async {
@@ -64,12 +67,12 @@ class AuthController extends _$AuthController {
 
     final res = await ref.read(authRepositoryProvider).signOut();
 
-    final l10n = ref.read(l10nProvider);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+    ;
 
-    state = res.fold(
-      (err) => AsyncError(err.message(l10n), StackTrace.current),
-      (_) => const AsyncData(null),
-    );
+    if (res.isLeft()) {
+      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    }
   }
 
   Future<void> sendPasswordResetEmail({required String email}) async {
@@ -79,12 +82,12 @@ class AuthController extends _$AuthController {
         .read(authRepositoryProvider)
         .sendPasswordResetEmail(email: email);
 
-    final l10n = ref.read(l10nProvider);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+    ;
 
-    state = res.fold(
-      (err) => AsyncError(err.message(l10n), StackTrace.current),
-      (_) => const AsyncData(null),
-    );
+    if (res.isLeft()) {
+      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    }
   }
 
   Future<void> deleteUser() async {
@@ -92,11 +95,11 @@ class AuthController extends _$AuthController {
 
     final res = await ref.read(authRepositoryProvider).deleteUser();
 
-    final l10n = ref.read(l10nProvider);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+    ;
 
-    state = res.fold(
-      (err) => AsyncError(err.message(l10n), StackTrace.current),
-      (_) => const AsyncData(null),
-    );
+    if (res.isLeft()) {
+      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    }
   }
 }

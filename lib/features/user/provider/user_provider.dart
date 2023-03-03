@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/user/user.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:user/user.dart';
@@ -17,13 +17,9 @@ UserCache userCache(UserCacheRef ref) {
   return UserCache(ref.watch(userBoxProvider));
 }
 
-final userStreamProvider = StreamProvider<Option<User>>((ref) {
-  return ref.read(userRepositoryProvider).user;
-});
-
 @riverpod
 Option<User> user(UserRef ref) {
-  return ref.watch(userStreamProvider).maybeWhen(
+  return ref.watch(userControllerProvider).maybeWhen(
         data: (user) {
           return user;
         },

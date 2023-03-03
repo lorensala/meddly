@@ -30,7 +30,7 @@ class AppointmentDto with _$AppointmentDto {
         date: appointment.date.toIso8601String(),
         name: appointment.name,
         doctor: appointment.doctor,
-        speciality: appointment.speciality,
+        speciality: appointment.speciality?.name,
         location: appointment.location,
         notes: appointment.notes,
         id: appointment.id,
@@ -53,7 +53,9 @@ class AppointmentDto with _$AppointmentDto {
         date: DateTime.parse(date),
         name: name,
         doctor: doctor,
-        speciality: speciality,
+        speciality: speciality != null
+            ? AppointmentSpeciality.fromString(speciality!)
+            : null,
         location: location,
         notes: notes,
         id: id,

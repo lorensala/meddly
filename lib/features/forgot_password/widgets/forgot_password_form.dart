@@ -37,7 +37,7 @@ class _SendPasswordResetEmailButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(forgotPasswordControllerProvider.notifier);
     final isLoading = ref.watch(authControllerProvider).isLoading;
-    final l10n = ref.watch(l10nProvider);
+    final l10n = ref.watch(l10nProvider) as AppLocalizations;
     final isValid = ref.watch(isForgotPasswordEmailValidProvider);
 
     return Button(
@@ -56,7 +56,7 @@ class _EmailInput extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(forgotPasswordControllerProvider.notifier);
     final errorText = ref.watch(forgotPasswordEmailErrorProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
     return TextFormField(
       style: Theme.of(context).textTheme.bodyMedium,

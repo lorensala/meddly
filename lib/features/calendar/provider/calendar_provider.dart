@@ -25,17 +25,19 @@ CalendarRepository calendarRepository(CalendarRepositoryRef ref) {
       api: ref.read(calendarApiProvider));
 }
 
-final calendarStreamProvider =
-    StreamProvider<Either<CalendarFailure, List<Event>>>((ref) {
+@riverpod
+Stream<Either<CalendarFailure, List<Event>>> calendarStream(
+    CalendarStreamRef ref) {
   final repository = ref.read(calendarRepositoryProvider);
   return repository.events;
-});
+}
 
-final medicinesStreamProvider =
-    StreamProvider<Either<CalendarFailure, List<Medicine>>>((ref) {
+@riverpod
+Stream<Either<CalendarFailure, List<Medicine>>> medicinesStream(
+    MedicinesStreamRef ref) {
   final repository = ref.read(calendarRepositoryProvider);
   return repository.medicines;
-});
+}
 
 @riverpod
 List<Event> calendarEvents(CalendarEventsRef ref) {
@@ -89,7 +91,7 @@ List<Event> calendarTodayEvents(CalendarTodayEventsRef ref) {
       loading: () => []);
 }
 
-@riverpod
+@Riverpod(dependencies: [])
 Event event(EventRef ref) {
   throw UnimplementedError();
 }

@@ -19,7 +19,7 @@ bool isForgotPasswordEmailValid(IsForgotPasswordEmailValidRef ref) {
 String? forgotPasswordEmailError(ForgotPasswordEmailErrorRef ref) {
   final email = ref.watch(forgotPasswordEmailProvider);
 
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return !email.pure
       ? email.error?.when(

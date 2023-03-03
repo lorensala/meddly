@@ -86,7 +86,7 @@ final measurementDateProvider = AutoDisposeProvider<DateTime?>.internal(
 
 typedef MeasurementDateRef = AutoDisposeProviderRef<DateTime?>;
 String _$measurementValueErrorHash() =>
-    r'12c4bc14329813d798c2315b8d1b0576deb1bfef';
+    r'47931e8e18281ae7fabaddc521d9450421887994';
 
 /// See also [measurementValueError].
 @ProviderFor(measurementValueError)

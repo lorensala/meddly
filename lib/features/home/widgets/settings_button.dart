@@ -15,8 +15,8 @@ class SettingsButton extends ConsumerWidget {
     return GestureDetector(
       onTap: () => ref.watch(userControllerProvider.notifier).logout(),
       child: SizedBox(
-        height: 56,
-        width: 56,
+        height: 48,
+        width: 48,
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,

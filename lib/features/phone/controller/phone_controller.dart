@@ -4,7 +4,7 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/user/user.dart';
-import 'package:meddly/l10n/provider/l10n_provider.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'phone_controller.g.dart';
@@ -25,7 +25,7 @@ class PhoneController extends _$PhoneController {
     final authRepository = ref.read(authRepositoryProvider);
     final phoneNumber = ref.watch(phoneNumberProvider);
     final countryCode = ref.watch(countryCodeProvider);
-    final l10n = ref.watch(l10nProvider);
+    final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
     final phoneNumberWithCountryCode =
         '${countryCode.code}${phoneNumber.value}';
@@ -53,7 +53,8 @@ class PhoneController extends _$PhoneController {
 
   Future<void> verificationCompleted(PhoneAuthCredential credential) async {
     final authRepository = ref.read(authRepositoryProvider);
-    final l10n = ref.read(l10nProvider);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+    ;
     final phoneNumber = ref.watch(phoneNumberProvider);
     final countryCode = ref.watch(countryCodeProvider);
     final user = ref.watch(userProvider);

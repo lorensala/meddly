@@ -35,7 +35,7 @@ DateTime? measurementDate(MeasurementDateRef ref) {
 @riverpod
 String? measurementValueError(MeasurementValueErrorRef ref) {
   final value = ref.watch(measurementValueProvider);
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return !value.pure && value.invalid ? l10n.invalidMeasurementValue : null;
 }

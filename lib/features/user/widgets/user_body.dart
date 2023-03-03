@@ -13,7 +13,7 @@ class UserBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userStream = ref.watch(userStreamProvider);
+    final userStream = ref.watch(userControllerProvider);
 
     return userStream.when(
       data: (option) {

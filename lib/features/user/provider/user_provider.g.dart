@@ -34,7 +34,7 @@ final userCacheProvider = AutoDisposeProvider<UserCache>.internal(
 );
 
 typedef UserCacheRef = AutoDisposeProviderRef<UserCache>;
-String _$userHash() => r'6925ffb4ade837086923c2782694e7a57d7ed6c5';
+String _$userHash() => r'da6cffca1a006d98d6cbf78e6d48b865f827ef25';
 
 /// See also [user].
 @ProviderFor(user)

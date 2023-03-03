@@ -7,7 +7,8 @@ part 'home_provider.g.dart';
 @riverpod
 String greeting(GreetingRef ref) {
   final hour = DateTime.now().hour;
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
+
   if (hour < 12) {
     return l10n.greetingMorning;
   } else if (hour < 18) {

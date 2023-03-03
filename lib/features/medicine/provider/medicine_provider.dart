@@ -33,7 +33,7 @@ Name medicineName(MedicineNameRef ref) {
 @riverpod
 String? medicineNameErrorText(MedicineNameErrorTextRef ref) {
   final name = ref.watch(medicineNameProvider);
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return !name.pure && name.invalid
       ? name.error?.when(
@@ -63,7 +63,7 @@ NotNegativeIntNumber medicineDosis(MedicineDosisRef ref) {
 @riverpod
 String? medicineDosisErrorText(MedicineDosisErrorTextRef ref) {
   final dosis = ref.watch(medicineDosisProvider);
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return dosis.invalid ? l10n.invalidDosis : null;
 }
@@ -112,7 +112,7 @@ NotNegativeIntNumber medicineStockWarning(MedicineStockWarningRef ref) {
 @riverpod
 String? medicineStockWarningErrorText(MedicineStockWarningErrorTextRef ref) {
   final stockWarning = ref.watch(medicineStockWarningProvider);
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return stockWarning.invalid ? l10n.invalidStockWarning : null;
 }
@@ -120,7 +120,7 @@ String? medicineStockWarningErrorText(MedicineStockWarningErrorTextRef ref) {
 @riverpod
 String? medicineStockErrorText(MedicineStockErrorTextRef ref) {
   final stock = ref.watch(medicineStockProvider);
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return stock.invalid ? l10n.invalidCurrentStock : null;
 }
@@ -133,7 +133,7 @@ Instructions medicineInstructions(MedicineInstructionsRef ref) {
 @riverpod
 String? medicineInstructionErrorText(MedicineInstructionErrorTextRef ref) {
   final instructions = ref.watch(medicineInstructionsProvider);
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return instructions.invalid
       ? instructions.error?.when(
@@ -162,7 +162,7 @@ bool isMedicineFrecuencyAndHoursValid(IsMedicineFrecuencyAndHoursValidRef ref) {
   return state.isFrecuencyValid && state.hours.isNotEmpty;
 }
 
-@riverpod
+@Riverpod(dependencies: [])
 Medicine medicine(MedicineRef ref) {
   throw UnimplementedError();
 }

@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final l10nProvider = Provider<AppLocalizations>((ref) {
+part 'l10n_provider.g.dart';
+
+@riverpod
+AppLocalizations l10n(L10nRef ref) {
   // 1. initialize from the initial locale
   ref.state = lookupAppLocalizations(ui.window.locale);
   // 2. create an observer to update the state
@@ -16,8 +19,8 @@ final l10nProvider = Provider<AppLocalizations>((ref) {
   binding.addObserver(observer);
   ref.onDispose(() => binding.removeObserver(observer));
   // 4. return the state
-  return ref.state;
-});
+  return ref.state as AppLocalizations;
+}
 
 /// observer used to notify the caller when the locale changes
 class _LocaleObserver extends WidgetsBindingObserver {

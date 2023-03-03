@@ -46,7 +46,7 @@ class UserApi {
   ///
   /// Updates a user from the api.
   Future<void> deleteUser() async {
-    late final Response<dynamic> res;
+    final Response<dynamic> res;
 
     try {
       res = await _dio.delete<dynamic>(

@@ -1,4 +1,5 @@
 export 'appointment.dart';
+export 'appointment_speciality.dart';
 export 'calendar.dart';
 export 'calendar_event.dart';
 export 'consumption.dart';

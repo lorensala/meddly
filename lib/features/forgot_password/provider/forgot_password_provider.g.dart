@@ -39,7 +39,7 @@ final isForgotPasswordEmailValidProvider = AutoDisposeProvider<bool>.internal(
 
 typedef IsForgotPasswordEmailValidRef = AutoDisposeProviderRef<bool>;
 String _$forgotPasswordEmailErrorHash() =>
-    r'07c17739db0a10d799918c9b83828e5423d64dfb';
+    r'829b4cae8fa41a0ca7d3594cc22a3db457b4ffa0';
 
 /// See also [forgotPasswordEmailError].
 @ProviderFor(forgotPasswordEmailError)

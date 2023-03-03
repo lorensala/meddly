@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/auth/controller/auth_controller.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 
@@ -32,7 +32,7 @@ class HomeView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(authStreamProvider, (_, state) {
+    ref.listen(authControllerProvider, (_, state) {
       state.whenOrNull(
         data: (optionUser) {
           optionUser.fold(

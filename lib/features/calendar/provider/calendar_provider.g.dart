@@ -52,6 +52,40 @@ final calendarRepositoryProvider =
 );
 
 typedef CalendarRepositoryRef = AutoDisposeProviderRef<CalendarRepository>;
+String _$calendarStreamHash() => r'e2a5ce83a92197a099451b5da808ae2232729f07';
+
+/// See also [calendarStream].
+@ProviderFor(calendarStream)
+final calendarStreamProvider =
+    AutoDisposeStreamProvider<Either<CalendarFailure, List<Event>>>.internal(
+  calendarStream,
+  name: r'calendarStreamProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$calendarStreamHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CalendarStreamRef
+    = AutoDisposeStreamProviderRef<Either<CalendarFailure, List<Event>>>;
+String _$medicinesStreamHash() => r'92b8875584069f495f02b0557b859cd0c0a1788f';
+
+/// See also [medicinesStream].
+@ProviderFor(medicinesStream)
+final medicinesStreamProvider =
+    AutoDisposeStreamProvider<Either<CalendarFailure, List<Medicine>>>.internal(
+  medicinesStream,
+  name: r'medicinesStreamProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$medicinesStreamHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef MedicinesStreamRef
+    = AutoDisposeStreamProviderRef<Either<CalendarFailure, List<Medicine>>>;
 String _$calendarEventsHash() => r'eb600f4ab2a3ceb61ca9f9910fcdb133d65a893f';
 
 /// See also [calendarEvents].
@@ -203,7 +237,7 @@ final calendarTodayEventsProvider = AutoDisposeProvider<List<Event>>.internal(
 );
 
 typedef CalendarTodayEventsRef = AutoDisposeProviderRef<List<Event>>;
-String _$eventHash() => r'330c78cb89b90259aa9f466b12907f69a4bef8c8';
+String _$eventHash() => r'e125185123dda357aec1fe233e519658d668f924';
 
 /// See also [event].
 @ProviderFor(event)
@@ -212,8 +246,8 @@ final eventProvider = AutoDisposeProvider<Event>.internal(
   name: r'eventProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$eventHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[],
+  allTransitiveDependencies: <ProviderOrFamily>[],
 );
 
 typedef EventRef = AutoDisposeProviderRef<Event>;

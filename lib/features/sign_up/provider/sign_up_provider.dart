@@ -1,6 +1,6 @@
 import 'package:formz/formz.dart';
 import 'package:meddly/features/sign_up/controller/sign_up_controller.dart';
-import 'package:meddly/l10n/provider/provider.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:validators/validators.dart';
 
@@ -40,7 +40,7 @@ bool isSignUpPasswordValid(IsSignUpPasswordValidRef ref) {
 String? emailErrorMessage(EmailErrorMessageRef ref) {
   final email = ref.watch(signUpEmailProvider);
 
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return !email.pure
       ? email.error?.when(
@@ -54,7 +54,7 @@ String? emailErrorMessage(EmailErrorMessageRef ref) {
 String? passwordErrorMessage(PasswordErrorMessageRef ref) {
   final password = ref.watch(signUpPasswordProvider);
 
-  final l10n = ref.watch(l10nProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return !password.pure
       ? password.error?.when(

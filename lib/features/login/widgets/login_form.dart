@@ -126,7 +126,7 @@ class _PasswordInput extends HookConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: SvgPicture.asset(
               isPasswordObscure.value ? Assets.eyeCrossed : Assets.eye,
-              color: context.colorScheme.onSecondary,
+              theme: SvgTheme(currentColor: context.colorScheme.onSecondary),
             ),
           ),
         ),
