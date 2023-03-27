@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/features/home/home.dart';
-import 'package:meddly/features/setup/view/setup_page.dart';
 
 import '../../user/user.dart';
 
@@ -18,11 +17,12 @@ class SplashBody extends ConsumerWidget {
     ref.listen(checkIfUserExistProvider, (_, state) {
       state.whenOrNull(
         data: (data) {
-          data
-              ? Navigator.of(context)
-                  .pushAndRemoveUntil(HomePage.route(), (route) => false)
-              : Navigator.of(context)
-                  .pushAndRemoveUntil(SetupPage.route(), (route) => false);
+          // data
+          // ?
+          Navigator.of(context)
+              .pushAndRemoveUntil(HomePage.route(), (route) => false);
+          // : Navigator.of(context)
+          //     .pushAndRemoveUntil(SetupPage.route(), (route) => false);
         },
         error: (err, _) {
           ScaffoldMessenger.of(context)

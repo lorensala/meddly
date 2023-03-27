@@ -54,7 +54,7 @@ class PhoneController extends _$PhoneController {
   Future<void> verificationCompleted(PhoneAuthCredential credential) async {
     final authRepository = ref.read(authRepositoryProvider);
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-    ;
+
     final phoneNumber = ref.watch(phoneNumberProvider);
     final countryCode = ref.watch(countryCodeProvider);
     final user = ref.watch(userProvider);

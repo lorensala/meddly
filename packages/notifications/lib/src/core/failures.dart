@@ -29,6 +29,10 @@ class NotificationFailure with _$NotificationFailure {
   const factory NotificationFailure.response() = NotificationResponseFailure;
 
   /// {@macro notification_failure}
+  const factory NotificationFailure.connectionTimeOut() =
+      NotificationConnectionTimeOutFailure;
+
+  /// {@macro notification_failure}
   const factory NotificationFailure.cancel() = NotificationCancelFailure;
 
   /// {@macro notification_failure}

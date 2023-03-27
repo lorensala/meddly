@@ -54,16 +54,16 @@ class NotificationsRepository {
       return left(const NotificationFailure.serialization());
     } on NotificationDioException catch (e) {
       switch (e.error.type) {
-        case DioErrorType.connectTimeout:
-          return left(const NotificationFailure.timeout());
-
+        case DioErrorType.receiveTimeout:
         case DioErrorType.sendTimeout:
           return left(const NotificationFailure.sendTimeout());
-
-        case DioErrorType.receiveTimeout:
-          return left(const NotificationFailure.receiveTimeout());
-
-        case DioErrorType.response:
+        case DioErrorType.badResponse:
+          return left(const NotificationFailure.response());
+        case DioErrorType.cancel:
+          return left(const NotificationFailure.cancel());
+        case DioErrorType.connectionTimeout:
+          return left(const NotificationFailure.connectionTimeOut());
+        case DioErrorType.badCertificate:
           switch (e.error.response?.data['detail']['code'] as int) {
             case 500:
               return left(const NotificationFailure.notFound());
@@ -74,11 +74,9 @@ class NotificationsRepository {
             default:
               return left(const NotificationFailure.response());
           }
-
-        case DioErrorType.cancel:
-          return left(const NotificationFailure.cancel());
-
-        case DioErrorType.other:
+        case DioErrorType.connectionError:
+          return left(const NotificationFailure.connectionTimeOut());
+        case DioErrorType.unknown:
           return left(const NotificationFailure.unknown());
       }
     }
@@ -107,16 +105,16 @@ class NotificationsRepository {
       return left(const NotificationFailure.serialization());
     } on NotificationDioException catch (e) {
       switch (e.error.type) {
-        case DioErrorType.connectTimeout:
-          return left(const NotificationFailure.timeout());
-
+        case DioErrorType.receiveTimeout:
         case DioErrorType.sendTimeout:
           return left(const NotificationFailure.sendTimeout());
-
-        case DioErrorType.receiveTimeout:
-          return left(const NotificationFailure.receiveTimeout());
-
-        case DioErrorType.response:
+        case DioErrorType.badResponse:
+          return left(const NotificationFailure.response());
+        case DioErrorType.cancel:
+          return left(const NotificationFailure.cancel());
+        case DioErrorType.connectionTimeout:
+          return left(const NotificationFailure.connectionTimeOut());
+        case DioErrorType.badCertificate:
           switch (e.error.response?.data['detail']['code'] as int) {
             case 500:
               return left(const NotificationFailure.notFound());
@@ -127,11 +125,9 @@ class NotificationsRepository {
             default:
               return left(const NotificationFailure.response());
           }
-
-        case DioErrorType.cancel:
-          return left(const NotificationFailure.cancel());
-
-        case DioErrorType.other:
+        case DioErrorType.connectionError:
+          return left(const NotificationFailure.connectionTimeOut());
+        case DioErrorType.unknown:
           return left(const NotificationFailure.unknown());
       }
     }
@@ -160,16 +156,16 @@ class NotificationsRepository {
       return left(const NotificationFailure.serialization());
     } on NotificationDioException catch (e) {
       switch (e.error.type) {
-        case DioErrorType.connectTimeout:
-          return left(const NotificationFailure.timeout());
-
+        case DioErrorType.receiveTimeout:
         case DioErrorType.sendTimeout:
           return left(const NotificationFailure.sendTimeout());
-
-        case DioErrorType.receiveTimeout:
-          return left(const NotificationFailure.receiveTimeout());
-
-        case DioErrorType.response:
+        case DioErrorType.badResponse:
+          return left(const NotificationFailure.response());
+        case DioErrorType.cancel:
+          return left(const NotificationFailure.cancel());
+        case DioErrorType.connectionTimeout:
+          return left(const NotificationFailure.connectionTimeOut());
+        case DioErrorType.badCertificate:
           switch (e.error.response?.data['detail']['code'] as int) {
             case 500:
               return left(const NotificationFailure.notFound());
@@ -180,11 +176,9 @@ class NotificationsRepository {
             default:
               return left(const NotificationFailure.response());
           }
-
-        case DioErrorType.cancel:
-          return left(const NotificationFailure.cancel());
-
-        case DioErrorType.other:
+        case DioErrorType.connectionError:
+          return left(const NotificationFailure.connectionTimeOut());
+        case DioErrorType.unknown:
           return left(const NotificationFailure.unknown());
       }
     }

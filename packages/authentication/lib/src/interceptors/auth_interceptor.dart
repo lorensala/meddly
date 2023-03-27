@@ -27,7 +27,8 @@ class AuthInterceptor extends QueuedInterceptor {
 
   @override
   Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
-    if (err.type == DioErrorType.response && err.response!.statusCode == 401) {
+    if (err.type == DioErrorType.badResponse &&
+        err.response!.statusCode == 401) {
       await authRepository.signOut();
     }
     return super.onError(err, handler);

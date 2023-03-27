@@ -1,8 +1,10 @@
+import 'package:appointment/appointment.dart';
 import 'package:calendar/src/core/core.dart';
 import 'package:calendar/src/dto/dto.dart';
 import 'package:calendar/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
+import 'package:measurement/measurement.dart';
+import 'package:medicine/medicine.dart';
 
 part 'calendar_dto.freezed.dart';
 part 'calendar_dto.g.dart';
@@ -11,14 +13,13 @@ part 'calendar_dto.g.dart';
 /// Data transfer object for a calendar.
 /// {@endtemplate}
 @freezed
-@HiveType(typeId: 3)
 class CalendarDto with _$CalendarDto {
   /// {@macro calendar_dto}
   const factory CalendarDto({
-    @HiveField(0) @Default([]) List<MedicineDto> activeMedicines,
-    @HiveField(1) @Default([]) List<AppointmentDto> appointments,
-    @HiveField(2) @Default([]) List<MeasurementDto> measurements,
-    @HiveField(3) @Default([]) List<ConsumptionDto> consumptions,
+    @Default([]) List<MedicineDto> activeMedicines,
+    @Default([]) List<AppointmentDto> appointments,
+    @Default([]) List<MeasurementDto> measurements,
+    @Default([]) List<ConsumptionDto> consumptions,
   }) = _CalendarDto;
 
   const CalendarDto._();

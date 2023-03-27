@@ -1,7 +1,7 @@
 import 'package:calendar/src/core/core.dart';
 import 'package:calendar/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
+import 'package:medicine/medicine.dart';
 
 part 'consumption_dto.freezed.dart';
 part 'consumption_dto.g.dart';
@@ -10,14 +10,13 @@ part 'consumption_dto.g.dart';
 /// Data transfer object for a consumption.
 /// {@endtemplate}
 @freezed
-@HiveType(typeId: 7)
 class ConsumptionDto with _$ConsumptionDto {
   /// {@macro consumption_dto}
   const factory ConsumptionDto({
-    @HiveField(0) required String date,
-    @HiveField(1) required String realConsumptionDate,
-    @HiveField(2) required int medicineId,
-    @HiveField(3) required bool consumed,
+    required String date,
+    required String realConsumptionDate,
+    required int medicineId,
+    required bool consumed,
   }) = _ConsumptionDto;
 
   /// Creates a [ConsumptionDto] from a [Consumption].

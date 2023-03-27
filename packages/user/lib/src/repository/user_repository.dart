@@ -41,23 +41,21 @@ class UserRepository {
       return const Left(UserFailure.notFound());
     } on UserDioException catch (e) {
       switch (e.error.type) {
-        case DioErrorType.connectTimeout:
-          return const Left(UserFailure.timeout());
-
-        case DioErrorType.sendTimeout:
-          return const Left(UserFailure.sendTimeout());
-
         case DioErrorType.receiveTimeout:
-          return const Left(UserFailure.receiveTimeout());
-
-        case DioErrorType.response:
-          return const Left(UserFailure.response());
-
+        case DioErrorType.sendTimeout:
+          return left(const UserFailure.sendTimeout());
+        case DioErrorType.badResponse:
+          return left(const UserFailure.response());
         case DioErrorType.cancel:
-          return const Left(UserFailure.cancel());
-
-        case DioErrorType.other:
-          return const Left(UserFailure.unknown());
+          return left(const UserFailure.cancel());
+        case DioErrorType.connectionTimeout:
+          return left(const UserFailure.connectionTimeOut());
+        case DioErrorType.badCertificate:
+          return left(const UserFailure.unknown());
+        case DioErrorType.connectionError:
+          return left(const UserFailure.connectionTimeOut());
+        case DioErrorType.unknown:
+          return left(const UserFailure.unknown());
       }
     } on UserCacheException {
       return const Left(UserFailure.cache());
@@ -83,23 +81,21 @@ class UserRepository {
       return const Left(UserFailure.notFound());
     } on UserDioException catch (e) {
       switch (e.error.type) {
-        case DioErrorType.connectTimeout:
-          return const Left(UserFailure.timeout());
-
-        case DioErrorType.sendTimeout:
-          return const Left(UserFailure.sendTimeout());
-
         case DioErrorType.receiveTimeout:
-          return const Left(UserFailure.receiveTimeout());
-
-        case DioErrorType.response:
-          return const Left(UserFailure.response());
-
+        case DioErrorType.sendTimeout:
+          return left(const UserFailure.sendTimeout());
+        case DioErrorType.badResponse:
+          return left(const UserFailure.response());
         case DioErrorType.cancel:
-          return const Left(UserFailure.cancel());
-
-        case DioErrorType.other:
-          return const Left(UserFailure.unknown());
+          return left(const UserFailure.cancel());
+        case DioErrorType.connectionTimeout:
+          return left(const UserFailure.connectionTimeOut());
+        case DioErrorType.badCertificate:
+          return left(const UserFailure.unknown());
+        case DioErrorType.connectionError:
+          return left(const UserFailure.connectionTimeOut());
+        case DioErrorType.unknown:
+          return left(const UserFailure.unknown());
       }
     } on UserSerializationException {
       return const Left(UserFailure.serialization());
@@ -143,23 +139,21 @@ class UserRepository {
       return const Left(UserFailure.notFound());
     } on UserDioException catch (e) {
       switch (e.error.type) {
-        case DioErrorType.connectTimeout:
-          return const Left(UserFailure.timeout());
-
-        case DioErrorType.sendTimeout:
-          return const Left(UserFailure.sendTimeout());
-
         case DioErrorType.receiveTimeout:
-          return const Left(UserFailure.receiveTimeout());
-
-        case DioErrorType.response:
-          return const Left(UserFailure.response());
-
+        case DioErrorType.sendTimeout:
+          return left(const UserFailure.sendTimeout());
+        case DioErrorType.badResponse:
+          return left(const UserFailure.response());
         case DioErrorType.cancel:
-          return const Left(UserFailure.cancel());
-
-        case DioErrorType.other:
-          return const Left(UserFailure.unknown());
+          return left(const UserFailure.cancel());
+        case DioErrorType.connectionTimeout:
+          return left(const UserFailure.connectionTimeOut());
+        case DioErrorType.badCertificate:
+          return left(const UserFailure.unknown());
+        case DioErrorType.connectionError:
+          return left(const UserFailure.connectionTimeOut());
+        case DioErrorType.unknown:
+          return left(const UserFailure.unknown());
       }
     } on UserCacheException {
       return const Left(UserFailure.cache());
@@ -185,23 +179,21 @@ class UserRepository {
       return const Left(UserFailure.notFound());
     } on UserDioException catch (e) {
       switch (e.error.type) {
-        case DioErrorType.connectTimeout:
-          return const Left(UserFailure.timeout());
-
-        case DioErrorType.sendTimeout:
-          return const Left(UserFailure.sendTimeout());
-
         case DioErrorType.receiveTimeout:
-          return const Left(UserFailure.receiveTimeout());
-
-        case DioErrorType.response:
-          return const Left(UserFailure.response());
-
+        case DioErrorType.sendTimeout:
+          return left(const UserFailure.sendTimeout());
+        case DioErrorType.badResponse:
+          return left(const UserFailure.response());
         case DioErrorType.cancel:
-          return const Left(UserFailure.cancel());
-
-        case DioErrorType.other:
-          return const Left(UserFailure.unknown());
+          return left(const UserFailure.cancel());
+        case DioErrorType.connectionTimeout:
+          return left(const UserFailure.connectionTimeOut());
+        case DioErrorType.badCertificate:
+          return left(const UserFailure.unknown());
+        case DioErrorType.connectionError:
+          return left(const UserFailure.connectionTimeOut());
+        case DioErrorType.unknown:
+          return left(const UserFailure.unknown());
       }
     } on UserCacheException {
       return const Left(UserFailure.cache());

@@ -14,7 +14,7 @@ dependencies:
   calendar:
     path: packages/calendar
   dartz: ^0.10.1
-  dio: ^4.0.6
+  dio: ^5.0.3
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
   flutter:
@@ -38,6 +38,12 @@ dependencies:
     path: packages/user
   validators:
     path: packages/validators
+  medicine:
+    path: packages/medicine
+  appointment:
+    path: packages/appointment
+  measurement:
+    path: packages/measurement
 
 dev_dependencies:
   build_runner: ^2.3.0

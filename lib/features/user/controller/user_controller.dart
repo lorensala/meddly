@@ -23,7 +23,6 @@ class UserController extends _$UserController {
     final res = await repository.createUser(user);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-    ;
 
     if (res.isLeft()) {
       state = AsyncError(res.asLeft().message(l10n), StackTrace.current);

@@ -20,13 +20,9 @@ ConsumptionDto _$ConsumptionDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ConsumptionDto {
-  @HiveField(0)
   String get date => throw _privateConstructorUsedError;
-  @HiveField(1)
   String get realConsumptionDate => throw _privateConstructorUsedError;
-  @HiveField(2)
   int get medicineId => throw _privateConstructorUsedError;
-  @HiveField(3)
   bool get consumed => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +38,7 @@ abstract class $ConsumptionDtoCopyWith<$Res> {
       _$ConsumptionDtoCopyWithImpl<$Res, ConsumptionDto>;
   @useResult
   $Res call(
-      {@HiveField(0) String date,
-      @HiveField(1) String realConsumptionDate,
-      @HiveField(2) int medicineId,
-      @HiveField(3) bool consumed});
+      {String date, String realConsumptionDate, int medicineId, bool consumed});
 }
 
 /// @nodoc
@@ -96,10 +89,7 @@ abstract class _$$_ConsumptionDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String date,
-      @HiveField(1) String realConsumptionDate,
-      @HiveField(2) int medicineId,
-      @HiveField(3) bool consumed});
+      {String date, String realConsumptionDate, int medicineId, bool consumed});
 }
 
 /// @nodoc
@@ -143,26 +133,22 @@ class __$$_ConsumptionDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ConsumptionDto extends _ConsumptionDto {
   const _$_ConsumptionDto(
-      {@HiveField(0) required this.date,
-      @HiveField(1) required this.realConsumptionDate,
-      @HiveField(2) required this.medicineId,
-      @HiveField(3) required this.consumed})
+      {required this.date,
+      required this.realConsumptionDate,
+      required this.medicineId,
+      required this.consumed})
       : super._();
 
   factory _$_ConsumptionDto.fromJson(Map<String, dynamic> json) =>
       _$$_ConsumptionDtoFromJson(json);
 
   @override
-  @HiveField(0)
   final String date;
   @override
-  @HiveField(1)
   final String realConsumptionDate;
   @override
-  @HiveField(2)
   final int medicineId;
   @override
-  @HiveField(3)
   final bool consumed;
 
   @override
@@ -205,26 +191,22 @@ class _$_ConsumptionDto extends _ConsumptionDto {
 
 abstract class _ConsumptionDto extends ConsumptionDto {
   const factory _ConsumptionDto(
-      {@HiveField(0) required final String date,
-      @HiveField(1) required final String realConsumptionDate,
-      @HiveField(2) required final int medicineId,
-      @HiveField(3) required final bool consumed}) = _$_ConsumptionDto;
+      {required final String date,
+      required final String realConsumptionDate,
+      required final int medicineId,
+      required final bool consumed}) = _$_ConsumptionDto;
   const _ConsumptionDto._() : super._();
 
   factory _ConsumptionDto.fromJson(Map<String, dynamic> json) =
       _$_ConsumptionDto.fromJson;
 
   @override
-  @HiveField(0)
   String get date;
   @override
-  @HiveField(1)
   String get realConsumptionDate;
   @override
-  @HiveField(2)
   int get medicineId;
   @override
-  @HiveField(3)
   bool get consumed;
   @override
   @JsonKey(ignore: true)

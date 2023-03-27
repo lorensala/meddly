@@ -24,6 +24,7 @@ mixin _$NotificationFailure {
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -39,6 +40,7 @@ mixin _$NotificationFailure {
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -54,6 +56,7 @@ mixin _$NotificationFailure {
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -72,6 +75,8 @@ mixin _$NotificationFailure {
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -89,6 +94,8 @@ mixin _$NotificationFailure {
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -104,6 +111,8 @@ mixin _$NotificationFailure {
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -180,6 +189,7 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -198,6 +208,7 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -216,6 +227,7 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -240,6 +252,8 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -260,6 +274,8 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -278,6 +294,8 @@ class _$NotificationNotFoundFailure implements NotificationNotFoundFailure {
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -344,6 +362,7 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -362,6 +381,7 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -380,6 +400,7 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -404,6 +425,8 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -424,6 +447,8 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -442,6 +467,8 @@ class _$NotificationTimeoutFailure implements NotificationTimeoutFailure {
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -509,6 +536,7 @@ class _$NotificationSerializationFailure
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -527,6 +555,7 @@ class _$NotificationSerializationFailure
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -545,6 +574,7 @@ class _$NotificationSerializationFailure
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -569,6 +599,8 @@ class _$NotificationSerializationFailure
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -589,6 +621,8 @@ class _$NotificationSerializationFailure
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -607,6 +641,8 @@ class _$NotificationSerializationFailure
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -675,6 +711,7 @@ class _$NotificationSendTimeoutFailure
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -693,6 +730,7 @@ class _$NotificationSendTimeoutFailure
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -711,6 +749,7 @@ class _$NotificationSendTimeoutFailure
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -735,6 +774,8 @@ class _$NotificationSendTimeoutFailure
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -755,6 +796,8 @@ class _$NotificationSendTimeoutFailure
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -773,6 +816,8 @@ class _$NotificationSendTimeoutFailure
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -841,6 +886,7 @@ class _$NotificationReceiveTimeoutFailure
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -859,6 +905,7 @@ class _$NotificationReceiveTimeoutFailure
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -877,6 +924,7 @@ class _$NotificationReceiveTimeoutFailure
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -901,6 +949,8 @@ class _$NotificationReceiveTimeoutFailure
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -921,6 +971,8 @@ class _$NotificationReceiveTimeoutFailure
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -939,6 +991,8 @@ class _$NotificationReceiveTimeoutFailure
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -1007,6 +1061,7 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -1025,6 +1080,7 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -1043,6 +1099,7 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -1067,6 +1124,8 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -1087,6 +1146,8 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -1105,6 +1166,8 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -1121,6 +1184,182 @@ class _$NotificationResponseFailure implements NotificationResponseFailure {
 
 abstract class NotificationResponseFailure implements NotificationFailure {
   const factory NotificationResponseFailure() = _$NotificationResponseFailure;
+}
+
+/// @nodoc
+abstract class _$$NotificationConnectionTimeOutFailureCopyWith<$Res> {
+  factory _$$NotificationConnectionTimeOutFailureCopyWith(
+          _$NotificationConnectionTimeOutFailure value,
+          $Res Function(_$NotificationConnectionTimeOutFailure) then) =
+      __$$NotificationConnectionTimeOutFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NotificationConnectionTimeOutFailureCopyWithImpl<$Res>
+    extends _$NotificationFailureCopyWithImpl<$Res,
+        _$NotificationConnectionTimeOutFailure>
+    implements _$$NotificationConnectionTimeOutFailureCopyWith<$Res> {
+  __$$NotificationConnectionTimeOutFailureCopyWithImpl(
+      _$NotificationConnectionTimeOutFailure _value,
+      $Res Function(_$NotificationConnectionTimeOutFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$NotificationConnectionTimeOutFailure
+    implements NotificationConnectionTimeOutFailure {
+  const _$NotificationConnectionTimeOutFailure();
+
+  @override
+  String toString() {
+    return 'NotificationFailure.connectionTimeOut()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NotificationConnectionTimeOutFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notFound,
+    required TResult Function() timeout,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() response,
+    required TResult Function() connectionTimeOut,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() unknown,
+    required TResult Function() alreadyExists,
+    required TResult Function() doesNotExist,
+  }) {
+    return connectionTimeOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? notFound,
+    TResult? Function()? timeout,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? unknown,
+    TResult? Function()? alreadyExists,
+    TResult? Function()? doesNotExist,
+  }) {
+    return connectionTimeOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notFound,
+    TResult Function()? timeout,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? response,
+    TResult Function()? connectionTimeOut,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? unknown,
+    TResult Function()? alreadyExists,
+    TResult Function()? doesNotExist,
+    required TResult orElse(),
+  }) {
+    if (connectionTimeOut != null) {
+      return connectionTimeOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(NotificationNotFoundFailure value) notFound,
+    required TResult Function(NotificationTimeoutFailure value) timeout,
+    required TResult Function(NotificationSerializationFailure value)
+        serialization,
+    required TResult Function(NotificationSendTimeoutFailure value) sendTimeout,
+    required TResult Function(NotificationReceiveTimeoutFailure value)
+        receiveTimeout,
+    required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
+    required TResult Function(NotificationCancelFailure value) cancel,
+    required TResult Function(NotificationCacheFailure value) cache,
+    required TResult Function(NotificationUnknownFailure value) unknown,
+    required TResult Function(NotificationAlreadyExistsFailure value)
+        alreadyExists,
+    required TResult Function(NotificationDoesNotExistFailure value)
+        doesNotExist,
+  }) {
+    return connectionTimeOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(NotificationNotFoundFailure value)? notFound,
+    TResult? Function(NotificationTimeoutFailure value)? timeout,
+    TResult? Function(NotificationSerializationFailure value)? serialization,
+    TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    TResult? Function(NotificationCancelFailure value)? cancel,
+    TResult? Function(NotificationCacheFailure value)? cache,
+    TResult? Function(NotificationUnknownFailure value)? unknown,
+    TResult? Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult? Function(NotificationDoesNotExistFailure value)? doesNotExist,
+  }) {
+    return connectionTimeOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NotificationNotFoundFailure value)? notFound,
+    TResult Function(NotificationTimeoutFailure value)? timeout,
+    TResult Function(NotificationSerializationFailure value)? serialization,
+    TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
+    TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
+    TResult Function(NotificationCancelFailure value)? cancel,
+    TResult Function(NotificationCacheFailure value)? cache,
+    TResult Function(NotificationUnknownFailure value)? unknown,
+    TResult Function(NotificationAlreadyExistsFailure value)? alreadyExists,
+    TResult Function(NotificationDoesNotExistFailure value)? doesNotExist,
+    required TResult orElse(),
+  }) {
+    if (connectionTimeOut != null) {
+      return connectionTimeOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotificationConnectionTimeOutFailure
+    implements NotificationFailure {
+  const factory NotificationConnectionTimeOutFailure() =
+      _$NotificationConnectionTimeOutFailure;
 }
 
 /// @nodoc
@@ -1169,6 +1408,7 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -1187,6 +1427,7 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -1205,6 +1446,7 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -1229,6 +1471,8 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -1249,6 +1493,8 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -1267,6 +1513,8 @@ class _$NotificationCancelFailure implements NotificationCancelFailure {
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -1330,6 +1578,7 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -1348,6 +1597,7 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -1366,6 +1616,7 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -1390,6 +1641,8 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -1410,6 +1663,8 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -1428,6 +1683,8 @@ class _$NotificationCacheFailure implements NotificationCacheFailure {
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -1494,6 +1751,7 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -1512,6 +1770,7 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -1530,6 +1789,7 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -1554,6 +1814,8 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -1574,6 +1836,8 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -1592,6 +1856,8 @@ class _$NotificationUnknownFailure implements NotificationUnknownFailure {
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -1659,6 +1925,7 @@ class _$NotificationAlreadyExistsFailure
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -1677,6 +1944,7 @@ class _$NotificationAlreadyExistsFailure
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -1695,6 +1963,7 @@ class _$NotificationAlreadyExistsFailure
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -1719,6 +1988,8 @@ class _$NotificationAlreadyExistsFailure
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -1739,6 +2010,8 @@ class _$NotificationAlreadyExistsFailure
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -1757,6 +2030,8 @@ class _$NotificationAlreadyExistsFailure
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,
@@ -1825,6 +2100,7 @@ class _$NotificationDoesNotExistFailure
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
     required TResult Function() response,
+    required TResult Function() connectionTimeOut,
     required TResult Function() cancel,
     required TResult Function() cache,
     required TResult Function() unknown,
@@ -1843,6 +2119,7 @@ class _$NotificationDoesNotExistFailure
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
     TResult? Function()? response,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? cancel,
     TResult? Function()? cache,
     TResult? Function()? unknown,
@@ -1861,6 +2138,7 @@ class _$NotificationDoesNotExistFailure
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
     TResult Function()? response,
+    TResult Function()? connectionTimeOut,
     TResult Function()? cancel,
     TResult Function()? cache,
     TResult Function()? unknown,
@@ -1885,6 +2163,8 @@ class _$NotificationDoesNotExistFailure
     required TResult Function(NotificationReceiveTimeoutFailure value)
         receiveTimeout,
     required TResult Function(NotificationResponseFailure value) response,
+    required TResult Function(NotificationConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(NotificationCancelFailure value) cancel,
     required TResult Function(NotificationCacheFailure value) cache,
     required TResult Function(NotificationUnknownFailure value) unknown,
@@ -1905,6 +2185,8 @@ class _$NotificationDoesNotExistFailure
     TResult? Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult? Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult? Function(NotificationResponseFailure value)? response,
+    TResult? Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult? Function(NotificationCancelFailure value)? cancel,
     TResult? Function(NotificationCacheFailure value)? cache,
     TResult? Function(NotificationUnknownFailure value)? unknown,
@@ -1923,6 +2205,8 @@ class _$NotificationDoesNotExistFailure
     TResult Function(NotificationSendTimeoutFailure value)? sendTimeout,
     TResult Function(NotificationReceiveTimeoutFailure value)? receiveTimeout,
     TResult Function(NotificationResponseFailure value)? response,
+    TResult Function(NotificationConnectionTimeOutFailure value)?
+        connectionTimeOut,
     TResult Function(NotificationCancelFailure value)? cancel,
     TResult Function(NotificationCacheFailure value)? cache,
     TResult Function(NotificationUnknownFailure value)? unknown,

@@ -1,5 +1,8 @@
+import 'package:appointment/appointment.dart';
 import 'package:calendar/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:measurement/measurement.dart';
+import 'package:medicine/medicine.dart';
 
 part 'calendar.freezed.dart';
 

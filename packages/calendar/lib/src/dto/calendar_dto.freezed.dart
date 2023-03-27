@@ -20,13 +20,9 @@ CalendarDto _$CalendarDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CalendarDto {
-  @HiveField(0)
   List<MedicineDto> get activeMedicines => throw _privateConstructorUsedError;
-  @HiveField(1)
   List<AppointmentDto> get appointments => throw _privateConstructorUsedError;
-  @HiveField(2)
   List<MeasurementDto> get measurements => throw _privateConstructorUsedError;
-  @HiveField(3)
   List<ConsumptionDto> get consumptions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +38,10 @@ abstract class $CalendarDtoCopyWith<$Res> {
       _$CalendarDtoCopyWithImpl<$Res, CalendarDto>;
   @useResult
   $Res call(
-      {@HiveField(0) List<MedicineDto> activeMedicines,
-      @HiveField(1) List<AppointmentDto> appointments,
-      @HiveField(2) List<MeasurementDto> measurements,
-      @HiveField(3) List<ConsumptionDto> consumptions});
+      {List<MedicineDto> activeMedicines,
+      List<AppointmentDto> appointments,
+      List<MeasurementDto> measurements,
+      List<ConsumptionDto> consumptions});
 }
 
 /// @nodoc
@@ -96,10 +92,10 @@ abstract class _$$_CalendarDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@HiveField(0) List<MedicineDto> activeMedicines,
-      @HiveField(1) List<AppointmentDto> appointments,
-      @HiveField(2) List<MeasurementDto> measurements,
-      @HiveField(3) List<ConsumptionDto> consumptions});
+      {List<MedicineDto> activeMedicines,
+      List<AppointmentDto> appointments,
+      List<MeasurementDto> measurements,
+      List<ConsumptionDto> consumptions});
 }
 
 /// @nodoc
@@ -143,10 +139,10 @@ class __$$_CalendarDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CalendarDto extends _CalendarDto {
   const _$_CalendarDto(
-      {@HiveField(0) final List<MedicineDto> activeMedicines = const [],
-      @HiveField(1) final List<AppointmentDto> appointments = const [],
-      @HiveField(2) final List<MeasurementDto> measurements = const [],
-      @HiveField(3) final List<ConsumptionDto> consumptions = const []})
+      {final List<MedicineDto> activeMedicines = const [],
+      final List<AppointmentDto> appointments = const [],
+      final List<MeasurementDto> measurements = const [],
+      final List<ConsumptionDto> consumptions = const []})
       : _activeMedicines = activeMedicines,
         _appointments = appointments,
         _measurements = measurements,
@@ -159,7 +155,6 @@ class _$_CalendarDto extends _CalendarDto {
   final List<MedicineDto> _activeMedicines;
   @override
   @JsonKey()
-  @HiveField(0)
   List<MedicineDto> get activeMedicines {
     if (_activeMedicines is EqualUnmodifiableListView) return _activeMedicines;
     // ignore: implicit_dynamic_type
@@ -169,7 +164,6 @@ class _$_CalendarDto extends _CalendarDto {
   final List<AppointmentDto> _appointments;
   @override
   @JsonKey()
-  @HiveField(1)
   List<AppointmentDto> get appointments {
     if (_appointments is EqualUnmodifiableListView) return _appointments;
     // ignore: implicit_dynamic_type
@@ -179,7 +173,6 @@ class _$_CalendarDto extends _CalendarDto {
   final List<MeasurementDto> _measurements;
   @override
   @JsonKey()
-  @HiveField(2)
   List<MeasurementDto> get measurements {
     if (_measurements is EqualUnmodifiableListView) return _measurements;
     // ignore: implicit_dynamic_type
@@ -189,7 +182,6 @@ class _$_CalendarDto extends _CalendarDto {
   final List<ConsumptionDto> _consumptions;
   @override
   @JsonKey()
-  @HiveField(3)
   List<ConsumptionDto> get consumptions {
     if (_consumptions is EqualUnmodifiableListView) return _consumptions;
     // ignore: implicit_dynamic_type
@@ -241,26 +233,22 @@ class _$_CalendarDto extends _CalendarDto {
 
 abstract class _CalendarDto extends CalendarDto {
   const factory _CalendarDto(
-      {@HiveField(0) final List<MedicineDto> activeMedicines,
-      @HiveField(1) final List<AppointmentDto> appointments,
-      @HiveField(2) final List<MeasurementDto> measurements,
-      @HiveField(3) final List<ConsumptionDto> consumptions}) = _$_CalendarDto;
+      {final List<MedicineDto> activeMedicines,
+      final List<AppointmentDto> appointments,
+      final List<MeasurementDto> measurements,
+      final List<ConsumptionDto> consumptions}) = _$_CalendarDto;
   const _CalendarDto._() : super._();
 
   factory _CalendarDto.fromJson(Map<String, dynamic> json) =
       _$_CalendarDto.fromJson;
 
   @override
-  @HiveField(0)
   List<MedicineDto> get activeMedicines;
   @override
-  @HiveField(1)
   List<AppointmentDto> get appointments;
   @override
-  @HiveField(2)
   List<MeasurementDto> get measurements;
   @override
-  @HiveField(3)
   List<ConsumptionDto> get consumptions;
   @override
   @JsonKey(ignore: true)

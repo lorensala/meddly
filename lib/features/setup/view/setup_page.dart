@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/setup/widgets/setup_body.dart';
 import 'package:meddly/features/user/user.dart';
 
@@ -39,8 +38,8 @@ class SetupView extends ConsumerWidget {
     ref.listen(userControllerProvider, (_, state) {
       state.whenOrNull(
         data: (_) {
-          Navigator.of(context)
-              .pushAndRemoveUntil(PhonePage.route(), (route) => false);
+          // Navigator.of(context)
+          //     .pushAndRemoveUntil(PhonePage.route(), (route) => false);
         },
         error: (err, _) {
           ScaffoldMessenger.of(context)

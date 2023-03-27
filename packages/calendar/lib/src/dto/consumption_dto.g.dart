@@ -3,53 +3,6 @@
 part of 'consumption_dto.dart';
 
 // **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
-
-class ConsumptionDtoAdapter extends TypeAdapter<ConsumptionDto> {
-  @override
-  final int typeId = 7;
-
-  @override
-  ConsumptionDto read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return ConsumptionDto(
-      date: fields[0] as String,
-      realConsumptionDate: fields[1] as String,
-      medicineId: fields[2] as int,
-      consumed: fields[3] as bool,
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, ConsumptionDto obj) {
-    writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.date)
-      ..writeByte(1)
-      ..write(obj.realConsumptionDate)
-      ..writeByte(2)
-      ..write(obj.medicineId)
-      ..writeByte(3)
-      ..write(obj.consumed);
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ConsumptionDtoAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 

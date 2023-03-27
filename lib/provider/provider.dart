@@ -3,6 +3,7 @@ import 'package:calendar/calendar.dart';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:meddly/features/auth/auth.dart';
+import 'package:medicine/medicine.dart';
 import 'package:notifications/notifications.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:user/user.dart';

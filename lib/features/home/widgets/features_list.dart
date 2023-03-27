@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/home/widgets/widgets.dart';
 import 'package:meddly/features/measurement/measurement.dart';
@@ -60,6 +61,11 @@ class FeaturesList extends StatelessWidget {
             onPressed: () =>
                 Navigator.of(context).push(MeasurementPage.route()),
           ),
+          const SizedBox(width: Sizes.mediumSpacing),
+          FeatureCard(
+              onPressed: () =>
+                  Navigator.of(context).push(AppointmentPage.route()),
+              name: 'Appointments')
         ],
       ),
     );
