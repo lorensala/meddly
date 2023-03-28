@@ -1,8 +1,9 @@
-import 'package:calendar/calendar.dart';
-import 'package:meddly/features/calendar/provider/provider.dart';
-import 'package:meddly/features/medicine/core/extension.dart';
+import 'package:dartz/dartz.dart';
+import 'package:meddly/core/core.dart';
+import 'package:meddly/features/calendar/controller/calendar_controller.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:medicine/medicine.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'medicine_controller.g.dart';
@@ -10,7 +11,10 @@ part 'medicine_controller.g.dart';
 @riverpod
 class MedicineController extends _$MedicineController {
   @override
-  FutureOr<void> build() {}
+  Future<Either<MedicineFailure, List<Medicine>>> build() {
+    final repository = ref.watch(medicineRepositoryProvider);
+    return repository.fetchAll();
+  }
 
   Future<void> addMedicine(Medicine medicine) async {
     state = AsyncLoading();
@@ -21,13 +25,15 @@ class MedicineController extends _$MedicineController {
 
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-    state = res.fold(
-      (failure) => AsyncError(failure.message(l10n), StackTrace.current),
-      (_) {
-        repository.fetchAll();
-        ref.watch(calendarRepositoryProvider).fetchCalendar();
-        return AsyncData(null);
-      },
-    );
+    if (res.isLeft()) {
+      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+      return;
+    }
+
+    ref.invalidate(calendarControllerProvider);
+  }
+
+  void retry() {
+    return ref.invalidateSelf();
   }
 }

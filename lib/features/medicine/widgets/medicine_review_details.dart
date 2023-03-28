@@ -1,4 +1,3 @@
-import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
@@ -6,6 +5,7 @@ import 'package:meddly/features/medicine/controller/medicine_form_controller.dar
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
+import 'package:medicine/medicine.dart';
 
 class MedicineReviewDetails extends StatelessWidget {
   const MedicineReviewDetails({super.key});

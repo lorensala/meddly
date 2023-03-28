@@ -1,17 +1,10 @@
 import 'package:calendar/calendar.dart';
-import 'package:dartz/dartz.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'calendar_provider.g.dart';
-
-@riverpod
-CalendarCache calendarCache(CalendarCacheRef ref) {
-  return CalendarCache(box: ref.read(calendarBoxProvider));
-}
 
 @riverpod
 CalendarApi calendarApi(CalendarApiRef ref) {
@@ -20,78 +13,69 @@ CalendarApi calendarApi(CalendarApiRef ref) {
 
 @riverpod
 CalendarRepository calendarRepository(CalendarRepositoryRef ref) {
-  return CalendarRepository(
-      cache: ref.read(calendarCacheProvider),
-      api: ref.read(calendarApiProvider));
+  return CalendarRepository(api: ref.read(calendarApiProvider));
 }
 
-@riverpod
-Stream<Either<CalendarFailure, List<Event>>> calendarStream(
-    CalendarStreamRef ref) {
-  final repository = ref.read(calendarRepositoryProvider);
-  return repository.events;
-}
+// @riverpod
+// Stream<Either<CalendarFailure, List<Event>>> calendarStream(
+//     CalendarStreamRef ref) {
+//   final repository = ref.read(calendarRepositoryProvider);
+//   return repository.events;
+// }
 
-@riverpod
-Stream<Either<CalendarFailure, List<Medicine>>> medicinesStream(
-    MedicinesStreamRef ref) {
-  final repository = ref.read(calendarRepositoryProvider);
-  return repository.medicines;
-}
-
-@riverpod
-List<Event> calendarEvents(CalendarEventsRef ref) {
-  return ref.watch(calendarStreamProvider).maybeWhen(
-        data: (events) => events.fold(
-          (l) => [],
-          (events) => events,
-        ),
-        orElse: () => [],
-      );
-}
+// @riverpod
+// List<Event> calendarEvents(CalendarEventsRef ref) {
+//   return ref.watch(calendarStreamProvider).maybeWhen(
+//         data: (events) => events.fold(
+//           (l) => [],
+//           (events) => events,
+//         ),
+//         orElse: () => [],
+//       );
+// }
 
 final selectedDateProvider = StateProvider<DateTime>((ref) {
   return DateTime.now();
 });
 
-@riverpod
-bool hasConsumedConsumption(HasConsumedConsumptionRef ref,
-    {required DateTime date}) {
-  final events = ref.watch(calendarEventsProvider);
+// @riverpod
+// bool hasConsumedConsumption(HasConsumedConsumptionRef ref,
+//     {required DateTime date}) {
+//   final events = ref.watch(calendarEventsProvider);
 
-  return events.any(
-    (event) => event.maybeMap(
-      fromConsumption: (consumption) =>
-          consumption.date.isSameDay(date) && consumption.consumed,
-      orElse: () => false,
-    ),
-  );
-}
+//   return events.any(
+//     (event) => event.maybeMap(
+//       fromConsumption: (consumption) =>
+//           consumption.date.isSameDay(date) && consumption.consumed,
+//       orElse: () => false,
+//     ),
+//   );
+// }
 
 @riverpod
 List<DateTime> allDaysOfYear(AllDaysOfYearRef ref) {
   return getAllDaysInYear();
 }
 
-@riverpod
-List<Event> calendarTodayEvents(CalendarTodayEventsRef ref) {
-  final now = DateTime.now();
-  return ref.watch(calendarStreamProvider).when(
-      data: (res) {
-        return res.fold(
-          (l) => [],
-          (events) {
-            return events.where((event) {
-              return event.date.isSameDay(now);
-            }).toList();
-          },
-        );
-      },
-      error: (_, __) => [],
-      loading: () => []);
-}
+// @riverpod
+// List<Event> calendarTodayEvents(CalendarTodayEventsRef ref) {
+//   final now = DateTime.now();
+//   return ref.watch(calendarStreamProvider).when(
+//       data: (res) {
+//         return res.fold(
+//           (l) => [],
+//           (events) {
+//             return events.where((event) {
+//               return event.date.isSameDay(now);
+//             }).toList();
+//           },
+//         );
+//       },
+//       error: (_, __) => [],
+//       loading: () => []);
+// }
 
 @Riverpod(dependencies: [])
-Event event(EventRef ref) {
+CalendarEvent event(EventRef ref) {
   throw UnimplementedError();
 }

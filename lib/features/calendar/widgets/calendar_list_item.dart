@@ -9,7 +9,7 @@ class CalendarListItem extends StatelessWidget {
     required this.event,
   });
 
-  final Event event;
+  final CalendarEvent event;
 
   @override
   Widget build(BuildContext context) {

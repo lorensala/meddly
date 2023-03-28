@@ -65,10 +65,10 @@ class MeasurementDto with _$MeasurementDto {
     }
   }
 
-  /// Creates an [Event] from a [MeasurementDto].
-  Event toEvent() {
+  /// Creates an [CalendarEvent] from a [MeasurementDto].
+  CalendarEvent toEvent() {
     try {
-      return Event.fromMeasurement(
+      return CalendarEvent.fromMeasurement(
         id: id,
         date: DateTime.parse(date),
         title: type,

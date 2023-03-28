@@ -1,13 +1,8 @@
-import 'package:authentication/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:meddly/features/auth/provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'auth_provider.g.dart';
-
-@riverpod
-AuthRepository authRepository(AuthRepositoryRef ref) {
-  return AuthRepository();
-}
+part 'current_user.g.dart';
 
 @riverpod
 User? currentUser(CurrentUserRef ref) {

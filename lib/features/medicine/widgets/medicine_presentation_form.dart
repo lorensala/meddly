@@ -1,4 +1,3 @@
-import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -7,6 +6,7 @@ import 'package:meddly/features/medicine/controller/medicine_form_controller.dar
 import 'package:meddly/features/medicine/view/medicine_dosis_page.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
+import 'package:medicine/medicine.dart';
 
 import '../provider/provider.dart';
 

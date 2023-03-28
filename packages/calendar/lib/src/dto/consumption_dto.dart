@@ -53,10 +53,10 @@ class ConsumptionDto with _$ConsumptionDto {
     }
   }
 
-  /// Creates a [Event] from a [ConsumptionDto].
-  Event toEvent(Medicine medicineAssociatedWithConsumption) {
+  /// Creates a [CalendarEvent] from a [ConsumptionDto].
+  CalendarEvent toEvent(Medicine medicineAssociatedWithConsumption) {
     try {
-      return Event.fromConsumption(
+      return CalendarEvent.fromConsumption(
         id: medicineId,
         date: DateTime.parse(date),
         title: medicineAssociatedWithConsumption.name,

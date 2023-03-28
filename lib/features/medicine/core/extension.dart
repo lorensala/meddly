@@ -1,5 +1,5 @@
-import 'package:calendar/calendar.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:medicine/medicine.dart';
 
 extension MedicineFailureX on MedicineFailure {
   String message(AppLocalizations l10n) {

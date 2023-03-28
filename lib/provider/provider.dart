@@ -1,7 +1,7 @@
 import 'package:authentication/authentication.dart';
-import 'package:calendar/calendar.dart';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:medicine/medicine.dart';
 import 'package:notifications/notifications.dart';
@@ -14,7 +14,7 @@ part 'provider.g.dart';
 Dio dio(DioRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return Dio()
-    ..options.baseUrl = 'http://localhost:11001'
+    ..options.baseUrl = Strings.baseUrl
     ..interceptors.addAll([
       AuthInterceptor(authRepository),
       LogInterceptor(requestBody: true, responseBody: true)
@@ -22,21 +22,31 @@ Dio dio(DioRef ref) {
 }
 
 @riverpod
+Future<HiveInterface> hive(HiveRef ref) async {
+  final hive = Hive;
+  await hive.initFlutter();
+
+  await hive.openBox<UserDto>(userBoxKey);
+  await hive.openBox<List<String>>(preferencesBoxKey);
+  await hive.openBox<List<MedicineDto>>(medicineBoxKey);
+
+  return hive;
+}
+
+@riverpod
 Box<UserDto> userBox(UserBoxRef ref) {
-  return Hive.box<UserDto>(userBoxKey);
+  final hive = ref.read(hiveProvider).requireValue;
+  return hive.box<UserDto>(userBoxKey);
 }
 
 @riverpod
 Box<List<String>> preferencesBox(PreferencesBoxRef ref) {
-  return Hive.box<List<String>>(preferencesBoxKey);
+  final hive = ref.read(hiveProvider).requireValue;
+  return hive.box<List<String>>(preferencesBoxKey);
 }
 
 @riverpod
-Box<CalendarDto> calendarBox(CalendarBoxRef ref) {
-  return Hive.box<CalendarDto>(calendarBoxKey);
-}
-
-@riverpod
-Box<MedicineDto> medicineBox(MedicineBoxRef ref) {
-  return Hive.box<MedicineDto>(medicineBoxKey);
+Box<List<MedicineDto>> medicineBox(MedicineBoxRef ref) {
+  final hive = ref.read(hiveProvider).requireValue;
+  return hive.box<List<MedicineDto>>(medicineBoxKey);
 }

@@ -19,11 +19,11 @@ class MedicineRepository {
   /// Fetches all medicines.
   ///
   /// Returns a [MedicineFailure] if the request fails.
-  Future<Either<MedicineFailure, Unit>> fetchAll() async {
+  Future<Either<MedicineFailure, List<Medicine>>> fetchAll() async {
     try {
       final medicines = await _api.fetchAll();
-      await _cache.writeAll(medicines);
-      return const Right(unit);
+
+      return Right(medicines.map((e) => e.toDomain()).toList());
     } on MedicineNotFoundException {
       return const Left(MedicineFailure.notFound());
     } on MedicineDioException catch (e) {
@@ -55,38 +55,37 @@ class MedicineRepository {
   /// Gets all medicines from cache.
   ///
   /// Returns a [MedicineFailure] if the request fails.
-  Either<MedicineFailure, List<Medicine>> getAll() {
-    try {
-      final medicineDtoList = _cache.readAll();
+  // Either<MedicineFailure, List<Medicine>> getAll() {
+  //   try {
 
-      return Right(
-        medicineDtoList.map((e) => e.toDomain()).toList(),
-      );
-    } on MedicineSerializationException {
-      return const Left(MedicineFailure.serialization());
-    } on MedicineCacheException {
-      return const Left(MedicineFailure.cache());
-    } catch (e) {
-      return const Left(MedicineFailure.unknown());
-    }
-  }
+  //     return Right(
+  //       medicineDtoList.map((e) => e.toDomain()).toList(),
+  //     );
+  //   } on MedicineSerializationException {
+  //     return const Left(MedicineFailure.serialization());
+  //   } on MedicineCacheException {
+  //     return const Left(MedicineFailure.cache());
+  //   } catch (e) {
+  //     return const Left(MedicineFailure.unknown());
+  //   }
+  // }
 
   /// Gets a medicine from cache
   ///
   /// Returns a [MedicineFailure] if the request fails.
-  Either<MedicineFailure, Medicine> get(String id) {
-    try {
-      final medicineDto = _cache.read(id);
+  // Either<MedicineFailure, Medicine> get(String id) {
+  //   try {
+  //     final medicineDto = _cache.read(id);
 
-      return Right(medicineDto.toDomain());
-    } on MedicineSerializationException {
-      return const Left(MedicineFailure.serialization());
-    } on MedicineCacheException {
-      return const Left(MedicineFailure.cache());
-    } catch (e) {
-      return const Left(MedicineFailure.unknown());
-    }
-  }
+  //     return Right(medicineDto.toDomain());
+  //   } on MedicineSerializationException {
+  //     return const Left(MedicineFailure.serialization());
+  //   } on MedicineCacheException {
+  //     return const Left(MedicineFailure.cache());
+  //   } catch (e) {
+  //     return const Left(MedicineFailure.unknown());
+  //   }
+  // }
 
   /// Add a medicine
   ///
@@ -96,7 +95,7 @@ class MedicineRepository {
   ) async {
     try {
       await _api.addMedicine(MedicineDto.fromDomain(medicine));
-      await _cache.write(MedicineDto.fromDomain(medicine));
+
       return const Right(unit);
     } on DioError catch (e) {
       switch (e.type) {
@@ -169,7 +168,6 @@ class MedicineRepository {
   ) async {
     try {
       await _api.updateMedicine(MedicineDto.fromDomain(medicine));
-      await _cache.write(MedicineDto.fromDomain(medicine));
 
       return const Right(unit);
     } on MedicineCacheException {

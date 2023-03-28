@@ -64,10 +64,10 @@ class AppointmentDto with _$AppointmentDto {
     }
   }
 
-  /// Converts a [AppointmentDto] to a [Event].
-  Event toEvent() {
+  /// Converts a [AppointmentDto] to a [CalendarEvent].
+  CalendarEvent toEvent() {
     try {
-      return Event.fromAppointment(
+      return CalendarEvent.fromAppointment(
         id: id,
         date: DateTime.parse(date),
         title: name,

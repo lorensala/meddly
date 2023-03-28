@@ -1,7 +1,7 @@
-import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart' show TimeOfDay;
 import 'package:meddly/features/medicine/controller/medicine_controller.dart';
 import 'package:meddly/features/medicine/state/state.dart';
+import 'package:medicine/medicine.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:validators/validators.dart';
 

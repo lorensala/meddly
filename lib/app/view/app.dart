@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meddly/features/auth/provider/auth_provider.dart';
+import 'package:meddly/features/auth/provider/provider.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/splash/view/splash_page.dart';
@@ -14,7 +14,7 @@ class App extends ConsumerWidget {
     final user = ref.watch(currentUserProvider);
 
     return MaterialApp(
-        theme: ThemeManager.lightTheme,
+        theme: AppTheme.lightTheme,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         home: user == null ? const OnboardingPage() : SplashPage());

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/calendar/calendar.dart';
-import 'package:meddly/features/calendar/provider/provider.dart';
 
 class CalendarDayAndStatusIndicator extends StatelessWidget {
   const CalendarDayAndStatusIndicator({
@@ -55,20 +53,21 @@ class _StatusIndicator extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final hasConsumedConsumption =
-        ref.watch(hasConsumedConsumptionProvider(date: date));
-    return SizedBox(
-      height: 40,
-      width: 40,
-      child: AnimatedContainer(
-        duration: statusIndicatorDuration,
-        decoration: BoxDecoration(
-          color: hasConsumedConsumption
-              ? context.colorScheme.primary
-              : context.colorScheme.secondary,
-          borderRadius: BorderRadius.circular(25),
-        ),
-      ),
-    );
+    return SizedBox.shrink();
+    // final hasConsumedConsumption =
+    //     ref.watch(hasConsumedConsumptionProvider(date: date));
+    // return SizedBox(
+    //   height: 40,
+    //   width: 40,
+    //   child: AnimatedContainer(
+    //     duration: statusIndicatorDuration,
+    //     decoration: BoxDecoration(
+    //       color: hasConsumedConsumption
+    //           ? context.colorScheme.primary
+    //           : context.colorScheme.secondary,
+    //       borderRadius: BorderRadius.circular(25),
+    //     ),
+    //   ),
+    // );
   }
 }

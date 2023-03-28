@@ -3,7 +3,7 @@ import 'package:meddly/core/core.dart';
 
 const String fontFamily = 'Be Vietnam Pro';
 
-class ThemeManager {
+class AppTheme {
   static ThemeData lightTheme = ThemeData.light().copyWith(
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
     switchTheme: SwitchThemeData(

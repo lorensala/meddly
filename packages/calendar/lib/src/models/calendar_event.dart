@@ -6,9 +6,9 @@ part 'calendar_event.freezed.dart';
 /// A calendar event.
 /// {@endtemplate}
 @freezed
-class Event with _$Event {
+class CalendarEvent with _$CalendarEvent {
   /// {@macro calendar_event}
-  const factory Event.fromConsumption({
+  const factory CalendarEvent.fromConsumption({
     required int id,
     @Default('') String title,
     @Default('') String description,
@@ -17,7 +17,7 @@ class Event with _$Event {
   }) = _MedicineEvent;
 
   /// {@macro calendar_event}
-  const factory Event.fromAppointment({
+  const factory CalendarEvent.fromAppointment({
     required int id,
     @Default('') String title,
     @Default('') String description,
@@ -25,7 +25,7 @@ class Event with _$Event {
   }) = _AppointmentEvent;
 
   /// {@macro calendar_event}
-  const factory Event.fromMeasurement({
+  const factory CalendarEvent.fromMeasurement({
     required int id,
     @Default('') String title,
     @Default('') String description,

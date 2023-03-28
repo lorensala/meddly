@@ -45,9 +45,9 @@ class CalendarDto with _$CalendarDto {
     }
   }
 
-  /// Creates a list of [Event] from a [CalendarDto].
-  List<Event> toEvents() {
-    final events = <Event>[];
+  /// Creates a list of [CalendarEvent] from a [CalendarDto].
+  List<CalendarEvent> toEvents() {
+    final events = <CalendarEvent>[];
 
     // ignore: cascade_invocations
     events

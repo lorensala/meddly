@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$Event {
+mixin _$CalendarEvent {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -82,21 +82,23 @@ mixin _$Event {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $EventCopyWith<Event> get copyWith => throw _privateConstructorUsedError;
+  $CalendarEventCopyWith<CalendarEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EventCopyWith<$Res> {
-  factory $EventCopyWith(Event value, $Res Function(Event) then) =
-      _$EventCopyWithImpl<$Res, Event>;
+abstract class $CalendarEventCopyWith<$Res> {
+  factory $CalendarEventCopyWith(
+          CalendarEvent value, $Res Function(CalendarEvent) then) =
+      _$CalendarEventCopyWithImpl<$Res, CalendarEvent>;
   @useResult
   $Res call({int id, String title, String description, DateTime date});
 }
 
 /// @nodoc
-class _$EventCopyWithImpl<$Res, $Val extends Event>
-    implements $EventCopyWith<$Res> {
-  _$EventCopyWithImpl(this._value, this._then);
+class _$CalendarEventCopyWithImpl<$Res, $Val extends CalendarEvent>
+    implements $CalendarEventCopyWith<$Res> {
+  _$CalendarEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -133,7 +135,8 @@ class _$EventCopyWithImpl<$Res, $Val extends Event>
 }
 
 /// @nodoc
-abstract class _$$_MedicineEventCopyWith<$Res> implements $EventCopyWith<$Res> {
+abstract class _$$_MedicineEventCopyWith<$Res>
+    implements $CalendarEventCopyWith<$Res> {
   factory _$$_MedicineEventCopyWith(
           _$_MedicineEvent value, $Res Function(_$_MedicineEvent) then) =
       __$$_MedicineEventCopyWithImpl<$Res>;
@@ -145,7 +148,7 @@ abstract class _$$_MedicineEventCopyWith<$Res> implements $EventCopyWith<$Res> {
 
 /// @nodoc
 class __$$_MedicineEventCopyWithImpl<$Res>
-    extends _$EventCopyWithImpl<$Res, _$_MedicineEvent>
+    extends _$CalendarEventCopyWithImpl<$Res, _$_MedicineEvent>
     implements _$$_MedicineEventCopyWith<$Res> {
   __$$_MedicineEventCopyWithImpl(
       _$_MedicineEvent _value, $Res Function(_$_MedicineEvent) _then)
@@ -211,7 +214,7 @@ class _$_MedicineEvent implements _MedicineEvent {
 
   @override
   String toString() {
-    return 'Event.fromConsumption(id: $id, title: $title, description: $description, date: $date, consumed: $consumed)';
+    return 'CalendarEvent.fromConsumption(id: $id, title: $title, description: $description, date: $date, consumed: $consumed)';
   }
 
   @override
@@ -323,7 +326,7 @@ class _$_MedicineEvent implements _MedicineEvent {
   }
 }
 
-abstract class _MedicineEvent implements Event {
+abstract class _MedicineEvent implements CalendarEvent {
   const factory _MedicineEvent(
       {required final int id,
       final String title,
@@ -348,7 +351,7 @@ abstract class _MedicineEvent implements Event {
 
 /// @nodoc
 abstract class _$$_AppointmentEventCopyWith<$Res>
-    implements $EventCopyWith<$Res> {
+    implements $CalendarEventCopyWith<$Res> {
   factory _$$_AppointmentEventCopyWith(
           _$_AppointmentEvent value, $Res Function(_$_AppointmentEvent) then) =
       __$$_AppointmentEventCopyWithImpl<$Res>;
@@ -359,7 +362,7 @@ abstract class _$$_AppointmentEventCopyWith<$Res>
 
 /// @nodoc
 class __$$_AppointmentEventCopyWithImpl<$Res>
-    extends _$EventCopyWithImpl<$Res, _$_AppointmentEvent>
+    extends _$CalendarEventCopyWithImpl<$Res, _$_AppointmentEvent>
     implements _$$_AppointmentEventCopyWith<$Res> {
   __$$_AppointmentEventCopyWithImpl(
       _$_AppointmentEvent _value, $Res Function(_$_AppointmentEvent) _then)
@@ -416,7 +419,7 @@ class _$_AppointmentEvent implements _AppointmentEvent {
 
   @override
   String toString() {
-    return 'Event.fromAppointment(id: $id, title: $title, description: $description, date: $date)';
+    return 'CalendarEvent.fromAppointment(id: $id, title: $title, description: $description, date: $date)';
   }
 
   @override
@@ -525,7 +528,7 @@ class _$_AppointmentEvent implements _AppointmentEvent {
   }
 }
 
-abstract class _AppointmentEvent implements Event {
+abstract class _AppointmentEvent implements CalendarEvent {
   const factory _AppointmentEvent(
       {required final int id,
       final String title,
@@ -548,7 +551,7 @@ abstract class _AppointmentEvent implements Event {
 
 /// @nodoc
 abstract class _$$_MeasurementEventCopyWith<$Res>
-    implements $EventCopyWith<$Res> {
+    implements $CalendarEventCopyWith<$Res> {
   factory _$$_MeasurementEventCopyWith(
           _$_MeasurementEvent value, $Res Function(_$_MeasurementEvent) then) =
       __$$_MeasurementEventCopyWithImpl<$Res>;
@@ -560,7 +563,7 @@ abstract class _$$_MeasurementEventCopyWith<$Res>
 
 /// @nodoc
 class __$$_MeasurementEventCopyWithImpl<$Res>
-    extends _$EventCopyWithImpl<$Res, _$_MeasurementEvent>
+    extends _$CalendarEventCopyWithImpl<$Res, _$_MeasurementEvent>
     implements _$$_MeasurementEventCopyWith<$Res> {
   __$$_MeasurementEventCopyWithImpl(
       _$_MeasurementEvent _value, $Res Function(_$_MeasurementEvent) _then)
@@ -626,7 +629,7 @@ class _$_MeasurementEvent implements _MeasurementEvent {
 
   @override
   String toString() {
-    return 'Event.fromMeasurement(id: $id, title: $title, description: $description, date: $date, measured: $measured)';
+    return 'CalendarEvent.fromMeasurement(id: $id, title: $title, description: $description, date: $date, measured: $measured)';
   }
 
   @override
@@ -738,7 +741,7 @@ class _$_MeasurementEvent implements _MeasurementEvent {
   }
 }
 
-abstract class _MeasurementEvent implements Event {
+abstract class _MeasurementEvent implements CalendarEvent {
   const factory _MeasurementEvent(
       {required final int id,
       final String title,

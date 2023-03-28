@@ -1,6 +1,6 @@
-import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:medicine/medicine.dart';
 
 String getl10nFrecuency(MedicineFrecuency frecuency, BuildContext context) {
   switch (frecuency) {
