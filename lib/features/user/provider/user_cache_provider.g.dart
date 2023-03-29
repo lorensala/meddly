@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_provider.dart';
+part of 'user_cache_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userHash() => r'da6cffca1a006d98d6cbf78e6d48b865f827ef25';
+String _$userCacheHash() => r'1a1a048ddd80233af217e87639f3ac75e61dd63f';
 
-/// See also [user].
-@ProviderFor(user)
-final userProvider = AutoDisposeProvider<Option<User>>.internal(
-  user,
-  name: r'userProvider',
+/// See also [userCache].
+@ProviderFor(userCache)
+final userCacheProvider = AutoDisposeProvider<UserCache>.internal(
+  userCache,
+  name: r'userCacheProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$userHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$userCacheHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef UserRef = AutoDisposeProviderRef<Option<User>>;
+typedef UserCacheRef = AutoDisposeProviderRef<UserCache>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

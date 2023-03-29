@@ -9,7 +9,7 @@ class EventCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final event = ref.watch(eventProvider);
+    final event = ref.watch(calendarEventProvider);
 
     return Container(
       width: 150,

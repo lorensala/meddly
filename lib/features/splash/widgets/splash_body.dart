@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/features/home/home.dart';
-
-import '../../user/user.dart';
+import 'package:meddly/features/user/user.dart';
 
 /// {@template splash_body}
 /// Body of the SplashPage.
@@ -14,7 +13,7 @@ class SplashBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(checkIfUserExistProvider, (_, state) {
+    ref.listen(userExistProvider, (_, state) {
       state.whenOrNull(
         data: (data) {
           // data

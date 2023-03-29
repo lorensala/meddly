@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-
-import '../provider/provider.dart';
+import 'package:meddly/features/calendar/provider/provider.dart';
 
 class CalendarDateAndDayIndicator extends StatelessWidget {
   const CalendarDateAndDayIndicator({
@@ -31,7 +30,8 @@ class _SelectedDateText extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedDate = ref.watch(selectedDateProvider);
+    final selectedDate = ref.watch(calendarSelectedDateProvider);
+
     return Text(
       selectedDate.toNamedDayNumberAndMonthString(),
     );

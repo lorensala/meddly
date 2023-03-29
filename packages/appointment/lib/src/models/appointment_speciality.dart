@@ -37,7 +37,9 @@ enum AppointmentSpeciality {
 
   /// Converts a [String] to an [AppointmentSpeciality].
   static AppointmentSpeciality fromString(String speciality) {
-    return values.firstWhere((element) => element.name == speciality,
-        orElse: () => AppointmentSpeciality.other);
+    return values.firstWhere(
+      (element) => element.name == speciality,
+      orElse: () => AppointmentSpeciality.other,
+    );
   }
 }

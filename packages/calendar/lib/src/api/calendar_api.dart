@@ -48,4 +48,44 @@ class CalendarApi {
       throw CalendarSerializationException();
     }
   }
+
+  /// {@macro calendar_api}
+  /// Adds a [Consumption] to the calendar.
+  /// Throws a [CalendarNotFoundException] if the calendar is not found.\
+  /// Throws a [CalendarDioException] if the operation was not successful.\
+  Future<void> addConsumption(ConsumptionDto consumption) async {
+    late final Response<dynamic> res;
+    try {
+      res = await _dio.post<dynamic>(
+        addConsumptionPath,
+        data: consumption.toJson(),
+      );
+
+      if (res.statusCode == 401) {
+        throw CalendarNotFoundException();
+      }
+    } on DioError catch (e) {
+      throw CalendarDioException(e);
+    }
+  }
+
+  /// {@macro calendar_api}
+  /// Removes a [Consumption] from the calendar.
+  /// Throws a [CalendarNotFoundException] if the calendar is not found.\
+  /// Throws a [CalendarDioException] if the operation was not successful.\
+  Future<void> removeConsumption(ConsumptionDto consumption) async {
+    late final Response<dynamic> res;
+    try {
+      res = await _dio.delete<dynamic>(
+        deleteConsumptionPath,
+        data: consumption.toJson(),
+      );
+
+      if (res.statusCode == 401) {
+        throw CalendarNotFoundException();
+      }
+    } on DioError catch (e) {
+      throw CalendarDioException(e);
+    }
+  }
 }

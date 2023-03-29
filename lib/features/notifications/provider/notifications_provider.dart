@@ -7,7 +7,7 @@ part 'notifications_provider.g.dart';
 
 @riverpod
 NotificationsCache notificationsCache(NotificationsCacheRef ref) {
-  return NotificationsCache(ref.read(preferencesBoxProvider));
+  return NotificationsCache(ref.read(notificationPreferencesBoxProvider));
 }
 
 @Riverpod(dependencies: [])

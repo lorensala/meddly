@@ -6,6 +6,6 @@ linter:
     exclude:
       - lib/**.g.dart
       - lib/**.freezed.dart
-# analyzer:
-#   plugins:
-#     - custom_lint
+analyzer:
+  plugins:
+    - custom_lint

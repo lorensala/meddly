@@ -10,8 +10,8 @@ class CalendarDayList extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final daysOfTheYear = ref.watch(allDaysOfYearProvider);
-    final selectedDate = ref.watch(selectedDateProvider);
+    final daysOfTheYear = ref.watch(calendarDaysProvider);
+    final selectedDate = ref.watch(calendarSelectedDateProvider);
 
     useMemoized(() => daysOfTheYear);
 
@@ -26,22 +26,20 @@ class CalendarDayList extends HookConsumerWidget {
       color: context.colorScheme.background,
       height: 80,
       child: PageView.builder(
-        onPageChanged: (index) {
-          ref
-              .read(selectedDateProvider.notifier)
-              .update((state) => daysOfTheYear[index]);
-        },
+        onPageChanged: (index) => ref
+            .read(calendarSelectedDateProvider.notifier)
+            .update(daysOfTheYear[index]),
         controller: controller,
         itemCount: daysOfTheYear.length,
         itemBuilder: (context, index) {
           return CalendarDayAndStatusIndicator(
             date: daysOfTheYear[index],
-            onTap: () {
+            onTap: () async {
               ref
-                  .read(selectedDateProvider.notifier)
-                  .update((state) => daysOfTheYear[index]);
+                  .read(calendarSelectedDateProvider.notifier)
+                  .update(daysOfTheYear[index]);
 
-              controller.animateToPage(
+              await controller.animateToPage(
                 index,
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
