@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/onboarding/widgets/widgets.dart';
 
-class PageIndicators extends StatelessWidget {
-  const PageIndicators({
+class OnboardingPageIndicators extends StatelessWidget {
+  const OnboardingPageIndicators({
     super.key,
     required this.currentPage,
   });
@@ -18,11 +19,11 @@ class PageIndicators extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(width: 15),
+            const SizedBox(width: Sizes.medium),
             PageIndicator(isCurrentPage: currentPage == 0),
-            const SizedBox(width: 15),
+            const SizedBox(width: Sizes.medium),
             PageIndicator(isCurrentPage: currentPage == 1),
-            const SizedBox(width: 15),
+            const SizedBox(width: Sizes.medium),
             PageIndicator(isCurrentPage: currentPage == 2),
           ],
         ),

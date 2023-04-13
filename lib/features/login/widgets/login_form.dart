@@ -17,16 +17,16 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: const [
           _EmailInput(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _PasswordInput(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _ForgotPassword(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _LoginButton(),
         ],
       ),
@@ -119,20 +119,18 @@ class _PasswordInput extends HookConsumerWidget {
         hintText: context.l10n.passwordHint,
         prefixIconConstraints: BoxConstraints.tight(const Size(52, 20)),
         suffixIcon: GestureDetector(
-          onTap: () {
-            isPasswordObscure.value = !isPasswordObscure.value;
-          },
+          onTap: () => isPasswordObscure.value = !isPasswordObscure.value,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
             child: SvgPicture.asset(
-              isPasswordObscure.value ? Assets.eyeCrossed : Assets.eye,
+              isPasswordObscure.value ? Vectors.eyeOff : Assets.eye,
               theme: SvgTheme(currentColor: context.colorScheme.onSecondary),
             ),
           ),
         ),
         suffixIconConstraints: const BoxConstraints(
-          maxHeight: 40,
-          maxWidth: 40,
+          maxHeight: 64,
+          maxWidth: 64,
         ),
       ),
     );

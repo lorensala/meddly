@@ -1,2 +1,2 @@
-export 'auth_repository.dart';
-export 'current_user.dart';
+export 'auth_repository_provider.dart';
+export 'current_user_provider.dart';

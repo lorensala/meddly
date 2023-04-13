@@ -16,26 +16,23 @@ class OnboardingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: Sizes.padding,
+    return Padding(
+      padding: Sizes.mediumPadding,
       child: Column(
         children: [
-          Expanded(flex: 4, child: SvgPicture.asset(asset)),
-          const SizedBox(height: 30),
+          Expanded(child: SvgPicture.asset(asset)),
+          const SizedBox(height: Sizes.extraLarge),
           Column(
             children: [
               Text(
                 title,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(fontWeight: FontWeight.w600),
+                style: Theme.of(context).textTheme.titleLarge,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: Sizes.medium),
               Text(
                 description,
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.w400,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: context.colorScheme.onSecondary.withOpacity(0.5),
                     ),
                 textAlign: TextAlign.center,
               ),

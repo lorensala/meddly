@@ -14,14 +14,14 @@ class MedicineDosisForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: Sizes.padding,
+        padding: Sizes.mediumPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const _DosisInput(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             const _DosisUnitSelector(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             const _NextButton(),
           ],
         ),
@@ -41,7 +41,7 @@ class _DosisUnitSelector extends ConsumerWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
+        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -69,9 +69,9 @@ class _DosisInput extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InputLabel(label: context.l10n.dosis, isRequired: true),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         const _DosisInputField(),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         InputDescription(
           description: context.l10n.dosisDescription,
         ),

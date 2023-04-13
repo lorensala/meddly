@@ -22,28 +22,28 @@ class HomeBody extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: Sizes.padding,
+              padding: Sizes.mediumPadding,
               child: Row(
                 children: [
                   UserAvatar(),
                   const Spacer(),
                   NotificationsButton(),
-                  SizedBox(width: Sizes.padding.right),
+                  SizedBox(width: Sizes.mediumPadding.right),
                   SettingsButton(),
                 ],
               ),
             ),
-            SizedBox(height: Sizes.mediumSpacing),
+            SizedBox(height: Sizes.medium),
             UserGreetings(),
-            SizedBox(height: Sizes.mediumSpacing),
+            SizedBox(height: Sizes.medium),
             HomeTitle(title: 'Upcoming events'),
-            SizedBox(height: Sizes.mediumSpacing),
+            SizedBox(height: Sizes.medium),
             UpcomingEventsList(),
-            SizedBox(height: Sizes.mediumSpacing),
-            HomeTitle(title: 'Features'),
-            SizedBox(height: Sizes.mediumSpacing),
-            FeaturesList(),
-            SizedBox(height: Sizes.mediumSpacing),
+            SizedBox(height: Sizes.medium),
+            // HomeTitle(title: 'Features'),
+            // SizedBox(height: Sizes.mediumSpacing),
+            // FeaturesList(),
+            SizedBox(height: Sizes.medium),
             HomeTitle(title: 'Your last predictions'),
             YourLastPredictions()
           ],
@@ -65,16 +65,16 @@ class YourLastPredictions extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: Sizes.mediumSpacing),
+          const SizedBox(height: Sizes.medium),
           ListView(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: const [
-              PredictionCard(),
-              SizedBox(height: Sizes.mediumSpacing),
-              PredictionCard(),
-              SizedBox(height: Sizes.mediumSpacing),
-              PredictionCard(),
+              // PredictionCard(),
+              // SizedBox(height: Sizes.mediumSpacing),
+              // PredictionCard(),
+              // SizedBox(height: Sizes.mediumSpacing),
+              // PredictionCard(),
             ],
           ),
         ],
@@ -91,24 +91,24 @@ class PredictionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
+        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
       ),
       child: Row(
         children: [
           DecoratedBox(
             decoration: BoxDecoration(
               color: context.colorScheme.background,
-              borderRadius: BorderRadius.circular(Sizes.borderRadius),
+              borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
             ),
             child: const SizedBox(
               height: 48,
               width: 48,
             ),
           ),
-          const SizedBox(width: Sizes.mediumSpacing),
+          const SizedBox(width: Sizes.medium),
           Text(
             'Fiebre',
             style: context.textTheme.bodyLarge,

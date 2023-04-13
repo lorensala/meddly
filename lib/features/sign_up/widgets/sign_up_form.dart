@@ -16,16 +16,16 @@ class SignUpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: const [
           _EmailInput(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _PasswordInput(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _TermsAndConditions(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _SignUpButton(),
         ],
       ),

@@ -20,7 +20,7 @@ class CalendarDayAndStatusIndicator extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           _DayText(date: date),
-          const SizedBox(height: Sizes.smallSpacing),
+          const SizedBox(height: Sizes.small),
           _StatusIndicator(date: date),
         ],
       ),

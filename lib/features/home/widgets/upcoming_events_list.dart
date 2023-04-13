@@ -30,7 +30,7 @@ class UpcomingEventsList extends ConsumerWidget {
             ], child: EventCard());
           },
           separatorBuilder: (BuildContext context, int index) =>
-              SizedBox(height: Sizes.mediumSpacing),
+              SizedBox(height: Sizes.medium),
         ),
       ),
     );

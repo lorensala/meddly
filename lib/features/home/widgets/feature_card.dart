@@ -19,10 +19,10 @@ class FeatureCard extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: context.colorScheme.secondary,
-          borderRadius: BorderRadius.circular(Sizes.borderRadius),
+          borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
         ),
         child: Padding(
-          padding: Sizes.padding,
+          padding: Sizes.mediumPadding,
           child: SizedBox(
             width: 150,
             height: 150,
@@ -31,7 +31,8 @@ class FeatureCard extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     color: context.colorScheme.background,
-                    borderRadius: BorderRadius.circular(Sizes.borderRadius),
+                    borderRadius:
+                        BorderRadius.circular(Sizes.mediumBorderRadius),
                   ),
                 ),
                 Text(name)

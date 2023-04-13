@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meddly/core/core.dart';
 
 class Button extends StatelessWidget {
@@ -9,12 +10,14 @@ class Button extends StatelessWidget {
     this.isValid = true,
     required this.onPressed,
     required this.label,
+    this.prefix,
   });
 
   final bool isLoading;
   final bool isValid;
   final VoidCallback onPressed;
   final String label;
+  final String? prefix;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,26 @@ class Button extends StatelessWidget {
                     ),
                   ),
                 )
-              : Text(label),
+              : prefix == null
+                  ? Text(label)
+                  : SizedBox(
+                      height: 24.0,
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: Sizes.medium),
+                              child: SvgPicture.asset(
+                                prefix!,
+                              ),
+                            ),
+                          ),
+                          Center(child: Text(label)),
+                        ],
+                      ),
+                    ),
         ),
       ),
     );

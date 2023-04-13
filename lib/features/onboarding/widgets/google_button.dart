@@ -9,20 +9,23 @@ import 'package:meddly/l10n/l10n.dart';
 class GoogleButton extends ConsumerWidget {
   const GoogleButton({super.key});
 
+  static const _duration = Duration(milliseconds: 100);
+  static const _height = 60.0;
+  static const _loadingSize = 20.0;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoading = ref.watch(authControllerProvider).isLoading;
 
     return Center(
       child: AnimatedContainer(
-        width:
-            isLoading ? Sizes.buttonHeight : MediaQuery.of(context).size.width,
-        duration: const Duration(milliseconds: 100),
+        width: isLoading ? _height : MediaQuery.of(context).size.width,
+        duration: _duration,
         child: ElevatedButtonTheme(
           data: ElevatedButtonThemeData(
             style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                    Theme.of(context).colorScheme.secondary,
+                    context.colorScheme.secondaryContainer,
                   ),
                   foregroundColor: MaterialStateProperty.all<Color>(
                     Theme.of(context).colorScheme.onSecondary,
@@ -37,8 +40,8 @@ class GoogleButton extends ConsumerWidget {
             },
             child: isLoading
                 ? SizedBox(
-                    height: 20,
-                    width: 20,
+                    height: _loadingSize,
+                    width: _loadingSize,
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
                         Theme.of(context).colorScheme.primary,
@@ -50,7 +53,8 @@ class GoogleButton extends ConsumerWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: Sizes.medium),
                           child: SvgPicture.asset(Assets.googleIcon),
                         ),
                       ),

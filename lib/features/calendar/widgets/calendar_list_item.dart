@@ -20,18 +20,18 @@ class CalendarListItem extends StatelessWidget {
           Text(
             event.date.toHoursAndMinutesString(),
           ),
-          const SizedBox(width: Sizes.mediumSpacing),
+          const SizedBox(width: Sizes.medium),
           Expanded(
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: context.colorScheme.secondary,
-                borderRadius: BorderRadius.circular(Sizes.borderRadius),
+                borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
               ),
               child: Row(
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: Sizes.padding,
+                      padding: Sizes.mediumPadding,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -41,7 +41,7 @@ class CalendarListItem extends StatelessWidget {
                                 .copyWith(fontWeight: FontWeight.w500),
                             overflow: TextOverflow.ellipsis,
                           ),
-                          const SizedBox(height: Sizes.smallSpacing),
+                          const SizedBox(height: Sizes.small),
                           Text(
                             event.description,
                             style: context.textTheme.bodyMedium!.copyWith(
@@ -55,7 +55,7 @@ class CalendarListItem extends StatelessWidget {
                             fromConsumption: (c) {
                               return Column(
                                 children: [
-                                  const SizedBox(height: Sizes.mediumSpacing),
+                                  const SizedBox(height: Sizes.medium),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: c.consumed
@@ -96,7 +96,7 @@ class CalendarListItem extends StatelessWidget {
                                         if (c.consumed)
                                           SvgPicture.asset(Assets.success),
                                         const SizedBox(
-                                          width: Sizes.smallSpacing,
+                                          width: Sizes.small,
                                         ),
                                         Text(
                                           c.consumed

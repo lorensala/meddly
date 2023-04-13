@@ -73,7 +73,7 @@ class DateSelector extends HookWidget {
                         Navigator.of(context).pop();
                       },
                     ),
-                    const SizedBox(height: Sizes.mediumSpacing),
+                    const SizedBox(height: Sizes.medium),
                   ],
                 ),
               ),

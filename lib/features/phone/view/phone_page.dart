@@ -10,6 +10,8 @@ class PhonePage extends StatelessWidget {
   /// {@macro phone_page}
   const PhonePage({super.key});
 
+  static const String routeName = '/phone';
+
   /// The static route for PhonePage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const PhonePage());
@@ -42,8 +44,6 @@ class PhoneView extends ConsumerWidget {
               content: Text(err.toString()),
             ),
           ),
-        data: (_) => Navigator.of(context)
-            .pushAndRemoveUntil(HomePage.route(), (route) => false),
       );
     });
 

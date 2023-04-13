@@ -28,40 +28,40 @@ class FeaturesList extends StatelessWidget {
             name: 'Calendar',
             onPressed: () => Navigator.of(context).push(CalendarPage.route()),
           ),
-          const SizedBox(width: Sizes.mediumSpacing),
+          const SizedBox(width: Sizes.medium),
           FeatureCard(
             name: 'Predictions',
             onPressed: () =>
                 Navigator.of(context).push(PredictionsPage.route()),
           ),
-          const SizedBox(width: Sizes.mediumSpacing),
+          const SizedBox(width: Sizes.medium),
           FeatureCard(
             name: 'Medicine',
             onPressed: () => Navigator.of(context).push(MedicinePage.route()),
           ),
-          const SizedBox(width: Sizes.mediumSpacing),
+          const SizedBox(width: Sizes.medium),
           FeatureCard(
             name: 'Setup',
             onPressed: () => Navigator.of(context).push(SetupPage.route()),
           ),
-          const SizedBox(width: Sizes.mediumSpacing),
+          const SizedBox(width: Sizes.medium),
           FeatureCard(
             name: 'Notifications',
             onPressed: () =>
                 Navigator.of(context).push(NotificationsPage.route()),
           ),
-          const SizedBox(width: Sizes.mediumSpacing),
+          const SizedBox(width: Sizes.medium),
           FeatureCard(
             name: 'Phone',
             onPressed: () => Navigator.of(context).push(PhonePage.route()),
           ),
-          const SizedBox(width: Sizes.mediumSpacing),
+          const SizedBox(width: Sizes.medium),
           FeatureCard(
             name: 'Measurement',
             onPressed: () =>
                 Navigator.of(context).push(MeasurementPage.route()),
           ),
-          const SizedBox(width: Sizes.mediumSpacing),
+          const SizedBox(width: Sizes.medium),
           FeatureCard(
               onPressed: () =>
                   Navigator.of(context).push(AppointmentPage.route()),

@@ -2,9 +2,11 @@ import 'package:authentication/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'phone_controller.g.dart';
@@ -53,12 +55,12 @@ class PhoneController extends _$PhoneController {
 
   Future<void> verificationCompleted(PhoneAuthCredential credential) async {
     final authRepository = ref.read(authRepositoryProvider);
+    final userRepository = ref.read(userRepositoryProvider);
+
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
     final phoneNumber = ref.watch(phoneNumberProvider);
     final countryCode = ref.watch(countryCodeProvider);
-    final user = ref.watch(userProvider);
-    final userRepository = ref.read(userRepositoryProvider);
 
     final res = await authRepository.updatePhoneNumber(credential);
     final phoneNumberWithCountryCode =
@@ -69,20 +71,32 @@ class PhoneController extends _$PhoneController {
       return;
     }
 
-    if (user.isNone()) {
+    final userOrFailure = userRepository.getUser();
+
+    if (userOrFailure.isLeft()) {
       state = AsyncError(l10n.userNotFound, StackTrace.current);
       return;
     }
 
-    final userWithPhoneNumber = user.asSome().copyWith(
-          phone: phoneNumberWithCountryCode,
-        );
+    final user = userOrFailure.asRight();
+
+    if (user == null) {
+      state = AsyncError(l10n.userNotFound, StackTrace.current);
+      return;
+    }
+
+    final userWithPhoneNumber = user.copyWith(
+      phone: phoneNumberWithCountryCode,
+    );
 
     final res2 = await userRepository.updateUser(userWithPhoneNumber);
 
-    state = res2.fold(
+    res2.fold(
       (l) => state = AsyncError(l.message(l10n), StackTrace.current),
-      (r) => state = AsyncData(userWithPhoneNumber),
+      (r) {
+        ref.read(goRouterProvider).go(HomePage.routeName);
+        state = AsyncData(userWithPhoneNumber);
+      },
     );
   }
 

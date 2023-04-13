@@ -19,7 +19,7 @@ class MedicineBody extends ConsumerWidget {
           final medicines = res.asRight();
 
           return Padding(
-            padding: Sizes.padding,
+            padding: Sizes.mediumPadding,
             child: ListView.separated(
               itemCount: medicines.length,
               itemBuilder: (context, index) {
@@ -32,7 +32,7 @@ class MedicineBody extends ConsumerWidget {
                 );
               },
               separatorBuilder: (BuildContext context, int index) =>
-                  const SizedBox(height: Sizes.mediumSpacing),
+                  const SizedBox(height: Sizes.medium),
             ),
           );
         });

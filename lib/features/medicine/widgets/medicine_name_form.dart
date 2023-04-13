@@ -15,7 +15,7 @@ class MedicineNameForm extends StatelessWidget {
     return SingleChildScrollView(
       reverse: true,
       child: Padding(
-        padding: Sizes.padding,
+        padding: Sizes.mediumPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -24,7 +24,7 @@ class MedicineNameForm extends StatelessWidget {
               height: MediaQuery.of(context).size.width * 0.5,
               child: SvgPicture.asset(Assets.pills),
             ),
-            const SizedBox(height: Sizes.largeSpacing),
+            const SizedBox(height: Sizes.large),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -32,15 +32,15 @@ class MedicineNameForm extends StatelessWidget {
                   label: context.l10n.medicineName,
                   isRequired: true,
                 ),
-                const SizedBox(height: Sizes.smallSpacing),
+                const SizedBox(height: Sizes.small),
                 const _NameInputField(),
-                const SizedBox(height: Sizes.smallSpacing),
+                const SizedBox(height: Sizes.small),
                 InputDescription(
                   description: context.l10n.medicineDescription,
                 )
               ],
             ),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             const _NextButton(),
           ],
         ),

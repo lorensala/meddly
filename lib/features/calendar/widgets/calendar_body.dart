@@ -17,7 +17,7 @@ class CalendarBody extends StatelessWidget {
       children: const [
         CalendarDateAndDayIndicator(),
         CalendarDayList(),
-        SizedBox(height: Sizes.mediumSpacing),
+        SizedBox(height: Sizes.medium),
         CalendarList(),
       ],
     );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/widgets/onboarding_body.dart';
-import 'package:meddly/features/splash/splash.dart';
 
 /// {@template onboarding_page}
 /// A description for OnboardingPage
@@ -10,6 +9,8 @@ import 'package:meddly/features/splash/splash.dart';
 class OnboardingPage extends StatelessWidget {
   /// {@macro onboarding_page}
   const OnboardingPage({super.key});
+
+  static const String routeName = '/onboarding';
 
   /// The static route for OnboardingPage
   static Route<dynamic> route() {
@@ -19,7 +20,6 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: const OnboardingView(),
     );
   }
@@ -36,8 +36,6 @@ class OnboardingView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(authControllerProvider, (_, state) {
       state.whenOrNull(
-        // TODO(lorenzo): when google sign in is cancelled, it should not redirect to splash page
-        data: (_) => Navigator.of(context).pushReplacement(SplashPage.route()),
         error: (err, stackTrace) => ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(

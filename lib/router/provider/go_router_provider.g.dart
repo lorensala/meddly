@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'current_user.dart';
+part of 'go_router_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$currentUserHash() => r'f812fc12dce991ed694aeb3a8286dabdbeafb366';
+String _$goRouterHash() => r'0fcbadf1c23dac237d09bdd7a437ddb133f024c3';
 
-/// See also [currentUser].
-@ProviderFor(currentUser)
-final currentUserProvider = AutoDisposeProvider<User?>.internal(
-  currentUser,
-  name: r'currentUserProvider',
+/// See also [goRouter].
+@ProviderFor(goRouter)
+final goRouterProvider = AutoDisposeProvider<GoRouter>.internal(
+  goRouter,
+  name: r'goRouterProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$currentUserHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$goRouterHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef CurrentUserRef = AutoDisposeProviderRef<User?>;
+typedef GoRouterRef = AutoDisposeProviderRef<GoRouter>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

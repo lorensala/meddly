@@ -13,23 +13,23 @@ class SetupForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           _NameInput(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _LastnameInput(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _BirthdateInput(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _SexSelector(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _HeightInput(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _WeightInput(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _SaveButton(),
         ],
       ),
@@ -135,7 +135,7 @@ class _BirthdateInput extends HookConsumerWidget {
           label: context.l10n.birthdateHint,
           isRequired: true,
         ),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         DateSelector(
           initialDateTime: initialDateTime,
           onDateTimeChanged: (value) {
@@ -160,7 +160,7 @@ class _NameInput extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InputLabel(label: context.l10n.nameHint, isRequired: true),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         TextFormField(
           onChanged: notifier.nameChanged,
           keyboardType: TextInputType.name,
@@ -186,7 +186,7 @@ class _LastnameInput extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InputLabel(label: context.l10n.lastNameHint, isRequired: true),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         TextFormField(
           onChanged: notifier.lastnameChanged,
           keyboardType: TextInputType.name,
@@ -214,7 +214,7 @@ class _WeightInput extends ConsumerWidget {
           label: '${context.l10n.weightHint} (kg)',
           isRequired: false,
         ),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         TextFormField(
           onChanged: notifier.weightChanged,
           keyboardType: TextInputType.number,
@@ -243,7 +243,7 @@ class _HeightInput extends ConsumerWidget {
           label: '${context.l10n.heightHint} (cm)',
           isRequired: false,
         ),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         TextFormField(
           onChanged: notifier.heightChanged,
           keyboardType: TextInputType.number,

@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:authentication/authentication.dart';
 import 'package:dio/dio.dart';
 import 'package:meddly/core/core.dart';
@@ -11,7 +13,8 @@ Dio dio(DioRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
 
   return Dio()
-    ..options.baseUrl = Strings.baseUrl
+    ..options.baseUrl =
+        Platform.isAndroid ? Strings.baseUrlAndroid : Strings.baseUrliOs
     ..interceptors.addAll([
       AuthInterceptor(authRepository),
       LogInterceptor(requestBody: true, responseBody: true)

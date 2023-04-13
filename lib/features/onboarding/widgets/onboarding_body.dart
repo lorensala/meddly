@@ -3,10 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/login/login.dart';
 import 'package:meddly/features/onboarding/widgets/widgets.dart';
-import 'package:meddly/l10n/l10n.dart';
-import 'package:meddly/widgets/widgets.dart';
 
 /// {@template onboarding_body}
 /// Body of the OnboardingPage.
@@ -16,6 +13,9 @@ import 'package:meddly/widgets/widgets.dart';
 class OnboardingBody extends HookWidget {
   /// {@macro onboarding_body}
   const OnboardingBody({super.key});
+
+  static const _timerDuration = Duration(seconds: 9);
+  static const _pageAnimationDuration = Duration(milliseconds: 500);
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,9 @@ class OnboardingBody extends HookWidget {
         pageController.addListener(() {
           currentPage.value = pageController.page!.round() % 3;
         });
-        final timer = Timer.periodic(const Duration(seconds: 9), (timer) {
+        final timer = Timer.periodic(_timerDuration, (timer) {
           pageController.nextPage(
-            duration: const Duration(milliseconds: 500),
+            duration: _pageAnimationDuration,
             curve: Curves.easeInOut,
           );
         });
@@ -43,26 +43,11 @@ class OnboardingBody extends HookWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Spacer(),
           OnBoardingCards(pageController: pageController),
-          const Spacer(),
-          PageIndicators(currentPage: currentPage.value),
-          const SizedBox(height: 20),
-          Container(
-            padding: Sizes.padding,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const GoogleButton(),
-                const SizedBox(height: 20),
-                Button(
-                  label: context.l10n.loginWithEmailAddress,
-                  onPressed: () =>
-                      Navigator.of(context).push(LoginPage.route()),
-                ),
-              ],
-            ),
-          )
+          const SizedBox(height: Sizes.large),
+          OnboardingPageIndicators(currentPage: currentPage.value),
+          const SizedBox(height: Sizes.large),
+          OnboardingLoginButtons()
         ],
       ),
     );

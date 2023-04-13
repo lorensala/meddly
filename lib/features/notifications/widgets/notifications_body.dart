@@ -22,7 +22,7 @@ class NotificationsBody extends ConsumerWidget {
     return notificationPreferences.when(
       data: (preferences) {
         return Padding(
-          padding: Sizes.padding,
+          padding: Sizes.mediumPadding,
           child: ListView.separated(
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
@@ -33,7 +33,7 @@ class NotificationsBody extends ConsumerWidget {
             },
             itemCount: NotificationPreference.values.length,
             separatorBuilder: (BuildContext context, int index) => SizedBox(
-              height: Sizes.mediumSpacing,
+              height: Sizes.medium,
             ),
           ),
         );
@@ -62,10 +62,10 @@ class NotificationPreferenceCard extends ConsumerWidget {
         ref.watch(isNotificationPreferenceOnProvider(preference: preference));
 
     return Container(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
+        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

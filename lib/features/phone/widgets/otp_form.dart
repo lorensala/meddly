@@ -18,15 +18,15 @@ class OtpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       decoration: BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: const [
           _OtpField(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _OtpButton(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _ResendOtpButton(),
         ],
       ),
@@ -96,7 +96,7 @@ class _OtpField extends ConsumerWidget {
       backgroundColor: context.colorScheme.background,
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
+        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
         selectedColor: isValid
             ? context.colorScheme.primary
             : context.colorScheme.onSecondary,

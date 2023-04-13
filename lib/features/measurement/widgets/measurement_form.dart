@@ -14,17 +14,17 @@ class MeasurementForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             _ValueField(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             _TypeDropDownSelector(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             _DateSelector(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             _SaveButton()
           ],
         ),
@@ -63,12 +63,12 @@ class _DateSelector extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InputLabel(label: 'Measurement date', isRequired: true),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         DateSelector(
             initialDateTime: initialDateTime,
             onDateTimeChanged: notifier.dateChanged,
             errorText: null),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         InputDescription(description: 'Algo que va a escribir Sofi'),
       ],
     );
@@ -87,7 +87,7 @@ class _TypeDropDownSelector extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InputLabel(label: 'Tipo', isRequired: true),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         SizedBox(
           width: double.infinity,
           child: DropDownSelector(
@@ -117,7 +117,7 @@ class _ValueField extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InputLabel(label: 'Valor', isRequired: true),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         TextFormField(
           onChanged: notifier.valueChanged,
           keyboardType: TextInputType.number,
@@ -125,7 +125,7 @@ class _ValueField extends ConsumerWidget {
             errorText: errorText,
           ),
         ),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         InputDescription(description: 'Algo que va a escribir Sofi'),
       ],
     );

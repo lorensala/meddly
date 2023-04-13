@@ -13,10 +13,10 @@ class EventCard extends ConsumerWidget {
 
     return Container(
       width: 150,
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
+        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -30,13 +30,14 @@ class EventCard extends ConsumerWidget {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: context.colorScheme.background,
-                    borderRadius: BorderRadius.circular(Sizes.borderRadius),
+                    borderRadius:
+                        BorderRadius.circular(Sizes.mediumBorderRadius),
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: Sizes.mediumSpacing),
+          const SizedBox(height: Sizes.medium),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -47,18 +48,18 @@ class EventCard extends ConsumerWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: Sizes.smallSpacing),
+              const SizedBox(height: Sizes.small),
               Text(
                 event.description.capitalize(),
                 style: context.textTheme.bodyMedium!.copyWith(
                   color: context.colorScheme.onSecondary.withOpacity(0.7),
                 ),
               ),
-              const SizedBox(height: Sizes.smallSpacing),
+              const SizedBox(height: Sizes.small),
               DecoratedBox(
                 decoration: BoxDecoration(
                   color: context.colorScheme.primary,
-                  borderRadius: BorderRadius.circular(Sizes.borderRadius),
+                  borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -68,7 +69,7 @@ class EventCard extends ConsumerWidget {
                           colorFilter: ColorFilter.mode(
                               context.colorScheme.onPrimary, BlendMode.srcIn),
                           height: 14),
-                      const SizedBox(width: Sizes.smallSpacing),
+                      const SizedBox(width: Sizes.small),
                       Text(
                         event.date.toHoursAndMinutesString(),
                         style: context.textTheme.bodySmall!.copyWith(

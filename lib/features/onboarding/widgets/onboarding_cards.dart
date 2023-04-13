@@ -15,21 +15,22 @@ class OnBoardingCards extends StatelessWidget {
   Widget build(BuildContext context) {
     final pages = [
       OnboardingCard(
-        asset: Assets.diagnosis,
+        asset: Vectors.onboarding1,
         description: context.l10n.guidanceConsultationDescription,
         title: context.l10n.guidanceConsultationTitle,
       ),
       OnboardingCard(
-        asset: Assets.pills,
+        asset: Vectors.onboarding2,
         description: context.l10n.registerMedicationsDescription,
         title: context.l10n.registerMedicationsTitle,
       ),
       OnboardingCard(
-        asset: Assets.treatment,
+        asset: Vectors.onboarding3,
         description: context.l10n.followYourTreatmentsDescription,
         title: context.l10n.followYourTreatmentsTitle,
       )
     ];
+
     return Expanded(
       flex: 5,
       child: PageView.builder(

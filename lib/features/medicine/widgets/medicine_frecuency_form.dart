@@ -18,7 +18,7 @@ class MedicineFrecuencyForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: Sizes.padding,
+        padding: Sizes.mediumPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -26,17 +26,17 @@ class MedicineFrecuencyForm extends StatelessWidget {
               label: context.l10n.howOftenDoYouWantToTakeThisMedicine,
               isRequired: false,
             ),
-            const SizedBox(height: Sizes.smallSpacing),
+            const SizedBox(height: Sizes.small),
             const _FrecuencySelector(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             const _IntervalSelector(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             const _StartDateSelector(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             const _HourSelector(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             const _NextButton(),
-            const SizedBox(height: Sizes.largeSpacing),
+            const SizedBox(height: Sizes.large),
           ],
         ),
       ),
@@ -80,11 +80,11 @@ class _HourSelector extends ConsumerWidget {
           label: context.l10n.selectTheHoursYouWantToTakeThisMedicine,
           isRequired: true,
         ),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Wrap(
-            spacing: Sizes.smallSpacing,
+            spacing: Sizes.small,
             children: [
               GestureDetector(
                 onTap: () async {
@@ -167,7 +167,7 @@ class _StartDateSelector extends ConsumerWidget {
           label: context.l10n.startDate,
           isRequired: true,
         ),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         _StartDateInput(),
       ],
     );
@@ -191,7 +191,7 @@ class _IntervalSelector extends ConsumerWidget {
                 label: context.l10n.chooseTheIntervalBetweenDoses,
                 isRequired: false,
               ),
-              const SizedBox(height: Sizes.smallSpacing),
+              const SizedBox(height: Sizes.small),
               const _IntervalBody(),
             ],
           );
@@ -225,7 +225,7 @@ class _IntervalBody extends HookConsumerWidget {
               context.l10n.every,
               style: context.textTheme.titleMedium,
             ),
-            const SizedBox(width: Sizes.mediumSpacing),
+            const SizedBox(width: Sizes.medium),
             DropDownSelector<int>(
               items: items,
               onChanged: (value) {
@@ -239,10 +239,10 @@ class _IntervalBody extends HookConsumerWidget {
         return DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,
-            borderRadius: BorderRadius.circular(Sizes.borderRadius),
+            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
           ),
           child: Padding(
-            padding: Sizes.padding,
+            padding: Sizes.mediumPadding,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -270,7 +270,7 @@ class _IntervalBody extends HookConsumerWidget {
                       )
                       .toList(),
                 ),
-                const SizedBox(height: Sizes.mediumSpacing),
+                const SizedBox(height: Sizes.medium),
                 Text(
                   selectedDays.isEmpty
                       ? context.l10n.selectAtLeastOneDay
@@ -305,7 +305,7 @@ class _FrecuencySelector extends ConsumerWidget {
     return DecoratedBox(
         decoration: BoxDecoration(
           color: context.colorScheme.secondary,
-          borderRadius: BorderRadius.circular(Sizes.borderRadius),
+          borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

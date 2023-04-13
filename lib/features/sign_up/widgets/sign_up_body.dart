@@ -21,7 +21,7 @@ class SignUpBody extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: const [
           SignUpForm(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _AlreadyHaveAnAccountLogin(),
         ],
       ),

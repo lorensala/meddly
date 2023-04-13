@@ -20,7 +20,7 @@ class SettingsButton extends ConsumerWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,
-            borderRadius: BorderRadius.circular(Sizes.borderRadius),
+            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
           ),
           child: Center(
               child: SvgPicture.asset(

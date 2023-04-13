@@ -23,13 +23,13 @@ class AuthRepository {
   /// the authentication state changes.
   ///
   /// Emits [None] if the user is not authenticated.
-  Stream<Option<User>> get user {
+  Stream<User?> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
       if (firebaseUser == null) {
-        return none();
+        return null;
       }
 
-      return some(firebaseUser);
+      return firebaseUser;
     });
   }
 
@@ -44,30 +44,24 @@ class AuthRepository {
     required String email,
     required String password,
   }) async {
-    try {
-      final userCredentails =
-          await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+    final userCredentails = await _firebaseAuth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
 
-      //check if user is new
-      return right(userCredentails.additionalUserInfo!.isNewUser);
-    } on FirebaseAuthException catch (e) {
-      return left(AuthFailure.fromCode(e.code));
-    } catch (_) {
-      return left(const AuthFailure.unknownError());
-    }
+    //check if user is new
+    return right(userCredentails.additionalUserInfo!.isNewUser);
   }
 
   /// Starts the Sign In with Google Flow.
   ///
   /// Throws a [AuthFailure] if an exception occurs.\
-  Future<Either<AuthFailure, Unit>> logInWithGoogle() async {
+  Future<Either<AuthFailure, bool>> logInWithGoogle() async {
     try {
+      // TODO(me): no debería deolver right si no se logra el login
       final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
-        return right(unit);
+        return right(false);
       }
       final googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
@@ -77,7 +71,7 @@ class AuthRepository {
 
       await _firebaseAuth.signInWithCredential(credential);
 
-      return right(unit);
+      return right(true);
     } on FirebaseAuthException catch (e) {
       return left(AuthFailure.fromCode(e.code));
     } catch (_) {

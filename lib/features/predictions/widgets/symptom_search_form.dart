@@ -13,7 +13,7 @@ class SymptomSearchForm extends StatelessWidget {
     return Column(
       children: const [
         Center(child: _SearchField()),
-        SizedBox(height: Sizes.smallSpacing),
+        SizedBox(height: Sizes.small),
         Expanded(child: _Results()),
       ],
     );

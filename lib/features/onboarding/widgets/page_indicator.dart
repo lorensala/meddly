@@ -9,18 +9,23 @@ class PageIndicator extends StatelessWidget {
 
   final bool isCurrentPage;
 
+  static const _duration = Duration(milliseconds: 300);
+  static const _maxWidth = 40.0;
+  static const _minWidth = 20.0;
+  static const _height = 10.0;
+
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      width: isCurrentPage ? 30 : 10,
-      height: 10,
+      width: isCurrentPage ? _maxWidth : _minWidth,
+      height: _height,
       decoration: BoxDecoration(
         color: isCurrentPage
             ? Theme.of(context).colorScheme.primary
             : context.colorScheme.onSecondary.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(Sizes.large),
       ),
-      duration: const Duration(milliseconds: 300),
+      duration: _duration,
     );
   }
 }

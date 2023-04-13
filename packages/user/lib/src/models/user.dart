@@ -30,4 +30,9 @@ class User with _$User {
     uid: '',
     email: '',
   );
+
+  bool get hasBasicInformation =>
+      firstName.isNotEmpty && lastName.isNotEmpty && birth.isNotEmpty;
+
+  bool get hasPhoneNumber => phone.isNotEmpty;
 }

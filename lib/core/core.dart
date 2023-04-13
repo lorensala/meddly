@@ -6,3 +6,4 @@ export 'hooks.dart';
 export 'sizes.dart';
 export 'strings.dart';
 export 'utils.dart';
+export 'vectors.dart';

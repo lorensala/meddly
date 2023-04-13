@@ -15,7 +15,7 @@ class ForgotPasswordBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Padding(
-        padding: Sizes.padding,
+        padding: Sizes.mediumPadding,
         child: ForgotPasswordForm(),
       ),
     );

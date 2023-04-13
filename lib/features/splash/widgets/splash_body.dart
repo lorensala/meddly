@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/features/home/home.dart';
-import 'package:meddly/features/user/user.dart';
 
 /// {@template splash_body}
 /// Body of the SplashPage.
@@ -13,28 +12,6 @@ class SplashBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(userExistProvider, (_, state) {
-      state.whenOrNull(
-        data: (data) {
-          // data
-          // ?
-          Navigator.of(context)
-              .pushAndRemoveUntil(HomePage.route(), (route) => false);
-          // : Navigator.of(context)
-          //     .pushAndRemoveUntil(SetupPage.route(), (route) => false);
-        },
-        error: (err, _) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text(err.toString()),
-              ),
-            );
-        },
-      );
-    });
-
     //TODO: Better loader..
     return const Center(
         child: RepaintBoundary(child: CircularProgressIndicator.adaptive()));

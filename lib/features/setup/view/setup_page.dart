@@ -10,6 +10,8 @@ class SetupPage extends StatelessWidget {
   /// {@macro setup_page}
   const SetupPage({super.key});
 
+  static const String routeName = '/setup';
+
   /// The static route for SetupPage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const SetupPage());
@@ -37,10 +39,6 @@ class SetupView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(userControllerProvider, (_, state) {
       state.whenOrNull(
-        data: (_) {
-          // Navigator.of(context)
-          //     .pushAndRemoveUntil(PhonePage.route(), (route) => false);
-        },
         error: (err, _) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()

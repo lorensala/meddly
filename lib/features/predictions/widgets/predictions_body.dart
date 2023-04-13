@@ -15,7 +15,7 @@ class PredictionsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SafeArea(
       child: Padding(
-        padding: Sizes.padding,
+        padding: Sizes.mediumPadding,
         child: Center(child: SymptomSearchForm()),
       ),
     );

@@ -17,7 +17,7 @@ class MedicineCard extends ConsumerWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorScheme.background,
-            borderRadius: BorderRadius.circular(Sizes.borderRadius),
+            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
           ),
         ),
       ),

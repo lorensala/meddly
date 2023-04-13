@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:meddly/core/extensions.dart';
 import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:user/user.dart';
 
@@ -23,6 +25,10 @@ class UserController extends _$UserController {
     final res = await repository.createUser(user);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
+
+    if (res.isRight()) {
+      ref.read(goRouterProvider).go(PhonePage.routeName);
+    }
 
     if (res.isLeft()) {
       state = AsyncError(res.asLeft().message(l10n), StackTrace.current);

@@ -18,7 +18,7 @@ class MedicinePresentationForm extends StatelessWidget {
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Padding(
-        padding: Sizes.padding,
+        padding: Sizes.mediumPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -30,27 +30,27 @@ class MedicinePresentationForm extends StatelessWidget {
                 child: SvgPicture.asset(Assets.pills),
               ),
             ),
-            const SizedBox(height: Sizes.largeSpacing),
+            const SizedBox(height: Sizes.large),
             Text(
               context.l10n.commonPresentations,
               style: context.textTheme.titleMedium!.copyWith(
                 fontWeight: FontWeight.w500,
               ),
             ),
-            const SizedBox(height: Sizes.smallSpacing),
+            const SizedBox(height: Sizes.small),
             const _CommonPresentations(),
-            const SizedBox(height: Sizes.largeSpacing),
+            const SizedBox(height: Sizes.large),
             Text(
               context.l10n.otherPresentations,
               style: context.textTheme.titleMedium!.copyWith(
                 fontWeight: FontWeight.w500,
               ),
             ),
-            const SizedBox(height: Sizes.smallSpacing),
+            const SizedBox(height: Sizes.small),
             const _OtherPresentations(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             const _NextButton(),
-            const SizedBox(height: Sizes.largeSpacing),
+            const SizedBox(height: Sizes.large),
           ],
         ),
       ),
@@ -81,7 +81,7 @@ class _OtherPresentations extends ConsumerWidget {
     return DecoratedBox(
         decoration: BoxDecoration(
           color: context.colorScheme.secondary,
-          borderRadius: BorderRadius.circular(Sizes.borderRadius),
+          borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -111,7 +111,7 @@ class _CommonPresentations extends ConsumerWidget {
     return DecoratedBox(
         decoration: BoxDecoration(
           color: context.colorScheme.secondary,
-          borderRadius: BorderRadius.circular(Sizes.borderRadius),
+          borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

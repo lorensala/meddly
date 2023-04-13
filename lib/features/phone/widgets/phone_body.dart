@@ -46,7 +46,7 @@ class _OtpSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,12 +58,12 @@ class _OtpSection extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
             ),
-            const SizedBox(height: Sizes.smallSpacing),
+            const SizedBox(height: Sizes.small),
             Text(
               context.l10n.enterCodeDescription,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            const SizedBox(height: Sizes.largeSpacing),
+            const SizedBox(height: Sizes.large),
             const OtpForm(),
           ],
         ),
@@ -78,7 +78,7 @@ class _PhoneSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,14 +90,14 @@ class _PhoneSection extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
             ),
-            const SizedBox(height: Sizes.smallSpacing),
+            const SizedBox(height: Sizes.small),
             Text(
               context.l10n.enterPhoneNumberDescription,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
-            const SizedBox(height: Sizes.largeSpacing),
+            const SizedBox(height: Sizes.large),
             const PhoneForm(),
-            const SizedBox(height: Sizes.largeSpacing),
+            const SizedBox(height: Sizes.large),
           ],
         ),
       ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/controller/auth_controller.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
@@ -10,6 +12,8 @@ class HomePage extends StatelessWidget {
   /// {@macro home_page}
   const HomePage({super.key});
 
+  static const String routeName = '/home';
+
   /// The static route for HomePage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const HomePage());
@@ -19,6 +23,29 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: HomeView(),
+      bottomNavigationBar: ColoredBox(
+        color: context.colorScheme.background,
+        child: SafeArea(
+          child: Container(
+            height: kBottomNavigationBarHeight,
+            decoration: BoxDecoration(
+              color: context.colorScheme.background,
+              boxShadow: [
+                BoxShadow(
+                  color: context.colorScheme.onBackground.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, -9),
+                ),
+              ],
+            ),
+            child: SafeArea(
+              child: Row(
+                children: [],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -34,12 +61,10 @@ class HomeView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(authControllerProvider, (_, state) {
       state.whenOrNull(
-        data: (optionUser) {
-          optionUser.fold(
-            () => Navigator.of(context)
-                .pushAndRemoveUntil(OnboardingPage.route(), (_) => false),
-            (_) {},
-          );
+        data: (user) {
+          if (user == null) {
+            context.go(OnboardingPage.routeName);
+          }
         },
       );
     });

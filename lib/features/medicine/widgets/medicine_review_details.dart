@@ -14,24 +14,24 @@ class MedicineReviewDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: Sizes.padding,
+        padding: Sizes.mediumPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const _MedicineInfo(),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             Column(
               children: const [
                 _StockField(),
-                SizedBox(height: Sizes.mediumSpacing),
+                SizedBox(height: Sizes.medium),
                 _StockWarningField(),
-                SizedBox(height: Sizes.mediumSpacing),
+                SizedBox(height: Sizes.medium),
                 _InstructionsField(),
               ],
             ),
-            const SizedBox(height: Sizes.mediumSpacing),
+            const SizedBox(height: Sizes.medium),
             const _SaveButton(),
-            const SizedBox(height: Sizes.largeSpacing),
+            const SizedBox(height: Sizes.large),
           ],
         ),
       ),
@@ -82,7 +82,7 @@ class _MedicineInfo extends ConsumerWidget {
             ),
           ),
         ),
-        const SizedBox(width: Sizes.mediumSpacing),
+        const SizedBox(width: Sizes.medium),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,12 +91,12 @@ class _MedicineInfo extends ConsumerWidget {
                 medicineName.value,
                 style: context.textTheme.titleLarge,
               ),
-              const SizedBox(height: Sizes.smallSpacing),
+              const SizedBox(height: Sizes.small),
               Text(
                 '${medicinePresentation.name.capitalize()}, ${medicineDosis.value}${medicineDosisUnit.value}',
                 style: context.textTheme.bodyLarge,
               ),
-              const SizedBox(height: Sizes.smallSpacing),
+              const SizedBox(height: Sizes.small),
               if (medicineFrecuency == MedicineFrecuency.regular)
                 Text(context.l10n.everyXdays(medicineFrecuencyValue)),
               if (medicineFrecuency == MedicineFrecuency.specificDays)
@@ -129,7 +129,7 @@ class _StockWarningField extends ConsumerWidget {
           label: context.l10n.stockWarning,
           isRequired: false,
         ),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         TextFormField(
           textInputAction: TextInputAction.done,
           onChanged: notifier.stockWarningChanged,
@@ -139,7 +139,7 @@ class _StockWarningField extends ConsumerWidget {
             errorText: errorText,
           ),
         ),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         InputDescription(
           description: context.l10n.stockWarningDescription,
         )
@@ -160,7 +160,7 @@ class _StockField extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InputLabel(label: context.l10n.currentStock, isRequired: false),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         TextFormField(
           textInputAction: TextInputAction.done,
           onChanged: notifier.stockChanged,
@@ -170,7 +170,7 @@ class _StockField extends ConsumerWidget {
             errorText: errorText,
           ),
         ),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         InputDescription(
           description: context.l10n.currentStockDescription,
         ),
@@ -191,7 +191,7 @@ class _InstructionsField extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InputLabel(label: context.l10n.instructions, isRequired: false),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         TextFormField(
           textInputAction: TextInputAction.done,
           onChanged: notifier.instructionsChanged,

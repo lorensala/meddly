@@ -13,7 +13,7 @@ class ForgotPasswordForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),
@@ -22,7 +22,7 @@ class ForgotPasswordForm extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: const [
           _EmailInput(),
-          SizedBox(height: Sizes.mediumSpacing),
+          SizedBox(height: Sizes.medium),
           _SendPasswordResetEmailButton(),
         ],
       ),

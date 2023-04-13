@@ -1,8 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meddly/core/extensions.dart';
 import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/splash/splash.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_controller.g.dart';
@@ -10,7 +11,7 @@ part 'auth_controller.g.dart';
 @riverpod
 class AuthController extends _$AuthController {
   @override
-  Stream<Option<User>> build() {
+  Stream<User?> build() {
     return ref.watch(authRepositoryProvider).user;
   }
 
@@ -26,6 +27,10 @@ class AuthController extends _$AuthController {
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
+    if (res.isRight()) {
+      ref.read(goRouterProvider).go(SplashPage.routeName);
+    }
+
     if (res.isLeft()) {
       state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
     }
@@ -37,7 +42,14 @@ class AuthController extends _$AuthController {
     final res = await ref.read(authRepositoryProvider).logInWithGoogle();
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-    ;
+
+    if (res.isRight()) {
+      if (res.asRight()) {
+        ref.read(goRouterProvider).go(SplashPage.routeName);
+      } else {
+        state = AsyncData(null);
+      }
+    }
 
     if (res.isLeft()) {
       state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
@@ -55,7 +67,10 @@ class AuthController extends _$AuthController {
         .registerWithEmailAndPassword(email: email, password: password);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-    ;
+
+    if (res.isRight()) {
+      ref.read(goRouterProvider).go(SplashPage.routeName);
+    }
 
     if (res.isLeft()) {
       state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
@@ -68,7 +83,10 @@ class AuthController extends _$AuthController {
     final res = await ref.read(authRepositoryProvider).signOut();
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-    ;
+
+    if (res.isRight()) {
+      ref.read(goRouterProvider).go(SplashPage.routeName);
+    }
 
     if (res.isLeft()) {
       state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
@@ -83,7 +101,6 @@ class AuthController extends _$AuthController {
         .sendPasswordResetEmail(email: email);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-    ;
 
     if (res.isLeft()) {
       state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
@@ -96,7 +113,6 @@ class AuthController extends _$AuthController {
     final res = await ref.read(authRepositoryProvider).deleteUser();
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-    ;
 
     if (res.isLeft()) {
       state = AsyncError(res.asLeft().message(l10n), StackTrace.current);

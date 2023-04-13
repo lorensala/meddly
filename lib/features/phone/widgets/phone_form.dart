@@ -16,9 +16,9 @@ class PhoneForm extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: const [
         _CountryCodePhoneNumber(),
-        SizedBox(height: Sizes.mediumSpacing),
+        SizedBox(height: Sizes.medium),
         _SendOTPButton(),
-        SizedBox(height: Sizes.largeSpacing),
+        SizedBox(height: Sizes.large),
       ],
     );
   }
@@ -50,11 +50,11 @@ class _CountryCodePhoneNumber extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         InputLabel(label: context.l10n.phoneNumberHint, isRequired: true),
-        const SizedBox(height: Sizes.smallSpacing),
+        const SizedBox(height: Sizes.small),
         Row(
           children: [
             _CountryCodeSelector(),
-            const SizedBox(width: Sizes.mediumSpacing),
+            const SizedBox(width: Sizes.medium),
             Expanded(
               flex: 2,
               child: _PhoneNumberInput(),
@@ -99,12 +99,12 @@ class _CountryCodeSelector extends ConsumerWidget {
     return Container(
       width: 150,
       padding: Sizes.horizontalPadding.copyWith(
-        top: Sizes.smallSpacing / 2,
-        bottom: Sizes.smallSpacing / 2,
+        top: Sizes.small / 2,
+        bottom: Sizes.small / 2,
       ),
       decoration: BoxDecoration(
         color: context.colorScheme.background,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
+        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<CountryCode>(

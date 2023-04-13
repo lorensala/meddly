@@ -18,13 +18,13 @@ class DropDownSelector<T> extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.borderRadius),
+        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
       ),
       child: Padding(
         padding: Sizes.horizontalPadding,
         child: DropdownButtonHideUnderline(
           child: DropdownButton<T>(
-            borderRadius: BorderRadius.circular(Sizes.borderRadius),
+            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
             value: value,
             items: items,
             onChanged: onChanged,

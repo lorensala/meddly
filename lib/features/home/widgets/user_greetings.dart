@@ -12,7 +12,7 @@ class UserGreetings extends ConsumerWidget {
     final greeting = ref.watch(greetingProvider);
 
     return Padding(
-      padding: Sizes.padding,
+      padding: Sizes.mediumPadding,
       child: Text.rich(
         TextSpan(
           text: '$greeting,\n',
