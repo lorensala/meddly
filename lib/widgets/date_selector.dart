@@ -20,10 +20,13 @@ class DateSelector extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = useState<TextStyle?>(context.textTheme.bodyMedium!
+        .copyWith(color: context.colorScheme.onSecondary.withOpacity(0.5)));
     final controller = useTextEditingController(text: 'Select a date');
 
     return TextFormField(
       controller: controller,
+      style: textStyle.value,
       onTap: () async {
         if (Platform.isAndroid) {
           final value = await showDatePicker(
@@ -35,9 +38,12 @@ class DateSelector extends HookWidget {
 
           if (value != null) {
             controller.text = value.toString().dateTimeStringFormat();
+            textStyle.value = null;
             onDateTimeChanged(value);
           } else {
             controller.text = 'Select a date';
+            textStyle.value = context.textTheme.bodyMedium!.copyWith(
+                color: context.colorScheme.onSecondary.withOpacity(0.5));
             onDateTimeChanged(initialDateTime);
           }
         } else {

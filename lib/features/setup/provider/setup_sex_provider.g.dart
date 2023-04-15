@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_exist_provider.dart';
+part of 'setup_sex_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userExistHash() => r'9940fc207faeb8183406de5047a0777aa26e1519';
+String _$setupSexHash() => r'542bfc16367d6cb99bc35dc5777b6de6363c5f43';
 
-/// See also [userExist].
-@ProviderFor(userExist)
-final userExistProvider = AutoDisposeFutureProvider<void>.internal(
-  userExist,
-  name: r'userExistProvider',
+/// See also [setupSex].
+@ProviderFor(setupSex)
+final setupSexProvider = AutoDisposeProvider<SexInput>.internal(
+  setupSex,
+  name: r'setupSexProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$userExistHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$setupSexHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef UserExistRef = AutoDisposeFutureProviderRef<void>;
+typedef SetupSexRef = AutoDisposeProviderRef<SexInput>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

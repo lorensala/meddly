@@ -3,7 +3,7 @@ import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/phone/phone.dart';
-import 'package:meddly/features/setup/view/setup_page.dart';
+import 'package:meddly/features/setup/view/setup_name_page.dart';
 import 'package:meddly/features/user/provider/user_repository_provider.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -45,7 +45,7 @@ Future<void> userExist(UserExistRef ref) async {
       }
 
       // If the user doesn't have basic information, navigate to [SetupPage].
-      return router.go(SetupPage.routeName);
+      return router.go(SetupNamePage.routeName);
     } else {
       // If an error ocurrs, navigate to [OnboardingPage].
       //! TODO: error.....
@@ -78,6 +78,6 @@ Future<void> userExist(UserExistRef ref) async {
     }
 
     // If the user doesn't have basic information, navigate to [SetupPage].
-    return router.go(SetupPage.routeName);
+    return router.go(SetupNamePage.routeName);
   }
 }

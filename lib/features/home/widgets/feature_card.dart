@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 
-// TODO(lorenzo): Add diferent colors and icons for each feature
 class FeatureCard extends StatelessWidget {
   const FeatureCard({
     super.key,

@@ -47,7 +47,7 @@ class AuthController extends _$AuthController {
       if (res.asRight()) {
         ref.read(goRouterProvider).go(SplashPage.routeName);
       } else {
-        state = AsyncData(null);
+        state = const AsyncData(null);
       }
     }
 

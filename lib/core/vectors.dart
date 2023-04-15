@@ -15,4 +15,10 @@ class Vectors {
 
   // * Sign up
   static const String signUp = 'assets/svg/sign-up.svg';
+
+  // * Setup
+  static const String name = 'assets/svg/name.svg';
+  static const String birthdate = 'assets/svg/birthdate.svg';
+  static const String sex = 'assets/svg/sex.svg';
+  static const String heightWeight = 'assets/svg/height-weight.svg';
 }

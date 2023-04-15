@@ -1,25 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_controller.dart';
+part of 'setup_name_error_message_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authControllerHash() => r'63df76a31cd186ce3a9fe588130528ea14e37bf2';
+String _$nameErrorMessageHash() => r'8dfa8f8fb2b87077e7e1197088af298b77129dea';
 
-/// See also [AuthController].
-@ProviderFor(AuthController)
-final authControllerProvider =
-    AutoDisposeStreamNotifierProvider<AuthController, User?>.internal(
-  AuthController.new,
-  name: r'authControllerProvider',
+/// See also [nameErrorMessage].
+@ProviderFor(nameErrorMessage)
+final nameErrorMessageProvider = AutoDisposeProvider<String?>.internal(
+  nameErrorMessage,
+  name: r'nameErrorMessageProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$authControllerHash,
+      : _$nameErrorMessageHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AuthController = AutoDisposeStreamNotifier<User?>;
+typedef NameErrorMessageRef = AutoDisposeProviderRef<String?>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

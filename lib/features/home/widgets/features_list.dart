@@ -8,7 +8,7 @@ import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/predictions/predictions.dart';
-import 'package:meddly/features/setup/view/setup_page.dart';
+import 'package:meddly/features/setup/view/view.dart';
 
 class FeaturesList extends StatelessWidget {
   const FeaturesList({
@@ -42,7 +42,7 @@ class FeaturesList extends StatelessWidget {
           const SizedBox(width: Sizes.medium),
           FeatureCard(
             name: 'Setup',
-            onPressed: () => Navigator.of(context).push(SetupPage.route()),
+            onPressed: () => Navigator.of(context).push(SetupNamePage.route()),
           ),
           const SizedBox(width: Sizes.medium),
           FeatureCard(

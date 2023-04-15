@@ -46,33 +46,63 @@ class SetupController extends _$SetupController {
   }
 
   void heightChanged(String value) {
-    final height = Height.dirty(value);
-    state = state.copyWith(
-      height: height,
-      status: Formz.validate([
-        state.name,
-        state.lastname,
-        height,
-        state.weight,
-        state.sex,
-        state.birthdate,
-      ]),
-    );
+    if (value.isEmpty) {
+      final height = const Height.pure();
+      state = state.copyWith(
+        height: height,
+        status: Formz.validate([
+          state.name,
+          state.lastname,
+          height,
+          state.weight,
+          state.sex,
+          state.birthdate,
+        ]),
+      );
+    } else {
+      final height = Height.dirty(value);
+      state = state.copyWith(
+        height: height,
+        status: Formz.validate([
+          state.name,
+          state.lastname,
+          height,
+          state.weight,
+          state.sex,
+          state.birthdate,
+        ]),
+      );
+    }
   }
 
   void weightChanged(String value) {
-    final weight = Weight.dirty(value);
-    state = state.copyWith(
-      weight: weight,
-      status: Formz.validate([
-        state.name,
-        state.lastname,
-        state.height,
-        weight,
-        state.sex,
-        state.birthdate,
-      ]),
-    );
+    if (value.isEmpty) {
+      final weight = const Weight.pure();
+      state = state.copyWith(
+        weight: weight,
+        status: Formz.validate([
+          state.name,
+          state.lastname,
+          state.height,
+          weight,
+          state.sex,
+          state.birthdate,
+        ]),
+      );
+    } else {
+      final weight = Weight.dirty(value);
+      state = state.copyWith(
+        weight: weight,
+        status: Formz.validate([
+          state.name,
+          state.lastname,
+          state.height,
+          weight,
+          state.sex,
+          state.birthdate,
+        ]),
+      );
+    }
   }
 
   void sexChanged({required bool value}) {

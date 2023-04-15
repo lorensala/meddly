@@ -207,6 +207,9 @@ class AppTheme {
           bodyMedium: ThemeData.light().textTheme.bodyMedium!.copyWith(
                 fontFamily: fontFamily,
               ),
+          bodySmall: ThemeData.light().textTheme.bodySmall!.copyWith(
+                fontFamily: fontFamily,
+              ),
         );
   }
 

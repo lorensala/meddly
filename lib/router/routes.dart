@@ -2,28 +2,40 @@ import 'package:go_router/go_router.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/phone/phone.dart';
-import 'package:meddly/features/setup/view/setup_page.dart';
+import 'package:meddly/features/setup/view/view.dart';
 import 'package:meddly/features/splash/splash.dart';
 
 final routes = [
   GoRoute(
-    path: SetupPage.routeName,
-    builder: (context, state) => SetupPage(),
+    path: SetupNamePage.routeName,
+    builder: (context, state) => const SetupNamePage(),
+  ),
+  GoRoute(
+    path: SetupBirthdatePage.routeName,
+    builder: (context, state) => const SetupBirthdatePage(),
+  ),
+  GoRoute(
+    path: SetupSexPage.routeName,
+    builder: (context, state) => const SetupSexPage(),
+  ),
+  GoRoute(
+    path: SetupHeightWeightPage.routeName,
+    builder: (context, state) => const SetupHeightWeightPage(),
   ),
   GoRoute(
     path: PhonePage.routeName,
-    builder: (context, state) => PhonePage(),
+    builder: (context, state) => const PhonePage(),
   ),
   GoRoute(
     path: HomePage.routeName,
-    builder: (context, state) => HomePage(),
+    builder: (context, state) => const HomePage(),
   ),
   GoRoute(
     path: OnboardingPage.routeName,
-    builder: (context, state) => OnboardingPage(),
+    builder: (context, state) => const OnboardingPage(),
   ),
   GoRoute(
     path: SplashPage.routeName,
-    builder: (context, state) => SplashPage(),
+    builder: (context, state) => const SplashPage(),
   ),
 ];

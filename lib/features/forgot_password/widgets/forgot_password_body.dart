@@ -15,14 +15,10 @@ class ForgotPasswordBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height -
-        kToolbarHeight -
-        kBottomNavigationBarHeight;
-
     return SingleChildScrollView(
       reverse: true,
       child: SizedBox(
-        height: height,
+        height: context.height,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
