@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meddly/core/helpers.dart';
 import 'package:meddly/features/phone/phone.dart';
 
 import '../../home/home.dart';
@@ -21,7 +22,7 @@ class PhonePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: PhoneView(),
+      body: const PhoneView(),
     );
   }
 }
@@ -37,19 +38,12 @@ class PhoneView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(phoneControllerProvider, (_, state) {
       state.whenOrNull(
-        error: (err, _) => ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(err.toString()),
-            ),
-          ),
-      );
+          error: (err, _) => showSnackBar(context, err.toString()));
     });
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: PhoneBody(),
+      child: const PhoneBody(),
     );
   }
 }

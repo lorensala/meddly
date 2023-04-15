@@ -19,7 +19,7 @@ class OtpForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: Sizes.mediumPadding,
-      decoration: BoxDecoration(),
+      decoration: const BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: const [
@@ -39,13 +39,13 @@ class _ResendOtpButton extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final duration = Duration(seconds: 60);
+    final duration = const Duration(seconds: 60);
     final secondsLeft = useState(duration.inSeconds);
     useInterval(
         callback: () {
           secondsLeft.value--;
         },
-        delay: Duration(seconds: 1));
+        delay: const Duration(seconds: 1));
 
     useInterval(
       delay: duration,
@@ -73,7 +73,6 @@ class _OtpButton extends ConsumerWidget {
     final smsCode = ref.watch(otpProvider).value;
 
     return Button(
-      isLoading: false,
       isValid: isValid,
       onPressed: () => notifier.verifyPhone(smsCode),
       label: 'Verify OTP',
@@ -91,22 +90,21 @@ class _OtpField extends ConsumerWidget {
 
     return PinCodeTextField(
       appContext: context,
+      // enabled: false,
       textStyle: context.textTheme.titleLarge,
       animationType: AnimationType.fade,
       backgroundColor: context.colorScheme.background,
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
-        selectedColor: isValid
-            ? context.colorScheme.primary
-            : context.colorScheme.onSecondary,
-        activeColor: isValid
-            ? context.colorScheme.primary
-            : context.colorScheme.onSecondary,
+        selectedColor:
+            isValid ? context.colorScheme.primary : context.colorScheme.surface,
+        activeColor:
+            isValid ? context.colorScheme.primary : context.colorScheme.surface,
         selectedFillColor: context.colorScheme.primary,
         errorBorderColor: context.colorScheme.error,
-        activeFillColor: context.colorScheme.onSecondary,
-        inactiveColor: context.colorScheme.onSecondary,
+        activeFillColor: context.colorScheme.primary,
+        inactiveColor: context.colorScheme.surface,
         inactiveFillColor: context.colorScheme.onSecondary,
       ),
       length: 6,

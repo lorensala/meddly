@@ -45,21 +45,13 @@ class _CountryCodePhoneNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+    return Row(
       children: [
-        InputLabel(label: context.l10n.phoneNumberHint, isRequired: true),
-        const SizedBox(height: Sizes.small),
-        Row(
-          children: [
-            _CountryCodeSelector(),
-            const SizedBox(width: Sizes.medium),
-            Expanded(
-              flex: 2,
-              child: _PhoneNumberInput(),
-            ),
-          ],
+        const _CountryCodeSelector(),
+        const SizedBox(width: Sizes.medium),
+        const Expanded(
+          flex: 2,
+          child: _PhoneNumberInput(),
         ),
       ],
     );
@@ -76,6 +68,7 @@ class _PhoneNumberInput extends ConsumerWidget {
 
     return TextFormField(
       onChanged: notifier.phoneNumberChanged,
+      style: context.textTheme.bodyMedium,
       keyboardType: TextInputType.number,
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
@@ -83,6 +76,7 @@ class _PhoneNumberInput extends ConsumerWidget {
       ],
       decoration: InputDecoration(
         errorMaxLines: 2,
+        hintText: context.l10n.phoneNumberHint,
         errorText: errorText,
       ),
     );
@@ -97,20 +91,22 @@ class _CountryCodeSelector extends ConsumerWidget {
     final countryCode = ref.watch(countryCodeProvider);
     final notifier = ref.watch(phoneFormControllerProvider.notifier);
     return Container(
-      width: 150,
+      width: 130,
       padding: Sizes.horizontalPadding.copyWith(
         top: Sizes.small / 2,
         bottom: Sizes.small / 2,
       ),
       decoration: BoxDecoration(
         color: context.colorScheme.background,
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+        border: Border.all(
+          color: context.colorScheme.surface,
+          width: 1.5,
+        ),
+        borderRadius: BorderRadius.circular(Sizes.small),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<CountryCode>(
-          style: context.textTheme.titleMedium!.copyWith(
-            fontWeight: FontWeight.w500,
-          ),
+          style: context.textTheme.bodyMedium!.copyWith(),
           isExpanded: true,
           value: countryCode,
           onChanged: notifier.countryCodeChanged,

@@ -8,7 +8,7 @@ part 'otp_form_controller.g.dart';
 class OtpFormController extends _$OtpFormController {
   @override
   OtpFormState build() {
-    return OtpFormState();
+    return const OtpFormState();
   }
 
   void otpChanged(String value) {

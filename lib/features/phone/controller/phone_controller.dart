@@ -43,12 +43,12 @@ class PhoneController extends _$PhoneController {
         _verificationId = verificationId;
         _forceResendingToken = forceResendingToken;
 
-        state = AsyncLoading();
+        state = const AsyncLoading();
       },
       codeAutoRetrievalTimeout: (verificationId) {
         _verificationId = verificationId;
 
-        state = AsyncLoading();
+        state = const AsyncLoading();
       },
     );
   }

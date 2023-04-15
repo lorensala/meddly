@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/phone/controller/phone_controller.dart';
@@ -45,23 +46,32 @@ class _OtpSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Sizes.mediumPadding,
-      child: Center(
+    return SingleChildScrollView(
+      reverse: true,
+      child: SizedBox(
+        height: context.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              context.l10n.enterCode,
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+            Flexible(child: Center(child: SvgPicture.asset(Vectors.otp))),
+            const SizedBox(height: Sizes.large),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
+              child: Text(
+                context.l10n.enterCode,
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
             ),
             const SizedBox(height: Sizes.small),
-            Text(
-              context.l10n.enterCodeDescription,
-              style: Theme.of(context).textTheme.titleMedium,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
+              child: Text(
+                context.l10n.enterCodeDescription,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
             const SizedBox(height: Sizes.large),
             const OtpForm(),
@@ -77,28 +87,35 @@ class _PhoneSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Sizes.mediumPadding,
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              context.l10n.enterPhoneNumber,
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-            ),
-            const SizedBox(height: Sizes.small),
-            Text(
-              context.l10n.enterPhoneNumberDescription,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            const SizedBox(height: Sizes.large),
-            const PhoneForm(),
-            const SizedBox(height: Sizes.large),
-          ],
+    return SingleChildScrollView(
+      reverse: true,
+      child: SizedBox(
+        height: context.height,
+        child: Padding(
+          padding: Sizes.mediumPadding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                  child: Center(child: SvgPicture.asset(Vectors.phoneNumber))),
+              const SizedBox(height: Sizes.large),
+              Text(
+                context.l10n.enterPhoneNumber,
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+              const SizedBox(height: Sizes.small),
+              Text(
+                context.l10n.enterPhoneNumberDescription,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(height: Sizes.large),
+              const PhoneForm(),
+              const SizedBox(height: Sizes.large),
+            ],
+          ),
         ),
       ),
     );

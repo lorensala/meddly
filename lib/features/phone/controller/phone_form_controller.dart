@@ -8,7 +8,7 @@ part 'phone_form_controller.g.dart';
 class PhoneFormController extends _$PhoneFormController {
   @override
   PhoneFormState build() {
-    return PhoneFormState();
+    return const PhoneFormState();
   }
 
   void phoneNumberChanged(String value) {
