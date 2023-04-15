@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meddly/core/helpers.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/widgets/onboarding_body.dart';
@@ -36,13 +37,10 @@ class OnboardingView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(authControllerProvider, (_, state) {
       state.whenOrNull(
-        error: (err, stackTrace) => ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(err.toString()),
-            ),
-          ),
+        error: (err, stackTrace) => showSnackBar(
+          context,
+          err.toString(),
+        ),
       );
     });
 

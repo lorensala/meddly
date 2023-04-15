@@ -1,9 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/login/login.dart';
-import 'package:meddly/features/sign_up/widgets/sign_up_form.dart';
-import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/features/sign_up/widgets/widgets.dart';
 
 /// {@template sign_up_body}
 /// Body of the SignUpPage.
@@ -16,39 +14,26 @@ class SignUpBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          SignUpForm(),
-          SizedBox(height: Sizes.medium),
-          _AlreadyHaveAnAccountLogin(),
-        ],
-      ),
-    );
-  }
-}
+    final height = MediaQuery.of(context).size.height -
+        kToolbarHeight -
+        kBottomNavigationBarHeight;
 
-class _AlreadyHaveAnAccountLogin extends StatelessWidget {
-  const _AlreadyHaveAnAccountLogin();
-
-  @override
-  Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
-        text: '${context.l10n.alreadyHaveAnAccount} ',
-        children: [
-          TextSpan(
-            text: context.l10n.login,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () =>
-                  Navigator.of(context).pushReplacement(LoginPage.route()),
-            style: TextStyle(
-              color: context.colorScheme.primary,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
+    return SingleChildScrollView(
+      reverse: true,
+      child: SizedBox(
+        height: height,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: Sizes.medium),
+            Flexible(child: SvgPicture.asset(Vectors.signUp)),
+            const SizedBox(height: Sizes.extraLarge),
+            const SignUpForm(),
+            const SizedBox(height: Sizes.medium),
+            const AlreadyHaveAnAccountLogin(),
+            const SizedBox(height: Sizes.medium),
+          ],
+        ),
       ),
     );
   }

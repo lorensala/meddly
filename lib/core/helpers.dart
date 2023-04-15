@@ -50,3 +50,18 @@ Future<void> showConfirmationDialog(
     );
   }
 }
+
+Future<void> showSnackBar(
+  BuildContext context,
+  String message, {
+  Duration duration = const Duration(seconds: 2),
+}) async {
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: duration,
+      ),
+    );
+}

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/helpers.dart';
 import 'package:meddly/features/auth/auth.dart';
-import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/sign_up/widgets/sign_up_body.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 /// {@template sign_up_page}
 /// A description for SignUpPage
@@ -20,10 +21,7 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: () => Navigator.of(context)
-              .pushAndRemoveUntil(OnboardingPage.route(), (_) => false),
-        ),
+        title: Text(context.l10n.signUp),
       ),
       body: const SignUpView(),
     );
@@ -41,13 +39,10 @@ class SignUpView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(authControllerProvider, (_, state) {
       state.whenOrNull(
-        error: (err, stackTrace) => ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(err.toString()),
-            ),
-          ),
+        error: (err, stackTrace) => showSnackBar(
+          context,
+          err.toString(),
+        ),
       );
     });
 

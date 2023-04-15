@@ -20,10 +20,17 @@ class ForgotPasswordForm extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
-          _EmailInput(),
-          SizedBox(height: Sizes.medium),
-          _SendPasswordResetEmailButton(),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const _EmailInput(),
+          const SizedBox(height: Sizes.medium),
+          Text(
+            'We will send you a link to reset your password',
+            style: context.textTheme.bodySmall!.copyWith(
+                color: context.colorScheme.onSecondary.withOpacity(0.5)),
+          ),
+          const SizedBox(height: Sizes.medium),
+          const _SendPasswordResetEmailButton(),
         ],
       ),
     );

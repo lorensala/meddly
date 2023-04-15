@@ -1,18 +1,7 @@
 import 'package:meddly/features/login/controller/login_controller.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:validators/validators.dart';
 
-part 'login_provider.g.dart';
-
-@riverpod
-Email loginEmail(LoginEmailRef ref) {
-  return ref.watch(loginControllerProvider).email;
-}
-
-@riverpod
-Password loginPassword(LoginPasswordRef ref) {
-  return ref.watch(loginControllerProvider).password;
-}
+part 'is_login_form_valid_provider.g.dart';
 
 @riverpod
 bool isLoginFormValid(IsLoginFormValidRef ref) {

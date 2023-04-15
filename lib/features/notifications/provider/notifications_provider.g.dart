@@ -35,8 +35,8 @@ final notificationPreferenceProvider =
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$notificationPreferenceHash,
-  dependencies: <ProviderOrFamily>[],
-  allTransitiveDependencies: <ProviderOrFamily>[],
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>[],
 );
 
 typedef NotificationPreferenceRef

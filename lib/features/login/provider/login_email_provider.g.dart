@@ -1,25 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_controller.dart';
+part of 'login_email_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authControllerHash() => r'bad55c3219fa96f11ef8f270930f8e08c59394ca';
+String _$loginPasswordHash() => r'6ac4e8c2ce323706ef9163e2776f1551724c3fd6';
 
-/// See also [AuthController].
-@ProviderFor(AuthController)
-final authControllerProvider =
-    AutoDisposeStreamNotifierProvider<AuthController, User?>.internal(
-  AuthController.new,
-  name: r'authControllerProvider',
+/// See also [loginPassword].
+@ProviderFor(loginPassword)
+final loginPasswordProvider = AutoDisposeProvider<Password>.internal(
+  loginPassword,
+  name: r'loginPasswordProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$authControllerHash,
+      : _$loginPasswordHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AuthController = AutoDisposeStreamNotifier<User?>;
+typedef LoginPasswordRef = AutoDisposeProviderRef<Password>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

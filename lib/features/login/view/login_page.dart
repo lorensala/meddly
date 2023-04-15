@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/helpers.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/login/widgets/login_body.dart';
 import 'package:meddly/features/user/user.dart';
@@ -34,13 +35,10 @@ class LoginView extends ConsumerWidget {
       state.whenOrNull(
         data: (_) => Navigator.of(context)
             .pushAndRemoveUntil(UserPage.route(), (_) => false),
-        error: (err, stackTrace) => ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(err.toString()),
-            ),
-          ),
+        error: (err, stackTrace) => showSnackBar(
+          context,
+          err.toString(),
+        ),
       );
     });
     return const LoginBody();

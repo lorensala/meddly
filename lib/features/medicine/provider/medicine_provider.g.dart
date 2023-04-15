@@ -381,8 +381,8 @@ final medicineProvider = AutoDisposeProvider<Medicine>.internal(
   name: r'medicineProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$medicineHash,
-  dependencies: <ProviderOrFamily>[],
-  allTransitiveDependencies: <ProviderOrFamily>[],
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>[],
 );
 
 typedef MedicineRef = AutoDisposeProviderRef<Medicine>;

@@ -9,4 +9,10 @@ class Vectors {
   // * Login
   static const String eye = 'assets/svg/eye.svg';
   static const String eyeOff = 'assets/svg/eye-off.svg';
+
+  // * Forgor password
+  static const String forgotPassword = 'assets/svg/forgot-password.svg';
+
+  // * Sign up
+  static const String signUp = 'assets/svg/sign-up.svg';
 }
