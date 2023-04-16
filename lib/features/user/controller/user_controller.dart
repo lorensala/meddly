@@ -3,11 +3,10 @@ import 'package:meddly/core/extensions.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:user/user.dart';
-
-import '../../../l10n/l10n.dart';
 
 part 'user_controller.g.dart';
 

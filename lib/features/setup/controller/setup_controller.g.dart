@@ -6,7 +6,7 @@ part of 'setup_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$setupControllerHash() => r'8c09b730fd176876dafdc3eb2adc4d05d1f631d4';
+String _$setupControllerHash() => r'3db98d2f140b53edc28f365533c77690c462e33d';
 
 /// See also [SetupController].
 @ProviderFor(SetupController)

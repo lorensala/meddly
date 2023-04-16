@@ -325,16 +325,7 @@
     "@skip": {
         "description": "Text shown on the skip button"
     },
-    "resendCode": "The code will be resent in {seconds} seconds",
-    "@resendCode": {
-        "placeholders": {
-            "seconds": {
-                "type": "int",
-                "example": "30"
-            }
-        },
-        "description": "Text shown on the resend code button"
-    },
+    "resendCode": "Resend code",
     "codeWillBeResent": "Code will be resent in",
     "@codeWillBeResent": {
         "description": "Text shown on the code will be resent page"

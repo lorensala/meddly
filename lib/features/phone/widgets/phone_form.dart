@@ -31,9 +31,11 @@ class _SendOTPButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isValid = ref.watch(isPhoneNumberValidProvider);
     final notifier = ref.watch(phoneControllerProvider.notifier);
+    final isLoading = ref.watch(phoneControllerProvider).isSendingOtp;
 
     return Button(
       isValid: isValid,
+      isLoading: isLoading,
       onPressed: () => notifier.sendPhoneNumber(),
       label: context.l10n.sendOTP,
     );
@@ -68,7 +70,6 @@ class _PhoneNumberInput extends ConsumerWidget {
 
     return TextFormField(
       onChanged: notifier.phoneNumberChanged,
-      style: context.textTheme.bodyMedium,
       keyboardType: TextInputType.number,
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
@@ -91,7 +92,7 @@ class _CountryCodeSelector extends ConsumerWidget {
     final countryCode = ref.watch(countryCodeProvider);
     final notifier = ref.watch(phoneFormControllerProvider.notifier);
     return Container(
-      width: 130,
+      width: 140,
       padding: Sizes.horizontalPadding.copyWith(
         top: Sizes.small / 2,
         bottom: Sizes.small / 2,
@@ -116,6 +117,7 @@ class _CountryCodeSelector extends ConsumerWidget {
                   value: c,
                   child: Text(
                     '${c.code} (${c.name})',
+                    style: context.textTheme.bodyLarge,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),

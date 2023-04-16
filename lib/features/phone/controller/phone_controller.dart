@@ -2,11 +2,10 @@ import 'package:authentication/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
-import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/phone/phone.dart';
+import 'package:meddly/features/phone/state/phone_state.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'phone_controller.g.dart';
@@ -16,7 +15,9 @@ class PhoneController extends _$PhoneController {
   //! TODO(lorenzo): change to PhoneState that contains a state called CodeSent()
   //! because im unabled to show the Loading state when the button is pressed
   @override
-  FutureOr<void> build() {}
+  PhoneState build() {
+    return const PhoneState.initial();
+  }
 
   String _verificationId = '';
   int? _forceResendingToken;
@@ -24,6 +25,8 @@ class PhoneController extends _$PhoneController {
   int? get forceResendingToken => _forceResendingToken;
 
   Future<void> sendPhoneNumber() async {
+    state = const PhoneState.sendingOtp();
+
     final authRepository = ref.read(authRepositoryProvider);
     final phoneNumber = ref.watch(phoneNumberProvider);
     final countryCode = ref.watch(countryCodeProvider);
@@ -37,18 +40,18 @@ class PhoneController extends _$PhoneController {
       verificationCompleted: verificationCompleted,
       verificationFailed: (e) {
         final failure = AuthFailure.fromCode(e.code);
-        state = AsyncError(failure.message(l10n), StackTrace.current);
+        state = PhoneState.error(failure.message(l10n));
       },
       codeSent: (verificationId, forceResendingToken) {
         _verificationId = verificationId;
         _forceResendingToken = forceResendingToken;
 
-        state = const AsyncLoading();
+        state = const PhoneState.otpSent();
       },
       codeAutoRetrievalTimeout: (verificationId) {
         _verificationId = verificationId;
 
-        state = const AsyncLoading();
+        state = const PhoneState.otpSent();
       },
     );
   }
@@ -67,21 +70,22 @@ class PhoneController extends _$PhoneController {
         '${countryCode.code}${phoneNumber.value}';
 
     if (res.isLeft()) {
-      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+      state = PhoneState.error(res.asLeft().message(l10n));
       return;
     }
 
     final userOrFailure = userRepository.getUser();
 
     if (userOrFailure.isLeft()) {
-      state = AsyncError(l10n.userNotFound, StackTrace.current);
+      state = PhoneState.error(userOrFailure.asLeft().message(l10n));
+
       return;
     }
 
     final user = userOrFailure.asRight();
 
     if (user == null) {
-      state = AsyncError(l10n.userNotFound, StackTrace.current);
+      state = PhoneState.error(l10n.userNotFound);
       return;
     }
 
@@ -92,15 +96,13 @@ class PhoneController extends _$PhoneController {
     final res2 = await userRepository.updateUser(userWithPhoneNumber);
 
     res2.fold(
-      (l) => state = AsyncError(l.message(l10n), StackTrace.current),
-      (r) {
-        ref.read(goRouterProvider).go(HomePage.routeName);
-        state = AsyncData(userWithPhoneNumber);
-      },
+      (l) => state = PhoneState.error(l.message(l10n)),
+      (r) => state = const PhoneState.otpVerified(),
     );
   }
 
   Future<void> verifyPhone(String smsCode) {
+    state = const PhoneState.verifyingOtp();
     final phoneAuthCredential = PhoneAuthProvider.credential(
       verificationId: _verificationId,
       smsCode: smsCode,

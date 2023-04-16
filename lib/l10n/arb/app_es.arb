@@ -82,7 +82,7 @@
     "enterCode": "Introduce el código que te enviamos a",
     "enterCodeDescription": "¿No has recibido el código? Toca en \"Reenviar código\"",
     "skip": "Saltar",
-    "resendCode": "El código será reenviado en {seconds} segundos",
+    "resendCode": "Reenviar código",
     "codeWillBeResent": "El código se reenviará en",
     "notificationPreferenceNotFound": "No se ha encontrado la preferencia de notificación",
     "notificationPreferenceAlreadyExistsError": "La preferencia de notificación ya existe",

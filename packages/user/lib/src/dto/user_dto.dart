@@ -40,7 +40,7 @@ class UserDto with _$UserDto {
         sex: user.sex.toBool(),
         height: user.height,
         weight: user.weight,
-        birth: user.birth,
+        birth: user.birth.isEmpty ? null : user.birth,
         invitation: user.invitation,
       );
     } catch (e) {

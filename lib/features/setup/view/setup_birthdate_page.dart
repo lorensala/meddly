@@ -34,6 +34,21 @@ class SetupBirthdatePage extends StatelessWidget {
               children: [
                 const SizedBox(height: Sizes.medium),
                 Flexible(child: SvgPicture.asset(Vectors.birthdate)),
+                const SizedBox(height: Sizes.medium),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('When is your birthdate?*',
+                      style: context.textTheme.titleLarge),
+                ),
+                const SizedBox(height: Sizes.small),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('We will use this for your medical records',
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        color:
+                            context.colorScheme.onBackground.withOpacity(0.5),
+                      )),
+                ),
                 const SizedBox(height: Sizes.extraLarge),
                 const SetupBirthdateInput(),
                 const SizedBox(height: Sizes.large),

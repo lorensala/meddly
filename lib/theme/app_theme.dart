@@ -109,8 +109,8 @@ class AppTheme {
     return InputDecorationTheme(
       filled: true,
       fillColor: _secondary,
-      hintStyle: _textTheme().bodyMedium!.copyWith(
-            color: _textTheme().bodyMedium!.color!.withOpacity(0.4),
+      hintStyle: _textTheme().bodyLarge!.copyWith(
+            color: _textTheme().bodyLarge!.color!.withOpacity(0.4),
           ),
       errorStyle: _textTheme().bodyMedium!.copyWith(
             color: _error,
@@ -144,12 +144,14 @@ class AppTheme {
 
   static AppBarTheme _appBarTheme() {
     return AppBarTheme(
-      elevation: 2,
+      elevation: 0,
       centerTitle: true,
       iconTheme: const IconThemeData(
         color: _onSecondary,
       ),
-      titleTextStyle: _textTheme().titleMedium,
+      titleTextStyle: _textTheme()
+          .titleLarge!
+          .copyWith(fontWeight: FontWeight.w500, fontSize: 18),
       color: _background,
     );
   }
@@ -173,43 +175,96 @@ class AppTheme {
 
   static TextTheme _textTheme() {
     return ThemeData.light().textTheme.copyWith(
-          displayLarge: ThemeData.light()
-              .textTheme
-              .displayLarge!
-              .copyWith(fontFamily: fontFamily),
-          displayMedium: ThemeData.light().textTheme.displayMedium!.copyWith(
-                fontFamily: fontFamily,
-              ),
-          displaySmall: ThemeData.light().textTheme.displaySmall!.copyWith(
-                fontFamily: fontFamily,
-              ),
-          headlineLarge: ThemeData.light().textTheme.headlineLarge!.copyWith(
-                fontFamily: fontFamily,
-              ),
-          headlineMedium: ThemeData.light().textTheme.headlineMedium!.copyWith(
-                fontFamily: fontFamily,
-              ),
-          headlineSmall: ThemeData.light().textTheme.headlineSmall!.copyWith(
-                fontFamily: fontFamily,
-              ),
-          titleLarge: ThemeData.light().textTheme.titleLarge!.copyWith(
-                fontFamily: fontFamily,
-              ),
-          titleMedium: ThemeData.light().textTheme.titleMedium!.copyWith(
-                fontFamily: fontFamily,
-              ),
-          titleSmall: ThemeData.light().textTheme.titleSmall!.copyWith(
-                fontFamily: fontFamily,
-              ),
-          bodyLarge: ThemeData.light().textTheme.bodyLarge!.copyWith(
-                fontFamily: fontFamily,
-              ),
-          bodyMedium: ThemeData.light().textTheme.bodyMedium!.copyWith(
-                fontFamily: fontFamily,
-              ),
-          bodySmall: ThemeData.light().textTheme.bodySmall!.copyWith(
-                fontFamily: fontFamily,
-              ),
+          displayLarge: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w700,
+            fontSize: 57,
+            color: _onSecondary,
+          ),
+          displayMedium: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w700,
+            fontSize: 45,
+            color: _onSecondary,
+          ),
+          displaySmall: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w700,
+            fontSize: 36,
+            color: _onSecondary,
+          ),
+          headlineLarge: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w600,
+            fontSize: 32,
+            color: _onSecondary,
+          ),
+          headlineMedium: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w600,
+            fontSize: 28,
+            color: _onSecondary,
+          ),
+          headlineSmall: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w600,
+            fontSize: 24,
+            color: _onSecondary,
+          ),
+          titleLarge: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w500,
+            fontSize: 22,
+            color: _onSecondary,
+          ),
+          titleMedium: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+            color: _onSecondary,
+          ),
+          titleSmall: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w500,
+            fontSize: 14,
+            color: _onSecondary,
+          ),
+          labelLarge: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w500,
+            fontSize: 14,
+            color: _onSecondary,
+          ),
+          labelMedium: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: _onSecondary,
+          ),
+          labelSmall: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w500,
+            fontSize: 11,
+            color: _onSecondary,
+          ),
+          bodyLarge: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+            color: _onSecondary,
+          ),
+          bodyMedium: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w400,
+            fontSize: 14,
+            color: _onSecondary,
+          ),
+          bodySmall: const TextStyle(
+            fontFamily: fontFamily,
+            fontWeight: FontWeight.w400,
+            fontSize: 12,
+            color: _onSecondary,
+          ),
         );
   }
 

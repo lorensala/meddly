@@ -20,7 +20,6 @@ class AlreadyHaveAnAccountLogin extends StatelessWidget {
                   Navigator.of(context).pushReplacement(LoginPage.route()),
             style: TextStyle(
               color: context.colorScheme.primary,
-              fontWeight: FontWeight.bold,
             ),
           ),
         ],

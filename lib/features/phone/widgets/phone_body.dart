@@ -17,14 +17,16 @@ class PhoneBody extends HookConsumerWidget {
   /// {@macro phone_body}
   const PhoneBody({super.key});
 
+  static const Duration _duration = Duration(milliseconds: 300);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = usePageController();
 
     ref.listen(phoneControllerProvider, (_, state) {
-      if (state.isLoading) {
+      if (state.isOtpSent) {
         controller.nextPage(
-          duration: const Duration(milliseconds: 300),
+          duration: _duration,
           curve: Curves.easeInOut,
         );
       }
@@ -51,30 +53,39 @@ class _OtpSection extends StatelessWidget {
       child: SizedBox(
         height: context.height,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Flexible(child: Center(child: SvgPicture.asset(Vectors.otp))),
+            const SizedBox(height: Sizes.medium),
+            Flexible(
+                child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: Sizes.medium),
+                    child: SvgPicture.asset(Vectors.otp))),
             const SizedBox(height: Sizes.large),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
-              child: Text(
-                context.l10n.enterCode,
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  context.l10n.enterCode,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
               ),
             ),
             const SizedBox(height: Sizes.small),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
-              child: Text(
-                context.l10n.enterCodeDescription,
-                style: Theme.of(context).textTheme.titleMedium,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(context.l10n.enterCodeDescription,
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      color: context.colorScheme.onBackground.withOpacity(0.5),
+                    )),
               ),
             ),
-            const SizedBox(height: Sizes.large),
+            const SizedBox(height: Sizes.small),
             const OtpForm(),
+            const SizedBox(height: Sizes.large),
           ],
         ),
       ),
@@ -94,22 +105,27 @@ class _PhoneSection extends StatelessWidget {
         child: Padding(
           padding: Sizes.mediumPadding,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Flexible(
-                  child: Center(child: SvgPicture.asset(Vectors.phoneNumber))),
+              const SizedBox(height: Sizes.medium),
+              Flexible(child: SvgPicture.asset(Vectors.phoneNumber)),
               const SizedBox(height: Sizes.large),
-              Text(
-                context.l10n.enterPhoneNumber,
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  context.l10n.enterPhoneNumber,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
               ),
               const SizedBox(height: Sizes.small),
-              Text(
-                context.l10n.enterPhoneNumberDescription,
-                style: Theme.of(context).textTheme.bodyLarge,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  context.l10n.enterPhoneNumberDescription,
+                  style: context.textTheme.bodyMedium!.copyWith(
+                    color: context.colorScheme.onBackground.withOpacity(0.5),
+                  ),
+                ),
               ),
               const SizedBox(height: Sizes.large),
               const PhoneForm(),

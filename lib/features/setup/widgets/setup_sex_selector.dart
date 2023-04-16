@@ -4,7 +4,6 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/setup/controller/controller.dart';
 import 'package:meddly/features/setup/provider/provider.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:meddly/widgets/widgets.dart';
 
 class SetupSexSelector extends ConsumerWidget {
   const SetupSexSelector();
@@ -42,9 +41,6 @@ class SetupSexSelector extends ConsumerWidget {
               style: context.textTheme.titleMedium,
             ),
           ],
-        ),
-        InputDescription(
-          description: context.l10n.sexDescription,
         ),
         const SizedBox(height: Sizes.medium),
         GestureDetector(

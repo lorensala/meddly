@@ -21,6 +21,7 @@ class Vectors {
   static const String birthdate = 'assets/svg/birthdate.svg';
   static const String sex = 'assets/svg/sex.svg';
   static const String heightWeight = 'assets/svg/height-weight.svg';
+  static const String success = 'assets/svg/success.svg';
 
   // * Phone Number
   static const String phoneNumber = 'assets/svg/phone-number.svg';

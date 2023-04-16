@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/helpers.dart';
 import 'package:meddly/features/phone/phone.dart';
-
-import '../../home/home.dart';
+import 'package:meddly/features/setup/setup.dart';
+import 'package:meddly/router/provider/go_router_provider.dart';
 
 /// {@template phone_page}
 /// A description for PhonePage
@@ -21,7 +22,9 @@ class PhonePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Setup'),
+      ),
       body: const PhoneView(),
     );
   }
@@ -38,7 +41,9 @@ class PhoneView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(phoneControllerProvider, (_, state) {
       state.whenOrNull(
-          error: (err, _) => showSnackBar(context, err.toString()));
+          otpVerified: () =>
+              ref.read(goRouterProvider).go(SetupSuccessPage.routeName),
+          error: (err) => showSnackBar(context, err.toString()));
     });
 
     return GestureDetector(

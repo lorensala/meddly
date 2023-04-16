@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/phone/controller/otp_form_controller.dart';
@@ -26,7 +25,7 @@ class OtpForm extends StatelessWidget {
           _OtpField(),
           SizedBox(height: Sizes.medium),
           _OtpButton(),
-          SizedBox(height: Sizes.medium),
+          SizedBox(height: Sizes.large),
           _ResendOtpButton(),
         ],
       ),
@@ -34,29 +33,23 @@ class OtpForm extends StatelessWidget {
   }
 }
 
-class _ResendOtpButton extends HookConsumerWidget {
+class _ResendOtpButton extends ConsumerWidget {
   const _ResendOtpButton();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final duration = const Duration(seconds: 60);
-    final secondsLeft = useState(duration.inSeconds);
-    useInterval(
-        callback: () {
-          secondsLeft.value--;
-        },
-        delay: const Duration(seconds: 1));
-
-    useInterval(
-      delay: duration,
-      callback: () {
-        secondsLeft.value = duration.inSeconds;
-        ref.watch(phoneControllerProvider.notifier).sendPhoneNumber();
-      },
-    );
-
     return Center(
-      child: Text(context.l10n.resendCode(secondsLeft.value)),
+      child: GestureDetector(
+        onTap: () =>
+            ref.read(phoneControllerProvider.notifier).sendPhoneNumber(),
+        child: Text(
+          context.l10n.resendCode,
+          style: context.textTheme.bodyMedium!.copyWith(
+            color: context.colorScheme.primary,
+            decoration: TextDecoration.underline,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -67,13 +60,13 @@ class _OtpButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isValid = ref.watch(isOtpValidProvider);
-    //! TODO(lorenzo) : Add loading state
-    // final isLoading = ref.watch(phoneControllerProvider).isLoading;
+    final isLoading = ref.watch(phoneControllerProvider).isVerifyingOtp;
     final notifier = ref.watch(phoneControllerProvider.notifier);
     final smsCode = ref.watch(otpProvider).value;
 
     return Button(
       isValid: isValid,
+      isLoading: isLoading,
       onPressed: () => notifier.verifyPhone(smsCode),
       label: 'Verify OTP',
     );
@@ -92,6 +85,7 @@ class _OtpField extends ConsumerWidget {
       appContext: context,
       // enabled: false,
       textStyle: context.textTheme.titleLarge,
+      keyboardType: TextInputType.number,
       animationType: AnimationType.fade,
       backgroundColor: context.colorScheme.background,
       pinTheme: PinTheme(

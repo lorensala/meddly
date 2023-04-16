@@ -20,7 +20,7 @@ class DateSelector extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = useState<TextStyle?>(context.textTheme.bodyMedium!
+    final textStyle = useState<TextStyle>(context.textTheme.bodyLarge!
         .copyWith(color: context.colorScheme.onSecondary.withOpacity(0.5)));
     final controller = useTextEditingController(text: 'Select a date');
 
@@ -38,11 +38,11 @@ class DateSelector extends HookWidget {
 
           if (value != null) {
             controller.text = value.toString().dateTimeStringFormat();
-            textStyle.value = null;
+            textStyle.value = context.textTheme.bodyLarge!;
             onDateTimeChanged(value);
           } else {
             controller.text = 'Select a date';
-            textStyle.value = context.textTheme.bodyMedium!.copyWith(
+            textStyle.value = context.textTheme.bodyLarge!.copyWith(
                 color: context.colorScheme.onSecondary.withOpacity(0.5));
             onDateTimeChanged(initialDateTime);
           }
@@ -64,6 +64,7 @@ class DateSelector extends HookWidget {
                         onDateTimeChanged: (value) {
                           controller.text =
                               value.toString().dateTimeStringFormat();
+                          textStyle.value = context.textTheme.bodyLarge!;
                           onDateTimeChanged(value);
                         },
                       ),
@@ -74,8 +75,13 @@ class DateSelector extends HookWidget {
                         if (controller.text == 'Select a date') {
                           controller.text =
                               initialDateTime.toString().dateTimeStringFormat();
+                          textStyle.value = context.textTheme.bodyLarge!
+                              .copyWith(
+                                  color: context.colorScheme.onSecondary
+                                      .withOpacity(0.5));
                           onDateTimeChanged(initialDateTime);
                         }
+                        textStyle.value = context.textTheme.bodyLarge!;
                         Navigator.of(context).pop();
                       },
                     ),

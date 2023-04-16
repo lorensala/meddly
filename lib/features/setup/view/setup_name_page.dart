@@ -22,24 +22,43 @@ class SetupNamePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Setup'),
       ),
-      body: SingleChildScrollView(
-        reverse: true,
-        child: SizedBox(
-          height: context.height,
-          child: Padding(
-            padding: const EdgeInsets.all(Sizes.medium),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(height: Sizes.medium),
-                Flexible(child: SvgPicture.asset(Vectors.name)),
-                const SizedBox(height: Sizes.extraLarge),
-                const SetupNameInput(),
-                const SizedBox(height: Sizes.medium),
-                const SetupLastnameInput(),
-                const SizedBox(height: Sizes.large),
-                const _NextButton(),
-              ],
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: SingleChildScrollView(
+          reverse: true,
+          child: SizedBox(
+            height: context.height,
+            child: Padding(
+              padding: const EdgeInsets.all(Sizes.medium),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: Sizes.medium),
+                  Flexible(child: SvgPicture.asset(Vectors.name)),
+                  const SizedBox(height: Sizes.medium),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('What is your name?*',
+                        style: context.textTheme.titleLarge),
+                  ),
+                  const SizedBox(height: Sizes.small),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child:
+                        Text('We will use this to personalize your experience',
+                            style: context.textTheme.bodyMedium!.copyWith(
+                              color: context.colorScheme.onBackground
+                                  .withOpacity(0.5),
+                            )),
+                  ),
+                  const SizedBox(height: Sizes.extraLarge),
+                  const SetupNameInput(),
+                  const SizedBox(height: Sizes.medium),
+                  const SetupLastnameInput(),
+                  const SizedBox(height: Sizes.large),
+                  const _NextButton(),
+                ],
+              ),
             ),
           ),
         ),

@@ -61,6 +61,7 @@ Future<void> showSnackBar(
     ..showSnackBar(
       SnackBar(
         content: Text(message),
+        backgroundColor: Colors.black,
         duration: duration,
       ),
     );

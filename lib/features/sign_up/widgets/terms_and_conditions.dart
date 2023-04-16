@@ -42,7 +42,7 @@ class TermsAndConditions extends StatelessWidget {
                   text: context.l10n.termsAndConditions,
                   style: context.textTheme.bodyMedium!.copyWith(
                     color: context.colorScheme.primary,
-                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
                   ),
                 ),
               ],

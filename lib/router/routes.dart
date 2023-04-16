@@ -27,6 +27,10 @@ final routes = [
     builder: (context, state) => const PhonePage(),
   ),
   GoRoute(
+    path: SetupSuccessPage.routeName,
+    builder: (context, state) => const SetupSuccessPage(),
+  ),
+  GoRoute(
     path: HomePage.routeName,
     builder: (context, state) => const HomePage(),
   ),
