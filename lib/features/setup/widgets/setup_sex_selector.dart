@@ -44,8 +44,44 @@ class SetupSexSelector extends ConsumerWidget {
         ),
         const SizedBox(height: Sizes.medium),
         GestureDetector(
-          // TODO: Make this a route or an alert dialog...
-          //onTap: () => Navigator.push(context, route),
+          onTap: () => showModalBottomSheet<void>(
+              backgroundColor: Colors.transparent,
+              context: context,
+              builder: (context) => BottomSheet(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(Sizes.medium),
+                        topRight: Radius.circular(Sizes.medium),
+                      ),
+                    ),
+                    builder: (context) {
+                      return SingleChildScrollView(
+                        child: Container(
+                          padding: const EdgeInsets.all(Sizes.medium),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const SizedBox(height: Sizes.large),
+                              Text(
+                                context.l10n.sexWhy,
+                                style: context.textTheme.titleMedium,
+                              ),
+                              const SizedBox(height: Sizes.medium),
+                              Text(
+                                context.l10n.sexWhyDescription,
+                                style: context.textTheme.bodyMedium,
+                              ),
+                              const SizedBox(height: Sizes.large),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    onClosing: () {
+                      Navigator.of(context).pop();
+                    },
+                  )),
           child: Text(
             context.l10n.sexWhy,
             style: TextStyle(

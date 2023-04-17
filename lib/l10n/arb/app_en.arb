@@ -518,11 +518,50 @@
     "@invalidMeasurementValue": {
         "description": "Text shown when the measurement value is invalid"
     },
+    "errorCreatingAccount": "Error creating account",
+    "@errorCreatingAccount": {
+        "description": "Text shown when there is an error creating the account"
+    },
+    "startNow": "Start now",
+    "@startNow": {
+        "description": "Text shown on the start now button"
+    },
+    "tryAgain": "Try again",
+    "@tryAgain": {
+        "description": "Text shown on the try again button"
+    },
+    "welcome": "Welcome",
+    "@welcome": {
+        "description": "Text shown on the welcome page"
+    },
+    "setupNameTitle": "What's your name?",
+    "@setupNameTitle": {
+        "description": "Text shown on the setup name title"
+    },
+    "setupNameSubtitle": "We will use this name to greet you",
+    "@setupNameSubtitle": {
+        "description": "Text shown on the setup name subtitle"
+    },
+    "setupBirthdateTitle": "When were you born?",
+    "@setupBirthdateTitle": {
+        "description": "Text shown on the setup birthdate title"
+    },
+    "setupBirthdateSubtitle": "We will use this information for your medical records",
+    "@setupBirthdateSubtitle": {
+        "description": "Text shown on the setup birthdate subtitle"
+    },
+    "setupSexTitle": "What is your sex?",
+    "@setupSexTitle": {
+        "description": "Text shown on the setup sex title"
+    },
+    "setupSexSubtitle": "We will use this information for your medical records",
+     "@setupSexSubtitle": {
+        "description": "Text shown on the setup sex subtitle"
+    },
+    "sexWhyDescription": "    In our medical app, we only offer the option to select between \"Male\" and \"Female\" in the sex selection due to medical and practical reasons.\n   From a medical perspective, the binary classification of sex has historically been used in medicine because most diseases and conditions have a higher prevalence in one gender than the other. In addition, biological differences between males and females can influence how diseases are presented and treated.\n   For example, women have a higher risk of developing osteoporosis while men have a higher risk of coronary disease. Symptoms and the presentation of some diseases can also vary by gender. Therefore, having accurate information about a patient's sex can help doctors make a more accurate diagnosis and provide appropriate treatment.\n    Regarding practical reasons, limiting the options to \"Male\" and \"Female\" facilitates data collection and analysis. By having a binary classification, we can obtain more precise and useful information about the health of our users.\n    It's important to note that we understand that gender is a more complex and varied issue that can encompass a wider range of identities. However, in our medical app, we limit ourselves to offering these two options due to medical and practical reasons. We appreciate your understanding and are committed to providing high-quality and respectful medical care to all individuals who use our app.",
     "measurementNotFound": "Measurement not found",
     "@measurementNotFound": {
         "description": "Text shown when the measurement is not found"
     }
-
-
    
 }

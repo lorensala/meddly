@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -44,14 +45,14 @@ class SetupSuccessBody extends ConsumerWidget {
               Expanded(flex: 3, child: SvgPicture.asset(Vectors.success)),
               const SizedBox(height: Sizes.medium),
               Text(
-                'Welcome ${user.asSome().firstName}!',
+                '${context.l10n.welcome}, ${user.asSome().firstName}!',
                 style: context.textTheme.titleLarge,
               ),
               const Spacer(),
               Button(
                   onPressed: () =>
                       ref.read(goRouterProvider).go(HomePage.routeName),
-                  label: 'Comenzar ahora!'),
+                  label: context.l10n.startNow),
               const SizedBox(height: Sizes.medium),
             ],
           ),
@@ -59,7 +60,20 @@ class SetupSuccessBody extends ConsumerWidget {
       ),
       loading: () => const Center(
           child: RepaintBoundary(child: CircularProgressIndicator())),
-      error: (error, stack) => Text(error.toString()),
+      error: (error, stack) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // TODO(me): no se si debería ir aca......
+          // Flexible(child: SvgPicture.asset(Vectors.error)),
+          // const SizedBox(height: Sizes.medium),
+          // Text(context.l10n.errorCreatingAccount),
+          // const SizedBox(height: Sizes.medium),
+          // Button(
+          //   onPressed: () => ref.read(setup.notifier).signOut(),
+          //   label: context.l10n.tryAgain,
+          // ),
+        ],
+      ),
     );
   }
 }

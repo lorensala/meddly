@@ -4,4 +4,6 @@ export 'setup_height_input.dart';
 export 'setup_last_name_input.dart';
 export 'setup_name_input.dart';
 export 'setup_sex_selector.dart';
+export 'setup_subtitle.dart';
+export 'setup_title.dart';
 export 'setup_weight_input.dart';

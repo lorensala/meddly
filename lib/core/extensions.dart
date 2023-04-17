@@ -55,6 +55,7 @@ extension BuildContextX on BuildContext {
       MediaQuery.of(this).size.height -
       kToolbarHeight -
       kBottomNavigationBarHeight;
+  double get width => MediaQuery.of(this).size.width;
 }
 
 extension DateTimeX on DateTime {

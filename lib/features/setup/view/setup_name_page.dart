@@ -36,21 +36,12 @@ class SetupNamePage extends StatelessWidget {
                   const SizedBox(height: Sizes.medium),
                   Flexible(child: SvgPicture.asset(Vectors.name)),
                   const SizedBox(height: Sizes.medium),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('What is your name?*',
-                        style: context.textTheme.titleLarge),
+                  SetupTitle(
+                    title: context.l10n.setupNameTitle,
+                    isRequired: true,
                   ),
                   const SizedBox(height: Sizes.small),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child:
-                        Text('We will use this to personalize your experience',
-                            style: context.textTheme.bodyMedium!.copyWith(
-                              color: context.colorScheme.onBackground
-                                  .withOpacity(0.5),
-                            )),
-                  ),
+                  SetupSubtitle(subtitle: context.l10n.setupNameSubtitle),
                   const SizedBox(height: Sizes.extraLarge),
                   const SetupNameInput(),
                   const SizedBox(height: Sizes.medium),

@@ -20,7 +20,8 @@ class OnboardingCard extends StatelessWidget {
       padding: Sizes.mediumPadding,
       child: Column(
         children: [
-          Expanded(child: SvgPicture.asset(asset)),
+          const SizedBox(height: Sizes.medium),
+          Flexible(child: SvgPicture.asset(asset)),
           const SizedBox(height: Sizes.extraLarge),
           Column(
             children: [

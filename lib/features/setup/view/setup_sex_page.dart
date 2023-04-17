@@ -34,19 +34,9 @@ class SetupSexPage extends StatelessWidget {
                 const SizedBox(height: Sizes.medium),
                 Flexible(child: SvgPicture.asset(Vectors.sex)),
                 const SizedBox(height: Sizes.medium),
-                Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('What is your sex?*',
-                        style: context.textTheme.titleLarge)),
+                SetupTitle(title: context.l10n.setupSexTitle, isRequired: true),
                 const SizedBox(height: Sizes.small),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('We will use this for your medical records',
-                      style: context.textTheme.bodyMedium!.copyWith(
-                        color:
-                            context.colorScheme.onBackground.withOpacity(0.5),
-                      )),
-                ),
+                SetupSubtitle(subtitle: context.l10n.setupSexSubtitle),
                 const SizedBox(height: Sizes.small),
                 const SetupSexSelector(),
                 const SizedBox(height: Sizes.large),

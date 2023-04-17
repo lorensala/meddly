@@ -1,4 +1,7 @@
 class Vectors {
+  // * Core
+  static const String error = 'assets/svg/error.svg';
+
   // * Onboarding
   static const String onboarding1 = 'assets/svg/onboarding-1.svg';
   static const String onboarding2 = 'assets/svg/onboarding-2.svg';

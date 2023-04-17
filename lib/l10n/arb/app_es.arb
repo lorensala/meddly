@@ -128,5 +128,16 @@
     "medicineNotFound": "No se ha encontrado el medicamento",
     "medicineAdded": "Medicamento añadido exitosamente",
     "invalidMeasurementValue": "El valor de la medición es inválido",
+    "errorCreatingAccount": "Error al crear la cuenta",
+    "startNow": "Empezar ahora",
+    "welcome": "Bienvenido",
+    "tryAgain": "Volver a intentar",
+    "setupNameTitle": "¿Cómo te llamas?",
+    "setupNameSubtitle": "Para poder ayudarte, necesitamos que nos digas cómo te llamas",
+    "setupBirthdateTitle": "¿Cuándo naciste?",
+    "setupBirthdateSubtitle": "Usaremos esta información para ayudarte",
+    "setupSexTitle": "¿Cuál es tu sexo?",
+    "setupSexSubtitle": "Usaremos esta información para ayudarte",
+    "sexWhyDescription": "    En nuestra aplicación médica, sólo ofrecemos la opción de seleccionar entre \"Hombre\" y \"Mujer\" en la selección del sexo por motivos médicos y prácticos\n.  Desde una perspectiva médica, la clasificación binaria del sexo se ha utilizado históricamente en la medicina debido a que la mayoría de las enfermedades y afecciones tienen una mayor prevalencia en un género que en el otro. Además, las diferencias biológicas entre hombres y mujeres pueden influir en la forma en que se presentan y se tratan las enfermedades.\n    Por ejemplo, las mujeres tienen un mayor riesgo de desarrollar osteoporosis, mientras que los hombres tienen un mayor riesgo de enfermedad coronaria. Los síntomas y la presentación de algunas enfermedades también pueden variar según el género. Por lo tanto, tener información precisa sobre el sexo de un paciente puede ayudar a los médicos a hacer un diagnóstico más preciso y proporcionar el tratamiento adecuado.\n    En cuanto a las razones prácticas, limitar las opciones a \"Hombre\" y \"Mujer\" facilita la recopilación y el análisis de datos. Al tener una clasificación binaria, podemos obtener información más precisa y útil sobre la salud de nuestros usuarios.\n  Es importante tener en cuenta que entendemos que el género es una cuestión más compleja y variada que puede abarcar una gama más amplia de identidades. Sin embargo, en nuestra aplicación médica, nos limitamos a ofrecer estas dos opciones debido a razones médicas y prácticas. Agradecemos su comprensión y estamos comprometidos en brindar atención médica de alta calidad y respetuosa a todas las personas que utilizan nuestra aplicación.",
     "measurementNotFound": "No se ha encontrado la medición"
 }
