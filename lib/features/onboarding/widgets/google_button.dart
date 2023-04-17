@@ -58,7 +58,9 @@ class GoogleButton extends ConsumerWidget {
                           child: SvgPicture.asset(Assets.googleIcon),
                         ),
                       ),
-                      Center(child: Text(context.l10n.loginWithGoogle)),
+                      Center(
+                          child: Text(context.l10n.loginWithGoogle,
+                              overflow: TextOverflow.ellipsis)),
                     ],
                   ),
           ),

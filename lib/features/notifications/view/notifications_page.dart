@@ -1,48 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/notifications/notifications.dart';
+import 'package:meddly/l10n/l10n.dart';
 
-/// {@template notifications_page}
-/// A description for NotificationsPage
-/// {@endtemplate}
 class NotificationsPage extends StatelessWidget {
-  /// {@macro notifications_page}
   const NotificationsPage({super.key});
+
+  static const routeName = '/notifications';
 
   /// The static route for NotificationsPage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
-      builder: (_) => const NotificationsPage(),
+      builder: (_) => const NotificationsPreferencesPage(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: NotificationsView(),
+      appBar: AppBar(
+        title: Text(context.l10n.notifications),
+      ),
+      body: const NotificationsView(),
     );
   }
 }
 
-/// {@template notifications_view}
-/// Displays the Body of NotificationsView
-/// {@endtemplate}
 class NotificationsView extends ConsumerWidget {
-  /// {@macro notifications_view}
   const NotificationsView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(notificationsControllerProvider, (_, state) {
       state.whenOrNull(error: (err, _) {
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(err.toString()),
-            ),
-          );
+        showSnackBar(context, err.toString());
       });
     });
 

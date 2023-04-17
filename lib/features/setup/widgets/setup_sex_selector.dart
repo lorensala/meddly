@@ -55,9 +55,9 @@ class SetupSexSelector extends ConsumerWidget {
                       ),
                     ),
                     builder: (context) {
-                      return SingleChildScrollView(
-                        child: Container(
-                          padding: const EdgeInsets.all(Sizes.medium),
+                      return Padding(
+                        padding: const EdgeInsets.all(Sizes.medium),
+                        child: SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,

@@ -15,7 +15,6 @@ class HomeBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
-      bottom: false,
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -24,28 +23,22 @@ class HomeBody extends ConsumerWidget {
             Padding(
               padding: Sizes.mediumPadding,
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  UserAvatar(),
+                  const UserGreetings(),
                   const Spacer(),
-                  NotificationsButton(),
-                  SizedBox(width: Sizes.mediumPadding.right),
-                  SettingsButton(),
+                  const NotificationsButton(),
                 ],
               ),
             ),
-            SizedBox(height: Sizes.medium),
-            UserGreetings(),
-            SizedBox(height: Sizes.medium),
-            HomeTitle(title: 'Upcoming events'),
-            SizedBox(height: Sizes.medium),
-            UpcomingEventsList(),
-            SizedBox(height: Sizes.medium),
-            // HomeTitle(title: 'Features'),
-            // SizedBox(height: Sizes.mediumSpacing),
-            // FeaturesList(),
-            SizedBox(height: Sizes.medium),
-            HomeTitle(title: 'Your last predictions'),
-            YourLastPredictions()
+            // const SizedBox(height: Sizes.medium),
+            // const HomeTitle(title: 'Upcoming events'),
+            // const SizedBox(height: Sizes.medium),
+            // const UpcomingEventsList(),
+            // const SizedBox(height: Sizes.medium),
+            // const SizedBox(height: Sizes.medium),
+            // const HomeTitle(title: 'Your last predictions'),
+            // const YourLastPredictions()
           ],
         ),
       ),
@@ -53,75 +46,68 @@ class HomeBody extends ConsumerWidget {
   }
 }
 
-class YourLastPredictions extends StatelessWidget {
-  const YourLastPredictions({
-    super.key,
-  });
+// class YourLastPredictions extends StatelessWidget {
+//   const YourLastPredictions({
+//     super.key,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: Sizes.horizontalPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: Sizes.medium),
-          ListView(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            children: const [
-              // PredictionCard(),
-              // SizedBox(height: Sizes.mediumSpacing),
-              // PredictionCard(),
-              // SizedBox(height: Sizes.mediumSpacing),
-              // PredictionCard(),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: Sizes.horizontalPadding,
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           const SizedBox(height: Sizes.medium),
+//           ListView(
+//             physics: const NeverScrollableScrollPhysics(),
+//             shrinkWrap: true,
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
-class PredictionCard extends StatelessWidget {
-  const PredictionCard({
-    super.key,
-  });
+// class PredictionCard extends StatelessWidget {
+//   const PredictionCard({
+//     super.key,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: Sizes.mediumPadding,
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
-      ),
-      child: Row(
-        children: [
-          DecoratedBox(
-            decoration: BoxDecoration(
-              color: context.colorScheme.background,
-              borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
-            ),
-            child: const SizedBox(
-              height: 48,
-              width: 48,
-            ),
-          ),
-          const SizedBox(width: Sizes.medium),
-          Text(
-            'Fiebre',
-            style: context.textTheme.bodyLarge,
-          ),
-          const Spacer(),
-          // chevron right
-          const SizedBox(
-            height: 48,
-            width: 48,
-            child: Icon(Icons.chevron_right),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: Sizes.mediumPadding,
+//       decoration: BoxDecoration(
+//         color: context.colorScheme.secondary,
+//         borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+//       ),
+//       child: Row(
+//         children: [
+//           DecoratedBox(
+//             decoration: BoxDecoration(
+//               color: context.colorScheme.background,
+//               borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+//             ),
+//             child: const SizedBox(
+//               height: 48,
+//               width: 48,
+//             ),
+//           ),
+//           const SizedBox(width: Sizes.medium),
+//           Text(
+//             'Fiebre',
+//             style: context.textTheme.bodyLarge,
+//           ),
+//           const Spacer(),
+//           // chevron right
+//           const SizedBox(
+//             height: 48,
+//             width: 48,
+//             child: Icon(Icons.chevron_right),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

@@ -27,17 +27,19 @@ class Button extends StatelessWidget {
             isLoading ? Sizes.buttonHeight : MediaQuery.of(context).size.width,
         duration: const Duration(milliseconds: 100),
         child: ElevatedButton(
-          onPressed: isValid && !isLoading
-              ? () {
-                  HapticFeedback.lightImpact();
-                  FocusScope.of(context).unfocus();
-                  onPressed();
-                }
+          onPressed: isValid
+              ? !isLoading
+                  ? () {
+                      HapticFeedback.lightImpact();
+                      FocusScope.of(context).unfocus();
+                      onPressed();
+                    }
+                  : () {}
               : null,
           child: isLoading
               ? SizedBox(
-                  height: 20,
-                  width: 20,
+                  height: 18,
+                  width: 18,
                   child: CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(
                       Theme.of(context).colorScheme.onPrimary,
@@ -45,7 +47,7 @@ class Button extends StatelessWidget {
                   ),
                 )
               : prefix == null
-                  ? Text(label)
+                  ? Text(label, overflow: TextOverflow.ellipsis)
                   : SizedBox(
                       height: 24.0,
                       child: Stack(
@@ -60,7 +62,11 @@ class Button extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Center(child: Text(label)),
+                          Center(
+                              child: Text(
+                            label,
+                            overflow: TextOverflow.ellipsis,
+                          )),
                         ],
                       ),
                     ),

@@ -1,44 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/notifications/controller/notifications_controller.dart';
+import 'package:meddly/features/notifications/notifications.dart';
 import 'package:notifications/notifications.dart';
 
-import '../provider/provider.dart';
-
-/// {@template notifications_body}
-/// Body of the NotificationsPage.
-///
-/// Add what it does
-/// {@endtemplate}
-class NotificationsBody extends ConsumerWidget {
-  /// {@macro notifications_body}
-  const NotificationsBody({super.key});
+class NotificationsPreferencesBody extends ConsumerWidget {
+  const NotificationsPreferencesBody({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final notificationPreferences = ref.watch(notificationPreferencesProvider);
+    final notificationPreferences =
+        ref.watch(notificationPreferencesStreamProvider);
 
     return notificationPreferences.when(
       data: (preferences) {
         return Padding(
           padding: Sizes.mediumPadding,
           child: ListView.separated(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               final preference = NotificationPreference.values[index];
               return ProviderScope(overrides: [
                 notificationPreferenceProvider.overrideWithValue(preference)
-              ], child: NotificationPreferenceCard());
+              ], child: const NotificationPreferenceCard());
             },
             itemCount: NotificationPreference.values.length,
-            separatorBuilder: (BuildContext context, int index) => SizedBox(
+            separatorBuilder: (BuildContext context, int index) =>
+                const SizedBox(
               height: Sizes.medium,
             ),
           ),
         );
       },
-      error: (error, stackTrace) {
+      error: (error, _) {
         return Text(error.toString());
       },
       loading: () {

@@ -11,31 +11,23 @@ class UserGreetings extends ConsumerWidget {
     final user = ref.watch(userProvider);
     final greeting = ref.watch(greetingProvider);
 
-    return Padding(
-      padding: Sizes.mediumPadding,
-      child: Text.rich(
-        TextSpan(
-          text: '$greeting,\n',
-          style: context.textTheme.headlineSmall!.copyWith(
-            fontWeight: FontWeight.w300,
-          ),
-          children: [
-            TextSpan(
-              text: user.fold(
-                () => 'User',
-                (user) {
-                  return user.firstName;
-                },
-              ),
-              style: context.textTheme.headlineSmall!.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const TextSpan(
-              text: ' 👋',
-            )
-          ],
+    return Text.rich(
+      TextSpan(
+        text: '$greeting,\n',
+        style: context.textTheme.headlineSmall!.copyWith(
+          fontWeight: FontWeight.w400,
         ),
+        children: [
+          TextSpan(
+            text: user.fold(
+              () => 'User',
+              (user) {
+                return user.firstName + ' 👋';
+              },
+            ),
+            style: context.textTheme.headlineLarge,
+          ),
+        ],
       ),
     );
   }

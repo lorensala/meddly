@@ -21,7 +21,7 @@ class SetupHeightWeightPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setup'),
+        title: Text(context.l10n.setup),
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
@@ -38,20 +38,10 @@ class SetupHeightWeightPage extends StatelessWidget {
                   const SizedBox(height: Sizes.medium),
                   Flexible(child: SvgPicture.asset(Vectors.heightWeight)),
                   const SizedBox(height: Sizes.medium),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('What is your height and weight?',
-                        style: context.textTheme.titleLarge),
-                  ),
+                  SetupTitle(title: context.l10n.setupHeightWeightTitle),
                   const SizedBox(height: Sizes.small),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('We will use this for your medical records',
-                        style: context.textTheme.bodyMedium!.copyWith(
-                          color:
-                              context.colorScheme.onBackground.withOpacity(0.5),
-                        )),
-                  ),
+                  SetupSubtitle(
+                      subtitle: context.l10n.setupHeightWeightSubtitle),
                   const SizedBox(height: Sizes.extraLarge),
                   const SetupHeightInput(),
                   const SizedBox(height: Sizes.medium),
@@ -68,25 +58,6 @@ class SetupHeightWeightPage extends StatelessWidget {
     );
   }
 }
-
-// class _SkipButton extends ConsumerWidget {
-//   const _SkipButton();
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     return GestureDetector(
-//       onTap: () => ref.read(goRouterProvider).push(PhonePage.routeName),
-//       child: Center(
-//           child: Text(
-//         context.l10n.skip,
-//         style: const TextStyle(
-//           fontStyle: FontStyle.italic,
-//           decoration: TextDecoration.underline,
-//         ),
-//       )),
-//     );
-//   }
-// }
 
 class _SaveButton extends ConsumerWidget {
   const _SaveButton();

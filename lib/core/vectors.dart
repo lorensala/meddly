@@ -29,4 +29,14 @@ class Vectors {
   // * Phone Number
   static const String phoneNumber = 'assets/svg/phone-number.svg';
   static const String otp = 'assets/svg/otp.svg';
+
+  // * Home
+  static const String bell = 'assets/svg/bell.svg';
+  static const String bellRinging = 'assets/svg/bell-ringing.svg';
+  static const String home = 'assets/svg/home.svg';
+  static const String browse = 'assets/svg/browse.svg';
+  static const String settings = 'assets/svg/settings.svg';
+
+  // * Notifications
+  static const String trash = 'assets/svg/trash.svg';
 }

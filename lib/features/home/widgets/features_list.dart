@@ -47,8 +47,8 @@ class FeaturesList extends StatelessWidget {
           const SizedBox(width: Sizes.medium),
           FeatureCard(
             name: 'Notifications',
-            onPressed: () =>
-                Navigator.of(context).push(NotificationsPage.route()),
+            onPressed: () => Navigator.of(context)
+                .push(NotificationsPreferencesPage.route()),
           ),
           const SizedBox(width: Sizes.medium),
           FeatureCard(

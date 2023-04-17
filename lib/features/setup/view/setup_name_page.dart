@@ -20,7 +20,7 @@ class SetupNamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setup'),
+        title: Text(context.l10n.setup),
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),

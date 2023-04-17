@@ -12,7 +12,7 @@ class UpcomingEventsList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final todayEvents = ref.watch(calendarTodayEventsProvider);
 
-    if (todayEvents.isEmpty) return _NoEvents();
+    if (todayEvents.isEmpty) return const _NoEvents();
 
     return SizedBox(
       height: 200,
@@ -27,10 +27,10 @@ class UpcomingEventsList extends ConsumerWidget {
 
             return ProviderScope(overrides: [
               calendarEventProvider.overrideWithValue(event),
-            ], child: EventCard());
+            ], child: const EventCard());
           },
           separatorBuilder: (BuildContext context, int index) =>
-              SizedBox(height: Sizes.medium),
+              const SizedBox(height: Sizes.medium),
         ),
       ),
     );
@@ -42,6 +42,6 @@ class _NoEvents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('No events for today'));
+    return const Center(child: Text('No events for today'));
   }
 }

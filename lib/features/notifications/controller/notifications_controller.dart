@@ -9,7 +9,6 @@ part 'notifications_controller.g.dart';
 
 @riverpod
 class NotificationsController extends _$NotificationsController {
-  //TODO(lorenzo): should be a Stream of notification preferences
   @override
   Future<void> build() async {
     final repository = ref.read(notificationsRepositoryProvider);
@@ -23,7 +22,7 @@ class NotificationsController extends _$NotificationsController {
 
   Future<void> addNotificationPreference(
       NotificationPreference notificationPreference) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     final repository = ref.read(notificationsRepositoryProvider);
 
     final res = await repository.add(notificationPreference);
@@ -34,13 +33,13 @@ class NotificationsController extends _$NotificationsController {
     res.fold(
       (failure) =>
           state = AsyncError(failure.message(l10n), StackTrace.current),
-      (_) => state = AsyncData(null),
+      (_) => state = const AsyncData(null),
     );
   }
 
   Future<void> deleteNotificationPreference(
       NotificationPreference notificationPreference) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     final repository = ref.read(notificationsRepositoryProvider);
 
     final res = await repository.delete(notificationPreference);
@@ -51,7 +50,7 @@ class NotificationsController extends _$NotificationsController {
     res.fold(
       (failure) =>
           state = AsyncError(failure.message(l10n), StackTrace.current),
-      (_) => state = AsyncData(null),
+      (_) => state = const AsyncData(null),
     );
   }
 }

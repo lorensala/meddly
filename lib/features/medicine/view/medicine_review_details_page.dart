@@ -16,7 +16,7 @@ class MedicineReviewDetailsPage extends StatelessWidget {
   /// The static route for MedicineReviewDetailsPage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
-      builder: (_) => MedicineReviewDetailsPage(),
+      builder: (_) => const MedicineReviewDetailsPage(),
     );
   }
 
@@ -54,8 +54,8 @@ class MedicineReviewDetailsView extends ConsumerWidget {
                 content: Text(context.l10n.medicineAdded),
               ),
             );
-            Navigator.of(context)
-                .pushAndRemoveUntil(HomePage.route(), (route) => false);
+            // Navigator.of(context)
+            //     .pushAndRemoveUntil(HomeShell, (route) => false);
           },
           error: (err, _) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

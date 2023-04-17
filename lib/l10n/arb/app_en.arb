@@ -1,5 +1,9 @@
 {
     "@@locale": "en",
+    "notifications": "Notifications",
+    "@notifications": {
+        "description": "Text shown on the notifications title"
+    },
     "forgotPassword": "Forgot password?",
     "@forgotPassword": {
         "description": "Text shown on the login page"
@@ -534,6 +538,10 @@
     "@welcome": {
         "description": "Text shown on the welcome page"
     },
+    "setup": "Setup",
+    "@setup": {
+        "description": "Text shown on the setup page"
+    },
     "setupNameTitle": "What's your name?",
     "@setupNameTitle": {
         "description": "Text shown on the setup name title"
@@ -549,6 +557,14 @@
     "setupBirthdateSubtitle": "We will use this information for your medical records",
     "@setupBirthdateSubtitle": {
         "description": "Text shown on the setup birthdate subtitle"
+    },
+    "setupHeightWeightTitle": "What is your height and weight?",
+    "@setupHeightWeightTitle": {
+        "description": "Text shown on the setup height and weight title"
+    },
+    "setupHeightWeightSubtitle": "We will use this information for your medical records",
+    "@setupHeightWeightSubtitle": {
+        "description": "Text shown on the setup height and weight subtitle"
     },
     "setupSexTitle": "What is your sex?",
     "@setupSexTitle": {

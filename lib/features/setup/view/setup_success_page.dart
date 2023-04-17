@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -20,7 +21,7 @@ class SetupSuccessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setup'),
+        title: Text(context.l10n.setup),
       ),
       body: const SetupSuccessBody(),
     );
@@ -33,6 +34,11 @@ class SetupSuccessBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(userControllerProvider);
+
+    ref.listen(userControllerProvider, (_, state) {
+      state.whenOrNull(
+          error: (err, _) => showSnackBar(context, err.toString()));
+    });
 
     return state.when(
       data: (user) => SafeArea(
@@ -60,19 +66,9 @@ class SetupSuccessBody extends ConsumerWidget {
       ),
       loading: () => const Center(
           child: RepaintBoundary(child: CircularProgressIndicator())),
-      error: (error, stack) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // TODO(me): no se si debería ir aca......
-          // Flexible(child: SvgPicture.asset(Vectors.error)),
-          // const SizedBox(height: Sizes.medium),
-          // Text(context.l10n.errorCreatingAccount),
-          // const SizedBox(height: Sizes.medium),
-          // Button(
-          //   onPressed: () => ref.read(setup.notifier).signOut(),
-          //   label: context.l10n.tryAgain,
-          // ),
-        ],
+      error: (error, stack) => ErrorContainer(
+        message: context.l10n.errorCreatingAccount,
+        onRetry: () => ref.read(authControllerProvider.notifier).signOut(),
       ),
     );
   }
