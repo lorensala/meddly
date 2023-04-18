@@ -39,4 +39,11 @@ class Vectors {
 
   // * Notifications
   static const String trash = 'assets/svg/trash.svg';
+
+  // * Browse
+  static const String medicines = 'assets/svg/medicines.svg';
+  static const String appointments = 'assets/svg/appointments.svg';
+  static const String predictions = 'assets/svg/predictions.svg';
+  static const String measurements = 'assets/svg/measurements.svg';
+  static const String supervision = 'assets/svg/supervision.svg';
 }

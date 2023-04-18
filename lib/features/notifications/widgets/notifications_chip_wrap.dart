@@ -10,7 +10,7 @@ class NotificationsChipWrap extends ConsumerWidget {
     super.key,
   });
 
-  static const double _spacing = 12.0;
+  static const double _spacing = 12;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,15 +21,16 @@ class NotificationsChipWrap extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.all(Sizes.medium),
         child: Wrap(
-            spacing: _spacing,
-            children: NotificationChipType.values
-                .map(
-                  (e) => NotificationsChip(
-                    type: e,
-                    isSelected: selected == e,
-                  ),
-                )
-                .toList()),
+          spacing: _spacing,
+          children: NotificationChipType.values
+              .map(
+                (e) => NotificationsChip(
+                  type: e,
+                  isSelected: selected == e,
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   }
