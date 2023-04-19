@@ -13,7 +13,7 @@ class CalendarController extends _$CalendarController {
     state = const AsyncLoading();
     final repository = ref.read(calendarRepositoryProvider);
 
-    return await repository.fetchCalendar();
+    return repository.fetchCalendar();
   }
 
   void refresh() {

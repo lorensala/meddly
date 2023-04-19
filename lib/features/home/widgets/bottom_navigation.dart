@@ -52,8 +52,8 @@ class BottomNavigation extends StatelessWidget {
         color: bgColor,
         boxShadow: [
           if (showElevation)
-            const BoxShadow(
-              color: Colors.black12,
+            BoxShadow(
+              color: context.colorScheme.shadow,
               blurRadius: 2,
             ),
         ],

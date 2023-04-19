@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 
-class BrowseItem extends StatelessWidget {
+class BrowseItem extends ConsumerWidget {
   const BrowseItem({
     required this.title,
     required this.description,
@@ -18,16 +19,8 @@ class BrowseItem extends StatelessWidget {
 
   static const double _iconSize = 100;
 
-  static final _containerShadow = [
-    const BoxShadow(
-      color: Colors.black12,
-      blurRadius: 6,
-      offset: Offset(2, 2),
-    ),
-  ];
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: context.colorScheme.secondary,
@@ -37,13 +30,19 @@ class BrowseItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(Sizes.small),
         ),
       ),
-      onPressed: () {},
+      onPressed: onTap,
       child: Container(
         padding: const EdgeInsets.all(Sizes.medium),
         decoration: BoxDecoration(
           color: context.colorScheme.secondary,
           borderRadius: BorderRadius.circular(Sizes.small),
-          boxShadow: _containerShadow,
+          boxShadow: [
+            BoxShadow(
+              color: context.colorScheme.shadow,
+              blurRadius: 6,
+              offset: const Offset(2, 2),
+            ),
+          ],
         ),
         child: Row(
           children: [

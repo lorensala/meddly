@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/calendar/widgets/widgets.dart';
 import 'package:meddly/features/home/provider/provider.dart';
 import 'package:meddly/features/home/widgets/widgets.dart';
 
@@ -24,90 +25,21 @@ class HomeBody extends ConsumerWidget {
               padding: Sizes.mediumPadding,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const UserGreetings(),
-                  const Spacer(),
-                  const NotificationsButton(),
+                children: const [
+                  UserGreetings(),
+                  Spacer(),
+                  NotificationsButton(),
                 ],
               ),
             ),
-            // const SizedBox(height: Sizes.medium),
-            // const HomeTitle(title: 'Upcoming events'),
-            // const SizedBox(height: Sizes.medium),
-            // const UpcomingEventsList(),
-            // const SizedBox(height: Sizes.medium),
-            // const SizedBox(height: Sizes.medium),
-            // const HomeTitle(title: 'Your last predictions'),
-            // const YourLastPredictions()
+            Container(),
+            const CalendarDateAndDayIndicator(),
+            const CalendarDayList(),
+            const SizedBox(height: Sizes.medium),
+            const CalendarList(),
           ],
         ),
       ),
     );
   }
 }
-
-// class YourLastPredictions extends StatelessWidget {
-//   const YourLastPredictions({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: Sizes.horizontalPadding,
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           const SizedBox(height: Sizes.medium),
-//           ListView(
-//             physics: const NeverScrollableScrollPhysics(),
-//             shrinkWrap: true,
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// class PredictionCard extends StatelessWidget {
-//   const PredictionCard({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: Sizes.mediumPadding,
-//       decoration: BoxDecoration(
-//         color: context.colorScheme.secondary,
-//         borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
-//       ),
-//       child: Row(
-//         children: [
-//           DecoratedBox(
-//             decoration: BoxDecoration(
-//               color: context.colorScheme.background,
-//               borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
-//             ),
-//             child: const SizedBox(
-//               height: 48,
-//               width: 48,
-//             ),
-//           ),
-//           const SizedBox(width: Sizes.medium),
-//           Text(
-//             'Fiebre',
-//             style: context.textTheme.bodyLarge,
-//           ),
-//           const Spacer(),
-//           // chevron right
-//           const SizedBox(
-//             height: 48,
-//             width: 48,
-//             child: Icon(Icons.chevron_right),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

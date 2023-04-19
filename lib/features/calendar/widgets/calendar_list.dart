@@ -7,7 +7,7 @@ class CalendarList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
     // final calendarEvents = ref.watch(calendarEventsProvider);
     // final selectedDate = ref.watch(selectedDateProvider);
 

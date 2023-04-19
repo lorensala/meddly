@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 extension StringX on String {
   String capitalize() => split(' ').map((word) {
@@ -116,48 +117,32 @@ extension DateTimeX on DateTime {
     }
   }
 
-  String toNamedDayString() {
-    switch (weekday) {
-      case 1:
-        return 'Monday';
-      case 2:
-        return 'Tuesday';
-      case 3:
-        return 'Wednesday';
-      case 4:
-        return 'Thursday';
-      case 5:
-        return 'Friday';
-      case 6:
-        return 'Saturday';
-      case 7:
-        return 'Sunday';
-      default:
-        return 'Unknown';
-    }
-  }
-
   String toNamedDayNumberAndMonthString() {
-    String? namedDay;
+    return 'test';
+    // String? namedDay;
 
-    // check if is yesterday
-    if (isYesterday(this)) {
-      namedDay = 'Yesterday';
-      // check if is tomorrow
-    } else if (isTomorrow(this)) {
-      namedDay = 'Tomorrow';
-      // check if is today
-    } else if (isToday()) {
-      namedDay = 'Today';
-    }
+    // // check if is yesterday
+    // if (isYesterday(this)) {
+    //   namedDay = 'Yesterday';
+    //   // check if is tomorrow
+    // } else if (isTomorrow(this)) {
+    //   namedDay = 'Tomorrow';
+    //   // check if is today
+    // } else if (isToday()) {
+    //   namedDay = 'Today';
+    // }
 
-    // return named day
-    if (namedDay != null) {
-      return '$namedDay, $day ${toNamedMonthString()}';
-    } else {
-      return '${toNamedDayString()} $day ${toNamedMonthString()}';
-    }
+    // // return named day
+    // if (namedDay != null) {
+    //   return '$namedDay, $day ${toNamedMonthString()}';
+    // } else {
+    //   return '${toNamedDayString()} $day ${toNamedMonthString()}';
+    // }
   }
+
+  String toNamedDayString(BuildContext context) =>
+      DateFormat('EEE', Localizations.localeOf(context).languageCode)
+          .format(this);
 }
 
 extension EitherX<L, R> on Either<L, R> {

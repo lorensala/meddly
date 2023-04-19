@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/browse/widgets/widgets.dart';
+import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/router/provider/go_router_provider.dart';
 
-class BrowseBody extends StatelessWidget {
+class BrowseBody extends ConsumerWidget {
   const BrowseBody({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SingleChildScrollView(
+      physics: const ClampingScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.all(Sizes.medium),
         child: Column(
@@ -24,7 +28,8 @@ class BrowseBody extends StatelessWidget {
               title: 'Predictions',
               description: 'Predict your future health and wellness.',
               vector: Vectors.predictions,
-              onTap: () {},
+              onTap: () =>
+                  ref.read(goRouterProvider).push(PredictionsPage.routeName),
             ),
             const SizedBox(height: Sizes.medium),
             BrowseItem(

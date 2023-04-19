@@ -3,48 +3,51 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
+import 'package:meddly/features/calendar/provider/calendar_date_provider.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
 
 class CalendarDayList extends HookConsumerWidget {
   const CalendarDayList({super.key});
 
+  static const double _height = 71;
+  static const Duration _duration = Duration(milliseconds: 300);
+  static const double _viewportFraction = 0.15;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final daysOfTheYear = ref.watch(calendarDaysProvider);
-    final selectedDate = ref.watch(calendarSelectedDateProvider);
 
     useMemoized(() => daysOfTheYear);
 
     final controller = usePageController(
-      viewportFraction: 1 / 6,
+      viewportFraction: _viewportFraction,
       initialPage: daysOfTheYear.indexWhere(
-        (date) => date.isSameDay(selectedDate),
+        (date) => date.isSameDay(DateTime.now()),
       ),
     );
 
+    ref.listen(calendarSelectedDateProvider, (_, date) async {
+      await controller.animateToPage(
+        daysOfTheYear.indexWhere((d) => d.isSameDay(date)),
+        duration: _duration,
+        curve: Curves.easeInOut,
+      );
+    });
+
     return Container(
       color: context.colorScheme.background,
-      height: 80,
+      height: _height,
       child: PageView.builder(
-        onPageChanged: (index) => ref
-            .read(calendarSelectedDateProvider.notifier)
-            .update(daysOfTheYear[index]),
+        onPageChanged: (_) {},
         controller: controller,
         itemCount: daysOfTheYear.length,
         itemBuilder: (context, index) {
-          return CalendarDayAndStatusIndicator(
-            date: daysOfTheYear[index],
-            onTap: () async {
-              ref
-                  .read(calendarSelectedDateProvider.notifier)
-                  .update(daysOfTheYear[index]);
-
-              await controller.animateToPage(
-                index,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-            },
+          final date = daysOfTheYear[index];
+          return ProviderScope(
+            overrides: [
+              calendarDateProvider.overrideWithValue(date),
+            ],
+            child: const CalendarDayListItem(),
           );
         },
       ),

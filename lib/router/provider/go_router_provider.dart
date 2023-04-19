@@ -5,6 +5,7 @@ import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/notifications/view/view.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/phone/view/view.dart';
+import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/features/setup/view/view.dart';
 import 'package:meddly/features/splash/splash.dart';
 import 'package:meddly/router/router.dart';
@@ -88,6 +89,11 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         parentNavigatorKey: rootNavigatorKey,
         path: NotificationsPage.routeName,
         builder: (context, state) => const NotificationsPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: PredictionsPage.routeName,
+        builder: (context, state) => const PredictionsPage(),
       ),
     ],
   );

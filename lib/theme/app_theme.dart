@@ -14,43 +14,45 @@ class AppTheme {
   static const Color _onSecondaryContainer = Color(0xff383838);
   static const Color _surface = Color(0xFFD9D9D9);
   static const Color _onSurface = Color(0xFF383838);
+  static const Color _shadow = Color(0xFFEBEBEB);
   static const Color _error = Color(0xFFF67474);
   static const Color _onError = Color(0xFFFFFFFF);
 
   static ThemeData lightTheme = ThemeData.light().copyWith(
-      scaffoldBackgroundColor: _background,
-      switchTheme: _switchThemeData(),
-      // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      //   backgroundColor: AppColors.secondary,
-      //   elevation: 0,
-      //   unselectedLabelStyle: TextStyle(
-      //     fontSize: 14,
-      //     fontWeight: FontWeight.w500,
-      //     color: _onSecondary,
-      //   ),
-      //   selectedLabelStyle: TextStyle(
-      //     fontSize: 14,
-      //     fontWeight: FontWeight.w500,
-      //     color: _onSecondary,
-      //   ),
-      // ),
-      appBarTheme: _appBarTheme(),
-      radioTheme: _radioThemeData(),
-      checkboxTheme: _checkBoxThemeData(),
-      inputDecorationTheme: _inputDecorationTheme(),
-      dialogTheme: _dialogThemeData(),
-      colorScheme: _colorScheme(),
-      listTileTheme: _listTileThemeData(),
-      elevatedButtonTheme: _elevatedButtonThemeData(),
-      textTheme: _textTheme(),
-      chipTheme: ChipThemeData(
-        labelStyle: _textTheme().bodyMedium!.copyWith(color: _primary),
-        secondaryLabelStyle: _textTheme()
-            .bodyMedium!
-            .copyWith(color: _onSecondary.withOpacity(0.5)),
-        selectedColor: _primary.withOpacity(0.25),
-        backgroundColor: _secondary,
-      ));
+    scaffoldBackgroundColor: _background,
+    switchTheme: _switchThemeData(),
+    // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    //   backgroundColor: AppColors.secondary,
+    //   elevation: 0,
+    //   unselectedLabelStyle: TextStyle(
+    //     fontSize: 14,
+    //     fontWeight: FontWeight.w500,
+    //     color: _onSecondary,
+    //   ),
+    //   selectedLabelStyle: TextStyle(
+    //     fontSize: 14,
+    //     fontWeight: FontWeight.w500,
+    //     color: _onSecondary,
+    //   ),
+    // ),
+    appBarTheme: _appBarTheme(),
+    radioTheme: _radioThemeData(),
+    checkboxTheme: _checkBoxThemeData(),
+    inputDecorationTheme: _inputDecorationTheme(),
+    dialogTheme: _dialogThemeData(),
+    colorScheme: _colorScheme(),
+    listTileTheme: _listTileThemeData(),
+    elevatedButtonTheme: _elevatedButtonThemeData(),
+    textTheme: _textTheme(),
+    chipTheme: ChipThemeData(
+      labelStyle: _textTheme().bodyMedium!.copyWith(color: _primary),
+      secondaryLabelStyle: _textTheme()
+          .bodyMedium!
+          .copyWith(color: _onSecondary.withOpacity(0.5)),
+      selectedColor: _primary.withOpacity(0.25),
+      backgroundColor: _secondary,
+    ),
+  );
 
   static ElevatedButtonThemeData _elevatedButtonThemeData() {
     return ElevatedButtonThemeData(
@@ -177,6 +179,7 @@ class AppTheme {
       onSurface: _onSurface,
       error: _error,
       onError: _onError,
+      shadow: _shadow,
     );
   }
 
@@ -280,8 +283,8 @@ class AppTheme {
 
 extension ColorSchemeExtension on ColorScheme {
   static const Color _success = Color(0xFF68B92E);
-  static const Color _OnSuccess = Color(0xFFFFFFFF);
+  static const Color _onSuccess = Color(0xFFFFFFFF);
 
   Color get success => _success;
-  Color get onSuccess => _OnSuccess;
+  Color get onSuccess => _onSuccess;
 }
