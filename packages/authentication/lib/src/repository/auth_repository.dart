@@ -44,13 +44,20 @@ class AuthRepository {
     required String email,
     required String password,
   }) async {
-    final userCredentails = await _firebaseAuth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      final userCredentails =
+          await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return right(userCredentails.additionalUserInfo!.isNewUser);
+    } on FirebaseAuthException catch (e) {
+      return left(AuthFailure.fromCode(e.code));
+    } catch (_) {
+      return left(const AuthFailure.unknownError());
+    }
 
     //check if user is new
-    return right(userCredentails.additionalUserInfo!.isNewUser);
   }
 
   /// Starts the Sign In with Google Flow.

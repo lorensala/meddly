@@ -17,14 +17,14 @@ class BrowseBody extends ConsumerWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            BrowseItem(
+            BrowseCard(
               title: 'Measurements',
               description: 'Measure your blood pressure, heart rate, and more.',
               vector: Vectors.measurements,
               onTap: () {},
             ),
             const SizedBox(height: Sizes.medium),
-            BrowseItem(
+            BrowseCard(
               title: 'Predictions',
               description: 'Predict your future health and wellness.',
               vector: Vectors.predictions,
@@ -32,7 +32,7 @@ class BrowseBody extends ConsumerWidget {
                   ref.read(goRouterProvider).push(PredictionsPage.routeName),
             ),
             const SizedBox(height: Sizes.medium),
-            BrowseItem(
+            BrowseCard(
               title: 'Medicines',
               description:
                   'Register your medicines and get notified when to take them.',
@@ -40,14 +40,14 @@ class BrowseBody extends ConsumerWidget {
               onTap: () {},
             ),
             const SizedBox(height: Sizes.medium),
-            BrowseItem(
+            BrowseCard(
               title: 'Appointments',
               description: 'Schedule your appointments and get reminders.',
               vector: Vectors.appointments,
               onTap: () {},
             ),
             const SizedBox(height: Sizes.medium),
-            BrowseItem(
+            BrowseCard(
               title: 'Supervision',
               description: 'Supervise your loved ones and get notified.',
               vector: Vectors.supervision,

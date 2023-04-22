@@ -65,7 +65,7 @@ class FeaturesList extends StatelessWidget {
           FeatureCard(
               onPressed: () =>
                   Navigator.of(context).push(AppointmentPage.route()),
-              name: 'Appointments')
+              name: 'Appointments',)
         ],
       ),
     );

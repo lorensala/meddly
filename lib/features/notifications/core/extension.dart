@@ -10,6 +10,6 @@ extension NotificationFailureX on NotificationFailure {
         receiveTimeout: () => l10n.timeout,
         orElse: () => l10n.unknownError,
         alreadyExists: () => l10n.notificationPreferenceAlreadyExistsError,
-        doesNotExist: () => l10n.notificationPreferenceDoesNotExistError);
+        doesNotExist: () => l10n.notificationPreferenceDoesNotExistError,);
   }
 }

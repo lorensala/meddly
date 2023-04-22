@@ -10,6 +10,6 @@ class SymptomSearchState with _$SymptomSearchState {
   const factory SymptomSearchState({
     @Default(Name.pure()) Name query,
     @Default(FormzStatus.pure) FormzStatus status,
-    @Default(<SymptomSearchResult>[]) List<SymptomSearchResult> results,
+    @Default(<Symptom>[]) List<Symptom> results,
   }) = _SymptomSearchState;
 }

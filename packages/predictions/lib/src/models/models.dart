@@ -1,1 +1,3 @@
-export 'symptom_search_result.dart';
+export 'disease.dart';
+export 'prediction.dart';
+export 'symptom.dart';

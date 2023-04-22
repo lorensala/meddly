@@ -11,7 +11,7 @@ part 'medicine_form_controller.g.dart';
 class MedicineFormController extends _$MedicineFormController {
   @override
   MedicineFormState build() {
-    return MedicineFormState();
+    return const MedicineFormState();
   }
 
   void nameChanged(String value) {

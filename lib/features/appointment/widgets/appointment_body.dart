@@ -22,6 +22,6 @@ class AppointmentBody extends ConsumerWidget {
           onPressed: () => ref.read(appointmentProvider.notifier).increment(),
           tooltip: 'Increment',
           child: const Icon(Icons.add),
-        ));
+        ),);
   }
 }

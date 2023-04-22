@@ -24,8 +24,8 @@ class SetupTitle extends StatelessWidget {
                   color: context.colorScheme.error,
                 ),
               )
-          ]),
-          style: context.textTheme.titleLarge),
+          ],),
+          style: context.textTheme.titleLarge,),
     );
   }
 }

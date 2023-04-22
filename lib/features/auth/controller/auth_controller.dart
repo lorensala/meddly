@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:meddly/core/extensions.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/splash/splash.dart';
 import 'package:meddly/l10n/l10n.dart';

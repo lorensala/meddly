@@ -7,7 +7,7 @@ import 'package:meddly/features/sign_up/sign_up.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 class SignUpPasswordInput extends HookConsumerWidget {
-  const SignUpPasswordInput();
+  const SignUpPasswordInput({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -6,7 +6,7 @@ import 'package:meddly/features/sign_up/sign_up.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 class TermsAndConditions extends StatelessWidget {
-  const TermsAndConditions();
+  const TermsAndConditions({super.key});
 
   @override
   Widget build(BuildContext context) {

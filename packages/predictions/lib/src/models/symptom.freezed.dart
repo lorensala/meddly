@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'symptom_search_result_dto.dart';
+part of 'symptom.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,36 +14,27 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-SymptomSearchResultDto _$SymptomSearchResultDtoFromJson(
-    Map<String, dynamic> json) {
-  return _SymptomSearchResultDto.fromJson(json);
-}
-
 /// @nodoc
-mixin _$SymptomSearchResultDto {
+mixin _$Symptom {
   String get code => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SymptomSearchResultDtoCopyWith<SymptomSearchResultDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SymptomCopyWith<Symptom> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SymptomSearchResultDtoCopyWith<$Res> {
-  factory $SymptomSearchResultDtoCopyWith(SymptomSearchResultDto value,
-          $Res Function(SymptomSearchResultDto) then) =
-      _$SymptomSearchResultDtoCopyWithImpl<$Res, SymptomSearchResultDto>;
+abstract class $SymptomCopyWith<$Res> {
+  factory $SymptomCopyWith(Symptom value, $Res Function(Symptom) then) =
+      _$SymptomCopyWithImpl<$Res, Symptom>;
   @useResult
   $Res call({String code, String description});
 }
 
 /// @nodoc
-class _$SymptomSearchResultDtoCopyWithImpl<$Res,
-        $Val extends SymptomSearchResultDto>
-    implements $SymptomSearchResultDtoCopyWith<$Res> {
-  _$SymptomSearchResultDtoCopyWithImpl(this._value, this._then);
+class _$SymptomCopyWithImpl<$Res, $Val extends Symptom>
+    implements $SymptomCopyWith<$Res> {
+  _$SymptomCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -70,23 +61,20 @@ class _$SymptomSearchResultDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_SymptomSearchResultDtoCopyWith<$Res>
-    implements $SymptomSearchResultDtoCopyWith<$Res> {
-  factory _$$_SymptomSearchResultDtoCopyWith(_$_SymptomSearchResultDto value,
-          $Res Function(_$_SymptomSearchResultDto) then) =
-      __$$_SymptomSearchResultDtoCopyWithImpl<$Res>;
+abstract class _$$_SymptomCopyWith<$Res> implements $SymptomCopyWith<$Res> {
+  factory _$$_SymptomCopyWith(
+          _$_Symptom value, $Res Function(_$_Symptom) then) =
+      __$$_SymptomCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String code, String description});
 }
 
 /// @nodoc
-class __$$_SymptomSearchResultDtoCopyWithImpl<$Res>
-    extends _$SymptomSearchResultDtoCopyWithImpl<$Res,
-        _$_SymptomSearchResultDto>
-    implements _$$_SymptomSearchResultDtoCopyWith<$Res> {
-  __$$_SymptomSearchResultDtoCopyWithImpl(_$_SymptomSearchResultDto _value,
-      $Res Function(_$_SymptomSearchResultDto) _then)
+class __$$_SymptomCopyWithImpl<$Res>
+    extends _$SymptomCopyWithImpl<$Res, _$_Symptom>
+    implements _$$_SymptomCopyWith<$Res> {
+  __$$_SymptomCopyWithImpl(_$_Symptom _value, $Res Function(_$_Symptom) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -95,7 +83,7 @@ class __$$_SymptomSearchResultDtoCopyWithImpl<$Res>
     Object? code = null,
     Object? description = null,
   }) {
-    return _then(_$_SymptomSearchResultDto(
+    return _then(_$_Symptom(
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -109,14 +97,9 @@ class __$$_SymptomSearchResultDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_SymptomSearchResultDto extends _SymptomSearchResultDto {
-  const _$_SymptomSearchResultDto(
-      {required this.code, required this.description})
-      : super._();
 
-  factory _$_SymptomSearchResultDto.fromJson(Map<String, dynamic> json) =>
-      _$$_SymptomSearchResultDtoFromJson(json);
+class _$_Symptom implements _Symptom {
+  const _$_Symptom({required this.code, required this.description});
 
   @override
   final String code;
@@ -125,46 +108,33 @@ class _$_SymptomSearchResultDto extends _SymptomSearchResultDto {
 
   @override
   String toString() {
-    return 'SymptomSearchResultDto(code: $code, description: $description)';
+    return 'Symptom(code: $code, description: $description)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SymptomSearchResultDto &&
+            other is _$_Symptom &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.description, description) ||
                 other.description == description));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, code, description);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SymptomSearchResultDtoCopyWith<_$_SymptomSearchResultDto> get copyWith =>
-      __$$_SymptomSearchResultDtoCopyWithImpl<_$_SymptomSearchResultDto>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_SymptomSearchResultDtoToJson(
-      this,
-    );
-  }
+  _$$_SymptomCopyWith<_$_Symptom> get copyWith =>
+      __$$_SymptomCopyWithImpl<_$_Symptom>(this, _$identity);
 }
 
-abstract class _SymptomSearchResultDto extends SymptomSearchResultDto {
-  const factory _SymptomSearchResultDto(
+abstract class _Symptom implements Symptom {
+  const factory _Symptom(
       {required final String code,
-      required final String description}) = _$_SymptomSearchResultDto;
-  const _SymptomSearchResultDto._() : super._();
-
-  factory _SymptomSearchResultDto.fromJson(Map<String, dynamic> json) =
-      _$_SymptomSearchResultDto.fromJson;
+      required final String description}) = _$_Symptom;
 
   @override
   String get code;
@@ -172,6 +142,6 @@ abstract class _SymptomSearchResultDto extends SymptomSearchResultDto {
   String get description;
   @override
   @JsonKey(ignore: true)
-  _$$_SymptomSearchResultDtoCopyWith<_$_SymptomSearchResultDto> get copyWith =>
+  _$$_SymptomCopyWith<_$_Symptom> get copyWith =>
       throw _privateConstructorUsedError;
 }

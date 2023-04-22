@@ -41,9 +41,10 @@ class PhoneView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(phoneControllerProvider, (_, state) {
       state.whenOrNull(
-          otpVerified: () =>
-              ref.read(goRouterProvider).go(SetupSuccessPage.routeName),
-          error: (err) => showSnackBar(context, err.toString()));
+        otpVerified: () =>
+            ref.read(goRouterProvider).go(SetupSuccessPage.routeName),
+        error: (err) => showSnackBar(context, err),
+      );
     });
 
     return GestureDetector(

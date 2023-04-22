@@ -18,13 +18,13 @@ class MeasurementForm extends StatelessWidget {
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
+          children: const [
             _ValueField(),
-            const SizedBox(height: Sizes.medium),
+            SizedBox(height: Sizes.medium),
             _TypeDropDownSelector(),
-            const SizedBox(height: Sizes.medium),
+            SizedBox(height: Sizes.medium),
             _DateSelector(),
-            const SizedBox(height: Sizes.medium),
+            SizedBox(height: Sizes.medium),
             _SaveButton()
           ],
         ),
@@ -62,14 +62,15 @@ class _DateSelector extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InputLabel(label: 'Measurement date', isRequired: true),
+        const InputLabel(label: 'Measurement date', isRequired: true),
         const SizedBox(height: Sizes.small),
         DateSelector(
-            initialDateTime: initialDateTime,
-            onDateTimeChanged: notifier.dateChanged,
-            errorText: null),
+          initialDateTime: initialDateTime,
+          onDateTimeChanged: notifier.dateChanged,
+          errorText: null,
+        ),
         const SizedBox(height: Sizes.small),
-        InputDescription(description: 'Algo que va a escribir Sofi'),
+        const InputDescription(description: 'Algo que va a escribir Sofi'),
       ],
     );
   }
@@ -86,19 +87,22 @@ class _TypeDropDownSelector extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InputLabel(label: 'Tipo', isRequired: true),
+        const InputLabel(label: 'Tipo', isRequired: true),
         const SizedBox(height: Sizes.small),
         SizedBox(
           width: double.infinity,
           child: DropDownSelector(
-              value: selectedType,
-              items: MeasurementType.values
-                  .map((e) => DropdownMenuItem<MeasurementType>(
-                        child: Text(e.name),
-                        value: e,
-                      ))
-                  .toList(),
-              onChanged: notifier.typeChanged),
+            value: selectedType,
+            items: MeasurementType.values
+                .map(
+                  (e) => DropdownMenuItem<MeasurementType>(
+                    value: e,
+                    child: Text(e.name),
+                  ),
+                )
+                .toList(),
+            onChanged: notifier.typeChanged,
+          ),
         ),
       ],
     );
@@ -116,7 +120,7 @@ class _ValueField extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InputLabel(label: 'Valor', isRequired: true),
+        const InputLabel(label: 'Valor', isRequired: true),
         const SizedBox(height: Sizes.small),
         TextFormField(
           onChanged: notifier.valueChanged,
@@ -126,7 +130,7 @@ class _ValueField extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: Sizes.small),
-        InputDescription(description: 'Algo que va a escribir Sofi'),
+        const InputDescription(description: 'Algo que va a escribir Sofi'),
       ],
     );
   }

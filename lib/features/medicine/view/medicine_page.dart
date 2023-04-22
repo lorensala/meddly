@@ -25,7 +25,7 @@ class MedicinePage extends StatelessWidget {
             Navigator.of(context).push(MedicineNamePage.route());
           },
           child: const Icon(Icons.add),
-        ));
+        ),);
   }
 }
 
@@ -38,6 +38,6 @@ class MedicineView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MedicineBody();
+    return const MedicineBody();
   }
 }

@@ -17,7 +17,7 @@ NotificationPreference notificationPreference(NotificationPreferenceRef ref) {
 
 @riverpod
 bool isNotificationPreferenceOn(IsNotificationPreferenceOnRef ref,
-    {required NotificationPreference preference}) {
+    {required NotificationPreference preference,}) {
   final notificationPreferences = ref.watch(notificationPreferencesProvider);
 
   return notificationPreferences.when(
@@ -40,10 +40,10 @@ NotificationsApi notificationsApi(NotificationsApiRef ref) {
 
 @riverpod
 NotificationsRepository notificationsRepository(
-    NotificationsRepositoryRef ref) {
+    NotificationsRepositoryRef ref,) {
   return NotificationsRepository(
       api: ref.read(notificationsApiProvider),
-      cache: ref.read(notificationsCacheProvider));
+      cache: ref.read(notificationsCacheProvider),);
 }
 
 @riverpod
@@ -55,11 +55,11 @@ Stream<Either<NotificationFailure, List<NotificationPreference>>>
 
 @riverpod
 AsyncValue<List<NotificationPreference>> notificationPreferences(
-    NotificationPreferencesRef ref) {
+    NotificationPreferencesRef ref,) {
   return ref.watch(notificationPreferencesStreamProvider).when(
         data: (data) => data.fold(
           (failure) => AsyncError(failure, StackTrace.current),
-          (data) => AsyncData(data),
+          AsyncData.new,
         ),
         error: (error, stackTrace) {
           return AsyncError(error, stackTrace);

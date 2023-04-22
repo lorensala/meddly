@@ -37,7 +37,7 @@ class NotificationsPreferencesView extends ConsumerWidget {
               content: Text(err.toString()),
             ),
           );
-      });
+      },);
     });
 
     return const NotificationsPreferencesBody();

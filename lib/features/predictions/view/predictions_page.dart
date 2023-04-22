@@ -14,7 +14,7 @@ class PredictionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Predictions'),
+        title: const Text('Consultas orientativas'),
       ),
       body: const PredictionsView(),
     );

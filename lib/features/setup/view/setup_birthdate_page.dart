@@ -14,7 +14,7 @@ class SetupBirthdatePage extends StatelessWidget {
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
-        builder: (_) => const SetupBirthdatePage());
+        builder: (_) => const SetupBirthdatePage(),);
   }
 
   @override
@@ -66,6 +66,6 @@ class _NextButton extends ConsumerWidget {
         isValid: isBirthdateValid,
         onPressed: () =>
             ref.read(goRouterProvider).push(SetupSexPage.routeName),
-        label: context.l10n.next);
+        label: context.l10n.next,);
   }
 }

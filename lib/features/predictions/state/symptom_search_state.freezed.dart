@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SymptomSearchState {
   Name get query => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
-  List<SymptomSearchResult> get results => throw _privateConstructorUsedError;
+  List<Symptom> get results => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SymptomSearchStateCopyWith<SymptomSearchState> get copyWith =>
@@ -31,8 +31,7 @@ abstract class $SymptomSearchStateCopyWith<$Res> {
           SymptomSearchState value, $Res Function(SymptomSearchState) then) =
       _$SymptomSearchStateCopyWithImpl<$Res, SymptomSearchState>;
   @useResult
-  $Res call(
-      {Name query, FormzStatus status, List<SymptomSearchResult> results});
+  $Res call({Name query, FormzStatus status, List<Symptom> results});
 }
 
 /// @nodoc
@@ -64,7 +63,7 @@ class _$SymptomSearchStateCopyWithImpl<$Res, $Val extends SymptomSearchState>
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<SymptomSearchResult>,
+              as List<Symptom>,
     ) as $Val);
   }
 }
@@ -77,8 +76,7 @@ abstract class _$$_SymptomSearchStateCopyWith<$Res>
       __$$_SymptomSearchStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Name query, FormzStatus status, List<SymptomSearchResult> results});
+  $Res call({Name query, FormzStatus status, List<Symptom> results});
 }
 
 /// @nodoc
@@ -108,7 +106,7 @@ class __$$_SymptomSearchStateCopyWithImpl<$Res>
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<SymptomSearchResult>,
+              as List<Symptom>,
     ));
   }
 }
@@ -119,7 +117,7 @@ class _$_SymptomSearchState implements _SymptomSearchState {
   const _$_SymptomSearchState(
       {this.query = const Name.pure(),
       this.status = FormzStatus.pure,
-      final List<SymptomSearchResult> results = const <SymptomSearchResult>[]})
+      final List<Symptom> results = const <Symptom>[]})
       : _results = results;
 
   @override
@@ -128,10 +126,10 @@ class _$_SymptomSearchState implements _SymptomSearchState {
   @override
   @JsonKey()
   final FormzStatus status;
-  final List<SymptomSearchResult> _results;
+  final List<Symptom> _results;
   @override
   @JsonKey()
-  List<SymptomSearchResult> get results {
+  List<Symptom> get results {
     if (_results is EqualUnmodifiableListView) return _results;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_results);
@@ -168,14 +166,14 @@ abstract class _SymptomSearchState implements SymptomSearchState {
   const factory _SymptomSearchState(
       {final Name query,
       final FormzStatus status,
-      final List<SymptomSearchResult> results}) = _$_SymptomSearchState;
+      final List<Symptom> results}) = _$_SymptomSearchState;
 
   @override
   Name get query;
   @override
   FormzStatus get status;
   @override
-  List<SymptomSearchResult> get results;
+  List<Symptom> get results;
   @override
   @JsonKey(ignore: true)
   _$$_SymptomSearchStateCopyWith<_$_SymptomSearchState> get copyWith =>

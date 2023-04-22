@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
-import 'package:meddly/features/forgot_password/controller/forgot_password_controller.dart';
-import 'package:meddly/features/forgot_password/provider/forgot_password_provider.dart';
+import 'package:meddly/features/forgot_password/forgot_password.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -27,7 +26,8 @@ class ForgotPasswordForm extends StatelessWidget {
           Text(
             'We will send you a link to reset your password',
             style: context.textTheme.bodySmall!.copyWith(
-                color: context.colorScheme.onSecondary.withOpacity(0.5)),
+              color: context.colorScheme.onSecondary.withOpacity(0.5),
+            ),
           ),
           const SizedBox(height: Sizes.medium),
           const _SendPasswordResetEmailButton(),

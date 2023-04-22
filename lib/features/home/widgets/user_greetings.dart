@@ -22,7 +22,7 @@ class UserGreetings extends ConsumerWidget {
             text: user.fold(
               () => 'User',
               (user) {
-                return user.firstName + ' 👋';
+                return '${user.firstName} 👋';
               },
             ),
             style: context.textTheme.headlineLarge,

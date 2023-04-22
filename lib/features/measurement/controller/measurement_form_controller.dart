@@ -1,5 +1,5 @@
 import 'package:measurement/measurement.dart';
-import 'package:meddly/features/measurement/controller/measurement_controller.dart';
+import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/features/measurement/state/measurement_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:validators/validators.dart';
@@ -10,7 +10,7 @@ part 'measurement_form_controller.g.dart';
 class MeasurementFormController extends _$MeasurementFormController {
   @override
   MeasurementState build() {
-    return MeasurementState();
+    return const MeasurementState();
   }
 
   void valueChanged(String value) {

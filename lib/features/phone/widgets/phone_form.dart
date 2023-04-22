@@ -36,7 +36,7 @@ class _SendOTPButton extends ConsumerWidget {
     return Button(
       isValid: isValid,
       isLoading: isLoading,
-      onPressed: () => notifier.sendPhoneNumber(),
+      onPressed: notifier.sendPhoneNumber,
       label: context.l10n.sendOTP,
     );
   }
@@ -48,10 +48,11 @@ class _CountryCodePhoneNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
-        const _CountryCodeSelector(),
-        const SizedBox(width: Sizes.medium),
-        const Expanded(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        _CountryCodeSelector(),
+        SizedBox(width: Sizes.medium),
+        Expanded(
           flex: 2,
           child: _PhoneNumberInput(),
         ),
@@ -68,18 +69,33 @@ class _PhoneNumberInput extends ConsumerWidget {
     final notifier = ref.watch(phoneFormControllerProvider.notifier);
     final errorText = ref.watch(phoneNumberErrorTextProvider);
 
-    return TextFormField(
-      onChanged: notifier.phoneNumberChanged,
-      keyboardType: TextInputType.number,
-      inputFormatters: [
-        FilteringTextInputFormatter.digitsOnly,
-        LengthLimitingTextInputFormatter(10),
+    return Column(
+      children: [
+        TextFormField(
+          onChanged: notifier.phoneNumberChanged,
+          keyboardType: TextInputType.number,
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(10),
+          ],
+          decoration: InputDecoration(
+            errorMaxLines: 2,
+            hintText: context.l10n.phoneNumberHint,
+            errorText: errorText,
+          ),
+        ),
+        const SizedBox(height: Sizes.small),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            '* Sin el 0 y sin el 15',
+            style: context.textTheme.bodyMedium!.copyWith(
+              color: context.colorScheme.onBackground.withOpacity(0.5),
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+        ),
       ],
-      decoration: InputDecoration(
-        errorMaxLines: 2,
-        hintText: context.l10n.phoneNumberHint,
-        errorText: errorText,
-      ),
     );
   }
 }

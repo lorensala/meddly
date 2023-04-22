@@ -47,7 +47,7 @@ class SetupController extends _$SetupController {
 
   void heightChanged(String value) {
     if (value.isEmpty) {
-      final height = const Height.pure();
+      const height = Height.pure();
       state = state.copyWith(
         height: height,
         status: Formz.validate([
@@ -77,7 +77,7 @@ class SetupController extends _$SetupController {
 
   void weightChanged(String value) {
     if (value.isEmpty) {
-      final weight = const Weight.pure();
+      const weight = Weight.pure();
       state = state.copyWith(
         weight: weight,
         status: Formz.validate([

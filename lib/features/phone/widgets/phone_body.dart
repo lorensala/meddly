@@ -60,7 +60,7 @@ class _OtpSection extends StatelessWidget {
                 child: Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: Sizes.medium),
-                    child: SvgPicture.asset(Vectors.otp))),
+                    child: SvgPicture.asset(Vectors.otp),),),
             const SizedBox(height: Sizes.large),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
@@ -80,7 +80,7 @@ class _OtpSection extends StatelessWidget {
                 child: Text(context.l10n.enterCodeDescription,
                     style: context.textTheme.bodyMedium!.copyWith(
                       color: context.colorScheme.onBackground.withOpacity(0.5),
-                    )),
+                    ),),
               ),
             ),
             const SizedBox(height: Sizes.small),

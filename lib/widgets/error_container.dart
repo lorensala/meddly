@@ -5,9 +5,9 @@ import 'package:meddly/l10n/l10n.dart';
 
 class ErrorContainer extends StatelessWidget {
   const ErrorContainer({
-    super.key,
     required this.message,
     this.onRetry,
+    super.key,
   });
 
   final String message;

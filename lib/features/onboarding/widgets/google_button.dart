@@ -54,13 +54,17 @@ class GoogleButton extends ConsumerWidget {
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: Sizes.medium),
+                            horizontal: Sizes.medium,
+                          ),
                           child: SvgPicture.asset(Assets.googleIcon),
                         ),
                       ),
                       Center(
-                          child: Text(context.l10n.loginWithGoogle,
-                              overflow: TextOverflow.ellipsis)),
+                        child: Text(
+                          context.l10n.loginWithGoogle,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     ],
                   ),
           ),

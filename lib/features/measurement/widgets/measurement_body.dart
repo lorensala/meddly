@@ -13,6 +13,6 @@ class MeasurementBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MeasurementForm();
+    return const MeasurementForm();
   }
 }

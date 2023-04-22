@@ -16,7 +16,7 @@ class NotificationsBody extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return const NotificationListItem();
-              })
+              },)
         ],
       ),
     );

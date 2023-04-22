@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/forgot_password/widgets/forgot_password_form.dart';
-
-import '../../../core/core.dart';
 
 /// {@template forgot_password_body}
 /// Body of the ForgotPasswordPage.

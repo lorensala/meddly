@@ -14,7 +14,8 @@ class SetupHeightWeightPage extends StatelessWidget {
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
-        builder: (_) => const SetupHeightWeightPage());
+      builder: (_) => const SetupHeightWeightPage(),
+    );
   }
 
   @override
@@ -32,16 +33,18 @@ class SetupHeightWeightPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(Sizes.medium),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(height: Sizes.medium),
-                  Flexible(child: SvgPicture.asset(Vectors.heightWeight)),
+                  Flexible(
+                    child: SvgPicture.asset(Vectors.heightWeight),
+                  ),
                   const SizedBox(height: Sizes.medium),
                   SetupTitle(title: context.l10n.setupHeightWeightTitle),
                   const SizedBox(height: Sizes.small),
                   SetupSubtitle(
-                      subtitle: context.l10n.setupHeightWeightSubtitle),
+                    subtitle: context.l10n.setupHeightWeightSubtitle,
+                  ),
                   const SizedBox(height: Sizes.extraLarge),
                   const SetupHeightInput(),
                   const SizedBox(height: Sizes.medium),
@@ -80,9 +83,10 @@ class _SaveButton extends ConsumerWidget {
         (weight.valid && weight.value.isNotEmpty) || weight.pure;
 
     return Button(
-        isValid: isHeightValid && isWeightValid,
-        isLoading: isLoading,
-        onPressed: () => ref.read(setupControllerProvider.notifier).save(),
-        label: context.l10n.save);
+      isValid: isHeightValid && isWeightValid,
+      isLoading: isLoading,
+      onPressed: () => ref.read(setupControllerProvider.notifier).save(),
+      label: context.l10n.save,
+    );
   }
 }

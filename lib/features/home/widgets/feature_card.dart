@@ -3,9 +3,9 @@ import 'package:meddly/core/core.dart';
 
 class FeatureCard extends StatelessWidget {
   const FeatureCard({
-    super.key,
     required this.onPressed,
     required this.name,
+    super.key,
   });
 
   final VoidCallback onPressed;

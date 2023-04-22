@@ -6,7 +6,7 @@ import 'package:meddly/features/setup/provider/provider.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 class SetupSexSelector extends ConsumerWidget {
-  const SetupSexSelector();
+  const SetupSexSelector({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -81,7 +81,7 @@ class SetupSexSelector extends ConsumerWidget {
                     onClosing: () {
                       Navigator.of(context).pop();
                     },
-                  )),
+                  ),),
           child: Text(
             context.l10n.sexWhy,
             style: TextStyle(

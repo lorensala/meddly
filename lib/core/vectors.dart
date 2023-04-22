@@ -1,6 +1,7 @@
 class Vectors {
   // * Core
   static const String error = 'assets/svg/error.svg';
+  static const String empty = 'assets/svg/empty.svg';
 
   // * Onboarding
   static const String onboarding1 = 'assets/svg/onboarding-1.svg';
@@ -46,4 +47,8 @@ class Vectors {
   static const String predictions = 'assets/svg/predictions.svg';
   static const String measurements = 'assets/svg/measurements.svg';
   static const String supervision = 'assets/svg/supervision.svg';
+
+  // * Predictions
+  static const String predictionsSymptoms =
+      'assets/svg/predictions-symptoms.svg';
 }

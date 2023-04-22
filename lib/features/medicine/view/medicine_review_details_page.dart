@@ -61,7 +61,7 @@ class MedicineReviewDetailsView extends ConsumerWidget {
                 SnackBar(
                   content: Text(err.toString()),
                 ),
-              ));
+              ),);
     });
 
     return GestureDetector(

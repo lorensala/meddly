@@ -1,9 +1,8 @@
 import 'package:meddly/features/notifications/core/extension.dart';
+import 'package:meddly/features/notifications/provider/provider.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:notifications/notifications.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../../l10n/l10n.dart';
-import '../provider/provider.dart';
 
 part 'notifications_controller.g.dart';
 
@@ -21,14 +20,13 @@ class NotificationsController extends _$NotificationsController {
   }
 
   Future<void> addNotificationPreference(
-      NotificationPreference notificationPreference) async {
+      NotificationPreference notificationPreference,) async {
     state = const AsyncLoading();
     final repository = ref.read(notificationsRepositoryProvider);
 
     final res = await repository.add(notificationPreference);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-    ;
 
     res.fold(
       (failure) =>
@@ -38,14 +36,13 @@ class NotificationsController extends _$NotificationsController {
   }
 
   Future<void> deleteNotificationPreference(
-      NotificationPreference notificationPreference) async {
+      NotificationPreference notificationPreference,) async {
     state = const AsyncLoading();
     final repository = ref.read(notificationsRepositoryProvider);
 
     final res = await repository.delete(notificationPreference);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-    ;
 
     res.fold(
       (failure) =>

@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 
-import '../../user/user.dart';
+import 'package:meddly/features/user/user.dart';
 
 class SettingsButton extends ConsumerWidget {
   const SettingsButton({
@@ -13,7 +13,7 @@ class SettingsButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () => ref.watch(userControllerProvider.notifier).logout(),
+      onTap: () => ref.watch(userControllerProvider.notifier).signOut(),
       child: SizedBox(
         height: 48,
         width: 48,
@@ -27,7 +27,7 @@ class SettingsButton extends ConsumerWidget {
             Assets.settingsIcon,
             width: 24,
             height: 24,
-          )),
+          ),),
         ),
       ),
     );

@@ -22,7 +22,7 @@ class NotificationsPreferencesBody extends ConsumerWidget {
               final preference = NotificationPreference.values[index];
               return ProviderScope(overrides: [
                 notificationPreferenceProvider.overrideWithValue(preference)
-              ], child: const NotificationPreferenceCard());
+              ], child: const NotificationPreferenceCard(),);
             },
             itemCount: NotificationPreference.values.length,
             separatorBuilder: (BuildContext context, int index) =>

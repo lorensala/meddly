@@ -21,7 +21,7 @@ class DateSelector extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = useState<TextStyle>(context.textTheme.bodyLarge!
-        .copyWith(color: context.colorScheme.onSecondary.withOpacity(0.5)));
+        .copyWith(color: context.colorScheme.onSecondary.withOpacity(0.5)),);
     final controller = useTextEditingController(text: 'Select a date');
 
     return TextFormField(
@@ -43,7 +43,7 @@ class DateSelector extends HookWidget {
           } else {
             controller.text = 'Select a date';
             textStyle.value = context.textTheme.bodyLarge!.copyWith(
-                color: context.colorScheme.onSecondary.withOpacity(0.5));
+                color: context.colorScheme.onSecondary.withOpacity(0.5),);
             onDateTimeChanged(initialDateTime);
           }
         } else {
@@ -78,7 +78,7 @@ class DateSelector extends HookWidget {
                           textStyle.value = context.textTheme.bodyLarge!
                               .copyWith(
                                   color: context.colorScheme.onSecondary
-                                      .withOpacity(0.5));
+                                      .withOpacity(0.5),);
                           onDateTimeChanged(initialDateTime);
                         }
                         textStyle.value = context.textTheme.bodyLarge!;

@@ -49,14 +49,14 @@ class Button extends StatelessWidget {
               : prefix == null
                   ? Text(label, overflow: TextOverflow.ellipsis)
                   : SizedBox(
-                      height: 24.0,
+                      height: 24,
                       child: Stack(
                         children: [
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: Sizes.medium),
+                                  horizontal: Sizes.medium,),
                               child: SvgPicture.asset(
                                 prefix!,
                               ),
@@ -66,7 +66,7 @@ class Button extends StatelessWidget {
                               child: Text(
                             label,
                             overflow: TextOverflow.ellipsis,
-                          )),
+                          ),),
                         ],
                       ),
                     ),

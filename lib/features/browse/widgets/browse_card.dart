@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 
-class BrowseItem extends ConsumerWidget {
-  const BrowseItem({
+class BrowseCard extends ConsumerWidget {
+  const BrowseCard({
     required this.title,
     required this.description,
     required this.vector,

@@ -13,7 +13,7 @@ class MedicineFrecuencyPage extends StatelessWidget {
   /// The static route for MedicinePage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
-      builder: (_) => MedicineFrecuencyPage(),
+      builder: (_) => const MedicineFrecuencyPage(),
     );
   }
 

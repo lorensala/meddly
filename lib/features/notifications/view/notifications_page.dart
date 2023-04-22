@@ -35,7 +35,7 @@ class NotificationsView extends ConsumerWidget {
     ref.listen(notificationsControllerProvider, (_, state) {
       state.whenOrNull(error: (err, _) {
         showSnackBar(context, err.toString());
-      });
+      },);
     });
 
     return const NotificationsBody();

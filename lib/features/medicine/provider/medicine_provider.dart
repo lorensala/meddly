@@ -22,7 +22,7 @@ MedicineApi medicineApi(MedicineApiRef ref) {
 MedicineRepository medicineRepository(MedicineRepositoryRef ref) {
   return MedicineRepository(
       api: ref.read(medicineApiProvider),
-      cache: ref.read(medicineCacheProvider));
+      cache: ref.read(medicineCacheProvider),);
 }
 
 @riverpod

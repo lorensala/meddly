@@ -4,12 +4,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/controller/medicine_form_controller.dart';
 import 'package:meddly/features/medicine/core/utils.dart';
+import 'package:meddly/features/medicine/provider/provider.dart';
 import 'package:meddly/features/medicine/view/medicine_review_details_page.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:medicine/medicine.dart';
-
-import '../provider/provider.dart';
 
 class MedicineFrecuencyForm extends StatelessWidget {
   const MedicineFrecuencyForm({super.key});
@@ -168,7 +167,7 @@ class _StartDateSelector extends ConsumerWidget {
           isRequired: true,
         ),
         const SizedBox(height: Sizes.small),
-        _StartDateInput(),
+        const _StartDateInput(),
       ],
     );
   }
@@ -215,7 +214,7 @@ class _IntervalBody extends HookConsumerWidget {
               value: i,
               child: Text(i.toDaysString()),
             ),
-        ]);
+        ],);
 
     switch (selectedFrequency) {
       case MedicineFrecuency.regular:
@@ -228,9 +227,7 @@ class _IntervalBody extends HookConsumerWidget {
             const SizedBox(width: Sizes.medium),
             DropDownSelector<int>(
               items: items,
-              onChanged: (value) {
-                notifier.frecuencyValueChanged(value);
-              },
+              onChanged: notifier.frecuencyValueChanged,
               value: selectedFrecuencValue,
             ),
           ],
@@ -320,7 +317,7 @@ class _FrecuencySelector extends ConsumerWidget {
                 ),
               )
               .toList(),
-        ));
+        ),);
   }
 }
 
@@ -332,9 +329,7 @@ class _StartDateInput extends ConsumerWidget {
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
     return DateSelector(
         initialDateTime: DateTime.now(),
-        onDateTimeChanged: (value) {
-          notifier.startDateChanged(value);
-        },
-        errorText: null);
+        onDateTimeChanged: notifier.startDateChanged,
+        errorText: null,);
   }
 }

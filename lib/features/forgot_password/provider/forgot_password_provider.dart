@@ -1,4 +1,4 @@
-import 'package:meddly/features/forgot_password/controller/forgot_password_controller.dart';
+import 'package:meddly/features/forgot_password/forgot_password.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:validators/validators.dart';

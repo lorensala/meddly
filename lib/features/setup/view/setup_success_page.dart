@@ -37,7 +37,8 @@ class SetupSuccessBody extends ConsumerWidget {
 
     ref.listen(userControllerProvider, (_, state) {
       state.whenOrNull(
-          error: (err, _) => showSnackBar(context, err.toString()));
+        error: (err, _) => showSnackBar(context, err.toString()),
+      );
     });
 
     return state.when(
@@ -56,16 +57,18 @@ class SetupSuccessBody extends ConsumerWidget {
               ),
               const Spacer(),
               Button(
-                  onPressed: () =>
-                      ref.read(goRouterProvider).go(HomePage.routeName),
-                  label: context.l10n.startNow),
+                onPressed: () =>
+                    ref.read(goRouterProvider).go(HomePage.routeName),
+                label: context.l10n.startNow,
+              ),
               const SizedBox(height: Sizes.medium),
             ],
           ),
         ),
       ),
       loading: () => const Center(
-          child: RepaintBoundary(child: CircularProgressIndicator())),
+        child: RepaintBoundary(child: CircularProgressIndicator()),
+      ),
       error: (error, stack) => ErrorContainer(
         message: context.l10n.errorCreatingAccount,
         onRetry: () => ref.read(authControllerProvider.notifier).signOut(),

@@ -14,6 +14,6 @@ class SplashBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     //TODO: Better loader..
     return const Center(
-        child: RepaintBoundary(child: CircularProgressIndicator.adaptive()));
+        child: RepaintBoundary(child: CircularProgressIndicator.adaptive()),);
   }
 }

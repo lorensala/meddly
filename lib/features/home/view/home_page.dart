@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meddly/features/auth/controller/auth_controller.dart';
+import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 

@@ -17,12 +17,12 @@ class MedicineDosisForm extends StatelessWidget {
         padding: Sizes.mediumPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            const _DosisInput(),
-            const SizedBox(height: Sizes.medium),
-            const _DosisUnitSelector(),
-            const SizedBox(height: Sizes.medium),
-            const _NextButton(),
+          children: const [
+            _DosisInput(),
+            SizedBox(height: Sizes.medium),
+            _DosisUnitSelector(),
+            SizedBox(height: Sizes.medium),
+            _NextButton(),
           ],
         ),
       ),

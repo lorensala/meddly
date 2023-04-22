@@ -62,13 +62,13 @@ class EventCard extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Row(
                     children: [
                       SvgPicture.asset(Assets.clockThree,
                           colorFilter: ColorFilter.mode(
-                              context.colorScheme.onPrimary, BlendMode.srcIn),
-                          height: 14),
+                              context.colorScheme.onPrimary, BlendMode.srcIn,),
+                          height: 14,),
                       const SizedBox(width: Sizes.small),
                       Text(
                         event.date.toHoursAndMinutesString(),

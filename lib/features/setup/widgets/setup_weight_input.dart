@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:meddly/features/setup/controller/controller.dart';
-import 'package:meddly/features/setup/provider/provider.dart';
+import 'package:meddly/features/setup/setup.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 class SetupWeightInput extends ConsumerWidget {
-  const SetupWeightInput();
+  const SetupWeightInput({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

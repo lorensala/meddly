@@ -3,12 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/controller/medicine_form_controller.dart';
+import 'package:meddly/features/medicine/provider/provider.dart';
 import 'package:meddly/features/medicine/view/medicine_dosis_page.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:medicine/medicine.dart';
-
-import '../provider/provider.dart';
 
 class MedicinePresentationForm extends StatelessWidget {
   const MedicinePresentationForm({super.key});
@@ -96,7 +95,7 @@ class _OtherPresentations extends ConsumerWidget {
                 ),
               )
               .toList(),
-        ));
+        ),);
   }
 }
 
@@ -126,6 +125,6 @@ class _CommonPresentations extends ConsumerWidget {
                 ),
               )
               .toList(),
-        ));
+        ),);
   }
 }

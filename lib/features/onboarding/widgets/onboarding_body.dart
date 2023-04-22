@@ -47,7 +47,7 @@ class OnboardingBody extends HookWidget {
           const SizedBox(height: Sizes.large),
           OnboardingPageIndicators(currentPage: currentPage.value),
           const SizedBox(height: Sizes.large),
-          OnboardingLoginButtons()
+          const OnboardingLoginButtons()
         ],
       ),
     );

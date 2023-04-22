@@ -62,6 +62,6 @@ class _NextButton extends ConsumerWidget {
         isValid: isBirthdateValid,
         onPressed: () =>
             ref.read(goRouterProvider).push(SetupHeightWeightPage.routeName),
-        label: context.l10n.next);
+        label: context.l10n.next,);
   }
 }

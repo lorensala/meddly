@@ -199,7 +199,7 @@ final notificationPreferencesStreamProvider = AutoDisposeStreamProvider<
 typedef NotificationPreferencesStreamRef = AutoDisposeStreamProviderRef<
     Either<NotificationFailure, List<NotificationPreference>>>;
 String _$notificationPreferencesHash() =>
-    r'03e56be05cd93e9eeb8f55b613d54c461a5c89d2';
+    r'e8ebec3bac586fa41eb8457e51180d0f4bde2064';
 
 /// See also [notificationPreferences].
 @ProviderFor(notificationPreferences)

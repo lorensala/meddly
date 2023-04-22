@@ -5,7 +5,7 @@ import 'package:meddly/features/setup/provider/provider.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 class SetupNameInput extends ConsumerWidget {
-  const SetupNameInput();
+  const SetupNameInput({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

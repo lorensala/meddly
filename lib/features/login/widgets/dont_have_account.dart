@@ -5,7 +5,7 @@ import 'package:meddly/features/sign_up/view/sign_up_page.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 class DontHaveAccountSignUp extends StatelessWidget {
-  const DontHaveAccountSignUp();
+  const DontHaveAccountSignUp({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -27,7 +27,7 @@ class UpcomingEventsList extends ConsumerWidget {
 
             return ProviderScope(overrides: [
               calendarEventProvider.overrideWithValue(event),
-            ], child: const EventCard());
+            ], child: const EventCard(),);
           },
           separatorBuilder: (BuildContext context, int index) =>
               const SizedBox(height: Sizes.medium),

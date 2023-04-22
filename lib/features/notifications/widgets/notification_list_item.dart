@@ -35,7 +35,7 @@ class NotificationListItem extends StatelessWidget {
         tileColor: context.colorScheme.secondary,
         leading: const SizedBox(
             height: double.infinity,
-            child: Icon(Icons.medical_services_outlined)),
+            child: Icon(Icons.medical_services_outlined),),
         title: Text(
           'Tomar medicamento',
           style: context.textTheme.titleMedium,

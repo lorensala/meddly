@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:meddly/features/measurement/controller/measurement_controller.dart';
-import 'package:meddly/features/measurement/widgets/measurement_body.dart';
+import 'package:meddly/features/measurement/measurement.dart';
 
 /// {@template measurement_page}
 /// A description for MeasurementPage
@@ -19,7 +18,7 @@ class MeasurementPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: MeasurementView(),
+      body: const MeasurementView(),
     );
   }
 }
@@ -34,13 +33,15 @@ class MeasurementView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(measurementControllerProvider, (_, state) {
-      state.whenOrNull(error: (err, _) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(err.toString()),
-          ),
-        );
-      });
+      state.whenOrNull(
+        error: (err, _) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(err.toString()),
+            ),
+          );
+        },
+      );
     });
 
     return const MeasurementBody();

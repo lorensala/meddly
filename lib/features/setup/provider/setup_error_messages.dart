@@ -1,4 +1,4 @@
-import 'package:meddly/features/setup/provider/provider.dart';
+import 'package:meddly/features/setup/setup.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

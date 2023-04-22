@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/home/provider/provider.dart';
 import 'package:meddly/features/user/view/user_page.dart';
-
-import '../provider/provider.dart';
 
 class UserAvatar extends ConsumerWidget {
   const UserAvatar({

@@ -7,7 +7,7 @@ part of 'symptom_search_controller.dart';
 // **************************************************************************
 
 String _$symptomSearchControllerHash() =>
-    r'83af0c7544dd913c7f2d2ef9dfd01594e6a5529a';
+    r'f48c86e6e7ee6ff90b07998b920fa803a6e385a9';
 
 /// See also [SymptomSearchController].
 @ProviderFor(SymptomSearchController)

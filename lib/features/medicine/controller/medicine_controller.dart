@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/calendar/controller/calendar_controller.dart';
+import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:medicine/medicine.dart';
@@ -17,7 +17,7 @@ class MedicineController extends _$MedicineController {
   }
 
   Future<void> addMedicine(Medicine medicine) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
 
     final repository = ref.watch(medicineRepositoryProvider);
 

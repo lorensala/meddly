@@ -8,6 +8,6 @@ extension UserFailureX on UserFailure {
         timeout: () => l10n.timeout,
         sendTimeout: () => l10n.timeout,
         receiveTimeout: () => l10n.timeout,
-        orElse: () => l10n.unknownError);
+        orElse: () => l10n.unknownError,);
   }
 }
