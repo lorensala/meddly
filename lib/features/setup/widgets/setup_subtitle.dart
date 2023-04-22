@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 
-class SetupSubtitle extends StatelessWidget {
-  const SetupSubtitle({
+class FormSubtitle extends StatelessWidget {
+  const FormSubtitle({
     required this.subtitle,
     super.key,
   });

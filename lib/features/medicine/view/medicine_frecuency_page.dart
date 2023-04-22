@@ -3,14 +3,11 @@ import 'package:meddly/features/medicine/view/view.dart';
 import 'package:meddly/features/medicine/widgets/widgets.dart';
 import 'package:meddly/widgets/widgets.dart';
 
-/// {@template medicine_page}
-/// A description for MedicineFrecuencyPage
-/// {@endtemplate}
 class MedicineFrecuencyPage extends StatelessWidget {
-  /// {@macro medicine_page}
   const MedicineFrecuencyPage({super.key});
 
-  /// The static route for MedicinePage
+  static const String routeName = '/medicine/frecuency';
+
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
       builder: (_) => const MedicineFrecuencyPage(),
@@ -34,11 +31,7 @@ class MedicineFrecuencyPage extends StatelessWidget {
   }
 }
 
-/// {@template medicine_view}
-/// Displays the Body of MedicineFrecuencyView
-/// {@endtemplate}
 class MedicineFrecuencyView extends StatelessWidget {
-  /// {@macro medicine_view}
   const MedicineFrecuencyView({super.key});
 
   @override

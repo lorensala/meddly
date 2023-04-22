@@ -79,8 +79,13 @@ class MedicineFormController extends _$MedicineFormController {
   }
 
   void save() {
-    late final Medicine medicine;
+    final medicine = _medicineFromState();
 
+    ref.read(medicineControllerProvider.notifier).addMedicine(medicine);
+  }
+
+  Medicine _medicineFromState() {
+    late final Medicine medicine;
     switch (state.frecuency) {
       case MedicineFrecuency.regular:
         medicine = Medicine(
@@ -129,7 +134,6 @@ class MedicineFormController extends _$MedicineFormController {
         );
         break;
     }
-
-    ref.read(medicineControllerProvider.notifier).addMedicine(medicine);
+    return medicine;
   }
 }

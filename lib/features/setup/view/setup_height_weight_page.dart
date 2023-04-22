@@ -40,9 +40,9 @@ class SetupHeightWeightPage extends StatelessWidget {
                     child: SvgPicture.asset(Vectors.heightWeight),
                   ),
                   const SizedBox(height: Sizes.medium),
-                  SetupTitle(title: context.l10n.setupHeightWeightTitle),
+                  FormTitle(title: context.l10n.setupHeightWeightTitle),
                   const SizedBox(height: Sizes.small),
-                  SetupSubtitle(
+                  FormSubtitle(
                     subtitle: context.l10n.setupHeightWeightSubtitle,
                   ),
                   const SizedBox(height: Sizes.extraLarge),

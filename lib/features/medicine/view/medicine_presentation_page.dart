@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/widgets/widgets.dart';
 
-/// {@template medicine_page}
-/// A description for MedicinePresentationPage
-/// {@endtemplate}
 class MedicinePresentationPage extends StatelessWidget {
-  /// {@macro medicine_page}
   const MedicinePresentationPage({super.key});
 
-  /// The static route for MedicinePresentationPage
+  static const String routeName = '/medicine/presentation';
+
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
       builder: (_) => const MedicinePresentationPage(),
@@ -33,18 +30,16 @@ class MedicinePresentationPage extends StatelessWidget {
   }
 }
 
-/// {@template medicine_view}
-/// Displays the Body of MedicineView
-/// {@endtemplate}
 class MedicinePresentationView extends StatelessWidget {
-  /// {@macro medicine_view}
   const MedicinePresentationView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: const MedicinePresentationForm(),
+    return SafeArea(
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: const MedicinePresentationForm(),
+      ),
     );
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 
-class SetupTitle extends StatelessWidget {
-  const SetupTitle({
-    super.key,
+class FormTitle extends StatelessWidget {
+  const FormTitle({
     required this.title,
     this.isRequired = false,
+    super.key,
   });
 
   final String title;
@@ -16,7 +16,9 @@ class SetupTitle extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Text.rich(
-          TextSpan(text: title, children: [
+        TextSpan(
+          text: title,
+          children: [
             if (isRequired)
               TextSpan(
                 text: '*',
@@ -24,8 +26,10 @@ class SetupTitle extends StatelessWidget {
                   color: context.colorScheme.error,
                 ),
               )
-          ],),
-          style: context.textTheme.titleLarge,),
+          ],
+        ),
+        style: context.textTheme.titleLarge,
+      ),
     );
   }
 }

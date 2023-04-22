@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/features/medicine/widgets/widgets.dart';
 
-/// {@template medicine_page}
-/// A description for MedicinePage
-/// {@endtemplate}
 class MedicineNamePage extends StatelessWidget {
-  /// {@macro medicine_page}
   const MedicineNamePage({super.key});
 
-  /// The static route for MedicinePage
+  static const String routeName = '/medicine/name';
+
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const MedicineNamePage());
   }
@@ -24,11 +21,7 @@ class MedicineNamePage extends StatelessWidget {
   }
 }
 
-/// {@template medicine_view}
-/// Displays the Body of MedicineNameView
-/// {@endtemplate}
 class MedicineNameView extends StatelessWidget {
-  /// {@macro medicine_view}
   const MedicineNameView({super.key});
 
   @override

@@ -36,12 +36,12 @@ class SetupNamePage extends StatelessWidget {
                   const SizedBox(height: Sizes.medium),
                   Flexible(child: SvgPicture.asset(Vectors.name)),
                   const SizedBox(height: Sizes.medium),
-                  SetupTitle(
+                  FormTitle(
                     title: context.l10n.setupNameTitle,
                     isRequired: true,
                   ),
                   const SizedBox(height: Sizes.small),
-                  SetupSubtitle(subtitle: context.l10n.setupNameSubtitle),
+                  FormSubtitle(subtitle: context.l10n.setupNameSubtitle),
                   const SizedBox(height: Sizes.extraLarge),
                   const SetupNameInput(),
                   const SizedBox(height: Sizes.medium),
@@ -69,9 +69,10 @@ class _NextButton extends ConsumerWidget {
         ref.watch(setupLastnameProvider).value.isNotEmpty;
 
     return Button(
-        isValid: isNameValid && isLastNameValid,
-        onPressed: () =>
-            ref.read(goRouterProvider).push(SetupBirthdatePage.routeName),
-        label: context.l10n.next,);
+      isValid: isNameValid && isLastNameValid,
+      onPressed: () =>
+          ref.read(goRouterProvider).push(SetupBirthdatePage.routeName),
+      label: context.l10n.next,
+    );
   }
 }

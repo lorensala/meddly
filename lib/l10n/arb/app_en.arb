@@ -434,7 +434,7 @@
     "@startDate": {
         "description": "Text shown on the start date field"
     },
-    "medicineName": "Medicine name",
+    "medicineName": "Enter the medicine name",
     "@medicineName": {
         "description": "Text shown on the medicine name field"
     },

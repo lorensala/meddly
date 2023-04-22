@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/controller/medicine_form_controller.dart';
 import 'package:meddly/features/medicine/medicine.dart';
+import 'package:meddly/features/setup/setup.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -19,29 +20,16 @@ class MedicineNameForm extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.width * 0.5,
-              child: SvgPicture.asset(Assets.pills),
-            ),
+            Flexible(child: SvgPicture.asset(Vectors.onboarding3)),
             const SizedBox(height: Sizes.large),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InputLabel(
-                  label: context.l10n.medicineName,
-                  isRequired: true,
-                ),
-                const SizedBox(height: Sizes.small),
-                const _NameInputField(),
-                const SizedBox(height: Sizes.small),
-                InputDescription(
-                  description: context.l10n.medicineDescription,
-                )
-              ],
-            ),
-            const SizedBox(height: Sizes.medium),
+            FormTitle(title: context.l10n.medicineName, isRequired: true),
+            const SizedBox(height: Sizes.small),
+            FormSubtitle(subtitle: context.l10n.medicineDescription),
+            const SizedBox(height: Sizes.large),
+            const _NameInputField(),
+            const SizedBox(height: Sizes.extraLarge),
             const _NextButton(),
+            const SizedBox(height: Sizes.large),
           ],
         ),
       ),

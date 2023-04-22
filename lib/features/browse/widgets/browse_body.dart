@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/browse/widgets/widgets.dart';
+import 'package:meddly/features/medicine/view/view.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 
@@ -37,7 +38,8 @@ class BrowseBody extends ConsumerWidget {
               description:
                   'Register your medicines and get notified when to take them.',
               vector: Vectors.medicines,
-              onTap: () {},
+              onTap: () =>
+                  ref.read(goRouterProvider).push(MedicinePage.routeName),
             ),
             const SizedBox(height: Sizes.medium),
             BrowseCard(

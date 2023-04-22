@@ -107,7 +107,7 @@
     "asNeeded": "Cuando sea necesario",
     "addHour": "Añadir hora",
     "startDate": "Fecha de inicio",
-    "medicineName": "Nombre del medicamento",
+    "medicineName": "Ingrese el nombre del medicamento",
     "medicineDescription": "Ej. Paracetamol",
     "dosis": "Dosis",
     "dosisDescription": "Como figura en la receta o en el prospecto",

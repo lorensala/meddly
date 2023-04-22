@@ -34,9 +34,9 @@ class SetupSexPage extends StatelessWidget {
                 const SizedBox(height: Sizes.medium),
                 Flexible(child: SvgPicture.asset(Vectors.sex)),
                 const SizedBox(height: Sizes.medium),
-                SetupTitle(title: context.l10n.setupSexTitle, isRequired: true),
+                FormTitle(title: context.l10n.setupSexTitle, isRequired: true),
                 const SizedBox(height: Sizes.small),
-                SetupSubtitle(subtitle: context.l10n.setupSexSubtitle),
+                FormSubtitle(subtitle: context.l10n.setupSexSubtitle),
                 const SizedBox(height: Sizes.small),
                 const SetupSexSelector(),
                 const SizedBox(height: Sizes.large),
@@ -59,9 +59,10 @@ class _NextButton extends ConsumerWidget {
         !ref.watch(setupBirthdateProvider).pure;
 
     return Button(
-        isValid: isBirthdateValid,
-        onPressed: () =>
-            ref.read(goRouterProvider).push(SetupHeightWeightPage.routeName),
-        label: context.l10n.next,);
+      isValid: isBirthdateValid,
+      onPressed: () =>
+          ref.read(goRouterProvider).push(SetupHeightWeightPage.routeName),
+      label: context.l10n.next,
+    );
   }
 }
