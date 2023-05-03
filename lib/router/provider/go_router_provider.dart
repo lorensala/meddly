@@ -70,6 +70,13 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
             path: BrowsePage.routeName,
             pageBuilder: (context, state) =>
                 const NoTransitionPage(child: BrowsePage()),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: rootNavigatorKey,
+                path: MedicinePage.routeName,
+                builder: (context, state) => const MedicinePage(),
+              ),
+            ],
           ),
         ],
         builder: (context, state, child) {
@@ -113,11 +120,6 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
       ),
       GoRoute(
         parentNavigatorKey: rootNavigatorKey,
-        path: MedicinePage.routeName,
-        builder: (context, state) => const MedicinePage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
         path: MedicineNamePage.routeName,
         builder: (context, state) => const MedicineNamePage(),
       ),
@@ -135,6 +137,16 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         parentNavigatorKey: rootNavigatorKey,
         path: MedicineDosisPage.routeName,
         builder: (context, state) => const MedicineDosisPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: MedicineIntervalPage.routeName,
+        builder: (context, state) => const MedicineIntervalPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: MedicineHourPage.routeName,
+        builder: (context, state) => const MedicineHourPage(),
       ),
       GoRoute(
         parentNavigatorKey: rootNavigatorKey,

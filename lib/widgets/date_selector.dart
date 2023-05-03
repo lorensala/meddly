@@ -8,10 +8,10 @@ import 'package:meddly/l10n/l10n.dart';
 
 class DateSelector extends HookWidget {
   const DateSelector({
-    super.key,
     required this.initialDateTime,
     required this.onDateTimeChanged,
     required this.errorText,
+    super.key,
   });
 
   final DateTime initialDateTime;
@@ -20,14 +20,18 @@ class DateSelector extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = useState<TextStyle>(context.textTheme.bodyLarge!
-        .copyWith(color: context.colorScheme.onSecondary.withOpacity(0.5)),);
+    final textStyle = useState<TextStyle>(
+      context.textTheme.bodyLarge!
+          .copyWith(color: context.colorScheme.onSecondary.withOpacity(0.5)),
+    );
     final controller = useTextEditingController(text: 'Select a date');
 
     return TextFormField(
       controller: controller,
       style: textStyle.value,
       onTap: () async {
+        final textTheme = context.textTheme;
+        final colorScheme = context.colorScheme;
         if (Platform.isAndroid) {
           final value = await showDatePicker(
             context: context,
@@ -38,12 +42,13 @@ class DateSelector extends HookWidget {
 
           if (value != null) {
             controller.text = value.toString().dateTimeStringFormat();
-            textStyle.value = context.textTheme.bodyLarge!;
+            textStyle.value = textTheme.bodyLarge!;
             onDateTimeChanged(value);
           } else {
             controller.text = 'Select a date';
-            textStyle.value = context.textTheme.bodyLarge!.copyWith(
-                color: context.colorScheme.onSecondary.withOpacity(0.5),);
+            textStyle.value = textTheme.bodyLarge!.copyWith(
+              color: colorScheme.onSecondary.withOpacity(0.5),
+            );
             onDateTimeChanged(initialDateTime);
           }
         } else {
@@ -64,7 +69,7 @@ class DateSelector extends HookWidget {
                         onDateTimeChanged: (value) {
                           controller.text =
                               value.toString().dateTimeStringFormat();
-                          textStyle.value = context.textTheme.bodyLarge!;
+                          textStyle.value = textTheme.bodyLarge!;
                           onDateTimeChanged(value);
                         },
                       ),
@@ -75,10 +80,11 @@ class DateSelector extends HookWidget {
                         if (controller.text == 'Select a date') {
                           controller.text =
                               initialDateTime.toString().dateTimeStringFormat();
-                          textStyle.value = context.textTheme.bodyLarge!
-                              .copyWith(
-                                  color: context.colorScheme.onSecondary
-                                      .withOpacity(0.5),);
+                          textStyle.value =
+                              context.textTheme.bodyLarge!.copyWith(
+                            color: context.colorScheme.onSecondary
+                                .withOpacity(0.5),
+                          );
                           onDateTimeChanged(initialDateTime);
                         }
                         textStyle.value = context.textTheme.bodyLarge!;

@@ -5,7 +5,7 @@ import 'package:meddly/features/medicine/medicine.dart';
 class MedicinePage extends StatelessWidget {
   const MedicinePage({super.key});
 
-  static const String routeName = '/medicine';
+  static const String routeName = 'medicine';
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const MedicinePage());
@@ -14,6 +14,7 @@ class MedicinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Medicine'),
       ),

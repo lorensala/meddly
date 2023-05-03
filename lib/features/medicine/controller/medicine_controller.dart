@@ -1,8 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/router/router.dart';
 import 'package:medicine/medicine.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,10 +12,7 @@ part 'medicine_controller.g.dart';
 @riverpod
 class MedicineController extends _$MedicineController {
   @override
-  Future<Either<MedicineFailure, List<Medicine>>> build() {
-    final repository = ref.watch(medicineRepositoryProvider);
-    return repository.fetchAll();
-  }
+  FutureOr<void> build() {}
 
   Future<void> addMedicine(Medicine medicine) async {
     state = const AsyncLoading();
@@ -31,9 +29,11 @@ class MedicineController extends _$MedicineController {
     }
 
     ref.invalidate(calendarControllerProvider);
-  }
 
-  void retry() {
-    return ref.invalidateSelf();
+    state = const AsyncData(null);
+
+    ref
+        .read(goRouterProvider)
+        .go('${BrowsePage.routeName}/${MedicinePage.routeName}');
   }
 }

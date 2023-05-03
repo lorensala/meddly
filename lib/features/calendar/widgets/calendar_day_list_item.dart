@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/calendar/provider/calendar_date_provider.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
 
 class CalendarDayListItem extends ConsumerWidget {

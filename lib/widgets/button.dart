@@ -5,12 +5,12 @@ import 'package:meddly/core/core.dart';
 
 class Button extends StatelessWidget {
   const Button({
-    super.key,
-    this.isLoading = false,
-    this.isValid = true,
     required this.onPressed,
     required this.label,
+    this.isLoading = false,
+    this.isValid = true,
     this.prefix,
+    super.key,
   });
 
   final bool isLoading;
@@ -56,17 +56,19 @@ class Button extends StatelessWidget {
                             alignment: Alignment.centerLeft,
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: Sizes.medium,),
+                                horizontal: Sizes.medium,
+                              ),
                               child: SvgPicture.asset(
                                 prefix!,
                               ),
                             ),
                           ),
                           Center(
-                              child: Text(
-                            label,
-                            overflow: TextOverflow.ellipsis,
-                          ),),
+                            child: Text(
+                              label,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                         ],
                       ),
                     ),

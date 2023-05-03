@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 
-const String fontFamily = 'Be Vietnam Pro';
+const String fontFamily = 'Poppins';
 
 class AppTheme {
   static const Color _primary = Color(0xFF516EB4);
   static const Color _secondary = Color(0xFFFFFFFF);
   static const Color _background = Color(0xFFFFFFFF);
-  static const Color _onBackground = Color(0xFF383838);
+  static const Color _onBackground = Colors.black;
   static const Color _onPrimary = Color(0xFFFFFFFF);
   static const Color _onSecondary = Color(0xFF383838);
   static const Color _secondaryContainer = Color(0xffEDF1F4);
   static const Color _onSecondaryContainer = Color(0xff383838);
   static const Color _surface = Color(0xFFD9D9D9);
-  static const Color _onSurface = Color(0xFF383838);
+  static const Color _onSurface = Colors.black;
   static const Color _shadow = Color(0xFFEBEBEB);
   static const Color _error = Color(0xFFF67474);
   static const Color _onError = Color(0xFFFFFFFF);
@@ -21,20 +21,6 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData.light().copyWith(
     scaffoldBackgroundColor: _background,
     switchTheme: _switchThemeData(),
-    // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    //   backgroundColor: AppColors.secondary,
-    //   elevation: 0,
-    //   unselectedLabelStyle: TextStyle(
-    //     fontSize: 14,
-    //     fontWeight: FontWeight.w500,
-    //     color: _onSecondary,
-    //   ),
-    //   selectedLabelStyle: TextStyle(
-    //     fontSize: 14,
-    //     fontWeight: FontWeight.w500,
-    //     color: _onSecondary,
-    //   ),
-    // ),
     appBarTheme: _appBarTheme(),
     radioTheme: _radioThemeData(),
     checkboxTheme: _checkBoxThemeData(),

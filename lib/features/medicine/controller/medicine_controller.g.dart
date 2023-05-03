@@ -7,12 +7,12 @@ part of 'medicine_controller.dart';
 // **************************************************************************
 
 String _$medicineControllerHash() =>
-    r'223766ade058f15d8631f421bb5b21ce95d3d748';
+    r'658f7024a0b0c69cd648c20caa0dfd0db6d23986';
 
 /// See also [MedicineController].
 @ProviderFor(MedicineController)
-final medicineControllerProvider = AutoDisposeAsyncNotifierProvider<
-    MedicineController, Either<MedicineFailure, List<Medicine>>>.internal(
+final medicineControllerProvider =
+    AutoDisposeAsyncNotifierProvider<MedicineController, void>.internal(
   MedicineController.new,
   name: r'medicineControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,6 +22,5 @@ final medicineControllerProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$MedicineController
-    = AutoDisposeAsyncNotifier<Either<MedicineFailure, List<Medicine>>>;
+typedef _$MedicineController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

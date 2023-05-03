@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/medicine/medicine.dart';
+import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class MedicinePresentationPage extends StatelessWidget {
@@ -16,6 +18,7 @@ class MedicinePresentationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Medicine'),
         actions: [
@@ -25,7 +28,21 @@ class MedicinePresentationPage extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const _NextButton(),
       body: const MedicinePresentationView(),
+    );
+  }
+}
+
+class _NextButton extends ConsumerWidget {
+  const _NextButton();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MedicineNextButton(
+      isValid: true,
+      onPressed: () =>
+          ref.read(goRouterProvider).push(MedicineDosisPage.routeName),
     );
   }
 }

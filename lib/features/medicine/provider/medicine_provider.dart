@@ -21,8 +21,9 @@ MedicineApi medicineApi(MedicineApiRef ref) {
 @riverpod
 MedicineRepository medicineRepository(MedicineRepositoryRef ref) {
   return MedicineRepository(
-      api: ref.read(medicineApiProvider),
-      cache: ref.read(medicineCacheProvider),);
+    api: ref.read(medicineApiProvider),
+    cache: ref.read(medicineCacheProvider),
+  );
 }
 
 @riverpod
@@ -156,10 +157,22 @@ bool isMedicineReviewValid(IsMedicineReviewValidRef ref) {
 }
 
 @riverpod
-bool isMedicineFrecuencyAndHoursValid(IsMedicineFrecuencyAndHoursValidRef ref) {
+bool isMedicineStartDateAndHourValid(IsMedicineStartDateAndHourValidRef ref) {
+  final state = ref.watch(medicineFormControllerProvider);
+
+  if (state.frecuency == MedicineFrecuency.asNeeded) return true;
+
+  final startDate = state.startDate;
+  final hours = state.hours;
+
+  return startDate != null && hours.isNotEmpty;
+}
+
+@riverpod
+bool isMedicineFrecuencyValid(IsMedicineFrecuencyValidRef ref) {
   final state = ref.watch(medicineFormControllerProvider);
   if (state.frecuency == MedicineFrecuency.asNeeded) return true;
-  return state.isFrecuencyValid && state.hours.isNotEmpty;
+  return state.isFrecuencyValid;
 }
 
 @Riverpod(dependencies: [])

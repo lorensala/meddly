@@ -35,13 +35,7 @@ class PredictionCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: context.colorScheme.secondary,
           borderRadius: BorderRadius.circular(Sizes.small),
-          boxShadow: [
-            BoxShadow(
-              color: context.colorScheme.shadow,
-              blurRadius: 6,
-              offset: const Offset(2, 2),
-            ),
-          ],
+          boxShadow: Constants.boxShadow,
         ),
         child: Row(
           children: [

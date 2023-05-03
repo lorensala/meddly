@@ -3,13 +3,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
-import 'package:meddly/features/calendar/provider/calendar_date_provider.dart';
-import 'package:meddly/features/calendar/provider/provider.dart';
 
 class CalendarDayList extends HookConsumerWidget {
   const CalendarDayList({super.key});
 
-  static const double _height = 71;
+  static const double _height = 75;
   static const Duration _duration = Duration(milliseconds: 300);
   static const double _viewportFraction = 0.15;
 

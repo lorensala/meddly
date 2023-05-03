@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/medicine/controller/medicine_form_controller.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
@@ -29,30 +28,10 @@ class MedicineReviewDetails extends StatelessWidget {
                 _InstructionsField(),
               ],
             ),
-            const SizedBox(height: Sizes.medium),
-            const _SaveButton(),
             const SizedBox(height: Sizes.large),
           ],
         ),
       ),
-    );
-  }
-}
-
-class _SaveButton extends ConsumerWidget {
-  const _SaveButton();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isValid = ref.watch(isMedicineReviewValidProvider);
-    final isLoading = ref.watch(medicineControllerProvider).isLoading;
-    final notifier = ref.watch(medicineFormControllerProvider.notifier);
-
-    return Button(
-      isValid: isValid,
-      isLoading: isLoading,
-      onPressed: notifier.save,
-      label: context.l10n.save,
     );
   }
 }
@@ -70,13 +49,20 @@ class _MedicineInfo extends ConsumerWidget {
     final medicineDosis = ref.watch(medicineDosisProvider);
     final medicineDosisUnit = ref.watch(medicineDosisUnitProvider);
 
+    String getMedicineInitials() {
+      if (medicineName.value.length == 1) {
+        return '${medicineName.value[0]}${medicineName.value[0]}'.toUpperCase();
+      }
+      return (medicineName.value[0] + medicineName.value[1]).toUpperCase();
+    }
+
     return Row(
       children: [
         CircleAvatar(
           radius: 50,
           backgroundColor: context.colorScheme.primary,
           child: Text(
-            medicineName.value.substring(0, 2).toUpperCase(),
+            getMedicineInitials(),
             style: context.textTheme.displaySmall!.copyWith(
               color: context.colorScheme.onPrimary,
             ),

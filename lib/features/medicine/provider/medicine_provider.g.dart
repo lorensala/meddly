@@ -355,23 +355,39 @@ final isMedicineReviewValidProvider = AutoDisposeProvider<bool>.internal(
 );
 
 typedef IsMedicineReviewValidRef = AutoDisposeProviderRef<bool>;
-String _$isMedicineFrecuencyAndHoursValidHash() =>
-    r'a48703cbc86d7c15537a4e50318b14710d0aa45a';
+String _$isMedicineStartDateAndHourValidHash() =>
+    r'd6417685df4c81c784ae464c928a3b1481188c2b';
 
-/// See also [isMedicineFrecuencyAndHoursValid].
-@ProviderFor(isMedicineFrecuencyAndHoursValid)
-final isMedicineFrecuencyAndHoursValidProvider =
+/// See also [isMedicineStartDateAndHourValid].
+@ProviderFor(isMedicineStartDateAndHourValid)
+final isMedicineStartDateAndHourValidProvider =
     AutoDisposeProvider<bool>.internal(
-  isMedicineFrecuencyAndHoursValid,
-  name: r'isMedicineFrecuencyAndHoursValidProvider',
+  isMedicineStartDateAndHourValid,
+  name: r'isMedicineStartDateAndHourValidProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$isMedicineFrecuencyAndHoursValidHash,
+      : _$isMedicineStartDateAndHourValidHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef IsMedicineFrecuencyAndHoursValidRef = AutoDisposeProviderRef<bool>;
+typedef IsMedicineStartDateAndHourValidRef = AutoDisposeProviderRef<bool>;
+String _$isMedicineFrecuencyValidHash() =>
+    r'd7a9e0fd770f0e1f6b841cd8ef954bd5b46874de';
+
+/// See also [isMedicineFrecuencyValid].
+@ProviderFor(isMedicineFrecuencyValid)
+final isMedicineFrecuencyValidProvider = AutoDisposeProvider<bool>.internal(
+  isMedicineFrecuencyValid,
+  name: r'isMedicineFrecuencyValidProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$isMedicineFrecuencyValidHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef IsMedicineFrecuencyValidRef = AutoDisposeProviderRef<bool>;
 String _$medicineHash() => r'd44db858e4538240420d4eb29568280cf63371b3';
 
 /// See also [medicine].

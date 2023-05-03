@@ -22,8 +22,9 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   final hive = Hive;
   await hive.initFlutter();
-  hive.registerAdapter<UserDto>(UserDtoAdapter());
-  hive.registerAdapter<MedicineDto>(MedicineDtoAdapter());
+  hive
+    ..registerAdapter<UserDto>(UserDtoAdapter())
+    ..registerAdapter<MedicineDto>(MedicineDtoAdapter());
 
   await Future.wait<dynamic>([
     hive.openBox<UserDto>(userBoxKey),

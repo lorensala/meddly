@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meddly/core/helpers.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/home/home.dart';
-import 'package:meddly/features/medicine/controller/medicine_controller.dart';
-import 'package:meddly/features/medicine/view/view.dart';
-import 'package:meddly/features/medicine/widgets/widgets.dart';
+import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -21,6 +19,7 @@ class MedicineReviewDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Medicine'),
         actions: [
@@ -30,7 +29,40 @@ class MedicineReviewDetailsPage extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const _SaveButton(),
       body: const MedicineReviewDetailsView(),
+    );
+  }
+}
+
+class _SaveButton extends ConsumerWidget {
+  const _SaveButton();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isValid = ref.watch(isMedicineReviewValidProvider);
+    final isLoading = ref.watch(medicineControllerProvider).isLoading;
+    final notifier = ref.watch(medicineFormControllerProvider.notifier);
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: context.colorScheme.secondary,
+        boxShadow: Constants.boxShadow,
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(Sizes.medium),
+          child: SizedBox(
+            height: Sizes.buttonHeight,
+            child: Button(
+              isLoading: isLoading,
+              isValid: isValid,
+              onPressed: notifier.save,
+              label: context.l10n.save,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
