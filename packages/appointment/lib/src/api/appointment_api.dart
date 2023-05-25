@@ -1,73 +1,53 @@
 import 'package:appointment/src/core/core.dart';
-import 'package:appointment/src/dto/dto.dart';
+import 'package:appointment/src/models/models.dart';
 import 'package:dio/dio.dart';
 
-/// {@template appointment_api}
-/// API for appointment operations.
-/// {@endtemplate}
 class AppointmentApi {
-  /// {@macro appointment_api}
-  AppointmentApi(Dio dio, {String? baseUrl}) : _dio = dio {
-    _dio.options.baseUrl = baseUrl ?? _dio.options.baseUrl;
-  }
+  const AppointmentApi(Dio dio) : _dio = dio;
 
   final Dio _dio;
 
-  /// Creates a new Appointment.
-  ///
-  /// Throws a [AppointmentDioException] if the request fails.
-  Future<void> createAppointment(AppointmentDto appointment) async {
+  Future<void> createAppointment(Appointment appointment) async {
     try {
       await _dio.post<dynamic>(appointmentPath, data: appointment.toJson());
     } on DioError catch (e) {
-      AppointmentDioException(e);
+      throw AppointmentException.fromDioError(e);
     }
   }
 
-  /// Deletes a Appointment.
-  ///
-  /// Throws a [AppointmentDioException] if the request fails.
-  Future<void> deleteAppointment(AppointmentDto appointment) async {
+  Future<void> deleteAppointment(String id) async {
     try {
-      await _dio.delete<dynamic>('$appointmentPath/${appointment.id}');
+      await _dio.delete<dynamic>('$appointmentPath/$id');
     } on DioError catch (e) {
-      throw AppointmentDioException(e);
+      throw AppointmentException.fromDioError(e);
     }
   }
 
-  /// Updates a Appointment.
-  ///
-  /// Throws a [AppointmentDioException] if the request fails.
-  Future<void> updateAppointment(AppointmentDto appointment) async {
+  Future<void> updateAppointment(Appointment appointment) async {
     try {
       await _dio.post<dynamic>(
         '$appointmentPath/${appointment.id}',
         data: appointment.toJson(),
       );
     } on DioError catch (e) {
-      throw AppointmentDioException(e);
+      throw AppointmentException.fromDioError(e);
     }
   }
 
-  /// Fetches all Appointments.
-  ///
-  /// Throws a [AppointmentDioException] if the request fails.\
-  /// Throws a [AppointmentSerializationException] if the response data cannot
-  /// be serialized.
-  Future<List<AppointmentDto>> fetchAll() async {
+  Future<List<Appointment>> fetchAll() async {
     late final Response<List<dynamic>> res;
     try {
       res = await _dio.get<List<dynamic>>(appointmentPath);
     } on DioError catch (e) {
-      throw AppointmentDioException(e);
+      throw AppointmentException.fromDioError(e);
     }
 
     try {
       return res.data!
-          .map((e) => AppointmentDto.fromJson(e as Map<String, dynamic>))
+          .map((e) => Appointment.fromJson(e as Map<String, dynamic>))
           .toList();
     } catch (_) {
-      throw AppointmentSerializationException();
+      throw const AppointmentSerializationException();
     }
   }
 }

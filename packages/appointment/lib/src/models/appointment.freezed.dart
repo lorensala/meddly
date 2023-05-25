@@ -14,16 +14,21 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Appointment _$AppointmentFromJson(Map<String, dynamic> json) {
+  return _Appointment.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Appointment {
   DateTime get date => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get doctor => throw _privateConstructorUsedError;
   AppointmentSpeciality? get speciality => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AppointmentCopyWith<Appointment> get copyWith =>
       throw _privateConstructorUsedError;
@@ -38,11 +43,11 @@ abstract class $AppointmentCopyWith<$Res> {
   $Res call(
       {DateTime date,
       String name,
+      int? id,
       String? doctor,
       AppointmentSpeciality? speciality,
       String? location,
-      String? notes,
-      int id});
+      String? notes});
 }
 
 /// @nodoc
@@ -60,11 +65,11 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
   $Res call({
     Object? date = null,
     Object? name = null,
+    Object? id = freezed,
     Object? doctor = freezed,
     Object? speciality = freezed,
     Object? location = freezed,
     Object? notes = freezed,
-    Object? id = null,
   }) {
     return _then(_value.copyWith(
       date: null == date
@@ -75,6 +80,10 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       doctor: freezed == doctor
           ? _value.doctor
           : doctor // ignore: cast_nullable_to_non_nullable
@@ -91,10 +100,6 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -110,11 +115,11 @@ abstract class _$$_AppointmentCopyWith<$Res>
   $Res call(
       {DateTime date,
       String name,
+      int? id,
       String? doctor,
       AppointmentSpeciality? speciality,
       String? location,
-      String? notes,
-      int id});
+      String? notes});
 }
 
 /// @nodoc
@@ -130,11 +135,11 @@ class __$$_AppointmentCopyWithImpl<$Res>
   $Res call({
     Object? date = null,
     Object? name = null,
+    Object? id = freezed,
     Object? doctor = freezed,
     Object? speciality = freezed,
     Object? location = freezed,
     Object? notes = freezed,
-    Object? id = null,
   }) {
     return _then(_$_Appointment(
       date: null == date
@@ -145,6 +150,10 @@ class __$$_AppointmentCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       doctor: freezed == doctor
           ? _value.doctor
           : doctor // ignore: cast_nullable_to_non_nullable
@@ -161,31 +170,32 @@ class __$$_AppointmentCopyWithImpl<$Res>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Appointment extends _Appointment {
   const _$_Appointment(
       {required this.date,
       required this.name,
+      this.id,
       this.doctor,
       this.speciality,
       this.location,
-      this.notes,
-      required this.id})
+      this.notes})
       : super._();
+
+  factory _$_Appointment.fromJson(Map<String, dynamic> json) =>
+      _$$_AppointmentFromJson(json);
 
   @override
   final DateTime date;
   @override
   final String name;
+  @override
+  final int? id;
   @override
   final String? doctor;
   @override
@@ -194,12 +204,10 @@ class _$_Appointment extends _Appointment {
   final String? location;
   @override
   final String? notes;
-  @override
-  final int id;
 
   @override
   String toString() {
-    return 'Appointment(date: $date, name: $name, doctor: $doctor, speciality: $speciality, location: $location, notes: $notes, id: $id)';
+    return 'Appointment(date: $date, name: $name, id: $id, doctor: $doctor, speciality: $speciality, location: $location, notes: $notes)';
   }
 
   @override
@@ -209,41 +217,54 @@ class _$_Appointment extends _Appointment {
             other is _$_Appointment &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.doctor, doctor) || other.doctor == doctor) &&
             (identical(other.speciality, speciality) ||
                 other.speciality == speciality) &&
             (identical(other.location, location) ||
                 other.location == location) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, date, name, doctor, speciality, location, notes, id);
+      runtimeType, date, name, id, doctor, speciality, location, notes);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_AppointmentCopyWith<_$_Appointment> get copyWith =>
       __$$_AppointmentCopyWithImpl<_$_Appointment>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_AppointmentToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Appointment extends Appointment {
   const factory _Appointment(
       {required final DateTime date,
       required final String name,
+      final int? id,
       final String? doctor,
       final AppointmentSpeciality? speciality,
       final String? location,
-      final String? notes,
-      required final int id}) = _$_Appointment;
+      final String? notes}) = _$_Appointment;
   const _Appointment._() : super._();
+
+  factory _Appointment.fromJson(Map<String, dynamic> json) =
+      _$_Appointment.fromJson;
 
   @override
   DateTime get date;
   @override
   String get name;
+  @override
+  int? get id;
   @override
   String? get doctor;
   @override
@@ -252,8 +273,6 @@ abstract class _Appointment extends Appointment {
   String? get location;
   @override
   String? get notes;
-  @override
-  int get id;
   @override
   @JsonKey(ignore: true)
   _$$_AppointmentCopyWith<_$_Appointment> get copyWith =>
