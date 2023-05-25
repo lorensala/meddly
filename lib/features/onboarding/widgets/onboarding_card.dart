@@ -4,10 +4,10 @@ import 'package:meddly/core/core.dart';
 
 class OnboardingCard extends StatelessWidget {
   const OnboardingCard({
-    super.key,
     required this.asset,
     required this.title,
     required this.description,
+    super.key,
   });
 
   final String asset;
@@ -28,11 +28,12 @@ class OnboardingCard extends StatelessWidget {
               Text(
                 title,
                 style: Theme.of(context).textTheme.titleLarge,
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: Sizes.medium),
+              const SizedBox(height: Sizes.small),
               Text(
                 description,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: context.colorScheme.onSecondary.withOpacity(0.5),
                     ),
                 textAlign: TextAlign.center,

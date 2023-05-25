@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/splash/splash.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -11,9 +9,7 @@ part 'auth_controller.g.dart';
 @riverpod
 class AuthController extends _$AuthController {
   @override
-  Stream<User?> build() {
-    return ref.watch(authRepositoryProvider).user;
-  }
+  FutureOr<void> build() {}
 
   Future<void> logInWithEmailAndPassword({
     required String email,
@@ -21,38 +17,35 @@ class AuthController extends _$AuthController {
   }) async {
     state = const AsyncLoading();
 
-    final res = await ref
+    final (err, _) = await ref
         .read(authRepositoryProvider)
         .logInWithEmailAndPassword(email: email, password: password);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    if (res.isRight()) {
+    if (err == null) {
       ref.read(goRouterProvider).go(SplashPage.routeName);
-    }
-
-    if (res.isLeft()) {
-      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    } else {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
     }
   }
 
   Future<void> logInWithGoogle() async {
     state = const AsyncLoading();
 
-    final res = await ref.read(authRepositoryProvider).logInWithGoogle();
+    final (err, isNotCancel) =
+        await ref.read(authRepositoryProvider).logInWithGoogle();
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    if (res.isRight()) {
-      if (res.asRight()) {
+    if (err == null) {
+      if (isNotCancel) {
         ref.read(goRouterProvider).go(SplashPage.routeName);
       } else {
         state = const AsyncData(null);
       }
-    }
-
-    if (res.isLeft()) {
-      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    } else {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
     }
   }
 
@@ -62,60 +55,60 @@ class AuthController extends _$AuthController {
   }) async {
     state = const AsyncLoading();
 
-    final res = await ref
+    final (err, _) = await ref
         .read(authRepositoryProvider)
-        .registerWithEmailAndPassword(email: email, password: password);
+        .signUpWithEmailAndPassword(email: email, password: password);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    if (res.isRight()) {
+    if (err == null) {
       ref.read(goRouterProvider).go(SplashPage.routeName);
-    }
-
-    if (res.isLeft()) {
-      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    } else {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
     }
   }
 
   Future<void> signOut() async {
     state = const AsyncLoading();
 
-    final res = await ref.read(authRepositoryProvider).signOut();
+    final (err, _) = await ref.read(authRepositoryProvider).signOut();
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    if (res.isRight()) {
+    if (err == null) {
+      state = const AsyncData(null);
       ref.read(goRouterProvider).go(SplashPage.routeName);
-    }
-
-    if (res.isLeft()) {
-      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    } else {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
     }
   }
 
   Future<void> sendPasswordResetEmail({required String email}) async {
     state = const AsyncLoading();
 
-    final res = await ref
+    final (err, _) = await ref
         .read(authRepositoryProvider)
         .sendPasswordResetEmail(email: email);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    if (res.isLeft()) {
-      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    if (err == null) {
+      state = const AsyncData(null);
+    } else {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
     }
   }
 
   Future<void> deleteUser() async {
     state = const AsyncLoading();
 
-    final res = await ref.read(authRepositoryProvider).deleteUser();
+    final (err, _) = await ref.read(authRepositoryProvider).delete();
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-
-    if (res.isLeft()) {
-      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    if (err == null) {
+      state = const AsyncData(null);
+    } else {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
     }
   }
 }

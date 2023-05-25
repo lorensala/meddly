@@ -36,7 +36,7 @@ final notificationPreferenceProvider =
       ? null
       : _$notificationPreferenceHash,
   dependencies: const <ProviderOrFamily>[],
-  allTransitiveDependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
 typedef NotificationPreferenceRef

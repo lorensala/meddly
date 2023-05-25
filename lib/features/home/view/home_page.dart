@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/home/home.dart';
-import 'package:meddly/features/onboarding/onboarding.dart';
+import 'package:meddly/features/user/user.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -11,14 +9,13 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(authControllerProvider, (_, state) {
-      state.whenOrNull(
-        data: (user) {
-          if (user == null) {
-            context.go(OnboardingPage.routeName);
-          }
-        },
-      );
+    ref.listen(userProvider, (_, user) {
+      // user.fold(() => null, (a) => null)
+      // state.whenOrNull(
+      //   data: (user) {
+
+      //   },
+      // );
     });
 
     return const HomeBody();

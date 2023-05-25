@@ -7,7 +7,7 @@ import 'package:meddly/widgets/widgets.dart';
 class MedicineHourPage extends StatelessWidget {
   const MedicineHourPage({super.key});
 
-  static const String routeName = '/medicine/hour';
+  static const String routeName = 'hour';
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(

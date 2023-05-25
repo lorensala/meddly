@@ -8,7 +8,7 @@ import 'package:medicine/medicine.dart';
 class MedicineIntervalPage extends StatelessWidget {
   const MedicineIntervalPage({super.key});
 
-  static const String routeName = '/medicine/interval';
+  static const String routeName = 'interval';
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(

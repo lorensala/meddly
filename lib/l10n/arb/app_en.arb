@@ -36,6 +36,14 @@
     "@emailAlreadyInUse": {
         "description": "Text shown when the user tries to login with an email that is already in use"
     },
+    "weakPassword": "Weak password",
+    "invalidActionCode": "Invalid action code",
+    "expiredActionCode": "Expired action code",
+    "requiresRecentLogin": "Requires recent login",
+    "invalidVerificationCode": "Invalid verification code",
+    "invalidVerificationId": "Invalid verification id",
+    "tooManyRequests": "Too many requests",
+    "logInWithGoogleError": "Error logging in with Google",
     "invalidEmail": "The email address is badly formatted.",
     "@invalidEmail": {
         "description": "Text shown when the user tries to login with an invalid email"

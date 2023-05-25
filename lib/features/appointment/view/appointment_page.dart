@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:meddly/features/appointment/view/view.dart';
 import 'package:meddly/features/appointment/widgets/appointment_body.dart';
 
 /// {@template appointment_page}
@@ -9,16 +11,24 @@ class AppointmentPage extends StatelessWidget {
   const AppointmentPage({super.key});
 
   /// The static route for AppointmentPage
-  static Route<dynamic> route() {
-    return MaterialPageRoute<dynamic>(builder: (_) => const AppointmentPage());
-  }
-  
+  static String routeName = 'appointment';
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: AppointmentView(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Appointment'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          GoRouter.of(context).push(NewAppointmentPage.routeName);
+        },
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ),
+      body: const AppointmentView(),
     );
-  }  
+  }
 }
 
 /// {@template appointment_view}

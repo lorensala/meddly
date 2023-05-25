@@ -16,10 +16,10 @@ part 'user_exist_provider.g.dart';
 Future<void> userExist(UserExistRef ref) async {
   final router = ref.read(goRouterProvider);
   // Check if Firebase User is logged in.
-  final user = ref.read(currentUserProvider);
+  final user = ref.read(userProvider);
 
   // If false, navigate to [OnboardingPage].
-  if (user == null) {
+  if (user.isEmpty) {
     return router.go(OnboardingPage.routeName);
   }
 

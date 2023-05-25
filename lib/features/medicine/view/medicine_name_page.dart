@@ -6,7 +6,7 @@ import 'package:meddly/router/provider/go_router_provider.dart';
 class MedicineNamePage extends StatelessWidget {
   const MedicineNamePage({super.key});
 
-  static const String routeName = '/medicine/name';
+  static const String routeName = 'name';
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const MedicineNamePage());

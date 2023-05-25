@@ -1,7 +1,6 @@
 export 'bottom_navigation.dart';
 export 'event_card.dart';
 export 'feature_card.dart';
-export 'features_list.dart';
 export 'home_body.dart';
 export 'home_title.dart';
 export 'notifications_button.dart';

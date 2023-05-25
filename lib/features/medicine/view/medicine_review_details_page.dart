@@ -8,7 +8,7 @@ import 'package:meddly/widgets/widgets.dart';
 class MedicineReviewDetailsPage extends StatelessWidget {
   const MedicineReviewDetailsPage({super.key});
 
-  static const String routeName = '/medicine/review';
+  static const String routeName = 'review';
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(

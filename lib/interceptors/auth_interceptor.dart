@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:authentication/authentication.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth_repository/firebase_auth_repository.dart';
 
 /// {@template auth_interceptor}
 /// An interceptor that adds the current user's id token to the request headers.
@@ -11,17 +11,19 @@ class AuthInterceptor extends QueuedInterceptor {
   AuthInterceptor(this.authRepository);
 
   /// {@macro auth_repository}
-  final AuthRepository authRepository;
+  final FirebaseAuthRepository authRepository;
 
   @override
   Future<void> onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final token = await authRepository.currentUser?.getIdToken();
+    final token = await authRepository.getIdToken();
 
-    options.headers
-        .putIfAbsent(HttpHeaders.authorizationHeader, () => 'Bearer $token');
+    options
+      // ..baseUrl = ''
+      ..headers
+          .putIfAbsent(HttpHeaders.authorizationHeader, () => 'Bearer $token');
     return handler.next(options);
   }
 

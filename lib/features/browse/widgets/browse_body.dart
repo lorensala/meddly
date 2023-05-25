@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/medicine/view/view.dart';
 import 'package:meddly/features/predictions/predictions.dart';
@@ -47,7 +48,9 @@ class BrowseBody extends ConsumerWidget {
               title: 'Appointments',
               description: 'Schedule your appointments and get reminders.',
               vector: Vectors.appointments,
-              onTap: () {},
+              onTap: () => ref
+                  .read(goRouterProvider)
+                  .push('${BrowsePage.routeName}/${AppointmentPage.routeName}'),
             ),
             const SizedBox(height: Sizes.medium),
             BrowseCard(

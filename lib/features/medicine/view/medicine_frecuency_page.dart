@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/medicine/medicine.dart';
-import 'package:meddly/features/medicine/view/medicine_interval_page.dart';
 import 'package:meddly/router/router.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class MedicineFrecuencyPage extends StatelessWidget {
   const MedicineFrecuencyPage({super.key});
 
-  static const String routeName = '/medicine/frecuency';
+  static const String routeName = 'frecuency';
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(

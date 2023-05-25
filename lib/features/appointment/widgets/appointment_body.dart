@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/appointment/provider/provider.dart';
 
 /// {@template appointment_body}
@@ -13,15 +14,8 @@ class AppointmentBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final count = ref.watch(appointmentProvider);
-    return Scaffold(
-        appBar: AppBar(),
-        body: Center(
-          child: Text('You have pushed the button this many times: $count'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => ref.read(appointmentProvider.notifier).increment(),
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ),);
+    return Center(
+      child: Text('You have pushed the button this many times: $count'),
+    );
   }
 }

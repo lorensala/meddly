@@ -16,7 +16,7 @@ final calendarDateProvider = AutoDisposeProvider<DateTime>.internal(
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$calendarDateHash,
   dependencies: const <ProviderOrFamily>[],
-  allTransitiveDependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
 typedef CalendarDateRef = AutoDisposeProviderRef<DateTime>;

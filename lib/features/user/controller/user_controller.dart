@@ -51,12 +51,13 @@ class UserController extends _$UserController {
     state = const AsyncLoading();
     ref.read(userRepositoryProvider).clearCache();
 
-    final res = await ref.read(authRepositoryProvider).signOut();
+    final (err, _) = await ref.read(authRepositoryProvider).signOut();
+    // TODO(me): remove user from cache
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    if (res.isLeft()) {
-      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
     }
   }
 }

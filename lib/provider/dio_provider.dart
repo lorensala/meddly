@@ -1,9 +1,9 @@
 import 'dart:io' show Platform;
 
-import 'package:authentication/authentication.dart';
 import 'package:dio/dio.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/interceptors/interceptors.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'dio_provider.g.dart';

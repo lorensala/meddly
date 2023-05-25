@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meddly/features/appointment/view/view.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/medicine/medicine.dart';
@@ -75,6 +76,50 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                 parentNavigatorKey: rootNavigatorKey,
                 path: MedicinePage.routeName,
                 builder: (context, state) => const MedicinePage(),
+                routes: [
+                  GoRoute(
+                    parentNavigatorKey: rootNavigatorKey,
+                    path: MedicineNamePage.routeName,
+                    builder: (context, state) => const MedicineNamePage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: rootNavigatorKey,
+                    path: MedicinePresentationPage.routeName,
+                    builder: (context, state) =>
+                        const MedicinePresentationPage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: rootNavigatorKey,
+                    path: MedicineFrecuencyPage.routeName,
+                    builder: (context, state) => const MedicineFrecuencyPage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: rootNavigatorKey,
+                    path: MedicineDosisPage.routeName,
+                    builder: (context, state) => const MedicineDosisPage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: rootNavigatorKey,
+                    path: MedicineIntervalPage.routeName,
+                    builder: (context, state) => const MedicineIntervalPage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: rootNavigatorKey,
+                    path: MedicineHourPage.routeName,
+                    builder: (context, state) => const MedicineHourPage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: rootNavigatorKey,
+                    path: MedicineReviewDetailsPage.routeName,
+                    builder: (context, state) =>
+                        const MedicineReviewDetailsPage(),
+                  ),
+                ],
+              ),
+              GoRoute(
+                parentNavigatorKey: rootNavigatorKey,
+                path: AppointmentPage.routeName,
+                builder: (context, state) => const AppointmentPage(),
               ),
             ],
           ),
@@ -82,6 +127,11 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         builder: (context, state, child) {
           return ScaffoldWithBottomNavBar(child: child);
         },
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: NewAppointmentPage.routeName,
+        builder: (context, state) => const NewAppointmentPage(),
       ),
       GoRoute(
         parentNavigatorKey: rootNavigatorKey,
@@ -117,41 +167,6 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         parentNavigatorKey: rootNavigatorKey,
         path: PredictionResultsPage.routeName,
         builder: (context, state) => const PredictionResultsPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: MedicineNamePage.routeName,
-        builder: (context, state) => const MedicineNamePage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: MedicinePresentationPage.routeName,
-        builder: (context, state) => const MedicinePresentationPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: MedicineFrecuencyPage.routeName,
-        builder: (context, state) => const MedicineFrecuencyPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: MedicineDosisPage.routeName,
-        builder: (context, state) => const MedicineDosisPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: MedicineIntervalPage.routeName,
-        builder: (context, state) => const MedicineIntervalPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: MedicineHourPage.routeName,
-        builder: (context, state) => const MedicineHourPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: MedicineReviewDetailsPage.routeName,
-        builder: (context, state) => const MedicineReviewDetailsPage(),
       ),
     ],
   );

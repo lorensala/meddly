@@ -1,5 +1,5 @@
-import 'package:authentication/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth_repository/firebase_auth_repository.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/phone/phone.dart';
@@ -12,8 +12,6 @@ part 'phone_controller.g.dart';
 
 @riverpod
 class PhoneController extends _$PhoneController {
-  //! TODO(lorenzo): change to PhoneState that contains a state called CodeSent()
-  //! because im unabled to show the Loading state when the button is pressed
   @override
   PhoneState build() {
     return const PhoneState.initial();
@@ -35,12 +33,12 @@ class PhoneController extends _$PhoneController {
     final phoneNumberWithCountryCode =
         '${countryCode.code}${phoneNumber.value}';
 
-    await authRepository.verifyPhone(
+    await authRepository.verifyPhoneNumber(
       phoneNumber: phoneNumberWithCountryCode,
       verificationCompleted: verificationCompleted,
       verificationFailed: (e) {
-        final failure = AuthFailure.fromCode(e.code);
-        state = PhoneState.error(failure.message(l10n));
+        final err = AuthException.fromFirebaseCode(e.code);
+        state = PhoneState.error(err.describe(l10n));
       },
       codeSent: (verificationId, forceResendingToken) {
         _verificationId = verificationId;
@@ -64,13 +62,16 @@ class PhoneController extends _$PhoneController {
 
     final phoneNumber = ref.watch(phoneNumberProvider);
     final countryCode = ref.watch(countryCodeProvider);
-
-    final res = await authRepository.updatePhoneNumber(credential);
     final phoneNumberWithCountryCode =
         '${countryCode.code}${phoneNumber.value}';
 
-    if (res.isLeft()) {
-      state = PhoneState.error(res.asLeft().message(l10n));
+    final (err, _) = await authRepository.updatePhoneNumber(
+      phoneNumber: phoneNumberWithCountryCode,
+      verificationId: _verificationId,
+    );
+
+    if (err != null) {
+      state = PhoneState.error(err.describe(l10n));
       return;
     }
 

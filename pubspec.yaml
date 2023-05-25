@@ -4,20 +4,20 @@ version: 1.0.0+1
 publish_to: none
 
 environment:
-  sdk: ">=2.18.0 <3.0.0"
-  flutter: 3.3.8
+  sdk: ">=3.0.1 <4.0.0"
+  flutter: 3.10.1
 
 dependencies:
   animate_do: ^3.0.2
   appointment:
     path: packages/appointment
-  authentication:
-    path: packages/authentication
   calendar:
     path: packages/calendar
   dartz: ^0.10.1
   dio: ^5.0.3
-  firebase_auth: ^4.2.5
+  firebase_auth_repository:
+    git:
+      url: git@github.com:lorensala/firebase_auth_repository.git
   firebase_core: ^2.4.1
   flutter:
     sdk: flutter
@@ -31,7 +31,7 @@ dependencies:
   go_router: ^6.5.1
   hive_flutter: ^1.1.0
   hooks_riverpod: ^2.3.5
-  intl: ^0.17.0
+  intl: ^0.18.0
   measurement:
     path: packages/measurement
   medicine:

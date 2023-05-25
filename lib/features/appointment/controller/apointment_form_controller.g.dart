@@ -7,12 +7,12 @@ part of 'apointment_form_controller.dart';
 // **************************************************************************
 
 String _$appointmentFormControllerHash() =>
-    r'd70d20c6c9bd6caabe25d86dcb9b96c6bd7ceffd';
+    r'33f489184871928c8b549148c2788da1af76e89a';
 
 /// See also [AppointmentFormController].
 @ProviderFor(AppointmentFormController)
-final appointmentFormControllerProvider =
-    AutoDisposeAsyncNotifierProvider<AppointmentFormController, void>.internal(
+final appointmentFormControllerProvider = AutoDisposeNotifierProvider<
+    AppointmentFormController, AppointmentFormState>.internal(
   AppointmentFormController.new,
   name: r'appointmentFormControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,5 +22,5 @@ final appointmentFormControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$AppointmentFormController = AutoDisposeAsyncNotifier<void>;
+typedef _$AppointmentFormController = AutoDisposeNotifier<AppointmentFormState>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

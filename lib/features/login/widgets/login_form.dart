@@ -7,11 +7,11 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return const Padding(
       padding: Sizes.mediumPadding,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: [
           EmailInput(),
           SizedBox(height: Sizes.medium),
           PasswordInput(),
