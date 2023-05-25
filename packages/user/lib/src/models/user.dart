@@ -17,8 +17,8 @@ class User with _$User {
     @Default('') String phone,
     @Default(Sex.male()) Sex sex,
     @Default('') String birth,
-    @Default(0) double height,
-    @Default(0) double weight,
+    double? height,
+    double? weight,
     @Default('') String invitation,
   }) = _User;
 
@@ -30,4 +30,9 @@ class User with _$User {
     uid: '',
     email: '',
   );
+
+  bool get hasBasicInformation =>
+      firstName.isNotEmpty && lastName.isNotEmpty && birth.isNotEmpty;
+
+  bool get hasPhoneNumber => phone.isNotEmpty;
 }

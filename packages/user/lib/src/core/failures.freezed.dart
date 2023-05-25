@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'failures.dart';
 
@@ -23,6 +23,7 @@ mixin _$UserFailure {
     required TResult Function() serialization,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
     required TResult Function() response,
     required TResult Function() cancel,
     required TResult Function() cache,
@@ -36,6 +37,7 @@ mixin _$UserFailure {
     TResult? Function()? serialization,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? response,
     TResult? Function()? cancel,
     TResult? Function()? cache,
@@ -49,6 +51,7 @@ mixin _$UserFailure {
     TResult Function()? serialization,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
     TResult Function()? response,
     TResult Function()? cancel,
     TResult Function()? cache,
@@ -63,6 +66,8 @@ mixin _$UserFailure {
     required TResult Function(UserSerializationFailure value) serialization,
     required TResult Function(UserSendTimeoutFailure value) sendTimeout,
     required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(UserResponseFailure value) response,
     required TResult Function(UserCancelFailure value) cancel,
     required TResult Function(UserCacheFailure value) cache,
@@ -76,6 +81,7 @@ mixin _$UserFailure {
     TResult? Function(UserSerializationFailure value)? serialization,
     TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult? Function(UserResponseFailure value)? response,
     TResult? Function(UserCancelFailure value)? cancel,
     TResult? Function(UserCacheFailure value)? cache,
@@ -89,6 +95,7 @@ mixin _$UserFailure {
     TResult Function(UserSerializationFailure value)? serialization,
     TResult Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult Function(UserResponseFailure value)? response,
     TResult Function(UserCancelFailure value)? cancel,
     TResult Function(UserCacheFailure value)? cache,
@@ -159,6 +166,7 @@ class _$UserNotFoundFailure implements UserNotFoundFailure {
     required TResult Function() serialization,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
     required TResult Function() response,
     required TResult Function() cancel,
     required TResult Function() cache,
@@ -175,6 +183,7 @@ class _$UserNotFoundFailure implements UserNotFoundFailure {
     TResult? Function()? serialization,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? response,
     TResult? Function()? cancel,
     TResult? Function()? cache,
@@ -191,6 +200,7 @@ class _$UserNotFoundFailure implements UserNotFoundFailure {
     TResult Function()? serialization,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
     TResult Function()? response,
     TResult Function()? cancel,
     TResult Function()? cache,
@@ -211,6 +221,8 @@ class _$UserNotFoundFailure implements UserNotFoundFailure {
     required TResult Function(UserSerializationFailure value) serialization,
     required TResult Function(UserSendTimeoutFailure value) sendTimeout,
     required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(UserResponseFailure value) response,
     required TResult Function(UserCancelFailure value) cancel,
     required TResult Function(UserCacheFailure value) cache,
@@ -227,6 +239,7 @@ class _$UserNotFoundFailure implements UserNotFoundFailure {
     TResult? Function(UserSerializationFailure value)? serialization,
     TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult? Function(UserResponseFailure value)? response,
     TResult? Function(UserCancelFailure value)? cancel,
     TResult? Function(UserCacheFailure value)? cache,
@@ -243,6 +256,7 @@ class _$UserNotFoundFailure implements UserNotFoundFailure {
     TResult Function(UserSerializationFailure value)? serialization,
     TResult Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult Function(UserResponseFailure value)? response,
     TResult Function(UserCancelFailure value)? cancel,
     TResult Function(UserCacheFailure value)? cache,
@@ -303,6 +317,7 @@ class _$UserTimeoutFailure implements UserTimeoutFailure {
     required TResult Function() serialization,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
     required TResult Function() response,
     required TResult Function() cancel,
     required TResult Function() cache,
@@ -319,6 +334,7 @@ class _$UserTimeoutFailure implements UserTimeoutFailure {
     TResult? Function()? serialization,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? response,
     TResult? Function()? cancel,
     TResult? Function()? cache,
@@ -335,6 +351,7 @@ class _$UserTimeoutFailure implements UserTimeoutFailure {
     TResult Function()? serialization,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
     TResult Function()? response,
     TResult Function()? cancel,
     TResult Function()? cache,
@@ -355,6 +372,8 @@ class _$UserTimeoutFailure implements UserTimeoutFailure {
     required TResult Function(UserSerializationFailure value) serialization,
     required TResult Function(UserSendTimeoutFailure value) sendTimeout,
     required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(UserResponseFailure value) response,
     required TResult Function(UserCancelFailure value) cancel,
     required TResult Function(UserCacheFailure value) cache,
@@ -371,6 +390,7 @@ class _$UserTimeoutFailure implements UserTimeoutFailure {
     TResult? Function(UserSerializationFailure value)? serialization,
     TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult? Function(UserResponseFailure value)? response,
     TResult? Function(UserCancelFailure value)? cancel,
     TResult? Function(UserCacheFailure value)? cache,
@@ -387,6 +407,7 @@ class _$UserTimeoutFailure implements UserTimeoutFailure {
     TResult Function(UserSerializationFailure value)? serialization,
     TResult Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult Function(UserResponseFailure value)? response,
     TResult Function(UserCancelFailure value)? cancel,
     TResult Function(UserCacheFailure value)? cache,
@@ -448,6 +469,7 @@ class _$UserSerializationFailure implements UserSerializationFailure {
     required TResult Function() serialization,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
     required TResult Function() response,
     required TResult Function() cancel,
     required TResult Function() cache,
@@ -464,6 +486,7 @@ class _$UserSerializationFailure implements UserSerializationFailure {
     TResult? Function()? serialization,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? response,
     TResult? Function()? cancel,
     TResult? Function()? cache,
@@ -480,6 +503,7 @@ class _$UserSerializationFailure implements UserSerializationFailure {
     TResult Function()? serialization,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
     TResult Function()? response,
     TResult Function()? cancel,
     TResult Function()? cache,
@@ -500,6 +524,8 @@ class _$UserSerializationFailure implements UserSerializationFailure {
     required TResult Function(UserSerializationFailure value) serialization,
     required TResult Function(UserSendTimeoutFailure value) sendTimeout,
     required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(UserResponseFailure value) response,
     required TResult Function(UserCancelFailure value) cancel,
     required TResult Function(UserCacheFailure value) cache,
@@ -516,6 +542,7 @@ class _$UserSerializationFailure implements UserSerializationFailure {
     TResult? Function(UserSerializationFailure value)? serialization,
     TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult? Function(UserResponseFailure value)? response,
     TResult? Function(UserCancelFailure value)? cancel,
     TResult? Function(UserCacheFailure value)? cache,
@@ -532,6 +559,7 @@ class _$UserSerializationFailure implements UserSerializationFailure {
     TResult Function(UserSerializationFailure value)? serialization,
     TResult Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult Function(UserResponseFailure value)? response,
     TResult Function(UserCancelFailure value)? cancel,
     TResult Function(UserCacheFailure value)? cache,
@@ -592,6 +620,7 @@ class _$UserSendTimeoutFailure implements UserSendTimeoutFailure {
     required TResult Function() serialization,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
     required TResult Function() response,
     required TResult Function() cancel,
     required TResult Function() cache,
@@ -608,6 +637,7 @@ class _$UserSendTimeoutFailure implements UserSendTimeoutFailure {
     TResult? Function()? serialization,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? response,
     TResult? Function()? cancel,
     TResult? Function()? cache,
@@ -624,6 +654,7 @@ class _$UserSendTimeoutFailure implements UserSendTimeoutFailure {
     TResult Function()? serialization,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
     TResult Function()? response,
     TResult Function()? cancel,
     TResult Function()? cache,
@@ -644,6 +675,8 @@ class _$UserSendTimeoutFailure implements UserSendTimeoutFailure {
     required TResult Function(UserSerializationFailure value) serialization,
     required TResult Function(UserSendTimeoutFailure value) sendTimeout,
     required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(UserResponseFailure value) response,
     required TResult Function(UserCancelFailure value) cancel,
     required TResult Function(UserCacheFailure value) cache,
@@ -660,6 +693,7 @@ class _$UserSendTimeoutFailure implements UserSendTimeoutFailure {
     TResult? Function(UserSerializationFailure value)? serialization,
     TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult? Function(UserResponseFailure value)? response,
     TResult? Function(UserCancelFailure value)? cancel,
     TResult? Function(UserCacheFailure value)? cache,
@@ -676,6 +710,7 @@ class _$UserSendTimeoutFailure implements UserSendTimeoutFailure {
     TResult Function(UserSerializationFailure value)? serialization,
     TResult Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult Function(UserResponseFailure value)? response,
     TResult Function(UserCancelFailure value)? cancel,
     TResult Function(UserCacheFailure value)? cache,
@@ -738,6 +773,7 @@ class _$UserReceiveTimeoutFailure implements UserReceiveTimeoutFailure {
     required TResult Function() serialization,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
     required TResult Function() response,
     required TResult Function() cancel,
     required TResult Function() cache,
@@ -754,6 +790,7 @@ class _$UserReceiveTimeoutFailure implements UserReceiveTimeoutFailure {
     TResult? Function()? serialization,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? response,
     TResult? Function()? cancel,
     TResult? Function()? cache,
@@ -770,6 +807,7 @@ class _$UserReceiveTimeoutFailure implements UserReceiveTimeoutFailure {
     TResult Function()? serialization,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
     TResult Function()? response,
     TResult Function()? cancel,
     TResult Function()? cache,
@@ -790,6 +828,8 @@ class _$UserReceiveTimeoutFailure implements UserReceiveTimeoutFailure {
     required TResult Function(UserSerializationFailure value) serialization,
     required TResult Function(UserSendTimeoutFailure value) sendTimeout,
     required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(UserResponseFailure value) response,
     required TResult Function(UserCancelFailure value) cancel,
     required TResult Function(UserCacheFailure value) cache,
@@ -806,6 +846,7 @@ class _$UserReceiveTimeoutFailure implements UserReceiveTimeoutFailure {
     TResult? Function(UserSerializationFailure value)? serialization,
     TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult? Function(UserResponseFailure value)? response,
     TResult? Function(UserCancelFailure value)? cancel,
     TResult? Function(UserCacheFailure value)? cache,
@@ -822,6 +863,7 @@ class _$UserReceiveTimeoutFailure implements UserReceiveTimeoutFailure {
     TResult Function(UserSerializationFailure value)? serialization,
     TResult Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult Function(UserResponseFailure value)? response,
     TResult Function(UserCancelFailure value)? cancel,
     TResult Function(UserCacheFailure value)? cache,
@@ -837,6 +879,160 @@ class _$UserReceiveTimeoutFailure implements UserReceiveTimeoutFailure {
 
 abstract class UserReceiveTimeoutFailure implements UserFailure {
   const factory UserReceiveTimeoutFailure() = _$UserReceiveTimeoutFailure;
+}
+
+/// @nodoc
+abstract class _$$UserConnectionTimeOutFailureCopyWith<$Res> {
+  factory _$$UserConnectionTimeOutFailureCopyWith(
+          _$UserConnectionTimeOutFailure value,
+          $Res Function(_$UserConnectionTimeOutFailure) then) =
+      __$$UserConnectionTimeOutFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserConnectionTimeOutFailureCopyWithImpl<$Res>
+    extends _$UserFailureCopyWithImpl<$Res, _$UserConnectionTimeOutFailure>
+    implements _$$UserConnectionTimeOutFailureCopyWith<$Res> {
+  __$$UserConnectionTimeOutFailureCopyWithImpl(
+      _$UserConnectionTimeOutFailure _value,
+      $Res Function(_$UserConnectionTimeOutFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UserConnectionTimeOutFailure implements UserConnectionTimeOutFailure {
+  const _$UserConnectionTimeOutFailure();
+
+  @override
+  String toString() {
+    return 'UserFailure.connectionTimeOut()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserConnectionTimeOutFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notFound,
+    required TResult Function() timeout,
+    required TResult Function() serialization,
+    required TResult Function() sendTimeout,
+    required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
+    required TResult Function() response,
+    required TResult Function() cancel,
+    required TResult Function() cache,
+    required TResult Function() unknown,
+  }) {
+    return connectionTimeOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? notFound,
+    TResult? Function()? timeout,
+    TResult? Function()? serialization,
+    TResult? Function()? sendTimeout,
+    TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
+    TResult? Function()? response,
+    TResult? Function()? cancel,
+    TResult? Function()? cache,
+    TResult? Function()? unknown,
+  }) {
+    return connectionTimeOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notFound,
+    TResult Function()? timeout,
+    TResult Function()? serialization,
+    TResult Function()? sendTimeout,
+    TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
+    TResult Function()? response,
+    TResult Function()? cancel,
+    TResult Function()? cache,
+    TResult Function()? unknown,
+    required TResult orElse(),
+  }) {
+    if (connectionTimeOut != null) {
+      return connectionTimeOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserNotFoundFailure value) notFound,
+    required TResult Function(UserTimeoutFailure value) timeout,
+    required TResult Function(UserSerializationFailure value) serialization,
+    required TResult Function(UserSendTimeoutFailure value) sendTimeout,
+    required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
+    required TResult Function(UserResponseFailure value) response,
+    required TResult Function(UserCancelFailure value) cancel,
+    required TResult Function(UserCacheFailure value) cache,
+    required TResult Function(UserUnknownFailure value) unknown,
+  }) {
+    return connectionTimeOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserNotFoundFailure value)? notFound,
+    TResult? Function(UserTimeoutFailure value)? timeout,
+    TResult? Function(UserSerializationFailure value)? serialization,
+    TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
+    TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
+    TResult? Function(UserResponseFailure value)? response,
+    TResult? Function(UserCancelFailure value)? cancel,
+    TResult? Function(UserCacheFailure value)? cache,
+    TResult? Function(UserUnknownFailure value)? unknown,
+  }) {
+    return connectionTimeOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserNotFoundFailure value)? notFound,
+    TResult Function(UserTimeoutFailure value)? timeout,
+    TResult Function(UserSerializationFailure value)? serialization,
+    TResult Function(UserSendTimeoutFailure value)? sendTimeout,
+    TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
+    TResult Function(UserResponseFailure value)? response,
+    TResult Function(UserCancelFailure value)? cancel,
+    TResult Function(UserCacheFailure value)? cache,
+    TResult Function(UserUnknownFailure value)? unknown,
+    required TResult orElse(),
+  }) {
+    if (connectionTimeOut != null) {
+      return connectionTimeOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserConnectionTimeOutFailure implements UserFailure {
+  const factory UserConnectionTimeOutFailure() = _$UserConnectionTimeOutFailure;
 }
 
 /// @nodoc
@@ -882,6 +1078,7 @@ class _$UserResponseFailure implements UserResponseFailure {
     required TResult Function() serialization,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
     required TResult Function() response,
     required TResult Function() cancel,
     required TResult Function() cache,
@@ -898,6 +1095,7 @@ class _$UserResponseFailure implements UserResponseFailure {
     TResult? Function()? serialization,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? response,
     TResult? Function()? cancel,
     TResult? Function()? cache,
@@ -914,6 +1112,7 @@ class _$UserResponseFailure implements UserResponseFailure {
     TResult Function()? serialization,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
     TResult Function()? response,
     TResult Function()? cancel,
     TResult Function()? cache,
@@ -934,6 +1133,8 @@ class _$UserResponseFailure implements UserResponseFailure {
     required TResult Function(UserSerializationFailure value) serialization,
     required TResult Function(UserSendTimeoutFailure value) sendTimeout,
     required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(UserResponseFailure value) response,
     required TResult Function(UserCancelFailure value) cancel,
     required TResult Function(UserCacheFailure value) cache,
@@ -950,6 +1151,7 @@ class _$UserResponseFailure implements UserResponseFailure {
     TResult? Function(UserSerializationFailure value)? serialization,
     TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult? Function(UserResponseFailure value)? response,
     TResult? Function(UserCancelFailure value)? cancel,
     TResult? Function(UserCacheFailure value)? cache,
@@ -966,6 +1168,7 @@ class _$UserResponseFailure implements UserResponseFailure {
     TResult Function(UserSerializationFailure value)? serialization,
     TResult Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult Function(UserResponseFailure value)? response,
     TResult Function(UserCancelFailure value)? cancel,
     TResult Function(UserCacheFailure value)? cache,
@@ -1026,6 +1229,7 @@ class _$UserCancelFailure implements UserCancelFailure {
     required TResult Function() serialization,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
     required TResult Function() response,
     required TResult Function() cancel,
     required TResult Function() cache,
@@ -1042,6 +1246,7 @@ class _$UserCancelFailure implements UserCancelFailure {
     TResult? Function()? serialization,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? response,
     TResult? Function()? cancel,
     TResult? Function()? cache,
@@ -1058,6 +1263,7 @@ class _$UserCancelFailure implements UserCancelFailure {
     TResult Function()? serialization,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
     TResult Function()? response,
     TResult Function()? cancel,
     TResult Function()? cache,
@@ -1078,6 +1284,8 @@ class _$UserCancelFailure implements UserCancelFailure {
     required TResult Function(UserSerializationFailure value) serialization,
     required TResult Function(UserSendTimeoutFailure value) sendTimeout,
     required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(UserResponseFailure value) response,
     required TResult Function(UserCancelFailure value) cancel,
     required TResult Function(UserCacheFailure value) cache,
@@ -1094,6 +1302,7 @@ class _$UserCancelFailure implements UserCancelFailure {
     TResult? Function(UserSerializationFailure value)? serialization,
     TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult? Function(UserResponseFailure value)? response,
     TResult? Function(UserCancelFailure value)? cancel,
     TResult? Function(UserCacheFailure value)? cache,
@@ -1110,6 +1319,7 @@ class _$UserCancelFailure implements UserCancelFailure {
     TResult Function(UserSerializationFailure value)? serialization,
     TResult Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult Function(UserResponseFailure value)? response,
     TResult Function(UserCancelFailure value)? cancel,
     TResult Function(UserCacheFailure value)? cache,
@@ -1170,6 +1380,7 @@ class _$UserCacheFailure implements UserCacheFailure {
     required TResult Function() serialization,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
     required TResult Function() response,
     required TResult Function() cancel,
     required TResult Function() cache,
@@ -1186,6 +1397,7 @@ class _$UserCacheFailure implements UserCacheFailure {
     TResult? Function()? serialization,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? response,
     TResult? Function()? cancel,
     TResult? Function()? cache,
@@ -1202,6 +1414,7 @@ class _$UserCacheFailure implements UserCacheFailure {
     TResult Function()? serialization,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
     TResult Function()? response,
     TResult Function()? cancel,
     TResult Function()? cache,
@@ -1222,6 +1435,8 @@ class _$UserCacheFailure implements UserCacheFailure {
     required TResult Function(UserSerializationFailure value) serialization,
     required TResult Function(UserSendTimeoutFailure value) sendTimeout,
     required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(UserResponseFailure value) response,
     required TResult Function(UserCancelFailure value) cancel,
     required TResult Function(UserCacheFailure value) cache,
@@ -1238,6 +1453,7 @@ class _$UserCacheFailure implements UserCacheFailure {
     TResult? Function(UserSerializationFailure value)? serialization,
     TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult? Function(UserResponseFailure value)? response,
     TResult? Function(UserCancelFailure value)? cancel,
     TResult? Function(UserCacheFailure value)? cache,
@@ -1254,6 +1470,7 @@ class _$UserCacheFailure implements UserCacheFailure {
     TResult Function(UserSerializationFailure value)? serialization,
     TResult Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult Function(UserResponseFailure value)? response,
     TResult Function(UserCancelFailure value)? cancel,
     TResult Function(UserCacheFailure value)? cache,
@@ -1314,6 +1531,7 @@ class _$UserUnknownFailure implements UserUnknownFailure {
     required TResult Function() serialization,
     required TResult Function() sendTimeout,
     required TResult Function() receiveTimeout,
+    required TResult Function() connectionTimeOut,
     required TResult Function() response,
     required TResult Function() cancel,
     required TResult Function() cache,
@@ -1330,6 +1548,7 @@ class _$UserUnknownFailure implements UserUnknownFailure {
     TResult? Function()? serialization,
     TResult? Function()? sendTimeout,
     TResult? Function()? receiveTimeout,
+    TResult? Function()? connectionTimeOut,
     TResult? Function()? response,
     TResult? Function()? cancel,
     TResult? Function()? cache,
@@ -1346,6 +1565,7 @@ class _$UserUnknownFailure implements UserUnknownFailure {
     TResult Function()? serialization,
     TResult Function()? sendTimeout,
     TResult Function()? receiveTimeout,
+    TResult Function()? connectionTimeOut,
     TResult Function()? response,
     TResult Function()? cancel,
     TResult Function()? cache,
@@ -1366,6 +1586,8 @@ class _$UserUnknownFailure implements UserUnknownFailure {
     required TResult Function(UserSerializationFailure value) serialization,
     required TResult Function(UserSendTimeoutFailure value) sendTimeout,
     required TResult Function(UserReceiveTimeoutFailure value) receiveTimeout,
+    required TResult Function(UserConnectionTimeOutFailure value)
+        connectionTimeOut,
     required TResult Function(UserResponseFailure value) response,
     required TResult Function(UserCancelFailure value) cancel,
     required TResult Function(UserCacheFailure value) cache,
@@ -1382,6 +1604,7 @@ class _$UserUnknownFailure implements UserUnknownFailure {
     TResult? Function(UserSerializationFailure value)? serialization,
     TResult? Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult? Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult? Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult? Function(UserResponseFailure value)? response,
     TResult? Function(UserCancelFailure value)? cancel,
     TResult? Function(UserCacheFailure value)? cache,
@@ -1398,6 +1621,7 @@ class _$UserUnknownFailure implements UserUnknownFailure {
     TResult Function(UserSerializationFailure value)? serialization,
     TResult Function(UserSendTimeoutFailure value)? sendTimeout,
     TResult Function(UserReceiveTimeoutFailure value)? receiveTimeout,
+    TResult Function(UserConnectionTimeOutFailure value)? connectionTimeOut,
     TResult Function(UserResponseFailure value)? response,
     TResult Function(UserCancelFailure value)? cancel,
     TResult Function(UserCacheFailure value)? cache,

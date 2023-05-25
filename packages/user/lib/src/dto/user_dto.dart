@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
 import 'package:user/src/core/core.dart';
 import 'package:user/src/models/models.dart';
 
@@ -9,19 +10,20 @@ part 'user_dto.g.dart';
 /// Data transfer object for user operations.
 /// {@endtemplate}
 @freezed
+@HiveType(typeId: 1)
 class UserDto with _$UserDto {
   /// {@macro user_dto}
   const factory UserDto({
-    required String id,
-    required String email,
-    String? firstName,
-    String? lastName,
-    String? invitation,
-    String? phone,
-    bool? sex,
-    double? height,
-    double? weight,
-    String? birth,
+    @HiveField(0) required String id,
+    @HiveField(1) required String email,
+    @HiveField(2) String? firstName,
+    @HiveField(3) String? lastName,
+    @HiveField(4) String? invitation,
+    @HiveField(5) String? phone,
+    @HiveField(6) bool? sex,
+    @HiveField(7) double? height,
+    @HiveField(8) double? weight,
+    @HiveField(9) String? birth,
   }) = _UserDto;
 
   /// Converts a [User] to a [UserDto].
@@ -38,7 +40,7 @@ class UserDto with _$UserDto {
         sex: user.sex.toBool(),
         height: user.height,
         weight: user.weight,
-        birth: user.birth,
+        birth: user.birth.isEmpty ? null : user.birth,
         invitation: user.invitation,
       );
     } catch (e) {
@@ -68,6 +70,7 @@ class UserDto with _$UserDto {
         height: height ?? 0,
         weight: weight ?? 0,
         birth: birth ?? '',
+        invitation: invitation ?? '',
       );
     } catch (e) {
       throw UserDtoException();

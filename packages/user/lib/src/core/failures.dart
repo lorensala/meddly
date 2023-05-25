@@ -23,6 +23,9 @@ class UserFailure with _$UserFailure {
   const factory UserFailure.receiveTimeout() = UserReceiveTimeoutFailure;
 
   /// {@macro user_failure}
+  const factory UserFailure.connectionTimeOut() = UserConnectionTimeOutFailure;
+
+  /// {@macro user_failure}
   const factory UserFailure.response() = UserResponseFailure;
 
   /// {@macro user_failure}

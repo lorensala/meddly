@@ -1,0 +1,5 @@
+bricks:
+  hello: 0.1.0+1
+  feature_brick: ^0.6.0
+  model: ^0.5.1
+  flutter_bloc_feature: ^0.2.1

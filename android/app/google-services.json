@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "993986469814",
+    "project_id": "meddly-da2c2",
+    "storage_bucket": "meddly-da2c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993986469814:android:f081a49e7e9f25aba9ab17",
+        "android_client_info": {
+          "package_name": "com.lorenzosala.meddly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993986469814-1365c4m9tn7otgjodinpeldk89o3c0it.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lorenzosala.meddly",
+            "certificate_hash": "17f657cbad5368c23dd949184f6df154523257a9"
+          }
+        },
+        {
+          "client_id": "993986469814-maho7sua2boeeuedbeqfsj9isaqoh6ia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdCUkmev0t2iy3oTJw60w5Z-TCY36IR48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993986469814-maho7sua2boeeuedbeqfsj9isaqoh6ia.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "993986469814-8di35emn74nv5o16mkmo4i3bcctpde6f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lorenzosala.meddly"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

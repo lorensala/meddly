@@ -21,6 +21,7 @@ class UserApi {
   /// successful.
   Future<UserDto> createUser(UserDto user) async {
     late final Response<dynamic> res;
+    late final Response<dynamic> userResponse;
 
     try {
       res = await _dio.post<dynamic>(userPath, data: user.toJson());
@@ -33,7 +34,9 @@ class UserApi {
     }
 
     try {
-      return UserDto.fromJson(res.data as Map<String, dynamic>);
+      // TODO(lorenzo): esto no debería ser así....
+      userResponse = await _dio.get(userPath);
+      return UserDto.fromJson(userResponse.data as Map<String, dynamic>);
     } catch (e) {
       throw UserSerializationException();
     }
@@ -43,7 +46,7 @@ class UserApi {
   ///
   /// Updates a user from the api.
   Future<void> deleteUser() async {
-    late final Response<dynamic> res;
+    final Response<dynamic> res;
 
     try {
       res = await _dio.delete<dynamic>(
@@ -93,7 +96,7 @@ class UserApi {
   /// Throws a [UserDioException] if the operation was not successful.
   /// Throws a [UserSerializationException] if the serialization was not
   /// successful.
-  Future<UserDto> updateUser(UserDto user) async {
+  Future<void> updateUser(UserDto user) async {
     late final Response<dynamic> res;
 
     try {
@@ -104,12 +107,6 @@ class UserApi {
       }
     } on DioError catch (e) {
       throw UserDioException(e);
-    }
-
-    try {
-      return UserDto.fromJson(res.data as Map<String, dynamic>);
-    } catch (e) {
-      throw UserSerializationException();
     }
   }
 }

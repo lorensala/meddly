@@ -1,0 +1,10 @@
+export 'setup_birthdate_provider.dart';
+export 'setup_error_messages.dart';
+export 'setup_height_provider.dart';
+export 'setup_last_name_error_message_provider.dart';
+export 'setup_last_name_provider.dart';
+export 'setup_name_error_message_provider.dart';
+export 'setup_name_provider.dart';
+export 'setup_required_fields_are_valid.dart';
+export 'setup_sex_provider.dart';
+export 'setup_weight_provider.dart';

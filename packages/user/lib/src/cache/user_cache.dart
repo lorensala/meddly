@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:user/user.dart';
 
 /// {@template user_cache}
@@ -8,45 +9,43 @@ class UserCache {
   /// {@macro user_cache}
   UserCache(this._box);
 
-  final Box<Map<String, dynamic>> _box;
+  final Box<UserDto> _box;
 
   /// Watches the user from the cache.
   ///
-  /// Returns a [Stream] of [UserDto]s.
+  /// Returns a [Stream] of [UserDto]s.\
   /// Throws a [UserCacheException] if the operation was not successful.
-  Stream<UserDto> user() {
+  Stream<UserDto?> get user {
     try {
-      return _box.watch().map(
-            (event) => UserDto.fromJson(event.value as Map<String, dynamic>),
-          );
+      return _box.watch(key: userKey).map(
+        (event) {
+          return event.value == null ? null : event.value as UserDto;
+        },
+      ).startWith(read());
     } catch (e) {
-      throw UserCacheException();
+      return Stream.error(e);
     }
   }
 
   /// Reads the user from the cache.
   ///
-  /// Returns null if the user is not in the cache.
-  /// Returns the [UserDto] if the user is in the cache.
-  /// Throws a [UserCacheException] if the operation was not successful.
+  /// Returns null if the user is not in the cache.\
+  /// Returns the [UserDto] if the user is in the cache.\
+  /// Throws a [UserCacheException] if the operation was not successful.\
   /// Throws a [UserSerializationException] if the operation was not successful.
   UserDto? read() {
-    final Map<String, dynamic>? data;
+    final UserDto? user;
     try {
-      data = _box.get(_box.keys.first);
+      user = _box.get(userKey);
     } catch (e) {
       throw UserCacheException();
     }
 
-    if (data == null) {
+    if (user == null) {
       return null;
     }
 
-    try {
-      return UserDto.fromJson(data);
-    } catch (e) {
-      throw UserSerializationException();
-    }
+    return user;
   }
 
   /// Writes the user to the cache.
@@ -54,7 +53,7 @@ class UserCache {
   /// Throws a [UserCacheException] if the operation was not successful.
   Future<void> write(UserDto user) async {
     try {
-      await _box.put(user.id, user.toJson());
+      await _box.put(userKey, user);
     } catch (e) {
       throw UserCacheException();
     }

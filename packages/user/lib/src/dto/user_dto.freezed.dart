@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_dto.dart';
 
@@ -20,15 +20,25 @@ UserDto _$UserDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserDto {
+  @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get email => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get firstName => throw _privateConstructorUsedError;
+  @HiveField(3)
   String? get lastName => throw _privateConstructorUsedError;
+  @HiveField(4)
   String? get invitation => throw _privateConstructorUsedError;
+  @HiveField(5)
   String? get phone => throw _privateConstructorUsedError;
+  @HiveField(6)
   bool? get sex => throw _privateConstructorUsedError;
+  @HiveField(7)
   double? get height => throw _privateConstructorUsedError;
+  @HiveField(8)
   double? get weight => throw _privateConstructorUsedError;
+  @HiveField(9)
   String? get birth => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,16 +52,16 @@ abstract class $UserDtoCopyWith<$Res> {
       _$UserDtoCopyWithImpl<$Res, UserDto>;
   @useResult
   $Res call(
-      {String id,
-      String email,
-      String? firstName,
-      String? lastName,
-      String? invitation,
-      String? phone,
-      bool? sex,
-      double? height,
-      double? weight,
-      String? birth});
+      {@HiveField(0) String id,
+      @HiveField(1) String email,
+      @HiveField(2) String? firstName,
+      @HiveField(3) String? lastName,
+      @HiveField(4) String? invitation,
+      @HiveField(5) String? phone,
+      @HiveField(6) bool? sex,
+      @HiveField(7) double? height,
+      @HiveField(8) double? weight,
+      @HiveField(9) String? birth});
 }
 
 /// @nodoc
@@ -131,16 +141,16 @@ abstract class _$$_UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      String email,
-      String? firstName,
-      String? lastName,
-      String? invitation,
-      String? phone,
-      bool? sex,
-      double? height,
-      double? weight,
-      String? birth});
+      {@HiveField(0) String id,
+      @HiveField(1) String email,
+      @HiveField(2) String? firstName,
+      @HiveField(3) String? lastName,
+      @HiveField(4) String? invitation,
+      @HiveField(5) String? phone,
+      @HiveField(6) bool? sex,
+      @HiveField(7) double? height,
+      @HiveField(8) double? weight,
+      @HiveField(9) String? birth});
 }
 
 /// @nodoc
@@ -213,40 +223,50 @@ class __$$_UserDtoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserDto extends _UserDto {
   const _$_UserDto(
-      {required this.id,
-      required this.email,
-      this.firstName,
-      this.lastName,
-      this.invitation,
-      this.phone,
-      this.sex,
-      this.height,
-      this.weight,
-      this.birth})
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.email,
+      @HiveField(2) this.firstName,
+      @HiveField(3) this.lastName,
+      @HiveField(4) this.invitation,
+      @HiveField(5) this.phone,
+      @HiveField(6) this.sex,
+      @HiveField(7) this.height,
+      @HiveField(8) this.weight,
+      @HiveField(9) this.birth})
       : super._();
 
   factory _$_UserDto.fromJson(Map<String, dynamic> json) =>
       _$$_UserDtoFromJson(json);
 
   @override
+  @HiveField(0)
   final String id;
   @override
+  @HiveField(1)
   final String email;
   @override
+  @HiveField(2)
   final String? firstName;
   @override
+  @HiveField(3)
   final String? lastName;
   @override
+  @HiveField(4)
   final String? invitation;
   @override
+  @HiveField(5)
   final String? phone;
   @override
+  @HiveField(6)
   final bool? sex;
   @override
+  @HiveField(7)
   final double? height;
   @override
+  @HiveField(8)
   final double? weight;
   @override
+  @HiveField(9)
   final String? birth;
 
   @override
@@ -295,39 +315,49 @@ class _$_UserDto extends _UserDto {
 
 abstract class _UserDto extends UserDto {
   const factory _UserDto(
-      {required final String id,
-      required final String email,
-      final String? firstName,
-      final String? lastName,
-      final String? invitation,
-      final String? phone,
-      final bool? sex,
-      final double? height,
-      final double? weight,
-      final String? birth}) = _$_UserDto;
+      {@HiveField(0) required final String id,
+      @HiveField(1) required final String email,
+      @HiveField(2) final String? firstName,
+      @HiveField(3) final String? lastName,
+      @HiveField(4) final String? invitation,
+      @HiveField(5) final String? phone,
+      @HiveField(6) final bool? sex,
+      @HiveField(7) final double? height,
+      @HiveField(8) final double? weight,
+      @HiveField(9) final String? birth}) = _$_UserDto;
   const _UserDto._() : super._();
 
   factory _UserDto.fromJson(Map<String, dynamic> json) = _$_UserDto.fromJson;
 
   @override
+  @HiveField(0)
   String get id;
   @override
+  @HiveField(1)
   String get email;
   @override
+  @HiveField(2)
   String? get firstName;
   @override
+  @HiveField(3)
   String? get lastName;
   @override
+  @HiveField(4)
   String? get invitation;
   @override
+  @HiveField(5)
   String? get phone;
   @override
+  @HiveField(6)
   bool? get sex;
   @override
+  @HiveField(7)
   double? get height;
   @override
+  @HiveField(8)
   double? get weight;
   @override
+  @HiveField(9)
   String? get birth;
   @override
   @JsonKey(ignore: true)
