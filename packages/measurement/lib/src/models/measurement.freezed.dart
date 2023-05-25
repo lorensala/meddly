@@ -14,13 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Measurement _$MeasurementFromJson(Map<String, dynamic> json) {
+  return _Measurement.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Measurement {
   DateTime get date => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
+  MeasurementType get type => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MeasurementCopyWith<Measurement> get copyWith =>
       throw _privateConstructorUsedError;
@@ -32,7 +37,7 @@ abstract class $MeasurementCopyWith<$Res> {
           Measurement value, $Res Function(Measurement) then) =
       _$MeasurementCopyWithImpl<$Res, Measurement>;
   @useResult
-  $Res call({DateTime date, String type, double value, int id});
+  $Res call({DateTime date, MeasurementType type, double value, int id});
 }
 
 /// @nodoc
@@ -61,7 +66,7 @@ class _$MeasurementCopyWithImpl<$Res, $Val extends Measurement>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MeasurementType,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -82,7 +87,7 @@ abstract class _$$_MeasurementCopyWith<$Res>
       __$$_MeasurementCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime date, String type, double value, int id});
+  $Res call({DateTime date, MeasurementType type, double value, int id});
 }
 
 /// @nodoc
@@ -109,7 +114,7 @@ class __$$_MeasurementCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as MeasurementType,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -123,19 +128,21 @@ class __$$_MeasurementCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$_Measurement extends _Measurement {
+@JsonSerializable()
+class _$_Measurement implements _Measurement {
   const _$_Measurement(
       {required this.date,
       required this.type,
       required this.value,
-      required this.id})
-      : super._();
+      required this.id});
+
+  factory _$_Measurement.fromJson(Map<String, dynamic> json) =>
+      _$$_MeasurementFromJson(json);
 
   @override
   final DateTime date;
   @override
-  final String type;
+  final MeasurementType type;
   @override
   final double value;
   @override
@@ -157,6 +164,7 @@ class _$_Measurement extends _Measurement {
             (identical(other.id, id) || other.id == id));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, date, type, value, id);
 
@@ -165,20 +173,29 @@ class _$_Measurement extends _Measurement {
   @pragma('vm:prefer-inline')
   _$$_MeasurementCopyWith<_$_Measurement> get copyWith =>
       __$$_MeasurementCopyWithImpl<_$_Measurement>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_MeasurementToJson(
+      this,
+    );
+  }
 }
 
-abstract class _Measurement extends Measurement {
+abstract class _Measurement implements Measurement {
   const factory _Measurement(
       {required final DateTime date,
-      required final String type,
+      required final MeasurementType type,
       required final double value,
       required final int id}) = _$_Measurement;
-  const _Measurement._() : super._();
+
+  factory _Measurement.fromJson(Map<String, dynamic> json) =
+      _$_Measurement.fromJson;
 
   @override
   DateTime get date;
   @override
-  String get type;
+  MeasurementType get type;
   @override
   double get value;
   @override

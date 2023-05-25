@@ -1,112 +1,51 @@
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:measurement/src/api/api.dart';
 import 'package:measurement/src/core/core.dart';
-import 'package:measurement/src/dto/dto.dart';
 import 'package:measurement/src/models/models.dart';
 
-/// {@template measurement_repository}
-/// Repository for measurement operations.
-/// {@endtemplate}
 class MeasurementRepository {
-  /// {@macro measurement_repository}
   MeasurementRepository({required MeasurementApi api}) : _api = api;
 
   final MeasurementApi _api;
 
-  /// Adds a [Measurement] to the calendar.
-  ///
-  /// Returns a [MeasurementFailure] if the [Measurement] fails to add.
-  Future<Either<MeasurementFailure, Unit>> addMeasurement(
+  Future<(MeasurementException?, void)> addMeasurement(
     Measurement measurement,
   ) async {
     try {
-      final dto = MeasurementDto.fromDomain(measurement);
-      await _api.createMeasurement(dto);
+      await _api.createMeasurement(measurement);
 
-      return right(unit);
-    } on MeasurementDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.receiveTimeout:
-        case DioErrorType.sendTimeout:
-          return left(const MeasurementFailure.sendTimeout());
-        case DioErrorType.cancel:
-          return left(const MeasurementFailure.cancel());
-        case DioErrorType.connectionTimeout:
-          return left(const MeasurementFailure.connectionTimeOut());
-        case DioErrorType.badCertificate:
-          return left(const MeasurementFailure.unknown());
-        case DioErrorType.badResponse:
-          return left(const MeasurementFailure.response());
-        case DioErrorType.connectionError:
-          return left(const MeasurementFailure.unknown());
-        case DioErrorType.unknown:
-          return left(const MeasurementFailure.unknown());
-      }
+      return (null, null);
+    } on MeasurementException catch (e) {
+      return (e, null);
+    } catch (e) {
+      return (const MeasurementUnknownException(), null);
     }
   }
 
-  /// Deletes a [Measurement] to the calendar.
-  ///
-  /// Returns a [MeasurementFailure] if the [Measurement] fails to add.
-  Future<Either<MeasurementFailure, Unit>> deleteMeasurement(
-    Measurement measurement,
+  Future<(MeasurementException?, void)> deleteMeasurement(
+    String id,
   ) async {
     try {
-      final dto = MeasurementDto.fromDomain(measurement);
-      await _api.deleteMeasurement(dto);
+      await _api.deleteMeasurement(id);
 
-      return right(unit);
-    } on MeasurementDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.receiveTimeout:
-        case DioErrorType.sendTimeout:
-          return left(const MeasurementFailure.sendTimeout());
-        case DioErrorType.cancel:
-          return left(const MeasurementFailure.cancel());
-        case DioErrorType.connectionTimeout:
-          return left(const MeasurementFailure.connectionTimeOut());
-        case DioErrorType.badCertificate:
-          return left(const MeasurementFailure.unknown());
-        case DioErrorType.badResponse:
-          return left(const MeasurementFailure.response());
-        case DioErrorType.connectionError:
-          return left(const MeasurementFailure.unknown());
-        case DioErrorType.unknown:
-          return left(const MeasurementFailure.unknown());
-      }
+      return (null, null);
+    } on MeasurementException catch (e) {
+      return (e, null);
+    } catch (e) {
+      return (const MeasurementUnknownException(), null);
     }
   }
 
-  /// Updates a [Measurement] to the calendar.
-  ///
-  /// Returns a [MeasurementFailure] if the [Measurement] fails to add.
-  Future<Either<MeasurementFailure, Unit>> updateMeasurement(
+  Future<(MeasurementException?, void)> updateMeasurement(
     Measurement measurement,
   ) async {
     try {
-      final dto = MeasurementDto.fromDomain(measurement);
-      await _api.updateMeasurement(dto);
+      await _api.updateMeasurement(measurement);
 
-      return right(unit);
-    } on MeasurementDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.receiveTimeout:
-        case DioErrorType.sendTimeout:
-          return left(const MeasurementFailure.sendTimeout());
-        case DioErrorType.cancel:
-          return left(const MeasurementFailure.cancel());
-        case DioErrorType.connectionTimeout:
-          return left(const MeasurementFailure.connectionTimeOut());
-        case DioErrorType.badCertificate:
-          return left(const MeasurementFailure.unknown());
-        case DioErrorType.badResponse:
-          return left(const MeasurementFailure.response());
-        case DioErrorType.connectionError:
-          return left(const MeasurementFailure.unknown());
-        case DioErrorType.unknown:
-          return left(const MeasurementFailure.unknown());
-      }
+      return (null, null);
+    } on MeasurementException catch (e) {
+      return (e, null);
+    } catch (e) {
+      return (const MeasurementUnknownException(), null);
     }
   }
 }

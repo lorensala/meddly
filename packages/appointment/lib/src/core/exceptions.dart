@@ -54,11 +54,3 @@ class AppointmentConnectionException extends AppointmentException {
 class AppointmentNotYoursException extends AppointmentException {
   const AppointmentNotYoursException();
 }
-
-class AppointmentCancelException extends AppointmentException {
-  const AppointmentCancelException();
-}
-
-class AppointmentModelConversionException extends AppointmentException {
-  const AppointmentModelConversionException();
-}
