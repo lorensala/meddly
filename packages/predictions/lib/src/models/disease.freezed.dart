@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Disease _$DiseaseFromJson(Map<String, dynamic> json) {
+  return _Disease.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Disease {
   String get disease => throw _privateConstructorUsedError;
   double get probability => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DiseaseCopyWith<Disease> get copyWith => throw _privateConstructorUsedError;
 }
@@ -97,9 +102,12 @@ class __$$_DiseaseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Disease implements _Disease {
   const _$_Disease({required this.disease, required this.probability});
+
+  factory _$_Disease.fromJson(Map<String, dynamic> json) =>
+      _$$_DiseaseFromJson(json);
 
   @override
   final String disease;
@@ -121,6 +129,7 @@ class _$_Disease implements _Disease {
                 other.probability == probability));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, disease, probability);
 
@@ -129,12 +138,21 @@ class _$_Disease implements _Disease {
   @pragma('vm:prefer-inline')
   _$$_DiseaseCopyWith<_$_Disease> get copyWith =>
       __$$_DiseaseCopyWithImpl<_$_Disease>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_DiseaseToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Disease implements Disease {
   const factory _Disease(
       {required final String disease,
       required final double probability}) = _$_Disease;
+
+  factory _Disease.fromJson(Map<String, dynamic> json) = _$_Disease.fromJson;
 
   @override
   String get disease;

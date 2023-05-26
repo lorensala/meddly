@@ -1,32 +1,70 @@
 import 'package:dio/dio.dart';
 
-/// {@template SymptomSearchResultDto_exception}
-/// Exception thrown when a symptom search result dto operation fails.
-/// {@endtemplate}
-class PredictionDtoException implements Exception {}
+sealed class PredictionException implements Exception {
+  const PredictionException();
 
-/// {@template Prediction_not_found_exception}
-/// Exception thrown when a prediction is not found.
-/// {@endtemplate}
-class PredictionNotFoundException implements Exception {}
+  factory PredictionException.fromDioError(DioError error) {
+    switch (error.type) {
+      case DioErrorType.connectionError:
+      case DioErrorType.receiveTimeout:
+      case DioErrorType.sendTimeout:
+        return const PredictionConnectionException();
+      case DioErrorType.connectionTimeout:
+        return const PredictionConnectionException();
+      case DioErrorType.badResponse:
+        final response = error.response;
+        if (response == null) {
+          return const PredictionUnknownException();
+        }
+        // ignore: avoid_dynamic_calls
+        final errorCode = response.data['detail']['code'] as int?;
 
-/// {@template Prediction_dio_exception}
-/// Exception thrown when a prediction dio operation fails.
-/// {@endtemplate}
-class PredictionDioException implements Exception {
-  /// {@macro Prediction_dio_exception}
-  const PredictionDioException(this.error);
-
-  /// The error message.
-  final DioError error;
+        switch (errorCode) {
+          case 700:
+            return const PredictionInvalidException();
+          case 701:
+            return const PredictionAlreadyVerified();
+          case 702:
+            return const PredictionNotFoundException();
+          default:
+            return const PredictionUnknownException();
+        }
+      case DioErrorType.badCertificate:
+      case DioErrorType.cancel:
+      case DioErrorType.unknown:
+        return const PredictionUnknownException();
+    }
+  }
 }
 
-/// {@template Prediction_serialization_exception}
-/// Exception thrown when a prediction serialization operation fails.
-/// {@endtemplate}
-class PredictionSerializationException implements Exception {}
+class PredictionUnknownException extends PredictionException {
+  const PredictionUnknownException();
+}
 
-/// {@template Prediction_cache_exception}
-/// Exception thrown when a prediction cache operation fails.
-/// {@endtemplate}
-class PredictionCacheException implements Exception {}
+class PredictionNotFoundException extends PredictionException {
+  const PredictionNotFoundException();
+}
+
+class PredictionNotYoursException extends PredictionException {
+  const PredictionNotYoursException();
+}
+
+class PredictionInvalidException extends PredictionException {
+  const PredictionInvalidException();
+}
+
+class PredictionAlreadyVerified extends PredictionException {
+  const PredictionAlreadyVerified();
+}
+
+class PredictionConnectionException extends PredictionException {
+  const PredictionConnectionException();
+}
+
+class PredictionCancelException extends PredictionException {
+  const PredictionCancelException();
+}
+
+class PredictionSerializationException extends PredictionException {
+  const PredictionSerializationException();
+}

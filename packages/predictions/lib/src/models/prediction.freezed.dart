@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Prediction _$PredictionFromJson(Map<String, dynamic> json) {
+  return _Prediction.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Prediction {
   int get id => throw _privateConstructorUsedError;
@@ -21,6 +25,7 @@ mixin _$Prediction {
   bool get verified => throw _privateConstructorUsedError;
   List<String> get symptoms => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PredictionCopyWith<Prediction> get copyWith =>
       throw _privateConstructorUsedError;
@@ -125,7 +130,7 @@ class __$$_PredictionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Prediction implements _Prediction {
   const _$_Prediction(
       {required this.id,
@@ -134,6 +139,9 @@ class _$_Prediction implements _Prediction {
       required final List<String> symptoms})
       : _prediction = prediction,
         _symptoms = symptoms;
+
+  factory _$_Prediction.fromJson(Map<String, dynamic> json) =>
+      _$$_PredictionFromJson(json);
 
   @override
   final int id;
@@ -173,6 +181,7 @@ class _$_Prediction implements _Prediction {
             const DeepCollectionEquality().equals(other._symptoms, _symptoms));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -186,6 +195,13 @@ class _$_Prediction implements _Prediction {
   @pragma('vm:prefer-inline')
   _$$_PredictionCopyWith<_$_Prediction> get copyWith =>
       __$$_PredictionCopyWithImpl<_$_Prediction>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PredictionToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Prediction implements Prediction {
@@ -194,6 +210,9 @@ abstract class _Prediction implements Prediction {
       required final List<Disease> prediction,
       required final bool verified,
       required final List<String> symptoms}) = _$_Prediction;
+
+  factory _Prediction.fromJson(Map<String, dynamic> json) =
+      _$_Prediction.fromJson;
 
   @override
   int get id;
