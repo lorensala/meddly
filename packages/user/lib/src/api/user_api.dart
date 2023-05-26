@@ -2,23 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:user/src/core/core.dart';
 import 'package:user/src/dto/dto.dart';
 
-/// {@template user_api}
-/// Api for user operations.
-/// {@endtemplate}
 class UserApi {
-  /// {@macro user_api}
-  UserApi(Dio dio, {String? baseUrl}) : _dio = dio {
-    _dio.options.baseUrl = baseUrl ?? _dio.options.baseUrl;
-  }
+  UserApi(Dio dio) : _dio = dio;
 
   final Dio _dio;
 
-  /// {@macro user_api}
-  /// Creates a user from the api.
-  /// Returns a [UserDto] if the operation was successful.
-  /// Throws a [UserDioException] if the operation was not successful.
-  /// Throws a [UserSerializationException] if the serialization was not
-  /// successful.
   Future<UserDto> createUser(UserDto user) async {
     late final Response<dynamic> res;
     late final Response<dynamic> userResponse;
@@ -30,11 +18,12 @@ class UserApi {
         throw UserNotFoundException();
       }
     } on DioError catch (e) {
-      throw UserDioException(e);
+      throw UserException.fromDioError(e);
+    } catch (e) {
+      throw UserUnknownException();
     }
 
     try {
-      // TODO(lorenzo): esto no debería ser así....
       userResponse = await _dio.get(userPath);
       return UserDto.fromJson(userResponse.data as Map<String, dynamic>);
     } catch (e) {
@@ -42,32 +31,18 @@ class UserApi {
     }
   }
 
-  /// {@macro user_api}
-  ///
-  /// Updates a user from the api.
   Future<void> deleteUser() async {
-    final Response<dynamic> res;
-
     try {
-      res = await _dio.delete<dynamic>(
+      await _dio.delete<dynamic>(
         userPath,
       );
-
-      if (res.statusCode == 404) {
-        throw UserNotFoundException();
-      }
     } on DioError catch (e) {
-      throw UserDioException(e);
+      throw UserException.fromDioError(e);
+    } catch (e) {
+      throw UserUnknownException();
     }
   }
 
-  /// {@macro user_api}
-  /// Gets a user from the api.
-  /// Returns a [UserDto] if the operation was successful.
-  /// Throws a [UserNotFoundException] if the user was not found.
-  /// Throws a [UserDioException] if the operation was not successful.
-  /// Throws a [UserSerializationException] if the serialization was not
-  /// successful.
   Future<UserDto> getUser() async {
     late final Response<dynamic> res;
 
@@ -78,7 +53,9 @@ class UserApi {
         throw UserNotFoundException();
       }
     } on DioError catch (e) {
-      throw UserDioException(e);
+      throw UserException.fromDioError(e);
+    } catch (e) {
+      throw UserUnknownException();
     }
 
     try {
@@ -88,25 +65,13 @@ class UserApi {
     }
   }
 
-  /// {@macro user_api}
-  ///
-  /// Updates a user from the api.
-  /// Returns a [UserDto] if the operation was successful.
-  /// Throws a [UserNotFoundException] if the user was not found.
-  /// Throws a [UserDioException] if the operation was not successful.
-  /// Throws a [UserSerializationException] if the serialization was not
-  /// successful.
   Future<void> updateUser(UserDto user) async {
-    late final Response<dynamic> res;
-
     try {
-      res = await _dio.post<dynamic>(userPath, data: user.toJson());
-
-      if (res.statusCode == 404) {
-        throw UserNotFoundException();
-      }
+      await _dio.post<dynamic>(userPath, data: user.toJson());
     } on DioError catch (e) {
-      throw UserDioException(e);
+      throw UserException.fromDioError(e);
+    } catch (e) {
+      throw UserUnknownException();
     }
   }
 }

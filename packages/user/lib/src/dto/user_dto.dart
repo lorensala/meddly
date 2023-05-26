@@ -44,7 +44,7 @@ class UserDto with _$UserDto {
         invitation: user.invitation,
       );
     } catch (e) {
-      throw UserDtoException();
+      throw UserModelConversionException();
     }
   }
 
@@ -73,7 +73,7 @@ class UserDto with _$UserDto {
         invitation: invitation ?? '',
       );
     } catch (e) {
-      throw UserDtoException();
+      throw UserModelConversionException();
     }
   }
 }
