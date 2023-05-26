@@ -1,32 +1,66 @@
 import 'package:dio/dio.dart';
 
-/// {@template notification_dto_exception}
-/// Exception thrown when a Notification dto operation fails.
-/// {@endtemplate}
-class NotificationDtoException implements Exception {}
+sealed class NotificationException implements Exception {
+  const NotificationException();
 
-/// {@template notification_not_found_exception}
-/// Exception thrown when a Notification is not found.
-/// {@endtemplate}
-class NotificationNotFoundException implements Exception {}
+  factory NotificationException.fromDioError(DioError error) {
+    switch (error.type) {
+      case DioErrorType.connectionError:
+      case DioErrorType.receiveTimeout:
+      case DioErrorType.sendTimeout:
+        return const NotificationConnectionException();
+      case DioErrorType.connectionTimeout:
+        return const NotificationConnectionException();
+      case DioErrorType.badResponse:
+        final response = error.response;
+        if (response == null) {
+          return const NotificationUnknownException();
+        }
+        // ignore: avoid_dynamic_calls
+        final errorCode = response.data['detail']['code'] as int?;
 
-/// {@template notification_dio_exception}
-/// Exception thrown when a Notification dio operation fails.
-/// {@endtemplate}
-class NotificationDioException implements Exception {
-  /// {@macro Notification_dio_exception}
-  const NotificationDioException(this.error);
-
-  /// The error message.
-  final DioError error;
+        switch (errorCode) {
+          case 500:
+            return const NotificationNotFoundException();
+          case 501:
+            return const NotificationAlreadyExistsException();
+          case 502:
+            return const NotificationDontExistsException();
+          default:
+            return const NotificationUnknownException();
+        }
+      case DioErrorType.badCertificate:
+      case DioErrorType.cancel:
+      case DioErrorType.unknown:
+        return const NotificationUnknownException();
+    }
+  }
 }
 
-/// {@template notification_serialization_exception}
-/// Exception thrown when a Notification serialization operation fails.
-/// {@endtemplate}
-class NotificationSerializationException implements Exception {}
+class NotificationNotFoundException extends NotificationException {
+  const NotificationNotFoundException();
+}
 
-/// {@template notification_cache_exception}
-/// Exception thrown when a Notification cache operation fails.
-/// {@endtemplate}
-class NotificationCacheException implements Exception {}
+class NotificationSerializationException extends NotificationException {
+  const NotificationSerializationException();
+}
+
+class NotificationCacheException extends NotificationException {
+  const NotificationCacheException();
+}
+
+class NotificationAlreadyExistsException extends NotificationException {
+  const NotificationAlreadyExistsException();
+}
+
+class NotificationDontExistsException extends NotificationException {
+  const NotificationDontExistsException();
+}
+
+class NotificationConnectionException extends NotificationException {
+  const NotificationConnectionException();
+}
+
+class NotificationUnknownException extends NotificationException {
+  const NotificationUnknownException();
+}
