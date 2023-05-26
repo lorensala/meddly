@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Medicine _$MedicineFromJson(Map<String, dynamic> json) {
+  return _Medicine.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Medicine {
   int get id => throw _privateConstructorUsedError;
@@ -27,9 +31,10 @@ mixin _$Medicine {
   double get dosis => throw _privateConstructorUsedError;
   int? get interval => throw _privateConstructorUsedError;
   List<MedicineDay>? get days => throw _privateConstructorUsedError;
-  List<TimeOfDay>? get hours => throw _privateConstructorUsedError;
+  List<DateTime>? get hours => throw _privateConstructorUsedError;
   String? get instructions => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MedicineCopyWith<Medicine> get copyWith =>
       throw _privateConstructorUsedError;
@@ -52,7 +57,7 @@ abstract class $MedicineCopyWith<$Res> {
       double dosis,
       int? interval,
       List<MedicineDay>? days,
-      List<TimeOfDay>? hours,
+      List<DateTime>? hours,
       String? instructions});
 }
 
@@ -131,7 +136,7 @@ class _$MedicineCopyWithImpl<$Res, $Val extends Medicine>
       hours: freezed == hours
           ? _value.hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<TimeOfDay>?,
+              as List<DateTime>?,
       instructions: freezed == instructions
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
@@ -159,7 +164,7 @@ abstract class _$$_MedicineCopyWith<$Res> implements $MedicineCopyWith<$Res> {
       double dosis,
       int? interval,
       List<MedicineDay>? days,
-      List<TimeOfDay>? hours,
+      List<DateTime>? hours,
       String? instructions});
 }
 
@@ -236,7 +241,7 @@ class __$$_MedicineCopyWithImpl<$Res>
       hours: freezed == hours
           ? _value._hours
           : hours // ignore: cast_nullable_to_non_nullable
-              as List<TimeOfDay>?,
+              as List<DateTime>?,
       instructions: freezed == instructions
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
@@ -246,7 +251,7 @@ class __$$_MedicineCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Medicine implements _Medicine {
   const _$_Medicine(
       {required this.id,
@@ -260,10 +265,13 @@ class _$_Medicine implements _Medicine {
       required this.dosis,
       this.interval,
       final List<MedicineDay>? days,
-      final List<TimeOfDay>? hours,
+      final List<DateTime>? hours,
       this.instructions})
       : _days = days,
         _hours = hours;
+
+  factory _$_Medicine.fromJson(Map<String, dynamic> json) =>
+      _$$_MedicineFromJson(json);
 
   @override
   final int id;
@@ -295,9 +303,9 @@ class _$_Medicine implements _Medicine {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<TimeOfDay>? _hours;
+  final List<DateTime>? _hours;
   @override
-  List<TimeOfDay>? get hours {
+  List<DateTime>? get hours {
     final value = _hours;
     if (value == null) return null;
     if (_hours is EqualUnmodifiableListView) return _hours;
@@ -339,6 +347,7 @@ class _$_Medicine implements _Medicine {
                 other.instructions == instructions));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -361,6 +370,13 @@ class _$_Medicine implements _Medicine {
   @pragma('vm:prefer-inline')
   _$$_MedicineCopyWith<_$_Medicine> get copyWith =>
       __$$_MedicineCopyWithImpl<_$_Medicine>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_MedicineToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Medicine implements Medicine {
@@ -376,8 +392,10 @@ abstract class _Medicine implements Medicine {
       required final double dosis,
       final int? interval,
       final List<MedicineDay>? days,
-      final List<TimeOfDay>? hours,
+      final List<DateTime>? hours,
       final String? instructions}) = _$_Medicine;
+
+  factory _Medicine.fromJson(Map<String, dynamic> json) = _$_Medicine.fromJson;
 
   @override
   int get id;
@@ -402,7 +420,7 @@ abstract class _Medicine implements Medicine {
   @override
   List<MedicineDay>? get days;
   @override
-  List<TimeOfDay>? get hours;
+  List<DateTime>? get hours;
   @override
   String? get instructions;
   @override

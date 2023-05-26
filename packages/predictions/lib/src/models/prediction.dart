@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:predictions/predictions.dart';
 
 part 'prediction.freezed.dart';
+part 'prediction.g.dart';
 
 @freezed
 class Prediction with _$Prediction {
@@ -11,4 +12,7 @@ class Prediction with _$Prediction {
     required bool verified,
     required List<String> symptoms,
   }) = _Prediction;
+
+  factory Prediction.fromJson(Map<String, dynamic> json) =>
+      _$PredictionFromJson(json);
 }

@@ -1,8 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:medicine/src/core/constants.dart';
-import 'package:medicine/src/core/exceptions.dart';
-import 'package:medicine/src/dto/dto.dart';
-import 'package:medicine/src/dto/medicine_dto.dart';
+import 'package:medicine/medicine.dart';
 
 /// {@template treatment_api}
 /// API for medicine operations.
@@ -21,7 +18,7 @@ class MedicineApi {
   /// Throws a [MedicineDioException] if the request fails.\
   /// Throws a [MedicineSerializationException] if the response data cannot be
   /// serialized.
-  Future<List<MedicineDto>> fetchAll() async {
+  Future<List<Medicine>> fetchAll() async {
     late final Response<List<dynamic>> res;
     try {
       res = await _dio.get<List<dynamic>>(medicinePath);
@@ -30,12 +27,12 @@ class MedicineApi {
         throw MedicineNotFoundException();
       }
     } on DioError catch (e) {
-      throw MedicineDioException(e);
+      throw MedicineException.fromDioError(e);
     }
 
     try {
       return res.data!
-          .map((e) => MedicineDto.fromJson(e as Map<String, dynamic>))
+          .map((e) => Medicine.fromJson(e as Map<String, dynamic>))
           .toList();
     } catch (_) {
       throw MedicineSerializationException();
@@ -45,22 +42,26 @@ class MedicineApi {
   /// Adds a new medicine.
   ///
   /// Throws a [MedicineDioException] if the request fails.
-  Future<void> addMedicine(MedicineDto medicine) async {
+  Future<void> addMedicine(Medicine medicine) async {
     try {
       await _dio.post<dynamic>(medicinePath, data: medicine.toJson());
     } on DioError catch (e) {
-      throw MedicineDioException(e);
+      throw MedicineException.fromDioError(e);
+    } catch (_) {
+      throw const MedicineUnknownException();
     }
   }
 
   /// Deletes a medicine.
   ///
   /// Throws a [MedicineDioException] if the request fails.
-  Future<void> deleteMedicine(MedicineDto medicine) async {
+  Future<void> deleteMedicine(Medicine medicine) async {
     try {
       await _dio.delete<dynamic>(medicinePath, data: medicine.toJson());
     } on DioError catch (e) {
-      throw MedicineDioException(e);
+      throw MedicineException.fromDioError(e);
+    } catch (_) {
+      throw const MedicineUnknownException();
     }
   }
 
@@ -69,8 +70,8 @@ class MedicineApi {
   /// Throws a [MedicineDioException] if the request fails.\
   /// Throws a [MedicineSerializationException] if the response data cannot be
   /// serialized.
-  Future<MedicineDto> updateMedicine(
-    MedicineDto medicine,
+  Future<Medicine> updateMedicine(
+    Medicine medicine,
   ) async {
     late final Response<Map<String, dynamic>> res;
     try {
@@ -79,11 +80,11 @@ class MedicineApi {
         data: medicine.toJson(),
       );
     } on DioError catch (e) {
-      throw MedicineDioException(e);
+      throw MedicineException.fromDioError(e);
     }
 
     try {
-      return MedicineDto.fromJson(res.data!);
+      return Medicine.fromJson(res.data!);
     } catch (_) {
       throw MedicineSerializationException();
     }

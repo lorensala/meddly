@@ -1,27 +1,56 @@
 import 'package:dio/dio.dart';
 
-/// {@template appointment_not_found_exception}
-/// Exception thrown when an appointment is not found.
-/// {@endtemplate}
-class AppointmentNotFoundException implements Exception {}
+sealed class AppointmentException implements Exception {
+  const AppointmentException();
 
-/// {@template appointment_dio_exception}
-/// Exception thrown when an appointment dio operation fails.
-/// {@endtemplate}
-class AppointmentDioException implements Exception {
-  /// {@macro medicine_dio_exception}
-  const AppointmentDioException(this.error);
+  factory AppointmentException.fromDioError(DioError error) {
+    switch (error.type) {
+      case DioErrorType.connectionError:
+      case DioErrorType.receiveTimeout:
+      case DioErrorType.sendTimeout:
+        return const AppointmentConnectionException();
+      case DioErrorType.connectionTimeout:
+        return const AppointmentConnectionException();
+      case DioErrorType.badResponse:
+        final response = error.response;
+        if (response == null) {
+          return const AppointmentUnknownException();
+        }
+        // ignore: avoid_dynamic_calls
+        final errorCode = response.data['detail']['code'] as int?;
 
-  /// The error message.
-  final DioError error;
+        switch (errorCode) {
+          case 400:
+            return const AppointmentNotFoundException();
+          case 401:
+            return const AppointmentNotYoursException();
+          default:
+            return const AppointmentUnknownException();
+        }
+      case DioErrorType.badCertificate:
+      case DioErrorType.cancel:
+      case DioErrorType.unknown:
+        return const AppointmentUnknownException();
+    }
+  }
 }
 
-/// {@template appointment_cache_exception}
-/// Exception thrown when an appointment serialization operation fails.
-/// {@endtemplate}
-class AppointmentSerializationException implements Exception {}
+class AppointmentUnknownException extends AppointmentException {
+  const AppointmentUnknownException();
+}
 
-/// {@template calendar_dto_exception}
-/// Appointment dto exception when the appointment can't be converted to domain.
-/// {@endtemplate}
-class AppointmentDtoException implements Exception {}
+class AppointmentNotFoundException extends AppointmentException {
+  const AppointmentNotFoundException();
+}
+
+class AppointmentSerializationException extends AppointmentException {
+  const AppointmentSerializationException();
+}
+
+class AppointmentConnectionException extends AppointmentException {
+  const AppointmentConnectionException();
+}
+
+class AppointmentNotYoursException extends AppointmentException {
+  const AppointmentNotYoursException();
+}

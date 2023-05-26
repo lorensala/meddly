@@ -1,32 +1,78 @@
 import 'package:dio/dio.dart';
 
-/// {@template medicine_dto_exception}
-/// Medicine dto exception when the medicine can't be converted to domain.
-/// {@endtemplate}
-class MedicineDtoException implements Exception {}
+sealed class MedicineException implements Exception {
+  const MedicineException();
 
-/// {@template medicine_not_found_exception}
-/// Exception thrown when a medicine is not found.
-/// {@endtemplate}
-class MedicineNotFoundException implements Exception {}
+  factory MedicineException.fromDioError(DioError error) {
+    switch (error.type) {
+      case DioErrorType.connectionError:
+      case DioErrorType.receiveTimeout:
+      case DioErrorType.sendTimeout:
+        return const MedicineConnectionException();
+      case DioErrorType.connectionTimeout:
+        return const MedicineConnectionException();
+      case DioErrorType.badResponse:
+        final response = error.response;
+        if (response == null) {
+          return const MedicineUnknownException();
+        }
+        // ignore: avoid_dynamic_calls
+        final errorCode = response.data['detail']['code'] as int?;
 
-/// {@template medicine_dio_exception}
-/// Exception thrown when a medicine dio operation fails.
-/// {@endtemplate}
-class MedicineDioException implements Exception {
-  /// {@macro medicine_dio_exception}
-  const MedicineDioException(this.error);
-
-  /// The error message.
-  final DioError error;
+        switch (errorCode) {
+          case 300:
+          case 301:
+          case 302:
+          case 303:
+          case 304:
+            return const MedicineInvalidException();
+          case 305:
+            return const MedicineNotFoundException();
+          case 306:
+            return const MedicineNotYoursException();
+          default:
+            return const MedicineUnknownException();
+        }
+      case DioErrorType.badCertificate:
+      case DioErrorType.cancel:
+      case DioErrorType.unknown:
+        return const MedicineUnknownException();
+    }
+  }
 }
 
-/// {@template medicine_cache_exception}
-/// Exception thrown when a medicine cache operation fails.
-/// {@endtemplate}
-class MedicineCacheException implements Exception {}
+class MedicineUnknownException extends MedicineException {
+  const MedicineUnknownException();
+}
 
-/// {@template medicine_serialization_exception}
-/// Exception thrown when a medicine serialization operation fails.
-/// {@endtemplate}
-class MedicineSerializationException implements Exception {}
+class MedicineNotFoundException extends MedicineException {
+  const MedicineNotFoundException();
+}
+
+class MedicineNotYoursException extends MedicineException {
+  const MedicineNotYoursException();
+}
+
+class MedicineConnectionException extends MedicineException {
+  const MedicineConnectionException();
+}
+
+class MedicineCancelException extends MedicineException {
+  const MedicineCancelException();
+}
+
+class MedicineSerializationException extends MedicineException {
+  const MedicineSerializationException();
+}
+
+class MedicineInvalidException extends MedicineException {
+  const MedicineInvalidException();
+}
+
+class MedicineModelConversionException extends MedicineException {
+  const MedicineModelConversionException();
+}
+
+class MedicineCacheException extends MedicineException {
+  const MedicineCacheException();
+}

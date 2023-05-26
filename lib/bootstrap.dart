@@ -9,7 +9,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/firebase_options.dart';
 import 'package:meddly/log/logger.dart';
 import 'package:meddly/provider/provider.dart';
-import 'package:medicine/medicine.dart';
 import 'package:notifications/notifications.dart';
 import 'package:user/user.dart';
 
@@ -22,14 +21,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
 
   final hive = Hive;
   await hive.initFlutter();
-  hive
-    ..registerAdapter<UserDto>(UserDtoAdapter())
-    ..registerAdapter<MedicineDto>(MedicineDtoAdapter());
+  hive.registerAdapter<UserDto>(UserDtoAdapter());
 
   await Future.wait<dynamic>([
     hive.openBox<UserDto>(userBoxKey),
     hive.openBox<List<String>>(preferencesBoxKey),
-    hive.openBox<List<MedicineDto>>(medicineBoxKey),
   ]);
 
   await Firebase.initializeApp(

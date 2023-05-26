@@ -1,18 +1,18 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:measurement/measurement.dart';
 
 part 'measurement.freezed.dart';
+part 'measurement.g.dart';
 
-/// {@template measurement}
-/// A measurement.
-/// {@endtemplate}
 @freezed
 class Measurement with _$Measurement {
-  /// {@macro measurement}
   const factory Measurement({
     required DateTime date,
-    required String type,
+    required MeasurementType type,
     required double value,
     required int id,
   }) = _Measurement;
-  const Measurement._();
+
+  factory Measurement.fromJson(Map<String, dynamic> json) =>
+      _$MeasurementFromJson(json);
 }

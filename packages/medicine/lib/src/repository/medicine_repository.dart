@@ -1,12 +1,6 @@
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:medicine/medicine.dart';
 
-/// {@template medicine_repository}
-/// Repository for medicine operations.
-/// {@endtemplate}
 class MedicineRepository {
-  /// {@macro medicine_repository}
   MedicineRepository({
     required MedicineApi api,
     required MedicineCache cache,
@@ -16,185 +10,58 @@ class MedicineRepository {
   final MedicineApi _api;
   final MedicineCache _cache;
 
-  /// Fetches all medicines.
-  ///
-  /// Returns a [MedicineFailure] if the request fails.
-  Future<Either<MedicineFailure, List<Medicine>>> fetchAll() async {
+  Future<(MedicineException?, List<Medicine>)> fetchAll() async {
     try {
       final medicines = await _api.fetchAll();
 
-      return Right(medicines.map((e) => e.toDomain()).toList());
-    } on MedicineNotFoundException {
-      return const Left(MedicineFailure.notFound());
-    } on MedicineDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.sendTimeout:
-          return const Left(MedicineFailure.sendTimeout());
-        case DioErrorType.receiveTimeout:
-          return const Left(MedicineFailure.receiveTimeout());
-        case DioErrorType.badResponse:
-          return const Left(MedicineFailure.response());
-        case DioErrorType.cancel:
-          return const Left(MedicineFailure.cancel());
-        case DioErrorType.connectionTimeout:
-          return const Left(MedicineFailure.connectionTimeOut());
-        case DioErrorType.badCertificate:
-          return const Left(MedicineFailure.unknown());
-        case DioErrorType.connectionError:
-          return const Left(MedicineFailure.connectionTimeOut());
-        case DioErrorType.unknown:
-          return const Left(MedicineFailure.unknown());
-      }
-    } on MedicineSerializationException {
-      return const Left(MedicineFailure.serialization());
+      return (null, medicines);
+    } on MedicineException catch (e) {
+      return (e, <Medicine>[]);
     } catch (e) {
-      return const Left(MedicineFailure.unknown());
+      return (const MedicineUnknownException(), <Medicine>[]);
     }
   }
 
-  /// Gets all medicines from cache.
-  ///
-  /// Returns a [MedicineFailure] if the request fails.
-  // Either<MedicineFailure, List<Medicine>> getAll() {
-  //   try {
-
-  //     return Right(
-  //       medicineDtoList.map((e) => e.toDomain()).toList(),
-  //     );
-  //   } on MedicineSerializationException {
-  //     return const Left(MedicineFailure.serialization());
-  //   } on MedicineCacheException {
-  //     return const Left(MedicineFailure.cache());
-  //   } catch (e) {
-  //     return const Left(MedicineFailure.unknown());
-  //   }
-  // }
-
-  /// Gets a medicine from cache
-  ///
-  /// Returns a [MedicineFailure] if the request fails.
-  // Either<MedicineFailure, Medicine> get(String id) {
-  //   try {
-  //     final medicineDto = _cache.read(id);
-
-  //     return Right(medicineDto.toDomain());
-  //   } on MedicineSerializationException {
-  //     return const Left(MedicineFailure.serialization());
-  //   } on MedicineCacheException {
-  //     return const Left(MedicineFailure.cache());
-  //   } catch (e) {
-  //     return const Left(MedicineFailure.unknown());
-  //   }
-  // }
-
-  /// Add a medicine
-  ///
-  /// Returns a [MedicineFailure] if the request fails.
-  Future<Either<MedicineFailure, Unit>> addMedicine(
+  Future<(MedicineException?, void)> addMedicine(
     Medicine medicine,
   ) async {
     try {
-      await _api.addMedicine(MedicineDto.fromDomain(medicine));
+      await _api.addMedicine(medicine);
 
-      return const Right(unit);
-    } on DioError catch (e) {
-      switch (e.type) {
-        case DioErrorType.sendTimeout:
-          return const Left(MedicineFailure.sendTimeout());
-        case DioErrorType.receiveTimeout:
-          return const Left(MedicineFailure.receiveTimeout());
-        case DioErrorType.badResponse:
-          return const Left(MedicineFailure.response());
-        case DioErrorType.cancel:
-          return const Left(MedicineFailure.cancel());
-        case DioErrorType.connectionTimeout:
-          return const Left(MedicineFailure.connectionTimeOut());
-        case DioErrorType.badCertificate:
-          return const Left(MedicineFailure.unknown());
-        case DioErrorType.connectionError:
-          return const Left(MedicineFailure.connectionTimeOut());
-        case DioErrorType.unknown:
-          return const Left(MedicineFailure.unknown());
-      }
+      return (null, null);
+    } on MedicineException catch (e) {
+      return (e, null);
     } catch (e) {
-      return const Left(MedicineFailure.unknown());
+      return (const MedicineUnknownException(), null);
     }
   }
 
-  /// Delete a medicine
-  ///
-  /// Returns a [MedicineFailure] if the request fails.
-  Future<Either<MedicineFailure, Unit>> deleteMedicine(
+  Future<(MedicineException?, void)> deleteMedicine(
     Medicine medicine,
   ) async {
     try {
-      await _api.deleteMedicine(MedicineDto.fromDomain(medicine));
+      await _api.deleteMedicine(medicine);
       await _cache.delete(medicine.id.toString());
 
-      return const Right(unit);
-    } on MedicineCacheException {
-      return const Left(MedicineFailure.cache());
-    } on MedicineNotFoundException {
-      return const Left(MedicineFailure.notFound());
-    } on MedicineDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.sendTimeout:
-          return const Left(MedicineFailure.sendTimeout());
-        case DioErrorType.receiveTimeout:
-          return const Left(MedicineFailure.receiveTimeout());
-        case DioErrorType.badResponse:
-          return const Left(MedicineFailure.response());
-        case DioErrorType.cancel:
-          return const Left(MedicineFailure.cancel());
-        case DioErrorType.connectionTimeout:
-          return const Left(MedicineFailure.connectionTimeOut());
-        case DioErrorType.badCertificate:
-          return const Left(MedicineFailure.unknown());
-        case DioErrorType.connectionError:
-          return const Left(MedicineFailure.connectionTimeOut());
-        case DioErrorType.unknown:
-          return const Left(MedicineFailure.unknown());
-      }
+      return (null, null);
+    } on MedicineException catch (e) {
+      return (e, null);
     } catch (e) {
-      return const Left(MedicineFailure.unknown());
+      return (const MedicineUnknownException(), null);
     }
   }
 
-  /// Update a medicine
-  ///
-  /// Returns a [MedicineFailure] if the request fails.
-  Future<Either<MedicineFailure, Unit>> updateMedicine(
+  Future<(MedicineException?, void)> updateMedicine(
     Medicine medicine,
   ) async {
     try {
-      await _api.updateMedicine(MedicineDto.fromDomain(medicine));
+      await _api.updateMedicine(medicine);
 
-      return const Right(unit);
-    } on MedicineCacheException {
-      return const Left(MedicineFailure.cache());
-    } on MedicineNotFoundException {
-      return const Left(MedicineFailure.notFound());
-    } on MedicineDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.sendTimeout:
-          return const Left(MedicineFailure.sendTimeout());
-        case DioErrorType.receiveTimeout:
-          return const Left(MedicineFailure.receiveTimeout());
-        case DioErrorType.badResponse:
-          return const Left(MedicineFailure.response());
-        case DioErrorType.cancel:
-          return const Left(MedicineFailure.cancel());
-        case DioErrorType.connectionTimeout:
-          return const Left(MedicineFailure.connectionTimeOut());
-        case DioErrorType.badCertificate:
-          return const Left(MedicineFailure.unknown());
-        case DioErrorType.connectionError:
-          return const Left(MedicineFailure.connectionTimeOut());
-        case DioErrorType.unknown:
-          return const Left(MedicineFailure.unknown());
-      }
+      return (null, null);
+    } on MedicineException catch (e) {
+      return (e, null);
     } catch (e) {
-      return const Left(MedicineFailure.unknown());
+      return (const MedicineUnknownException(), null);
     }
   }
 }

@@ -1,16 +1,15 @@
-/// {@template notification_preference}
-/// Represents the notification preference of a user.
-/// {@endtemplate}
-enum NotificationPreference {
-  /// {@macro notification_preference}
-  email(isActive: false),
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  /// {@macro notification_preference}
-  whatsapp(isActive: false);
+part 'notification_preference.freezed.dart';
+part 'notification_preference.g.dart';
 
-  //// {@macro notification_preference}
-  const NotificationPreference({required this.isActive});
+@freezed
+class NotificationPreference with _$NotificationPreference {
+  const factory NotificationPreference({
+    required String name,
+    @Default(false) isActive,
+  }) = _NotificationPreference;
 
-  /// if the notification preference is active or not.
-  final bool isActive;
+  factory NotificationPreference.fromJson(Map<String, dynamic> json) =>
+      _$NotificationPreferenceFromJson(json);
 }

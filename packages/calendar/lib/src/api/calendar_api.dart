@@ -1,91 +1,81 @@
-// ignore_for_file: prefer_single_quotes
-
+import 'package:appointment/appointment.dart';
 import 'package:calendar/src/core/core.dart';
-import 'package:calendar/src/dto/dto.dart';
+import 'package:calendar/src/models/models.dart';
 import 'package:dio/dio.dart';
+import 'package:measurement/measurement.dart';
+import 'package:medicine/medicine.dart';
 
-/// {@template calendar_api}
-/// API for Calendar operations.
-/// {@endtemplate}
 class CalendarApi {
-  /// {@macro calendar_api}
-  CalendarApi(Dio dio, {String? baseUrl}) : _dio = dio {
-    _dio.options.baseUrl = baseUrl ?? _dio.options.baseUrl;
-  }
+  CalendarApi(Dio dio) : _dio = dio;
 
   final Dio _dio;
 
-  /// {@macro calendar_api}
-  /// Fetches all calendar items.
-  ///
-  /// Throws a [CalendarNotFoundException] if the calendar is not found.\
-  /// Throws a [CalendarDioException] if the operation was not successful.\
-  /// Throws a [CalendarSerializationException] if the serialization was not
-  /// successful.
-  Future<CalendarDto> fetchAll() async {
+  Future<
+      ({
+        List<Medicine> activeMedicine,
+        List<Appointment> appointments,
+        List<Measurement> measurements,
+        List<Consumption> consumptions,
+      })> fetchAll() async {
     late final Response<dynamic> res;
     try {
       res = await _dio.get<dynamic>(calendarPath);
-
-      if (res.statusCode == 401) {
-        throw CalendarNotFoundException();
-      }
     } on DioError catch (e) {
-      throw CalendarDioException(e);
+      throw CalendarException.fromDioError(e);
     }
 
     try {
       if (res.data == null) {
-        return const CalendarDto(
-          activeMedicines: [],
-          appointments: [],
-          measurements: [],
-          consumptions: [],
+        return (
+          activeMedicine: <Medicine>[],
+          appointments: <Appointment>[],
+          measurements: <Measurement>[],
+          consumptions: <Consumption>[],
         );
       }
-      return CalendarDto.fromJson(res.data as Map<String, dynamic>);
+      final activeMedicinesJson =
+          res.data['active_medicines'] as List<Map<String, dynamic>>;
+      final appointmentsJson =
+          res.data['appointments'] as List<Map<String, dynamic>>;
+      final measurementsJson =
+          res.data['measurements'] as List<Map<String, dynamic>>;
+      final consumptionsJson =
+          res.data['consumptions'] as List<Map<String, dynamic>>;
+
+      return (
+        activeMedicine:
+            activeMedicinesJson.map((e) => Medicine.fromJson(e)).toList(),
+        appointments:
+            appointmentsJson.map((e) => Appointment.fromJson(e)).toList(),
+        measurements:
+            measurementsJson.map((e) => Measurement.fromJson(e)).toList(),
+        consumptions:
+            consumptionsJson.map((e) => Consumption.fromJson(e)).toList(),
+      );
     } catch (e) {
       throw CalendarSerializationException();
     }
   }
 
-  /// {@macro calendar_api}
-  /// Adds a [Consumption] to the calendar.
-  /// Throws a [CalendarNotFoundException] if the calendar is not found.\
-  /// Throws a [CalendarDioException] if the operation was not successful.\
-  Future<void> addConsumption(ConsumptionDto consumption) async {
-    late final Response<dynamic> res;
+  Future<void> addConsumption(Consumption consumption) async {
     try {
-      res = await _dio.post<dynamic>(
+      await _dio.post<dynamic>(
         addConsumptionPath,
         data: consumption.toJson(),
       );
-
-      if (res.statusCode == 401) {
-        throw CalendarNotFoundException();
-      }
     } on DioError catch (e) {
-      throw CalendarDioException(e);
+      throw CalendarException.fromDioError(e);
     }
   }
 
-  /// {@macro calendar_api}
-  /// Removes a [Consumption] from the calendar.
-  /// Throws a [CalendarNotFoundException] if the calendar is not found.\
-  /// Throws a [CalendarDioException] if the operation was not successful.\
-  Future<void> removeConsumption(ConsumptionDto consumption) async {
-    late final Response<dynamic> res;
+  Future<void> removeConsumption(Consumption consumption) async {
     try {
-      res = await _dio.delete<dynamic>(
+      await _dio.delete<dynamic>(
         deleteConsumptionPath,
         data: consumption.toJson(),
       );
-
-      if (res.statusCode == 401) {
-        throw CalendarNotFoundException();
-      }
     } on DioError catch (e) {
-      throw CalendarDioException(e);
+      throw CalendarException.fromDioError(e);
     }
   }
 }

@@ -1,30 +1,17 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:predictions/src/core/core.dart';
-import 'package:predictions/src/dto/dto.dart';
+import 'package:predictions/predictions.dart';
 
-/// {@template predictions_api}
-/// API for predictions operations.
-/// {@endtemplate}
 class PredictionsApi {
-  /// {@macro predictions_api}
-  PredictionsApi(Dio dio, {String? baseUrl})
+  PredictionsApi(Dio dio)
       : _cancelToken = CancelToken(),
-        _dio = dio {
-    _dio.options.baseUrl = baseUrl ?? _dio.options.baseUrl;
-  }
+        _dio = dio;
 
   final Dio _dio;
   final CancelToken _cancelToken;
 
-  /// Searches for predictions.
-  ///
-  /// Throws a [PredictionNotFoundException] if the search is not found.\
-  /// Throws a [PredictionDioException] if any other DioError occurs.
-  /// Throws a [PredictionSerializationException] if the response cannot be
-  /// serialized.
-  Future<List<SymptomDto>> search(String query) async {
+  Future<List<Symptom>> search(String query) async {
     late final Response<List<dynamic>> res;
     try {
       res = await _dio.post<List<dynamic>>(
@@ -34,21 +21,17 @@ class PredictionsApi {
           'symptom': query,
         },
       );
-
-      if (res.statusCode == 401) {
-        throw PredictionNotFoundException();
-      }
     } on DioError catch (e) {
-      throw PredictionDioException(e);
+      throw PredictionException.fromDioError(e);
     }
 
     try {
-      if (res.data == null) return <SymptomDto>[];
+      if (res.data == null) return <Symptom>[];
       final results = res.data!;
 
       return results
           .map(
-            (e) => SymptomDto.fromJson(e as Map<String, dynamic>),
+            (e) => Symptom.fromJson(e as Map<String, dynamic>),
           )
           .toList();
     } catch (e) {
@@ -56,7 +39,7 @@ class PredictionsApi {
     }
   }
 
-  Future<List<PredictionDto>> fetchPredictionsBySymptoms() async {
+  Future<List<Prediction>> fetchPredictionsBySymptoms() async {
     late final Response<List<dynamic>> res;
     try {
       res = await _dio.get<List<dynamic>>(
@@ -68,16 +51,16 @@ class PredictionsApi {
         throw PredictionNotFoundException();
       }
     } on DioError catch (e) {
-      throw PredictionDioException(e);
+      throw PredictionException.fromDioError(e);
     }
 
     try {
-      if (res.data == null) return <PredictionDto>[];
+      if (res.data == null) return <Prediction>[];
       final results = res.data!;
 
       return results
           .map(
-            (e) => PredictionDto.fromJson(e as Map<String, dynamic>),
+            (e) => Prediction.fromJson(e as Map<String, dynamic>),
           )
           .toList();
     } catch (e) {
@@ -85,8 +68,7 @@ class PredictionsApi {
     }
   }
 
-  Future<List<DiseaseDto>> predictWithSymptoms(
-      List<SymptomDto> symptoms) async {
+  Future<List<Disease>> predictWithSymptoms(List<Symptom> symptoms) async {
     late final Response<List<dynamic>> res;
     try {
       res = await _dio.post<List<dynamic>>(
@@ -99,16 +81,16 @@ class PredictionsApi {
         throw PredictionNotFoundException();
       }
     } on DioError catch (e) {
-      throw PredictionDioException(e);
+      throw PredictionException.fromDioError(e);
     }
 
     try {
-      if (res.data == null) return <DiseaseDto>[];
+      if (res.data == null) return <Disease>[];
       final results = res.data!;
 
       return results
           .map(
-            (e) => DiseaseDto.fromJson(e as Map<String, dynamic>),
+            (e) => Disease.fromJson(e as Map<String, dynamic>),
           )
           .toList();
     } catch (e) {
@@ -116,7 +98,6 @@ class PredictionsApi {
     }
   }
 
-  /// Cancels the current request.
   Future<void> cancel() async {
     _cancelToken.cancel();
   }

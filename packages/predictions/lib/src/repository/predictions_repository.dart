@@ -1,74 +1,50 @@
-import 'package:dartz/dartz.dart';
 import 'package:predictions/src/api/api.dart';
 import 'package:predictions/src/core/core.dart';
-import 'package:predictions/src/dto/dto.dart';
 import 'package:predictions/src/models/models.dart';
 
-/// {@template predictions_repository}
-/// Repository for predictions operations.
-/// {@endtemplate}
 class PredictionsRepository {
-  /// {@macro predictions_repository}
   const PredictionsRepository({required PredictionsApi api}) : _api = api;
 
   final PredictionsApi _api;
 
-  /// Searches for predictions.
-  ///
-  /// Returns a [List] of [String] if the search is successful.
-  /// Returns a [PredictionFailure] if the search is not successful.
-  Future<Either<PredictionFailure, List<Symptom>>> search(
+  Future<(PredictionException?, List<Symptom>)> search(
     String query,
   ) async {
     try {
       final predictions = await _api.search(query);
-      return right(predictions.map((e) => e.toDomain()).toList());
-    } on PredictionNotFoundException {
-      return left(const PredictionFailure.notFound());
-    } on PredictionDioException {
-      return left(const PredictionFailure.response());
-    } on PredictionSerializationException {
-      return left(const PredictionFailure.serialization());
-    } on PredictionDtoException {
-      return left(const PredictionFailure.serialization());
+      return (null, predictions);
+    } on PredictionException catch (e) {
+      return (e, const <Symptom>[]);
+    } catch (e) {
+      return (const PredictionUnknownException(), const <Symptom>[]);
     }
   }
 
-  Future<Either<PredictionFailure, List<Disease>>> predictWithSymptoms(
+  Future<(PredictionException?, List<Disease>)> predictWithSymptoms(
       List<Symptom> symptoms) async {
     try {
-      final symptomsDto = symptoms.map(SymptomDto.fromDomain).toList();
-      final predictions = await _api.predictWithSymptoms(symptomsDto);
+      final predictions = await _api.predictWithSymptoms(symptoms);
 
-      return right(predictions.map((e) => e.toModel()).toList());
-    } on PredictionNotFoundException {
-      return left(const PredictionFailure.notFound());
-    } on PredictionDioException {
-      return left(const PredictionFailure.response());
-    } on PredictionSerializationException {
-      return left(const PredictionFailure.serialization());
-    } on PredictionDtoException {
-      return left(const PredictionFailure.serialization());
+      return (null, predictions);
+    } on PredictionException catch (e) {
+      return (e, const <Disease>[]);
+    } catch (e) {
+      return (const PredictionUnknownException(), const <Disease>[]);
     }
   }
 
-  Future<Either<PredictionFailure, List<Prediction>>>
+  Future<(PredictionException?, List<Prediction>)>
       fetchPredictionsBySymptoms() async {
     try {
       final predictions = await _api.fetchPredictionsBySymptoms();
-      return right(predictions.map((e) => e.toModel()).toList());
-    } on PredictionNotFoundException {
-      return left(const PredictionFailure.notFound());
-    } on PredictionDioException {
-      return left(const PredictionFailure.response());
-    } on PredictionSerializationException {
-      return left(const PredictionFailure.serialization());
-    } on PredictionDtoException {
-      return left(const PredictionFailure.serialization());
+      return (null, predictions);
+    } on PredictionException catch (e) {
+      return (e, const <Prediction>[]);
+    } catch (e) {
+      return (const PredictionUnknownException(), const <Prediction>[]);
     }
   }
 
-  /// Cancels the current request.
   Future<void> cancel() async {
     await _api.cancel();
   }

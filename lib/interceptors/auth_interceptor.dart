@@ -1,16 +1,12 @@
-import 'dart:io';
+import 'dart:io' show HttpHeaders, Platform;
 
 import 'package:dio/dio.dart';
 import 'package:firebase_auth_repository/firebase_auth_repository.dart';
+import 'package:meddly/core/core.dart';
 
-/// {@template auth_interceptor}
-/// An interceptor that adds the current user's id token to the request headers.
-/// {@endtemplate}
 class AuthInterceptor extends QueuedInterceptor {
-  /// {@macro auth_interceptor}
   AuthInterceptor(this.authRepository);
 
-  /// {@macro auth_repository}
   final FirebaseAuthRepository authRepository;
 
   @override
@@ -19,11 +15,14 @@ class AuthInterceptor extends QueuedInterceptor {
     RequestInterceptorHandler handler,
   ) async {
     final token = await authRepository.getIdToken();
+    final baseUrl =
+        Platform.isAndroid ? Strings.baseUrlAndroid : Strings.baseUrliOs;
 
     options
-      // ..baseUrl = ''
+      ..baseUrl = baseUrl
       ..headers
           .putIfAbsent(HttpHeaders.authorizationHeader, () => 'Bearer $token');
+
     return handler.next(options);
   }
 

@@ -1,17 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:medicine/src/models/medicine_days.dart';
 import 'package:medicine/src/models/medicine_dosis_unit.dart';
 import 'package:medicine/src/models/medicine_presentation.dart';
 
 part 'medicine.freezed.dart';
+part 'medicine.g.dart';
 
-/// {@template medicine}
-/// Medicine model.
-/// {@endtemplate}
 @freezed
 class Medicine with _$Medicine {
-  /// {@macro medicine}
   const factory Medicine({
     required int id,
     required String name,
@@ -24,7 +20,10 @@ class Medicine with _$Medicine {
     required double dosis,
     int? interval,
     List<MedicineDay>? days,
-    List<TimeOfDay>? hours,
+    List<DateTime>? hours,
     String? instructions,
   }) = _Medicine;
+
+  factory Medicine.fromJson(Map<String, dynamic> json) =>
+      _$MedicineFromJson(json);
 }
