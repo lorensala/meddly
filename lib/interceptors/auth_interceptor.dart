@@ -18,10 +18,14 @@ class AuthInterceptor extends QueuedInterceptor {
     final baseUrl =
         Platform.isAndroid ? Strings.baseUrlAndroid : Strings.baseUrliOs;
 
+    final headers = {
+      HttpHeaders.authorizationHeader: 'Bearer $token',
+      'device': 'mobile',
+    };
+
     options
       ..baseUrl = baseUrl
-      ..headers
-          .putIfAbsent(HttpHeaders.authorizationHeader, () => 'Bearer $token');
+      ..headers = headers;
 
     return handler.next(options);
   }

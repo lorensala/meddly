@@ -74,6 +74,21 @@ FutureOr<void> userExist(UserExistRef ref) async {
 
       // If the user doesn't have basic information, navigate to [SetupPage].
       return router.go(SetupNamePage.routeName);
+    } else {
+      final user = cacheUser;
+
+      // If the user has basic information and phoneNumber, navigate to [HomePage].
+      if (user.hasBasicInformation && user.hasPhoneNumber) {
+        return router.go(HomePage.routeName);
+      }
+
+      // If the user has basic information but not phoneNumber, navigate to [PhoneNumberPage].
+      if (user.hasBasicInformation && !user.hasPhoneNumber) {
+        return router.go(PhonePage.routeName);
+      }
+
+      // If the user doesn't have basic information, navigate to [SetupPage].
+      return router.go(SetupNamePage.routeName);
     }
   }
 }
