@@ -52,8 +52,10 @@ class _NextButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isAsNeeded =
-        ref.watch(medicineFrecuencyProvider) == MedicineFrecuency.asNeeded;
+    final isAsNeeded = ref.watch(
+          medicineFormControllerProvider.select((value) => value.frecuency),
+        ) ==
+        MedicineFrecuency.asNeeded;
     final isValid = ref.watch(isMedicineFrecuencyValidProvider);
 
     return MedicineNextButton(

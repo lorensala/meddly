@@ -13,12 +13,12 @@ class MeasurementForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return const Padding(
       padding: Sizes.mediumPadding,
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
+          children: [
             _ValueField(),
             SizedBox(height: Sizes.medium),
             _TypeDropDownSelector(),
@@ -82,7 +82,8 @@ class _TypeDropDownSelector extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(measurementFormControllerProvider.notifier);
-    final selectedType = ref.watch(measurementTypeProvider);
+    final selectedType = ref
+        .watch(measurementFormControllerProvider.select((value) => value.type));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

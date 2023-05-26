@@ -85,7 +85,12 @@ class UserRepository {
     }
   }
 
-  void clearCache() {
-    _cache.clear();
+  (UserException?, void) clearCache() {
+    try {
+      _cache.clear();
+      return (null, null);
+    } catch (e) {
+      return (UserCacheException(), null);
+    }
   }
 }

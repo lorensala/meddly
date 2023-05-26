@@ -32,10 +32,12 @@ class NotificationsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(notificationsControllerProvider, (_, state) {
-      state.whenOrNull(error: (err, _) {
-        showSnackBar(context, err.toString());
-      },);
+    ref.listen(notificationPreferencesControllerProvider, (_, state) {
+      state.whenOrNull(
+        error: (err, _) {
+          showSnackBar(context, err.toString());
+        },
+      );
     });
 
     return const NotificationsBody();

@@ -63,10 +63,14 @@ class _NextButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isNameValid = ref.watch(setupNameProvider).valid &&
-        ref.watch(setupLastnameProvider).value.isNotEmpty;
-    final isLastNameValid = ref.watch(setupLastnameProvider).valid &&
-        ref.watch(setupLastnameProvider).value.isNotEmpty;
+    final isNameValid = ref.watch(
+      setupControllerProvider
+          .select((s) => s.name.isValid && s.name.value.isNotEmpty),
+    );
+    final isLastNameValid = ref.watch(
+      setupControllerProvider
+          .select((s) => s.lastname.isValid && s.lastname.value.isNotEmpty),
+    );
 
     return Button(
       isValid: isNameValid && isLastNameValid,

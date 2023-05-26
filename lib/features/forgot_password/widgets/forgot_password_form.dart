@@ -45,7 +45,9 @@ class _SendPasswordResetEmailButton extends ConsumerWidget {
     final notifier = ref.watch(forgotPasswordControllerProvider.notifier);
     final isLoading = ref.watch(authControllerProvider).isLoading;
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
-    final isValid = ref.watch(isForgotPasswordEmailValidProvider);
+    final isValid = ref.watch(
+      forgotPasswordControllerProvider.select((value) => value.email.isValid),
+    );
 
     return Button(
       isValid: isValid,

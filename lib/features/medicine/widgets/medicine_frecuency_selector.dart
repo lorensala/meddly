@@ -10,7 +10,11 @@ class MedicineFrecuencySelector extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
-    final selectedFrecuency = ref.watch(medicineFrecuencyProvider);
+    final selectedFrecuency = ref.watch(
+      medicineFormControllerProvider.select(
+        (value) => value.frecuency,
+      ),
+    );
 
     return DecoratedBox(
       decoration: BoxDecoration(

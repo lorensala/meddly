@@ -1,15 +1,18 @@
 import 'package:meddly/l10n/l10n.dart';
 import 'package:notifications/notifications.dart';
 
-extension NotificationFailureX on NotificationFailure {
-  String message(AppLocalizations l10n) {
-    return maybeWhen(
-        notFound: () => l10n.notificationPreferenceNotFound,
-        timeout: () => l10n.timeout,
-        sendTimeout: () => l10n.timeout,
-        receiveTimeout: () => l10n.timeout,
-        orElse: () => l10n.unknownError,
-        alreadyExists: () => l10n.notificationPreferenceAlreadyExistsError,
-        doesNotExist: () => l10n.notificationPreferenceDoesNotExistError,);
+extension NotificationExceptionX on NotificationException {
+  String describe(AppLocalizations l10n) {
+    return switch (this) {
+      NotificationNotFoundException() => l10n.notificationPreferenceNotFound,
+      NotificationAlreadyExistsException() =>
+        l10n.notificationPreferenceAlreadyExistsError,
+      NotificationDontExistsException() =>
+        l10n.notificationPreferenceDoesNotExistError,
+      NotificationConnectionException() => l10n.connectionError,
+      NotificationCacheException() => l10n.unknownError,
+      NotificationSerializationException() => l10n.unknownError,
+      NotificationUnknownException() => l10n.unknownError,
+    };
   }
 }

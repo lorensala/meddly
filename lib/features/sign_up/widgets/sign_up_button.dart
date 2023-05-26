@@ -11,7 +11,8 @@ class SignUpButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(signUpControllerProvider.notifier);
-    final isFormValid = ref.watch(isSignUpFormValidProvider);
+    final isFormValid =
+        ref.watch(signUpControllerProvider.select((value) => value.isValid));
     final isLoading = ref.watch(authControllerProvider).isLoading;
 
     return Button(

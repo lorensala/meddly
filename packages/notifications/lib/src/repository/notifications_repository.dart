@@ -10,15 +10,28 @@ class NotificationsRepository {
   final NotificationsApi _api;
   final NotificationsCache _cache;
 
-  Future<(NotificationException?, List<String>)> fetchAll() async {
+  Stream<List<NotificationPreference>> get notificationPreferences =>
+      _cache.notificationPreferences.map(
+        (event) => event
+            .map((e) => NotificationPreference(name: e, isActive: true))
+            .toList(),
+      );
+
+  Future<(NotificationException?, List<NotificationPreference>)>
+      fetchAll() async {
     try {
       final preferences = await _api.fetchAll();
       await _cache.addAll(preferences);
-      return (null, preferences);
+      return (
+        null,
+        preferences
+            .map((e) => NotificationPreference(name: e, isActive: true))
+            .toList()
+      );
     } on NotificationException catch (e) {
-      return (e, <String>[]);
+      return (e, <NotificationPreference>[]);
     } catch (_) {
-      return (NotificationUnknownException(), <String>[]);
+      return (NotificationUnknownException(), <NotificationPreference>[]);
     }
   }
 

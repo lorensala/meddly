@@ -13,35 +13,35 @@ import 'package:notifications/notifications.dart';
 import 'package:user/user.dart';
 
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
-  FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
-  };
-
-  WidgetsFlutterBinding.ensureInitialized();
-
-  final hive = Hive;
-  await hive.initFlutter();
-  hive.registerAdapter<UserDto>(UserDtoAdapter());
-
-  await Future.wait<dynamic>([
-    hive.openBox<UserDto>(userBoxKey),
-    hive.openBox<List<String>>(preferencesBoxKey),
-  ]);
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
   await runZonedGuarded(
-    () async => runApp(
-      ProviderScope(
-        overrides: [
-          hiveProvider.overrideWithValue(hive),
-        ],
-        observers: [Logger()],
-        child: await builder(),
-      ),
-    ),
+    () async {
+      final hive = Hive;
+      await hive.initFlutter();
+      hive.registerAdapter<UserDto>(UserDtoAdapter());
+
+      await Future.wait<dynamic>([
+        hive.openBox<UserDto>(userBoxKey),
+        hive.openBox<List<String>>(preferencesBoxKey),
+      ]);
+      WidgetsFlutterBinding.ensureInitialized();
+
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      FlutterError.onError = (details) {
+        log(details.exceptionAsString(), stackTrace: details.stack);
+      };
+
+      runApp(
+        ProviderScope(
+          overrides: [
+            hiveProvider.overrideWithValue(hive),
+          ],
+          observers: [Logger()],
+          child: await builder(),
+        ),
+      );
+    },
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }

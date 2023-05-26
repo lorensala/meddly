@@ -5,6 +5,10 @@ part 'is_login_form_valid_provider.g.dart';
 
 @riverpod
 bool isLoginFormValid(IsLoginFormValidRef ref) {
-  final state = ref.watch(loginControllerProvider);
-  return state.email.value.isNotEmpty && state.password.value.isNotEmpty;
+  return ref.watch(
+    loginControllerProvider.select(
+      (value) =>
+          value.email.value.isNotEmpty && value.password.value.isNotEmpty,
+    ),
+  );
 }

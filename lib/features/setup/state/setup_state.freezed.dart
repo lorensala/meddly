@@ -22,7 +22,7 @@ mixin _$SetupState {
   Weight get weight => throw _privateConstructorUsedError;
   SexInput get sex => throw _privateConstructorUsedError;
   Birthdate get birthdate => throw _privateConstructorUsedError;
-  FormzStatus get status => throw _privateConstructorUsedError;
+  FormzSubmissionStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SetupStateCopyWith<SetupState> get copyWith =>
@@ -42,7 +42,7 @@ abstract class $SetupStateCopyWith<$Res> {
       Weight weight,
       SexInput sex,
       Birthdate birthdate,
-      FormzStatus status});
+      FormzSubmissionStatus status});
 }
 
 /// @nodoc
@@ -64,7 +64,7 @@ class _$SetupStateCopyWithImpl<$Res, $Val extends SetupState>
     Object? weight = null,
     Object? sex = null,
     Object? birthdate = null,
-    Object? status = freezed,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -91,10 +91,10 @@ class _$SetupStateCopyWithImpl<$Res, $Val extends SetupState>
           ? _value.birthdate
           : birthdate // ignore: cast_nullable_to_non_nullable
               as Birthdate,
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
+              as FormzSubmissionStatus,
     ) as $Val);
   }
 }
@@ -114,7 +114,7 @@ abstract class _$$_SetupStateCopyWith<$Res>
       Weight weight,
       SexInput sex,
       Birthdate birthdate,
-      FormzStatus status});
+      FormzSubmissionStatus status});
 }
 
 /// @nodoc
@@ -134,7 +134,7 @@ class __$$_SetupStateCopyWithImpl<$Res>
     Object? weight = null,
     Object? sex = null,
     Object? birthdate = null,
-    Object? status = freezed,
+    Object? status = null,
   }) {
     return _then(_$_SetupState(
       name: null == name
@@ -161,17 +161,17 @@ class __$$_SetupStateCopyWithImpl<$Res>
           ? _value.birthdate
           : birthdate // ignore: cast_nullable_to_non_nullable
               as Birthdate,
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
+              as FormzSubmissionStatus,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_SetupState implements _SetupState {
+class _$_SetupState extends _SetupState {
   const _$_SetupState(
       {this.name = const Name.pure(),
       this.lastname = const Lastname.pure(),
@@ -179,7 +179,8 @@ class _$_SetupState implements _SetupState {
       this.weight = const Weight.pure(),
       this.sex = const SexInput.pure(),
       this.birthdate = const Birthdate.pure(),
-      this.status = FormzStatus.pure});
+      this.status = FormzSubmissionStatus.initial})
+      : super._();
 
   @override
   @JsonKey()
@@ -201,7 +202,7 @@ class _$_SetupState implements _SetupState {
   final Birthdate birthdate;
   @override
   @JsonKey()
-  final FormzStatus status;
+  final FormzSubmissionStatus status;
 
   @override
   String toString() {
@@ -221,12 +222,12 @@ class _$_SetupState implements _SetupState {
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.birthdate, birthdate) ||
                 other.birthdate == birthdate) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, lastname, height, weight,
-      sex, birthdate, const DeepCollectionEquality().hash(status));
+  int get hashCode => Object.hash(
+      runtimeType, name, lastname, height, weight, sex, birthdate, status);
 
   @JsonKey(ignore: true)
   @override
@@ -235,7 +236,7 @@ class _$_SetupState implements _SetupState {
       __$$_SetupStateCopyWithImpl<_$_SetupState>(this, _$identity);
 }
 
-abstract class _SetupState implements SetupState {
+abstract class _SetupState extends SetupState {
   const factory _SetupState(
       {final Name name,
       final Lastname lastname,
@@ -243,7 +244,8 @@ abstract class _SetupState implements SetupState {
       final Weight weight,
       final SexInput sex,
       final Birthdate birthdate,
-      final FormzStatus status}) = _$_SetupState;
+      final FormzSubmissionStatus status}) = _$_SetupState;
+  const _SetupState._() : super._();
 
   @override
   Name get name;
@@ -258,7 +260,7 @@ abstract class _SetupState implements SetupState {
   @override
   Birthdate get birthdate;
   @override
-  FormzStatus get status;
+  FormzSubmissionStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_SetupStateCopyWith<_$_SetupState> get copyWith =>

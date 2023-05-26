@@ -1,4 +1,3 @@
-import 'package:formz/formz.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/forgot_password/state/state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,12 +14,11 @@ class ForgotPasswordController extends _$ForgotPasswordController {
 
   void onEmailChanged(String value) {
     final email = Email.dirty(value);
-    state = state.copyWith(email: email, status: Formz.validate([email]));
+    state = state.copyWith(email: email);
   }
 
   void sendPasswordResetEmail() {
-    if (state.status.isSubmissionInProgress) return;
-    if (state.status.isInvalid) return;
+    if (state.isNotValid) return;
 
     ref
         .read(authControllerProvider.notifier)

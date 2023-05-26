@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_repository/firebase_auth_repository.dart';
-import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/phone/state/phone_state.dart';
-import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -26,8 +24,10 @@ class PhoneController extends _$PhoneController {
     state = const PhoneState.sendingOtp();
 
     final authRepository = ref.read(authRepositoryProvider);
-    final phoneNumber = ref.watch(phoneNumberProvider);
-    final countryCode = ref.watch(countryCodeProvider);
+    final phoneNumber =
+        ref.watch(phoneFormControllerProvider.select((s) => s.phoneNumber));
+    final countryCode =
+        ref.watch(phoneFormControllerProvider.select((s) => s.countryCode));
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
     final phoneNumberWithCountryCode =
@@ -55,51 +55,53 @@ class PhoneController extends _$PhoneController {
   }
 
   Future<void> verificationCompleted(PhoneAuthCredential credential) async {
-    final authRepository = ref.read(authRepositoryProvider);
-    final userRepository = ref.read(userRepositoryProvider);
+    // final authRepository = ref.read(authRepositoryProvider);
+    // final userRepository = ref.read(userRepositoryProvider);
 
-    final l10n = ref.read(l10nProvider) as AppLocalizations;
+    // final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    final phoneNumber = ref.watch(phoneNumberProvider);
-    final countryCode = ref.watch(countryCodeProvider);
-    final phoneNumberWithCountryCode =
-        '${countryCode.code}${phoneNumber.value}';
+    // final phoneNumber =
+    //     ref.watch(phoneFormControllerProvider.select((s) => s.phoneNumber));
+    // final countryCode =
+    //     ref.watch(phoneFormControllerProvider.select((s) => s.countryCode));
+    // final phoneNumberWithCountryCode =
+    //     '${countryCode.code}${phoneNumber.value}';
 
-    final (err, _) = await authRepository.updatePhoneNumber(
-      phoneNumber: phoneNumberWithCountryCode,
-      verificationId: _verificationId,
-    );
+    // final (err, _) = await authRepository.updatePhoneNumber(
+    //   phoneNumber: phoneNumberWithCountryCode,
+    //   verificationId: _verificationId,
+    // );
 
-    if (err != null) {
-      state = PhoneState.error(err.describe(l10n));
-      return;
-    }
+    // if (err != null) {
+    //   state = PhoneState.error(err.describe(l10n));
+    //   return;
+    // }
 
-    final userOrFailure = userRepository.getUser();
+    // final (err, user) = userRepository.getUser();
 
-    if (userOrFailure.isLeft()) {
-      state = PhoneState.error(userOrFailure.asLeft().message(l10n));
+    // if (userOrFailure.isLeft()) {
+    //   state = PhoneState.error(userOrFailure.asLeft().message(l10n));
 
-      return;
-    }
+    //   return;
+    // }
 
-    final user = userOrFailure.asRight();
+    // final user = userOrFailure.asRight();
 
-    if (user == null) {
-      state = PhoneState.error(l10n.userNotFound);
-      return;
-    }
+    // if (user == null) {
+    //   state = PhoneState.error(l10n.userNotFound);
+    //   return;
+    // }
 
-    final userWithPhoneNumber = user.copyWith(
-      phone: phoneNumberWithCountryCode,
-    );
+    // final userWithPhoneNumber = user.copyWith(
+    //   phone: phoneNumberWithCountryCode,
+    // );
 
-    final res2 = await userRepository.updateUser(userWithPhoneNumber);
+    // final res2 = await userRepository.updateUser(userWithPhoneNumber);
 
-    res2.fold(
-      (l) => state = PhoneState.error(l.message(l10n)),
-      (r) => state = const PhoneState.otpVerified(),
-    );
+    // res2.fold(
+    //   (l) => state = PhoneState.error(l.message(l10n)),
+    //   (r) => state = const PhoneState.otpVerified(),
+    // );
   }
 
   Future<void> verifyPhone(String smsCode) {

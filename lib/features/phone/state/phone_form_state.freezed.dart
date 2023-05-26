@@ -102,10 +102,11 @@ class __$$_PhoneFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PhoneFormState implements _PhoneFormState {
+class _$_PhoneFormState extends _PhoneFormState {
   const _$_PhoneFormState(
       {this.phoneNumber = const PhoneNumber.pure(),
-      this.countryCode = CountryCode.AR});
+      this.countryCode = CountryCode.AR})
+      : super._();
 
   @override
   @JsonKey()
@@ -140,10 +141,11 @@ class _$_PhoneFormState implements _PhoneFormState {
       __$$_PhoneFormStateCopyWithImpl<_$_PhoneFormState>(this, _$identity);
 }
 
-abstract class _PhoneFormState implements PhoneFormState {
+abstract class _PhoneFormState extends PhoneFormState {
   const factory _PhoneFormState(
       {final PhoneNumber phoneNumber,
       final CountryCode countryCode}) = _$_PhoneFormState;
+  const _PhoneFormState._() : super._();
 
   @override
   PhoneNumber get phoneNumber;

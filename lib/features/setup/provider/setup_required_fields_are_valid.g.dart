@@ -7,7 +7,7 @@ part of 'setup_required_fields_are_valid.dart';
 // **************************************************************************
 
 String _$requiredFieldsAreValidHash() =>
-    r'64434f785f346783aec1733fec2dfca20f1d1634';
+    r'690abff3243c8f56eaf0e090c8a5dc95065a4c43';
 
 /// See also [requiredFieldsAreValid].
 @ProviderFor(requiredFieldsAreValid)

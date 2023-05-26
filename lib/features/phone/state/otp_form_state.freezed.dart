@@ -91,8 +91,8 @@ class __$$_OtpFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_OtpFormState implements _OtpFormState {
-  const _$_OtpFormState({this.otp = const Otp.pure()});
+class _$_OtpFormState extends _OtpFormState {
+  const _$_OtpFormState({this.otp = const Otp.pure()}) : super._();
 
   @override
   @JsonKey()
@@ -121,8 +121,9 @@ class _$_OtpFormState implements _OtpFormState {
       __$$_OtpFormStateCopyWithImpl<_$_OtpFormState>(this, _$identity);
 }
 
-abstract class _OtpFormState implements OtpFormState {
+abstract class _OtpFormState extends OtpFormState {
   const factory _OtpFormState({final Otp otp}) = _$_OtpFormState;
+  const _OtpFormState._() : super._();
 
   @override
   Otp get otp;

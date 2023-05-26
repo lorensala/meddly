@@ -1,4 +1,4 @@
-import 'package:meddly/features/predictions/core/extensions.dart';
+import 'package:meddly/features/predictions/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
@@ -15,18 +15,17 @@ class PredictionController extends _$PredictionController {
   }
 
   Future<void> predictWithSymptoms(List<Symptom> symptoms) async {
-    final res = await ref
+    final (err, diseases) = await ref
         .read(predictionsRepositoryProvider)
         .predictWithSymptoms(symptoms);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    state = res.fold(
-      (l) => AsyncError(l.message(l10n), StackTrace.current),
-      (r) {
-        ref.read(goRouterProvider).push(PredictionResultsPage.routeName);
-        return AsyncData(r);
-      },
-    );
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      await ref.read(goRouterProvider).push(PredictionResultsPage.routeName);
+      state = AsyncData(diseases);
+    }
   }
 }

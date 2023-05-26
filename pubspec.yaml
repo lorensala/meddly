@@ -13,7 +13,6 @@ dependencies:
     path: packages/appointment
   calendar:
     path: packages/calendar
-  dartz: ^0.10.1
   dio: ^5.1.2
   firebase_auth_repository:
     git:

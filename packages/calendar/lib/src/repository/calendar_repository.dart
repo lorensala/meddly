@@ -13,18 +13,18 @@ class CalendarRepository {
   Future<
       ({
         CalendarException? err,
-        List<Medicine> activeMedicine,
+        List<Medicine> activeMedicines,
         List<Appointment> appointments,
         List<Measurement> measurements,
         List<Consumption> consumptions,
       })> fetchCalendar() async {
     try {
-      final (:activeMedicine, :appointments, :measurements, :consumptions) =
+      final (:activeMedicines, :appointments, :measurements, :consumptions) =
           await _api.fetchAll();
 
       return (
         err: null,
-        activeMedicine: activeMedicine,
+        activeMedicines: activeMedicines,
         appointments: appointments,
         measurements: measurements,
         consumptions: consumptions,
@@ -32,7 +32,7 @@ class CalendarRepository {
     } on CalendarException catch (e) {
       return (
         err: e,
-        activeMedicine: <Medicine>[],
+        activeMedicines: <Medicine>[],
         appointments: <Appointment>[],
         measurements: <Measurement>[],
         consumptions: <Consumption>[]
@@ -40,7 +40,7 @@ class CalendarRepository {
     } catch (_) {
       return (
         err: CalendarUnknownException(),
-        activeMedicine: <Medicine>[],
+        activeMedicines: <Medicine>[],
         appointments: <Appointment>[],
         measurements: <Measurement>[],
         consumptions: <Consumption>[]
