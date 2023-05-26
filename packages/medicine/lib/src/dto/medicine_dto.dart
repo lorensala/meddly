@@ -32,7 +32,7 @@ class MedicineDto with _$MedicineDto {
 
   /// Converts a [Medicine] object to a [MedicineDto] object.
   /// Returns a [MedicineDto] object.
-  /// Throws a [MedicineDtoException] if the conversion fails.
+  /// Throws a [MedicineModelConversionException] if the conversion fails.
   factory MedicineDto.fromDomain(Medicine medicine) {
     try {
       return MedicineDto(
@@ -51,7 +51,7 @@ class MedicineDto with _$MedicineDto {
         instructions: medicine.instructions,
       );
     } catch (e) {
-      throw MedicineDtoException();
+      throw MedicineModelConversionException();
     }
   }
 
@@ -63,7 +63,7 @@ class MedicineDto with _$MedicineDto {
 
   /// Converts this object to a [Medicine] object.
   /// Returns a [Medicine] object.
-  /// Throws a [MedicineDtoException] if the conversion fails.
+  /// Throws a [MedicineModelConversionException] if the conversion fails.
   Medicine toDomain() {
     try {
       return Medicine(
@@ -82,7 +82,7 @@ class MedicineDto with _$MedicineDto {
         instructions: instructions,
       );
     } catch (e) {
-      throw MedicineDtoException();
+      throw MedicineModelConversionException();
     }
   }
 }

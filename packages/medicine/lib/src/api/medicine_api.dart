@@ -30,7 +30,7 @@ class MedicineApi {
         throw MedicineNotFoundException();
       }
     } on DioError catch (e) {
-      throw MedicineDioException(e);
+      throw MedicineException.fromDioError(e);
     }
 
     try {
@@ -49,7 +49,9 @@ class MedicineApi {
     try {
       await _dio.post<dynamic>(medicinePath, data: medicine.toJson());
     } on DioError catch (e) {
-      throw MedicineDioException(e);
+      throw MedicineException.fromDioError(e);
+    } catch (_) {
+      throw const MedicineUnknownException();
     }
   }
 
@@ -60,7 +62,9 @@ class MedicineApi {
     try {
       await _dio.delete<dynamic>(medicinePath, data: medicine.toJson());
     } on DioError catch (e) {
-      throw MedicineDioException(e);
+      throw MedicineException.fromDioError(e);
+    } catch (_) {
+      throw const MedicineUnknownException();
     }
   }
 
@@ -79,7 +83,7 @@ class MedicineApi {
         data: medicine.toJson(),
       );
     } on DioError catch (e) {
-      throw MedicineDioException(e);
+      throw MedicineException.fromDioError(e);
     }
 
     try {
