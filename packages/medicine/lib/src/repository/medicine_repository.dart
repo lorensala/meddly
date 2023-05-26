@@ -14,7 +14,7 @@ class MedicineRepository {
     try {
       final medicines = await _api.fetchAll();
 
-      return (null, medicines.map((e) => e.toDomain()).toList());
+      return (null, medicines);
     } on MedicineException catch (e) {
       return (e, <Medicine>[]);
     } catch (e) {
@@ -26,7 +26,7 @@ class MedicineRepository {
     Medicine medicine,
   ) async {
     try {
-      await _api.addMedicine(MedicineDto.fromDomain(medicine));
+      await _api.addMedicine(medicine);
 
       return (null, null);
     } on MedicineException catch (e) {
@@ -40,7 +40,7 @@ class MedicineRepository {
     Medicine medicine,
   ) async {
     try {
-      await _api.deleteMedicine(MedicineDto.fromDomain(medicine));
+      await _api.deleteMedicine(medicine);
       await _cache.delete(medicine.id.toString());
 
       return (null, null);
@@ -55,7 +55,7 @@ class MedicineRepository {
     Medicine medicine,
   ) async {
     try {
-      await _api.updateMedicine(MedicineDto.fromDomain(medicine));
+      await _api.updateMedicine(medicine);
 
       return (null, null);
     } on MedicineException catch (e) {

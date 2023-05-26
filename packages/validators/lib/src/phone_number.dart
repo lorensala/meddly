@@ -3,13 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'phone_number.freezed.dart';
 
-/// {@template phone_number}
-/// Phone number input.
-/// {@endtemplate}
 class PhoneNumber extends FormzInput<String, PhoneNumberError> {
   const PhoneNumber.pure() : super.pure('');
 
-  /// {@macro phone_number}
   const PhoneNumber.dirty([super.value = '']) : super.dirty();
 
   @override
@@ -22,23 +18,15 @@ class PhoneNumber extends FormzInput<String, PhoneNumberError> {
   }
 }
 
-/// {@template phone_number_error}
-/// Phone number error.
-/// {@endtemplate}
 @freezed
 class PhoneNumberError with _$PhoneNumberError {
-  /// {@macro phone_number_error}
   const factory PhoneNumberError.invalid() = _Invalid;
 
-  /// {@macro phone_number_error}
   const factory PhoneNumberError.tooShort() = _TooShort;
 
-  /// {@macro phone_number_error}
   const factory PhoneNumberError.tooLong() = _TooLong;
 
-  /// {@macro phone_number_error}
   const factory PhoneNumberError.notNumeric() = _NotNumeric;
 
-  /// {@macro phone_number_error}
   const factory PhoneNumberError.empty() = _Empty;
 }

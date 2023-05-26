@@ -1,37 +1,38 @@
 import 'package:dio/dio.dart';
 
-/// {@template calendar_dto_exception}
-/// Calendar dto exception when the calendar can't be converted to domain.
-/// {@endtemplate}
-class CalendarDtoException implements Exception {}
+sealed class CalendarException implements Exception {
+  const CalendarException();
 
-/// {@template calendar_api_exception}
-/// Exception for calendar api operations failures.
-/// {@endtemplate}
-class CalendarNotFoundException implements Exception {}
-
-/// {@template calendar_serialization_exception}
-/// Exception for calendar serialization operations failures.
-/// {@endtemplate}
-class CalendarSerializationException implements Exception {}
-
-/// {@template calendar_dio_exception}
-/// Exception for calendar dio operations failures.
-/// {@endtemplate}
-class CalendarDioException implements Exception {
-  /// {@macro calendar_api_exception}
-  CalendarDioException(this.error);
-
-  /// The error message.
-  final DioError error;
+  factory CalendarException.fromDioError(DioError error) {
+    switch (error.type) {
+      case DioErrorType.connectionError:
+      case DioErrorType.receiveTimeout:
+      case DioErrorType.sendTimeout:
+        return const CalendarConnectionException();
+      case DioErrorType.connectionTimeout:
+        return const CalendarConnectionException();
+      case DioErrorType.badResponse:
+        return const CalendarUnknownException();
+      case DioErrorType.badCertificate:
+      case DioErrorType.cancel:
+      case DioErrorType.unknown:
+        return const CalendarUnknownException();
+    }
+  }
 }
 
-/// {@template calendar_cache_exception}
-/// Exception for calendar cache operations failures.
-/// {@endtemplate}
-class CalendarCacheException implements Exception {}
+class CalendarUnknownException extends CalendarException {
+  const CalendarUnknownException();
+}
 
-/// {@template calendar_dto_exception}
-/// Calendar dto exception when the calendar can't be converted to domain.
-/// {@endtemplate}
-class ConsumptionDtoException implements Exception {}
+class CalendarNotFoundException extends CalendarException {
+  const CalendarNotFoundException();
+}
+
+class CalendarSerializationException extends CalendarException {
+  const CalendarSerializationException();
+}
+
+class CalendarConnectionException extends CalendarException {
+  const CalendarConnectionException();
+}

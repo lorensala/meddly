@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Consumption _$ConsumptionFromJson(Map<String, dynamic> json) {
+  return _Consumption.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Consumption {
   int get medicineId => throw _privateConstructorUsedError;
@@ -21,6 +25,7 @@ mixin _$Consumption {
   DateTime get realConsumptionDate => throw _privateConstructorUsedError;
   bool get consumed => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ConsumptionCopyWith<Consumption> get copyWith =>
       throw _privateConstructorUsedError;
@@ -131,14 +136,16 @@ class __$$_ConsumptionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$_Consumption extends _Consumption {
+@JsonSerializable()
+class _$_Consumption implements _Consumption {
   const _$_Consumption(
       {required this.medicineId,
       required this.date,
       required this.realConsumptionDate,
-      required this.consumed})
-      : super._();
+      required this.consumed});
+
+  factory _$_Consumption.fromJson(Map<String, dynamic> json) =>
+      _$$_ConsumptionFromJson(json);
 
   @override
   final int medicineId;
@@ -168,6 +175,7 @@ class _$_Consumption extends _Consumption {
                 other.consumed == consumed));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, medicineId, date, realConsumptionDate, consumed);
@@ -177,15 +185,24 @@ class _$_Consumption extends _Consumption {
   @pragma('vm:prefer-inline')
   _$$_ConsumptionCopyWith<_$_Consumption> get copyWith =>
       __$$_ConsumptionCopyWithImpl<_$_Consumption>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ConsumptionToJson(
+      this,
+    );
+  }
 }
 
-abstract class _Consumption extends Consumption {
+abstract class _Consumption implements Consumption {
   const factory _Consumption(
       {required final int medicineId,
       required final DateTime date,
       required final DateTime realConsumptionDate,
       required final bool consumed}) = _$_Consumption;
-  const _Consumption._() : super._();
+
+  factory _Consumption.fromJson(Map<String, dynamic> json) =
+      _$_Consumption.fromJson;
 
   @override
   int get medicineId;
