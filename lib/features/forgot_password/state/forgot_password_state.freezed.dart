@@ -47,14 +47,14 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
   @override
   $Res call({
     Object? email = null,
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as Email,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -85,14 +85,14 @@ class __$$_ForgotPasswordStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = null,
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_$_ForgotPasswordState(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as Email,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -124,11 +124,12 @@ class _$_ForgotPasswordState implements _ForgotPasswordState {
         (other.runtimeType == runtimeType &&
             other is _$_ForgotPasswordState &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.status, status) || other.status == status));
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, status);
+  int get hashCode => Object.hash(
+      runtimeType, email, const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override

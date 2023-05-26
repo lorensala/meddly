@@ -186,7 +186,7 @@ String _$notificationPreferencesStreamHash() =>
 /// See also [notificationPreferencesStream].
 @ProviderFor(notificationPreferencesStream)
 final notificationPreferencesStreamProvider = AutoDisposeStreamProvider<
-    Either<NotificationFailure, List<NotificationPreference>>>.internal(
+    Either<dynamic, List<NotificationPreference>>>.internal(
   notificationPreferencesStream,
   name: r'notificationPreferencesStreamProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -197,7 +197,7 @@ final notificationPreferencesStreamProvider = AutoDisposeStreamProvider<
 );
 
 typedef NotificationPreferencesStreamRef = AutoDisposeStreamProviderRef<
-    Either<NotificationFailure, List<NotificationPreference>>>;
+    Either<dynamic, List<NotificationPreference>>>;
 String _$notificationPreferencesHash() =>
     r'e8ebec3bac586fa41eb8457e51180d0f4bde2064';
 

@@ -64,7 +64,7 @@ class _$SetupStateCopyWithImpl<$Res, $Val extends SetupState>
     Object? weight = null,
     Object? sex = null,
     Object? birthdate = null,
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -91,7 +91,7 @@ class _$SetupStateCopyWithImpl<$Res, $Val extends SetupState>
           ? _value.birthdate
           : birthdate // ignore: cast_nullable_to_non_nullable
               as Birthdate,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -134,7 +134,7 @@ class __$$_SetupStateCopyWithImpl<$Res>
     Object? weight = null,
     Object? sex = null,
     Object? birthdate = null,
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_$_SetupState(
       name: null == name
@@ -161,7 +161,7 @@ class __$$_SetupStateCopyWithImpl<$Res>
           ? _value.birthdate
           : birthdate // ignore: cast_nullable_to_non_nullable
               as Birthdate,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -221,12 +221,12 @@ class _$_SetupState implements _SetupState {
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.birthdate, birthdate) ||
                 other.birthdate == birthdate) &&
-            (identical(other.status, status) || other.status == status));
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, lastname, height, weight, sex, birthdate, status);
+  int get hashCode => Object.hash(runtimeType, name, lastname, height, weight,
+      sex, birthdate, const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override

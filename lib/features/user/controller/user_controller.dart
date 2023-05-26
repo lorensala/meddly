@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-import 'package:meddly/core/extensions.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/user/user.dart';
@@ -13,7 +11,7 @@ part 'user_controller.g.dart';
 @riverpod
 class UserController extends _$UserController {
   @override
-  Stream<Option<User>> build() {
+  Stream<User?> build() {
     return ref.watch(userRepositoryProvider).user;
   }
 
@@ -21,15 +19,13 @@ class UserController extends _$UserController {
     state = const AsyncLoading();
     final repository = ref.watch(userRepositoryProvider);
 
-    final res = await repository.createUser(user);
+    final (err, _) = await repository.createUser(user);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    if (res.isRight()) {
+    if (err == null) {
       ref.read(goRouterProvider).go(PhonePage.routeName);
-    }
-
-    if (res.isLeft()) {
+    } else {
       state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
     }
   }

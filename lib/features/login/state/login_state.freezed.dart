@@ -49,7 +49,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -60,7 +60,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -92,7 +92,7 @@ class __$$_LoginStateCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_$_LoginState(
       email: null == email
@@ -103,7 +103,7 @@ class __$$_LoginStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -142,11 +142,12 @@ class _$_LoginState implements _LoginState {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.status, status) || other.status == status));
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, status);
+  int get hashCode => Object.hash(runtimeType, email, password,
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override

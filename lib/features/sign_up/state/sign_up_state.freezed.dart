@@ -56,7 +56,7 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? email = null,
     Object? password = null,
     Object? termsAndConditions = null,
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -71,7 +71,7 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -108,7 +108,7 @@ class __$$_SignUpStateCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? termsAndConditions = null,
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_$_SignUpState(
       email: null == email
@@ -123,7 +123,7 @@ class __$$_SignUpStateCopyWithImpl<$Res>
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -168,12 +168,12 @@ class _$_SignUpState implements _SignUpState {
                 other.password == password) &&
             (identical(other.termsAndConditions, termsAndConditions) ||
                 other.termsAndConditions == termsAndConditions) &&
-            (identical(other.status, status) || other.status == status));
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, termsAndConditions, status);
+  int get hashCode => Object.hash(runtimeType, email, password,
+      termsAndConditions, const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override

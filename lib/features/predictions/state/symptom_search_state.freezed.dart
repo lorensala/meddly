@@ -48,7 +48,7 @@ class _$SymptomSearchStateCopyWithImpl<$Res, $Val extends SymptomSearchState>
   @override
   $Res call({
     Object? query = null,
-    Object? status = null,
+    Object? status = freezed,
     Object? results = null,
   }) {
     return _then(_value.copyWith(
@@ -56,7 +56,7 @@ class _$SymptomSearchStateCopyWithImpl<$Res, $Val extends SymptomSearchState>
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as Name,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -91,7 +91,7 @@ class __$$_SymptomSearchStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? query = null,
-    Object? status = null,
+    Object? status = freezed,
     Object? results = null,
   }) {
     return _then(_$_SymptomSearchState(
@@ -99,7 +99,7 @@ class __$$_SymptomSearchStateCopyWithImpl<$Res>
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as Name,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
@@ -146,12 +146,15 @@ class _$_SymptomSearchState implements _SymptomSearchState {
         (other.runtimeType == runtimeType &&
             other is _$_SymptomSearchState &&
             (identical(other.query, query) || other.query == query) &&
-            (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, query, status,
+  int get hashCode => Object.hash(
+      runtimeType,
+      query,
+      const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(_results));
 
   @JsonKey(ignore: true)
