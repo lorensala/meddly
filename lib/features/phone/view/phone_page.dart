@@ -5,16 +5,11 @@ import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/setup/setup.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 
-/// {@template phone_page}
-/// A description for PhonePage
-/// {@endtemplate}
 class PhonePage extends StatelessWidget {
-  /// {@macro phone_page}
   const PhonePage({super.key});
 
   static const String routeName = '/phone';
 
-  /// The static route for PhonePage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const PhonePage());
   }
@@ -30,11 +25,7 @@ class PhonePage extends StatelessWidget {
   }
 }
 
-/// {@template phone_view}
-/// Displays the Body of PhoneView
-/// {@endtemplate}
 class PhoneView extends ConsumerWidget {
-  /// {@macro phone_view}
   const PhoneView({super.key});
 
   @override

@@ -11,7 +11,7 @@ class AppointmentPage extends StatelessWidget {
   const AppointmentPage({super.key});
 
   /// The static route for AppointmentPage
-  static String routeName = 'appointment';
+  static String routeName = '/appointment';
 
   @override
   Widget build(BuildContext context) {

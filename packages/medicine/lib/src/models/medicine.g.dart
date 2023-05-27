@@ -20,11 +20,10 @@ _$_Medicine _$$_MedicineFromJson(Map<String, dynamic> json) => _$_Medicine(
       dosisUnit: $enumDecode(_$MedicineDosisUnitEnumMap, json['dosis_unit']),
       dosis: (json['dosis'] as num).toDouble(),
       interval: json['interval'] as int?,
-      days: (json['days'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$MedicineDayEnumMap, e))
-          .toList(),
+      days: const ListMedicineDayOrNullConverter()
+          .fromJson(json['days'] as List<dynamic>?),
       hours: const ListTimeOfDayOrNullConverter()
-          .fromJson(json['hours'] as List<String>?),
+          .fromJson(json['hours'] as List<dynamic>?),
       instructions: json['instructions'] as String?,
     );
 
@@ -40,7 +39,7 @@ Map<String, dynamic> _$$_MedicineToJson(_$_Medicine instance) =>
       'dosis_unit': _$MedicineDosisUnitEnumMap[instance.dosisUnit]!,
       'dosis': instance.dosis,
       'interval': instance.interval,
-      'days': instance.days?.map((e) => _$MedicineDayEnumMap[e]!).toList(),
+      'days': const ListMedicineDayOrNullConverter().toJson(instance.days),
       'hours': const ListTimeOfDayOrNullConverter().toJson(instance.hours),
       'instructions': instance.instructions,
     };
@@ -71,14 +70,4 @@ const _$MedicineDosisUnitEnumMap = {
   MedicineDosisUnit.g: 'g',
   MedicineDosisUnit.mL: 'mL',
   MedicineDosisUnit.percentage: 'percentage',
-};
-
-const _$MedicineDayEnumMap = {
-  MedicineDay.monday: 'monday',
-  MedicineDay.tuesday: 'tuesday',
-  MedicineDay.wednesday: 'wednesday',
-  MedicineDay.thursday: 'thursday',
-  MedicineDay.friday: 'friday',
-  MedicineDay.saturday: 'saturday',
-  MedicineDay.sunday: 'sunday',
 };

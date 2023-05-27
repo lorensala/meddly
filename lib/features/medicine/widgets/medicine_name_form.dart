@@ -39,6 +39,7 @@ class _NameInputField extends ConsumerWidget {
     final errorText = ref.watch(medicineNameErrorTextProvider);
 
     return TextFormField(
+      style: context.textTheme.bodyMedium,
       onChanged: notifier.nameChanged,
       decoration: InputDecoration(
         errorText: errorText,

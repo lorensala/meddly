@@ -104,10 +104,10 @@ class AppTheme {
     return InputDecorationTheme(
       filled: true,
       fillColor: _secondary,
-      hintStyle: _textTheme().bodyLarge!.copyWith(
-            color: _textTheme().bodyLarge!.color!.withOpacity(0.4),
+      hintStyle: _textTheme().bodyMedium!.copyWith(
+            color: _textTheme().bodyMedium!.color!.withOpacity(0.4),
           ),
-      errorStyle: _textTheme().bodyMedium!.copyWith(
+      errorStyle: _textTheme().bodySmall!.copyWith(
             color: _error,
           ),
       enabledBorder: OutlineInputBorder(

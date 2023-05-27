@@ -124,6 +124,7 @@ class _ValueField extends ConsumerWidget {
         const InputLabel(label: 'Valor', isRequired: true),
         const SizedBox(height: Sizes.small),
         TextFormField(
+          style: context.textTheme.bodyMedium,
           onChanged: notifier.valueChanged,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(

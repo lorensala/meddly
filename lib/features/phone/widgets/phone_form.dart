@@ -72,6 +72,7 @@ class _PhoneNumberInput extends ConsumerWidget {
     return Column(
       children: [
         TextFormField(
+          style: context.textTheme.bodyMedium,
           onChanged: notifier.phoneNumberChanged,
           keyboardType: TextInputType.number,
           inputFormatters: [

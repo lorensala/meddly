@@ -73,53 +73,48 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                 const NoTransitionPage(child: BrowsePage()),
             routes: [
               GoRoute(
-                parentNavigatorKey: rootNavigatorKey,
+                parentNavigatorKey: shellNavigatorKey,
                 path: MedicinePage.routeName,
                 builder: (context, state) => const MedicinePage(),
                 routes: [
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineNamePage.routeName,
                     builder: (context, state) => const MedicineNamePage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicinePresentationPage.routeName,
                     builder: (context, state) =>
                         const MedicinePresentationPage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineFrecuencyPage.routeName,
                     builder: (context, state) => const MedicineFrecuencyPage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineDosisPage.routeName,
                     builder: (context, state) => const MedicineDosisPage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineIntervalPage.routeName,
                     builder: (context, state) => const MedicineIntervalPage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineHourPage.routeName,
                     builder: (context, state) => const MedicineHourPage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineReviewDetailsPage.routeName,
                     builder: (context, state) =>
                         const MedicineReviewDetailsPage(),
                   ),
                 ],
-              ),
-              GoRoute(
-                parentNavigatorKey: rootNavigatorKey,
-                path: AppointmentPage.routeName,
-                builder: (context, state) => const AppointmentPage(),
               ),
             ],
           ),
@@ -127,6 +122,11 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         builder: (context, state, child) {
           return ScaffoldWithBottomNavBar(child: child);
         },
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: AppointmentPage.routeName,
+        builder: (context, state) => const AppointmentPage(),
       ),
       GoRoute(
         parentNavigatorKey: rootNavigatorKey,

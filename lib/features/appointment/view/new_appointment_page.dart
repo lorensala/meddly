@@ -19,13 +19,13 @@ class NewAppointmentPage extends StatelessWidget {
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(Sizes.medium),
+            padding: EdgeInsets.all(Sizes.medium),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 AppointmentNameInput(),
                 AppointmentSpecialityDropDown(),
                 AppointmentDateSelector(),
@@ -72,6 +72,7 @@ class AppointmentNotesInput extends ConsumerWidget {
         const InputLabel(label: 'Notas', isRequired: false),
         const SizedBox(height: Sizes.extraSmall),
         TextFormField(
+          style: context.textTheme.bodyMedium,
           onChanged: notifier.onNotesChanged,
           keyboardType: TextInputType.multiline,
           maxLines: 4,
@@ -100,6 +101,7 @@ class AppointmentLocationInput extends ConsumerWidget {
         const InputLabel(label: 'Ubicación', isRequired: false),
         const SizedBox(height: Sizes.extraSmall),
         TextFormField(
+          style: context.textTheme.bodyMedium,
           onChanged: notifier.onLocationChanged,
           decoration: const InputDecoration(
             hintText: 'Ej: Hospital Italiano',
@@ -126,6 +128,7 @@ class AppointmentDoctorInput extends ConsumerWidget {
         const InputLabel(label: 'Nombre del médico', isRequired: false),
         const SizedBox(height: Sizes.extraSmall),
         TextFormField(
+          style: context.textTheme.bodyMedium,
           onChanged: notifier.onDoctorChanged,
           decoration: const InputDecoration(
             hintText: 'Ej: Dr. Juan Pérez',
@@ -221,6 +224,7 @@ class AppointmentNameInput extends ConsumerWidget {
         const InputLabel(label: 'Nombre', isRequired: true),
         const SizedBox(height: Sizes.extraSmall),
         TextFormField(
+          style: context.textTheme.bodyMedium,
           onChanged: notifier.onNameChanged,
           decoration: const InputDecoration(
             hintText: 'Ej: Turno médico de cabecera',

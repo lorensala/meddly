@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/l10n/l10n.dart';
 
@@ -21,7 +22,7 @@ class DateSelector extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = useState<TextStyle>(
-      context.textTheme.bodyLarge!
+      context.textTheme.bodyMedium!
           .copyWith(color: context.colorScheme.onSecondary.withOpacity(0.5)),
     );
     final controller = useTextEditingController(text: 'Select a date');
@@ -88,7 +89,7 @@ class DateSelector extends HookWidget {
                           onDateTimeChanged(initialDateTime);
                         }
                         textStyle.value = context.textTheme.bodyLarge!;
-                        Navigator.of(context).pop();
+                        GoRouter.of(context).pop();
                       },
                     ),
                     const SizedBox(height: Sizes.medium),

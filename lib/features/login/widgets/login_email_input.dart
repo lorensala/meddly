@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/login/controller/login_controller.dart';
 import 'package:meddly/l10n/l10n.dart';
 
@@ -12,7 +13,7 @@ class EmailInput extends ConsumerWidget {
       textInputAction: TextInputAction.next,
       onChanged: ref.watch(loginControllerProvider.notifier).onEmailChanged,
       keyboardType: TextInputType.emailAddress,
-      style: Theme.of(context).textTheme.bodyMedium,
+      style: context.textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: context.l10n.emailHint,
       ),

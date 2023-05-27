@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 
 class MedicinePage extends StatelessWidget {
@@ -21,7 +22,9 @@ class MedicinePage extends StatelessWidget {
       body: const MedicineView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          GoRouter.of(context).push(MedicineNamePage.routeName);
+          GoRouter.of(context).go(
+            '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineNamePage.routeName}',
+          );
         },
         child: const Icon(Icons.add),
       ),

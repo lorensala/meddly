@@ -68,7 +68,7 @@ class _EmailInput extends ConsumerWidget {
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
     return TextFormField(
-      style: Theme.of(context).textTheme.bodyMedium,
+      style: context.textTheme.bodyMedium,
       onChanged: notifier.onEmailChanged,
       decoration: InputDecoration(
         errorText: errorText,
