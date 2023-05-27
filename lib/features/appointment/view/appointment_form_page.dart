@@ -8,8 +8,8 @@ import 'package:meddly/features/appointment/controller/appointment_controller.da
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
-class NewAppointmentPage extends StatelessWidget {
-  const NewAppointmentPage({super.key});
+class AppointmentFormPage extends StatelessWidget {
+  const AppointmentFormPage({super.key});
 
   static const String routeName = 'new-appointment';
 

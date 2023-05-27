@@ -18,7 +18,7 @@ class AppointmentPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           GoRouter.of(context).push(
-            '${BrowsePage.routeName}/${AppointmentPage.routeName}/${NewAppointmentPage.routeName}',
+            '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentFormPage.routeName}',
           );
         },
         tooltip: 'Nuevo turno médico',
