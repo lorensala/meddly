@@ -96,7 +96,7 @@ class BottomNavBar extends HookConsumerWidget {
           icon: SvgPicture.asset(
             Vectors.settings,
             colorFilter: ColorFilter.mode(
-              selectedIndex.value == 1
+              selectedIndex.value == 2
                   ? context.colorScheme.primary
                   : context.colorScheme.onSecondary.withOpacity(0.8),
               BlendMode.srcIn,
@@ -107,7 +107,7 @@ class BottomNavBar extends HookConsumerWidget {
         BottomNavigationBarItem(
           icon: Icon(
             Icons.person,
-            color: context.colorScheme.primary,
+            color: context.colorScheme.onSecondary.withOpacity(0.8),
           ),
           label: context.l10n.profile,
         ),

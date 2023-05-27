@@ -26,6 +26,7 @@ class MedicinePage extends StatelessWidget {
             '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineNamePage.routeName}',
           );
         },
+        tooltip: 'Add Medicine',
         child: const Icon(Icons.add),
       ),
     );

@@ -6,12 +6,14 @@ class DropDownSelector<T> extends StatelessWidget {
     required this.value,
     required this.items,
     required this.onChanged,
+    this.hasBorder = false,
     super.key,
   });
 
   final T value;
   final List<DropdownMenuItem<T>> items;
   final void Function(T?) onChanged;
+  final bool hasBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,11 @@ class DropDownSelector<T> extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
         borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+        border: hasBorder
+            ? Border.all(
+                color: context.colorScheme.surface,
+              )
+            : null,
       ),
       child: Padding(
         padding: Sizes.horizontalPadding,

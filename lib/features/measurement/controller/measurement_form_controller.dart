@@ -16,6 +16,12 @@ class MeasurementFormController extends _$MeasurementFormController {
     state = state.copyWith(value: NotNegativeIntNumber.dirty(value));
   }
 
+  void unitChanged(MeasurementUnit? unit) {
+    if (unit == null) return;
+    if (unit == state.unit) return;
+    state = state.copyWith(unit: unit);
+  }
+
   void typeChanged(MeasurementType? type) {
     if (type == null) return;
     if (type == state.type) return;
@@ -27,11 +33,14 @@ class MeasurementFormController extends _$MeasurementFormController {
   }
 
   void save() {
+    if (state.isNotValid) return;
+
     final measurement = Measurement(
       date: state.date ?? DateTime.now(),
       type: state.type,
       value: double.parse(state.value.value),
       id: 0,
+      unit: state.unit,
     );
 
     ref

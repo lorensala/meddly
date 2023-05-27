@@ -3,7 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/browse/browse.dart';
-import 'package:meddly/features/medicine/view/view.dart';
+import 'package:meddly/features/measurement/measurement.dart';
+import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 
@@ -23,7 +24,9 @@ class BrowseBody extends ConsumerWidget {
               title: 'Measurements',
               description: 'Measure your blood pressure, heart rate, and more.',
               vector: Vectors.measurements,
-              onTap: () {},
+              onTap: () => ref
+                  .read(goRouterProvider)
+                  .push('${BrowsePage.routeName}/${MeasurementPage.routeName}'),
             ),
             const SizedBox(height: Sizes.medium),
             BrowseCard(

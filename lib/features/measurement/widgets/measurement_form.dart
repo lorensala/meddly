@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:measurement/measurement.dart';
 import 'package:meddly/core/core.dart';
@@ -22,6 +23,8 @@ class MeasurementForm extends StatelessWidget {
             _ValueField(),
             SizedBox(height: Sizes.medium),
             _TypeDropDownSelector(),
+            SizedBox(height: Sizes.medium),
+            _UnitDropDownSelector(),
             SizedBox(height: Sizes.medium),
             _DateSelector(),
             SizedBox(height: Sizes.medium),
@@ -91,9 +94,11 @@ class _TypeDropDownSelector extends ConsumerWidget {
         const InputLabel(label: 'Tipo', isRequired: true),
         const SizedBox(height: Sizes.small),
         SizedBox(
+          height: kBottomNavigationBarHeight,
           width: double.infinity,
           child: DropDownSelector(
             value: selectedType,
+            hasBorder: true,
             items: MeasurementType.values
                 .map(
                   (e) => DropdownMenuItem<MeasurementType>(
@@ -103,6 +108,61 @@ class _TypeDropDownSelector extends ConsumerWidget {
                 )
                 .toList(),
             onChanged: notifier.typeChanged,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _UnitDropDownSelector extends HookConsumerWidget {
+  const _UnitDropDownSelector();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedUnit = useState<MeasurementUnit?>(null);
+    final notifier = ref.watch(measurementFormControllerProvider.notifier);
+    final selectedType = ref
+        .watch(measurementFormControllerProvider.select((value) => value.type));
+
+    final units = getUnits(selectedType);
+
+    if (units.isEmpty) {
+      Future.delayed(Duration.zero, () => notifier.unitChanged(null));
+
+      return const SizedBox.shrink();
+    }
+
+    if (units.length == 1) {
+      Future.delayed(Duration.zero, () => notifier.unitChanged(units.first));
+
+      return const SizedBox.shrink();
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const InputLabel(label: 'Tipo', isRequired: true),
+        const SizedBox(height: Sizes.small),
+        SizedBox(
+          height: kBottomNavigationBarHeight,
+          width: double.infinity,
+          child: DropDownSelector<MeasurementUnit>(
+            value: selectedUnit.value ?? units[0],
+            hasBorder: true,
+            items: units
+                .map(
+                  (e) => DropdownMenuItem<MeasurementUnit>(
+                    value: e,
+                    key: Key(e.name),
+                    child: Text(e.name),
+                  ),
+                )
+                .toList(),
+            onChanged: (v) {
+              notifier.unitChanged(v);
+              selectedUnit.value = v;
+            },
           ),
         ),
       ],

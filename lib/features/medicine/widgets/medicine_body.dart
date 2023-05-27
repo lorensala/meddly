@@ -15,6 +15,12 @@ class MedicineBody extends ConsumerWidget {
     return AsyncValueWidget(
       value: medicines,
       builder: (medicines) {
+        if (medicines.isEmpty) {
+          return const EmptyContainer(
+            message: 'No tienes medicinas registradas',
+          );
+        }
+
         return Padding(
           padding: Sizes.mediumPadding,
           child: ListView.separated(

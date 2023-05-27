@@ -24,5 +24,5 @@ enum MeasurementType {
   vitaminDLevels,
   ironLevels,
   prostateSpecificAntigen,
-  other
+  other,
 }

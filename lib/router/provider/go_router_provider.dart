@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:meddly/features/appointment/view/view.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/home/home.dart';
+import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/features/notifications/view/view.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
@@ -86,6 +87,25 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                     parentNavigatorKey: shellNavigatorKey,
                     path: '${AppointmentDetailPage.routeName}/:id',
                     builder: (context, state) => AppointmentDetailPage(
+                      int.parse(state.pathParameters['id']!),
+                    ),
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: MeasurementPage.routeName,
+                parentNavigatorKey: shellNavigatorKey,
+                builder: (context, state) => const MeasurementPage(),
+                routes: [
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: MeasurementFormPage.routeName,
+                    builder: (context, state) => const MeasurementFormPage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: '${MeasurementDetailPage.routeName}/:id',
+                    builder: (context, state) => MeasurementDetailPage(
                       int.parse(state.pathParameters['id']!),
                     ),
                   ),

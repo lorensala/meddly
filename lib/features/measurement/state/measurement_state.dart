@@ -10,6 +10,7 @@ class MeasurementState with _$MeasurementState, FormzMixin {
   const factory MeasurementState({
     @Default(NotNegativeIntNumber.pure()) NotNegativeIntNumber value,
     @Default(MeasurementType.bloodGlucose) MeasurementType type,
+    @Default(MeasurementUnit.mmHg) MeasurementUnit unit,
     DateTime? date,
   }) = _MeasurementState;
 
