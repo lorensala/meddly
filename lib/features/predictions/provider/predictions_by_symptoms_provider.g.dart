@@ -7,7 +7,7 @@ part of 'predictions_by_symptoms_provider.dart';
 // **************************************************************************
 
 String _$predictionsBySymptomsHash() =>
-    r'd9b37e14967f988d5f2641045fd326bb31086fad';
+    r'deed22912503c9527278885eebfa7846729b1239';
 
 /// See also [PredictionsBySymptoms].
 @ProviderFor(PredictionsBySymptoms)

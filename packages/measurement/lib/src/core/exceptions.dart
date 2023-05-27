@@ -1,32 +1,60 @@
 import 'package:dio/dio.dart';
 
-/// {@template calendar_dto_exception}
-/// Measurement dto exception when the measurement can't be converted to domain.
-/// {@endtemplate}
-class MeasurementDtoException implements Exception {}
+sealed class MeasurementException implements Exception {
+  const MeasurementException();
 
-/// {@template calendar_dio_exception}
-/// Exception for calendar dio operations failures.
-/// {@endtemplate}
-class MeasurementDioException implements Exception {
-  /// {@macro calendar_api_exception}
-  MeasurementDioException(this.error);
+  factory MeasurementException.fromDioError(DioError error) {
+    switch (error.type) {
+      case DioErrorType.connectionError:
+      case DioErrorType.receiveTimeout:
+      case DioErrorType.sendTimeout:
+        return const MeasurementConnectionException();
+      case DioErrorType.connectionTimeout:
+        return const MeasurementConnectionException();
+      case DioErrorType.badResponse:
+        final response = error.response;
+        if (response == null) {
+          return const MeasurementUnknownException();
+        }
+        // ignore: avoid_dynamic_calls
+        final errorCode = response.data['detail']['code'] as int?;
 
-  /// The error message.
-  final DioError error;
+        switch (errorCode) {
+          case 600:
+            return const MeasurementNotFoundException();
+          case 601:
+            return const MeasurementNotYoursException();
+          default:
+            return const MeasurementUnknownException();
+        }
+      case DioErrorType.badCertificate:
+      case DioErrorType.cancel:
+      case DioErrorType.unknown:
+        return const MeasurementUnknownException();
+    }
+  }
 }
 
-/// {@template calendar_cache_exception}
-/// Exception for calendar cache operations failures.
-/// {@endtemplate}
-class MeasurementCacheException implements Exception {}
+class MeasurementUnknownException extends MeasurementException {
+  const MeasurementUnknownException();
+}
 
-/// {@template measurement_not_found_exception}
-/// Exception thrown when a measurement is not found.
-/// {@endtemplate}
-class MeasurementNotFoundException implements Exception {}
+class MeasurementNotFoundException extends MeasurementException {
+  const MeasurementNotFoundException();
+}
 
-/// {@template measurement_serialization_exception}
-/// Exception thrown when a measurement serialization operation fails.
-/// {@endtemplate}
-class MeasurementSerializationException implements Exception {}
+class MeasurementNotYoursException extends MeasurementException {
+  const MeasurementNotYoursException();
+}
+
+class MeasurementConnectionException extends MeasurementException {
+  const MeasurementConnectionException();
+}
+
+class MeasurementCancelException extends MeasurementException {
+  const MeasurementCancelException();
+}
+
+class MeasurementSerializationException extends MeasurementException {
+  const MeasurementSerializationException();
+}

@@ -38,9 +38,12 @@ class _IntervalBody extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedFrequency =
         ref.watch(medicineFormControllerProvider).frecuency;
-    final selectedFrecuencValue = ref.watch(medicineFrecuencyValueProvider);
+    final selectedFrecuencValue = ref.watch(
+      medicineFormControllerProvider.select((value) => value.frecuencyValue),
+    );
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
-    final selectedDays = ref.watch(medicineDaysProvider);
+    final selectedDays =
+        ref.watch(medicineFormControllerProvider.select((value) => value.days));
 
     final List<DropdownMenuItem<int>> items = useMemoized(
       () => [

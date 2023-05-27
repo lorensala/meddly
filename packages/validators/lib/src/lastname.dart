@@ -3,13 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'lastname.freezed.dart';
 
-/// {@template lastname}
-/// Input for lastname.
-/// {@endtemplate}
 class Lastname extends FormzInput<String, LastnameError> {
   const Lastname.pure() : super.pure('');
 
-  /// {@macro lastname}
   const Lastname.dirty([super.value = '']) : super.dirty();
 
   static final RegExp _nameRegExp = RegExp(
@@ -34,17 +30,11 @@ class Lastname extends FormzInput<String, LastnameError> {
   }
 }
 
-/// {@template lastname_error}
-/// Lastname input error.
-/// {@endtemplate}
 @freezed
 class LastnameError with _$LastnameError {
-  /// {@macro lastname_error}
   const factory LastnameError.invalid() = InvalidLastnameError;
 
-  /// {@macro lastname_error}
   const factory LastnameError.tooLong() = TooLongLastnameError;
 
-  /// {@macro lastname_error}
   const factory LastnameError.empty() = EmptyLastnameError;
 }

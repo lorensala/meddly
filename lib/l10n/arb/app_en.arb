@@ -1,415 +1,146 @@
 {
     "@@locale": "en",
+    "@_COMMON": {},
     "notifications": "Notifications",
-    "@notifications": {
-        "description": "Text shown on the notifications title"
-    },
-    "forgotPassword": "Forgot password?",
-    "@forgotPassword": {
-        "description": "Text shown on the login page"
-    },
     "emailHint": "Email",
-    "@emailHint": {
-        "description": "Hint text shown on the login page"
-    },
     "passwordHint": "Password",
-    "@passwordHint": {
-        "description": "Hint text shown on the login page"
-    },
-    "login": "Login",
-    "@login": {
-        "description": "Text shown on the login button"
-    },
+    "accept": "Accept",
+    "skip": "Skip",
+    "next": "Next",
+    "save": "Save",
+    "tryAgain": "Try again",
+    "@_ERRORS": {},
     "cancelledByUser": "Cancelled by user",
-    "@cancelledByUser": {
-        "description": "Text shown when the user cancels the login"
-    },
     "accountsExistsWithDifferentCredentials": "An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address.",
-    "@accountsExistsWithDifferentCredentials": {
-        "description": "Text shown when the user tries to login with an email that is already in use"
-    },
     "serverError": "Server error",
-    "@serverError": {
-        "description": "Text shown when the server returns an error"
-    },
     "emailAlreadyInUse": "The email address is already in use by another account.",
-    "@emailAlreadyInUse": {
-        "description": "Text shown when the user tries to login with an email that is already in use"
-    },
     "weakPassword": "Weak password",
-    "invalidActionCode": "Invalid action code",
     "expiredActionCode": "Expired action code",
     "requiresRecentLogin": "Requires recent login",
-    "invalidVerificationCode": "Invalid verification code",
-    "invalidVerificationId": "Invalid verification id",
     "tooManyRequests": "Too many requests",
     "logInWithGoogleError": "Error logging in with Google",
-    "invalidEmail": "The email address is badly formatted.",
-    "@invalidEmail": {
-        "description": "Text shown when the user tries to login with an invalid email"
-    },
     "wrongPassword": "The password is invalid or the user does not have a password.",
-    "@wrongPassword": {
-        "description": "Text shown when the user tries to login with an invalid password"
-    },
     "userNotFound": "There is no user record corresponding to this identifier. The user may have been deleted.",
-    "@userNotFound": {
-        "description": "Text shown when the user tries to login with an email that is not registered"
-    },
     "userDisabled": "The user account has been disabled by an administrator.",
-    "@userDisabled": {
-        "description": "Text shown when the user tries to login with an email that is disabled"
-    },
     "operationNotAllowed": "Password sign-in is disabled for this project.",
-    "@operationNotAllowed": {
-        "description": "Text shown when the user tries to login with an email that is disabled"
-    },
     "tooManyRequests": "We have blocked all requests from this device due to unusual activity. Try again later.",
-    "@tooManyRequests": {
-        "description": "Text shown when the user tries to login with an email that is disabled"
-    },
     "unknownError": "An unknown error has occurred.",
-    "@unknownError": {
-        "description": "Text shown when the user tries to login with an email that is disabled"
-    },
     "credentialAlreadyInUse": "This credential is already associated with a different user account.",
-    "@credentialAlreadyInUse": {
-        "description": "Text shown when the user tries to login with an email that is disabled"
-    },
-    "invalidEmailAndPasswordCombination": "Invalid email and password combination.",
-    "@invalidEmailAndPasswordCombination": {
-        "description": "Text shown when the user tries to login with an invalid email and password combination"
-    },
-    "invalidVerificationCode": "Invalid verification code.",
-    "@invalidVerificationCode": {
-        "description": "Text shown when the user tries to login with an invalid verification code"
-    },
-    "invalidVerificationId": "Invalid verification ID.",
-    "@invalidVerificationId": {
-        "description": "Text shown when the user tries to login with an invalid verification ID"
-    },
-    "signUp": "Sign up",
-    "@signUp": {
-        "description": "Text shown on the sign up button"
-    },
     "emailEmpty": "Email cannot be empty",
-    "@emailEmpty": {
-        "description": "Text shown when the user tries to sign up with an empty email"
-    },
-    "invalidPassword": "Password must be at least 8 characters, contain at least one number, one uppercase letter and one special character",
-    "@invalidPassword": {
-        "description": "Text shown when the user tries to sign up with an invalid password"
-    },
     "passwordTooLong": "Password must be at most 20 characters",
-    "@passwordTooLong": {
-        "description": "Text shown when the user tries to sign up with a password that is too long"
-    },
     "passwordTooShort": "Password must be at least 8 characters",
-    "@passwordTooShort": {
-        "description": "Text shown when the user tries to sign up with a password that is too short"
-    },
     "passwordEmpty": "Password cannot be empty",
-    "@passwordEmpty": {
-        "description": "Text shown when the user tries to sign up with an empty password"
-    },
     "dontHaveAnAccount": "Don't have an account?",
-    "@dontHaveAnAccount": {
-        "description": "Text shown on the login page"
-    },
     "alreadyHaveAnAccount": "Already have an account?",
-    "@alreadyHaveAnAccount": {
-        "description": "Text shown on the sign up page"
-    },
     "passwordResetEmailSent": "Password reset email sent",
-    "@passwordResetEmailSent": {
-        "description": "Text shown when the user requests a password reset email"
-    },
     "confirmPasswordHint": "Confirm password",
-    "@confirmPasswordHint": {
-        "description": "Hint text shown on the sign up page"
-    },
     "passwordsDontMatch": "Passwords don't match",
-    "@passwordsDontMatch": {
-        "description": "Text shown when the user tries to sign up with a password that doesn't match the confirm password"
-    },
     "sendPasswordResetEmail": "Send password reset email",
-    "@sendPasswordResetEmail": {
-        "description": "Text shown on the password reset button"
-    },
     "loginWithEmailAddress": "Login with email address",
-    "@loginWithEmailAddress": {
-        "description": "Text shown on the login with email button"
-    },
     "loginWithGoogle": "Login with Google",
-    "@loginWithGoogle": {
-        "description": "Text shown on the login with Google button"
-    },
     "guidanceConsultationTitle": "Make an orientation consultation",
-    "@guidanceConsultationTitle": {
-        "description": "Text shown on the guidance consultation card title"
-    },
     "registerMedicationsTitle": "Register your medications",
-    "@registerMedicationsTitle": {
-        "description": "Text shown on the register medications card title"
-    },
     "followYourTreatmentsTitle": "Follow your treatments",
-    "@followYourTreatmentsTitle": {
-        "description": "Text shown on the follow your treatments card title"
-    },
-    "guidanceConsultationDescription": "Talk to a doctor and get your doubts clarified",
-    "@guidanceConsultationDescription": {
-        "description": "Text shown on the guidance consultation card description"
-    },
-    "registerMedicationsDescription": "Register your medications and receive reminders",
-    "@registerMedicationsDescription": {
-        "description": "Text shown on the register medications card description"
-    },
-    "followYourTreatmentsDescription": "Follow your treatments and receive reminders",
-    "@followYourTreatmentsDescription": {
-        "description": "Text shown on the follow your treatments card description"
-    },
-    "accept": "Accept",
-    "@accept": {
-        "description": "Text shown on the accept terms and conditions button"
-    },
-    "termsAndConditions": "terms and conditions",
-    "@termsAndConditions": {
-        "description": "Text shown on the terms and conditions button"
-    },
-    "nameHint": "Name",
-    "@nameHint": {
-        "description": "Hint text shown on the sign up page"
-    },
+    "errorCreatingAccount": "Error creating account",
+    "invalidActionCode": "Invalid action code",
+    "invalidVerificationCode": "Invalid verification code",
+    "invalidVerificationId": "Invalid verification id",
+    "invalidEmail": "The email address is badly formatted.",
+    "invalidEmailAndPasswordCombination": "Invalid email and password combination.",
+    "invalidVerificationCode": "Invalid verification code.",
+    "invalidVerificationId": "Invalid verification ID.",
+    "invalidPassword": "Password must be at least 8 characters, contain at least one number, one uppercase letter and one special character",
     "invalidName": "Name is invalid",
-    "@invalidName": {
-        "description": "Text shown when the user tries to sign up with an invalid name"
-    },
-    "nameEmpty": "Name cannot be empty",
-    "@nameEmpty": {
-        "description": "Text shown when the user tries to sign up with an empty name"
-    },
-    "nameTooLong": "Name must be at most 50 characters",
-    "@nameTooLong": {
-        "description": "Text shown when the user tries to sign up with a name that is too long"
-    },
-    "lastNameHint": "Last name",
-    "@lastNameHint": {
-        "description": "Hint text shown on the sign up page"
-    },
     "invalidLastName": "Last name is invalid",
-    "@invalidLastName": {
-        "description": "Text shown when the user tries to sign up with an invalid last name"
-    },
-    "lastNameEmpty": "Last name cannot be empty",
-    "@lastNameEmpty": {
-        "description": "Text shown when the user tries to sign up with an empty last name"
-    },
-    "lastNameTooLong": "Last name must be at most 50 characters",
-    "@lastNameTooLong": {
-        "description": "Text shown when the user tries to sign up with a last name that is too long"
-    },
-    "birthdateHint": "Birthdate",
-    "@birthdateHint": {
-        "description": "Hint text shown on the sign up page"
-    },
     "invalidBirthdate": "Birthdate is invalid",
-    "@invalidBirthdate": {
-        "description": "Text shown when the user tries to sign up with an invalid birthdate"
-    },
-    "birthdateEmpty": "Birthdate cannot be empty",
-    "@birthdateEmpty": {
-        "description": "Text shown when the user tries to sign up with an empty birthdate"
-    },
-    "birthdateUnderage": "You must be at least 18 years old to use this app",
-    "@birthdateUnderage": {
-        "description": "Text shown when the user tries to sign up with a birthdate that is underage"
-    },
-    "heightHint": "Height",
-    "@heightHint": {
-        "description": "Hint text shown on the sign up page"
-    },
     "invalidHeight": "Height is invalid",
-    "@invalidHeight": {
-        "description": "Text shown when the user tries to sign up with an invalid height"
-    },
-    "heightEmpty": "Height cannot be empty",
-    "@heightEmpty": {
-        "description": "Text shown when the user tries to sign up with an empty height"
-    },
-    "heightNegative": "Height cannot be negative",
-    "@heightNegative": {
-        "description": "Text shown when the user tries to sign up with a negative height"
-    },
-    "heightZero": "Height cannot be zero",
-    "@heightZero": {
-        "description": "Text shown when the user tries to sign up with a zero height"
-    },
-    "weightHint": "Weight",
-    "@weightHint": {
-        "description": "Hint text shown on the sign up page"
-    },
     "invalidWeight": "Weight is invalid",
-    "@invalidWeight": {
-        "description": "Text shown when the user tries to sign up with an invalid weight"
-    },
-    "weightEmpty": "Weight cannot be empty",
-    "@weightEmpty": {
-        "description": "Text shown when the user tries to sign up with an empty weight"
-    },
-    "weightNegative": "Weight cannot be negative",
-    "@weightNegative": {
-        "description": "Text shown when the user tries to sign up with a negative weight"
-    },
-    "weightZero": "Weight cannot be zero",
-    "@weightZero": {
-        "description": "Text shown when the user tries to sign up with a zero weight"
-    },
-    "phoneNumberHint": "Phone number",
-    "@phoneNumberHint": {
-        "description": "Hint text shown on the sign up page"
-    },
     "invalidPhoneNumber": "Phone number is invalid",
-    "@invalidPhoneNumber": {
-        "description": "Text shown when the user tries to sign up with an invalid phone number"
-    },
+    "invalidMedicineName": "Medicine name is invalid",
+    "invalidDosis": "Dosis is invalid",
+    "invalidStockWarning": "Stock warning is invalid",
+    "invalidCurrentStock": "Current stock is invalid",
+    "invalidInstructions": "Instructions are invalid",
+    "invalidMeasurementValue": "Invalid measurement value",
+    "birthdateUnderage": "You must be at least 18 years old to use this app",
+    "nameTooLong": "Name must be at most 50 characters",
+    "lastNameEmpty": "Last name cannot be empty",
+    "lastNameTooLong": "Last name must be at most 50 characters",
+    "birthdateEmpty": "Birthdate cannot be empty",
+    "heightEmpty": "Height cannot be empty",
+    "heightNegative": "Height cannot be negative",
+    "heightZero": "Height cannot be zero",
+    "weightEmpty": "Weight cannot be empty",
+    "weightNegative": "Weight cannot be negative",
+    "weightZero": "Weight cannot be zero",
     "phoneNumberEmpty": "Phone number cannot be empty",
-    "@phoneNumberEmpty": {
-        "description": "Text shown when the user tries to sign up with an empty phone number"
-    },
     "phoneNumberTooLong": "Phone number must be at most 20 characters",
-    "@phoneNumberTooLong": {
-        "description": "Text shown when the user tries to sign up with a phone number that is too long"
-    },
     "phoneNumberTooShort": "Phone number must be at least 8 characters",
-    "@phoneNumberTooShort": {
-        "description": "Text shown when the user tries to sign up with a phone number that is too short"
-    },
     "phoneNumberNotNumeric": "Phone number must be numeric",
-    "@phoneNumberNotNumeric": {
-        "description": "Text shown when the user tries to sign up with a phone number that is not numeric"
-    },
+    "notificationPreferenceNotFound": "Notification preference not found",
+    "notificationPreferenceAlreadyExistsError": "Notification preference already exists",
+    "notificationPreferenceDoesNotExistError": "Notification preference does not exist",
+    "medicineNameEmpty": "Medicine name cannot be empty",
+    "medicineNameTooLong": "Medicine name must be at most 100 characters",
+    "instructionsTooLong": "Instructions must be at most 100 characters",
+    "medicineNotFound": "Medicine not found",
+    "measurementNotFound": "Measurement not found",
+    "connectionError": "Connection error",
+    "@_ONBOARDING": {},
+    "guidanceConsultationDescription": "Talk to a doctor and get your doubts clarified",
+    "registerMedicationsDescription": "Register your medications and receive reminders",
+    "followYourTreatmentsDescription": "Follow your treatments and receive reminders",
+    "@_LOGIN": {},
+    "login": "Login",
+    "forgotPassword": "Forgot password?",
+    "@_SIGNUP": {},
+    "signUp": "Sign up",
+    "termsAndConditions": "terms and conditions",
+    "@_SETUP": {},
+    "startNow": "Start now",
+    "nameHint": "Name",
+    "nameEmpty": "Name cannot be empty",
+    "lastNameHint": "Last name",
+    "birthdateHint": "Birthdate",
+    "heightHint": "Height",
+    "weightHint": "Weight",
+    "phoneNumberHint": "Phone number",
     "sexHint": "Sex",
-    "@sexHint": {
-        "description": "Hint text shown on the sign up page"
-    },
     "sexDescription": "Select your sex at birth",
-    "@sexDescription": {
-        "description": "Text shown on the sex selector"
-    },
     "sexWhy": "Why do we ask for this?",
-    "@sexWhy": {
-        "description": "Text shown on under the description"
-    },
     "male": "Male",
-    "@male": {
-        "description": "Male"
-    },
     "female": "Female",
-    "@female": {
-        "description": "Female"
-    },
     "createAccount": "Create account",
-    "@createAccount": {
-        "description": "Text shown on the create account button"
-    },
+     "setup": "Setup",
+    "setupNameTitle": "What's your name?",
+    "setupNameSubtitle": "We will use this name to greet you",
+    "setupBirthdateTitle": "When were you born?",
+    "setupBirthdateSubtitle": "We will use this information for your medical records",
+    "setupHeightWeightTitle": "What is your height and weight?",
+    "setupHeightWeightSubtitle": "We will use this information for your medical records",
+    "setupSexTitle": "What is your sex?",
+    "setupSexSubtitle": "We will use this information for your medical records",
+    "sexWhyDescription": "    In our medical app, we only offer the option to select between \"Male\" and \"Female\" in the sex selection due to medical and practical reasons.\n   From a medical perspective, the binary classification of sex has historically been used in medicine because most diseases and conditions have a higher prevalence in one gender than the other. In addition, biological differences between males and females can influence how diseases are presented and treated.\n   For example, women have a higher risk of developing osteoporosis while men have a higher risk of coronary disease. Symptoms and the presentation of some diseases can also vary by gender. Therefore, having accurate information about a patient's sex can help doctors make a more accurate diagnosis and provide appropriate treatment.\n    Regarding practical reasons, limiting the options to \"Male\" and \"Female\" facilitates data collection and analysis. By having a binary classification, we can obtain more precise and useful information about the health of our users.\n    It's important to note that we understand that gender is a more complex and varied issue that can encompass a wider range of identities. However, in our medical app, we limit ourselves to offering these two options due to medical and practical reasons. We appreciate your understanding and are committed to providing high-quality and respectful medical care to all individuals who use our app.",
+    "@_PHONE_VERIFICATION": {},
     "timeout": "Timeout",
     "sendOTP": "Send OTP",
-    "@sendOTP": {
-        "description": "Text shown on the send OTP button"
-    },
     "enterPhoneNumber": "Enter your phone number",
-    "@enterPhoneNumber": {
-        "description": "Text shown on the enter phone number page"
-    },
     "enterPhoneNumberDescription": "You'll receive a 6 digit code to verify next",
-    "@enterPhoneNumberDescription": {
-        "description": "Text shown on the enter phone number page"
-    },
     "enterCode": "Enter the code we sent to",
-    "@enterCode": {
-        "description": "Text shown on the enter code page"
-    },
     "enterCodeDescription": "Didn't receive the code? Tap on \"Resend code\"",
-    "@enterCodeDescription": {
-        "description": "Text shown on the enter code page"
-    },
-    "skip": "Skip",
-    "@skip": {
-        "description": "Text shown on the skip button"
-    },
     "resendCode": "Resend code",
     "codeWillBeResent": "Code will be resent in",
-    "@codeWillBeResent": {
-        "description": "Text shown on the code will be resent page"
-    },
-    "notificationPreferenceNotFound": "Notification preference not found",
-    "@notificationPreferenceNotFound": {
-        "description": "Text shown when the notification preference is not found"
-    },
-    "notificationPreferenceAlreadyExistsError": "Notification preference already exists",
-    "@notificationPreferenceAlreadyExistsError": {
-        "description": "Text shown when the notification preference already exists"
-    },
-    "notificationPreferenceDoesNotExistError": "Notification preference does not exist",
-    "@notificationPreferenceDoesNotExistError": {
-        "description": "Text shown when the notification preference does not exist"
-    },
-    "invalidMedicineName": "Medicine name is invalid",
-    "@invalidMedicineName": {
-        "description": "Text shown when the medicine name is invalid"
-    },
-    "medicineNameEmpty": "Medicine name cannot be empty",
-    "@medicineNameEmpty": {
-        "description": "Text shown when the medicine name is empty"
-    },
-    "medicineNameTooLong": "Medicine name must be at most 100 characters",
-    "@medicineNameTooLong": {
-        "description": "Text shown when the medicine name is too long"
-    },
-    "next": "Next",
-    "@next": {
-        "description": "Text shown on the next button"
-    },
+    "@_MEDICINE": {},
     "commonPresentations": "Common presentations",
-    "@commonPresentations": {
-        "description": "Text shown on the common presentations button"
-    },
     "otherPresentations": "Other presentations",
-    "@otherPresentations": {
-        "description": "Text shown on the other presentations button"
-    },
     "medicineFrecuencyRegular": "Regular",
-    "@medicineFrecuencyRegular": {
-        "description": "Text shown on the regular medicine frecuency button"
-    },
     "medicineFrecuencySpecificDays": "Specific days",
-    "@medicineFrecuencySpecificDays": {
-        "description": "Text shown on the specific days medicine frecuency button"
-    },
     "medicineFrecuencyAsNeeded": "As needed",
-    "@medicineFrecuencyAsNeeded": {
-        "description": "Text shown on the as needed medicine frecuency button"
-    },
     "howOftenDoYouWantToTakeThisMedicine": "How often do you want to take this medicine?",
-    "@howOftenDoYouWantToTakeThisMedicine": {
-        "description": "Text shown on the how often do you want to take this medicine page"
-    },
     "every": "Every",
-    "@every": {
-        "description": "Text shown on the every button"
-    },
     "selectAtLeastOneDay": "Select at least one day",
-    "@selectAtLeastOneDay": {
-        "description": "Text shown when the user tries to select at least one day"
-    },
     "chooseTheIntervalBetweenDoses": "Choose the interval between doses",
-    "@chooseTheIntervalBetweenDoses": {
-        "description": "Text shown on the choose the interval between doses page"
-    },
     "selectTheHoursYouWantToTakeThisMedicine": "Select the hours you want to take this medicine",
-    "@selectTheHoursYouWantToTakeThisMedicine": {
-        "description": "Text shown on the select the hours you want to take this medicine page"
-    },
     "everyXdays": "Every {days} days",
     "@everyXdays": {
         "placeholders": {
@@ -431,161 +162,22 @@
         "description": "Text shown on the on X page"
     },
     "asNeeded": "As needed",
-    "@asNeeded": {
-        "description": "Text shown on the as needed page"
-    },
     "addHour": "Add hour",
-    "@addHour": {
-        "description": "Text shown on the add hour button"
-    },
     "startDate": "Start date",
-    "@startDate": {
-        "description": "Text shown on the start date field"
-    },
     "medicineName": "Enter the medicine name",
-    "@medicineName": {
-        "description": "Text shown on the medicine name field"
-    },
     "medicineDescription": "e.g. Ibuprofen",
-    "@medicineDescription": {
-        "description": "Text shown on the medicine description field"
-    },
     "dosis": "Dosis",
-    "@dosis": {
-        "description": "Text shown on the dosis field"
-    },
     "dosisDescription": "As it appears on the medicine prospect",
-    "@dosisDescription": {
-        "description": "Text shown on the dosis description field"
-    },
-    "invalidDosis": "Dosis is invalid",
-    "@invalidDosis": {
-        "description": "Text shown when the dosis is invalid"
-    },
-    "save": "Save",
-    "@save": {
-        "description": "Text shown on the save button"
-    },
     "stockWarning": "Stock warning",
-    "@stockWarning": {
-        "description": "Text shown on the stock warning field"
-    },
     "stockWarningDescription": "When the stock is below this value, you will receive a notification",
-    "@stockWarningDescription": {
-        "description": "Text shown on the stock warning description field"
-    },
-    "invalidStockWarning": "Stock warning is invalid",
-    "@invalidStockWarning": {
-        "description": "Text shown when the stock warning is invalid"
-    },
     "currentStock": "Current stock",
-    "@currentStock": {
-        "description": "Text shown on the current stock field"
-    },
     "currentStockDescription": "How many units do you have now?",
-    "@currentStockDescription": {
-        "description": "Text shown on the current stock description field"
-    },
-    "invalidCurrentStock": "Current stock is invalid",
-    "@invalidCurrentStock": {
-        "description": "Text shown when the current stock is invalid"
-    },
     "instructions": "Instructions",
-    "@instructions": {
-        "description": "Text shown on the instructions field"
-    },
-    "instructionsHint": "e.g. Take with food",
-    "@instructionsHint": {
-        "description": "Text shown on the instructions hint field"
-    },
-    "invalidInstructions": "Instructions are invalid",
-    "@invalidInstructions": {
-        "description": "Text shown when the instructions are invalid"
-    },
-    "instructionsTooLong": "Instructions must be at most 100 characters",
-    "@instructionsTooLong": {
-        "description": "Text shown when the instructions are too long"
-    },
-    "greetingMorning": "Good morning",
-    "@greetingMorning": {
-        "description": "Text shown on the morning greeting"
-    },
-    "greetingAfternoon": "Good afternoon",
-    "@greetingAfternoon": {
-        "description": "Text shown on the afternoon greeting"
-    },
-    "greetingEvening": "Good evening",
-    "@greetingEvening": {
-        "description": "Text shown on the evening greeting"
-    },
-    "medicineNotFound": "Medicine not found",
-    "@medicineNotFound": {
-        "description": "Text shown when the medicine is not found"
-    },
+    "instructionsHint": "e.g. Take with food",    
     "medicineAdded": "Medicine added successfully",
-    "@medicineAdded": {
-        "description": "Text shown when the medicine is added"
-    },
-    "invalidMeasurementValue": "Invalid measurement value",
-    "@invalidMeasurementValue": {
-        "description": "Text shown when the measurement value is invalid"
-    },
-    "errorCreatingAccount": "Error creating account",
-    "@errorCreatingAccount": {
-        "description": "Text shown when there is an error creating the account"
-    },
-    "startNow": "Start now",
-    "@startNow": {
-        "description": "Text shown on the start now button"
-    },
-    "tryAgain": "Try again",
-    "@tryAgain": {
-        "description": "Text shown on the try again button"
-    },
-    "welcome": "Welcome",
-    "@welcome": {
-        "description": "Text shown on the welcome page"
-    },
-    "setup": "Setup",
-    "@setup": {
-        "description": "Text shown on the setup page"
-    },
-    "setupNameTitle": "What's your name?",
-    "@setupNameTitle": {
-        "description": "Text shown on the setup name title"
-    },
-    "setupNameSubtitle": "We will use this name to greet you",
-    "@setupNameSubtitle": {
-        "description": "Text shown on the setup name subtitle"
-    },
-    "setupBirthdateTitle": "When were you born?",
-    "@setupBirthdateTitle": {
-        "description": "Text shown on the setup birthdate title"
-    },
-    "setupBirthdateSubtitle": "We will use this information for your medical records",
-    "@setupBirthdateSubtitle": {
-        "description": "Text shown on the setup birthdate subtitle"
-    },
-    "setupHeightWeightTitle": "What is your height and weight?",
-    "@setupHeightWeightTitle": {
-        "description": "Text shown on the setup height and weight title"
-    },
-    "setupHeightWeightSubtitle": "We will use this information for your medical records",
-    "@setupHeightWeightSubtitle": {
-        "description": "Text shown on the setup height and weight subtitle"
-    },
-    "setupSexTitle": "What is your sex?",
-    "@setupSexTitle": {
-        "description": "Text shown on the setup sex title"
-    },
-    "setupSexSubtitle": "We will use this information for your medical records",
-     "@setupSexSubtitle": {
-        "description": "Text shown on the setup sex subtitle"
-    },
-    "sexWhyDescription": "    In our medical app, we only offer the option to select between \"Male\" and \"Female\" in the sex selection due to medical and practical reasons.\n   From a medical perspective, the binary classification of sex has historically been used in medicine because most diseases and conditions have a higher prevalence in one gender than the other. In addition, biological differences between males and females can influence how diseases are presented and treated.\n   For example, women have a higher risk of developing osteoporosis while men have a higher risk of coronary disease. Symptoms and the presentation of some diseases can also vary by gender. Therefore, having accurate information about a patient's sex can help doctors make a more accurate diagnosis and provide appropriate treatment.\n    Regarding practical reasons, limiting the options to \"Male\" and \"Female\" facilitates data collection and analysis. By having a binary classification, we can obtain more precise and useful information about the health of our users.\n    It's important to note that we understand that gender is a more complex and varied issue that can encompass a wider range of identities. However, in our medical app, we limit ourselves to offering these two options due to medical and practical reasons. We appreciate your understanding and are committed to providing high-quality and respectful medical care to all individuals who use our app.",
-    "measurementNotFound": "Measurement not found",
-    "@measurementNotFound": {
-        "description": "Text shown when the measurement is not found"
-    }
-   
+    "@_HOME": {},
+    "greetingMorning": "Good morning",
+    "greetingAfternoon": "Good afternoon",
+    "greetingEvening": "Good evening",
+    "welcome": "Welcome"
 }

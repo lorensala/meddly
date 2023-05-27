@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'medicine_box_provider.g.dart';
 
 @riverpod
-Box<List<MedicineDto>> medicineBox(MedicineBoxRef ref) {
+Box<Map<String, dynamic>> medicineBox(MedicineBoxRef ref) {
   final hive = ref.read(hiveProvider);
-  return hive.box<List<MedicineDto>>(medicineBoxKey);
+  return hive.box<Map<String, dynamic>>(medicineBoxKey);
 }

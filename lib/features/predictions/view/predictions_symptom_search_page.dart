@@ -13,7 +13,7 @@ class PredictionsSymptomsSearchPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(symptomSearchControllerProvider, (_, state) {
-      if (state.status == FormzStatus.submissionFailure) {
+      if (state.status == FormzSubmissionStatus.failure) {
         showSnackBar(context, context.l10n.unknownError);
       }
     });

@@ -28,16 +28,18 @@ class NotificationsPreferencesView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(notificationsControllerProvider, (_, state) {
-      state.whenOrNull(error: (err, _) {
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              content: Text(err.toString()),
-            ),
-          );
-      },);
+    ref.listen(notificationPreferencesControllerProvider, (_, state) {
+      state.whenOrNull(
+        error: (err, _) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(err.toString()),
+              ),
+            );
+        },
+      );
     });
 
     return const NotificationsPreferencesBody();

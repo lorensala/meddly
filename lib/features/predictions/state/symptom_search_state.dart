@@ -6,10 +6,16 @@ import 'package:validators/validators.dart';
 part 'symptom_search_state.freezed.dart';
 
 @freezed
-class SymptomSearchState with _$SymptomSearchState {
+class SymptomSearchState with _$SymptomSearchState, FormzMixin {
   const factory SymptomSearchState({
     @Default(Name.pure()) Name query,
-    @Default(FormzStatus.pure) FormzStatus status,
     @Default(<Symptom>[]) List<Symptom> results,
+    @Default(FormzSubmissionStatus.initial) FormzSubmissionStatus status,
   }) = _SymptomSearchState;
+
+  const SymptomSearchState._();
+
+  @override
+  // ignore: strict_raw_type
+  List<FormzInput> get inputs => [query];
 }

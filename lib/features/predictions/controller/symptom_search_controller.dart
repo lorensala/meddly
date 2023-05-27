@@ -22,7 +22,6 @@ class SymptomSearchController extends _$SymptomSearchController {
     final query = Name.dirty(value.toUpperCase());
     state = state.copyWith(
       query: query,
-      status: Formz.validate([query]),
     );
 
     search();
@@ -35,31 +34,32 @@ class SymptomSearchController extends _$SymptomSearchController {
   Future<void> search() async {
     if (state.query.value.isEmpty) {
       state = state.copyWith(
-        status: FormzStatus.submissionSuccess,
         results: [],
       );
       return;
     }
 
-    if (state.query.invalid) {
-      state = state.copyWith(status: FormzStatus.submissionFailure);
+    if (state.query.isNotValid) {
+      state = state.copyWith(
+        status: FormzSubmissionStatus.failure,
+      );
       return;
     }
 
     //? TODO(lorenzo): inside another predictions controller...??
-    final res =
+    final (err, results) =
         await ref.read(predictionsRepositoryProvider).search(state.query.value);
 
     await ref.debounce(const Duration(milliseconds: 250));
-
-    state = res.fold(
-      (failure) => state.copyWith(
-        status: FormzStatus.submissionFailure,
-      ),
-      (results) => state.copyWith(
-        status: FormzStatus.submissionSuccess,
+    if (err != null) {
+      state = state.copyWith(
+        status: FormzSubmissionStatus.failure,
+      );
+    } else {
+      state = state.copyWith(
+        status: FormzSubmissionStatus.success,
         results: results,
-      ),
-    );
+      );
+    }
   }
 }

@@ -55,8 +55,11 @@ class _NextButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isBirthdateValid = ref.watch(setupSexProvider).valid &&
-        !ref.watch(setupBirthdateProvider).pure;
+    final isBirthdateValid = ref.watch(
+      setupControllerProvider.select(
+        (value) => value.birthdate.isValid && !value.birthdate.isPure,
+      ),
+    );
 
     return Button(
       isValid: isBirthdateValid,

@@ -1,73 +1,53 @@
 import 'package:dio/dio.dart';
 import 'package:measurement/src/core/core.dart';
-import 'package:measurement/src/dto/dto.dart';
+import 'package:measurement/src/models/models.dart';
 
-/// {@template measurement_api}
-/// API for measurement operations.
-/// {@endtemplate}
 class MeasurementApi {
-  /// {@macro measurement_api}
-  MeasurementApi(Dio dio, {String? baseUrl}) : _dio = dio {
-    _dio.options.baseUrl = baseUrl ?? _dio.options.baseUrl;
-  }
+  const MeasurementApi(Dio dio) : _dio = dio;
 
   final Dio _dio;
 
-  /// Creates a new measurement.
-  ///
-  /// Throws a [MeasurementDioException] if the request fails.
-  Future<void> createMeasurement(MeasurementDto measurement) async {
+  Future<void> createMeasurement(Measurement measurement) async {
     try {
       await _dio.post<dynamic>(measurementPath, data: measurement.toJson());
     } on DioError catch (e) {
-      MeasurementDioException(e);
+      throw MeasurementException.fromDioError(e);
     }
   }
 
-  /// Deletes a measurement.
-  ///
-  /// Throws a [MeasurementDioException] if the request fails.
-  Future<void> deleteMeasurement(MeasurementDto measurement) async {
+  Future<void> deleteMeasurement(String id) async {
     try {
-      await _dio.delete<dynamic>('$measurementPath/${measurement.id}');
+      await _dio.delete<dynamic>('$measurementPath/$id');
     } on DioError catch (e) {
-      throw MeasurementDioException(e);
+      throw MeasurementException.fromDioError(e);
     }
   }
 
-  /// Updates a measurement.
-  ///
-  /// Throws a [MeasurementDioException] if the request fails.
-  Future<void> updateMeasurement(MeasurementDto measurement) async {
+  Future<void> updateMeasurement(Measurement measurement) async {
     try {
       await _dio.post<dynamic>(
         '$measurementPath/${measurement.id}',
         data: measurement.toJson(),
       );
     } on DioError catch (e) {
-      throw MeasurementDioException(e);
+      throw MeasurementException.fromDioError(e);
     }
   }
 
-  /// Fetches all measurements.
-  ///
-  /// Throws a [MeasurementDioException] if the request fails.\
-  /// Throws a [MeasurementSerializationException] if the response data cannot
-  /// be serialized.
-  Future<List<MeasurementDto>> fetchAll() async {
+  Future<List<Measurement>> fetchAll() async {
     late final Response<List<dynamic>> res;
     try {
       res = await _dio.get<List<dynamic>>(measurementPath);
     } on DioError catch (e) {
-      throw MeasurementDioException(e);
+      throw MeasurementException.fromDioError(e);
     }
 
     try {
       return res.data!
-          .map((e) => MeasurementDto.fromJson(e as Map<String, dynamic>))
+          .map((e) => Measurement.fromJson(e as Map<String, dynamic>))
           .toList();
     } catch (_) {
-      throw MeasurementSerializationException();
+      throw const MeasurementSerializationException();
     }
   }
 }

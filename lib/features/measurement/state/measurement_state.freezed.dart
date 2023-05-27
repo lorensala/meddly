@@ -113,11 +113,12 @@ class __$$_MeasurementStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MeasurementState implements _MeasurementState {
+class _$_MeasurementState extends _MeasurementState {
   const _$_MeasurementState(
       {this.value = const NotNegativeIntNumber.pure(),
       this.type = MeasurementType.bloodGlucose,
-      this.date});
+      this.date})
+      : super._();
 
   @override
   @JsonKey()
@@ -153,11 +154,12 @@ class _$_MeasurementState implements _MeasurementState {
       __$$_MeasurementStateCopyWithImpl<_$_MeasurementState>(this, _$identity);
 }
 
-abstract class _MeasurementState implements MeasurementState {
+abstract class _MeasurementState extends MeasurementState {
   const factory _MeasurementState(
       {final NotNegativeIntNumber value,
       final MeasurementType type,
       final DateTime? date}) = _$_MeasurementState;
+  const _MeasurementState._() : super._();
 
   @override
   NotNegativeIntNumber get value;

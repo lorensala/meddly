@@ -1,15 +1,15 @@
 import 'package:measurement/measurement.dart';
 import 'package:meddly/l10n/l10n.dart';
 
-extension MeasurementFailureX on MeasurementFailure {
-  String message(AppLocalizations l10n) {
-    return maybeWhen(
-      orElse: () => l10n.unknownError,
-      notFound: () => l10n.measurementNotFound,
-      sendTimeout: () => l10n.timeout,
-      connectionTimeOut: () => l10n.timeout,
-      receiveTimeout: () => l10n.timeout,
-      // response: response,
-    );
+extension MeasurementExceptionX on MeasurementException {
+  String describe(AppLocalizations l10n) {
+    return switch (this) {
+      MeasurementNotFoundException() => l10n.measurementNotFound,
+      MeasurementNotYoursException() => l10n.unknownError,
+      MeasurementConnectionException() => l10n.connectionError,
+      MeasurementCancelException() => l10n.unknownError,
+      MeasurementSerializationException() => l10n.unknownError,
+      MeasurementUnknownException() => l10n.unknownError,
+    };
   }
 }

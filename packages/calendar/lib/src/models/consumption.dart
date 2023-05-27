@@ -1,18 +1,17 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'consumption.freezed.dart';
+part 'consumption.g.dart';
 
-/// {@template consumption}
-/// A consumption.
-/// {@endtemplate}
 @freezed
 class Consumption with _$Consumption {
-  /// {@macro consumption}
   const factory Consumption({
     required int medicineId,
     required DateTime date,
     required DateTime realConsumptionDate,
     required bool consumed,
   }) = _Consumption;
-  const Consumption._();
+
+  factory Consumption.fromJson(Map<String, dynamic> json) =>
+      _$ConsumptionFromJson(json);
 }

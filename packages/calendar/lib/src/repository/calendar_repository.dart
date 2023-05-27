@@ -1,113 +1,74 @@
+import 'package:appointment/appointment.dart';
 import 'package:calendar/calendar.dart';
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
+import 'package:measurement/measurement.dart';
+import 'package:medicine/medicine.dart';
 
-/// {@template calendar_repository}
-/// Repository for the calendar.
-/// {@endtemplate}
 class CalendarRepository {
-  /// {@macro calendar_repository}
   CalendarRepository({
     required CalendarApi api,
   }) : _api = api;
 
   final CalendarApi _api;
 
-  /// Fetches the [Calendar]s from the [CalendarApi]
-  ///
-  /// Returns a [CalendarFailure] if the [Calendar] fails to load.
-  Future<Either<CalendarFailure, List<CalendarEvent>>> fetchCalendar() async {
+  Future<
+      ({
+        CalendarException? err,
+        List<Medicine> activeMedicines,
+        List<Appointment> appointments,
+        List<Measurement> measurements,
+        List<Consumption> consumptions,
+      })> fetchCalendar() async {
     try {
-      final events = await _api.fetchAll();
-      return Right(events.toEvents());
-    } on CalendarCacheException {
-      return left(const CalendarFailure.cache());
-    } on CalendarDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.receiveTimeout:
-        case DioErrorType.sendTimeout:
-          return left(const CalendarFailure.sendTimeout());
-        case DioErrorType.badResponse:
-          return left(const CalendarFailure.response());
-        case DioErrorType.cancel:
-          return left(const CalendarFailure.cancel());
-        case DioErrorType.connectionTimeout:
-          return left(const CalendarFailure.connectionTimeOut());
-        case DioErrorType.badCertificate:
-          return left(const CalendarFailure.unknown());
-        case DioErrorType.connectionError:
-          return left(const CalendarFailure.connectionTimeOut());
-        case DioErrorType.unknown:
-          return left(const CalendarFailure.unknown());
-      }
-    } on CalendarSerializationException {
-      return left(const CalendarFailure.serialization());
+      final (:activeMedicines, :appointments, :measurements, :consumptions) =
+          await _api.fetchAll();
+
+      return (
+        err: null,
+        activeMedicines: activeMedicines,
+        appointments: appointments,
+        measurements: measurements,
+        consumptions: consumptions,
+      );
+    } on CalendarException catch (e) {
+      return (
+        err: e,
+        activeMedicines: <Medicine>[],
+        appointments: <Appointment>[],
+        measurements: <Measurement>[],
+        consumptions: <Consumption>[]
+      );
+    } catch (_) {
+      return (
+        err: CalendarUnknownException(),
+        activeMedicines: <Medicine>[],
+        appointments: <Appointment>[],
+        measurements: <Measurement>[],
+        consumptions: <Consumption>[]
+      );
     }
   }
 
-  /// Adds a [Consumption] to the [CalendarApi]
-  ///
-  /// Returns a [CalendarFailure] if the [Consumption] fails to add.
-  Future<Either<CalendarFailure, Unit>> addConsumption(
+  Future<(CalendarException?, void)> addConsumption(
       Consumption consumption) async {
     try {
-      await _api.addConsumption(ConsumptionDto.fromDomain(consumption));
-      return const Right(unit);
-    } on CalendarCacheException {
-      return left(const CalendarFailure.cache());
-    } on CalendarDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.receiveTimeout:
-        case DioErrorType.sendTimeout:
-          return left(const CalendarFailure.sendTimeout());
-        case DioErrorType.badResponse:
-          return left(const CalendarFailure.response());
-        case DioErrorType.cancel:
-          return left(const CalendarFailure.cancel());
-        case DioErrorType.connectionTimeout:
-          return left(const CalendarFailure.connectionTimeOut());
-        case DioErrorType.badCertificate:
-          return left(const CalendarFailure.unknown());
-        case DioErrorType.connectionError:
-          return left(const CalendarFailure.connectionTimeOut());
-        case DioErrorType.unknown:
-          return left(const CalendarFailure.unknown());
-      }
-    } on CalendarSerializationException {
-      return left(const CalendarFailure.serialization());
+      await _api.addConsumption(consumption);
+      return (null, null);
+    } on CalendarException catch (e) {
+      return (e, null);
+    } catch (_) {
+      return (CalendarUnknownException(), null);
     }
   }
 
-  /// Removes a [Consumption] from the [CalendarApi]
-  ///
-  /// Returns a [CalendarFailure] if the [Consumption] fails to remove. \
-  Future<Either<CalendarFailure, Unit>> removeConsumption(
+  Future<(CalendarException?, void)> removeConsumption(
       Consumption consumption) async {
     try {
-      await _api.removeConsumption(ConsumptionDto.fromDomain(consumption));
-      return const Right(unit);
-    } on CalendarCacheException {
-      return left(const CalendarFailure.cache());
-    } on CalendarDioException catch (e) {
-      switch (e.error.type) {
-        case DioErrorType.receiveTimeout:
-        case DioErrorType.sendTimeout:
-          return left(const CalendarFailure.sendTimeout());
-        case DioErrorType.badResponse:
-          return left(const CalendarFailure.response());
-        case DioErrorType.cancel:
-          return left(const CalendarFailure.cancel());
-        case DioErrorType.connectionTimeout:
-          return left(const CalendarFailure.connectionTimeOut());
-        case DioErrorType.badCertificate:
-          return left(const CalendarFailure.unknown());
-        case DioErrorType.connectionError:
-          return left(const CalendarFailure.connectionTimeOut());
-        case DioErrorType.unknown:
-          return left(const CalendarFailure.unknown());
-      }
-    } on CalendarSerializationException {
-      return left(const CalendarFailure.serialization());
+      await _api.removeConsumption(consumption);
+      return (null, null);
+    } on CalendarException catch (e) {
+      return (e, null);
+    } catch (_) {
+      return (CalendarUnknownException(), null);
     }
   }
 }

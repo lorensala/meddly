@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart' show TimeOfDay;
 import 'package:meddly/features/medicine/controller/medicine_form_controller.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:medicine/medicine.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:validators/validators.dart';
 
 part 'medicine_provider.g.dart';
 
@@ -27,16 +25,11 @@ MedicineRepository medicineRepository(MedicineRepositoryRef ref) {
 }
 
 @riverpod
-Name medicineName(MedicineNameRef ref) {
-  return ref.watch(medicineFormControllerProvider).name;
-}
-
-@riverpod
 String? medicineNameErrorText(MedicineNameErrorTextRef ref) {
-  final name = ref.watch(medicineNameProvider);
+  final name = ref.watch(medicineFormControllerProvider.select((s) => s.name));
   final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-  return !name.pure && name.invalid
+  return !name.isPure && name.isPure
       ? name.error?.when(
           invalid: () => l10n.invalidMedicineName,
           tooLong: () => l10n.medicineNameTooLong,
@@ -47,96 +40,51 @@ String? medicineNameErrorText(MedicineNameErrorTextRef ref) {
 
 @riverpod
 bool isMedicineNameValid(IsMedicineNameValidRef ref) {
-  final name = ref.watch(medicineNameProvider);
-  return name.valid && name.value.isNotEmpty;
-}
-
-@riverpod
-MedicinePresentation medicinePresentation(MedicinePresentationRef ref) {
-  return ref.watch(medicineFormControllerProvider).presentation;
-}
-
-@riverpod
-NotNegativeIntNumber medicineDosis(MedicineDosisRef ref) {
-  return ref.watch(medicineFormControllerProvider).dosis;
+  final name = ref.watch(medicineFormControllerProvider.select((s) => s.name));
+  return name.isValid && name.value.isNotEmpty;
 }
 
 @riverpod
 String? medicineDosisErrorText(MedicineDosisErrorTextRef ref) {
-  final dosis = ref.watch(medicineDosisProvider);
+  final dosis =
+      ref.watch(medicineFormControllerProvider.select((s) => s.dosis));
   final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-  return dosis.invalid ? l10n.invalidDosis : null;
+  return dosis.isNotValid ? l10n.invalidDosis : null;
 }
 
 @riverpod
 bool isMedicineDosisValid(IsMedicineDosisValidRef ref) {
-  final dosis = ref.watch(medicineDosisProvider);
-  return dosis.valid && dosis.value.isNotEmpty;
-}
-
-@riverpod
-MedicineDosisUnit medicineDosisUnit(MedicineDosisUnitRef ref) {
-  return ref.watch(medicineFormControllerProvider).dosisUnit;
-}
-
-@riverpod
-NotNegativeIntNumber medicineStock(MedicineStockRef ref) {
-  return ref.watch(medicineFormControllerProvider).stock;
-}
-
-@riverpod
-MedicineFrecuency medicineFrecuency(MedicineFrecuencyRef ref) {
-  return ref.watch(medicineFormControllerProvider).frecuency;
-}
-
-@riverpod
-List<MedicineDay> medicineDays(MedicineDaysRef ref) {
-  return ref.watch(medicineFormControllerProvider).days;
-}
-
-@riverpod
-List<TimeOfDay> medicineHours(MedicineHoursRef ref) {
-  return ref.watch(medicineFormControllerProvider).hours;
-}
-
-@riverpod
-int medicineFrecuencyValue(MedicineFrecuencyValueRef ref) {
-  return ref.watch(medicineFormControllerProvider).frecuencyValue;
-}
-
-@riverpod
-NotNegativeIntNumber medicineStockWarning(MedicineStockWarningRef ref) {
-  return ref.watch(medicineFormControllerProvider).stockWarning;
+  final dosis =
+      ref.watch(medicineFormControllerProvider.select((s) => s.dosis));
+  return dosis.isValid && dosis.value.isNotEmpty;
 }
 
 @riverpod
 String? medicineStockWarningErrorText(MedicineStockWarningErrorTextRef ref) {
-  final stockWarning = ref.watch(medicineStockWarningProvider);
+  final stockWarning =
+      ref.watch(medicineFormControllerProvider.select((s) => s.stockWarning));
   final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-  return stockWarning.invalid ? l10n.invalidStockWarning : null;
+  return stockWarning.isNotValid ? l10n.invalidStockWarning : null;
 }
 
 @riverpod
 String? medicineStockErrorText(MedicineStockErrorTextRef ref) {
-  final stock = ref.watch(medicineStockProvider);
+  final stock =
+      ref.watch(medicineFormControllerProvider.select((s) => s.stock));
   final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-  return stock.invalid ? l10n.invalidCurrentStock : null;
-}
-
-@riverpod
-Instructions medicineInstructions(MedicineInstructionsRef ref) {
-  return ref.watch(medicineFormControllerProvider).instructions;
+  return stock.isNotValid ? l10n.invalidCurrentStock : null;
 }
 
 @riverpod
 String? medicineInstructionErrorText(MedicineInstructionErrorTextRef ref) {
-  final instructions = ref.watch(medicineInstructionsProvider);
+  final instructions =
+      ref.watch(medicineFormControllerProvider.select((s) => s.instructions));
   final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-  return instructions.invalid
+  return instructions.isNotValid
       ? instructions.error?.when(
           invalid: () => l10n.invalidInstructions,
           tooLong: () => l10n.instructionsTooLong,
@@ -146,14 +94,17 @@ String? medicineInstructionErrorText(MedicineInstructionErrorTextRef ref) {
 
 @riverpod
 bool isMedicineReviewValid(IsMedicineReviewValidRef ref) {
-  final stock = ref.watch(medicineStockProvider);
-  final stockWarning = ref.watch(medicineStockWarningProvider);
-  final instructions = ref.watch(medicineInstructionsProvider);
+  final stock =
+      ref.watch(medicineFormControllerProvider.select((s) => s.stock));
+  final stockWarning =
+      ref.watch(medicineFormControllerProvider.select((s) => s.stockWarning));
+  final instructions =
+      ref.watch(medicineFormControllerProvider.select((s) => s.instructions));
 
-  return stock.valid &&
-      stockWarning.valid &&
-      instructions.valid &&
-      instructions.valid;
+  return stock.isValid &&
+      stockWarning.isValid &&
+      instructions.isValid &&
+      instructions.isValid;
 }
 
 @riverpod

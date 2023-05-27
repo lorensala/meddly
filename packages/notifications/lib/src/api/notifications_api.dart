@@ -1,88 +1,57 @@
 import 'package:dio/dio.dart';
 import 'package:notifications/notifications.dart';
 
-/// {@template notification_api}
-/// API for notification operations.
-/// {@endtemplate}
 class NotificationsApi {
-  /// {@macro notification_api}
-  NotificationsApi(Dio dio, {String? baseUrl}) : _dio = dio {
-    _dio.options.baseUrl = baseUrl ?? _dio.options.baseUrl;
-  }
+  const NotificationsApi(Dio dio) : _dio = dio;
 
   final Dio _dio;
 
-  /// Fetches all the notifications.
-  ///
-  /// Throws a [NotificationNotFoundException] if the user is not found.\
-  /// Throws a [NotificationDioException] if any other DioError occurs.
-  Future<NotificationPreferenceDto> fetchAll() async {
+  Future<List<String>> fetchAll() async {
     late final Response<List<dynamic>> res;
+
     try {
       res = await _dio.get<List<dynamic>>(notificationsPath);
-
-      if (res.statusCode == 401) {
-        throw NotificationNotFoundException();
-      }
     } on DioError catch (e) {
-      throw NotificationDioException(e);
+      throw NotificationException.fromDioError(e);
     }
 
     try {
-      return NotificationPreferenceDto.fromJson(<String, dynamic>{
-        'preferences': res.data,
-      });
+      return res.data!.map((dynamic e) => e as String).toList();
     } catch (e) {
       throw NotificationSerializationException();
     }
   }
 
-  /// Adds a notification preference.
-  ///
-  /// Throws a [NotificationNotFoundException] if the user is not found.\
-  /// Throws a [NotificationDioException] if any other DioError occurs.
-  Future<NotificationPreferenceDto> add(
-    NotificationPreferenceDto notificationPrefenceDto,
+  Future<NotificationPreference> add(
+    String notificationPrefence,
   ) async {
     late final Response<dynamic> res;
     try {
       res = await _dio.post(
         notificationsPath,
-        queryParameters: {
-          'notification_preference': notificationPrefenceDto.preferences.first
-        },
+        queryParameters: {'notification_preference': notificationPrefence},
       );
 
-      if (res.statusCode == 401) {
-        throw NotificationNotFoundException();
-      }
-
       try {
-        return NotificationPreferenceDto.fromJson(<String, dynamic>{
+        return NotificationPreference.fromJson(<String, dynamic>{
           'preferences': res.data,
         });
       } catch (_) {
         throw NotificationSerializationException();
       }
     } on DioError catch (e) {
-      throw NotificationDioException(e);
+      throw NotificationException.fromDioError(e);
     }
   }
 
-  /// Deletes a notification preference.
-  ///
-  /// Throws a [NotificationNotFoundException] if the user is not found.\
-  /// Throws a [NotificationDioException] if any other DioError occurs.
-  Future<NotificationPreferenceDto> delete(
-    NotificationPreferenceDto notificationPrefenceDto,
+  Future<NotificationPreference> delete(
+    String notificationPrefence,
   ) async {
     late final Response<dynamic> res;
     try {
       res = await _dio.delete(
         notificationsPath,
-        queryParameters: {
-          'notification_preference': notificationPrefenceDto.preferences.first
-        },
+        queryParameters: {'notification_preference': notificationPrefence},
       );
 
       if (res.statusCode == 401) {
@@ -90,14 +59,14 @@ class NotificationsApi {
       }
 
       try {
-        return NotificationPreferenceDto.fromJson(<String, dynamic>{
+        return NotificationPreference.fromJson(<String, dynamic>{
           'preferences': res.data,
         });
       } catch (_) {
         throw NotificationSerializationException();
       }
     } on DioError catch (e) {
-      throw NotificationDioException(e);
+      throw NotificationException.fromDioError(e);
     }
   }
 }

@@ -3,12 +3,8 @@ import 'package:user/src/models/models.dart';
 
 part 'user.freezed.dart';
 
-/// {@template user}
-/// Model for meddly user
-/// {@endtemplate}
 @freezed
 class User with _$User {
-  /// {@macro user}
   const factory User({
     required String uid,
     required String email,
@@ -24,8 +20,6 @@ class User with _$User {
 
   const User._();
 
-  /// {@macro user}
-  /// Empty user
   static const empty = User(
     uid: '',
     email: '',

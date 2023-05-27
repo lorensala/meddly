@@ -5,13 +5,10 @@ import 'package:medicine/src/models/medicine_dosis_unit.dart';
 import 'package:medicine/src/models/medicine_presentation.dart';
 
 part 'medicine.freezed.dart';
+part 'medicine.g.dart';
 
-/// {@template medicine}
-/// Medicine model.
-/// {@endtemplate}
 @freezed
 class Medicine with _$Medicine {
-  /// {@macro medicine}
   const factory Medicine({
     required int id,
     required String name,
@@ -24,7 +21,33 @@ class Medicine with _$Medicine {
     required double dosis,
     int? interval,
     List<MedicineDay>? days,
-    List<TimeOfDay>? hours,
+    @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
     String? instructions,
   }) = _Medicine;
+
+  factory Medicine.fromJson(Map<String, dynamic> json) =>
+      _$MedicineFromJson(json);
+}
+
+class ListTimeOfDayOrNullConverter
+    implements JsonConverter<List<TimeOfDay>?, List<String>?> {
+  const ListTimeOfDayOrNullConverter();
+
+  @override
+  List<TimeOfDay>? fromJson(List<String>? json) {
+    if (json == null) {
+      return null;
+    }
+
+    return json.map((e) => TimeOfDay.fromDateTime(DateTime.parse(e))).toList();
+  }
+
+  @override
+  List<String>? toJson(List<TimeOfDay>? object) {
+    if (object == null) {
+      return null;
+    }
+
+    return object.map((e) => '${e.hour}:${e.minute}').toList();
+  }
 }

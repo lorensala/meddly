@@ -9,7 +9,8 @@ class SetupBirthdateInput extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(setupControllerProvider.notifier);
-    final birthdate = ref.watch(setupBirthdateProvider);
+    final birthdate =
+        ref.watch(setupControllerProvider.select((value) => value.birthdate));
     final errorText = ref.watch(birthdateErrorMessageProvider);
 
     final initialDateTime =

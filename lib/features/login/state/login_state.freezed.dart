@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoginState {
   Email get email => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
-  FormzStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -31,7 +30,7 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call({Email email, Password password, FormzStatus status});
+  $Res call({Email email, Password password});
 }
 
 /// @nodoc
@@ -49,7 +48,6 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? status = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -60,10 +58,6 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
     ) as $Val);
   }
 }
@@ -76,7 +70,7 @@ abstract class _$$_LoginStateCopyWith<$Res>
       __$$_LoginStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Email email, Password password, FormzStatus status});
+  $Res call({Email email, Password password});
 }
 
 /// @nodoc
@@ -92,7 +86,6 @@ class __$$_LoginStateCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? status = null,
   }) {
     return _then(_$_LoginState(
       email: null == email
@@ -103,21 +96,16 @@ class __$$_LoginStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_LoginState implements _LoginState {
+class _$_LoginState extends _LoginState {
   const _$_LoginState(
-      {this.email = const Email.pure(),
-      this.password = const Password.pure(),
-      this.status = FormzStatus.pure});
+      {this.email = const Email.pure(), this.password = const Password.pure()})
+      : super._();
 
   @override
   @JsonKey()
@@ -125,13 +113,10 @@ class _$_LoginState implements _LoginState {
   @override
   @JsonKey()
   final Password password;
-  @override
-  @JsonKey()
-  final FormzStatus status;
 
   @override
   String toString() {
-    return 'LoginState(email: $email, password: $password, status: $status)';
+    return 'LoginState(email: $email, password: $password)';
   }
 
   @override
@@ -141,12 +126,11 @@ class _$_LoginState implements _LoginState {
             other is _$_LoginState &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.status, status) || other.status == status));
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, status);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -155,18 +139,15 @@ class _$_LoginState implements _LoginState {
       __$$_LoginStateCopyWithImpl<_$_LoginState>(this, _$identity);
 }
 
-abstract class _LoginState implements LoginState {
-  const factory _LoginState(
-      {final Email email,
-      final Password password,
-      final FormzStatus status}) = _$_LoginState;
+abstract class _LoginState extends LoginState {
+  const factory _LoginState({final Email email, final Password password}) =
+      _$_LoginState;
+  const _LoginState._() : super._();
 
   @override
   Email get email;
   @override
   Password get password;
-  @override
-  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>

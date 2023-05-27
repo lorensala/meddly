@@ -1,7 +1,10 @@
 import 'package:calendar/calendar.dart';
-import 'package:dartz/dartz.dart';
-import 'package:meddly/core/core.dart';
+import 'package:measurement/measurement.dart';
+import 'package:meddly/features/appointment/appointment.dart';
+import 'package:meddly/features/calendar/core/core.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
+import 'package:meddly/l10n/l10n.dart';
+import 'package:medicine/medicine.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'calendar_controller.g.dart';
@@ -9,11 +12,29 @@ part 'calendar_controller.g.dart';
 @riverpod
 class CalendarController extends _$CalendarController {
   @override
-  Future<Either<CalendarFailure, List<CalendarEvent>>> build() async {
-    state = const AsyncLoading();
+  Future<
+      ({
+        List<Medicine> activeMedicines,
+        List<Appointment> appointments,
+        List<Consumption> consumptions,
+        List<Measurement> measurements
+      })> build() async {
     final repository = ref.read(calendarRepositoryProvider);
 
-    return repository.fetchCalendar();
+    final res = await repository.fetchCalendar();
+
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+
+    if (res.err != null) {
+      throw Exception(res.err!.describe(l10n));
+    } else {
+      return (
+        activeMedicines: res.activeMedicines,
+        appointments: res.appointments as List<Appointment>,
+        consumptions: res.consumptions,
+        measurements: res.measurements,
+      );
+    }
   }
 
   void refresh() {
@@ -22,10 +43,12 @@ class CalendarController extends _$CalendarController {
 
   Future<void> addConsumption(Consumption consumption) async {
     final repository = ref.read(calendarRepositoryProvider);
-    final res = await repository.addConsumption(consumption);
+    final (err, _) = await repository.addConsumption(consumption);
 
-    if (res.isLeft()) {
-      state = AsyncError(res.asLeft(), StackTrace.current);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       ref.invalidateSelf();
     }
@@ -33,10 +56,12 @@ class CalendarController extends _$CalendarController {
 
   Future<void> deleteConsumption(Consumption consumption) async {
     final repository = ref.read(calendarRepositoryProvider);
-    final res = await repository.removeConsumption(consumption);
+    final (err, _) = await repository.removeConsumption(consumption);
 
-    if (res.isLeft()) {
-      state = AsyncError(res.asLeft(), StackTrace.current);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       ref.invalidateSelf();
     }

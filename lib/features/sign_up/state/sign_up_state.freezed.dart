@@ -20,7 +20,6 @@ mixin _$SignUpState {
   Password get password => throw _privateConstructorUsedError;
   TermsAndConditions get termsAndConditions =>
       throw _privateConstructorUsedError;
-  FormzStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpStateCopyWith<SignUpState> get copyWith =>
@@ -34,10 +33,7 @@ abstract class $SignUpStateCopyWith<$Res> {
       _$SignUpStateCopyWithImpl<$Res, SignUpState>;
   @useResult
   $Res call(
-      {Email email,
-      Password password,
-      TermsAndConditions termsAndConditions,
-      FormzStatus status});
+      {Email email, Password password, TermsAndConditions termsAndConditions});
 }
 
 /// @nodoc
@@ -56,7 +52,6 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? email = null,
     Object? password = null,
     Object? termsAndConditions = null,
-    Object? status = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -71,10 +66,6 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
     ) as $Val);
   }
 }
@@ -88,10 +79,7 @@ abstract class _$$_SignUpStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Email email,
-      Password password,
-      TermsAndConditions termsAndConditions,
-      FormzStatus status});
+      {Email email, Password password, TermsAndConditions termsAndConditions});
 }
 
 /// @nodoc
@@ -108,7 +96,6 @@ class __$$_SignUpStateCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? termsAndConditions = null,
-    Object? status = null,
   }) {
     return _then(_$_SignUpState(
       email: null == email
@@ -123,22 +110,18 @@ class __$$_SignUpStateCopyWithImpl<$Res>
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
               as TermsAndConditions,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_SignUpState implements _SignUpState {
+class _$_SignUpState extends _SignUpState {
   const _$_SignUpState(
       {this.email = const Email.pure(),
       this.password = const Password.pure(),
-      this.termsAndConditions = const TermsAndConditions.pure(),
-      this.status = FormzStatus.pure});
+      this.termsAndConditions = const TermsAndConditions.pure()})
+      : super._();
 
   @override
   @JsonKey()
@@ -149,13 +132,10 @@ class _$_SignUpState implements _SignUpState {
   @override
   @JsonKey()
   final TermsAndConditions termsAndConditions;
-  @override
-  @JsonKey()
-  final FormzStatus status;
 
   @override
   String toString() {
-    return 'SignUpState(email: $email, password: $password, termsAndConditions: $termsAndConditions, status: $status)';
+    return 'SignUpState(email: $email, password: $password, termsAndConditions: $termsAndConditions)';
   }
 
   @override
@@ -167,13 +147,12 @@ class _$_SignUpState implements _SignUpState {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.termsAndConditions, termsAndConditions) ||
-                other.termsAndConditions == termsAndConditions) &&
-            (identical(other.status, status) || other.status == status));
+                other.termsAndConditions == termsAndConditions));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, email, password, termsAndConditions, status);
+      Object.hash(runtimeType, email, password, termsAndConditions);
 
   @JsonKey(ignore: true)
   @override
@@ -182,12 +161,12 @@ class _$_SignUpState implements _SignUpState {
       __$$_SignUpStateCopyWithImpl<_$_SignUpState>(this, _$identity);
 }
 
-abstract class _SignUpState implements SignUpState {
+abstract class _SignUpState extends SignUpState {
   const factory _SignUpState(
       {final Email email,
       final Password password,
-      final TermsAndConditions termsAndConditions,
-      final FormzStatus status}) = _$_SignUpState;
+      final TermsAndConditions termsAndConditions}) = _$_SignUpState;
+  const _SignUpState._() : super._();
 
   @override
   Email get email;
@@ -195,8 +174,6 @@ abstract class _SignUpState implements SignUpState {
   Password get password;
   @override
   TermsAndConditions get termsAndConditions;
-  @override
-  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_SignUpStateCopyWith<_$_SignUpState> get copyWith =>

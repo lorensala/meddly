@@ -6,7 +6,7 @@ part of 'phone_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$phoneControllerHash() => r'a17a369bb37339e3ce791c335c06f2fc6086851f';
+String _$phoneControllerHash() => r'36c967c36e8fdda0371c26ae4d3172ae84db202d';
 
 /// See also [PhoneController].
 @ProviderFor(PhoneController)

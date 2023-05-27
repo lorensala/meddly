@@ -1,4 +1,3 @@
-import 'package:formz/formz.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/setup/state/state.dart';
 import 'package:meddly/features/user/controller/user_controller.dart';
@@ -19,14 +18,6 @@ class SetupController extends _$SetupController {
     final name = Name.dirty(value);
     state = state.copyWith(
       name: name,
-      status: Formz.validate([
-        name,
-        state.lastname,
-        state.height,
-        state.weight,
-        state.sex,
-        state.birthdate,
-      ]),
     );
   }
 
@@ -34,14 +25,6 @@ class SetupController extends _$SetupController {
     final lastname = Lastname.dirty(value);
     state = state.copyWith(
       lastname: lastname,
-      status: Formz.validate([
-        state.name,
-        lastname,
-        state.height,
-        state.weight,
-        state.sex,
-        state.birthdate,
-      ]),
     );
   }
 
@@ -50,27 +33,11 @@ class SetupController extends _$SetupController {
       const height = Height.pure();
       state = state.copyWith(
         height: height,
-        status: Formz.validate([
-          state.name,
-          state.lastname,
-          height,
-          state.weight,
-          state.sex,
-          state.birthdate,
-        ]),
       );
     } else {
       final height = Height.dirty(value);
       state = state.copyWith(
         height: height,
-        status: Formz.validate([
-          state.name,
-          state.lastname,
-          height,
-          state.weight,
-          state.sex,
-          state.birthdate,
-        ]),
       );
     }
   }
@@ -80,27 +47,11 @@ class SetupController extends _$SetupController {
       const weight = Weight.pure();
       state = state.copyWith(
         weight: weight,
-        status: Formz.validate([
-          state.name,
-          state.lastname,
-          state.height,
-          weight,
-          state.sex,
-          state.birthdate,
-        ]),
       );
     } else {
       final weight = Weight.dirty(value);
       state = state.copyWith(
         weight: weight,
-        status: Formz.validate([
-          state.name,
-          state.lastname,
-          state.height,
-          weight,
-          state.sex,
-          state.birthdate,
-        ]),
       );
     }
   }
@@ -109,14 +60,6 @@ class SetupController extends _$SetupController {
     final sex = SexInput.dirty(value: value);
     state = state.copyWith(
       sex: sex,
-      status: Formz.validate([
-        state.name,
-        state.lastname,
-        state.height,
-        state.weight,
-        sex,
-        state.birthdate,
-      ]),
     );
   }
 
@@ -124,18 +67,12 @@ class SetupController extends _$SetupController {
     final birthdate = Birthdate.dirty(value);
     state = state.copyWith(
       birthdate: birthdate,
-      status: Formz.validate([
-        state.name,
-        state.lastname,
-        state.height,
-        state.weight,
-        state.sex,
-        birthdate,
-      ]),
     );
   }
 
   void save() {
+    if (state.isNotValid) return;
+
     final newUser = User(
       uid: '',
       email: '',

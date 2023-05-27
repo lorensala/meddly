@@ -16,11 +16,12 @@ class UserBody extends ConsumerWidget {
     final userStream = ref.watch(userControllerProvider);
 
     return userStream.when(
-      data: (option) {
-        return option.fold(
-          () => const Text('No user'),
-          (user) => Text(user.toString()),
-        );
+      data: (user) {
+        if (user == null) {
+          return const Text('No user');
+        } else {
+          return Text(user.toString());
+        }
       },
       error: (error, stackTrace) {
         return Text(error.toString());
