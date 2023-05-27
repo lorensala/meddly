@@ -1,3 +1,4 @@
+import 'package:firebase_auth_repository/firebase_auth_repository.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/splash/splash.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -9,7 +10,9 @@ part 'auth_controller.g.dart';
 @riverpod
 class AuthController extends _$AuthController {
   @override
-  FutureOr<void> build() {}
+  Stream<User> build() {
+    return ref.watch(authRepositoryProvider).authStateChanges;
+  }
 
   Future<void> logInWithEmailAndPassword({
     required String email,

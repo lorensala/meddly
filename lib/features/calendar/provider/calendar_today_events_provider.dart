@@ -12,9 +12,11 @@ List<CalendarEvent> calendarTodayEvents(CalendarTodayEventsRef ref) {
         data: (res) {
           final events = <CalendarEvent>[];
 
-          // for (final appointment in res.appointments) {
-          //   if (appointment) {
-          //     events.add(CalendarEvent.appointment(appointment));
+          // for (final appointment in res.appointments as List<Appointment>) {
+          //   if (appointment.date.isSameDay(now)) {
+          //     events.add(
+          //       const CalendarEvent.fromAppointment(),
+          //     );
           //   }
           // }
 

@@ -3,6 +3,7 @@ import 'package:firebase_auth_repository/firebase_auth_repository.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/features/phone/state/phone_state.dart';
+import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -55,53 +56,50 @@ class PhoneController extends _$PhoneController {
   }
 
   Future<void> verificationCompleted(PhoneAuthCredential credential) async {
-    // final authRepository = ref.read(authRepositoryProvider);
-    // final userRepository = ref.read(userRepositoryProvider);
+    final authRepository = ref.read(authRepositoryProvider);
+    final userRepository = ref.read(userRepositoryProvider);
 
-    // final l10n = ref.read(l10nProvider) as AppLocalizations;
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    // final phoneNumber =
-    //     ref.watch(phoneFormControllerProvider.select((s) => s.phoneNumber));
-    // final countryCode =
-    //     ref.watch(phoneFormControllerProvider.select((s) => s.countryCode));
-    // final phoneNumberWithCountryCode =
-    //     '${countryCode.code}${phoneNumber.value}';
+    final phoneNumber =
+        ref.watch(phoneFormControllerProvider.select((s) => s.phoneNumber));
+    final countryCode =
+        ref.watch(phoneFormControllerProvider.select((s) => s.countryCode));
+    final phoneNumberWithCountryCode =
+        '${countryCode.code}${phoneNumber.value}';
 
-    // final (err, _) = await authRepository.updatePhoneNumber(
-    //   phoneNumber: phoneNumberWithCountryCode,
-    //   verificationId: _verificationId,
-    // );
+    final (phoneErr, _) =
+        await authRepository.linkWithCredential(credential: credential);
 
-    // if (err != null) {
-    //   state = PhoneState.error(err.describe(l10n));
-    //   return;
-    // }
+    if (phoneErr != null) {
+      state = PhoneState.error(phoneErr.describe(l10n));
+      return;
+    }
 
-    // final (err, user) = userRepository.getUser();
+    final (cacheError, cachedUser) = userRepository.getUser();
 
-    // if (userOrFailure.isLeft()) {
-    //   state = PhoneState.error(userOrFailure.asLeft().message(l10n));
+    if (cacheError != null) {
+      state = PhoneState.error(cacheError.describe(l10n));
 
-    //   return;
-    // }
+      return;
+    }
 
-    // final user = userOrFailure.asRight();
+    if (cachedUser == null) {
+      state = PhoneState.error(l10n.userNotFound);
+      return;
+    }
 
-    // if (user == null) {
-    //   state = PhoneState.error(l10n.userNotFound);
-    //   return;
-    // }
+    final userWithPhoneNumber = cachedUser.copyWith(
+      phone: phoneNumberWithCountryCode,
+    );
 
-    // final userWithPhoneNumber = user.copyWith(
-    //   phone: phoneNumberWithCountryCode,
-    // );
+    final (updateErr, _) = await userRepository.updateUser(userWithPhoneNumber);
 
-    // final res2 = await userRepository.updateUser(userWithPhoneNumber);
-
-    // res2.fold(
-    //   (l) => state = PhoneState.error(l.message(l10n)),
-    //   (r) => state = const PhoneState.otpVerified(),
-    // );
+    if (updateErr != null) {
+      state = PhoneState.error(updateErr.describe(l10n));
+    } else {
+      state = const PhoneState.otpVerified();
+    }
   }
 
   Future<void> verifyPhone(String smsCode) {

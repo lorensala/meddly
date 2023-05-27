@@ -38,6 +38,9 @@ class LoginView extends ConsumerWidget {
         ),
       );
     });
-    return const LoginBody();
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: const LoginBody(),
+    );
   }
 }

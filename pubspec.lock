@@ -308,10 +308,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: af48a48a93045ec3bfa6999f3206b6cd4b5d74f3
+      resolved-ref: c0ae4f808f004aa084f859f7c89cc2a320f8f360
       url: "git@github.com:lorensala/firebase_auth_repository.git"
     source: git
-    version: "0.0.5"
+    version: "0.0.6"
   firebase_auth_web:
     dependency: transitive
     description:

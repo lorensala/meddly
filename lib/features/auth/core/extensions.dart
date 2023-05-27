@@ -18,7 +18,8 @@ extension AuthExceptionX on AuthException {
       InvalidVerificationIdException() => l10n.invalidVerificationId,
       InvalidPhoneNumberException() => l10n.invalidPhoneNumber,
       TooManyRequestsException() => l10n.tooManyRequests,
-      LogInWithGoogleException() => l10n.logInWithGoogleError
+      LogInWithGoogleException() => l10n.logInWithGoogleError,
+      InvalidCredentialException() => l10n.unknownError,
     };
   }
 }
