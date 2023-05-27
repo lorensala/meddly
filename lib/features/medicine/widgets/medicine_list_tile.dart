@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 
-class MedicineCard extends ConsumerWidget {
-  const MedicineCard({super.key});
+class MedicineListTile extends ConsumerWidget {
+  const MedicineListTile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

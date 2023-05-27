@@ -1,12 +1,15 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:appointment/appointment.dart';
+import 'package:meddly/provider/provider.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final appointmentProvider = StateNotifierProvider.autoDispose((ref) {
-  return Appointment();
-});
+part 'appointment_provider.g.dart';
 
-class Appointment extends StateNotifier<int> {
-  Appointment() : super(0);
+@riverpod
+AppointmentApi appointmentApi(AppointmentApiRef ref) {
+  return AppointmentApi(ref.watch(dioProvider));
+}
 
-  void increment() => state++;
-  void decrement() => state--;
+@riverpod
+AppointmentRepository appointmentRepository(AppointmentRepositoryRef ref) {
+  return AppointmentRepository(api: ref.watch(appointmentApiProvider));
 }

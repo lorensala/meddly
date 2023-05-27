@@ -74,6 +74,18 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
             routes: [
               GoRoute(
                 parentNavigatorKey: shellNavigatorKey,
+                path: AppointmentPage.routeName,
+                builder: (context, state) => const AppointmentPage(),
+                routes: [
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: NewAppointmentPage.routeName,
+                    builder: (context, state) => const NewAppointmentPage(),
+                  ),
+                ],
+              ),
+              GoRoute(
+                parentNavigatorKey: shellNavigatorKey,
                 path: MedicinePage.routeName,
                 builder: (context, state) => const MedicinePage(),
                 routes: [
@@ -122,16 +134,6 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         builder: (context, state, child) {
           return ScaffoldWithBottomNavBar(child: child);
         },
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: AppointmentPage.routeName,
-        builder: (context, state) => const AppointmentPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: NewAppointmentPage.routeName,
-        builder: (context, state) => const NewAppointmentPage(),
       ),
       GoRoute(
         parentNavigatorKey: rootNavigatorKey,

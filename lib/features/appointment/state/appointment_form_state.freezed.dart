@@ -159,14 +159,15 @@ class __$$_AppointmentFormStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AppointmentFormState implements _AppointmentFormState {
+class _$_AppointmentFormState extends _AppointmentFormState {
   const _$_AppointmentFormState(
       {this.name = const Name.pure(),
       this.speciality = AppointmentSpeciality.cardiology,
       this.date,
       this.doctor = const Name.pure(),
       this.location = '',
-      this.notes = ''});
+      this.notes = ''})
+      : super._();
 
   @override
   @JsonKey()
@@ -218,7 +219,7 @@ class _$_AppointmentFormState implements _AppointmentFormState {
           this, _$identity);
 }
 
-abstract class _AppointmentFormState implements AppointmentFormState {
+abstract class _AppointmentFormState extends AppointmentFormState {
   const factory _AppointmentFormState(
       {final Name name,
       final AppointmentSpeciality speciality,
@@ -226,6 +227,7 @@ abstract class _AppointmentFormState implements AppointmentFormState {
       final Name doctor,
       final String location,
       final String notes}) = _$_AppointmentFormState;
+  const _AppointmentFormState._() : super._();
 
   @override
   Name get name;

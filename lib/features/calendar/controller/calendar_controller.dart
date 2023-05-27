@@ -1,6 +1,6 @@
+import 'package:appointment/appointment.dart';
 import 'package:calendar/calendar.dart';
 import 'package:measurement/measurement.dart';
-import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/calendar/core/core.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -30,7 +30,7 @@ class CalendarController extends _$CalendarController {
     } else {
       return (
         activeMedicines: res.activeMedicines,
-        appointments: res.appointments as List<Appointment>,
+        appointments: res.appointments,
         consumptions: res.consumptions,
         measurements: res.measurements,
       );

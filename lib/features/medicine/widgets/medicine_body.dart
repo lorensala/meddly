@@ -25,7 +25,7 @@ class MedicineBody extends ConsumerWidget {
                 overrides: [
                   medicineProvider.overrideWithValue(medicine),
                 ],
-                child: const MedicineCard(),
+                child: const MedicineListTile(),
               );
             },
             separatorBuilder: (BuildContext context, int index) =>

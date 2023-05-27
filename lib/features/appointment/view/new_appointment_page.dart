@@ -9,7 +9,7 @@ import 'package:meddly/widgets/widgets.dart';
 class NewAppointmentPage extends StatelessWidget {
   const NewAppointmentPage({super.key});
 
-  static const String routeName = '/new-appointment';
+  static const String routeName = 'new-appointment';
 
   @override
   Widget build(BuildContext context) {
@@ -43,15 +43,16 @@ class NewAppointmentPage extends StatelessWidget {
   }
 }
 
-class AppointmentSaveButton extends StatelessWidget {
+class AppointmentSaveButton extends ConsumerWidget {
   const AppointmentSaveButton({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Button(
-      onPressed: () {},
+      onPressed: () =>
+          ref.read(appointmentFormControllerProvider.notifier).save(),
       label: context.l10n.save,
     );
   }
@@ -196,7 +197,10 @@ class AppointmentSpecialityDropDown extends ConsumerWidget {
                 .map(
                   (e) => DropdownMenuItem<AppointmentSpeciality>(
                     value: e,
-                    child: Text(e.name.capitalize()),
+                    child: Text(
+                      e.name.capitalize(),
+                      style: context.textTheme.bodyMedium,
+                    ),
                   ),
                 )
                 .toList(),
