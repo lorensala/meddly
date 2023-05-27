@@ -6,13 +6,7 @@ import 'package:meddly/features/home/provider/provider.dart';
 import 'package:meddly/features/home/widgets/widgets.dart';
 import 'package:meddly/features/user/user.dart';
 
-/// {@template home_body}
-/// Body of the HomePage.
-///
-/// Add what it does
-/// {@endtemplate}
 class HomeBody extends ConsumerWidget {
-  /// {@macro home_body}
   const HomeBody({super.key});
 
   @override

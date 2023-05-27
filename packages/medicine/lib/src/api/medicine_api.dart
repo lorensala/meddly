@@ -21,7 +21,7 @@ class MedicineApi {
   Future<List<Medicine>> fetchAll() async {
     late final Response<List<dynamic>> res;
     try {
-      res = await _dio.get<List<dynamic>>(medicinePath);
+      res = await _dio.get<List<dynamic>>(medicinesPath);
 
       if (res.statusCode == 401) {
         throw MedicineNotFoundException();
