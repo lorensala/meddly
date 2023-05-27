@@ -135,8 +135,8 @@ class __$$_MeasurementStateCopyWithImpl<$Res>
 class _$_MeasurementState extends _MeasurementState {
   const _$_MeasurementState(
       {this.value = const NotNegativeIntNumber.pure(),
-      this.type = MeasurementType.bloodGlucose,
-      this.unit = MeasurementUnit.mmHg,
+      this.type = MeasurementType.other,
+      this.unit = MeasurementUnit.other,
       this.date})
       : super._();
 

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/measurement/measurement.dart';
@@ -16,7 +17,11 @@ class MeasurementDetailPage extends ConsumerWidget {
         .watch(measurementControllerProvider)
         .asData!
         .value
-        .firstWhere((m) => m.id == id);
+        .firstWhereOrNull((m) => m.id == id);
+
+    if (measurement == null) {
+      return const SizedBox.shrink();
+    }
 
     return Scaffold(
       appBar: AppBar(

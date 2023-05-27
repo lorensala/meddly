@@ -20,4 +20,5 @@ enum MeasurementUnit {
   gramsPerDL,
   ngPerML,
   microgramsPerDL,
+  other,
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:measurement/measurement.dart';
 import 'package:meddly/core/core.dart';
@@ -88,6 +87,11 @@ class _TypeDropDownSelector extends ConsumerWidget {
     final selectedType = ref
         .watch(measurementFormControllerProvider.select((value) => value.type));
 
+    Future.delayed(
+      Duration.zero,
+      () => notifier.unitChanged(MeasurementUnit.other),
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -120,10 +124,11 @@ class _UnitDropDownSelector extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedUnit = useState<MeasurementUnit?>(null);
     final notifier = ref.watch(measurementFormControllerProvider.notifier);
     final selectedType = ref
         .watch(measurementFormControllerProvider.select((value) => value.type));
+    final selectedUnit = ref
+        .watch(measurementFormControllerProvider.select((value) => value.unit));
 
     final units = getUnits(selectedType);
 
@@ -148,7 +153,7 @@ class _UnitDropDownSelector extends HookConsumerWidget {
           height: kBottomNavigationBarHeight,
           width: double.infinity,
           child: DropDownSelector<MeasurementUnit>(
-            value: selectedUnit.value ?? units[0],
+            value: selectedUnit,
             hasBorder: true,
             items: units
                 .map(
@@ -159,10 +164,7 @@ class _UnitDropDownSelector extends HookConsumerWidget {
                   ),
                 )
                 .toList(),
-            onChanged: (v) {
-              notifier.unitChanged(v);
-              selectedUnit.value = v;
-            },
+            onChanged: notifier.unitChanged,
           ),
         ),
       ],
