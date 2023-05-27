@@ -178,5 +178,9 @@
     "greetingMorning": "Buenos días",
     "greetingAfternoon": "Buenas tardes",
     "greetingEvening": "Buenas noches",
-    "welcome": "Bienvenido/a"
+    "welcome": "Bienvenido/a",
+    "home": "Inicio",
+    "browse": "Explorar",
+    "settings": "Ajustes",
+    "profile": "Perfil"
 }

@@ -179,5 +179,9 @@
     "greetingMorning": "Good morning",
     "greetingAfternoon": "Good afternoon",
     "greetingEvening": "Good evening",
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "home": "Home",
+    "browse": "Browse",
+    "settings": "Settings",
+    "profile": "Profile"
 }

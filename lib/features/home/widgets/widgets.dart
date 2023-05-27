@@ -1,4 +1,3 @@
-export 'bottom_navigation.dart';
 export 'event_card.dart';
 export 'feature_card.dart';
 export 'home_body.dart';
