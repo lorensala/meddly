@@ -29,7 +29,7 @@ class MeasurementFormController extends _$MeasurementFormController {
   void save() {
     final measurement = Measurement(
       date: state.date ?? DateTime.now(),
-      type: state.type.name,
+      type: state.type,
       value: double.parse(state.value.value),
       id: 0,
     );

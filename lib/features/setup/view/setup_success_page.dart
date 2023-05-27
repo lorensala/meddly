@@ -52,7 +52,7 @@ class SetupSuccessBody extends ConsumerWidget {
               Expanded(flex: 3, child: SvgPicture.asset(Vectors.success)),
               const SizedBox(height: Sizes.medium),
               Text(
-                '${context.l10n.welcome}, ${user.asSome().firstName}!',
+                '${context.l10n.welcome}, ${user?.firstName}!',
                 style: context.textTheme.titleLarge,
               ),
               const Spacer(),

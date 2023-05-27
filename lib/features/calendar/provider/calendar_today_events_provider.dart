@@ -1,5 +1,4 @@
 import 'package:calendar/calendar.dart';
-import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/controller/controller.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,12 +10,29 @@ List<CalendarEvent> calendarTodayEvents(CalendarTodayEventsRef ref) {
 
   return ref.watch(calendarControllerProvider).maybeWhen(
         data: (res) {
-          return res.fold(
-            (l) => [],
-            (r) => r.where((e) {
-              return e.date.isSameDay(now);
-            }).toList(),
-          );
+          final events = <CalendarEvent>[];
+
+          // for (final appointment in res.appointments as List<Appointment>) {
+          //   if (appointment.date.isSameDay(now)) {
+          //     events.add(
+          //       const CalendarEvent.fromAppointment(),
+          //     );
+          //   }
+          // }
+
+          // for (final consumption in res.consumptions) {
+          //   if (consumption.date.isSameDay(now)) {
+          //     events.add(CalendarEvent.consumption(consumption));
+          //   }
+          // }
+
+          // for (final measurement in res.measurements) {
+          //   if (measurement.date.isSameDay(now)) {
+          //     events.add(CalendarEvent.measurement(measurement));
+          //   }
+          // }
+
+          return events;
         },
         orElse: () => [],
       );

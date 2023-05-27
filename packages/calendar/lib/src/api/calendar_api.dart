@@ -12,7 +12,7 @@ class CalendarApi {
 
   Future<
       ({
-        List<Medicine> activeMedicine,
+        List<Medicine> activeMedicines,
         List<Appointment> appointments,
         List<Measurement> measurements,
         List<Consumption> consumptions,
@@ -27,7 +27,7 @@ class CalendarApi {
     try {
       if (res.data == null) {
         return (
-          activeMedicine: <Medicine>[],
+          activeMedicines: <Medicine>[],
           appointments: <Appointment>[],
           measurements: <Measurement>[],
           consumptions: <Consumption>[],
@@ -43,7 +43,7 @@ class CalendarApi {
           res.data['consumptions'] as List<Map<String, dynamic>>;
 
       return (
-        activeMedicine:
+        activeMedicines:
             activeMedicinesJson.map((e) => Medicine.fromJson(e)).toList(),
         appointments:
             appointmentsJson.map((e) => Appointment.fromJson(e)).toList(),

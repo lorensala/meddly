@@ -6,7 +6,7 @@ part of 'is_login_form_valid_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$isLoginFormValidHash() => r'7e3badb6e0edaa946ca2060b5f9199eed8914832';
+String _$isLoginFormValidHash() => r'c8e71ac1c6cb32430010948c44c26da33871029a';
 
 /// See also [isLoginFormValid].
 @ProviderFor(isLoginFormValid)

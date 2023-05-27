@@ -7,7 +7,7 @@ part of 'forgot_password_controller.dart';
 // **************************************************************************
 
 String _$forgotPasswordControllerHash() =>
-    r'c496c76b09fcfdded7384feb8a1772e17b5f29ba';
+    r'edb97e2356a421f175a09ed462b8a361c2740632';
 
 /// See also [ForgotPasswordController].
 @ProviderFor(ForgotPasswordController)

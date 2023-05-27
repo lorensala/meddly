@@ -52,22 +52,8 @@ final medicineRepositoryProvider =
 );
 
 typedef MedicineRepositoryRef = AutoDisposeProviderRef<MedicineRepository>;
-String _$medicineNameHash() => r'a6bc30a39e103891397bfc5f67dad61585040d76';
-
-/// See also [medicineName].
-@ProviderFor(medicineName)
-final medicineNameProvider = AutoDisposeProvider<Name>.internal(
-  medicineName,
-  name: r'medicineNameProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$medicineNameHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineNameRef = AutoDisposeProviderRef<Name>;
 String _$medicineNameErrorTextHash() =>
-    r'bb41c177c487a692230dde5dd44cbd29571cc4ca';
+    r'e4fa8415cb8cb847403624a51af61cf087f479f7';
 
 /// See also [medicineNameErrorText].
 @ProviderFor(medicineNameErrorText)
@@ -83,7 +69,7 @@ final medicineNameErrorTextProvider = AutoDisposeProvider<String?>.internal(
 
 typedef MedicineNameErrorTextRef = AutoDisposeProviderRef<String?>;
 String _$isMedicineNameValidHash() =>
-    r'81d86a17d142ecb799634e8ab986818a7767785d';
+    r'859910d57faac832769e08bfe37ea9d8368cb58f';
 
 /// See also [isMedicineNameValid].
 @ProviderFor(isMedicineNameValid)
@@ -98,41 +84,8 @@ final isMedicineNameValidProvider = AutoDisposeProvider<bool>.internal(
 );
 
 typedef IsMedicineNameValidRef = AutoDisposeProviderRef<bool>;
-String _$medicinePresentationHash() =>
-    r'369ed9f7f650f422d9befd2c791b4d08f73499b2';
-
-/// See also [medicinePresentation].
-@ProviderFor(medicinePresentation)
-final medicinePresentationProvider =
-    AutoDisposeProvider<MedicinePresentation>.internal(
-  medicinePresentation,
-  name: r'medicinePresentationProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicinePresentationHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicinePresentationRef = AutoDisposeProviderRef<MedicinePresentation>;
-String _$medicineDosisHash() => r'be71228c483f2f8f4d1d2c7c857d7afca21201d6';
-
-/// See also [medicineDosis].
-@ProviderFor(medicineDosis)
-final medicineDosisProvider =
-    AutoDisposeProvider<NotNegativeIntNumber>.internal(
-  medicineDosis,
-  name: r'medicineDosisProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicineDosisHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineDosisRef = AutoDisposeProviderRef<NotNegativeIntNumber>;
 String _$medicineDosisErrorTextHash() =>
-    r'6230fcaf9051776a93d8e22e070154b0fb0a4f2d';
+    r'52f4891ca6f1997d00bf9374854ec23d451e47f6';
 
 /// See also [medicineDosisErrorText].
 @ProviderFor(medicineDosisErrorText)
@@ -148,7 +101,7 @@ final medicineDosisErrorTextProvider = AutoDisposeProvider<String?>.internal(
 
 typedef MedicineDosisErrorTextRef = AutoDisposeProviderRef<String?>;
 String _$isMedicineDosisValidHash() =>
-    r'83808c7d7dc77e9e2b309573f996a1bcb2ee363b';
+    r'30efcbf94db991f94513faeca1c2e556468e877f';
 
 /// See also [isMedicineDosisValid].
 @ProviderFor(isMedicineDosisValid)
@@ -163,118 +116,8 @@ final isMedicineDosisValidProvider = AutoDisposeProvider<bool>.internal(
 );
 
 typedef IsMedicineDosisValidRef = AutoDisposeProviderRef<bool>;
-String _$medicineDosisUnitHash() => r'263bdff49bbc9a596ed9bfe12ab7c5e32260e249';
-
-/// See also [medicineDosisUnit].
-@ProviderFor(medicineDosisUnit)
-final medicineDosisUnitProvider =
-    AutoDisposeProvider<MedicineDosisUnit>.internal(
-  medicineDosisUnit,
-  name: r'medicineDosisUnitProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicineDosisUnitHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineDosisUnitRef = AutoDisposeProviderRef<MedicineDosisUnit>;
-String _$medicineStockHash() => r'f56fa49e04499fcfd0d777ac77ce06cf7500f997';
-
-/// See also [medicineStock].
-@ProviderFor(medicineStock)
-final medicineStockProvider =
-    AutoDisposeProvider<NotNegativeIntNumber>.internal(
-  medicineStock,
-  name: r'medicineStockProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicineStockHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineStockRef = AutoDisposeProviderRef<NotNegativeIntNumber>;
-String _$medicineFrecuencyHash() => r'85af461722562740bfd1a545008f8a3efdb8f222';
-
-/// See also [medicineFrecuency].
-@ProviderFor(medicineFrecuency)
-final medicineFrecuencyProvider =
-    AutoDisposeProvider<MedicineFrecuency>.internal(
-  medicineFrecuency,
-  name: r'medicineFrecuencyProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicineFrecuencyHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineFrecuencyRef = AutoDisposeProviderRef<MedicineFrecuency>;
-String _$medicineDaysHash() => r'8ae96fc5e16ce0e00c560fe69473ed541b6210e2';
-
-/// See also [medicineDays].
-@ProviderFor(medicineDays)
-final medicineDaysProvider = AutoDisposeProvider<List<MedicineDay>>.internal(
-  medicineDays,
-  name: r'medicineDaysProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$medicineDaysHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineDaysRef = AutoDisposeProviderRef<List<MedicineDay>>;
-String _$medicineHoursHash() => r'08cd87290c3404e90afb8e35a18d26e628fd0b15';
-
-/// See also [medicineHours].
-@ProviderFor(medicineHours)
-final medicineHoursProvider = AutoDisposeProvider<List<TimeOfDay>>.internal(
-  medicineHours,
-  name: r'medicineHoursProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicineHoursHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineHoursRef = AutoDisposeProviderRef<List<TimeOfDay>>;
-String _$medicineFrecuencyValueHash() =>
-    r'72bcc9737b6f20bd743748489df25d512ecb9781';
-
-/// See also [medicineFrecuencyValue].
-@ProviderFor(medicineFrecuencyValue)
-final medicineFrecuencyValueProvider = AutoDisposeProvider<int>.internal(
-  medicineFrecuencyValue,
-  name: r'medicineFrecuencyValueProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicineFrecuencyValueHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineFrecuencyValueRef = AutoDisposeProviderRef<int>;
-String _$medicineStockWarningHash() =>
-    r'163aff9b4a7479753b58cd02b1265aff45a08178';
-
-/// See also [medicineStockWarning].
-@ProviderFor(medicineStockWarning)
-final medicineStockWarningProvider =
-    AutoDisposeProvider<NotNegativeIntNumber>.internal(
-  medicineStockWarning,
-  name: r'medicineStockWarningProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicineStockWarningHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineStockWarningRef = AutoDisposeProviderRef<NotNegativeIntNumber>;
 String _$medicineStockWarningErrorTextHash() =>
-    r'b538ddfc5bf359cf4de5dbb97e4c40339d3408ca';
+    r'14f4224a72dc308de47880411a0be0c758d3bed1';
 
 /// See also [medicineStockWarningErrorText].
 @ProviderFor(medicineStockWarningErrorText)
@@ -291,7 +134,7 @@ final medicineStockWarningErrorTextProvider =
 
 typedef MedicineStockWarningErrorTextRef = AutoDisposeProviderRef<String?>;
 String _$medicineStockErrorTextHash() =>
-    r'9b24022c9861c8a80ea5cddb8cf10214155bc391';
+    r'1f8eb6b5a9594fda0ad5f64ee7e5b2516a96c0b4';
 
 /// See also [medicineStockErrorText].
 @ProviderFor(medicineStockErrorText)
@@ -306,24 +149,8 @@ final medicineStockErrorTextProvider = AutoDisposeProvider<String?>.internal(
 );
 
 typedef MedicineStockErrorTextRef = AutoDisposeProviderRef<String?>;
-String _$medicineInstructionsHash() =>
-    r'4694fb32ccde00b8cc5dce0698c81f1e95868824';
-
-/// See also [medicineInstructions].
-@ProviderFor(medicineInstructions)
-final medicineInstructionsProvider = AutoDisposeProvider<Instructions>.internal(
-  medicineInstructions,
-  name: r'medicineInstructionsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicineInstructionsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineInstructionsRef = AutoDisposeProviderRef<Instructions>;
 String _$medicineInstructionErrorTextHash() =>
-    r'aecf3192dc9da6ef1202b81091dca1304852844b';
+    r'ffe514eab00dc394f48b1cae8ba92afc383d05d3';
 
 /// See also [medicineInstructionErrorText].
 @ProviderFor(medicineInstructionErrorText)
@@ -340,7 +167,7 @@ final medicineInstructionErrorTextProvider =
 
 typedef MedicineInstructionErrorTextRef = AutoDisposeProviderRef<String?>;
 String _$isMedicineReviewValidHash() =>
-    r'54e74636993bafa1dafcbb98317aef20b262ba9d';
+    r'5ebb6eec2c421c11978cbef1138eded8b41c4ae5';
 
 /// See also [isMedicineReviewValid].
 @ProviderFor(isMedicineReviewValid)

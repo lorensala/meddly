@@ -10,7 +10,7 @@ class SetupLastnameInput extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(setupControllerProvider.notifier);
-    final errorText = ref.watch(lastnameErrorMessageProvider);
+    final errorText = ref.watch(lastNameErrorMessageProvider);
 
     return TextFormField(
       onChanged: notifier.lastnameChanged,

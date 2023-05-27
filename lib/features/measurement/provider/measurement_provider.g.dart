@@ -39,54 +39,8 @@ final measurementRepositoryProvider =
 
 typedef MeasurementRepositoryRef
     = AutoDisposeProviderRef<MeasurementRepository>;
-String _$measurementTypeHash() => r'60a5b103240d924ea6d637e1528fa4c560ea5dba';
-
-/// See also [measurementType].
-@ProviderFor(measurementType)
-final measurementTypeProvider = AutoDisposeProvider<MeasurementType>.internal(
-  measurementType,
-  name: r'measurementTypeProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$measurementTypeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MeasurementTypeRef = AutoDisposeProviderRef<MeasurementType>;
-String _$measurementValueHash() => r'245fc3a069e9be3b4ca857a91c3578d251916e04';
-
-/// See also [measurementValue].
-@ProviderFor(measurementValue)
-final measurementValueProvider =
-    AutoDisposeProvider<NotNegativeIntNumber>.internal(
-  measurementValue,
-  name: r'measurementValueProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$measurementValueHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MeasurementValueRef = AutoDisposeProviderRef<NotNegativeIntNumber>;
-String _$measurementDateHash() => r'1364b4553c89f7162177a4c335841cbe28ea0cc1';
-
-/// See also [measurementDate].
-@ProviderFor(measurementDate)
-final measurementDateProvider = AutoDisposeProvider<DateTime?>.internal(
-  measurementDate,
-  name: r'measurementDateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$measurementDateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MeasurementDateRef = AutoDisposeProviderRef<DateTime?>;
 String _$measurementValueErrorHash() =>
-    r'47931e8e18281ae7fabaddc521d9450421887994';
+    r'cefc1b50cc635801dab333cbce8671c6ab77af23';
 
 /// See also [measurementValueError].
 @ProviderFor(measurementValueError)
@@ -102,7 +56,7 @@ final measurementValueErrorProvider = AutoDisposeProvider<String?>.internal(
 
 typedef MeasurementValueErrorRef = AutoDisposeProviderRef<String?>;
 String _$measurementIsValidHash() =>
-    r'f95d023b4cbb2160e860468a652cf5514a9b0f08';
+    r'0b185d11e3e1995b1ff394b47452760174420744';
 
 /// See also [measurementIsValid].
 @ProviderFor(measurementIsValid)

@@ -1,4 +1,3 @@
-import 'package:formz/formz.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/login/state/state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -17,7 +16,6 @@ class LoginController extends _$LoginController {
     final email = Email.dirty(value);
     state = state.copyWith(
       email: email,
-      status: Formz.validate([email, state.password]),
     );
   }
 
@@ -25,11 +23,11 @@ class LoginController extends _$LoginController {
     final password = Password.dirty(value);
     state = state.copyWith(
       password: password,
-      status: Formz.validate([state.email, password]),
     );
   }
 
   void logInWithEmailAndPassword() {
+    if (state.isNotValid) return;
     ref.read(authControllerProvider.notifier).logInWithEmailAndPassword(
           email: state.email.value.trim(),
           password: state.password.value.trim(),

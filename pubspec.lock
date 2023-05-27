@@ -247,14 +247,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  dartz:
-    dependency: "direct main"
-    description:
-      name: dartz
-      sha256: e6acf34ad2e31b1eb00948692468c30ab48ac8250e0f0df661e29f12dd252168
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.10.1"
   dio:
     dependency: "direct main"
     description:
@@ -316,10 +308,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: af48a48a93045ec3bfa6999f3206b6cd4b5d74f3
+      resolved-ref: c0ae4f808f004aa084f859f7c89cc2a320f8f360
       url: "git@github.com:lorensala/firebase_auth_repository.git"
     source: git
-    version: "0.0.5"
+    version: "0.0.6"
   firebase_auth_web:
     dependency: transitive
     description:

@@ -17,7 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ForgotPasswordState {
   Email get email => throw _privateConstructorUsedError;
-  FormzStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ForgotPasswordStateCopyWith<ForgotPasswordState> get copyWith =>
@@ -30,7 +29,7 @@ abstract class $ForgotPasswordStateCopyWith<$Res> {
           ForgotPasswordState value, $Res Function(ForgotPasswordState) then) =
       _$ForgotPasswordStateCopyWithImpl<$Res, ForgotPasswordState>;
   @useResult
-  $Res call({Email email, FormzStatus status});
+  $Res call({Email email});
 }
 
 /// @nodoc
@@ -47,17 +46,12 @@ class _$ForgotPasswordStateCopyWithImpl<$Res, $Val extends ForgotPasswordState>
   @override
   $Res call({
     Object? email = null,
-    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as Email,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
     ) as $Val);
   }
 }
@@ -70,7 +64,7 @@ abstract class _$$_ForgotPasswordStateCopyWith<$Res>
       __$$_ForgotPasswordStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Email email, FormzStatus status});
+  $Res call({Email email});
 }
 
 /// @nodoc
@@ -85,37 +79,28 @@ class __$$_ForgotPasswordStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = null,
-    Object? status = freezed,
   }) {
     return _then(_$_ForgotPasswordState(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as Email,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_ForgotPasswordState implements _ForgotPasswordState {
-  const _$_ForgotPasswordState(
-      {this.email = const Email.pure(), this.status = FormzStatus.pure});
+class _$_ForgotPasswordState extends _ForgotPasswordState {
+  const _$_ForgotPasswordState({this.email = const Email.pure()}) : super._();
 
   @override
   @JsonKey()
   final Email email;
-  @override
-  @JsonKey()
-  final FormzStatus status;
 
   @override
   String toString() {
-    return 'ForgotPasswordState(email: $email, status: $status)';
+    return 'ForgotPasswordState(email: $email)';
   }
 
   @override
@@ -123,13 +108,11 @@ class _$_ForgotPasswordState implements _ForgotPasswordState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ForgotPasswordState &&
-            (identical(other.email, email) || other.email == email) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, const DeepCollectionEquality().hash(status));
+  int get hashCode => Object.hash(runtimeType, email);
 
   @JsonKey(ignore: true)
   @override
@@ -139,14 +122,13 @@ class _$_ForgotPasswordState implements _ForgotPasswordState {
           this, _$identity);
 }
 
-abstract class _ForgotPasswordState implements ForgotPasswordState {
-  const factory _ForgotPasswordState(
-      {final Email email, final FormzStatus status}) = _$_ForgotPasswordState;
+abstract class _ForgotPasswordState extends ForgotPasswordState {
+  const factory _ForgotPasswordState({final Email email}) =
+      _$_ForgotPasswordState;
+  const _ForgotPasswordState._() : super._();
 
   @override
   Email get email;
-  @override
-  FormzStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_ForgotPasswordStateCopyWith<_$_ForgotPasswordState> get copyWith =>

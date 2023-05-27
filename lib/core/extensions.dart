@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -143,15 +142,6 @@ extension DateTimeX on DateTime {
   String toNamedDayString(BuildContext context) =>
       DateFormat('EEE', Localizations.localeOf(context).languageCode)
           .format(this);
-}
-
-extension EitherX<L, R> on Either<L, R> {
-  R asRight() => (this as Right<L, R>).value; //
-  L asLeft() => (this as Left<L, R>).value;
-}
-
-extension OptionX<T> on Option<T> {
-  T asSome() => (this as Some<T>).value;
 }
 
 extension RefDebounceX on Ref {

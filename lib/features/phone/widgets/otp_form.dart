@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/phone/controller/otp_form_controller.dart';
 import 'package:meddly/features/phone/controller/phone_controller.dart';
-import 'package:meddly/features/phone/provider/otp_form_provider.dart';
+import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -19,9 +19,9 @@ class OtpForm extends StatelessWidget {
     return Container(
       padding: Sizes.mediumPadding,
       decoration: const BoxDecoration(),
-      child: Column(
+      child: const Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: [
           _OtpField(),
           SizedBox(height: Sizes.medium),
           _OtpButton(),
@@ -59,15 +59,20 @@ class _OtpButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isValid = ref.watch(isOtpValidProvider);
+    final isValid = ref
+        .watch(otpFormControllerProvider.select((value) => value.otp.isValid));
     final isLoading = ref.watch(phoneControllerProvider).isVerifyingOtp;
     final notifier = ref.watch(phoneControllerProvider.notifier);
-    final smsCode = ref.watch(otpProvider).value;
 
     return Button(
       isValid: isValid,
       isLoading: isLoading,
-      onPressed: () => notifier.verifyPhone(smsCode),
+      onPressed: () {
+        final smsCode = ref
+            .read(otpFormControllerProvider.select((value) => value.otp.value));
+
+        notifier.verifyPhone(smsCode);
+      },
       label: 'Verify OTP',
     );
   }
@@ -79,7 +84,8 @@ class _OtpField extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(otpFormControllerProvider.notifier);
-    final isValid = ref.watch(otpFormControllerProvider).otp.valid;
+    final isValid =
+        ref.watch(otpFormControllerProvider.select((s) => s.otp.isValid));
 
     return PinCodeTextField(
       appContext: context,

@@ -84,6 +84,7 @@
     "instructionsTooLong": "Las instrucciones deben tener como máximo 100 caracteres",
     "medicineNotFound": "Medicamento no encontrado",
     "measurementNotFound": "Medición no encontrada",
+    "connectionError": "Error de conexión",
     "@_ONBOARDING": {},
     "guidanceConsultationDescription": "Habla con un médico y aclara tus dudas",
     "registerMedicationsDescription": "Registra tus medicamentos y recibe recordatorios",

@@ -6,7 +6,7 @@ part of 'user_exist_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userExistHash() => r'565c8ce0fdcfb3b17db475d7b5ea1639136f1b5e';
+String _$userExistHash() => r'bee4f00e8f616753e537fb9c5253a0bd0966f95a';
 
 /// See also [userExist].
 @ProviderFor(userExist)

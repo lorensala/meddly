@@ -4,13 +4,15 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/notifications/notifications.dart';
 import 'package:notifications/notifications.dart';
 
+enum Preferences { emai, whastapp }
+
 class NotificationsPreferencesBody extends ConsumerWidget {
   const NotificationsPreferencesBody({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notificationPreferences =
-        ref.watch(notificationPreferencesStreamProvider);
+        ref.watch(notificationPreferencesControllerProvider);
 
     return notificationPreferences.when(
       data: (preferences) {
@@ -19,12 +21,17 @@ class NotificationsPreferencesBody extends ConsumerWidget {
           child: ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              final preference = NotificationPreference.values[index];
-              return ProviderScope(overrides: [
-                notificationPreferenceProvider.overrideWithValue(preference)
-              ], child: const NotificationPreferenceCard(),);
+              final preference = Preferences.values[index];
+              return ProviderScope(
+                overrides: [
+                  notificationPreferenceProvider.overrideWithValue(
+                    NotificationPreference(name: preference.name),
+                  )
+                ],
+                child: const NotificationPreferenceCard(),
+              );
             },
-            itemCount: NotificationPreference.values.length,
+            itemCount: Preferences.values.length,
             separatorBuilder: (BuildContext context, int index) =>
                 const SizedBox(
               height: Sizes.medium,
@@ -50,10 +57,18 @@ class NotificationPreferenceCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final preference = ref.watch(notificationPreferenceProvider);
-    final notifier = ref.watch(notificationsControllerProvider.notifier);
-    final isLoading = ref.watch(notificationsControllerProvider).isLoading;
-    final isOn =
-        ref.watch(isNotificationPreferenceOnProvider(preference: preference));
+    final notifier =
+        ref.watch(notificationPreferencesControllerProvider.notifier);
+    final isLoading =
+        ref.watch(notificationPreferencesControllerProvider).isLoading;
+    final isOn = ref.watch(
+      notificationPreferencesControllerProvider.select(
+        (value) => value.maybeWhen(
+          orElse: () => false,
+          data: (value) => value.contains(preference),
+        ),
+      ),
+    );
 
     return Container(
       padding: Sizes.mediumPadding,

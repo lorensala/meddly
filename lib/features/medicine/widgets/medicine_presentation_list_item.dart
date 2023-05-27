@@ -15,7 +15,8 @@ class MedicinePresentationListItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
-    final selectedPresentation = ref.watch(medicinePresentationProvider);
+    final selectedPresentation =
+        ref.watch(medicineFormControllerProvider.select((s) => s.presentation));
 
     return ListTile(
       selected: selectedPresentation == presentation,

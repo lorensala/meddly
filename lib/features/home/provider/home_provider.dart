@@ -21,10 +21,14 @@ String greeting(GreetingRef ref) {
 @riverpod
 String userInitials(UserInitialsRef ref) {
   const defaultInitials = 'NN';
-  return ref.watch(userProvider).fold(
-    () => defaultInitials,
-    (user) {
-      return '${user.firstName[0]}${user.lastName[0]}';
-    },
-  );
+  final user = ref.watch(userProvider);
+
+  if (user == null) {
+    return defaultInitials;
+  }
+  if (user.firstName.isEmpty || user.lastName.isEmpty) {
+    return defaultInitials;
+  }
+
+  return '${user.firstName[0]}${user.lastName[0]}';
 }

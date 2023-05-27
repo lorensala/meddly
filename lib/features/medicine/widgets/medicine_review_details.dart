@@ -11,16 +11,16 @@ class MedicineReviewDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Padding(
         padding: Sizes.mediumPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const _MedicineInfo(),
-            const SizedBox(height: Sizes.medium),
+            _MedicineInfo(),
+            SizedBox(height: Sizes.medium),
             Column(
-              children: const [
+              children: [
                 _StockField(),
                 SizedBox(height: Sizes.medium),
                 _StockWarningField(),
@@ -28,7 +28,7 @@ class MedicineReviewDetails extends StatelessWidget {
                 _InstructionsField(),
               ],
             ),
-            const SizedBox(height: Sizes.large),
+            SizedBox(height: Sizes.large),
           ],
         ),
       ),
@@ -41,13 +41,20 @@ class _MedicineInfo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final medicineName = ref.watch(medicineNameProvider);
-    final medicinePresentation = ref.watch(medicinePresentationProvider);
-    final medicineFrecuency = ref.watch(medicineFrecuencyProvider);
-    final medicineFrecuencyValue = ref.watch(medicineFrecuencyValueProvider);
-    final medicineDays = ref.watch(medicineDaysProvider);
-    final medicineDosis = ref.watch(medicineDosisProvider);
-    final medicineDosisUnit = ref.watch(medicineDosisUnitProvider);
+    final medicineName =
+        ref.watch(medicineFormControllerProvider.select((s) => s.name));
+    final medicinePresentation =
+        ref.watch(medicineFormControllerProvider.select((s) => s.presentation));
+    final medicineFrecuency =
+        ref.watch(medicineFormControllerProvider.select((s) => s.frecuency));
+    final medicineFrecuencyValue = ref
+        .watch(medicineFormControllerProvider.select((s) => s.frecuencyValue));
+    final medicineDays =
+        ref.watch(medicineFormControllerProvider.select((s) => s.days));
+    final medicineDosis =
+        ref.watch(medicineFormControllerProvider.select((s) => s.dosis));
+    final medicineDosisUnit =
+        ref.watch(medicineFormControllerProvider.select((s) => s.dosisUnit));
 
     String getMedicineInitials() {
       if (medicineName.value.length == 1) {

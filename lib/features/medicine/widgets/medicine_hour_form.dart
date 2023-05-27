@@ -40,9 +40,17 @@ class _HourSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedFrecuency = ref.watch(medicineFrecuencyProvider);
+    final selectedFrecuency = ref.watch(
+      medicineFormControllerProvider.select(
+        (s) => s.frecuency,
+      ),
+    );
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
-    final selectedHours = ref.watch(medicineHoursProvider);
+    final selectedHours = ref.watch(
+      medicineFormControllerProvider.select(
+        (s) => s.hours,
+      ),
+    );
 
     if (selectedFrecuency == MedicineFrecuency.asNeeded) {
       return const SizedBox.shrink();

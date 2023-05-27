@@ -2,7 +2,7 @@ import 'package:meddly/l10n/l10n.dart';
 import 'package:user/user.dart';
 
 extension UserExceptionX on UserException {
-  String message(AppLocalizations l10n) {
+  String describe(AppLocalizations l10n) {
     return switch (this) {
       UserNotFoundException() => l10n.userNotFound,
       UserSerializationException() => l10n.unknownError,

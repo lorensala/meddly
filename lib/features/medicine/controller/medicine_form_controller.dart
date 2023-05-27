@@ -102,7 +102,6 @@ class MedicineFormController extends _$MedicineFormController {
           interval: state.frecuencyValue,
           instructions: state.instructions.value,
         );
-        break;
       case MedicineFrecuency.specificDays:
         medicine = Medicine(
           id: 0,
@@ -118,7 +117,6 @@ class MedicineFormController extends _$MedicineFormController {
           hours: state.hours,
           instructions: state.instructions.value,
         );
-        break;
       case MedicineFrecuency.asNeeded:
         medicine = Medicine(
           id: 0,
@@ -132,7 +130,6 @@ class MedicineFormController extends _$MedicineFormController {
           dosis: double.tryParse(state.dosis.value) ?? 0.0,
           instructions: state.instructions.value,
         );
-        break;
     }
     return medicine;
   }

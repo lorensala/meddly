@@ -46,6 +46,9 @@ class SignUpView extends ConsumerWidget {
       );
     });
 
-    return const SignUpBody();
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: const SignUpBody(),
+    );
   }
 }

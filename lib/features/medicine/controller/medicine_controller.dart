@@ -1,4 +1,3 @@
-import 'package:meddly/core/core.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/medicine/medicine.dart';
@@ -19,12 +18,12 @@ class MedicineController extends _$MedicineController {
 
     final repository = ref.watch(medicineRepositoryProvider);
 
-    final res = await repository.addMedicine(medicine);
+    final (err, _) = await repository.addMedicine(medicine);
 
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-    if (res.isLeft()) {
-      state = AsyncError(res.asLeft().message(l10n), StackTrace.current);
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
       return;
     }
 

@@ -47,7 +47,11 @@ class _DosisUnitSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedDosisUnit = ref.watch(medicineDosisUnitProvider);
+    final selectedDosisUnit = ref.watch(
+      medicineFormControllerProvider.select(
+        (controller) => controller.dosisUnit,
+      ),
+    );
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
 
     return DecoratedBox(
@@ -81,7 +85,11 @@ class _DosisInputField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(medicineFormControllerProvider.notifier);
     final errorText = ref.watch(medicineDosisErrorTextProvider);
-    final selectedDosisUnit = ref.watch(medicineDosisUnitProvider);
+    final selectedDosisUnit = ref.watch(
+      medicineFormControllerProvider.select(
+        (controller) => controller.dosisUnit,
+      ),
+    );
 
     return TextFormField(
       onChanged: notifier.dosisChanged,

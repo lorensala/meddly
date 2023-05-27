@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:medicine/src/models/medicine_days.dart';
 import 'package:medicine/src/models/medicine_dosis_unit.dart';
@@ -20,10 +21,33 @@ class Medicine with _$Medicine {
     required double dosis,
     int? interval,
     List<MedicineDay>? days,
-    List<DateTime>? hours,
+    @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
     String? instructions,
   }) = _Medicine;
 
   factory Medicine.fromJson(Map<String, dynamic> json) =>
       _$MedicineFromJson(json);
+}
+
+class ListTimeOfDayOrNullConverter
+    implements JsonConverter<List<TimeOfDay>?, List<String>?> {
+  const ListTimeOfDayOrNullConverter();
+
+  @override
+  List<TimeOfDay>? fromJson(List<String>? json) {
+    if (json == null) {
+      return null;
+    }
+
+    return json.map((e) => TimeOfDay.fromDateTime(DateTime.parse(e))).toList();
+  }
+
+  @override
+  List<String>? toJson(List<TimeOfDay>? object) {
+    if (object == null) {
+      return null;
+    }
+
+    return object.map((e) => '${e.hour}:${e.minute}').toList();
+  }
 }

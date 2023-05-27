@@ -23,9 +23,8 @@ _$_Medicine _$$_MedicineFromJson(Map<String, dynamic> json) => _$_Medicine(
       days: (json['days'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$MedicineDayEnumMap, e))
           .toList(),
-      hours: (json['hours'] as List<dynamic>?)
-          ?.map((e) => DateTime.parse(e as String))
-          .toList(),
+      hours: const ListTimeOfDayOrNullConverter()
+          .fromJson(json['hours'] as List<String>?),
       instructions: json['instructions'] as String?,
     );
 
@@ -42,7 +41,7 @@ Map<String, dynamic> _$$_MedicineToJson(_$_Medicine instance) =>
       'dosis': instance.dosis,
       'interval': instance.interval,
       'days': instance.days?.map((e) => _$MedicineDayEnumMap[e]!).toList(),
-      'hours': instance.hours?.map((e) => e.toIso8601String()).toList(),
+      'hours': const ListTimeOfDayOrNullConverter().toJson(instance.hours),
       'instructions': instance.instructions,
     };
 

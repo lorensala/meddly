@@ -6,7 +6,7 @@ part of 'sign_up_email_error_message.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$emailErrorMessageHash() => r'a30dea896bd17d8ce1be7985875a73f536501701';
+String _$emailErrorMessageHash() => r'452a683d27eafb04957d730cf4e382d0ae801710';
 
 /// See also [emailErrorMessage].
 @ProviderFor(emailErrorMessage)

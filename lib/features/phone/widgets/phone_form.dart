@@ -12,9 +12,9 @@ class PhoneForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisSize: MainAxisSize.min,
-      children: const [
+      children: [
         _CountryCodePhoneNumber(),
         SizedBox(height: Sizes.medium),
         _SendOTPButton(),
@@ -29,7 +29,8 @@ class _SendOTPButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isValid = ref.watch(isPhoneNumberValidProvider);
+    final isValid =
+        ref.watch(phoneFormControllerProvider.select((value) => value.isValid));
     final notifier = ref.watch(phoneControllerProvider.notifier);
     final isLoading = ref.watch(phoneControllerProvider).isSendingOtp;
 
@@ -47,9 +48,9 @@ class _CountryCodePhoneNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         _CountryCodeSelector(),
         SizedBox(width: Sizes.medium),
         Expanded(
@@ -67,7 +68,6 @@ class _PhoneNumberInput extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(phoneFormControllerProvider.notifier);
-    final errorText = ref.watch(phoneNumberErrorTextProvider);
 
     return Column(
       children: [
@@ -81,7 +81,7 @@ class _PhoneNumberInput extends ConsumerWidget {
           decoration: InputDecoration(
             errorMaxLines: 2,
             hintText: context.l10n.phoneNumberHint,
-            errorText: errorText,
+            // errorText: errorText,
           ),
         ),
         const SizedBox(height: Sizes.small),
@@ -105,7 +105,9 @@ class _CountryCodeSelector extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final countryCode = ref.watch(countryCodeProvider);
+    final countryCode = ref.watch(
+      phoneFormControllerProvider.select((value) => value.countryCode),
+    );
     final notifier = ref.watch(phoneFormControllerProvider.notifier);
     return Container(
       width: 140,

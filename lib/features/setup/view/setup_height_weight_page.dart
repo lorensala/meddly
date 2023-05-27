@@ -73,14 +73,14 @@ class _SaveButton extends ConsumerWidget {
       );
     });
 
-    final weight = ref.watch(setupWeightProvider);
-    final height = ref.watch(setupHeightProvider);
+    final weight = ref.watch(setupControllerProvider.select((s) => s.weight));
+    final height = ref.watch(setupControllerProvider.select((s) => s.height));
     final isLoading = ref.watch(userControllerProvider).isLoading;
 
     final isHeightValid =
-        (height.valid && height.value.isNotEmpty) || height.pure;
+        (height.isValid && height.value.isNotEmpty) || height.isPure;
     final isWeightValid =
-        (weight.valid && weight.value.isNotEmpty) || weight.pure;
+        (weight.isValid && weight.value.isNotEmpty) || weight.isPure;
 
     return Button(
       isValid: isHeightValid && isWeightValid,

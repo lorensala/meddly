@@ -6,7 +6,7 @@ part of 'medicines_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$medicinesHash() => r'810c47e9f02252bc178840879338bf0e9a4283e8';
+String _$medicinesHash() => r'cd61a11c90a0fca1de21fb364c7835389ca5c8aa';
 
 /// See also [Medicines].
 @ProviderFor(Medicines)
