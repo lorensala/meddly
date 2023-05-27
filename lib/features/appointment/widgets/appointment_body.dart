@@ -4,13 +4,7 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/controller/appointment_controller.dart';
 import 'package:meddly/widgets/widgets.dart';
 
-/// {@template appointment_body}
-/// Body of the AppointmentPage.
-///
-/// Add what it does
-/// {@endtemplate}
 class AppointmentBody extends ConsumerWidget {
-  /// {@macro appointment_body}
   const AppointmentBody({super.key});
 
   @override

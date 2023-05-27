@@ -1,7 +1,6 @@
 import 'package:appointment/appointment.dart';
-import 'package:meddly/features/appointment/appointment.dart';
+import 'package:meddly/features/appointment/controller/appointment_controller.dart';
 import 'package:meddly/features/appointment/state/appointment_form_state.dart';
-import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:validators/validators.dart';
 
@@ -50,12 +49,8 @@ class AppointmentFormController extends _$AppointmentFormController {
       notes: state.notes,
     );
 
-    final (err, _) = await ref
-        .watch(appointmentRepositoryProvider)
+    await ref
+        .watch(appointmentControllerProvider.notifier)
         .addAppointment(appointment);
-
-    if (err == null) {
-      ref.watch(goRouterProvider).pop();
-    }
   }
 }

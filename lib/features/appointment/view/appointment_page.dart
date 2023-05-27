@@ -4,14 +4,9 @@ import 'package:meddly/features/appointment/view/view.dart';
 import 'package:meddly/features/appointment/widgets/appointment_body.dart';
 import 'package:meddly/features/browse/browse.dart';
 
-/// {@template appointment_page}
-/// A description for AppointmentPage
-/// {@endtemplate}
 class AppointmentPage extends StatelessWidget {
-  /// {@macro appointment_page}
   const AppointmentPage({super.key});
 
-  /// The static route for AppointmentPage
   static String routeName = 'appointment';
 
   @override
@@ -26,7 +21,7 @@ class AppointmentPage extends StatelessWidget {
             '${BrowsePage.routeName}/${AppointmentPage.routeName}/${NewAppointmentPage.routeName}',
           );
         },
-        tooltip: 'Increment',
+        tooltip: 'Nuevo turno médico',
         child: const Icon(Icons.add),
       ),
       body: const AppointmentBody(),

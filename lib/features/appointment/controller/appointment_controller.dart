@@ -2,6 +2,7 @@ import 'package:appointment/appointment.dart';
 import 'package:meddly/features/appointment/core/core.dart';
 import 'package:meddly/features/appointment/provider/provider.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'appointment_controller.g.dart';
@@ -22,6 +23,10 @@ class AppointmentController extends _$AppointmentController {
     }
   }
 
+  void refresh() {
+    ref.invalidateSelf();
+  }
+
   Future<void> addAppointment(Appointment appointment) async {
     final repository = ref.watch(appointmentRepositoryProvider);
 
@@ -30,7 +35,8 @@ class AppointmentController extends _$AppointmentController {
     if (err != null) {
       state = AsyncError(err.toString(), StackTrace.current);
     } else {
-      ref.invalidateSelf();
+      refresh();
+      ref.watch(goRouterProvider).pop();
     }
   }
 
@@ -44,7 +50,8 @@ class AppointmentController extends _$AppointmentController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
-      ref.invalidateSelf();
+      refresh();
+      ref.watch(goRouterProvider).pop();
     }
   }
 
@@ -57,7 +64,8 @@ class AppointmentController extends _$AppointmentController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
-      ref.invalidateSelf();
+      refresh();
+      ref.watch(goRouterProvider).pop();
     }
   }
 }
