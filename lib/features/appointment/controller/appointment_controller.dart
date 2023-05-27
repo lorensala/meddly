@@ -40,18 +40,16 @@ class AppointmentController extends _$AppointmentController {
     }
   }
 
-  Future<void> deleteAppointment(Appointment appointment) async {
+  Future<void> deleteAppointment(int id) async {
     final repository = ref.watch(appointmentRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-    final (err, _) =
-        await repository.deleteAppointment(appointment.id.toString());
+    final (err, _) = await repository.deleteAppointment(id);
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       refresh();
-      ref.watch(goRouterProvider).pop();
     }
   }
 

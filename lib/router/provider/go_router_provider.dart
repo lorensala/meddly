@@ -82,6 +82,13 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                     path: NewAppointmentPage.routeName,
                     builder: (context, state) => const NewAppointmentPage(),
                   ),
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: '${AppointmentDetailPage.routeName}/:id',
+                    builder: (context, state) => AppointmentDetailPage(
+                      int.parse(state.pathParameters['id']!),
+                    ),
+                  ),
                 ],
               ),
               GoRoute(

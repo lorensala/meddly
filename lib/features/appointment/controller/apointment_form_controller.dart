@@ -38,8 +38,6 @@ class AppointmentFormController extends _$AppointmentFormController {
   }
 
   Future<void> save() async {
-    if (state.isNotValid) return;
-
     final appointment = Appointment(
       name: state.name.value,
       speciality: state.speciality,

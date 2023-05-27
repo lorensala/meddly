@@ -21,5 +21,5 @@ class AppointmentFormState with _$AppointmentFormState, FormzMixin {
   const AppointmentFormState._();
 
   @override
-  List<FormzInput> get inputs => [name, doctor];
+  List<FormzInput> get inputs => [name];
 }

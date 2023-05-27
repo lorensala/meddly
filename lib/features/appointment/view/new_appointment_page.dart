@@ -2,7 +2,9 @@ import 'package:appointment/appointment.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/appointment/controller/apointment_form_controller.dart';
+import 'package:meddly/features/appointment/controller/appointment_controller.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -50,7 +52,12 @@ class AppointmentSaveButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isValid = ref.watch(isAppointmentFormValidProvider);
+    final isLoading = ref.watch(appointmentControllerProvider).isLoading;
+
     return Button(
+      isValid: isValid,
+      isLoading: isLoading,
       onPressed: () =>
           ref.read(appointmentFormControllerProvider.notifier).save(),
       label: context.l10n.save,

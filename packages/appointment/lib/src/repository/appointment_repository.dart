@@ -30,7 +30,7 @@ class AppointmentRepository {
   }
 
   Future<(AppointmentException?, void)> deleteAppointment(
-    String id,
+    int id,
   ) async {
     try {
       await _api.deleteAppointment(id);
