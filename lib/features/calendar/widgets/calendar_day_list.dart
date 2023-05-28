@@ -7,7 +7,7 @@ import 'package:meddly/features/calendar/calendar.dart';
 class CalendarDayList extends HookConsumerWidget {
   const CalendarDayList({super.key});
 
-  static const double _height = 75;
+  static const double _height = 90;
   static const Duration _duration = Duration(milliseconds: 300);
   static const double _viewportFraction = 0.15;
 
@@ -15,7 +15,7 @@ class CalendarDayList extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final daysOfTheYear = ref.watch(calendarDaysProvider);
 
-    useMemoized(() => daysOfTheYear);
+    useMemoized(() => daysOfTheYear, [daysOfTheYear]);
 
     final controller = usePageController(
       viewportFraction: _viewportFraction,
@@ -24,19 +24,14 @@ class CalendarDayList extends HookConsumerWidget {
       ),
     );
 
-    ref.listen(calendarSelectedDateProvider, (_, date) async {
-      await controller.animateToPage(
-        daysOfTheYear.indexWhere((d) => d.isSameDay(date)),
-        duration: _duration,
-        curve: Curves.easeInOut,
-      );
-    });
-
     return Container(
       color: context.colorScheme.background,
       height: _height,
       child: PageView.builder(
-        onPageChanged: (_) {},
+        onPageChanged: (int page) {
+          final date = daysOfTheYear[page];
+          ref.read(calendarSelectedDateProvider.notifier).update(date);
+        },
         controller: controller,
         itemCount: daysOfTheYear.length,
         itemBuilder: (context, index) {
@@ -45,7 +40,17 @@ class CalendarDayList extends HookConsumerWidget {
             overrides: [
               calendarDateProvider.overrideWithValue(date),
             ],
-            child: const CalendarDayListItem(),
+            child: GestureDetector(
+              onTap: () {
+                ref.read(calendarSelectedDateProvider.notifier).update(date);
+                controller.animateToPage(
+                  index,
+                  duration: _duration,
+                  curve: Curves.easeInOut,
+                );
+              },
+              child: const CalendarDayListItem(),
+            ),
           );
         },
       ),

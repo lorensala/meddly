@@ -49,6 +49,8 @@ List<CalendarEvent> calendarDailyEvents(
             if (measurement.date.isSameDay(selectedDate)) {
               events.add(
                 CalendarEvent.fromMeasurement(
+                  title: measurement.value.toString(),
+                  description: measurement.type.name,
                   id: measurement.id,
                   date: measurement.date,
                 ),

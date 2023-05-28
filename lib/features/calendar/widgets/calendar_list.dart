@@ -27,6 +27,7 @@ class CalendarList extends ConsumerWidget {
         return ListView.separated(
           separatorBuilder: (_, __) => const SizedBox(height: Sizes.medium),
           itemCount: calendarDailyEvents.length,
+          physics: const ClampingScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return CalendarListItem(

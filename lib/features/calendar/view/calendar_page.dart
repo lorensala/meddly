@@ -14,16 +14,7 @@ class CalendarPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Calendar'),
       ),
-      body: const CalendarView(),
+      body: const CalendarBody(),
     );
-  }
-}
-
-class CalendarView extends StatelessWidget {
-  const CalendarView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const CalendarBody();
   }
 }
