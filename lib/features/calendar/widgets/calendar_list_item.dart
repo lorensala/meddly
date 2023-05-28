@@ -5,8 +5,8 @@ import 'package:meddly/core/core.dart';
 
 class CalendarListItem extends StatelessWidget {
   const CalendarListItem({
-    super.key,
     required this.event,
+    super.key,
   });
 
   final CalendarEvent event;

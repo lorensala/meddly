@@ -33,24 +33,24 @@ class CalendarApi {
           consumptions: <Consumption>[],
         );
       }
-      final activeMedicinesJson =
-          res.data['active_medicines'] as List<Map<String, dynamic>>;
-      final appointmentsJson =
-          res.data['appointments'] as List<Map<String, dynamic>>;
-      final measurementsJson =
-          res.data['measurements'] as List<Map<String, dynamic>>;
-      final consumptionsJson =
-          res.data['consumptions'] as List<Map<String, dynamic>>;
+      final activeMedicinesJson = res.data['active_medicines'] as List<dynamic>;
+      final appointmentsJson = res.data['appointments'] as List<dynamic>;
+      final measurementsJson = res.data['measurements'] as List<dynamic>;
+      final consumptionsJson = res.data['consumptions'] as List<dynamic>;
 
       return (
-        activeMedicines:
-            activeMedicinesJson.map((e) => Medicine.fromJson(e)).toList(),
-        appointments:
-            appointmentsJson.map((e) => Appointment.fromJson(e)).toList(),
-        measurements:
-            measurementsJson.map((e) => Measurement.fromJson(e)).toList(),
-        consumptions:
-            consumptionsJson.map((e) => Consumption.fromJson(e)).toList(),
+        activeMedicines: activeMedicinesJson
+            .map((e) => Medicine.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        appointments: appointmentsJson
+            .map((e) => Appointment.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        measurements: measurementsJson
+            .map((e) => Measurement.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        consumptions: consumptionsJson
+            .map((e) => Consumption.fromJson(e as Map<String, dynamic>))
+            .toList(),
       );
     } catch (e) {
       throw CalendarSerializationException();

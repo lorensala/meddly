@@ -37,9 +37,11 @@ class ListTimeOfDayOrNullConverter
       return null;
     }
 
-    return json
-        .map((e) => TimeOfDay.fromDateTime(DateTime.parse(e as String)))
-        .toList();
+    return json.map((e) {
+      final hour = int.parse((e as String).split(':').first);
+      final minute = int.parse((e).split(':').last);
+      return TimeOfDay(hour: hour, minute: minute);
+    }).toList();
   }
 
   @override

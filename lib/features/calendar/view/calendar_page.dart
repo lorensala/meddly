@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/features/calendar/widgets/calendar_body.dart';
 
-/// {@template calendar_page}
-/// A description for CalendarPage
-/// {@endtemplate}
 class CalendarPage extends StatelessWidget {
-  /// {@macro calendar_page}
   const CalendarPage({super.key});
 
-  /// The static route for CalendarPage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const CalendarPage());
   }
@@ -24,11 +19,7 @@ class CalendarPage extends StatelessWidget {
   }
 }
 
-/// {@template calendar_view}
-/// Displays the Body of CalendarView
-/// {@endtemplate}
 class CalendarView extends StatelessWidget {
-  /// {@macro calendar_view}
   const CalendarView({super.key});
 
   @override

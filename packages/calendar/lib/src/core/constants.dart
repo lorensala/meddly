@@ -1,5 +1,5 @@
 /// The path to the calendar endpoint.
-const String calendarPath = '/calendar/';
+const String calendarPath = '/calendar/calendar/';
 
 /// The path to the consumption endpoint.
 const String addConsumptionPath = '/calendar/medicines/consumption/';

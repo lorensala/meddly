@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,40 +14,47 @@ class MeasurementDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final measurement = ref
-        .watch(measurementControllerProvider)
-        .asData!
-        .value
-        .firstWhereOrNull((m) => m.id == id);
+    final measurements = ref.watch(measurementControllerProvider);
 
-    if (measurement == null) {
-      return const SizedBox.shrink();
-    }
+    return AsyncValueWidget(
+      value: measurements,
+      builder: (measurements) {
+        if (measurements.isEmpty) {
+          return const SizedBox.shrink();
+        }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Measurement'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Valor: ${measurement.value}'),
-            Text('Fecha: ${measurement.date}'),
-            Text('Tipo: ${measurement.type}'),
-            Text('Unidad: ${measurement.unit}'),
-            Button(
-              onPressed: () {
-                ref
-                    .read(measurementControllerProvider.notifier)
-                    .deleteMeasurement(id);
-                Navigator.pop(context);
-              },
-              label: 'Delete',
+        final measurement = measurements.firstWhereOrNull((m) => m.id == id);
+
+        if (measurement == null) {
+          return const SizedBox.shrink();
+        }
+
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Measurement'),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Valor: ${measurement.value}'),
+                Text('Fecha: ${measurement.date}'),
+                Text('Tipo: ${measurement.type}'),
+                Text('Unidad: ${measurement.unit}'),
+                Button(
+                  onPressed: () {
+                    ref
+                        .read(measurementControllerProvider.notifier)
+                        .deleteMeasurement(id);
+                    Navigator.pop(context);
+                  },
+                  label: 'Delete',
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

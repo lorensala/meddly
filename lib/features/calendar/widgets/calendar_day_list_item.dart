@@ -32,7 +32,7 @@ class CalendarDayListItem extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              date.toNamedDayString(context).substring(0, 1),
+              date.toNamedDayString(context).substring(0, 1).capitalize(),
               style: context.textTheme.bodyMedium!.copyWith(
                 color: isToday
                     ? context.colorScheme.onPrimary
