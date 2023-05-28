@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 class PredictionResultsPage extends StatelessWidget {
   const PredictionResultsPage({super.key});
@@ -23,10 +24,8 @@ class PredictionResultsPage extends StatelessWidget {
                 child: Text(results.toString()),
               );
             },
-            error: (_, __) {
-              return const Center(
-                child: Text('Error'),
-              );
+            error: (err, __) {
+              return ErrorContainer(message: err.toString());
             },
             loading: () => const Center(
               child: CircularProgressIndicator(),

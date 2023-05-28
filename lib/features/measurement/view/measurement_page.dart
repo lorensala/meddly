@@ -12,7 +12,9 @@ class MeasurementPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Mediciones'),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => ref.read(goRouterProvider).go(
               '${BrowsePage.routeName}/${MeasurementPage.routeName}/${MeasurementFormPage.routeName}',

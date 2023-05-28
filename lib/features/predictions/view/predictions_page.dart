@@ -16,16 +16,7 @@ class PredictionsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Consultas orientativas'),
       ),
-      body: const PredictionsView(),
+      body: const PredictionsBody(),
     );
-  }
-}
-
-class PredictionsView extends StatelessWidget {
-  const PredictionsView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const PredictionsBody();
   }
 }

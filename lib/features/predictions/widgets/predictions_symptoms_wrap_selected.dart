@@ -10,7 +10,7 @@ class PredictionsSymptomsWrapSelected extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedResults = ref.watch(symptomSelectedResultsProvider);
+    final selectedResults = ref.watch(symptomPredictionControllerProvider);
 
     if (selectedResults.isEmpty) return const SizedBox.shrink();
 

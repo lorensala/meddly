@@ -10,8 +10,8 @@ part 'prediction_controller.g.dart';
 @riverpod
 class PredictionController extends _$PredictionController {
   @override
-  FutureOr<List<Disease>> build() {
-    return [];
+  FutureOr<List<Disease>> build() async {
+    return <Disease>[];
   }
 
   Future<void> predictWithSymptoms(List<Symptom> symptoms) async {
@@ -24,8 +24,8 @@ class PredictionController extends _$PredictionController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
-      await ref.read(goRouterProvider).push(PredictionResultsPage.routeName);
       state = AsyncData(diseases);
+      await ref.read(goRouterProvider).push(PredictionResultsPage.routeName);
     }
   }
 }

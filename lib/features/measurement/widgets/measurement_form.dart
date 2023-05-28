@@ -64,7 +64,7 @@ class _DateSelector extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Measurement date', isRequired: true),
+        const InputLabel(label: 'Fecha de medición', isRequired: true),
         const SizedBox(height: Sizes.small),
         DateSelector(
           initialDateTime: initialDateTime,
@@ -95,7 +95,7 @@ class _TypeDropDownSelector extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Tipo', isRequired: true),
+        const InputLabel(label: 'Tipo de medición', isRequired: true),
         const SizedBox(height: Sizes.small),
         SizedBox(
           height: kBottomNavigationBarHeight,
@@ -147,7 +147,7 @@ class _UnitDropDownSelector extends HookConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Tipo', isRequired: true),
+        const InputLabel(label: 'Unidad', isRequired: true),
         const SizedBox(height: Sizes.small),
         SizedBox(
           height: kBottomNavigationBarHeight,
@@ -183,7 +183,7 @@ class _ValueField extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Valor', isRequired: true),
+        const InputLabel(label: 'Medición', isRequired: true),
         const SizedBox(height: Sizes.small),
         TextFormField(
           style: context.textTheme.bodyMedium,

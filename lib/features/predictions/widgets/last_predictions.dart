@@ -19,8 +19,9 @@ class LastPredictions extends ConsumerWidget {
       value: predictions,
       builder: (predictions) {
         if (predictions.isEmpty) {
-          return const EmptyContainer(
+          return EmptyContainer(
             isFlex: false,
+            size: MediaQuery.of(context).size.height * 0.3,
             message: 'Aún no tienes consultas orientativas',
           );
         }
