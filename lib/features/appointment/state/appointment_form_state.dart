@@ -16,6 +16,7 @@ class AppointmentFormState with _$AppointmentFormState, FormzMixin {
     @Default(Name.pure()) Name doctor,
     @Default('') String location,
     @Default('') String notes,
+    @Default(false) bool isEditing,
   }) = _AppointmentFormState;
 
   const AppointmentFormState._();

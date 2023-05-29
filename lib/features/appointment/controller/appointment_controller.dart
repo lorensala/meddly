@@ -50,6 +50,7 @@ class AppointmentController extends _$AppointmentController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       refresh();
+      ref.watch(goRouterProvider).pop();
     }
   }
 

@@ -12,10 +12,12 @@ class DateSelector extends HookWidget {
     required this.initialDateTime,
     required this.onDateTimeChanged,
     required this.errorText,
+    this.initialValue,
     super.key,
   });
 
   final DateTime initialDateTime;
+  final DateTime? initialValue;
   final String? errorText;
   final void Function(DateTime value) onDateTimeChanged;
 
@@ -25,7 +27,11 @@ class DateSelector extends HookWidget {
       context.textTheme.bodyMedium!
           .copyWith(color: context.colorScheme.onSecondary.withOpacity(0.5)),
     );
-    final controller = useTextEditingController(text: 'Select a date');
+    final controller = useTextEditingController(
+      text: initialValue == null
+          ? 'Select a date'
+          : initialValue.toString().dateTimeStringFormat(),
+    );
 
     return TextFormField(
       controller: controller,

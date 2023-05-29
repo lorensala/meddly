@@ -14,6 +14,15 @@ class CalendarList extends ConsumerWidget {
 
     return AsyncValueWidget(
       value: calendar,
+      loading: ListView.separated(
+        separatorBuilder: (_, __) => const SizedBox(height: Sizes.medium),
+        itemCount: 3,
+        physics: const ClampingScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return const CalendarListItemShimmered();
+        },
+      ),
       builder: (calendar) {
         final calendarDailyEvents = ref.watch(calendarDailyEventsProvider);
 

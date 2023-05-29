@@ -1,6 +1,11 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/controller/appointment_controller.dart';
+import 'package:meddly/features/appointment/view/view.dart';
+import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class AppointmentDetailPage extends ConsumerWidget {
@@ -20,26 +25,48 @@ class AppointmentDetailPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Appointment'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Nombre: ${appointment.name}'),
-            Text('Especialidad: ${appointment.speciality}'),
-            Text('Fecha: ${appointment.date}'),
-            Text('Doctor: ${appointment.doctor}'),
-            Text('Ubicación: ${appointment.location}'),
-            Text('Notas: ${appointment.notes}'),
-            Button(
-              onPressed: () {
-                ref
-                    .read(appointmentControllerProvider.notifier)
-                    .deleteAppointment(id);
-                Navigator.pop(context);
-              },
-              label: 'Delete',
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(Sizes.medium),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Nombre: ${appointment.name}'),
+              Text('Especialidad: ${appointment.speciality}'),
+              Text('Fecha: ${appointment.date}'),
+              Text('Doctor: ${appointment.doctor}'),
+              Text('Ubicación: ${appointment.location}'),
+              Text('Notas: ${appointment.notes}'),
+              const SizedBox(height: 8),
+              Button(
+                onPressed: () {
+                  ref
+                      .read(appointmentControllerProvider.notifier)
+                      .deleteAppointment(id);
+
+                  GoRouter.of(context).pop();
+                },
+                label: 'Delete',
+              ),
+              const SizedBox(height: 8),
+              Button(
+                onPressed: () {
+                  final appointment = ref.read(
+                    appointmentControllerProvider.select(
+                      (value) => value.asData!.value
+                          .firstWhereOrNull((a) => a.id == id),
+                    ),
+                  );
+                  if (appointment == null) return;
+
+                  GoRouter.of(context).push(
+                    '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentFormPage.routeName}/${appointment.id}',
+                  );
+                },
+                label: 'Edit',
+              ),
+            ],
+          ),
         ),
       ),
     );
