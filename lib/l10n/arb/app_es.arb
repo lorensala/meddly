@@ -35,7 +35,7 @@
     "confirmPasswordHint": "Confirmar contraseña",
     "passwordsDontMatch": "Las contraseñas no coinciden",
     "sendPasswordResetEmail": "Enviar correo electrónico para restablecer la contraseña",
-    "loginWithEmailAddress": "Iniciar sesión con dirección de correo electrónico",
+    "loginWithEmailAddress": "Iniciar sesión con email",
     "loginWithGoogle": "Iniciar sesión con Google",
     "guidanceConsultationTitle": "Hacer una consulta de orientación",
     "registerMedicationsTitle": "Registrar tus medicamentos",

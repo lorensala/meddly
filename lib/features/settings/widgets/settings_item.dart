@@ -22,7 +22,7 @@ class SettingsItem extends StatelessWidget {
         style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
               padding: MaterialStateProperty.all(EdgeInsets.zero),
             ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: DecoratedBox(
           decoration: BoxDecoration(
             boxShadow: Constants.boxShadow,
