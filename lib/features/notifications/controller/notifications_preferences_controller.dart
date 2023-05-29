@@ -10,10 +10,17 @@ part 'notifications_preferences_controller.g.dart';
 class NotificationPreferencesController
     extends _$NotificationPreferencesController {
   @override
-  Stream<List<NotificationPreference>> build() {
+  Future<List<NotificationPreference>> build() async {
     final repository = ref.read(notificationsRepositoryProvider);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    return repository.notificationPreferences;
+    final (err, preferences) = await repository.fetchAll();
+
+    if (err != null) {
+      throw Exception(err.describe(l10n));
+    }
+
+    return preferences;
   }
 
   Future<void> addNotificationPreference(
@@ -27,6 +34,8 @@ class NotificationPreferencesController
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      ref.invalidateSelf();
     }
   }
 
@@ -42,6 +51,8 @@ class NotificationPreferencesController
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      ref.invalidateSelf();
     }
   }
 }

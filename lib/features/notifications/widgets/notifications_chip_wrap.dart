@@ -22,7 +22,7 @@ class NotificationsChipWrap extends ConsumerWidget {
         padding: const EdgeInsets.all(Sizes.medium),
         child: Wrap(
           spacing: _spacing,
-          children: NotificationChipType.values
+          children: NotificationFilter.values
               .map(
                 (e) => NotificationsChip(
                   type: e,

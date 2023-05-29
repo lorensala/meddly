@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -51,16 +50,8 @@ class AppointmentDetailPage extends ConsumerWidget {
               const SizedBox(height: 8),
               Button(
                 onPressed: () {
-                  final appointment = ref.read(
-                    appointmentControllerProvider.select(
-                      (value) => value.asData!.value
-                          .firstWhereOrNull((a) => a.id == id),
-                    ),
-                  );
-                  if (appointment == null) return;
-
                   GoRouter.of(context).push(
-                    '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentFormPage.routeName}/${appointment.id}',
+                    '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentFormPage.routeName}',
                   );
                 },
                 label: 'Edit',

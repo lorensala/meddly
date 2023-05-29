@@ -83,9 +83,7 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                   GoRoute(
                     parentNavigatorKey: shellNavigatorKey,
                     path: '${AppointmentFormPage.routeName}/:id',
-                    builder: (context, state) => AppointmentFormPage(
-                      int.tryParse(state.pathParameters['id']!),
-                    ),
+                    builder: (context, state) => const AppointmentFormPage(),
                   ),
                   GoRoute(
                     parentNavigatorKey: shellNavigatorKey,
@@ -166,6 +164,14 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
             path: SettingsPage.routeName,
             pageBuilder: (context, state) =>
                 const NoTransitionPage(child: SettingsPage()),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: shellNavigatorKey,
+                path: NotificationsPreferencesPage.routeName,
+                builder: (context, state) =>
+                    const NotificationsPreferencesPage(),
+              ),
+            ],
           ),
           GoRoute(
             parentNavigatorKey: shellNavigatorKey,

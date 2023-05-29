@@ -13,17 +13,17 @@ class MeasurementForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: Sizes.mediumPadding,
-      child: Center(
+    return const SingleChildScrollView(
+      child: Padding(
+        padding: Sizes.mediumPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _ValueField(),
-            SizedBox(height: Sizes.medium),
             _TypeDropDownSelector(),
             SizedBox(height: Sizes.medium),
             _UnitDropDownSelector(),
+            SizedBox(height: Sizes.medium),
+            _ValueField(),
             SizedBox(height: Sizes.medium),
             _DateSelector(),
             SizedBox(height: Sizes.medium),

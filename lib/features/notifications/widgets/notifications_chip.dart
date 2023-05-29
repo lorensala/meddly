@@ -6,12 +6,12 @@ import 'package:meddly/features/notifications/provider/notifications_selected_ch
 
 class NotificationsChip extends ConsumerWidget {
   const NotificationsChip({
-    super.key,
     required this.type,
+    super.key,
     this.isSelected = false,
   });
 
-  final NotificationChipType type;
+  final NotificationFilter type;
   final bool isSelected;
 
   @override

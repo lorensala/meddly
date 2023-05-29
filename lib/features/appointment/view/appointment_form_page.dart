@@ -10,20 +10,15 @@ import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class AppointmentFormPage extends StatelessWidget {
-  const AppointmentFormPage(
-    this.id, {
-    super.key,
-  });
+  const AppointmentFormPage({super.key});
 
   static const String routeName = 'appointment-form';
-
-  final int? id;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(id == null ? 'Nuevo turno médico' : 'Editar turno médico'),
+        title: const Text('Nuevo turno médico'),
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
@@ -79,6 +74,7 @@ class AppointmentNotesInput extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
+
     final initialValue = ref.watch(
       appointmentFormControllerProvider.select(
         (value) => value.notes,

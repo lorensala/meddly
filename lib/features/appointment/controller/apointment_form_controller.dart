@@ -13,6 +13,17 @@ class AppointmentFormController extends _$AppointmentFormController {
     return const AppointmentFormState();
   }
 
+  void init(Appointment appointment) {
+    state = state.copyWith(
+      name: Name.dirty(appointment.name),
+      speciality: appointment.speciality ?? AppointmentSpeciality.cardiology,
+      date: appointment.date,
+      doctor: Name.dirty(appointment.doctor ?? ''),
+      location: appointment.location ?? '',
+      notes: appointment.notes ?? '',
+    );
+  }
+
   void onNameChanged(String value) {
     state = state.copyWith(name: Name.dirty(value));
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/notifications/view/view.dart';
 import 'package:meddly/features/settings/widgets/widgets.dart';
 import 'package:meddly/features/user/user.dart';
 
@@ -27,9 +29,14 @@ class SettingsPage extends ConsumerWidget {
               label: 'Cambiar contraseña',
             ),
             const SizedBox(height: Sizes.medium),
-            const SettingsItem(
+            SettingsItem(
               vector: Vectors.bellRinging,
               label: 'Preferencia de notificaciones',
+              onPressed: () {
+                GoRouter.of(context).push(
+                  '$routeName/${NotificationsPreferencesPage.routeName}',
+                );
+              },
             ),
             const SizedBox(height: Sizes.medium),
             SettingsItem(
