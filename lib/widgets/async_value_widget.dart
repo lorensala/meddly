@@ -5,11 +5,13 @@ class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget({
     required this.value,
     required this.builder,
+    this.loading,
     super.key,
   });
 
   final AsyncValue<T> value;
   final Widget Function(T) builder;
+  final Widget? loading;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class AsyncValueWidget<T> extends StatelessWidget {
       error: (err, stackTrace) {
         return errorWidget(err.toString());
       },
-      loading: loadingWidget,
+      loading: () => loading ?? _loadingWidget(),
     );
   }
 
@@ -28,7 +30,7 @@ class AsyncValueWidget<T> extends StatelessWidget {
     );
   }
 
-  static Widget loadingWidget() {
+  static Widget _loadingWidget() {
     return const Center(
       child: CircularProgressIndicator(),
     );

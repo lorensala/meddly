@@ -19,6 +19,9 @@ class CalendarListItem extends StatelessWidget {
         children: [
           Text(
             event.date.toHoursAndMinutesString(),
+            style: context.textTheme.bodyMedium!.copyWith(
+              color: context.colorScheme.onBackground.withOpacity(0.6),
+            ),
           ),
           const SizedBox(width: Sizes.medium),
           Expanded(
@@ -45,8 +48,9 @@ class CalendarListItem extends StatelessWidget {
                           children: [
                             Text(
                               event.title,
-                              style: context.textTheme.titleMedium!
-                                  .copyWith(fontWeight: FontWeight.w500),
+                              style: context.textTheme.titleMedium!.copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
                               overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: Sizes.small),

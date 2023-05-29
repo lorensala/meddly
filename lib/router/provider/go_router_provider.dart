@@ -9,8 +9,10 @@ import 'package:meddly/features/notifications/view/view.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/phone/view/view.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/features/settings/view/view.dart';
 import 'package:meddly/features/setup/view/view.dart';
 import 'package:meddly/features/splash/splash.dart';
+import 'package:meddly/features/user/user.dart';
 import 'package:meddly/router/router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -156,6 +158,18 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                 ],
               ),
             ],
+          ),
+          GoRoute(
+            parentNavigatorKey: shellNavigatorKey,
+            path: SettingsPage.routeName,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: SettingsPage()),
+          ),
+          GoRoute(
+            parentNavigatorKey: shellNavigatorKey,
+            path: UserPage.routeName,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: UserPage()),
           ),
         ],
         builder: (context, state, child) {

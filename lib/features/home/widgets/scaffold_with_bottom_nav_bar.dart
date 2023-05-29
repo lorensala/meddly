@@ -6,6 +6,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/browse/view/browse_page.dart';
 import 'package:meddly/features/home/home.dart';
+import 'package:meddly/features/settings/view/settings_page.dart';
+import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/router.dart';
 
@@ -53,65 +55,69 @@ class BottomNavBar extends HookConsumerWidget {
         case 1:
           ref.read(goRouterProvider).go(BrowsePage.routeName);
         case 2:
-          //ref.read(goRouterProvider).go(SettingsShell.routeName);
-          break;
+          ref.read(goRouterProvider).go(SettingsPage.routeName);
+        case 3:
+          ref.read(goRouterProvider).go(UserPage.routeName);
       }
     });
 
-    return BottomNavigationBar(
-      currentIndex: selectedIndex.value,
-      backgroundColor: context.colorScheme.background,
-      unselectedFontSize: 13,
-      elevation: 0,
-      type: BottomNavigationBarType.fixed,
-      onTap: (index) {
-        selectedIndex.value = index;
-      },
-      items: [
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            Vectors.home,
-            colorFilter: ColorFilter.mode(
-              selectedIndex.value == 0
-                  ? context.colorScheme.primary
-                  : context.colorScheme.onSecondary.withOpacity(0.8),
-              BlendMode.srcIn,
+    return Theme(
+      data: Theme.of(context).copyWith(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
+      child: BottomNavigationBar(
+        currentIndex: selectedIndex.value,
+        backgroundColor: context.colorScheme.background,
+        unselectedFontSize: 13,
+        elevation: 0,
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          selectedIndex.value = index;
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              Vectors.home,
+              colorFilter: ColorFilter.mode(
+                selectedIndex.value == 0
+                    ? context.colorScheme.primary
+                    : context.colorScheme.onSecondary.withOpacity(0.8),
+                BlendMode.srcIn,
+              ),
             ),
+            label: context.l10n.home,
           ),
-          label: context.l10n.home,
-        ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            Vectors.browse,
-            colorFilter: ColorFilter.mode(
-              selectedIndex.value == 1
-                  ? context.colorScheme.primary
-                  : context.colorScheme.onSecondary.withOpacity(0.8),
-              BlendMode.srcIn,
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              Vectors.browse,
+              colorFilter: ColorFilter.mode(
+                selectedIndex.value == 1
+                    ? context.colorScheme.primary
+                    : context.colorScheme.onSecondary.withOpacity(0.8),
+                BlendMode.srcIn,
+              ),
             ),
+            label: context.l10n.browse,
           ),
-          label: context.l10n.browse,
-        ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            Vectors.settings,
-            colorFilter: ColorFilter.mode(
-              selectedIndex.value == 2
-                  ? context.colorScheme.primary
-                  : context.colorScheme.onSecondary.withOpacity(0.8),
-              BlendMode.srcIn,
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              Vectors.settings,
+              colorFilter: ColorFilter.mode(
+                selectedIndex.value == 2
+                    ? context.colorScheme.primary
+                    : context.colorScheme.onSecondary.withOpacity(0.8),
+                BlendMode.srcIn,
+              ),
             ),
+            label: context.l10n.settings,
           ),
-          label: context.l10n.settings,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.person,
-            color: context.colorScheme.onSecondary.withOpacity(0.8),
+          BottomNavigationBarItem(
+            icon: const UserAvatar(),
+            label: context.l10n.profile,
           ),
-          label: context.l10n.profile,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

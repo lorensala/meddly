@@ -16,7 +16,7 @@ class BrowseCard extends ConsumerWidget {
   final String vector;
   final VoidCallback onTap;
 
-  static const double _iconSize = 100;
+  // static const double _iconSize = 100;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -58,11 +58,17 @@ class BrowseCard extends ConsumerWidget {
                   Text(
                     description,
                     style: context.textTheme.bodyMedium!.copyWith(
-                      color: context.colorScheme.onSecondary.withOpacity(0.5),
+                      fontWeight: FontWeight.w400,
+                      color: context.colorScheme.onSecondary.withOpacity(0.6),
                     ),
                   ),
                 ],
               ),
+            ),
+            const SizedBox(width: Sizes.medium),
+            Icon(
+              Icons.chevron_right_rounded,
+              color: context.colorScheme.onSecondary,
             ),
           ],
         ),

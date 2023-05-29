@@ -37,6 +37,7 @@ class Vectors {
   static const String home = 'assets/svg/home.svg';
   static const String browse = 'assets/svg/browse.svg';
   static const String settings = 'assets/svg/settings.svg';
+  static const String user = 'assets/svg/user.svg';
 
   // * Notifications
   static const String trash = 'assets/svg/trash.svg';
@@ -56,4 +57,9 @@ class Vectors {
   static const String medicinePresentation =
       'assets/svg/medicine-presentation.svg';
   static const String medicineDosis = 'assets/svg/medicine-dosis.svg';
+
+  // * Settings
+  static const String pdf = 'assets/svg/pdf.svg';
+  static const String logout = 'assets/svg/log-out.svg';
+  static const String changePassword = 'assets/svg/change-password.svg';
 }
