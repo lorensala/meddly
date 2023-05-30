@@ -77,40 +77,42 @@ class ImagePickerBottomSheet extends ConsumerWidget {
     );
 
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(Sizes.medium),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Center(
-              child: Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: context.colorScheme.surface,
-                  borderRadius: BorderRadius.circular(Sizes.medium),
-                ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: Sizes.medium),
+          Center(
+            child: Container(
+              width: context.width / 4,
+              height: 5,
+              decoration: BoxDecoration(
+                color: context.colorScheme.surface,
+                borderRadius: BorderRadius.circular(Sizes.medium),
               ),
             ),
-            const SizedBox(height: Sizes.large),
-            GestureDetector(
-              onTap: () async {
-                try {
-                  final image =
-                      await ImagePicker().pickImage(source: ImageSource.camera);
+          ),
+          const SizedBox(height: Sizes.medium),
+          GestureDetector(
+            onTap: () async {
+              try {
+                final image =
+                    await ImagePicker().pickImage(source: ImageSource.camera);
 
-                  if (image == null) return;
+                if (image == null) return;
 
-                  await ref
-                      .read(predictionControllerProvider.notifier)
-                      .predictWithImage(image);
-                } catch (e) {
-                  await showSnackBar(context, 'Error al abrir la cámara');
-                }
+                await ref
+                    .read(predictionControllerProvider.notifier)
+                    .predictWithImage(image);
+              } catch (e) {
+                await showSnackBar(context, 'Error al abrir la cámara');
+              }
 
-                GoRouter.of(context).pop();
-              },
+              GoRouter.of(context).pop();
+            },
+            child: Container(
+              padding: const EdgeInsets.all(Sizes.medium),
+              width: context.width,
               child: Row(
                 children: [
                   SvgPicture.asset(Vectors.camera),
@@ -122,23 +124,26 @@ class ImagePickerBottomSheet extends ConsumerWidget {
                 ],
               ),
             ),
-            const SizedBox(height: Sizes.large),
-            GestureDetector(
-              onTap: () async {
-                try {
-                  final image = await ImagePicker()
-                      .pickImage(source: ImageSource.gallery);
+          ),
+          GestureDetector(
+            onTap: () async {
+              try {
+                final image =
+                    await ImagePicker().pickImage(source: ImageSource.gallery);
 
-                  if (image == null) return;
+                if (image == null) return;
 
-                  await ref
-                      .read(predictionControllerProvider.notifier)
-                      .predictWithImage(image);
-                } catch (e) {
-                  await showSnackBar(context, 'Error al abrir la galería');
-                }
-                GoRouter.of(context).pop();
-              },
+                await ref
+                    .read(predictionControllerProvider.notifier)
+                    .predictWithImage(image);
+              } catch (e) {
+                await showSnackBar(context, 'Error al abrir la galería');
+              }
+              GoRouter.of(context).pop();
+            },
+            child: Container(
+              padding: const EdgeInsets.all(Sizes.medium),
+              width: context.width,
               child: Row(
                 children: [
                   SvgPicture.asset(Vectors.gallery),
@@ -150,8 +155,9 @@ class ImagePickerBottomSheet extends ConsumerWidget {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: Sizes.large),
+        ],
       ),
     );
   }

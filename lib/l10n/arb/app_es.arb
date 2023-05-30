@@ -182,5 +182,16 @@
     "home": "Inicio",
     "browse": "Explorar",
     "settings": "Ajustes",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "@_BROWSE": {},
+    "measurements": "Mediciones",
+    "measurementsDescription": "Registra tu presión arterial, glucosa en sangre, peso y más",
+    "medicines": "Medicamentos",
+    "medicinesDescriptions": "Registra tus medicamentos y recibe recordatorios",
+    "appointments": "Turnos médicos",
+    "appointmentDescription": "Registra tus citas y recibe recordatorios",
+    "orientativeConsultations": "Consulta orientativa",
+    "orientativeConsultationsDescription": "Realiza una consulta orientativa y recibe recomendaciones",
+    "supervision": "Supervisión",
+    "supervisionDescription": "Sigue el tratamiento de alguien más y recibe notificaciones"
 }

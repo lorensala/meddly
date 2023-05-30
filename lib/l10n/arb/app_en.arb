@@ -183,5 +183,16 @@
     "home": "Home",
     "browse": "Browse",
     "settings": "Settings",
-    "profile": "Profile"
+    "profile": "Profile",
+    "@_BROWSE": {},
+    "measurements": "Measurements",
+    "measurementsDescription": "Register your blood pressure, blood glucose, weight, and more",
+    "medicines": "Medicines",
+    "medicinesDescriptions": "Register your medicines and receive reminders",
+    "appointments": "Appointments",
+    "appointmentDescription": "Register your appointments and receive reminders",
+    "orientativeConsultations": "Orientative consultation",
+    "orientativeConsultationsDescription": "Realiza una consulta orientativa y recibe recomendaciones",
+    "supervision": "Supervision",
+    "supervisionDescription": "Follow someone else's treatment and receive notifications"
 }

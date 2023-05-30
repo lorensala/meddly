@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/browse/view/browse_page.dart';
 import 'package:meddly/features/home/home.dart';
-import 'package:meddly/features/settings/view/settings_page.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/router.dart';
@@ -20,11 +19,6 @@ class ScaffoldWithBottomNavBar extends StatelessWidget {
   static const String routeName = '/';
 
   final Widget child;
-
-  /// The static route for HomePage
-  static Route<dynamic> route() {
-    return MaterialPageRoute<dynamic>(builder: (_) => const HomePage());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +49,6 @@ class BottomNavBar extends HookConsumerWidget {
         case 1:
           ref.read(goRouterProvider).go(BrowsePage.routeName);
         case 2:
-          ref.read(goRouterProvider).go(SettingsPage.routeName);
-        case 3:
           ref.read(goRouterProvider).go(UserPage.routeName);
       }
     });
@@ -102,7 +94,7 @@ class BottomNavBar extends HookConsumerWidget {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              Vectors.settings,
+              Vectors.user,
               colorFilter: ColorFilter.mode(
                 selectedIndex.value == 2
                     ? context.colorScheme.primary
@@ -110,10 +102,6 @@ class BottomNavBar extends HookConsumerWidget {
                 BlendMode.srcIn,
               ),
             ),
-            label: context.l10n.settings,
-          ),
-          BottomNavigationBarItem(
-            icon: const UserAvatar(),
             label: context.l10n.profile,
           ),
         ],

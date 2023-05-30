@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/calendar/widgets/widgets.dart';
+import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/home/provider/provider.dart';
 import 'package:meddly/features/home/widgets/widgets.dart';
 
@@ -9,6 +9,13 @@ class HomeBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(calendarControllerProvider, (_, state) {
+      state.whenOrNull(
+        error: (err, _) {
+          showSnackBar(context, err.toString());
+        },
+      );
+    });
     return const SafeArea(
       child: SingleChildScrollView(
         child: Column(

@@ -9,7 +9,6 @@ import 'package:meddly/features/notifications/view/view.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/phone/view/view.dart';
 import 'package:meddly/features/predictions/predictions.dart';
-import 'package:meddly/features/settings/view/view.dart';
 import 'package:meddly/features/setup/view/view.dart';
 import 'package:meddly/features/splash/splash.dart';
 import 'package:meddly/features/user/user.dart';
@@ -161,9 +160,9 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
           ),
           GoRoute(
             parentNavigatorKey: shellNavigatorKey,
-            path: SettingsPage.routeName,
+            path: UserPage.routeName,
             pageBuilder: (context, state) =>
-                const NoTransitionPage(child: SettingsPage()),
+                const NoTransitionPage(child: UserPage()),
             routes: [
               GoRoute(
                 parentNavigatorKey: shellNavigatorKey,
@@ -172,12 +171,6 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                     const NotificationsPreferencesPage(),
               ),
             ],
-          ),
-          GoRoute(
-            parentNavigatorKey: shellNavigatorKey,
-            path: UserPage.routeName,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: UserPage()),
           ),
         ],
         builder: (context, state, child) {

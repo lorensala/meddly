@@ -16,33 +16,30 @@ class SettingsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
-      child: ElevatedButton(
-        style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-              padding: MaterialStateProperty.all(EdgeInsets.zero),
-            ),
-        onPressed: onPressed,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            boxShadow: Constants.boxShadow,
-            borderRadius: BorderRadius.circular(Sizes.small),
-            color: context.colorScheme.secondary,
+    return ElevatedButton(
+      style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+            padding: MaterialStateProperty.all(EdgeInsets.zero),
           ),
-          child: Container(
-            padding: const EdgeInsets.all(Sizes.medium),
-            child: Row(
-              children: [
-                SvgPicture.asset(vector),
-                const SizedBox(width: Sizes.medium),
-                Text(label, style: context.textTheme.titleSmall),
-                const Spacer(),
-                Icon(
-                  Icons.chevron_right_rounded,
-                  color: context.colorScheme.onSecondary,
-                ),
-              ],
-            ),
+      onPressed: onPressed,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          boxShadow: Constants.boxShadow,
+          borderRadius: BorderRadius.circular(Sizes.small),
+          color: context.colorScheme.secondary,
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(Sizes.medium),
+          child: Row(
+            children: [
+              SvgPicture.asset(vector),
+              const SizedBox(width: Sizes.medium),
+              Text(label, style: context.textTheme.titleSmall),
+              const Spacer(),
+              Icon(
+                Icons.chevron_right_rounded,
+                color: context.colorScheme.onSecondary,
+              ),
+            ],
           ),
         ),
       ),
