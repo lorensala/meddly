@@ -98,6 +98,38 @@ class PredictionsApi {
     }
   }
 
+  Future<List<Disease>> predictWithImage(String byteData) async {
+    late final Response<List<dynamic>> res;
+    try {
+      res = await _dio.post<List<dynamic>>(
+        predictionsWithImagePath,
+        cancelToken: _cancelToken,
+        data: {
+          'file': byteData,
+        },
+      );
+
+      if (res.statusCode == 401) {
+        throw PredictionNotFoundException();
+      }
+    } on DioError catch (e) {
+      throw PredictionException.fromDioError(e);
+    }
+
+    try {
+      if (res.data == null) return <Disease>[];
+      final results = res.data!;
+
+      return results
+          .map(
+            (e) => Disease.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+    } catch (e) {
+      throw PredictionSerializationException();
+    }
+  }
+
   Future<void> cancel() async {
     _cancelToken.cancel();
   }

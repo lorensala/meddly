@@ -52,6 +52,8 @@ class Vectors {
   // * Predictions
   static const String predictionsSymptoms =
       'assets/svg/predictions-symptoms.svg';
+  static const String gallery = 'assets/svg/gallery.svg';
+  static const String camera = 'assets/svg/camera.svg';
 
   // * Medicine
   static const String medicinePresentation =

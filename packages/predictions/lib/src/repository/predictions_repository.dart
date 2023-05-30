@@ -45,6 +45,19 @@ class PredictionsRepository {
     }
   }
 
+  Future<(PredictionException?, List<Disease>)> predictWithImage(
+      String image) async {
+    try {
+      final predictions = await _api.predictWithImage(image);
+
+      return (null, predictions);
+    } on PredictionException catch (e) {
+      return (e, const <Disease>[]);
+    } catch (e) {
+      return (const PredictionUnknownException(), const <Disease>[]);
+    }
+  }
+
   Future<void> cancel() async {
     await _api.cancel();
   }

@@ -64,7 +64,7 @@ class AppTheme {
       ),
       selectedColor: _primary,
       selectedTileColor: _primary.withOpacity(0.1),
-      tileColor: AppColors.secondary,
+      tileColor: _secondary,
     );
   }
 
@@ -77,8 +77,11 @@ class AppTheme {
   static SwitchThemeData _switchThemeData() {
     return SwitchThemeData(
       thumbColor: MaterialStateProperty.all(_primary),
-      trackColor: MaterialStateProperty.all(_background),
       overlayColor: MaterialStateProperty.all(_primary),
+      trackColor: MaterialStateProperty.resolveWith(
+        (states) =>
+            states.contains(MaterialState.selected) ? _primary : _surface,
+      ),
     );
   }
 

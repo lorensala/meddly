@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/predictions/view/view.dart';
-import 'package:meddly/features/predictions/widgets/widgets.dart';
+import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 
 class PredictionsBody extends ConsumerWidget {
@@ -20,7 +22,19 @@ class PredictionsBody extends ConsumerWidget {
             PredictionCard(
               title: 'Escaneo por imágen',
               description: 'Escanea una parte de tu cuerpo y te diremos que es',
-              onTap: () {},
+              onTap: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(Sizes.medium),
+                    ),
+                  ),
+                  builder: (_) {
+                    return const ImagePickerBottomSheet();
+                  },
+                );
+              },
               vector: Vectors.medicines,
             ),
             const SizedBox(height: Sizes.medium),
@@ -39,6 +53,103 @@ class PredictionsBody extends ConsumerWidget {
             ),
             const SizedBox(height: Sizes.large),
             const LastPredictions(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ImagePickerBottomSheet extends ConsumerWidget {
+  const ImagePickerBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      predictionControllerProvider,
+      (_, state) {
+        state.whenOrNull(
+          error: (err, _) {
+            showSnackBar(context, err.toString());
+          },
+        );
+      },
+    );
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(Sizes.medium),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Center(
+              child: Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: context.colorScheme.surface,
+                  borderRadius: BorderRadius.circular(Sizes.medium),
+                ),
+              ),
+            ),
+            const SizedBox(height: Sizes.large),
+            GestureDetector(
+              onTap: () async {
+                try {
+                  final image =
+                      await ImagePicker().pickImage(source: ImageSource.camera);
+
+                  if (image == null) return;
+
+                  await ref
+                      .read(predictionControllerProvider.notifier)
+                      .predictWithImage(image);
+                } catch (e) {
+                  await showSnackBar(context, 'Error al abrir la cámara');
+                }
+
+                GoRouter.of(context).pop();
+              },
+              child: Row(
+                children: [
+                  SvgPicture.asset(Vectors.camera),
+                  const SizedBox(width: Sizes.medium),
+                  Text(
+                    'Abrir cámara',
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: Sizes.large),
+            GestureDetector(
+              onTap: () async {
+                try {
+                  final image = await ImagePicker()
+                      .pickImage(source: ImageSource.gallery);
+
+                  if (image == null) return;
+
+                  await ref
+                      .read(predictionControllerProvider.notifier)
+                      .predictWithImage(image);
+                } catch (e) {
+                  await showSnackBar(context, 'Error al abrir la galería');
+                }
+                GoRouter.of(context).pop();
+              },
+              child: Row(
+                children: [
+                  SvgPicture.asset(Vectors.gallery),
+                  const SizedBox(width: Sizes.medium),
+                  Text(
+                    'Seleccionar de la galería',
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
