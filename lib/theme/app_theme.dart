@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 
-const String fontFamily = 'Poppins';
+const String fontFamily = 'Be Vietnam Pro';
 
 class AppTheme {
   static const Color _primary = Color(0xFF516EB4);
