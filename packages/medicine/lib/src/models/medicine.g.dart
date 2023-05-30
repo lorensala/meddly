@@ -21,9 +21,9 @@ _$_Medicine _$$_MedicineFromJson(Map<String, dynamic> json) => _$_Medicine(
       dosis: (json['dosis'] as num).toDouble(),
       interval: json['interval'] as int?,
       days: const ListMedicineDayOrNullConverter()
-          .fromJson(json['days'] as List<dynamic>?),
-      hours: const ListTimeOfDayOrNullConverter()
-          .fromJson(json['hours'] as List<dynamic>?),
+          .fromJson(json['days'] as List?),
+      hours:
+          const ListTimeOfDayOrNullConverter().fromJson(json['hours'] as List?),
       instructions: json['instructions'] as String?,
     );
 
@@ -45,7 +45,7 @@ Map<String, dynamic> _$$_MedicineToJson(_$_Medicine instance) =>
     };
 
 const _$MedicinePresentationEnumMap = {
-  MedicinePresentation.capusle: 'capusle',
+  MedicinePresentation.capsule: 'capsule',
   MedicinePresentation.tablet: 'tablet',
   MedicinePresentation.liquid: 'liquid',
   MedicinePresentation.topical: 'topical',

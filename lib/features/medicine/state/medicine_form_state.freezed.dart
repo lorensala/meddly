@@ -252,7 +252,7 @@ class _$_Initial extends _Initial {
   const _$_Initial(
       {this.name = const Name.pure(),
       this.instructions = const Instructions.pure(),
-      this.presentation = MedicinePresentation.capusle,
+      this.presentation = MedicinePresentation.capsule,
       this.dosisUnit = MedicineDosisUnit.mg,
       this.startDate,
       this.endDate,

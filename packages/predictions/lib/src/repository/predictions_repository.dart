@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:predictions/src/api/api.dart';
 import 'package:predictions/src/core/core.dart';
 import 'package:predictions/src/models/models.dart';
@@ -46,9 +48,9 @@ class PredictionsRepository {
   }
 
   Future<(PredictionException?, List<Disease>)> predictWithImage(
-      String image) async {
+      File file) async {
     try {
-      final predictions = await _api.predictWithImage(image);
+      final predictions = await _api.predictWithImage(file);
 
       return (null, predictions);
     } on PredictionException catch (e) {

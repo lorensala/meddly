@@ -7,14 +7,13 @@ part of 'calendar_controller.dart';
 // **************************************************************************
 
 String _$calendarControllerHash() =>
-    r'54f8aeb20b86690ffb185998e42956523a612783';
+    r'f1a2abda0c3fbc6828d843847d648a3c0eb6ceb6';
 
 /// See also [CalendarController].
 @ProviderFor(CalendarController)
 final calendarControllerProvider = AsyncNotifierProvider<
     CalendarController,
     ({
-      List<Medicine> activeMedicines,
       List<Appointment> appointments,
       List<Consumption> consumptions,
       List<Measurement> measurements
@@ -30,7 +29,6 @@ final calendarControllerProvider = AsyncNotifierProvider<
 
 typedef _$CalendarController = AsyncNotifier<
     ({
-      List<Medicine> activeMedicines,
       List<Appointment> appointments,
       List<Consumption> consumptions,
       List<Measurement> measurements

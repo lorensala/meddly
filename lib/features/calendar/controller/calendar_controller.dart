@@ -4,7 +4,6 @@ import 'package:measurement/measurement.dart';
 import 'package:meddly/features/calendar/core/core.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:medicine/medicine.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'calendar_controller.g.dart';
@@ -14,7 +13,6 @@ class CalendarController extends _$CalendarController {
   @override
   Future<
       ({
-        List<Medicine> activeMedicines,
         List<Appointment> appointments,
         List<Consumption> consumptions,
         List<Measurement> measurements
@@ -29,7 +27,6 @@ class CalendarController extends _$CalendarController {
       throw Exception(res.err!.describe(l10n));
     } else {
       return (
-        activeMedicines: res.activeMedicines,
         appointments: res.appointments,
         consumptions: res.consumptions,
         measurements: res.measurements,

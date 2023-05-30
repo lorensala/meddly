@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:predictions/predictions.dart';
 
 class PredictionsApi {
@@ -98,15 +100,23 @@ class PredictionsApi {
     }
   }
 
-  Future<List<Disease>> predictWithImage(String byteData) async {
+  Future<List<Disease>> predictWithImage(File file) async {
     late final Response<List<dynamic>> res;
     try {
+      final fileName = file.path.split('/').last;
+
+      var fileExt = fileName.split('.').last;
+      final formData = FormData.fromMap({
+        'file': await MultipartFile.fromFile(
+          file.path,
+          filename: fileName,
+          contentType: MediaType("image", fileExt),
+        ),
+      });
       res = await _dio.post<List<dynamic>>(
         predictionsWithImagePath,
         cancelToken: _cancelToken,
-        data: {
-          'file': byteData,
-        },
+        data: formData,
       );
 
       if (res.statusCode == 401) {

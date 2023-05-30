@@ -67,4 +67,9 @@ class Vectors {
   static const String changePassword = 'assets/svg/change-password.svg';
   static const String userData = 'assets/svg/user-data.svg';
   static const String about = 'assets/svg/about.svg';
+
+  // * Calendar
+  static const String medicine = 'assets/svg/medicine.svg';
+  static const String appointment = 'assets/svg/appointment.svg';
+  static const String measurement = 'assets/svg/measurement.svg';
 }

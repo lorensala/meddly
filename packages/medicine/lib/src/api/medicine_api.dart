@@ -11,7 +11,7 @@ class MedicineApi {
   Future<List<Medicine>> fetchAll() async {
     late final Response<List<dynamic>> res;
     try {
-      res = await _dio.get<List<dynamic>>(medicinesPath);
+      res = await _dio.get<List<dynamic>>(medicinePath);
 
       if (res.statusCode == 401) {
         throw MedicineNotFoundException();
@@ -41,7 +41,7 @@ class MedicineApi {
 
   Future<void> deleteMedicine(Medicine medicine) async {
     try {
-      await _dio.delete<dynamic>(medicinePath, data: medicine.toJson());
+      await _dio.delete<dynamic>('${medicinePath}/${medicine.id}');
     } on DioError catch (e) {
       throw MedicineException.fromDioError(e);
     } catch (_) {

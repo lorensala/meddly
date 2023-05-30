@@ -42,7 +42,6 @@ class NotificationPreferencesController
   Future<void> deleteNotificationPreference(
     NotificationPreference notificationPreference,
   ) async {
-    state = const AsyncLoading();
     final repository = ref.read(notificationsRepositoryProvider);
 
     final (err, _) = await repository.delete(notificationPreference);

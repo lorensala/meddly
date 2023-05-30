@@ -75,4 +75,5 @@ const _$MeasurementUnitEnumMap = {
   MeasurementUnit.gramsPerDL: 'gramsPerDL',
   MeasurementUnit.ngPerML: 'ngPerML',
   MeasurementUnit.microgramsPerDL: 'microgramsPerDL',
+  MeasurementUnit.other: 'other',
 };

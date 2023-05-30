@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:meddly/features/predictions/core/core.dart';
@@ -33,12 +33,9 @@ class PredictionController extends _$PredictionController {
   }
 
   Future<void> predictWithImage(XFile file) async {
-    final bytes = await file.readAsBytes();
-    final imageString = base64Encode(bytes);
-
     final (err, diseases) = await ref
         .read(predictionsRepositoryProvider)
-        .predictWithImage(imageString);
+        .predictWithImage(File(file.path));
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
