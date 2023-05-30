@@ -46,7 +46,7 @@ class PredictionResultsPage extends StatelessWidget {
                         ),
                         const SizedBox(width: Sizes.medium),
                         Text(
-                          '${'${result.probability * 100}'.substring(0, 5)}%',
+                          '${result.probability}%',
                         ),
                       ],
                     ),

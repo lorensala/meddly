@@ -20,7 +20,7 @@ class PredictionsApi {
         predictionsSearchPath,
         cancelToken: _cancelToken,
         queryParameters: {
-          'symptom': query,
+          'query': query,
         },
       );
     } on DioError catch (e) {
