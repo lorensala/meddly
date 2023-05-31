@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/medicine.dart';
-import 'package:meddly/features/medicine/provider/medicines_provider.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class MedicineBody extends ConsumerWidget {
@@ -10,7 +9,7 @@ class MedicineBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final medicines = ref.watch(medicinesProvider);
+    final medicines = ref.watch(medicineControllerProvider);
 
     return AsyncValueWidget(
       value: medicines,

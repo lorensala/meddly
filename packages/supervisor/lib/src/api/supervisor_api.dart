@@ -58,9 +58,7 @@ class SupervisorApi {
 
   Future<void> acceptInvitation(String code) async {
     try {
-      await _dio.post<void>(invitationPath, data: {
-        'code': code,
-      });
+      await _dio.post<void>('$invitationPath?code=$code');
     } on DioError catch (e) {
       throw SupervisorException.fromDioError(e);
     } catch (e) {

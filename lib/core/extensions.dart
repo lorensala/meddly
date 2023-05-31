@@ -5,10 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 extension StringX on String {
-  String capitalize() => split(' ').map((word) {
-        return word.substring(0, 1).toUpperCase() +
-            word.substring(1).toLowerCase();
-      }).join(' ');
+  String capitalize() => '${this[0].toUpperCase()}${substring(1)}';
 
   String dateTimeStringFormat() =>
       '${substring(8, 10)}/${substring(5, 7)}/${substring(0, 4)}';

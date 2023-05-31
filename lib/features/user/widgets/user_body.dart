@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/export/export.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/notifications/view/view.dart';
@@ -109,9 +110,12 @@ class UserBody extends ConsumerWidget {
                   return SettingsItem(
                     vector: Vectors.logout,
                     label: 'Cerrar sesión',
-                    onPressed: () {
-                      ref.read(authControllerProvider.notifier).signOut();
-                      ref.read(userControllerProvider.notifier).signOut();
+                    onPressed: () async {
+                      await Future.wait([
+                        ref.read(userControllerProvider.notifier).signOut(),
+                        ref.read(authControllerProvider.notifier).signOut(),
+                      ]);
+                      ref.invalidate(calendarControllerProvider);
                     },
                   );
                 },

@@ -36,6 +36,7 @@ class SupervisorController extends _$SupervisorController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     }
+    ref.invalidateSelf();
   }
 
   Future<void> deleteSupervisor(String id) async {
@@ -47,6 +48,7 @@ class SupervisorController extends _$SupervisorController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     }
+    ref.invalidateSelf();
   }
 
   Future<void> deleteSupervised(String id) async {
@@ -58,5 +60,6 @@ class SupervisorController extends _$SupervisorController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     }
+    ref.invalidateSelf();
   }
 }

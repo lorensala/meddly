@@ -29,9 +29,9 @@ class SupervisorRepository {
     }
   }
 
-  Future<(SupervisorException?, void)> acceptInvitation(String id) async {
+  Future<(SupervisorException?, void)> acceptInvitation(String code) async {
     try {
-      await _api.acceptInvitation(id);
+      await _api.acceptInvitation(code);
       return (null, null);
     } on SupervisorException catch (e) {
       return (e, null);
