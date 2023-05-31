@@ -1,4 +1,4 @@
-import 'dart:io' show File, FileSystemException;
+import 'dart:io' show File, FileMode, FileSystemException;
 
 import 'package:dio/dio.dart';
 import 'package:export/src/core/core.dart';
@@ -38,10 +38,13 @@ class ExportApi {
     }
 
     try {
-      final file = File(savePath);
-      await file.writeAsBytes(res.data as List<int>, flush: true);
+      final file = File('${savePath}/meddly_export.pdf');
+      var raf = file.openSync(mode: FileMode.write);
+      raf.writeFromSync(res.data as List<int>);
+      await raf.close();
       return file;
-    } on FileSystemException {
+    } on FileSystemException catch (e) {
+      print(e);
       throw ExportWriteException();
     } catch (e) {
       throw ExportUnknownException();

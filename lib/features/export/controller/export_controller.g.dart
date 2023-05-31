@@ -1,26 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'prediction_controller.dart';
+part of 'export_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$predictionControllerHash() =>
-    r'97fdd06fdef63e577e755c7454e621da866279d7';
+String _$exportControllerHash() => r'1ff99cfb1cace59db838f9195139ef43c305f227';
 
-/// See also [PredictionController].
-@ProviderFor(PredictionController)
-final predictionControllerProvider = AutoDisposeAsyncNotifierProvider<
-    PredictionController, List<Disease>>.internal(
-  PredictionController.new,
-  name: r'predictionControllerProvider',
+/// See also [ExportController].
+@ProviderFor(ExportController)
+final exportControllerProvider =
+    AutoDisposeNotifierProvider<ExportController, ExportState>.internal(
+  ExportController.new,
+  name: r'exportControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$predictionControllerHash,
+      : _$exportControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PredictionController = AutoDisposeAsyncNotifier<List<Disease>>;
+typedef _$ExportController = AutoDisposeNotifier<ExportState>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

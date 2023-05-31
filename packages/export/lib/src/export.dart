@@ -1,7 +1,4 @@
-/// {@template export}
-/// A Very Good Project created by Very Good CLI.
-/// {@endtemplate}
-class Export {
-  /// {@macro export}
-  const Export();
-}
+export 'api/api.dart';
+export 'core/core.dart';
+export 'export.dart';
+export 'repository/repository.dart';
