@@ -164,7 +164,7 @@
     "addHour": "Agregar hora",
     "startDate": "Fecha de inicio",
     "medicineName": "Ingresa el nombre del medicamento",
-    "medicineDescription": "por ejemplo, Ibuprofeno",
+    "medicineDescription": "Ej: Ibuprofeno",
     "dosis": "Dosis",
     "dosisDescription": "Como aparece en el prospecto del medicamento",
     "stockWarning": "Advertencia de stock",

@@ -11,6 +11,7 @@ import 'package:meddly/features/phone/view/view.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/features/setup/view/view.dart';
 import 'package:meddly/features/splash/splash.dart';
+import 'package:meddly/features/supervisor/view/view.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/router/router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -156,6 +157,37 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                   ),
                 ],
               ),
+              GoRoute(
+                path: SupervisorPage.routeName,
+                parentNavigatorKey: shellNavigatorKey,
+                builder: (context, state) => const SupervisorPage(),
+              ),
+              GoRoute(
+                parentNavigatorKey: shellNavigatorKey,
+                path: PredictionsPage.routeName,
+                builder: (context, state) => const PredictionsPage(),
+                routes: [
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: PredictionSymptomsPage.routeName,
+                    builder: (context, state) => const PredictionSymptomsPage(),
+                    routes: [
+                      GoRoute(
+                        parentNavigatorKey: shellNavigatorKey,
+                        path: PredictionsSymptomsSearchPage.routeName,
+                        builder: (context, state) =>
+                            const PredictionsSymptomsSearchPage(),
+                      ),
+                      GoRoute(
+                        parentNavigatorKey: shellNavigatorKey,
+                        path: PredictionResultsPage.routeName,
+                        builder: (context, state) =>
+                            const PredictionResultsPage(),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
           GoRoute(
@@ -191,26 +223,6 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         parentNavigatorKey: rootNavigatorKey,
         path: NotificationsPage.routeName,
         builder: (context, state) => const NotificationsPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: PredictionsPage.routeName,
-        builder: (context, state) => const PredictionsPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: PredictionSymptomsPage.routeName,
-        builder: (context, state) => const PredictionSymptomsPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: PredictionsSymptomsSearchPage.routeName,
-        builder: (context, state) => const PredictionsSymptomsSearchPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: PredictionResultsPage.routeName,
-        builder: (context, state) => const PredictionResultsPage(),
       ),
     ],
   );

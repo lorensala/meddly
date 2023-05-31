@@ -7,7 +7,7 @@ import 'package:meddly/widgets/widgets.dart';
 class PredictionResultsPage extends StatelessWidget {
   const PredictionResultsPage({super.key});
 
-  static const String routeName = '/predictions/results';
+  static const String routeName = 'results';
 
   @override
   Widget build(BuildContext context) {

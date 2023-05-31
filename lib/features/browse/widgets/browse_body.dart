@@ -6,6 +6,7 @@ import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/features/supervisor/supervisor.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 
@@ -34,8 +35,9 @@ class BrowseBody extends ConsumerWidget {
               title: context.l10n.orientativeConsultations,
               description: context.l10n.orientativeConsultationsDescription,
               vector: Vectors.predictions,
-              onTap: () =>
-                  ref.read(goRouterProvider).push(PredictionsPage.routeName),
+              onTap: () => ref.read(goRouterProvider).push(
+                    '${BrowsePage.routeName}/${PredictionsPage.routeName}',
+                  ),
             ),
             const SizedBox(height: Sizes.medium),
             BrowseCard(
@@ -60,7 +62,9 @@ class BrowseBody extends ConsumerWidget {
               title: context.l10n.supervision,
               description: context.l10n.supervisionDescription,
               vector: Vectors.supervision,
-              onTap: () {},
+              onTap: () => ref
+                  .read(goRouterProvider)
+                  .push('${BrowsePage.routeName}/${SupervisorPage.routeName}'),
             ),
           ],
         ),

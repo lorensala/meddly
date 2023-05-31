@@ -8,7 +8,7 @@ import 'package:meddly/l10n/l10n.dart';
 class PredictionsSymptomsSearchPage extends ConsumerWidget {
   const PredictionsSymptomsSearchPage({super.key});
 
-  static const String routeName = '/predictions/symptom/search';
+  static const String routeName = 'search';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

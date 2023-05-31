@@ -48,6 +48,8 @@ dependencies:
   predictions:
     path: packages/predictions
   riverpod_annotation: ^2.1.1
+  supervisor:
+    path: packages/supervisor
   user:
     path: packages/user
   validators:

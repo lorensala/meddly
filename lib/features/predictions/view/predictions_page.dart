@@ -4,7 +4,7 @@ import 'package:meddly/features/predictions/widgets/predictions_body.dart';
 class PredictionsPage extends StatelessWidget {
   const PredictionsPage({super.key});
 
-  static const String routeName = '/predictions';
+  static const String routeName = 'predictions';
 
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const PredictionsPage());
