@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 
-class CalendarDateAndDayIndicator extends StatelessWidget {
-  const CalendarDateAndDayIndicator({
+class CalendarIndicator extends StatelessWidget {
+  const CalendarIndicator({
     super.key,
   });
 

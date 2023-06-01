@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/supervisor/supervisor.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/theme/app_theme.dart';
 
 class SupervisedSelectionItem extends ConsumerWidget {
   const SupervisedSelectionItem({
@@ -20,9 +21,12 @@ class SupervisedSelectionItem extends ConsumerWidget {
         ref.read(selectedSupervisedProvider.notifier).update(supervised);
         Navigator.of(context).pop();
       },
-      selected: supervised == me || selected == supervised,
-      trailing: supervised == me || selected == supervised
-          ? Text('(YO)', style: context.textTheme.titleSmall)
+      selected: selected == supervised,
+      trailing: supervised == me
+          ? CircleAvatar(
+              radius: Sizes.small,
+              backgroundColor: context.colorScheme.success,
+            )
           : null,
       leading: CircleAvatar(
         backgroundColor: context.colorScheme.primary,
@@ -33,7 +37,12 @@ class SupervisedSelectionItem extends ConsumerWidget {
         ),
       ),
       title: Text('${supervised.firstName} ${supervised.lastName}'),
-      subtitle: Text(supervised.email),
+      subtitle: Text(
+        supervised.email,
+        style: context.textTheme.bodyMedium!.copyWith(
+          color: context.colorScheme.onBackground.withOpacity(0.5),
+        ),
+      ),
     );
   }
 }

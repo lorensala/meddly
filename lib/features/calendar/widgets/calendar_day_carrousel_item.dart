@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
 
-class CalendarDayListItem extends ConsumerWidget {
-  const CalendarDayListItem({
+class CalendarDayCarrouselItem extends ConsumerWidget {
+  const CalendarDayCarrouselItem({
     super.key,
   });
 

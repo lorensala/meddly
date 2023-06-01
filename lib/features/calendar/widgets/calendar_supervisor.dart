@@ -48,7 +48,7 @@ class CalendarSupervisor extends HookConsumerWidget {
           },
           child: Text(
             selected == null || selected == users.first
-                ? 'Toca aquí para ver el calendario de tus supervisados'
+                ? 'Calendario de todos los pacientes'
                 : 'Calendario de ${selected.firstName} ${selected.lastName}',
             style: context.textTheme.bodyMedium!.copyWith(
               decoration: TextDecoration.underline,

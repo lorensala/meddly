@@ -3,7 +3,6 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/supervisor/supervisor.dart';
-import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class SelectSupervisedBottomSheet extends ConsumerWidget {
@@ -19,12 +18,7 @@ class SelectSupervisedBottomSheet extends ConsumerWidget {
         children: [
           const SizedBox(height: Sizes.medium),
           const BottomSheetDecoration(),
-          const SizedBox(height: Sizes.medium),
-          Text(
-            context.l10n.selectASupervised,
-            style: context.textTheme.titleMedium,
-          ),
-          const SizedBox(height: Sizes.medium),
+          const SizedBox(height: Sizes.extraLarge),
           ...users.map(
             (user) {
               return ProviderScope(

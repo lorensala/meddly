@@ -4,8 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 
-class CalendarDayList extends HookConsumerWidget {
-  const CalendarDayList({super.key});
+class CalendarDayCarrousel extends HookConsumerWidget {
+  const CalendarDayCarrousel({super.key});
 
   static const double _height = 90;
   static const Duration _duration = Duration(milliseconds: 300);
@@ -50,7 +50,7 @@ class CalendarDayList extends HookConsumerWidget {
                   curve: Curves.easeInOut,
                 );
               },
-              child: const CalendarDayListItem(),
+              child: const CalendarDayCarrouselItem(),
             ),
           );
         },
