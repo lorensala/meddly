@@ -25,102 +25,118 @@ class UserBody extends ConsumerWidget {
           return const Text('No user');
         }
 
-        return Padding(
-          padding: const EdgeInsets.all(Sizes.medium),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: Sizes.medium),
-              Row(
-                children: [
-                  const UserAvatar(radius: 30),
-                  const SizedBox(width: Sizes.medium),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${user.firstName} ${user.lastName}',
-                        style: context.textTheme.titleMedium!.copyWith(
-                          fontWeight: FontWeight.w600,
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(Sizes.medium),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: Sizes.medium),
+                Row(
+                  children: [
+                    const UserAvatar(radius: 30),
+                    const SizedBox(width: Sizes.medium),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${user.firstName} ${user.lastName}',
+                          style: context.textTheme.titleMedium!.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Text(
-                        user.email,
-                        style: context.textTheme.bodyMedium!.copyWith(
-                          color: context.colorScheme.onSurface.withOpacity(0.5),
+                        Text(
+                          user.email,
+                          style: context.textTheme.bodyMedium!.copyWith(
+                            color:
+                                context.colorScheme.onSurface.withOpacity(0.5),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: Sizes.extraLarge),
+                Text(
+                  'CUENTA',
+                  style: context.textTheme.titleMedium!.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: context.colorScheme.onSurface.withOpacity(0.5),
                   ),
-                ],
-              ),
-              const SizedBox(height: Sizes.extraLarge),
-              Text(
-                'CUENTA',
-                style: context.textTheme.titleMedium,
-              ),
-              const SizedBox(height: Sizes.medium),
-              const SettingsItem(
-                vector: Vectors.user,
-                label: 'Modificar mis datos',
-              ),
-              const SizedBox(height: Sizes.medium),
-              const SettingsItem(
-                vector: Vectors.changePassword,
-                label: 'Cambiar contraseña',
-              ),
-              const SizedBox(height: Sizes.extraLarge),
-              Text(
-                'AJUSTES',
-                style: context.textTheme.titleMedium,
-              ),
-              const SizedBox(height: Sizes.medium),
-              SettingsItem(
-                vector: Vectors.bellRinging,
-                label: 'Preferencia de notificaciones',
-                onPressed: () {
-                  GoRouter.of(context).push(
-                    '${UserPage.routeName}/${NotificationsPreferencesPage.routeName}',
-                  );
-                },
-              ),
-              const SizedBox(height: Sizes.medium),
-              const ExportItem(),
-              const SizedBox(height: Sizes.medium),
-              SettingsItem(
-                vector: Vectors.about,
-                label: 'Sobre Meddly',
-                onPressed: () async {
-                  await showDialog<void>(
-                    context: context,
-                    builder: (context) {
-                      return AboutDialog(
-                        applicationName: 'Meddly',
-                        applicationIcon: SvgPicture.asset(Vectors.logo),
-                        applicationVersion: 'v1.0.0',
-                        applicationLegalese: '@2023 Meddly',
-                      );
-                    },
-                  );
-                },
-              ),
-              const SizedBox(height: Sizes.medium),
-              Consumer(
-                builder: (context, ref, child) {
-                  return SettingsItem(
-                    vector: Vectors.logout,
-                    label: 'Cerrar sesión',
-                    onPressed: () async {
-                      await Future.wait([
-                        ref.read(userControllerProvider.notifier).signOut(),
-                        ref.read(authControllerProvider.notifier).signOut(),
-                      ]);
-                      ref.invalidate(calendarControllerProvider);
-                    },
-                  );
-                },
-              ),
-            ],
+                ),
+                const SizedBox(height: Sizes.medium),
+                const SettingsItem(
+                  vector: Vectors.user,
+                  label: 'Modificar mis datos',
+                ),
+                const SizedBox(height: Sizes.medium),
+                const SettingsItem(
+                  vector: Vectors.changePassword,
+                  label: 'Cambiar contraseña',
+                ),
+                const SizedBox(height: Sizes.extraLarge),
+                Text(
+                  'AJUSTES',
+                  style: context.textTheme.titleMedium,
+                ),
+                const SizedBox(height: Sizes.medium),
+                SettingsItem(
+                  vector: Vectors.bellRinging,
+                  label: 'Preferencia de notificaciones',
+                  onPressed: () {
+                    GoRouter.of(context).push(
+                      '${UserPage.routeName}/${NotificationsPreferencesPage.routeName}',
+                    );
+                  },
+                ),
+                const SizedBox(height: Sizes.medium),
+                SettingsItem(
+                  vector: Vectors.sun,
+                  label: 'Cambiar tema',
+                  onPressed: () {
+                    // GoRouter.of(context).push(
+                    //   '${UserPage.routeName}/${NotificationsPreferencesPage.routeName}',
+                    // );
+                  },
+                ),
+                const SizedBox(height: Sizes.medium),
+                const ExportItem(),
+                const SizedBox(height: Sizes.medium),
+                SettingsItem(
+                  vector: Vectors.about,
+                  label: 'Sobre Meddly',
+                  onPressed: () async {
+                    await showDialog<void>(
+                      context: context,
+                      builder: (context) {
+                        return AboutDialog(
+                          applicationName: 'Meddly',
+                          applicationIcon: SvgPicture.asset(Vectors.logo),
+                          applicationVersion: 'v1.0.0',
+                          applicationLegalese: '@2023 Meddly',
+                        );
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(height: Sizes.medium),
+                Consumer(
+                  builder: (context, ref, child) {
+                    return SettingsItem(
+                      vector: Vectors.logout,
+                      label: 'Cerrar sesión',
+                      onPressed: () async {
+                        await Future.wait([
+                          ref.read(userControllerProvider.notifier).signOut(),
+                          ref.read(authControllerProvider.notifier).signOut(),
+                        ]);
+                        ref.invalidate(calendarControllerProvider);
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },

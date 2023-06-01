@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 class PredictionsBody extends ConsumerWidget {
   const PredictionsBody({super.key});
@@ -82,16 +83,7 @@ class ImagePickerBottomSheet extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: Sizes.medium),
-          Center(
-            child: Container(
-              width: context.width / 4,
-              height: 5,
-              decoration: BoxDecoration(
-                color: context.colorScheme.surface,
-                borderRadius: BorderRadius.circular(Sizes.medium),
-              ),
-            ),
-          ),
+          const BottomSheetDecoration(),
           const SizedBox(height: Sizes.medium),
           GestureDetector(
             onTap: () async {

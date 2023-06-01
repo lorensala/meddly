@@ -9,6 +9,10 @@
     "next": "Next",
     "save": "Save",
     "tryAgain": "Try again",
+    "share": "Share",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
     "@_ERRORS": {},
     "cancelledByUser": "Cancelled by user",
     "accountsExistsWithDifferentCredentials": "An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address.",
@@ -198,6 +202,35 @@
     "appointmentDescription": "Register your appointments and receive reminders",
     "orientativeConsultations": "Orientative consultation",
     "orientativeConsultationsDescription": "Realiza una consulta orientativa y recibe recomendaciones",
-    "supervision": "Supervision",
-    "supervisionDescription": "Follow someone else's treatment and receive notifications"
+    "linkedAccounts": "Linked accounts",
+    "linkedAccountsDescription": "Follow someone else's treatment and receive notifications",
+    "@_SUPERVISOR": {},
+    "supervisors": "Supervisors",
+    "supervised": "Supervised",
+    "supervisedConfrimation": "Are you sure you want to stop supervising {name}?",
+    "@supervisedConfrimation": {
+        "placeholders": {
+            "name": {
+                "type": "String",
+                "example": "John Doe"
+            }
+        },
+        "description": "Confirmation message when the user wants to stop supervising someone"
+    },
+    "supervisorConfrimation": "Are you sure you want to stop being supervised by {name}?",
+    "@supervisedConfrimation": {
+        "placeholders": {
+            "name": {
+                "type": "String",
+                "example": "John Doe"
+            }
+        },
+        "description": "Confirmation message when the user wants to stop supervising someone"
+    },
+    "addSupervisor": "Add supervisor",
+    "supervisedEmptyMessage": "You are not supervising anyone yet",
+    "supervisorEmptyMessage": "You don't have any supervisor yet",
+    "supervisorDescription": "A person who will be checking on you and receiving notifications about your treatment",
+    "supervisedDescription": "A person you will be checking on and receiving notifications about their treatment",
+    "supervisorCodeDescription": "Share this code with the person you want to supervise.\nThey will be able to enter it in the \"Supervisor\" section of their app, by pression the floating button with the plus sign."
 }

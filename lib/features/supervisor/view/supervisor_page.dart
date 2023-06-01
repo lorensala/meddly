@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/supervisor/supervisor.dart';
-import 'package:meddly/widgets/widgets.dart';
+import 'package:meddly/features/supervisor/widgets/widgets.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 class SupervisorPage extends StatelessWidget {
   const SupervisorPage({super.key});
@@ -13,7 +14,34 @@ class SupervisorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Supervisor'),
+        title: Text(context.l10n.linkedAccounts),
+      ),
+      floatingActionButton: Consumer(
+        builder: (context, ref, child) {
+          return ProviderScope(
+            parent: ProviderScope.containerOf(context),
+            child: Tooltip(
+              message: context.l10n.addSupervisor,
+              child: FloatingActionButton(
+                onPressed: () {
+                  showModalBottomSheet<void>(
+                    context: context,
+                    backgroundColor: context.colorScheme.background,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(Sizes.large),
+                      ),
+                    ),
+                    builder: (context) {
+                      return const InvitationCodeBottomSheet();
+                    },
+                  );
+                },
+                child: const Icon(Icons.add),
+              ),
+            ),
+          );
+        },
       ),
       body: const SupervisorBody(),
     );
@@ -32,47 +60,25 @@ class SupervisorBody extends ConsumerWidget {
       ),
     );
 
-    final res = ref.watch(supervisorControllerProvider);
-
-    return AsyncValueWidget(
-      value: res,
-      builder: (res) {
-        return Column(
-          children: [
-            const Text('Supervisados'),
-            ListView.builder(
-              itemCount: res.supervised.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(res.supervised[index].firstName),
-                  subtitle: Text(res.supervised[index].email),
-                );
-              },
+    return Column(
+      children: [
+        const SupervisorCode(),
+        const SizedBox(height: Sizes.medium),
+        const SupervisorShareCode(),
+        const SizedBox(height: Sizes.medium),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
+          child: Text(
+            context.l10n.supervisorCodeDescription,
+            style: context.textTheme.bodySmall!.copyWith(
+              color: context.colorScheme.onBackground.withOpacity(0.5),
             ),
-            const Text('Supervisores'),
-            ListView.builder(
-              itemCount: res.supervisors.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(res.supervisors[index].firstName),
-                  subtitle: Text(res.supervisors[index].email),
-                );
-              },
-            ),
-            const SizedBox(height: Sizes.large),
-            ElevatedButton(
-              onPressed: () {
-                ref
-                    .read(supervisorControllerProvider.notifier)
-                    .acceptInvitation('QKZ-WDCC-DBH');
-              },
-              child: const Text('Agregar supervisor'),
-            ),
-          ],
-        );
-      },
+            textAlign: TextAlign.justify,
+          ),
+        ),
+        const SizedBox(height: Sizes.large),
+        const SupervisorTabView()
+      ],
     );
   }
 }

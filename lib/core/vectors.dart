@@ -3,6 +3,7 @@ class Vectors {
   static const String error = 'assets/svg/error.svg';
   static const String empty = 'assets/svg/empty.svg';
   static const String logo = 'assets/svg/logo.svg';
+  static const String share = 'assets/svg/share.svg';
 
   // * Onboarding
   static const String onboarding1 = 'assets/svg/onboarding-1.svg';
@@ -67,6 +68,8 @@ class Vectors {
   static const String changePassword = 'assets/svg/change-password.svg';
   static const String userData = 'assets/svg/user-data.svg';
   static const String about = 'assets/svg/about.svg';
+  static const String moon = 'assets/svg/moon.svg';
+  static const String sun = 'assets/svg/sun.svg';
 
   // * Calendar
   static const String medicine = 'assets/svg/medicine.svg';

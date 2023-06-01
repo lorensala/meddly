@@ -38,4 +38,32 @@ final supervisorRepositoryProvider =
 );
 
 typedef SupervisorRepositoryRef = AutoDisposeProviderRef<SupervisorRepository>;
+String _$supervisorHash() => r'bc1078b2675fb6dfa852108385c511458153f95b';
+
+/// See also [supervisor].
+@ProviderFor(supervisor)
+final supervisorProvider = AutoDisposeProvider<User>.internal(
+  supervisor,
+  name: r'supervisorProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$supervisorHash,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
+);
+
+typedef SupervisorRef = AutoDisposeProviderRef<User>;
+String _$supervisedHash() => r'8996420a244fa1701b5d279b82b8f0ed77c12c41';
+
+/// See also [supervised].
+@ProviderFor(supervised)
+final supervisedProvider = AutoDisposeProvider<User>.internal(
+  supervised,
+  name: r'supervisedProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$supervisedHash,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
+);
+
+typedef SupervisedRef = AutoDisposeProviderRef<User>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

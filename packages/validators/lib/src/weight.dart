@@ -3,14 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'weight.freezed.dart';
 
-/// {@template weight}
-/// Weight input.
-/// {@endtemplate}
 class Weight extends FormzInput<String, WeightError> {
-  /// {@macro weight}
   const Weight.pure() : super.pure('');
 
-  /// {@macro weight}
   const Weight.dirty([super.value = '']) : super.dirty();
 
   @override
@@ -23,20 +18,13 @@ class Weight extends FormzInput<String, WeightError> {
   }
 }
 
-/// {@template weight_error}
-/// Weight error.
-/// {@endtemplate}
 @freezed
 class WeightError with _$WeightError {
-  /// {@macro weight_error}
   const factory WeightError.negative() = _Negative;
 
-  /// {@macro weight_error}
   const factory WeightError.invalid() = _Invalid;
 
-  /// {@macro weight_error}
   const factory WeightError.zero() = _Zero;
 
-  /// {@macro weight_error}
   const factory WeightError.empty() = _Empty;
 }

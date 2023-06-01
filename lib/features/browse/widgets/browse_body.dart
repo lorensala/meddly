@@ -59,8 +59,8 @@ class BrowseBody extends ConsumerWidget {
             ),
             const SizedBox(height: Sizes.medium),
             BrowseCard(
-              title: context.l10n.supervision,
-              description: context.l10n.supervisionDescription,
+              title: context.l10n.linkedAccounts,
+              description: context.l10n.linkedAccountsDescription,
               vector: Vectors.supervision,
               onTap: () => ref
                   .read(goRouterProvider)
