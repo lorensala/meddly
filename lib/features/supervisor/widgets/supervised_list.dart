@@ -16,9 +16,6 @@ class SupervisedList extends ConsumerWidget {
 
     return AsyncValueWidget(
       value: res,
-      error: const Center(
-        child: RepaintBoundary(child: CircularProgressIndicator()),
-      ),
       builder: (res) {
         if (res.supervised.isEmpty) {
           return EmptyContainer(
@@ -97,6 +94,14 @@ class _SupervisedListItem extends ConsumerWidget {
         ),
       ),
       child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: context.colorScheme.primary,
+          child: Text(
+            '${supervised.firstName[0]}${supervised.lastName[0]}',
+            style: context.textTheme.bodyMedium!
+                .copyWith(color: context.colorScheme.onPrimary),
+          ),
+        ),
         title: Text(
           '${supervised.firstName} ${supervised.lastName}',
         ),

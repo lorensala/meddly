@@ -33,6 +33,8 @@ class SupervisorController extends _$SupervisorController {
     final repository = ref.watch(supervisorRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
+    state = const AsyncLoading();
+
     final (err, _) = await repository.acceptInvitation(code);
 
     if (err != null) {
@@ -45,6 +47,8 @@ class SupervisorController extends _$SupervisorController {
     final repository = ref.watch(supervisorRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
+    state = const AsyncLoading();
+
     final (err, _) = await repository.deleteSupervisor(id);
 
     if (err != null) {
@@ -56,6 +60,8 @@ class SupervisorController extends _$SupervisorController {
   Future<void> deleteSupervised(String id) async {
     final repository = ref.watch(supervisorRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
+
+    state = const AsyncLoading();
 
     final (err, _) = await repository.deleteSupervised(id);
 

@@ -7,7 +7,7 @@ part of 'supervisor_controller.dart';
 // **************************************************************************
 
 String _$supervisorControllerHash() =>
-    r'1afe76e3356fd177713375c9973a6fd57cc255ae';
+    r'4cb1d10b25aeaa44a9764c70f25d227216a180f6';
 
 /// See also [SupervisorController].
 @ProviderFor(SupervisorController)

@@ -232,5 +232,6 @@
     "supervisorEmptyMessage": "You don't have any supervisor yet",
     "supervisorDescription": "A person who will be checking on you and receiving notifications about your treatment",
     "supervisedDescription": "A person you will be checking on and receiving notifications about their treatment",
+    "selectASupervised": "Select a supervised",
     "supervisorCodeDescription": "Share this code with the person you want to supervise.\nThey will be able to enter it in the \"Supervisor\" section of their app, by pression the floating button with the plus sign."
 }

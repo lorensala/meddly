@@ -26,7 +26,7 @@ User supervised(SupervisedRef ref) {
   throw UnimplementedError();
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class SelectedSupervised extends _$SelectedSupervised {
   @override
   User? build() {
@@ -35,6 +35,7 @@ class SelectedSupervised extends _$SelectedSupervised {
 
   // ignore: use_setters_to_change_properties
   void update(User? supervised) {
+    if (state == supervised) return;
     state = supervised;
     ref.watch(calendarControllerProvider.notifier).refresh();
   }

@@ -39,7 +39,7 @@ class InvitationCodeBottomSheet extends HookConsumerWidget {
               ],
               style: context.textTheme.titleLarge,
               decoration: InputDecoration(
-                hintText: 'AE-12F1-QS',
+                hintText: 'AEF-12F1-QS2',
                 hintStyle: context.textTheme.titleLarge!.copyWith(
                   color: context.colorScheme.onSecondary.withOpacity(0.4),
                 ),

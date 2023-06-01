@@ -94,6 +94,14 @@ class _SupervisorListItem extends ConsumerWidget {
         ),
       ),
       child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: context.colorScheme.primary,
+          child: Text(
+            '${supervisor.firstName[0]}${supervisor.lastName[0]}',
+            style: context.textTheme.bodyMedium!
+                .copyWith(color: context.colorScheme.onPrimary),
+          ),
+        ),
         title: Text(
           '${supervisor.firstName} ${supervisor.lastName}',
         ),
