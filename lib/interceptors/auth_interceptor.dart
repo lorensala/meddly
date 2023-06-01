@@ -2,6 +2,7 @@ import 'dart:io' show HttpHeaders, Platform;
 
 import 'package:dio/dio.dart';
 import 'package:firebase_auth_repository/firebase_auth_repository.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:meddly/core/core.dart';
 
 class AuthInterceptor extends QueuedInterceptor {
@@ -15,12 +16,13 @@ class AuthInterceptor extends QueuedInterceptor {
     RequestInterceptorHandler handler,
   ) async {
     final token = await authRepository.getIdToken();
+    final deviceToken = await FirebaseMessaging.instance.getToken();
     final baseUrl =
         Platform.isAndroid ? Strings.baseUrlAndroid : Strings.baseUrliOs;
 
     final headers = {
       HttpHeaders.authorizationHeader: 'Bearer $token',
-      'device': 'mobile',
+      'device': deviceToken,
     };
 
     options
