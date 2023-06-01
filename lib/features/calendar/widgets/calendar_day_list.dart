@@ -13,9 +13,10 @@ class CalendarDayList extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final daysOfTheYear = ref.watch(calendarDaysProvider);
-
-    useMemoized(() => daysOfTheYear, [daysOfTheYear]);
+    final daysOfTheYear = useMemoized(
+      getAllDaysInYear,
+      const [],
+    );
 
     final controller = usePageController(
       viewportFraction: _viewportFraction,

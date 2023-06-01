@@ -16,6 +16,9 @@ class SupervisedList extends ConsumerWidget {
 
     return AsyncValueWidget(
       value: res,
+      error: const Center(
+        child: RepaintBoundary(child: CircularProgressIndicator()),
+      ),
       builder: (res) {
         if (res.supervised.isEmpty) {
           return EmptyContainer(

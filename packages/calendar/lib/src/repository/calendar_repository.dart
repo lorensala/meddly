@@ -15,10 +15,10 @@ class CalendarRepository {
         List<Appointment> appointments,
         List<Measurement> measurements,
         List<Consumption> consumptions,
-      })> fetchCalendar() async {
+      })> fetchCalendar([String supervisedId = '']) async {
     try {
       final (:appointments, :measurements, :consumptions) =
-          await _api.fetchAll();
+          await _api.fetchAll(supervisedId);
 
       return (
         err: null,

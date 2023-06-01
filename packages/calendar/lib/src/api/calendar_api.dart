@@ -14,10 +14,17 @@ class CalendarApi {
         List<Appointment> appointments,
         List<Measurement> measurements,
         List<Consumption> consumptions,
-      })> fetchAll() async {
+      })> fetchAll([String supervisedId = '']) async {
     late final Response<dynamic> res;
     try {
-      res = await _dio.get<dynamic>(calendarPath);
+      res = await _dio.get<dynamic>(calendarPath,
+          options: supervisedId.isNotEmpty
+              ? Options(
+                  headers: {
+                    'supervised-id': supervisedId,
+                  },
+                )
+              : null);
     } on DioError catch (e) {
       throw CalendarException.fromDioError(e);
     }

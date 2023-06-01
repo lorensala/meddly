@@ -31,7 +31,6 @@ class UserBody extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: Sizes.medium),
                 Row(
                   children: [
                     const UserAvatar(radius: 30),

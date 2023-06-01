@@ -1,3 +1,4 @@
+import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supervisor/supervisor.dart';
@@ -23,4 +24,18 @@ User supervisor(SupervisorRef ref) {
 @Riverpod(dependencies: [])
 User supervised(SupervisedRef ref) {
   throw UnimplementedError();
+}
+
+@riverpod
+class SelectedSupervised extends _$SelectedSupervised {
+  @override
+  User? build() {
+    return null;
+  }
+
+  // ignore: use_setters_to_change_properties
+  void update(User? supervised) {
+    state = supervised;
+    ref.watch(calendarControllerProvider.notifier).refresh();
+  }
 }
