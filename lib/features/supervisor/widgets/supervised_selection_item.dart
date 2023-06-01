@@ -24,7 +24,7 @@ class SupervisedSelectionItem extends ConsumerWidget {
       selected: selected == supervised,
       trailing: supervised == me
           ? CircleAvatar(
-              radius: Sizes.small,
+              radius: Sizes.extraSmall,
               backgroundColor: context.colorScheme.success,
             )
           : null,

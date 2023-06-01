@@ -2,12 +2,13 @@
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/features/user/user.dart';
 
-class NotificationPreferenceSwitch extends ConsumerWidget {
+class NotificationPreferenceSwitch extends HookConsumerWidget {
   const NotificationPreferenceSwitch({super.key});
 
   @override
@@ -17,7 +18,7 @@ class NotificationPreferenceSwitch extends ConsumerWidget {
         ref.watch(notificationPreferencesControllerProvider.notifier);
     final isLoading =
         ref.watch(notificationPreferencesControllerProvider).isLoading;
-    final isOn = ref.watch(
+    final initialState = ref.watch(
       notificationPreferencesControllerProvider.select(
         (s) => s.maybeWhen(
           orElse: () => false,
@@ -31,6 +32,7 @@ class NotificationPreferenceSwitch extends ConsumerWidget {
         ),
       ),
     );
+    final isOn = useState(initialState);
 
     Text description() {
       final email = ref
@@ -77,15 +79,20 @@ class NotificationPreferenceSwitch extends ConsumerWidget {
             ),
           ),
           const SizedBox(width: Sizes.medium),
-          Switch.adaptive(
-            onChanged: isLoading
-                ? null
-                : (bool value) {
-                    value
-                        ? notifier.addNotificationPreference(preference)
-                        : notifier.deleteNotificationPreference(preference);
-                  },
-            value: isOn,
+          IgnorePointer(
+            ignoring: isLoading,
+            child: Switch.adaptive(
+              onChanged: (bool value) {
+                if (value) {
+                  isOn.value = true;
+                  notifier.addNotificationPreference(preference);
+                } else {
+                  isOn.value = false;
+                  notifier.deleteNotificationPreference(preference);
+                }
+              },
+              value: isOn.value,
+            ),
           )
         ],
       ),
