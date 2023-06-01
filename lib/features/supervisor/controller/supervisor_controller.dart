@@ -24,6 +24,8 @@ class SupervisorController extends _$SupervisorController {
       throw Exception(err2.describe(l10n));
     }
 
+    ref.keepAlive();
+
     return (supervisors: supervisors, supervised: supervised);
   }
 
