@@ -1,4 +1,3 @@
-import 'package:meddly/features/notifications/core/core.dart';
 import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:notifications/notifications.dart';

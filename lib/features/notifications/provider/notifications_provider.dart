@@ -1,3 +1,4 @@
+import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:notifications/notifications.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -27,4 +28,17 @@ NotificationsRepository notificationsRepository(
     api: ref.read(notificationsApiProvider),
     cache: ref.read(notificationsCacheProvider),
   );
+}
+
+@Riverpod(keepAlive: true, dependencies: [])
+LocalNotificationService localNotificationService(
+  LocalNotificationServiceRef ref,
+) {
+  throw UnimplementedError();
+}
+
+@Riverpod(keepAlive: true, dependencies: [])
+FirebaseMessagingService firebaseMessagingService(
+    FirebaseMessagingServiceRef ref) {
+  throw UnimplementedError();
 }

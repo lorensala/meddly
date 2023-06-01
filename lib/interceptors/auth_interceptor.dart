@@ -28,7 +28,7 @@ class AuthInterceptor extends QueuedInterceptor {
       ..headers = headers;
 
     //! TODO(me): Remove!
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 500));
 
     return handler.next(options);
   }
