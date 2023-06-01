@@ -7,12 +7,12 @@ part of 'notifications_preferences_controller.dart';
 // **************************************************************************
 
 String _$notificationPreferencesControllerHash() =>
-    r'5ca04d8409d551382dfb47f9f92b2d7234ff6cd3';
+    r'fc7e68aa9cc9956f64eb7f6ceaf8a4d6850d9f36';
 
 /// See also [NotificationPreferencesController].
 @ProviderFor(NotificationPreferencesController)
 final notificationPreferencesControllerProvider =
-    AutoDisposeStreamNotifierProvider<NotificationPreferencesController,
+    AutoDisposeAsyncNotifierProvider<NotificationPreferencesController,
         List<NotificationPreference>>.internal(
   NotificationPreferencesController.new,
   name: r'notificationPreferencesControllerProvider',
@@ -24,5 +24,5 @@ final notificationPreferencesControllerProvider =
 );
 
 typedef _$NotificationPreferencesController
-    = AutoDisposeStreamNotifier<List<NotificationPreference>>;
+    = AutoDisposeAsyncNotifier<List<NotificationPreference>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

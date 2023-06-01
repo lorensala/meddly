@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 
-const String fontFamily = 'Poppins';
+const String fontFamily = 'Be Vietnam Pro';
 
 class AppTheme {
   static const Color _primary = Color(0xFF516EB4);
@@ -64,7 +64,7 @@ class AppTheme {
       ),
       selectedColor: _primary,
       selectedTileColor: _primary.withOpacity(0.1),
-      tileColor: AppColors.secondary,
+      tileColor: _secondary,
     );
   }
 
@@ -77,8 +77,11 @@ class AppTheme {
   static SwitchThemeData _switchThemeData() {
     return SwitchThemeData(
       thumbColor: MaterialStateProperty.all(_primary),
-      trackColor: MaterialStateProperty.all(_background),
       overlayColor: MaterialStateProperty.all(_primary),
+      trackColor: MaterialStateProperty.resolveWith(
+        (states) =>
+            states.contains(MaterialState.selected) ? _primary : _surface,
+      ),
     );
   }
 
@@ -104,10 +107,10 @@ class AppTheme {
     return InputDecorationTheme(
       filled: true,
       fillColor: _secondary,
-      hintStyle: _textTheme().bodyLarge!.copyWith(
-            color: _textTheme().bodyLarge!.color!.withOpacity(0.4),
+      hintStyle: _textTheme().bodyMedium!.copyWith(
+            color: _textTheme().bodyMedium!.color!.withOpacity(0.4),
           ),
-      errorStyle: _textTheme().bodyMedium!.copyWith(
+      errorStyle: _textTheme().bodySmall!.copyWith(
             color: _error,
           ),
       enabledBorder: OutlineInputBorder(

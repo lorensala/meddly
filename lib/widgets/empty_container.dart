@@ -6,6 +6,7 @@ class EmptyContainer extends StatelessWidget {
   const EmptyContainer({
     required this.message,
     this.onRetry,
+    this.size,
     super.key,
     this.isFlex = true,
   });
@@ -13,6 +14,7 @@ class EmptyContainer extends StatelessWidget {
   final String message;
   final VoidCallback? onRetry;
   final bool isFlex;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,10 @@ class EmptyContainer extends StatelessWidget {
           if (isFlex)
             Flexible(child: SvgPicture.asset(Vectors.empty))
           else
-            SvgPicture.asset(Vectors.empty),
+            SvgPicture.asset(
+              Vectors.empty,
+              height: size,
+            ),
           const SizedBox(height: Sizes.medium),
           Text(
             message,

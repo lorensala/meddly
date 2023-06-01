@@ -1,23 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:medicine/medicine.dart';
 
-/// {@template treatment_api}
-/// API for medicine operations.
-/// {@endtemplate}
 class MedicineApi {
-  /// {@macro treatment_api}
   MedicineApi(Dio dio, {String? baseUrl}) : _dio = dio {
     _dio.options.baseUrl = baseUrl ?? _dio.options.baseUrl;
   }
 
   final Dio _dio;
 
-  /// Fetches all medicines.
-  ///
-  /// Throws a [MedicineNotFoundException] if the response status code is 401.\
-  /// Throws a [MedicineDioException] if the request fails.\
-  /// Throws a [MedicineSerializationException] if the response data cannot be
-  /// serialized.
   Future<List<Medicine>> fetchAll() async {
     late final Response<List<dynamic>> res;
     try {
@@ -39,9 +29,6 @@ class MedicineApi {
     }
   }
 
-  /// Adds a new medicine.
-  ///
-  /// Throws a [MedicineDioException] if the request fails.
   Future<void> addMedicine(Medicine medicine) async {
     try {
       await _dio.post<dynamic>(medicinePath, data: medicine.toJson());
@@ -52,12 +39,9 @@ class MedicineApi {
     }
   }
 
-  /// Deletes a medicine.
-  ///
-  /// Throws a [MedicineDioException] if the request fails.
   Future<void> deleteMedicine(Medicine medicine) async {
     try {
-      await _dio.delete<dynamic>(medicinePath, data: medicine.toJson());
+      await _dio.delete<dynamic>('${medicinePath}/${medicine.id}');
     } on DioError catch (e) {
       throw MedicineException.fromDioError(e);
     } catch (_) {
@@ -65,11 +49,6 @@ class MedicineApi {
     }
   }
 
-  /// Updates a medicine.
-  ///
-  /// Throws a [MedicineDioException] if the request fails.\
-  /// Throws a [MedicineSerializationException] if the response data cannot be
-  /// serialized.
   Future<Medicine> updateMedicine(
     Medicine medicine,
   ) async {

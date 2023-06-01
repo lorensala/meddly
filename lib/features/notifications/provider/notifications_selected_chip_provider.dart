@@ -6,11 +6,12 @@ part 'notifications_selected_chip_provider.g.dart';
 @riverpod
 class NotificationSelectedChip extends _$NotificationSelectedChip {
   @override
-  NotificationChipType build() {
-    return NotificationChipType.all;
+  NotificationFilter build() {
+    return NotificationFilter.all;
   }
 
-  void select(NotificationChipType type) {
+  // ignore: use_setters_to_change_properties
+  void select(NotificationFilter type) {
     state = type;
   }
 }

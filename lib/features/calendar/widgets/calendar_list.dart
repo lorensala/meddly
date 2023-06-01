@@ -1,44 +1,50 @@
 // ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/core.dart';
+import 'package:meddly/features/calendar/calendar.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 class CalendarList extends ConsumerWidget {
   const CalendarList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const SizedBox.shrink();
-    // final calendarEvents = ref.watch(calendarEventsProvider);
-    // final selectedDate = ref.watch(selectedDateProvider);
+    final calendar = ref.watch(calendarControllerProvider);
 
-    // if (calendarEvents.isEmpty) return const SizedBox.shrink();
+    return AsyncValueWidget(
+      value: calendar,
+      loading: ListView.separated(
+        separatorBuilder: (_, __) => const SizedBox(height: Sizes.medium),
+        itemCount: 3,
+        physics: const ClampingScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return const CalendarListItemShimmered();
+        },
+      ),
+      builder: (calendar) {
+        final calendarDailyEvents = ref.watch(calendarDailyEventsProvider);
 
-    // final filteredEvents = calendarEvents
-    //     .where(
-    //       (event) => event.date.isSameDay(selectedDate),
-    //     )
-    //     .toList();
+        if (calendarDailyEvents.isEmpty) {
+          return const EmptyContainer(
+            message: 'No hay eventos para el día seleccionado',
+            isFlex: false,
+          );
+        }
 
-    // return Expanded(
-    //   flex: 2,
-    //   child: ColoredBox(
-    //     color: context.colorScheme.background,
-    //     child: RefreshIndicator(
-    //       onRefresh: () async {
-    //         ref.read(calendarControllerProvider.notifier).refresh();
-    //       },
-    //       child: ListView.separated(
-    //         separatorBuilder: (_, __) =>
-    //             const SizedBox(height: Sizes.mediumSpacing),
-    //         itemCount: filteredEvents.length,
-    //         itemBuilder: (context, index) {
-    //           return CalendarListItem(
-    //             event: filteredEvents[index],
-    //           );
-    //         },
-    //       ),
-    //     ),
-    //   ),
-    // );
+        return ListView.separated(
+          separatorBuilder: (_, __) => const SizedBox(height: Sizes.medium),
+          itemCount: calendarDailyEvents.length,
+          physics: const ClampingScrollPhysics(),
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return CalendarListItem(
+              event: calendarDailyEvents[index],
+            );
+          },
+        );
+      },
+    );
   }
 }

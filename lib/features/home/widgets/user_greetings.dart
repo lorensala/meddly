@@ -19,7 +19,7 @@ class UserGreetings extends ConsumerWidget {
         ),
         children: [
           TextSpan(
-            text: user?.firstName,
+            text: '${user?.firstName} 👋',
             style: context.textTheme.headlineLarge,
           ),
         ],

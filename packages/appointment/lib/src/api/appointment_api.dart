@@ -15,7 +15,7 @@ class AppointmentApi {
     }
   }
 
-  Future<void> deleteAppointment(String id) async {
+  Future<void> deleteAppointment(int id) async {
     try {
       await _dio.delete<dynamic>('$appointmentPath/$id');
     } on DioError catch (e) {

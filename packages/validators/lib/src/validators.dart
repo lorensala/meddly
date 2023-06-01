@@ -3,6 +3,7 @@ export 'country_code.dart';
 export 'email.dart';
 export 'height.dart';
 export 'instructions.dart';
+export 'invitation_code.dart';
 export 'lastname.dart';
 export 'name.dart';
 export 'not_negative_int_number.dart';

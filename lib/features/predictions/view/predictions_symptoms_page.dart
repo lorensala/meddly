@@ -6,7 +6,7 @@ import 'package:meddly/features/predictions/predictions.dart';
 class PredictionSymptomsPage extends ConsumerWidget {
   const PredictionSymptomsPage({super.key});
 
-  static const String routeName = '/predictions/symptoms';
+  static const String routeName = 'symptoms';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

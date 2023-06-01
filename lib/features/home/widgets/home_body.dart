@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/auth/auth.dart';
-import 'package:meddly/features/calendar/widgets/widgets.dart';
-import 'package:meddly/features/home/provider/provider.dart';
+import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/home/widgets/widgets.dart';
-import 'package:meddly/features/user/user.dart';
 
-/// {@template home_body}
-/// Body of the HomePage.
-///
-/// Add what it does
-/// {@endtemplate}
 class HomeBody extends ConsumerWidget {
-  /// {@macro home_body}
   const HomeBody({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SafeArea(
+    ref.listen(calendarControllerProvider, (_, state) {
+      state.whenOrNull(
+        error: (err, _) {
+          showSnackBar(context, err.toString());
+        },
+      );
+    });
+
+    return const SafeArea(
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -28,22 +28,17 @@ class HomeBody extends ConsumerWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      ref.read(authControllerProvider.notifier).signOut();
-                      ref.read(userControllerProvider.notifier).signOut();
-                    },
-                    child: const UserGreetings(),
-                  ),
-                  const Spacer(),
-                  const NotificationsButton(),
+                  UserGreetings(),
+                  Spacer(),
+                  NotificationsButton(),
                 ],
               ),
             ),
-            const CalendarDateAndDayIndicator(),
-            const CalendarDayList(),
-            const SizedBox(height: Sizes.medium),
-            const CalendarList(),
+            CalendarSupervisor(),
+            CalendarIndicator(),
+            CalendarDayCarrousel(),
+            SizedBox(height: Sizes.medium),
+            CalendarList(),
           ],
         ),
       ),

@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:calendar/calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -5,8 +7,8 @@ import 'package:meddly/core/core.dart';
 
 class CalendarListItem extends StatelessWidget {
   const CalendarListItem({
-    super.key,
     required this.event,
+    super.key,
   });
 
   final CalendarEvent event;
@@ -19,29 +21,60 @@ class CalendarListItem extends StatelessWidget {
         children: [
           Text(
             event.date.toHoursAndMinutesString(),
+            style: context.textTheme.bodyMedium!.copyWith(
+              color: context.colorScheme.onBackground.withOpacity(0.6),
+            ),
           ),
           const SizedBox(width: Sizes.medium),
           Expanded(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: context.colorScheme.secondary,
-                borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: Sizes.mediumPadding,
+            child: ElevatedButton(
+              style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                    padding: MaterialStateProperty.all(
+                      EdgeInsets.zero,
+                    ),
+                  ),
+              onPressed: () {},
+              child: Container(
+                padding: const EdgeInsets.all(Sizes.medium),
+                decoration: BoxDecoration(
+                  boxShadow: Constants.boxShadow,
+                  color: context.colorScheme.secondary,
+                  borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      height: Sizes.large,
+                      width: Sizes.large,
+                      child: Center(
+                        child: event.map(
+                          fromConsumption: (_) => Transform.rotate(
+                            angle: math.pi / 4,
+                            child: SvgPicture.asset(
+                              Vectors.medicine,
+                            ),
+                          ),
+                          fromAppointment: (_) => SvgPicture.asset(
+                            Vectors.appointment,
+                          ),
+                          fromMeasurement: (_) => SvgPicture.asset(
+                            Vectors.measurement,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: Sizes.medium),
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             event.title,
-                            style: context.textTheme.titleMedium!
-                                .copyWith(fontWeight: FontWeight.w500),
+                            style: context.textTheme.titleMedium!.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
-                          const SizedBox(height: Sizes.small),
                           Text(
                             event.description,
                             style: context.textTheme.bodyMedium!.copyWith(
@@ -114,8 +147,8 @@ class CalendarListItem extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

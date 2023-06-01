@@ -11,7 +11,19 @@ part 'medicine_controller.g.dart';
 @riverpod
 class MedicineController extends _$MedicineController {
   @override
-  FutureOr<void> build() {}
+  FutureOr<List<Medicine>> build() async {
+    final repository = ref.read(medicineRepositoryProvider);
+
+    final (err, medicines) = await repository.fetchAll();
+
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+
+    if (err != null) {
+      throw Exception(err.describe(l10n));
+    }
+
+    return medicines;
+  }
 
   Future<void> addMedicine(Medicine medicine) async {
     state = const AsyncLoading();
@@ -24,15 +36,14 @@ class MedicineController extends _$MedicineController {
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
-      return;
+    } else {
+      ref
+        ..invalidate(calendarControllerProvider)
+        ..invalidateSelf();
+
+      ref
+          .read(goRouterProvider)
+          .go('${BrowsePage.routeName}/${MedicinePage.routeName}');
     }
-
-    ref.invalidate(calendarControllerProvider);
-
-    state = const AsyncData(null);
-
-    ref
-        .read(goRouterProvider)
-        .go('${BrowsePage.routeName}/${MedicinePage.routeName}');
   }
 }

@@ -6,21 +6,6 @@ part of 'medicine_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$medicineCacheHash() => r'5b9c27151027237c92d4a5b0f395f60c09057321';
-
-/// See also [medicineCache].
-@ProviderFor(medicineCache)
-final medicineCacheProvider = AutoDisposeProvider<MedicineCache>.internal(
-  medicineCache,
-  name: r'medicineCacheProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicineCacheHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MedicineCacheRef = AutoDisposeProviderRef<MedicineCache>;
 String _$medicineApiHash() => r'7ba69bd9ef97dc10ea70cb3cd4e5b29eec1c10c4';
 
 /// See also [medicineApi].
@@ -36,7 +21,7 @@ final medicineApiProvider = AutoDisposeProvider<MedicineApi>.internal(
 
 typedef MedicineApiRef = AutoDisposeProviderRef<MedicineApi>;
 String _$medicineRepositoryHash() =>
-    r'ace9c1ac159298362bf76b94cb21e401b7f116b3';
+    r'9aec7041087679e7cd65d54771388590adf9ae7f';
 
 /// See also [medicineRepository].
 @ProviderFor(medicineRepository)

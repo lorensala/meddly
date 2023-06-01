@@ -13,15 +13,17 @@ class MeasurementForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: Sizes.mediumPadding,
-      child: Center(
+    return const SingleChildScrollView(
+      child: Padding(
+        padding: Sizes.mediumPadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _ValueField(),
-            SizedBox(height: Sizes.medium),
             _TypeDropDownSelector(),
+            SizedBox(height: Sizes.medium),
+            _UnitDropDownSelector(),
+            SizedBox(height: Sizes.medium),
+            _ValueField(),
             SizedBox(height: Sizes.medium),
             _DateSelector(),
             SizedBox(height: Sizes.medium),
@@ -62,7 +64,7 @@ class _DateSelector extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Measurement date', isRequired: true),
+        const InputLabel(label: 'Fecha de medición', isRequired: true),
         const SizedBox(height: Sizes.small),
         DateSelector(
           initialDateTime: initialDateTime,
@@ -85,15 +87,22 @@ class _TypeDropDownSelector extends ConsumerWidget {
     final selectedType = ref
         .watch(measurementFormControllerProvider.select((value) => value.type));
 
+    Future.delayed(
+      Duration.zero,
+      () => notifier.unitChanged(MeasurementUnit.other),
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Tipo', isRequired: true),
+        const InputLabel(label: 'Tipo de medición', isRequired: true),
         const SizedBox(height: Sizes.small),
         SizedBox(
+          height: kBottomNavigationBarHeight,
           width: double.infinity,
           child: DropDownSelector(
             value: selectedType,
+            hasBorder: true,
             items: MeasurementType.values
                 .map(
                   (e) => DropdownMenuItem<MeasurementType>(
@@ -103,6 +112,59 @@ class _TypeDropDownSelector extends ConsumerWidget {
                 )
                 .toList(),
             onChanged: notifier.typeChanged,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _UnitDropDownSelector extends HookConsumerWidget {
+  const _UnitDropDownSelector();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.watch(measurementFormControllerProvider.notifier);
+    final selectedType = ref
+        .watch(measurementFormControllerProvider.select((value) => value.type));
+    final selectedUnit = ref
+        .watch(measurementFormControllerProvider.select((value) => value.unit));
+
+    final units = getUnits(selectedType);
+
+    if (units.isEmpty) {
+      Future.delayed(Duration.zero, () => notifier.unitChanged(null));
+
+      return const SizedBox.shrink();
+    }
+
+    if (units.length == 1) {
+      Future.delayed(Duration.zero, () => notifier.unitChanged(units.first));
+
+      return const SizedBox.shrink();
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const InputLabel(label: 'Unidad', isRequired: true),
+        const SizedBox(height: Sizes.small),
+        SizedBox(
+          height: kBottomNavigationBarHeight,
+          width: double.infinity,
+          child: DropDownSelector<MeasurementUnit>(
+            value: selectedUnit,
+            hasBorder: true,
+            items: units
+                .map(
+                  (e) => DropdownMenuItem<MeasurementUnit>(
+                    value: e,
+                    key: Key(e.name),
+                    child: Text(e.name),
+                  ),
+                )
+                .toList(),
+            onChanged: notifier.unitChanged,
           ),
         ),
       ],
@@ -121,9 +183,10 @@ class _ValueField extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Valor', isRequired: true),
+        const InputLabel(label: 'Medición', isRequired: true),
         const SizedBox(height: Sizes.small),
         TextFormField(
+          style: context.textTheme.bodyMedium,
           onChanged: notifier.valueChanged,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(

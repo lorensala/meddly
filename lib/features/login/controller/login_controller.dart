@@ -27,7 +27,7 @@ class LoginController extends _$LoginController {
   }
 
   void logInWithEmailAndPassword() {
-    if (state.isNotValid) return;
+    // if (state.isNotValid) return;
     ref.read(authControllerProvider.notifier).logInWithEmailAndPassword(
           email: state.email.value.trim(),
           password: state.password.value.trim(),

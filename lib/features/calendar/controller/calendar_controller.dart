@@ -1,27 +1,28 @@
+import 'package:appointment/appointment.dart';
 import 'package:calendar/calendar.dart';
 import 'package:measurement/measurement.dart';
-import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/calendar/core/core.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
+import 'package:meddly/features/supervisor/supervisor.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:medicine/medicine.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'calendar_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CalendarController extends _$CalendarController {
   @override
   Future<
       ({
-        List<Medicine> activeMedicines,
         List<Appointment> appointments,
         List<Consumption> consumptions,
         List<Measurement> measurements
       })> build() async {
     final repository = ref.read(calendarRepositoryProvider);
+    final selected = ref.read(selectedSupervisedProvider);
 
-    final res = await repository.fetchCalendar();
+    final res =
+        await repository.fetchCalendar(selected == null ? '' : selected.uid);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
@@ -29,8 +30,7 @@ class CalendarController extends _$CalendarController {
       throw Exception(res.err!.describe(l10n));
     } else {
       return (
-        activeMedicines: res.activeMedicines,
-        appointments: res.appointments as List<Appointment>,
+        appointments: res.appointments,
         consumptions: res.consumptions,
         measurements: res.measurements,
       );
@@ -38,6 +38,7 @@ class CalendarController extends _$CalendarController {
   }
 
   void refresh() {
+    state = const AsyncLoading();
     ref.invalidateSelf();
   }
 

@@ -22,49 +22,27 @@ class NotificationsApi {
     }
   }
 
-  Future<NotificationPreference> add(
+  Future<void> add(
     String notificationPrefence,
   ) async {
-    late final Response<dynamic> res;
     try {
-      res = await _dio.post(
+      await _dio.post<dynamic>(
         notificationsPath,
         queryParameters: {'notification_preference': notificationPrefence},
       );
-
-      try {
-        return NotificationPreference.fromJson(<String, dynamic>{
-          'preferences': res.data,
-        });
-      } catch (_) {
-        throw NotificationSerializationException();
-      }
     } on DioError catch (e) {
       throw NotificationException.fromDioError(e);
     }
   }
 
-  Future<NotificationPreference> delete(
+  Future<void> delete(
     String notificationPrefence,
   ) async {
-    late final Response<dynamic> res;
     try {
-      res = await _dio.delete(
+      await _dio.delete<dynamic>(
         notificationsPath,
         queryParameters: {'notification_preference': notificationPrefence},
       );
-
-      if (res.statusCode == 401) {
-        throw NotificationNotFoundException();
-      }
-
-      try {
-        return NotificationPreference.fromJson(<String, dynamic>{
-          'preferences': res.data,
-        });
-      } catch (_) {
-        throw NotificationSerializationException();
-      }
     } on DioError catch (e) {
       throw NotificationException.fromDioError(e);
     }

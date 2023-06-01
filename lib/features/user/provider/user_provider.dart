@@ -8,6 +8,7 @@ part 'user_provider.g.dart';
 User? user(UserRef ref) {
   return ref.watch(userControllerProvider).whenOrNull(
     data: (user) {
+      ref.keepAlive();
       return user;
     },
   );

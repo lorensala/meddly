@@ -1,14 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 extension StringX on String {
-  String capitalize() => split(' ').map((word) {
-        return word.substring(0, 1).toUpperCase() +
-            word.substring(1).toLowerCase();
-      }).join(' ');
+  String capitalize() => '${this[0].toUpperCase()}${substring(1)}';
 
   String dateTimeStringFormat() =>
       '${substring(8, 10)}/${substring(5, 7)}/${substring(0, 4)}';
@@ -159,5 +157,15 @@ extension RefDebounceX on Ref {
       }
     });
     return completer.future;
+  }
+}
+
+extension ShimmerX on Widget {
+  Animate customShimmer() {
+    return animate(
+      onPlay: (controller) => controller.repeat(),
+    ).shimmer(
+      duration: const Duration(seconds: 1),
+    );
   }
 }

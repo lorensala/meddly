@@ -30,6 +30,7 @@ mixin _$Medicine {
   MedicineDosisUnit get dosisUnit => throw _privateConstructorUsedError;
   double get dosis => throw _privateConstructorUsedError;
   int? get interval => throw _privateConstructorUsedError;
+  @ListMedicineDayOrNullConverter()
   List<MedicineDay>? get days => throw _privateConstructorUsedError;
   @ListTimeOfDayOrNullConverter()
   List<TimeOfDay>? get hours => throw _privateConstructorUsedError;
@@ -57,7 +58,7 @@ abstract class $MedicineCopyWith<$Res> {
       MedicineDosisUnit dosisUnit,
       double dosis,
       int? interval,
-      List<MedicineDay>? days,
+      @ListMedicineDayOrNullConverter() List<MedicineDay>? days,
       @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
       String? instructions});
 }
@@ -164,7 +165,7 @@ abstract class _$$_MedicineCopyWith<$Res> implements $MedicineCopyWith<$Res> {
       MedicineDosisUnit dosisUnit,
       double dosis,
       int? interval,
-      List<MedicineDay>? days,
+      @ListMedicineDayOrNullConverter() List<MedicineDay>? days,
       @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
       String? instructions});
 }
@@ -265,7 +266,7 @@ class _$_Medicine implements _Medicine {
       required this.dosisUnit,
       required this.dosis,
       this.interval,
-      final List<MedicineDay>? days,
+      @ListMedicineDayOrNullConverter() final List<MedicineDay>? days,
       @ListTimeOfDayOrNullConverter() final List<TimeOfDay>? hours,
       this.instructions})
       : _days = days,
@@ -296,6 +297,7 @@ class _$_Medicine implements _Medicine {
   final int? interval;
   final List<MedicineDay>? _days;
   @override
+  @ListMedicineDayOrNullConverter()
   List<MedicineDay>? get days {
     final value = _days;
     if (value == null) return null;
@@ -393,7 +395,7 @@ abstract class _Medicine implements Medicine {
       required final MedicineDosisUnit dosisUnit,
       required final double dosis,
       final int? interval,
-      final List<MedicineDay>? days,
+      @ListMedicineDayOrNullConverter() final List<MedicineDay>? days,
       @ListTimeOfDayOrNullConverter() final List<TimeOfDay>? hours,
       final String? instructions}) = _$_Medicine;
 
@@ -420,6 +422,7 @@ abstract class _Medicine implements Medicine {
   @override
   int? get interval;
   @override
+  @ListMedicineDayOrNullConverter()
   List<MedicineDay>? get days;
   @override
   @ListTimeOfDayOrNullConverter()

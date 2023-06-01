@@ -74,4 +74,38 @@ final notificationsRepositoryProvider =
 
 typedef NotificationsRepositoryRef
     = AutoDisposeProviderRef<NotificationsRepository>;
+String _$localNotificationServiceHash() =>
+    r'ef222f04241b820e194bed15660d51273761fb84';
+
+/// See also [localNotificationService].
+@ProviderFor(localNotificationService)
+final localNotificationServiceProvider =
+    Provider<LocalNotificationService>.internal(
+  localNotificationService,
+  name: r'localNotificationServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$localNotificationServiceHash,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
+);
+
+typedef LocalNotificationServiceRef = ProviderRef<LocalNotificationService>;
+String _$firebaseMessagingServiceHash() =>
+    r'4e5b566f5172ba188388e44839e74032357a7d81';
+
+/// See also [firebaseMessagingService].
+@ProviderFor(firebaseMessagingService)
+final firebaseMessagingServiceProvider =
+    Provider<FirebaseMessagingService>.internal(
+  firebaseMessagingService,
+  name: r'firebaseMessagingServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$firebaseMessagingServiceHash,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
+);
+
+typedef FirebaseMessagingServiceRef = ProviderRef<FirebaseMessagingService>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

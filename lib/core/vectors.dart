@@ -2,6 +2,8 @@ class Vectors {
   // * Core
   static const String error = 'assets/svg/error.svg';
   static const String empty = 'assets/svg/empty.svg';
+  static const String logo = 'assets/svg/logo.svg';
+  static const String share = 'assets/svg/share.svg';
 
   // * Onboarding
   static const String onboarding1 = 'assets/svg/onboarding-1.svg';
@@ -37,6 +39,7 @@ class Vectors {
   static const String home = 'assets/svg/home.svg';
   static const String browse = 'assets/svg/browse.svg';
   static const String settings = 'assets/svg/settings.svg';
+  static const String user = 'assets/svg/user.svg';
 
   // * Notifications
   static const String trash = 'assets/svg/trash.svg';
@@ -51,9 +54,25 @@ class Vectors {
   // * Predictions
   static const String predictionsSymptoms =
       'assets/svg/predictions-symptoms.svg';
+  static const String gallery = 'assets/svg/gallery.svg';
+  static const String camera = 'assets/svg/camera.svg';
 
   // * Medicine
   static const String medicinePresentation =
       'assets/svg/medicine-presentation.svg';
   static const String medicineDosis = 'assets/svg/medicine-dosis.svg';
+
+  // * Settings
+  static const String pdf = 'assets/svg/pdf.svg';
+  static const String logout = 'assets/svg/log-out.svg';
+  static const String changePassword = 'assets/svg/change-password.svg';
+  static const String userData = 'assets/svg/user-data.svg';
+  static const String about = 'assets/svg/about.svg';
+  static const String moon = 'assets/svg/moon.svg';
+  static const String sun = 'assets/svg/sun.svg';
+
+  // * Calendar
+  static const String medicine = 'assets/svg/medicine.svg';
+  static const String appointment = 'assets/svg/appointment.svg';
+  static const String measurement = 'assets/svg/measurement.svg';
 }

@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/browse/view/browse_page.dart';
 import 'package:meddly/features/home/home.dart';
+import 'package:meddly/features/user/user.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/router.dart';
 
 class ScaffoldWithBottomNavBar extends StatelessWidget {
@@ -16,11 +19,6 @@ class ScaffoldWithBottomNavBar extends StatelessWidget {
   static const String routeName = '/';
 
   final Widget child;
-
-  /// The static route for HomePage
-  static Route<dynamic> route() {
-    return MaterialPageRoute<dynamic>(builder: (_) => const HomePage());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,49 +45,66 @@ class BottomNavBar extends HookConsumerWidget {
     selectedIndex.addListener(() {
       switch (selectedIndex.value) {
         case 0:
-          ref.read(goRouterProvider).push(HomePage.routeName);
-          break;
+          ref.read(goRouterProvider).go(HomePage.routeName);
         case 1:
-          ref.read(goRouterProvider).push(BrowsePage.routeName);
-          break;
+          ref.read(goRouterProvider).go(BrowsePage.routeName);
         case 2:
-          //ref.read(goRouterProvider).go(SettingsShell.routeName);
-          break;
+          ref.read(goRouterProvider).go(UserPage.routeName);
       }
     });
 
-    return SizedBox(
-      child: BottomNavigation(
-        itemCornerRadius: Sizes.small,
-        selectedIndex: selectedIndex.value,
-        containerHeight: 65,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        items: [
-          BottomNavigationItem(
-            vector: Vectors.home,
-            activeColor: context.colorScheme.primary.withOpacity(0.25),
-            inactiveColor: context.colorScheme.onSecondary.withOpacity(0.50),
-            textAlign: TextAlign.center,
-            label: 'Home',
-          ),
-          BottomNavigationItem(
-            vector: Vectors.browse,
-            activeColor: context.colorScheme.primary.withOpacity(0.25),
-            inactiveColor: context.colorScheme.onSecondary.withOpacity(0.50),
-            textAlign: TextAlign.center,
-            label: 'Browse',
-          ),
-          BottomNavigationItem(
-            vector: Vectors.settings,
-            activeColor: context.colorScheme.primary.withOpacity(0.25),
-            inactiveColor: context.colorScheme.onSecondary.withOpacity(0.50),
-            textAlign: TextAlign.center,
-            label: 'Settings',
-          )
-        ],
-        onItemSelected: (int value) {
-          selectedIndex.value = value;
+    return Theme(
+      data: Theme.of(context).copyWith(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
+      child: BottomNavigationBar(
+        currentIndex: selectedIndex.value,
+        backgroundColor: context.colorScheme.background,
+        unselectedFontSize: 13,
+        elevation: 0,
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          selectedIndex.value = index;
         },
+        items: [
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              Vectors.home,
+              colorFilter: ColorFilter.mode(
+                selectedIndex.value == 0
+                    ? context.colorScheme.primary
+                    : context.colorScheme.onSecondary.withOpacity(0.8),
+                BlendMode.srcIn,
+              ),
+            ),
+            label: context.l10n.home,
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              Vectors.browse,
+              colorFilter: ColorFilter.mode(
+                selectedIndex.value == 1
+                    ? context.colorScheme.primary
+                    : context.colorScheme.onSecondary.withOpacity(0.8),
+                BlendMode.srcIn,
+              ),
+            ),
+            label: context.l10n.browse,
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              Vectors.user,
+              colorFilter: ColorFilter.mode(
+                selectedIndex.value == 2
+                    ? context.colorScheme.primary
+                    : context.colorScheme.onSecondary.withOpacity(0.8),
+                BlendMode.srcIn,
+              ),
+            ),
+            label: context.l10n.profile,
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/setup/setup.dart';
 import 'package:meddly/l10n/l10n.dart';
 
@@ -12,6 +13,7 @@ class SetupHeightInput extends ConsumerWidget {
     final errorText = ref.watch(heightErrorMessageProvider);
 
     return TextFormField(
+      style: context.textTheme.bodyMedium,
       onChanged: notifier.heightChanged,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,

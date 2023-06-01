@@ -22,6 +22,7 @@ mixin _$AppointmentFormState {
   Name get doctor => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
   String get notes => throw _privateConstructorUsedError;
+  bool get isEditing => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppointmentFormStateCopyWith<AppointmentFormState> get copyWith =>
@@ -40,7 +41,8 @@ abstract class $AppointmentFormStateCopyWith<$Res> {
       DateTime? date,
       Name doctor,
       String location,
-      String notes});
+      String notes,
+      bool isEditing});
 }
 
 /// @nodoc
@@ -63,6 +65,7 @@ class _$AppointmentFormStateCopyWithImpl<$Res,
     Object? doctor = null,
     Object? location = null,
     Object? notes = null,
+    Object? isEditing = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -89,6 +92,10 @@ class _$AppointmentFormStateCopyWithImpl<$Res,
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String,
+      isEditing: null == isEditing
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -107,7 +114,8 @@ abstract class _$$_AppointmentFormStateCopyWith<$Res>
       DateTime? date,
       Name doctor,
       String location,
-      String notes});
+      String notes,
+      bool isEditing});
 }
 
 /// @nodoc
@@ -127,6 +135,7 @@ class __$$_AppointmentFormStateCopyWithImpl<$Res>
     Object? doctor = null,
     Object? location = null,
     Object? notes = null,
+    Object? isEditing = null,
   }) {
     return _then(_$_AppointmentFormState(
       name: null == name
@@ -153,20 +162,26 @@ class __$$_AppointmentFormStateCopyWithImpl<$Res>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String,
+      isEditing: null == isEditing
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_AppointmentFormState implements _AppointmentFormState {
+class _$_AppointmentFormState extends _AppointmentFormState {
   const _$_AppointmentFormState(
       {this.name = const Name.pure(),
       this.speciality = AppointmentSpeciality.cardiology,
       this.date,
       this.doctor = const Name.pure(),
       this.location = '',
-      this.notes = ''});
+      this.notes = '',
+      this.isEditing = false})
+      : super._();
 
   @override
   @JsonKey()
@@ -185,10 +200,13 @@ class _$_AppointmentFormState implements _AppointmentFormState {
   @override
   @JsonKey()
   final String notes;
+  @override
+  @JsonKey()
+  final bool isEditing;
 
   @override
   String toString() {
-    return 'AppointmentFormState(name: $name, speciality: $speciality, date: $date, doctor: $doctor, location: $location, notes: $notes)';
+    return 'AppointmentFormState(name: $name, speciality: $speciality, date: $date, doctor: $doctor, location: $location, notes: $notes, isEditing: $isEditing)';
   }
 
   @override
@@ -203,12 +221,14 @@ class _$_AppointmentFormState implements _AppointmentFormState {
             (identical(other.doctor, doctor) || other.doctor == doctor) &&
             (identical(other.location, location) ||
                 other.location == location) &&
-            (identical(other.notes, notes) || other.notes == notes));
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.isEditing, isEditing) ||
+                other.isEditing == isEditing));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, speciality, date, doctor, location, notes);
+  int get hashCode => Object.hash(
+      runtimeType, name, speciality, date, doctor, location, notes, isEditing);
 
   @JsonKey(ignore: true)
   @override
@@ -218,14 +238,16 @@ class _$_AppointmentFormState implements _AppointmentFormState {
           this, _$identity);
 }
 
-abstract class _AppointmentFormState implements AppointmentFormState {
+abstract class _AppointmentFormState extends AppointmentFormState {
   const factory _AppointmentFormState(
       {final Name name,
       final AppointmentSpeciality speciality,
       final DateTime? date,
       final Name doctor,
       final String location,
-      final String notes}) = _$_AppointmentFormState;
+      final String notes,
+      final bool isEditing}) = _$_AppointmentFormState;
+  const _AppointmentFormState._() : super._();
 
   @override
   Name get name;
@@ -239,6 +261,8 @@ abstract class _AppointmentFormState implements AppointmentFormState {
   String get location;
   @override
   String get notes;
+  @override
+  bool get isEditing;
   @override
   @JsonKey(ignore: true)
   _$$_AppointmentFormStateCopyWith<_$_AppointmentFormState> get copyWith =>

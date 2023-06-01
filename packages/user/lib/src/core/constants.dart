@@ -1,2 +1,2 @@
 /// The path to the user collection.
-const String userPath = '/user/';
+const String userPath = '/user';

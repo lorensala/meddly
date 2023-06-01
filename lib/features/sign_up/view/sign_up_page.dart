@@ -5,14 +5,9 @@ import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/sign_up/widgets/sign_up_body.dart';
 import 'package:meddly/l10n/l10n.dart';
 
-/// {@template sign_up_page}
-/// A description for SignUpPage
-/// {@endtemplate}
 class SignUpPage extends StatelessWidget {
-  /// {@macro sign_up_page}
   const SignUpPage({super.key});
 
-  /// The static route for SignUpPage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(builder: (_) => const SignUpPage());
   }
@@ -28,11 +23,7 @@ class SignUpPage extends StatelessWidget {
   }
 }
 
-/// {@template sign_up_view}
-/// Displays the Body of SignUpView
-/// {@endtemplate}
 class SignUpView extends ConsumerWidget {
-  /// {@macro sign_up_view}
   const SignUpView({super.key});
 
   @override

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:meddly/features/appointment/view/view.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/home/home.dart';
+import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/features/notifications/view/view.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
@@ -10,6 +11,8 @@ import 'package:meddly/features/phone/view/view.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/features/setup/view/view.dart';
 import 'package:meddly/features/splash/splash.dart';
+import 'package:meddly/features/supervisor/view/view.dart';
+import 'package:meddly/features/user/user.dart';
 import 'package:meddly/router/router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -73,43 +76,81 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                 const NoTransitionPage(child: BrowsePage()),
             routes: [
               GoRoute(
-                parentNavigatorKey: rootNavigatorKey,
+                parentNavigatorKey: shellNavigatorKey,
+                path: AppointmentPage.routeName,
+                builder: (context, state) => const AppointmentPage(),
+                routes: [
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: '${AppointmentFormPage.routeName}/:id',
+                    builder: (context, state) => const AppointmentFormPage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: '${AppointmentDetailPage.routeName}/:id',
+                    builder: (context, state) => AppointmentDetailPage(
+                      int.parse(state.pathParameters['id']!),
+                    ),
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: MeasurementPage.routeName,
+                parentNavigatorKey: shellNavigatorKey,
+                builder: (context, state) => const MeasurementPage(),
+                routes: [
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: MeasurementFormPage.routeName,
+                    builder: (context, state) => const MeasurementFormPage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: '${MeasurementDetailPage.routeName}/:id',
+                    builder: (context, state) => MeasurementDetailPage(
+                      int.parse(state.pathParameters['id']!),
+                    ),
+                  ),
+                ],
+              ),
+              GoRoute(
+                parentNavigatorKey: shellNavigatorKey,
                 path: MedicinePage.routeName,
                 builder: (context, state) => const MedicinePage(),
                 routes: [
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineNamePage.routeName,
                     builder: (context, state) => const MedicineNamePage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicinePresentationPage.routeName,
                     builder: (context, state) =>
                         const MedicinePresentationPage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineFrecuencyPage.routeName,
                     builder: (context, state) => const MedicineFrecuencyPage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineDosisPage.routeName,
                     builder: (context, state) => const MedicineDosisPage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineIntervalPage.routeName,
                     builder: (context, state) => const MedicineIntervalPage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineHourPage.routeName,
                     builder: (context, state) => const MedicineHourPage(),
                   ),
                   GoRoute(
-                    parentNavigatorKey: rootNavigatorKey,
+                    parentNavigatorKey: shellNavigatorKey,
                     path: MedicineReviewDetailsPage.routeName,
                     builder: (context, state) =>
                         const MedicineReviewDetailsPage(),
@@ -117,9 +158,49 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                 ],
               ),
               GoRoute(
-                parentNavigatorKey: rootNavigatorKey,
-                path: AppointmentPage.routeName,
-                builder: (context, state) => const AppointmentPage(),
+                path: SupervisorPage.routeName,
+                parentNavigatorKey: shellNavigatorKey,
+                builder: (context, state) => const SupervisorPage(),
+              ),
+              GoRoute(
+                parentNavigatorKey: shellNavigatorKey,
+                path: PredictionsPage.routeName,
+                builder: (context, state) => const PredictionsPage(),
+                routes: [
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: PredictionSymptomsPage.routeName,
+                    builder: (context, state) => const PredictionSymptomsPage(),
+                    routes: [
+                      GoRoute(
+                        parentNavigatorKey: shellNavigatorKey,
+                        path: PredictionsSymptomsSearchPage.routeName,
+                        builder: (context, state) =>
+                            const PredictionsSymptomsSearchPage(),
+                      ),
+                      GoRoute(
+                        parentNavigatorKey: shellNavigatorKey,
+                        path: PredictionResultsPage.routeName,
+                        builder: (context, state) =>
+                            const PredictionResultsPage(),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          GoRoute(
+            parentNavigatorKey: shellNavigatorKey,
+            path: UserPage.routeName,
+            pageBuilder: (context, state) =>
+                const NoTransitionPage(child: UserPage()),
+            routes: [
+              GoRoute(
+                parentNavigatorKey: shellNavigatorKey,
+                path: NotificationsPreferencesPage.routeName,
+                builder: (context, state) =>
+                    const NotificationsPreferencesPage(),
               ),
             ],
           ),
@@ -127,11 +208,6 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         builder: (context, state, child) {
           return ScaffoldWithBottomNavBar(child: child);
         },
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: NewAppointmentPage.routeName,
-        builder: (context, state) => const NewAppointmentPage(),
       ),
       GoRoute(
         parentNavigatorKey: rootNavigatorKey,
@@ -147,26 +223,6 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         parentNavigatorKey: rootNavigatorKey,
         path: NotificationsPage.routeName,
         builder: (context, state) => const NotificationsPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: PredictionsPage.routeName,
-        builder: (context, state) => const PredictionsPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: PredictionSymptomsPage.routeName,
-        builder: (context, state) => const PredictionSymptomsPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: PredictionsSymptomsSearchPage.routeName,
-        builder: (context, state) => const PredictionsSymptomsSearchPage(),
-      ),
-      GoRoute(
-        parentNavigatorKey: rootNavigatorKey,
-        path: PredictionResultsPage.routeName,
-        builder: (context, state) => const PredictionResultsPage(),
       ),
     ],
   );

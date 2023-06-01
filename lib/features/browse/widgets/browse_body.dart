@@ -3,8 +3,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/browse/browse.dart';
-import 'package:meddly/features/medicine/view/view.dart';
+import 'package:meddly/features/measurement/measurement.dart';
+import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/features/supervisor/supervisor.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 
 class BrowseBody extends ConsumerWidget {
@@ -20,24 +23,26 @@ class BrowseBody extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             BrowseCard(
-              title: 'Measurements',
-              description: 'Measure your blood pressure, heart rate, and more.',
+              title: context.l10n.measurements,
+              description: context.l10n.measurementsDescription,
               vector: Vectors.measurements,
-              onTap: () {},
+              onTap: () => ref
+                  .read(goRouterProvider)
+                  .push('${BrowsePage.routeName}/${MeasurementPage.routeName}'),
             ),
             const SizedBox(height: Sizes.medium),
             BrowseCard(
-              title: 'Predictions',
-              description: 'Predict your future health and wellness.',
+              title: context.l10n.orientativeConsultations,
+              description: context.l10n.orientativeConsultationsDescription,
               vector: Vectors.predictions,
-              onTap: () =>
-                  ref.read(goRouterProvider).push(PredictionsPage.routeName),
+              onTap: () => ref.read(goRouterProvider).push(
+                    '${BrowsePage.routeName}/${PredictionsPage.routeName}',
+                  ),
             ),
             const SizedBox(height: Sizes.medium),
             BrowseCard(
-              title: 'Medicines',
-              description:
-                  'Register your medicines and get notified when to take them.',
+              title: context.l10n.medicines,
+              description: context.l10n.medicinesDescriptions,
               vector: Vectors.medicines,
               onTap: () => ref
                   .read(goRouterProvider)
@@ -45,8 +50,8 @@ class BrowseBody extends ConsumerWidget {
             ),
             const SizedBox(height: Sizes.medium),
             BrowseCard(
-              title: 'Appointments',
-              description: 'Schedule your appointments and get reminders.',
+              title: context.l10n.appointments,
+              description: context.l10n.appointmentDescription,
               vector: Vectors.appointments,
               onTap: () => ref
                   .read(goRouterProvider)
@@ -54,10 +59,12 @@ class BrowseBody extends ConsumerWidget {
             ),
             const SizedBox(height: Sizes.medium),
             BrowseCard(
-              title: 'Supervision',
-              description: 'Supervise your loved ones and get notified.',
+              title: context.l10n.linkedAccounts,
+              description: context.l10n.linkedAccountsDescription,
               vector: Vectors.supervision,
-              onTap: () {},
+              onTap: () => ref
+                  .read(goRouterProvider)
+                  .push('${BrowsePage.routeName}/${SupervisorPage.routeName}'),
             ),
           ],
         ),

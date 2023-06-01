@@ -10,13 +10,6 @@ class NotificationsRepository {
   final NotificationsApi _api;
   final NotificationsCache _cache;
 
-  Stream<List<NotificationPreference>> get notificationPreferences =>
-      _cache.notificationPreferences.map(
-        (event) => event
-            .map((e) => NotificationPreference(name: e, isActive: true))
-            .toList(),
-      );
-
   Future<(NotificationException?, List<NotificationPreference>)>
       fetchAll() async {
     try {

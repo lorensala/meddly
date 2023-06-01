@@ -6,10 +6,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'medicine_provider.g.dart';
 
-@riverpod
-MedicineCache medicineCache(MedicineCacheRef ref) {
-  return MedicineCache(ref.read(medicineBoxProvider));
-}
+// @riverpod
+// MedicineCache medicineCache(MedicineCacheRef ref) {
+//   return MedicineCache(ref.read(medicineBoxProvider));
+// }
 
 @riverpod
 MedicineApi medicineApi(MedicineApiRef ref) {
@@ -20,7 +20,6 @@ MedicineApi medicineApi(MedicineApiRef ref) {
 MedicineRepository medicineRepository(MedicineRepositoryRef ref) {
   return MedicineRepository(
     api: ref.read(medicineApiProvider),
-    cache: ref.read(medicineCacheProvider),
   );
 }
 

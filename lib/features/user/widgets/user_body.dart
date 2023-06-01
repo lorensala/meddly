@@ -1,112 +1,144 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:meddly/core/core.dart';
+import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/calendar/calendar.dart';
+import 'package:meddly/features/export/export.dart';
+import 'package:meddly/features/home/home.dart';
+import 'package:meddly/features/notifications/view/view.dart';
+import 'package:meddly/features/settings/settings.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/widgets/widgets.dart';
 
-/// {@template user_body}
-/// Body of the UserPage.
-///
-/// Add what it does
-/// {@endtemplate}
 class UserBody extends ConsumerWidget {
-  /// {@macro user_body}
   const UserBody({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userStream = ref.watch(userControllerProvider);
 
-    return userStream.when(
-      data: (user) {
+    return AsyncValueWidget(
+      value: userStream,
+      builder: (user) {
         if (user == null) {
           return const Text('No user');
-        } else {
-          return Text(user.toString());
         }
-      },
-      error: (error, stackTrace) {
-        return Text(error.toString());
-      },
-      loading: () {
-        return const Center(
-          child: RepaintBoundary(child: CircularProgressIndicator()),
+
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(Sizes.medium),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const UserAvatar(radius: 30),
+                    const SizedBox(width: Sizes.medium),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${user.firstName} ${user.lastName}',
+                          style: context.textTheme.titleMedium!.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          user.email,
+                          style: context.textTheme.bodyMedium!.copyWith(
+                            color:
+                                context.colorScheme.onSurface.withOpacity(0.5),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: Sizes.extraLarge),
+                Text(
+                  'CUENTA',
+                  style: context.textTheme.titleMedium!.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: context.colorScheme.onSurface.withOpacity(0.5),
+                  ),
+                ),
+                const SizedBox(height: Sizes.medium),
+                const SettingsItem(
+                  vector: Vectors.user,
+                  label: 'Modificar mis datos',
+                ),
+                const SizedBox(height: Sizes.medium),
+                const SettingsItem(
+                  vector: Vectors.changePassword,
+                  label: 'Cambiar contraseña',
+                ),
+                const SizedBox(height: Sizes.extraLarge),
+                Text(
+                  'AJUSTES',
+                  style: context.textTheme.titleMedium,
+                ),
+                const SizedBox(height: Sizes.medium),
+                SettingsItem(
+                  vector: Vectors.bellRinging,
+                  label: 'Preferencia de notificaciones',
+                  onPressed: () {
+                    GoRouter.of(context).push(
+                      '${UserPage.routeName}/${NotificationsPreferencesPage.routeName}',
+                    );
+                  },
+                ),
+                const SizedBox(height: Sizes.medium),
+                SettingsItem(
+                  vector: Vectors.sun,
+                  label: 'Cambiar tema',
+                  onPressed: () {
+                    // GoRouter.of(context).push(
+                    //   '${UserPage.routeName}/${NotificationsPreferencesPage.routeName}',
+                    // );
+                  },
+                ),
+                const SizedBox(height: Sizes.medium),
+                const ExportItem(),
+                const SizedBox(height: Sizes.medium),
+                SettingsItem(
+                  vector: Vectors.about,
+                  label: 'Sobre Meddly',
+                  onPressed: () async {
+                    await showDialog<void>(
+                      context: context,
+                      builder: (context) {
+                        return AboutDialog(
+                          applicationName: 'Meddly',
+                          applicationIcon: SvgPicture.asset(Vectors.logo),
+                          applicationVersion: 'v1.0.0',
+                          applicationLegalese: '@2023 Meddly',
+                        );
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(height: Sizes.medium),
+                Consumer(
+                  builder: (context, ref, child) {
+                    return SettingsItem(
+                      vector: Vectors.logout,
+                      label: 'Cerrar sesión',
+                      onPressed: () async {
+                        await Future.wait([
+                          ref.read(userControllerProvider.notifier).signOut(),
+                          ref.read(authControllerProvider.notifier).signOut(),
+                        ]);
+                        ref.invalidate(calendarControllerProvider);
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
         );
       },
     );
-
-    // state.whenOrNull(
-    //   success: (user) {
-    //     if (user.firstName.isEmpty) {
-    //       Navigator.of(context).pushAndRemoveUntil(
-    //         SetupPage.route(),
-    //         (_) => false,
-    //       );
-    //     } else if (user.phone.isEmpty) {
-    //       Navigator.of(context).pushAndRemoveUntil(
-    //         PhonePage.route(),
-    //         (_) => false,
-    //       );
-    //     }
-    //   },
-    //   failure: (failure) => failure.whenOrNull(
-    //     notFound: () {},
-    // context.read<AuthBloc>().state.whenOrNull(
-    //       authenticated: (_) async =>
-    //           Navigator.of(context).pushAndRemoveUntil(
-    //         SetupPage.route(),
-    //         (_) => false,
-    //       ),
-    //     ),
-    //   ),
-    // );
-    //           child: Column(
-    //             mainAxisSize: MainAxisSize.min,
-    //             children: [
-    //               user.fold(
-    //                 () => const Text('No user'),
-    //                 (user) => Text(user.toString()),
-    //               ),
-    //               const SizedBox(height: Sizes.mediumSpacing),
-    //               Button(
-    //                 onPressed: () =>
-    //                     context.read<UserBloc>().add(const UserEvent.logout()),
-    //                 label: 'logout',
-    //               ),
-    //               const SizedBox(height: Sizes.mediumSpacing),
-    //               Button(
-    //                 onPressed: () =>
-    //                     Navigator.of(context).push(SetupPage.route()),
-    //                 label: 'setup',
-    //               ),
-    //               const SizedBox(height: Sizes.mediumSpacing),
-    //               Button(
-    //                 onPressed: () =>
-    //                     Navigator.of(context).push(PhonePage.route()),
-    //                 label: 'phone',
-    //               ),
-    //               const SizedBox(height: Sizes.mediumSpacing),
-    //               Button(
-    //                 onPressed: () =>
-    //                     Navigator.of(context).push(CalendarPage.route()),
-    //                 label: 'calendar',
-    //               ),
-    //               const SizedBox(height: Sizes.mediumSpacing),
-    //               Button(
-    //                 onPressed: () =>
-    //                     Navigator.of(context).push(PredictionsPage.route()),
-    //                 label: 'predictions',
-    //               ),
-    //               const SizedBox(height: Sizes.mediumSpacing),
-    //               Button(
-    //                 onPressed: () =>
-    //                     Navigator.of(context).push(MedicineNamePage.route()),
-    //                 label: 'medicine',
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       ),
-    //     )
-    //   },
-    // );
   }
 }

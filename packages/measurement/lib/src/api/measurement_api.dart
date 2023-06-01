@@ -15,7 +15,7 @@ class MeasurementApi {
     }
   }
 
-  Future<void> deleteMeasurement(String id) async {
+  Future<void> deleteMeasurement(int id) async {
     try {
       await _dio.delete<dynamic>('$measurementPath/$id');
     } on DioError catch (e) {

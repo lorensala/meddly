@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/router/router.dart';
 import 'package:meddly/widgets/widgets.dart';
+import 'package:medicine/medicine.dart';
 
 class MedicineFrecuencyPage extends StatelessWidget {
   const MedicineFrecuencyPage({super.key});
@@ -51,18 +53,24 @@ class _NextButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final isAsNeeded =
-    //     ref.watch(medicineFrecuencyProvider) == MedicineFrecuency.asNeeded;
+    final isAsNeeded = ref.watch(
+          medicineFormControllerProvider.select((value) => value.frecuency),
+        ) ==
+        MedicineFrecuency.asNeeded;
     final isValid = ref.watch(isMedicineFrecuencyValidProvider);
 
     return MedicineNextButton(
       isValid: isValid,
       onPressed: () {
-        // if (isAsNeeded) {
-        //   ref.read(goRouterProvider).push(MedicineReviewDetailsPage.routeName);
-        // } else {
-        ref.read(goRouterProvider).push(MedicineIntervalPage.routeName);
-        // }
+        if (isAsNeeded) {
+          ref.read(goRouterProvider).push(
+                '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineReviewDetailsPage.routeName}',
+              );
+        } else {
+          ref.read(goRouterProvider).push(
+                '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineIntervalPage.routeName}',
+              );
+        }
       },
     );
   }

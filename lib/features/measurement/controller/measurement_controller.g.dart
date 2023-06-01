@@ -7,12 +7,12 @@ part of 'measurement_controller.dart';
 // **************************************************************************
 
 String _$measurementControllerHash() =>
-    r'898dbfba5cb66d4b1eb7401b97b3d631fc53c452';
+    r'45780ee9a16f22d56ef39c71d9fb793ede7c9687';
 
 /// See also [MeasurementController].
 @ProviderFor(MeasurementController)
-final measurementControllerProvider =
-    AutoDisposeAsyncNotifierProvider<MeasurementController, void>.internal(
+final measurementControllerProvider = AutoDisposeAsyncNotifierProvider<
+    MeasurementController, List<Measurement>>.internal(
   MeasurementController.new,
   name: r'measurementControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,5 +22,5 @@ final measurementControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$MeasurementController = AutoDisposeAsyncNotifier<void>;
+typedef _$MeasurementController = AutoDisposeAsyncNotifier<List<Measurement>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

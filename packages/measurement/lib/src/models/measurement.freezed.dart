@@ -22,6 +22,7 @@ Measurement _$MeasurementFromJson(Map<String, dynamic> json) {
 mixin _$Measurement {
   DateTime get date => throw _privateConstructorUsedError;
   MeasurementType get type => throw _privateConstructorUsedError;
+  MeasurementUnit get unit => throw _privateConstructorUsedError;
   double get value => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
 
@@ -37,7 +38,12 @@ abstract class $MeasurementCopyWith<$Res> {
           Measurement value, $Res Function(Measurement) then) =
       _$MeasurementCopyWithImpl<$Res, Measurement>;
   @useResult
-  $Res call({DateTime date, MeasurementType type, double value, int id});
+  $Res call(
+      {DateTime date,
+      MeasurementType type,
+      MeasurementUnit unit,
+      double value,
+      int id});
 }
 
 /// @nodoc
@@ -55,6 +61,7 @@ class _$MeasurementCopyWithImpl<$Res, $Val extends Measurement>
   $Res call({
     Object? date = null,
     Object? type = null,
+    Object? unit = null,
     Object? value = null,
     Object? id = null,
   }) {
@@ -67,6 +74,10 @@ class _$MeasurementCopyWithImpl<$Res, $Val extends Measurement>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as MeasurementType,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as MeasurementUnit,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -87,7 +98,12 @@ abstract class _$$_MeasurementCopyWith<$Res>
       __$$_MeasurementCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime date, MeasurementType type, double value, int id});
+  $Res call(
+      {DateTime date,
+      MeasurementType type,
+      MeasurementUnit unit,
+      double value,
+      int id});
 }
 
 /// @nodoc
@@ -103,6 +119,7 @@ class __$$_MeasurementCopyWithImpl<$Res>
   $Res call({
     Object? date = null,
     Object? type = null,
+    Object? unit = null,
     Object? value = null,
     Object? id = null,
   }) {
@@ -115,6 +132,10 @@ class __$$_MeasurementCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as MeasurementType,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
+              as MeasurementUnit,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -133,6 +154,7 @@ class _$_Measurement implements _Measurement {
   const _$_Measurement(
       {required this.date,
       required this.type,
+      required this.unit,
       required this.value,
       required this.id});
 
@@ -144,13 +166,15 @@ class _$_Measurement implements _Measurement {
   @override
   final MeasurementType type;
   @override
+  final MeasurementUnit unit;
+  @override
   final double value;
   @override
   final int id;
 
   @override
   String toString() {
-    return 'Measurement(date: $date, type: $type, value: $value, id: $id)';
+    return 'Measurement(date: $date, type: $type, unit: $unit, value: $value, id: $id)';
   }
 
   @override
@@ -160,13 +184,14 @@ class _$_Measurement implements _Measurement {
             other is _$_Measurement &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.type, type) || other.type == type) &&
+            (identical(other.unit, unit) || other.unit == unit) &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, date, type, value, id);
+  int get hashCode => Object.hash(runtimeType, date, type, unit, value, id);
 
   @JsonKey(ignore: true)
   @override
@@ -186,6 +211,7 @@ abstract class _Measurement implements Measurement {
   const factory _Measurement(
       {required final DateTime date,
       required final MeasurementType type,
+      required final MeasurementUnit unit,
       required final double value,
       required final int id}) = _$_Measurement;
 
@@ -196,6 +222,8 @@ abstract class _Measurement implements Measurement {
   DateTime get date;
   @override
   MeasurementType get type;
+  @override
+  MeasurementUnit get unit;
   @override
   double get value;
   @override

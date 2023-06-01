@@ -9,6 +9,7 @@ class Measurement with _$Measurement {
   const factory Measurement({
     required DateTime date,
     required MeasurementType type,
+    required MeasurementUnit unit,
     required double value,
     required int id,
   }) = _Measurement;

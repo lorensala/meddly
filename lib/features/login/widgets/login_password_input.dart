@@ -17,6 +17,7 @@ class PasswordInput extends HookConsumerWidget {
     final isValid = ref.watch(isLoginFormValidProvider);
 
     return TextFormField(
+      style: context.textTheme.bodyMedium,
       textInputAction: TextInputAction.done,
       onChanged: ref.watch(loginControllerProvider.notifier).onPasswordChanged,
       onFieldSubmitted: (String? value) {
@@ -28,7 +29,6 @@ class PasswordInput extends HookConsumerWidget {
         }
       },
       keyboardType: TextInputType.text,
-      style: Theme.of(context).textTheme.bodyMedium,
       obscureText: isPasswordObscure.value,
       decoration: InputDecoration(
         hintText: context.l10n.passwordHint,

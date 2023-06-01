@@ -1,2 +1,2 @@
 /// The path to the appointment endpoint.
-const String appointmentPath = '/calendar/appointment/';
+const String appointmentPath = '/appointment';

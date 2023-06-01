@@ -10,7 +10,7 @@ class MedicineFormState with _$MedicineFormState {
   const factory MedicineFormState({
     @Default(Name.pure()) Name name,
     @Default(Instructions.pure()) Instructions instructions,
-    @Default(MedicinePresentation.capusle) MedicinePresentation presentation,
+    @Default(MedicinePresentation.capsule) MedicinePresentation presentation,
     @Default(MedicineDosisUnit.mg) MedicineDosisUnit dosisUnit,
     DateTime? startDate,
     DateTime? endDate,

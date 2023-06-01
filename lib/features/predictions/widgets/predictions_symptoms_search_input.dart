@@ -27,6 +27,7 @@ class PredictionsSymptomsSearchField extends HookConsumerWidget {
           .read(goRouterProvider)
           .push(PredictionsSymptomsSearchPage.routeName),
       child: TextFormField(
+        style: context.textTheme.bodyMedium,
         enabled: enabled,
         autofocus: enabled,
         controller: controller,

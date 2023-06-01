@@ -3,12 +3,9 @@ import 'package:medicine/medicine.dart';
 class MedicineRepository {
   MedicineRepository({
     required MedicineApi api,
-    required MedicineCache cache,
-  })  : _api = api,
-        _cache = cache;
+  }) : _api = api;
 
   final MedicineApi _api;
-  final MedicineCache _cache;
 
   Future<(MedicineException?, List<Medicine>)> fetchAll() async {
     try {
@@ -41,7 +38,6 @@ class MedicineRepository {
   ) async {
     try {
       await _api.deleteMedicine(medicine);
-      await _cache.delete(medicine.id.toString());
 
       return (null, null);
     } on MedicineException catch (e) {

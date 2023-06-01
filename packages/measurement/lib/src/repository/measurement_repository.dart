@@ -7,6 +7,18 @@ class MeasurementRepository {
 
   final MeasurementApi _api;
 
+  Future<(MeasurementException?, List<Measurement>)> fetchAll() async {
+    try {
+      final measurements = await _api.fetchAll();
+
+      return (null, measurements);
+    } on MeasurementException catch (e) {
+      return (e, <Measurement>[]);
+    } catch (e) {
+      return (const MeasurementUnknownException(), <Measurement>[]);
+    }
+  }
+
   Future<(MeasurementException?, void)> addMeasurement(
     Measurement measurement,
   ) async {
@@ -22,7 +34,7 @@ class MeasurementRepository {
   }
 
   Future<(MeasurementException?, void)> deleteMeasurement(
-    String id,
+    int id,
   ) async {
     try {
       await _api.deleteMeasurement(id);

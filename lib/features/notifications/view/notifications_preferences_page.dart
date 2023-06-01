@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/notifications/notifications.dart';
 
 class NotificationsPreferencesPage extends StatelessWidget {
   const NotificationsPreferencesPage({super.key});
 
-  static const routeName = '/notifications-preferences';
+  static const routeName = 'notifications-preferences';
 
-  /// The static route for NotificationsPage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
       builder: (_) => const NotificationsPreferencesPage(),
@@ -17,7 +17,9 @@ class NotificationsPreferencesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Notificaciones'),
+      ),
       body: const NotificationsPreferencesView(),
     );
   }
@@ -31,13 +33,7 @@ class NotificationsPreferencesView extends ConsumerWidget {
     ref.listen(notificationPreferencesControllerProvider, (_, state) {
       state.whenOrNull(
         error: (err, _) {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text(err.toString()),
-              ),
-            );
+          showSnackBar(context, err.toString());
         },
       );
     });

@@ -6,7 +6,7 @@ part of 'symptom_selected_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$symptomSelectedHash() => r'8ecfebe35a4fda501e31bbce9298ee696a8eeb8c';
+String _$symptomSelectedHash() => r'c3a0824c784fb344e45966d89545af1e837c6ff0';
 
 /// See also [symptomSelected].
 @ProviderFor(symptomSelected)
@@ -16,8 +16,8 @@ final symptomSelectedProvider = AutoDisposeProvider<Symptom>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$symptomSelectedHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
 typedef SymptomSelectedRef = AutoDisposeProviderRef<Symptom>;

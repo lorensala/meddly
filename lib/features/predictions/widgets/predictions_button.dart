@@ -10,7 +10,10 @@ class PredictionsButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isValid = ref.watch(symptomSelectedResultsProvider).isNotEmpty;
+    final isValid = ref.watch(
+      symptomPredictionControllerProvider.select((value) => value.isNotEmpty),
+    );
+
     return Button(
       isValid: isValid,
       onPressed: () =>

@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meddly/features/appointment/view/view.dart';
 import 'package:meddly/features/appointment/widgets/appointment_body.dart';
+import 'package:meddly/features/browse/browse.dart';
 
-/// {@template appointment_page}
-/// A description for AppointmentPage
-/// {@endtemplate}
 class AppointmentPage extends StatelessWidget {
-  /// {@macro appointment_page}
   const AppointmentPage({super.key});
 
-  /// The static route for AppointmentPage
   static String routeName = 'appointment';
 
   @override
@@ -21,25 +17,14 @@ class AppointmentPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          GoRouter.of(context).push(NewAppointmentPage.routeName);
+          GoRouter.of(context).push(
+            '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentFormPage.routeName}/""',
+          );
         },
-        tooltip: 'Increment',
+        tooltip: 'Nuevo turno médico',
         child: const Icon(Icons.add),
       ),
-      body: const AppointmentView(),
+      body: const AppointmentBody(),
     );
-  }
-}
-
-/// {@template appointment_view}
-/// Displays the Body of AppointmentView
-/// {@endtemplate}
-class AppointmentView extends StatelessWidget {
-  /// {@macro appointment_view}
-  const AppointmentView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const AppointmentBody();
   }
 }

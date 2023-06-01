@@ -9,7 +9,8 @@ part 'measurement_state.freezed.dart';
 class MeasurementState with _$MeasurementState, FormzMixin {
   const factory MeasurementState({
     @Default(NotNegativeIntNumber.pure()) NotNegativeIntNumber value,
-    @Default(MeasurementType.bloodGlucose) MeasurementType type,
+    @Default(MeasurementType.other) MeasurementType type,
+    @Default(MeasurementUnit.other) MeasurementUnit unit,
     DateTime? date,
   }) = _MeasurementState;
 

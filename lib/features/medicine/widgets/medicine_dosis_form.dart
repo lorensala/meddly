@@ -92,6 +92,7 @@ class _DosisInputField extends ConsumerWidget {
     );
 
     return TextFormField(
+      style: context.textTheme.bodyMedium,
       onChanged: notifier.dosisChanged,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(

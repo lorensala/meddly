@@ -8,9 +8,6 @@ import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-/// {@template otp_form}
-/// Form for the OtpPage.
-/// {@endtemplate}
 class OtpForm extends StatelessWidget {
   const OtpForm({super.key});
 
@@ -89,7 +86,6 @@ class _OtpField extends ConsumerWidget {
 
     return PinCodeTextField(
       appContext: context,
-      // enabled: false,
       textStyle: context.textTheme.titleLarge,
       keyboardType: TextInputType.number,
       animationType: AnimationType.fade,

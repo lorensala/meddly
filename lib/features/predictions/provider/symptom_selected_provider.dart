@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'symptom_selected_provider.g.dart';
 
-@riverpod
+@Riverpod(dependencies: [])
 Symptom symptomSelected(SymptomSelectedRef ref) {
   throw UnimplementedError();
 }

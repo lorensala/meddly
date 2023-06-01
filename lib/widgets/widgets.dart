@@ -1,4 +1,5 @@
 export 'async_value_widget.dart';
+export 'bottom_sheet_decorator.dart';
 export 'button.dart';
 export 'cancel_button.dart';
 export 'circle_check_suffix_icon.dart';

@@ -1,7 +1,6 @@
 import 'package:appointment/appointment.dart';
 import 'package:calendar/calendar.dart';
 import 'package:measurement/measurement.dart';
-import 'package:medicine/medicine.dart';
 
 class CalendarRepository {
   CalendarRepository({
@@ -13,18 +12,16 @@ class CalendarRepository {
   Future<
       ({
         CalendarException? err,
-        List<Medicine> activeMedicines,
         List<Appointment> appointments,
         List<Measurement> measurements,
         List<Consumption> consumptions,
-      })> fetchCalendar() async {
+      })> fetchCalendar([String supervisedId = '']) async {
     try {
-      final (:activeMedicines, :appointments, :measurements, :consumptions) =
-          await _api.fetchAll();
+      final (:appointments, :measurements, :consumptions) =
+          await _api.fetchAll(supervisedId);
 
       return (
         err: null,
-        activeMedicines: activeMedicines,
         appointments: appointments,
         measurements: measurements,
         consumptions: consumptions,
@@ -32,7 +29,6 @@ class CalendarRepository {
     } on CalendarException catch (e) {
       return (
         err: e,
-        activeMedicines: <Medicine>[],
         appointments: <Appointment>[],
         measurements: <Measurement>[],
         consumptions: <Consumption>[]
@@ -40,7 +36,6 @@ class CalendarRepository {
     } catch (_) {
       return (
         err: CalendarUnknownException(),
-        activeMedicines: <Medicine>[],
         appointments: <Appointment>[],
         measurements: <Measurement>[],
         consumptions: <Consumption>[]

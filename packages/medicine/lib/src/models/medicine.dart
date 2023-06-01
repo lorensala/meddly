@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:medicine/src/models/medicine_days.dart';
-import 'package:medicine/src/models/medicine_dosis_unit.dart';
-import 'package:medicine/src/models/medicine_presentation.dart';
+import 'package:medicine/medicine.dart';
 
 part 'medicine.freezed.dart';
 part 'medicine.g.dart';
@@ -20,7 +18,7 @@ class Medicine with _$Medicine {
     required MedicineDosisUnit dosisUnit,
     required double dosis,
     int? interval,
-    List<MedicineDay>? days,
+    @ListMedicineDayOrNullConverter() List<MedicineDay>? days,
     @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
     String? instructions,
   }) = _Medicine;
@@ -30,16 +28,20 @@ class Medicine with _$Medicine {
 }
 
 class ListTimeOfDayOrNullConverter
-    implements JsonConverter<List<TimeOfDay>?, List<String>?> {
+    implements JsonConverter<List<TimeOfDay>?, List<dynamic>?> {
   const ListTimeOfDayOrNullConverter();
 
   @override
-  List<TimeOfDay>? fromJson(List<String>? json) {
+  List<TimeOfDay>? fromJson(List<dynamic>? json) {
     if (json == null) {
       return null;
     }
 
-    return json.map((e) => TimeOfDay.fromDateTime(DateTime.parse(e))).toList();
+    return json.map((e) {
+      final hour = int.parse((e as String).split(':').first);
+      final minute = int.parse((e).split(':').last);
+      return TimeOfDay(hour: hour, minute: minute);
+    }).toList();
   }
 
   @override
@@ -48,6 +50,29 @@ class ListTimeOfDayOrNullConverter
       return null;
     }
 
-    return object.map((e) => '${e.hour}:${e.minute}').toList();
+    return object.map((e) => e.toHHmm()).toList();
+  }
+}
+
+class ListMedicineDayOrNullConverter
+    implements JsonConverter<List<MedicineDay>?, List<dynamic>?> {
+  const ListMedicineDayOrNullConverter();
+
+  @override
+  List<MedicineDay>? fromJson(List<dynamic>? json) {
+    if (json == null) {
+      return null;
+    }
+
+    return json.map((e) => MedicineDay.fromInt(e as int)).toList();
+  }
+
+  @override
+  List<int>? toJson(List<MedicineDay>? object) {
+    if (object == null) {
+      return null;
+    }
+
+    return object.map((e) => e.value).toList();
   }
 }

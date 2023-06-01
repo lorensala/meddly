@@ -3,18 +3,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/phone/controller/phone_controller.dart';
-import 'package:meddly/features/phone/widgets/otp_form.dart';
-import 'package:meddly/features/phone/widgets/phone_form.dart';
+import 'package:meddly/features/phone/phone.dart';
 import 'package:meddly/l10n/l10n.dart';
 
-/// {@template phone_body}
-/// Body of the PhonePage.
-///
-/// Add what it does
-/// {@endtemplate}
 class PhoneBody extends HookConsumerWidget {
-  /// {@macro phone_body}
   const PhoneBody({super.key});
 
   static const Duration _duration = Duration(milliseconds: 300);
@@ -43,11 +35,17 @@ class PhoneBody extends HookConsumerWidget {
   }
 }
 
-class _OtpSection extends StatelessWidget {
+class _OtpSection extends ConsumerWidget {
   const _OtpSection();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final phoneNumber = ref.watch(
+      phoneFormControllerProvider.select((value) => value.phoneNumber.value),
+    );
+    final countryCode = ref.watch(
+      phoneFormControllerProvider.select((value) => value.countryCode.code),
+    );
     return SingleChildScrollView(
       reverse: true,
       child: SizedBox(
@@ -68,7 +66,7 @@ class _OtpSection extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  context.l10n.enterCode,
+                  '${context.l10n.enterCode} $countryCode $phoneNumber',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),

@@ -124,10 +124,10 @@ class _StockWarningField extends ConsumerWidget {
         ),
         const SizedBox(height: Sizes.small),
         TextFormField(
+          style: context.textTheme.bodyMedium,
           textInputAction: TextInputAction.done,
           onChanged: notifier.stockWarningChanged,
           keyboardType: TextInputType.number,
-          style: context.textTheme.bodyMedium,
           decoration: InputDecoration(
             errorText: errorText,
           ),

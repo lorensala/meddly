@@ -44,8 +44,6 @@ class AuthController extends _$AuthController {
     if (err == null) {
       if (isNotCancel) {
         ref.read(goRouterProvider).go(SplashPage.routeName);
-      } else {
-        state = const AsyncData(null);
       }
     } else {
       state = AsyncError(err.describe(l10n), StackTrace.current);
@@ -79,7 +77,6 @@ class AuthController extends _$AuthController {
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
     if (err == null) {
-      state = const AsyncData(null);
       ref.read(goRouterProvider).go(SplashPage.routeName);
     } else {
       state = AsyncError(err.describe(l10n), StackTrace.current);
@@ -95,9 +92,7 @@ class AuthController extends _$AuthController {
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    if (err == null) {
-      state = const AsyncData(null);
-    } else {
+    if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     }
   }
@@ -108,9 +103,7 @@ class AuthController extends _$AuthController {
     final (err, _) = await ref.read(authRepositoryProvider).delete();
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
-    if (err == null) {
-      state = const AsyncData(null);
-    } else {
+    if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     }
   }
