@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:meddly/core/core.dart';
 
 class CalendarListItemShimmered extends StatelessWidget {
@@ -53,13 +52,7 @@ class ShimmeredContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           color: context.colorScheme.surface,
         ),
-      )
-          .animate(
-            onPlay: (controller) => controller.repeat(),
-          )
-          .shimmer(
-            duration: const Duration(seconds: 1),
-          ),
+      ).customShimmer(),
     );
   }
 }

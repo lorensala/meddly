@@ -5,3 +5,4 @@ export 'calendar_day_list_item.dart';
 export 'calendar_list.dart';
 export 'calendar_list_item.dart';
 export 'calendar_list_item_shimmered.dart';
+export 'calendar_supervisor.dart';

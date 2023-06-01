@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/supervisor/supervisor.dart';
-import 'package:meddly/features/supervisor/widgets/widgets.dart';
 import 'package:meddly/l10n/l10n.dart';
 
 class SupervisorPage extends StatelessWidget {

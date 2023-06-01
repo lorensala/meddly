@@ -3,8 +3,8 @@ import 'package:meddly/core/core.dart';
 
 class CancelButton extends StatelessWidget {
   const CancelButton({
-    super.key,
     required this.onConfirm,
+    super.key,
   });
 
   final VoidCallback onConfirm;

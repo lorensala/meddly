@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -156,5 +157,15 @@ extension RefDebounceX on Ref {
       }
     });
     return completer.future;
+  }
+}
+
+extension ShimmerX on Widget {
+  Animate customShimmer() {
+    return animate(
+      onPlay: (controller) => controller.repeat(),
+    ).shimmer(
+      duration: const Duration(seconds: 1),
+    );
   }
 }
