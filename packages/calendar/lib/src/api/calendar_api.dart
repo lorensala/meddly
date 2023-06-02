@@ -4,54 +4,69 @@ import 'package:calendar/src/models/models.dart';
 import 'package:dio/dio.dart';
 import 'package:measurement/measurement.dart';
 
+typedef UserCalendar = Map<String, Calendar>;
+
+typedef Calendar = ({
+  List<Appointment> appointments,
+  List<Measurement> measurements,
+  List<Consumption> consumptions,
+});
+
 class CalendarApi {
   CalendarApi(Dio dio) : _dio = dio;
 
   final Dio _dio;
 
-  Future<
-      ({
-        List<Appointment> appointments,
-        List<Measurement> measurements,
-        List<Consumption> consumptions,
-      })> fetchAll([String supervisedId = '']) async {
+  Future<List<UserCalendar>> fetchAll(
+      [List<String> users = const <String>[]]) async {
     late final Response<dynamic> res;
     try {
       res = await _dio.get<dynamic>(calendarPath,
-          options: supervisedId.isNotEmpty
-              ? Options(
-                  headers: {
-                    'supervised-id': supervisedId,
-                  },
-                )
-              : null);
+          queryParameters: users.isEmpty
+              ? null
+              : {
+                  'users': users,
+                });
     } on DioError catch (e) {
       throw CalendarException.fromDioError(e);
     }
 
     try {
-      if (res.data == null) {
-        return (
-          appointments: <Appointment>[],
-          measurements: <Measurement>[],
-          consumptions: <Consumption>[],
-        );
-      }
-      final appointmentsJson = res.data['appointments'] as List<dynamic>;
-      final measurementsJson = res.data['measurements'] as List<dynamic>;
-      final consumptionsJson = res.data['consumptions'] as List<dynamic>;
+      final List<UserCalendar> calendar = [];
 
-      return (
-        appointments: appointmentsJson
-            .map((e) => Appointment.fromJson(e as Map<String, dynamic>))
-            .toList(),
-        measurements: measurementsJson
-            .map((e) => Measurement.fromJson(e as Map<String, dynamic>))
-            .toList(),
-        consumptions: consumptionsJson
-            .map((e) => Consumption.fromJson(e as Map<String, dynamic>))
-            .toList(),
-      );
+      if (res.data == null) {
+        return [];
+      }
+
+      final data = res.data as Map<String, dynamic>;
+
+      data.forEach((String userId, userCalendar) {
+        final appointments = userCalendar['appointments'] as List<dynamic>;
+        final measurements = userCalendar['measurements'] as List<dynamic>;
+        final consumptions = userCalendar['consumptions'] as List<dynamic>;
+
+        calendar.add({
+          userId: (
+            appointments: appointments
+                .map<Appointment>((e) => Appointment.fromJson(
+                      e as Map<String, dynamic>,
+                    ))
+                .toList(),
+            measurements: measurements
+                .map<Measurement>((e) => Measurement.fromJson(
+                      e as Map<String, dynamic>,
+                    ))
+                .toList(),
+            consumptions: consumptions
+                .map<Consumption>((e) => Consumption.fromJson(
+                      e as Map<String, dynamic>,
+                    ))
+                .toList(),
+          )
+        });
+      });
+
+      return calendar;
     } catch (e) {
       throw CalendarSerializationException();
     }

@@ -22,12 +22,16 @@ class NotificationsButton extends ConsumerWidget {
         width: _size,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: context.colorScheme.secondary,
+            color: context.colorScheme.background,
             borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
           ),
           child: Center(
             child: SvgPicture.asset(
               Vectors.bell,
+              colorFilter: ColorFilter.mode(
+                context.colorScheme.onBackground,
+                BlendMode.srcIn,
+              ),
               width: _iconSize,
               height: _iconSize,
             ),

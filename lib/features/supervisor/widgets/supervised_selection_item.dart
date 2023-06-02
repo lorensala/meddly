@@ -18,7 +18,10 @@ class SupervisedSelectionItem extends ConsumerWidget {
 
     return ListTile(
       onTap: () {
-        ref.read(selectedSupervisedProvider.notifier).update(supervised);
+        ref.read(selectedSupervisedProvider.notifier).update([
+          ...selected,
+          supervised,
+        ]);
         Navigator.of(context).pop();
       },
       selected: selected == supervised,

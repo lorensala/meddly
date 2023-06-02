@@ -62,6 +62,7 @@ class BottomNavBar extends HookConsumerWidget {
         currentIndex: selectedIndex.value,
         backgroundColor: context.colorScheme.background,
         unselectedFontSize: 13,
+        selectedFontSize: 13,
         elevation: 0,
         type: BottomNavigationBarType.fixed,
         onTap: (index) {

@@ -13,49 +13,58 @@ List<CalendarEvent> calendarDailyEvents(
   final selectedDate = ref.watch(calendarSelectedDateProvider);
 
   return ref.watch(calendarControllerProvider).maybeWhen(
-        data: (res) {
+        data: (usersCalendarList) {
           final events = <CalendarEvent>[];
 
-          for (final appointment in res.appointments) {
-            if (appointment.date.isSameDay(selectedDate)) {
-              events.add(
-                CalendarEvent.fromAppointment(
-                  description: appointment.location ??
-                      appointment.speciality?.name ??
-                      '',
-                  title: appointment.name,
-                  date: appointment.date,
-                  id: appointment.id!,
-                ),
-              );
-            }
-          }
+          for (final userCalendar in usersCalendarList) {
+            final userCalendarEvents = <CalendarEvent>[];
 
-          for (final consumption in res.consumptions) {
-            if (consumption.date.isSameDay(selectedDate)) {
-              events.add(
-                CalendarEvent.fromConsumption(
-                  title: consumption.consumed.toString(),
-                  description:
-                      consumption.realConsumptionDate.toIso8601String(),
-                  id: consumption.medicineId,
-                  date: consumption.date,
-                ),
-              );
-            }
-          }
+            userCalendar.forEach((String uid, Calendar calendar) {
+              for (final appointment in calendar.appointments) {
+                if (appointment.date.isSameDay(selectedDate)) {
+                  userCalendarEvents.add(
+                    AppointmentEvent(
+                      id: appointment.id ?? 0,
+                      uid: uid,
+                      title: appointment.name,
+                      description: appointment.location ?? 'Sin ubicación',
+                      date: appointment.date,
+                    ),
+                  );
+                }
+              }
 
-          for (final measurement in res.measurements) {
-            if (measurement.date.isSameDay(selectedDate)) {
-              events.add(
-                CalendarEvent.fromMeasurement(
-                  title: measurement.value.toString(),
-                  description: measurement.type.name,
-                  id: measurement.id,
-                  date: measurement.date,
-                ),
-              );
-            }
+              for (final measurement in calendar.measurements) {
+                if (measurement.date.isSameDay(selectedDate)) {
+                  userCalendarEvents.add(
+                    MeasurementEvent(
+                      id: measurement.id,
+                      uid: uid,
+                      title: measurement.value.toString(),
+                      description: measurement.type.name,
+                      date: measurement.date,
+                    ),
+                  );
+                }
+              }
+
+              for (final consumption in calendar.consumptions) {
+                if (consumption.date.isSameDay(selectedDate)) {
+                  userCalendarEvents.add(
+                    MedicineEvent(
+                      id: consumption.medicineId,
+                      uid: uid,
+                      title: 'Medicamento ${consumption.medicineId}',
+                      description: 'Descripción ${consumption.medicineId}',
+                      date: consumption.date,
+                      consumed: consumption.consumed,
+                    ),
+                  );
+                }
+              }
+            });
+
+            events.addAll(userCalendarEvents);
           }
 
           return events;

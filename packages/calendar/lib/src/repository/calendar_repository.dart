@@ -9,37 +9,32 @@ class CalendarRepository {
 
   final CalendarApi _api;
 
-  Future<
-      ({
-        CalendarException? err,
-        List<Appointment> appointments,
-        List<Measurement> measurements,
-        List<Consumption> consumptions,
-      })> fetchCalendar([String supervisedId = '']) async {
+  Future<(CalendarException?, List<UserCalendar>)> fetchCalendar(
+      [List<String> users = const <String>[]]) async {
     try {
-      final (:appointments, :measurements, :consumptions) =
-          await _api.fetchAll(supervisedId);
+      final List<UserCalendar> calendar = await _api.fetchAll(users);
 
-      return (
-        err: null,
-        appointments: appointments,
-        measurements: measurements,
-        consumptions: consumptions,
-      );
+      if (calendar.isEmpty) {
+        return (null, <UserCalendar>[]);
+      } else {
+        final List<Appointment> appointments = [];
+        final List<Measurement> measurements = [];
+        final List<Consumption> consumptions = [];
+
+        calendar.forEach((userCalendar) {
+          userCalendar.forEach((userId, calendar) {
+            appointments.addAll(calendar.appointments);
+            measurements.addAll(calendar.measurements);
+            consumptions.addAll(calendar.consumptions);
+          });
+        });
+
+        return (null, calendar);
+      }
     } on CalendarException catch (e) {
-      return (
-        err: e,
-        appointments: <Appointment>[],
-        measurements: <Measurement>[],
-        consumptions: <Consumption>[]
-      );
+      return (e, <UserCalendar>[]);
     } catch (_) {
-      return (
-        err: CalendarUnknownException(),
-        appointments: <Appointment>[],
-        measurements: <Measurement>[],
-        consumptions: <Consumption>[]
-      );
+      return (const CalendarUnknownException(), <UserCalendar>[]);
     }
   }
 

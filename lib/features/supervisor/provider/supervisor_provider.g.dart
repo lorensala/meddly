@@ -67,12 +67,12 @@ final supervisedProvider = AutoDisposeProvider<User>.internal(
 
 typedef SupervisedRef = AutoDisposeProviderRef<User>;
 String _$selectedSupervisedHash() =>
-    r'42f5e6e584448d6fa30c1d4dfdbc375842889150';
+    r'2904c2001bb9a447485f356cb34812cfb6286a0b';
 
 /// See also [SelectedSupervised].
 @ProviderFor(SelectedSupervised)
 final selectedSupervisedProvider =
-    AutoDisposeNotifierProvider<SelectedSupervised, User?>.internal(
+    AutoDisposeNotifierProvider<SelectedSupervised, List<User>>.internal(
   SelectedSupervised.new,
   name: r'selectedSupervisedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -82,5 +82,5 @@ final selectedSupervisedProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$SelectedSupervised = AutoDisposeNotifier<User?>;
+typedef _$SelectedSupervised = AutoDisposeNotifier<List<User>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

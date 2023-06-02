@@ -38,6 +38,7 @@ class _ResendOtpButton extends ConsumerWidget {
     return Center(
       child: GestureDetector(
         onTap: () =>
+            //  ref.read(authControllerProvider.notifier).signOut(),
             ref.read(phoneControllerProvider.notifier).sendPhoneNumber(),
         child: Text(
           context.l10n.resendCode,

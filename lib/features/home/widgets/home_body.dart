@@ -39,6 +39,7 @@ class HomeBody extends ConsumerWidget {
             CalendarDayCarrousel(),
             SizedBox(height: Sizes.medium),
             CalendarList(),
+            SizedBox(height: Sizes.medium),
           ],
         ),
       ),

@@ -20,7 +20,7 @@ class MedicinePresentationList extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        boxShadow: Constants.boxShadow,
+        boxShadow: boxShadow(context),
         borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
       ),
       child: Theme(

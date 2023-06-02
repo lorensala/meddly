@@ -59,42 +59,26 @@ class NotificationPreferenceSwitch extends HookConsumerWidget {
       );
     }
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+    return ListTile(
+      title: Text(
+        preference.name.capitalize(),
+        style: context.textTheme.titleSmall,
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  preference.name.capitalize(),
-                  style: context.textTheme.titleSmall,
-                ),
-                description(),
-              ],
-            ),
-          ),
-          const SizedBox(width: Sizes.medium),
-          IgnorePointer(
-            ignoring: isLoading,
-            child: Switch.adaptive(
-              onChanged: (bool value) {
-                if (value) {
-                  isOn.value = true;
-                  notifier.addNotificationPreference(preference);
-                } else {
-                  isOn.value = false;
-                  notifier.deleteNotificationPreference(preference);
-                }
-              },
-              value: isOn.value,
-            ),
-          )
-        ],
+      subtitle: description(),
+      trailing: IgnorePointer(
+        ignoring: isLoading,
+        child: Switch.adaptive(
+          onChanged: (bool value) {
+            if (value) {
+              isOn.value = true;
+              notifier.addNotificationPreference(preference);
+            } else {
+              isOn.value = false;
+              notifier.deleteNotificationPreference(preference);
+            }
+          },
+          value: isOn.value,
+        ),
       ),
     );
   }

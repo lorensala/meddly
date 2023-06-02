@@ -206,7 +206,7 @@
     "@_SUPERVISOR": {},
     "@_SUPERVISOR": {},
     "supervisors": "Supervisores",
-    "supervised": "Supervisado",
+    "supervised": "Supervisados",
     "supervisedConfrimation": "¿Estás seguro/a de que deseas dejar de supervisar a {name}?",
     "supervisorConfrimation": "¿Estás seguro/a de que deseas dejar de ser supervisor de {name}?",
     "supervisedEmptyMessage": "No estas supervisando a nadie aún",

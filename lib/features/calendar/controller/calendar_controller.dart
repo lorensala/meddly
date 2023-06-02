@@ -12,29 +12,19 @@ part 'calendar_controller.g.dart';
 @Riverpod(keepAlive: true)
 class CalendarController extends _$CalendarController {
   @override
-  Future<
-      ({
-        List<Appointment> appointments,
-        List<Consumption> consumptions,
-        List<Measurement> measurements
-      })> build() async {
+  Future<List<UserCalendar>> build() async {
     final repository = ref.read(calendarRepositoryProvider);
     final selected = ref.read(selectedSupervisedProvider);
+    final usersIds = selected.map((e) => e.uid).toList();
 
-    final res =
-        await repository.fetchCalendar(selected == null ? '' : selected.uid);
+    final (err, calendar) = await repository.fetchCalendar(usersIds);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    if (res.err != null) {
-      throw Exception(res.err!.describe(l10n));
-    } else {
-      return (
-        appointments: res.appointments,
-        consumptions: res.consumptions,
-        measurements: res.measurements,
-      );
+    if (err != null) {
+      throw Exception(err.describe(l10n));
     }
+    return calendar;
   }
 
   void refresh() {

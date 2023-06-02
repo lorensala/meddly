@@ -1,5 +1,4 @@
 import 'package:meddly/features/calendar/calendar.dart';
-import 'package:meddly/features/user/user.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supervisor/supervisor.dart';
@@ -30,15 +29,13 @@ User supervised(SupervisedRef ref) {
 @riverpod
 class SelectedSupervised extends _$SelectedSupervised {
   @override
-  User? build() {
-    return ref.watch(userProvider);
+  List<User> build() {
+    return [];
   }
 
   // ignore: use_setters_to_change_properties
-  void update(User? supervised) {
-    if (state == supervised) return;
-
-    state = supervised;
+  void update(List<User> users) {
+    state = users;
     ref.keepAlive();
     ref.watch(calendarControllerProvider.notifier).refresh();
   }

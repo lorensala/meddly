@@ -23,7 +23,7 @@ class CalendarDayCarrouselItem extends ConsumerWidget {
       ),
       padding: const EdgeInsets.all(Sizes.small),
       decoration: BoxDecoration(
-        boxShadow: !isSelected ? null : Constants.boxShadow,
+        boxShadow: !isSelected ? null : boxShadow(context),
         color: isToday
             ? context.colorScheme.primary
             : context.colorScheme.secondary,

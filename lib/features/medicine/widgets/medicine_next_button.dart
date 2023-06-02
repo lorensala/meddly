@@ -19,7 +19,7 @@ class MedicineNextButton extends ConsumerWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        boxShadow: Constants.boxShadow,
+        boxShadow: boxShadow(context),
       ),
       child: SafeArea(
         child: Padding(

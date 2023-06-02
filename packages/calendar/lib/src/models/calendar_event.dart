@@ -1,29 +1,48 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+sealed class CalendarEvent {
+  final int id;
+  final String uid;
+  final String title;
+  final String description;
+  final DateTime date;
 
-part 'calendar_event.freezed.dart';
+  const CalendarEvent({
+    required this.id,
+    required this.uid,
+    required this.title,
+    required this.description,
+    required this.date,
+  });
+}
 
-@freezed
-class CalendarEvent with _$CalendarEvent {
-  const factory CalendarEvent.fromConsumption({
-    required int id,
-    @Default('') String title,
-    @Default('') String description,
-    required DateTime date,
-    @Default(false) bool consumed,
-  }) = _MedicineEvent;
+class MedicineEvent extends CalendarEvent {
+  MedicineEvent({
+    required this.consumed,
+    required super.id,
+    required super.uid,
+    required super.title,
+    required super.description,
+    required super.date,
+  });
 
-  const factory CalendarEvent.fromAppointment({
-    required int id,
-    @Default('') String title,
-    @Default('') String description,
-    required DateTime date,
-  }) = _AppointmentEvent;
+  final bool consumed;
+}
 
-  const factory CalendarEvent.fromMeasurement({
-    required int id,
-    @Default('') String title,
-    @Default('') String description,
-    required DateTime date,
-    @Default(false) bool measured,
-  }) = _MeasurementEvent;
+class AppointmentEvent extends CalendarEvent {
+  AppointmentEvent({
+    required super.id,
+    required super.uid,
+    required super.title,
+    required super.description,
+    required super.date,
+  });
+}
+
+class MeasurementEvent extends CalendarEvent {
+  MeasurementEvent({
+    required super.id,
+    required super.uid,
+    required super.title,
+    required super.description,
+    required super.date,
+  });
 }

@@ -10,53 +10,49 @@ class CalendarSupervisor extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final users = ref.watch(calendarUsersProvider);
-    final selected = ref.watch(selectedSupervisedProvider);
+    final selectedUsers = ref.watch(selectedSupervisedProvider);
 
-    if (users.isEmpty || users.length == 1) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(Sizes.medium),
-          child: ShimmeredContainer(
-            height: Sizes.large,
-            width: context.width * 0.5,
-          ).customShimmer(),
-        ),
-      );
+    if (users.isEmpty) {
+      return const SizedBox.shrink();
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(Sizes.medium),
-      child: Center(
-        child: GestureDetector(
-          onTap: () {
-            showModalBottomSheet<void>(
-              context: context,
-              useRootNavigator: true,
-              backgroundColor: context.colorScheme.background,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(Sizes.large),
-                ),
-              ),
-              builder: (_) {
-                return ProviderScope(
-                  parent: ProviderScope.containerOf(context),
-                  child: const SelectSupervisedBottomSheet(),
+    return Builder(
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(Sizes.medium),
+          child: Center(
+            child: GestureDetector(
+              onTap: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  useRootNavigator: true,
+                  backgroundColor: context.colorScheme.background,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(Sizes.large),
+                    ),
+                  ),
+                  builder: (_) {
+                    return ProviderScope(
+                      parent: ProviderScope.containerOf(context),
+                      child: const SelectSupervisedBottomSheet(),
+                    );
+                  },
                 );
               },
-            );
-          },
-          child: Text(
-            selected == null || selected == users.first
-                ? 'Calendario de todos los pacientes'
-                : 'Calendario de ${selected.firstName} ${selected.lastName}',
-            style: context.textTheme.bodyMedium!.copyWith(
-              decoration: TextDecoration.underline,
+              child: Text(
+                selectedUsers.length == users.length
+                    ? 'Calendario de todos los pacientes'
+                    : 'Filtrado',
+                style: context.textTheme.bodyMedium!.copyWith(
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
-            textAlign: TextAlign.center,
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

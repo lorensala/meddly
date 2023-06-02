@@ -61,7 +61,7 @@ class _IntervalBody extends HookConsumerWidget {
           padding: const EdgeInsets.all(Sizes.medium),
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,
-            boxShadow: Constants.boxShadow,
+            boxShadow: boxShadow(context),
             borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
           ),
           child: Row(
@@ -83,7 +83,7 @@ class _IntervalBody extends HookConsumerWidget {
         return DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,
-            boxShadow: Constants.boxShadow,
+            boxShadow: boxShadow(context),
             borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
           ),
           child: Padding(

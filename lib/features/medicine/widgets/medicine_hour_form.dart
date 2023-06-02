@@ -59,7 +59,7 @@ class _HourSelector extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(Sizes.small),
       decoration: BoxDecoration(
-        boxShadow: Constants.boxShadow,
+        boxShadow: boxShadow(context),
         color: context.colorScheme.secondary,
         borderRadius: BorderRadius.circular(Sizes.small),
       ),

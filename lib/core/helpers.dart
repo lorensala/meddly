@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:meddly/core/core.dart';
 
 Future<void> showConfirmationDialog(
   BuildContext context,
@@ -65,4 +66,14 @@ Future<void> showSnackBar(
         duration: duration,
       ),
     );
+}
+
+List<BoxShadow> boxShadow(BuildContext context) {
+  return [
+    BoxShadow(
+      color: context.colorScheme.onSecondary.withOpacity(0.2),
+      blurRadius: 6,
+      offset: const Offset(2, 2),
+    ),
+  ];
 }
