@@ -123,9 +123,9 @@ class AppTheme {
       shadow: _shadowLight,
     ),
     listTileTheme: ListTileThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
-      ),
+      // shape: RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+      // ),
       selectedColor: _primaryLight,
       selectedTileColor: _primaryLight.withOpacity(0.1),
       tileColor: _backgroundLight,
@@ -134,6 +134,7 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         elevation: 0,
         backgroundColor: _primaryLight,
+        shadowColor: _onSecondaryLight.withOpacity(0.2),
         disabledBackgroundColor: _primaryLight.withOpacity(0.2),
         disabledForegroundColor: _primaryLight,
         splashFactory: NoSplash.splashFactory,

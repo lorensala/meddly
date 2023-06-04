@@ -3,7 +3,6 @@ import 'package:calendar/calendar.dart';
 import 'package:measurement/measurement.dart';
 import 'package:meddly/features/calendar/core/core.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
-import 'package:meddly/features/supervisor/supervisor.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -14,7 +13,7 @@ class CalendarController extends _$CalendarController {
   @override
   Future<List<UserCalendar>> build() async {
     final repository = ref.read(calendarRepositoryProvider);
-    final selected = ref.read(selectedSupervisedProvider);
+    final selected = ref.read(calendarSelectedUsersProvider);
     final usersIds = selected.map((e) => e.uid).toList();
 
     final (err, calendar) = await repository.fetchCalendar(usersIds);

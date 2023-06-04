@@ -39,8 +39,13 @@ class CalendarList extends ConsumerWidget {
           physics: const ClampingScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            return CalendarListItem(
-              event: calendarDailyEvents[index],
+            return ProviderScope(
+              overrides: [
+                calendarEventProvider.overrideWithValue(
+                  calendarDailyEvents[index],
+                ),
+              ],
+              child: const CalendarListItem(),
             );
           },
         );

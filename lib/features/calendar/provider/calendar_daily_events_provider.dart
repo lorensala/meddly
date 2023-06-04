@@ -67,6 +67,8 @@ List<CalendarEvent> calendarDailyEvents(
             events.addAll(userCalendarEvents);
           }
 
+          events.sort((a, b) => a.date.compareTo(b.date));
+
           return events;
         },
         orElse: () => [],

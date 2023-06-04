@@ -9,10 +9,10 @@ class CalendarSupervisor extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final users = ref.watch(calendarUsersProvider);
-    final selectedUsers = ref.watch(selectedSupervisedProvider);
+    final calendarUsers = ref.watch(calendarUsersProvider);
+    final selectedUser = ref.watch(calendarSelectedUsersProvider);
 
-    if (users.isEmpty) {
+    if (calendarUsers.isEmpty) {
       return const SizedBox.shrink();
     }
 
@@ -25,6 +25,7 @@ class CalendarSupervisor extends HookConsumerWidget {
               onTap: () {
                 showModalBottomSheet<void>(
                   context: context,
+                  isDismissible: false,
                   useRootNavigator: true,
                   backgroundColor: context.colorScheme.background,
                   shape: const RoundedRectangleBorder(
@@ -41,9 +42,9 @@ class CalendarSupervisor extends HookConsumerWidget {
                 );
               },
               child: Text(
-                selectedUsers.length == users.length
-                    ? 'Calendario de todos los pacientes'
-                    : 'Filtrado',
+                calendarUsers.length == selectedUser.length
+                    ? 'Todos'
+                    : 'Supervisados',
                 style: context.textTheme.bodyMedium!.copyWith(
                   decoration: TextDecoration.underline,
                 ),

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/calendar/controller/calendar_controller.dart';
+import 'package:meddly/features/calendar/provider/calendar_selected_users_provider.dart';
 import 'package:meddly/features/export/export.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/notifications/view/view.dart';
@@ -133,7 +134,7 @@ class UserBody extends ConsumerWidget {
                         ref
                           ..invalidate(calendarControllerProvider)
                           ..invalidate(supervisorControllerProvider)
-                          ..invalidate(selectedSupervisedProvider);
+                          ..invalidate(calendarSelectedUsersProvider);
                         await Future.wait([
                           ref.read(userControllerProvider.notifier).signOut(),
                           ref.read(authControllerProvider.notifier).signOut(),

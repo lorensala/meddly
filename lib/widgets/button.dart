@@ -11,6 +11,7 @@ class Button extends StatelessWidget {
     this.isValid = true,
     this.prefix,
     super.key,
+    this.elevation,
   });
 
   final bool isLoading;
@@ -18,6 +19,7 @@ class Button extends StatelessWidget {
   final VoidCallback onPressed;
   final String label;
   final String? prefix;
+  final double? elevation;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,9 @@ class Button extends StatelessWidget {
             isLoading ? Sizes.buttonHeight : MediaQuery.of(context).size.width,
         duration: const Duration(milliseconds: 100),
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: elevation ?? 0,
+          ),
           onPressed: isValid
               ? !isLoading
                   ? () {
