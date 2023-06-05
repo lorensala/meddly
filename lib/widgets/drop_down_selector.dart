@@ -34,6 +34,7 @@ class DropDownSelector<T> extends StatelessWidget {
             borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
             value: value,
             items: items,
+            style: context.textTheme.bodyMedium,
             onChanged: onChanged,
           ),
         ),

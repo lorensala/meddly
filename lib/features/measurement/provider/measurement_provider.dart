@@ -36,3 +36,8 @@ bool measurementIsValid(MeasurementIsValidRef ref) {
 
   return value.isValid && value.value.isNotEmpty && date != null;
 }
+
+@riverpod
+Measurement measurement(MeasurementRef ref) {
+  throw UnimplementedError();
+}

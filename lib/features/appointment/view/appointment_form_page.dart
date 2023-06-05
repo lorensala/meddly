@@ -1,42 +1,76 @@
 import 'package:appointment/appointment.dart';
+// ignore: depend_on_referenced_packages
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
-import 'package:meddly/features/appointment/controller/apointment_form_controller.dart';
-import 'package:meddly/features/appointment/controller/appointment_controller.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
-class AppointmentFormPage extends StatelessWidget {
-  const AppointmentFormPage({super.key});
+class AppointmentFormPage extends HookConsumerWidget {
+  const AppointmentFormPage(this.id, {super.key});
+
+  final int? id;
 
   static const String routeName = 'appointment-form';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appointment = ref
+        .watch(
+          appointmentControllerProvider,
+        )
+        .asData!
+        .value
+        .firstWhereOrNull(
+          (element) => element.id == id,
+        );
+    useEffect(
+      () {
+        if (appointment != null) {
+          Future.delayed(
+            Duration.zero,
+            () {
+              ref
+                  .read(appointmentFormControllerProvider.notifier)
+                  .loadAppointment(
+                    appointment,
+                  );
+            },
+          );
+        }
+        return null;
+      },
+      [],
+    );
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nuevo turno médico'),
+        title: Text(
+          appointment == null ? 'Nuevo turno médico' : 'Editar turno médico',
+        ),
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: const SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(Sizes.medium),
+            padding: const EdgeInsets.all(Sizes.medium),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppointmentNameInput(),
-                AppointmentSpecialityDropDown(),
-                AppointmentDateSelector(),
-                AppointmentDoctorInput(),
-                AppointmentLocationInput(),
-                AppointmentNotesInput(),
-                AppointmentSaveButton(),
-                SizedBox(height: Sizes.extraLarge),
+                const AppointmentNameInput(),
+                const AppointmentSpecialityDropDown(),
+                AppointmentDateSelector(
+                  initialValue: appointment?.date,
+                ),
+                const AppointmentDoctorInput(),
+                const AppointmentLocationInput(),
+                const AppointmentNotesInput(),
+                const AppointmentSaveButton(),
+                const SizedBox(height: Sizes.extraLarge),
               ],
             ),
           ),
@@ -53,14 +87,20 @@ class AppointmentSaveButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isValid = ref.watch(isAppointmentFormValidProvider);
     final isLoading = ref.watch(appointmentControllerProvider).isLoading;
+    final isEditing = ref.watch(
+      appointmentFormControllerProvider.select(
+        (value) => value.isEditing,
+      ),
+    );
+    final isValid = ref.watch(isAppointmentFormValidProvider);
 
     return Button(
       isValid: isValid,
       isLoading: isLoading,
-      onPressed: () =>
-          ref.read(appointmentFormControllerProvider.notifier).save(),
+      onPressed: () => isEditing
+          ? ref.read(appointmentFormControllerProvider.notifier).save()
+          : ref.read(appointmentFormControllerProvider.notifier).add(),
       label: context.l10n.save,
     );
   }
@@ -74,14 +114,17 @@ class AppointmentNotesInput extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
+    final controller = useTextEditingController();
 
-    final initialValue = ref.watch(
-      appointmentFormControllerProvider.select(
-        (value) => value.notes,
-      ),
+    ref.listen(
+      appointmentFormControllerProvider.select((value) => value.notes),
+      (_, notes) {
+        controller.value = TextEditingValue(
+          text: notes,
+          selection: TextSelection.collapsed(offset: notes.length),
+        );
+      },
     );
-
-    final controller = useTextEditingController(text: initialValue);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,6 +135,7 @@ class AppointmentNotesInput extends HookConsumerWidget {
           controller: controller,
           style: context.textTheme.bodyMedium,
           onChanged: notifier.onNotesChanged,
+          maxLength: 200,
           keyboardType: TextInputType.multiline,
           maxLines: 4,
           decoration: const InputDecoration(
@@ -112,14 +156,17 @@ class AppointmentLocationInput extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
+    final controller = useTextEditingController();
 
-    final initialValue = ref.watch(
-      appointmentFormControllerProvider.select(
-        (value) => value.location,
-      ),
+    ref.listen(
+      appointmentFormControllerProvider.select((value) => value.location),
+      (_, location) {
+        controller.value = TextEditingValue(
+          text: location,
+          selection: TextSelection.collapsed(offset: location.length),
+        );
+      },
     );
-
-    final controller = useTextEditingController(text: initialValue);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,14 +195,17 @@ class AppointmentDoctorInput extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
+    final controller = useTextEditingController();
 
-    final initialValue = ref.watch(
-      appointmentFormControllerProvider.select(
-        (value) => value.doctor.value,
-      ),
+    ref.listen(
+      appointmentFormControllerProvider.select((value) => value.doctor),
+      (_, doctor) {
+        controller.value = TextEditingValue(
+          text: doctor.value,
+          selection: TextSelection.collapsed(offset: doctor.value.length),
+        );
+      },
     );
-
-    final controller = useTextEditingController(text: initialValue);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,13 +229,14 @@ class AppointmentDoctorInput extends HookConsumerWidget {
 class AppointmentDateSelector extends HookConsumerWidget {
   const AppointmentDateSelector({
     super.key,
+    this.initialValue,
   });
+
+  final DateTime? initialValue;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
-    final value = ref
-        .watch(appointmentFormControllerProvider.select((value) => value.date));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,8 +244,14 @@ class AppointmentDateSelector extends HookConsumerWidget {
         const InputLabel(label: 'Fecha y hora', isRequired: true),
         const SizedBox(height: Sizes.extraSmall),
         DateSelector(
-          initialValue: value,
+          initialValue: initialValue,
           initialDateTime: DateTime.now(),
+          firstDate: DateTime(
+            DateTime.now().year,
+            DateTime.now().month,
+            DateTime.now().day,
+          ),
+          lastDate: DateTime.now().add(const Duration(days: 365)),
           onDateTimeChanged: notifier.onDateChanged,
           errorText: null,
         ),
@@ -255,20 +312,32 @@ class AppointmentSpecialityDropDown extends HookConsumerWidget {
 
 class AppointmentNameInput extends HookConsumerWidget {
   const AppointmentNameInput({
+    this.appointment,
     super.key,
   });
+
+  final Appointment? appointment;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
+    final controller = useTextEditingController();
+    final name = ref
+        .watch(
+          appointmentFormControllerProvider,
+        )
+        .name;
 
-    final initialValue = ref.watch(
-      appointmentFormControllerProvider.select(
-        (value) => value.name.value,
-      ),
+    useEffect(
+      () {
+        controller.value = TextEditingValue(
+          text: name.value,
+          selection: TextSelection.collapsed(offset: name.value.length),
+        );
+        return null;
+      },
+      [name],
     );
-
-    final controller = useTextEditingController(text: initialValue);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

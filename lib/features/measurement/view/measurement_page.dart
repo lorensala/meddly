@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
@@ -35,15 +36,11 @@ class MeasurementView extends ConsumerWidget {
     ref.listen(measurementControllerProvider, (_, state) {
       state.whenOrNull(
         error: (err, _) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(err.toString()),
-            ),
-          );
+          showSnackBar(context, err.toString());
         },
       );
     });
 
-    return const MeasurementBody();
+    return const MeasurementList();
   }
 }

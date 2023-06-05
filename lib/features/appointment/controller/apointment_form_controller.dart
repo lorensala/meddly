@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_public_notifier_properties
 import 'package:appointment/appointment.dart';
 import 'package:meddly/features/appointment/controller/appointment_controller.dart';
 import 'package:meddly/features/appointment/state/appointment_form_state.dart';
@@ -13,14 +14,16 @@ class AppointmentFormController extends _$AppointmentFormController {
     return const AppointmentFormState();
   }
 
-  void init(Appointment appointment) {
+  void loadAppointment(Appointment existingAppointment) {
     state = state.copyWith(
-      name: Name.dirty(appointment.name),
-      speciality: appointment.speciality ?? AppointmentSpeciality.cardiology,
-      date: appointment.date,
-      doctor: Name.dirty(appointment.doctor ?? ''),
-      location: appointment.location ?? '',
-      notes: appointment.notes ?? '',
+      id: existingAppointment.id!,
+      name: Name.dirty(existingAppointment.name),
+      speciality: existingAppointment.speciality!,
+      date: existingAppointment.date,
+      doctor: Name.dirty(existingAppointment.doctor ?? ''),
+      location: existingAppointment.location ?? '',
+      notes: existingAppointment.notes ?? '',
+      isEditing: true,
     );
   }
 
@@ -48,7 +51,7 @@ class AppointmentFormController extends _$AppointmentFormController {
     state = state.copyWith(notes: value);
   }
 
-  Future<void> save() async {
+  Future<void> add() async {
     final appointment = Appointment(
       name: state.name.value,
       speciality: state.speciality,
@@ -61,5 +64,21 @@ class AppointmentFormController extends _$AppointmentFormController {
     await ref
         .watch(appointmentControllerProvider.notifier)
         .addAppointment(appointment);
+  }
+
+  Future<void> save() async {
+    final appointment = Appointment(
+      id: state.id,
+      name: state.name.value,
+      speciality: state.speciality,
+      date: state.date!,
+      doctor: state.doctor.value,
+      location: state.location,
+      notes: state.notes,
+    );
+
+    await ref
+        .watch(appointmentControllerProvider.notifier)
+        .updateAppointment(appointment);
   }
 }

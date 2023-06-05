@@ -10,6 +10,7 @@ part 'appointment_form_state.freezed.dart';
 @freezed
 class AppointmentFormState with _$AppointmentFormState, FormzMixin {
   const factory AppointmentFormState({
+    @Default(0) int id,
     @Default(Name.pure()) Name name,
     @Default(AppointmentSpeciality.cardiology) AppointmentSpeciality speciality,
     DateTime? date,

@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AppointmentFormState {
+  int get id => throw _privateConstructorUsedError;
   Name get name => throw _privateConstructorUsedError;
   AppointmentSpeciality get speciality => throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
@@ -36,7 +37,8 @@ abstract class $AppointmentFormStateCopyWith<$Res> {
       _$AppointmentFormStateCopyWithImpl<$Res, AppointmentFormState>;
   @useResult
   $Res call(
-      {Name name,
+      {int id,
+      Name name,
       AppointmentSpeciality speciality,
       DateTime? date,
       Name doctor,
@@ -59,6 +61,7 @@ class _$AppointmentFormStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? speciality = null,
     Object? date = freezed,
@@ -68,6 +71,10 @@ class _$AppointmentFormStateCopyWithImpl<$Res,
     Object? isEditing = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -109,7 +116,8 @@ abstract class _$$_AppointmentFormStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Name name,
+      {int id,
+      Name name,
       AppointmentSpeciality speciality,
       DateTime? date,
       Name doctor,
@@ -129,6 +137,7 @@ class __$$_AppointmentFormStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? speciality = null,
     Object? date = freezed,
@@ -138,6 +147,10 @@ class __$$_AppointmentFormStateCopyWithImpl<$Res>
     Object? isEditing = null,
   }) {
     return _then(_$_AppointmentFormState(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -174,7 +187,8 @@ class __$$_AppointmentFormStateCopyWithImpl<$Res>
 
 class _$_AppointmentFormState extends _AppointmentFormState {
   const _$_AppointmentFormState(
-      {this.name = const Name.pure(),
+      {this.id = 0,
+      this.name = const Name.pure(),
       this.speciality = AppointmentSpeciality.cardiology,
       this.date,
       this.doctor = const Name.pure(),
@@ -183,6 +197,9 @@ class _$_AppointmentFormState extends _AppointmentFormState {
       this.isEditing = false})
       : super._();
 
+  @override
+  @JsonKey()
+  final int id;
   @override
   @JsonKey()
   final Name name;
@@ -206,7 +223,7 @@ class _$_AppointmentFormState extends _AppointmentFormState {
 
   @override
   String toString() {
-    return 'AppointmentFormState(name: $name, speciality: $speciality, date: $date, doctor: $doctor, location: $location, notes: $notes, isEditing: $isEditing)';
+    return 'AppointmentFormState(id: $id, name: $name, speciality: $speciality, date: $date, doctor: $doctor, location: $location, notes: $notes, isEditing: $isEditing)';
   }
 
   @override
@@ -214,6 +231,7 @@ class _$_AppointmentFormState extends _AppointmentFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppointmentFormState &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.speciality, speciality) ||
                 other.speciality == speciality) &&
@@ -227,8 +245,8 @@ class _$_AppointmentFormState extends _AppointmentFormState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, speciality, date, doctor, location, notes, isEditing);
+  int get hashCode => Object.hash(runtimeType, id, name, speciality, date,
+      doctor, location, notes, isEditing);
 
   @JsonKey(ignore: true)
   @override
@@ -240,7 +258,8 @@ class _$_AppointmentFormState extends _AppointmentFormState {
 
 abstract class _AppointmentFormState extends AppointmentFormState {
   const factory _AppointmentFormState(
-      {final Name name,
+      {final int id,
+      final Name name,
       final AppointmentSpeciality speciality,
       final DateTime? date,
       final Name doctor,
@@ -249,6 +268,8 @@ abstract class _AppointmentFormState extends AppointmentFormState {
       final bool isEditing}) = _$_AppointmentFormState;
   const _AppointmentFormState._() : super._();
 
+  @override
+  int get id;
   @override
   Name get name;
   @override

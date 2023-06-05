@@ -6,7 +6,7 @@ part of 'calendar_event_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$calendarEventHash() => r'cbb98e5594ebcb0e2068f63968cf4775975f4caa';
+String _$calendarEventHash() => r'c943074fd897ce53251bb681eb037ba95601ace9';
 
 /// See also [calendarEvent].
 @ProviderFor(calendarEvent)
@@ -16,8 +16,8 @@ final calendarEventProvider = AutoDisposeProvider<CalendarEvent>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$calendarEventHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
 typedef CalendarEventRef = AutoDisposeProviderRef<CalendarEvent>;

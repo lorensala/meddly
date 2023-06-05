@@ -24,7 +24,7 @@ class UserBody extends ConsumerWidget {
       value: userStream,
       builder: (user) {
         if (user == null) {
-          return const Text('No user');
+          return const Center(child: Text('No user'));
         }
 
         return SingleChildScrollView(
@@ -93,16 +93,16 @@ class UserBody extends ConsumerWidget {
                     );
                   },
                 ),
-                const SizedBox(height: Sizes.medium),
-                SettingsItem(
-                  vector: Vectors.sun,
-                  label: 'Cambiar tema',
-                  onPressed: () {
-                    // GoRouter.of(context).push(
-                    //   '${UserPage.routeName}/${NotificationsPreferencesPage.routeName}',
-                    // );
-                  },
-                ),
+                // const SizedBox(height: Sizes.medium),
+                // SettingsItem(
+                //   vector: Vectors.sun,
+                //   label: 'Cambiar tema',
+                //   onPressed: () {
+                //     // GoRouter.of(context).push(
+                //     //   '${UserPage.routeName}/${NotificationsPreferencesPage.routeName}',
+                //     // );
+                //   },
+                // ),
                 const SizedBox(height: Sizes.medium),
                 const ExportItem(),
                 const SizedBox(height: Sizes.medium),
