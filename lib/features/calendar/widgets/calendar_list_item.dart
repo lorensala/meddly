@@ -9,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
+import 'package:meddly/features/calendar/controller/consumption_controller.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
@@ -56,7 +57,6 @@ class _EventCard extends ConsumerWidget {
           },
           leading: const _EventLeading(),
           title: Text(event.title),
-          // trailing: const _EventTrailing(),
           subtitle: const _EventSubtitle(),
         ),
       ),
@@ -70,7 +70,10 @@ class _EventSubtitle extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final event = ref.watch(calendarEventProvider);
-    final notifier = ref.watch(calendarControllerProvider.notifier);
+    final notifier = ref.watch(consumptionControllerProvider.notifier);
+    final isLoading = ref.watch(consumptionControllerProvider).isLoading;
+    final isCalendarLoading = ref.watch(calendarControllerProvider).isLoading;
+
     return switch (event) {
       MedicineEvent(
         :final uid,
@@ -83,7 +86,6 @@ class _EventSubtitle extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(event.description),
-            const SizedBox(height: Sizes.small),
             Consumer(
               builder: (context, ref, child) {
                 final user = ref.watch(userProvider);
@@ -96,33 +98,42 @@ class _EventSubtitle extends ConsumerWidget {
                   return const SizedBox();
                 }
 
-                return Button(
-                  elevation: 2,
-                  isValid: !consumed,
-                  onPressed: () {
-                    if (!consumed) {
-                      notifier.addConsumption(
-                        Consumption(
-                          realConsumptionDate: DateTime.now(),
-                          date: date,
-                          consumed: true,
-                          medicineId: id,
-                        ),
-                      );
-                    } else {
-                      notifier.addConsumption(
-                        Consumption(
-                          realConsumptionDate: DateTime.now(),
-                          date: date,
-                          consumed: false,
-                          medicineId: id,
-                        ),
-                      );
-                    }
-                  },
-                  label: consumed
-                      ? '${context.l10n.consumedAt} ${consumedDate?.toHoursAndMinutesString()}'
-                      : context.l10n.markAsConsumed,
+                return Column(
+                  children: [
+                    const SizedBox(height: Sizes.small),
+                    IgnorePointer(
+                      ignoring: isLoading || isCalendarLoading,
+                      child: Button(
+                        elevation: 2,
+                        isValid: !consumed,
+                        isLoading: isLoading,
+                        onPressed: () {
+                          if (!consumed) {
+                            notifier.addConsumption(
+                              Consumption(
+                                realConsumptionDate: DateTime.now(),
+                                date: date,
+                                consumed: true,
+                                medicineId: id,
+                              ),
+                            );
+                          } else {
+                            notifier.addConsumption(
+                              Consumption(
+                                realConsumptionDate: DateTime.now(),
+                                date: date,
+                                consumed: false,
+                                medicineId: id,
+                              ),
+                            );
+                          }
+                        },
+                        label: consumed
+                            ? '${context.l10n.consumedAt} ${consumedDate?.toHoursAndMinutesString()}'
+                            : context.l10n.markAsConsumed,
+                      ),
+                    ),
+                  ],
                 );
               },
             ),

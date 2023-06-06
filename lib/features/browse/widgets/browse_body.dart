@@ -34,7 +34,7 @@ class BrowseBody extends ConsumerWidget {
             BrowseCard(
               title: context.l10n.orientativeConsultations,
               description: context.l10n.orientativeConsultationsDescription,
-              vector: Vectors.measurement,
+              vector: Vectors.consult,
               onTap: () => ref.read(goRouterProvider).push(
                     '${BrowsePage.routeName}/${PredictionsPage.routeName}',
                   ),

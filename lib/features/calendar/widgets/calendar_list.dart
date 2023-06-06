@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
+import 'package:meddly/features/calendar/controller/consumption_controller.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class CalendarList extends ConsumerWidget {
@@ -44,6 +45,8 @@ class CalendarList extends ConsumerWidget {
                 calendarEventProvider.overrideWithValue(
                   calendarDailyEvents[index],
                 ),
+                consumptionControllerProvider
+                    .overrideWith(ConsumptionController.new)
               ],
               child: const CalendarListItem(),
             );

@@ -16,6 +16,10 @@ bool calendarHasAllConsumed(
             for (final entry in userCalendar.entries) {
               final calendar = entry.value;
 
+              if (calendar.consumptions.isEmpty) {
+                return false;
+              }
+
               for (final consumption in calendar.consumptions) {
                 if (consumption.date.isSameDay(date) && !consumption.consumed) {
                   return false;

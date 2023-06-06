@@ -20,11 +20,16 @@ class SupervisedSelectionItem extends ConsumerWidget {
 
     return ListTile(
       onTap: () {
-        ref.read(calendarSelectedUsersProvider.notifier).update([
-          ...selected,
-          supervised,
-        ]);
-        // Navigator.of(context).pop();
+        if (isSelected) {
+          ref.read(calendarSelectedUsersProvider.notifier).update([
+            ...selected.where((element) => element != supervised),
+          ]);
+        } else {
+          ref.read(calendarSelectedUsersProvider.notifier).update([
+            ...selected,
+            supervised,
+          ]);
+        }
       },
       selected: selected.contains(supervised),
       trailing: Row(

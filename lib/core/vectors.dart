@@ -51,6 +51,7 @@ class Vectors {
   static const String measurements = 'assets/svg/measurements.svg';
   static const String supervision = 'assets/svg/supervision.svg';
   static const String linkedAccount = 'assets/svg/linked-account.svg';
+  static const String consult = 'assets/svg/consult.svg';
 
   // * Predictions
   static const String predictionsSymptoms =
