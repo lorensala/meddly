@@ -22,9 +22,11 @@ class MedicineEvent extends CalendarEvent {
     required super.title,
     required super.description,
     required super.date,
+    this.consumedDate,
   });
 
   final bool consumed;
+  final DateTime? consumedDate;
 }
 
 class AppointmentEvent extends CalendarEvent {

@@ -13,16 +13,7 @@ class BrowsePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: BrowseView(),
+      body: BrowseBody(),
     );
-  }
-}
-
-class BrowseView extends StatelessWidget {
-  const BrowseView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const BrowseBody();
   }
 }

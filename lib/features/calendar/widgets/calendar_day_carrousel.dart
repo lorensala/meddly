@@ -7,7 +7,7 @@ import 'package:meddly/features/calendar/calendar.dart';
 class CalendarDayCarrousel extends HookConsumerWidget {
   const CalendarDayCarrousel({super.key});
 
-  static const double _height = 90;
+  static const double _height = 108;
   static const Duration _duration = Duration(milliseconds: 300);
   static const double _viewportFraction = 0.15;
 

@@ -1,7 +1,9 @@
 import 'package:calendar/calendar.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/appointment/core/core.dart';
 import 'package:meddly/features/calendar/controller/controller.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'calendar_daily_events_provider.g.dart';
@@ -11,6 +13,7 @@ List<CalendarEvent> calendarDailyEvents(
   CalendarDailyEventsRef ref,
 ) {
   final selectedDate = ref.watch(calendarSelectedDateProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return ref.watch(calendarControllerProvider).maybeWhen(
         data: (usersCalendarList) {
@@ -27,7 +30,7 @@ List<CalendarEvent> calendarDailyEvents(
                       id: appointment.id ?? 0,
                       uid: uid,
                       title: appointment.name,
-                      description: appointment.location ?? 'Sin ubicación',
+                      description: appointment.speciality!.localized(l10n),
                       date: appointment.date,
                     ),
                   );
@@ -58,6 +61,7 @@ List<CalendarEvent> calendarDailyEvents(
                       description: 'Descripción ${consumption.medicineId}',
                       date: consumption.date,
                       consumed: consumption.consumed,
+                      consumedDate: consumption.realConsumptionDate,
                     ),
                   );
                 }

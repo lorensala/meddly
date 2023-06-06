@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:math' as math;
 
 import 'package:calendar/calendar.dart';
@@ -8,6 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class CalendarListItem extends StatelessWidget {
@@ -69,7 +72,13 @@ class _EventSubtitle extends ConsumerWidget {
     final event = ref.watch(calendarEventProvider);
     final notifier = ref.watch(calendarControllerProvider.notifier);
     return switch (event) {
-      MedicineEvent(:final uid, :final consumed, :final id, :final date) =>
+      MedicineEvent(
+        :final uid,
+        :final consumed,
+        :final id,
+        :final date,
+        :final consumedDate
+      ) =>
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -112,8 +121,8 @@ class _EventSubtitle extends ConsumerWidget {
                     }
                   },
                   label: consumed
-                      ? 'Consumed at ${date.toHoursAndMinutesString()}'
-                      : 'Mark as consumed',
+                      ? '${context.l10n.consumedAt} ${consumedDate?.toHoursAndMinutesString()}'
+                      : context.l10n.markAsConsumed,
                 );
               },
             ),

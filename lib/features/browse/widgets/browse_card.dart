@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 
@@ -16,7 +17,7 @@ class BrowseCard extends ConsumerWidget {
   final String vector;
   final VoidCallback onTap;
 
-  // static const double _iconSize = 100;
+  static const double _iconSize = 24;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,12 +40,12 @@ class BrowseCard extends ConsumerWidget {
         ),
         child: Row(
           children: [
-            // SizedBox(
-            //   height: _iconSize,
-            //   width: _iconSize,
-            //   child: SvgPicture.asset(vector),
-            // ),
-            // const SizedBox(width: Sizes.medium),
+            SizedBox(
+              height: _iconSize,
+              width: _iconSize,
+              child: SvgPicture.asset(vector),
+            ),
+            const SizedBox(width: Sizes.medium),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -7,7 +7,7 @@ part of 'calendar_daily_events_provider.dart';
 // **************************************************************************
 
 String _$calendarDailyEventsHash() =>
-    r'7cc907c0c00a52d85ea40ca4f9ba296b6b6e74ed';
+    r'505348f267725094bed7c52c5878b83bb7bf1c52';
 
 /// See also [calendarDailyEvents].
 @ProviderFor(calendarDailyEvents)

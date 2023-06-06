@@ -3,6 +3,7 @@ import 'package:appointment/appointment.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
@@ -20,13 +21,16 @@ class AppointmentFormPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appointment = ref
         .watch(
-          appointmentControllerProvider,
-        )
-        .asData!
-        .value
-        .firstWhereOrNull(
+      appointmentControllerProvider,
+    )
+        .whenOrNull(
+      data: (appointments) {
+        return appointments.firstWhereOrNull(
           (element) => element.id == id,
         );
+      },
+    );
+
     useEffect(
       () {
         if (appointment != null) {
@@ -49,7 +53,40 @@ class AppointmentFormPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          appointment == null ? 'Nuevo turno médico' : 'Editar turno médico',
+          appointment == null
+              ? context.l10n.newAppointment
+              : context.l10n.editAppointment,
+        ),
+        leading: BackButton(
+          onPressed: () {
+            final form = ref.read(appointmentFormControllerProvider);
+
+            if (form.isDirty) {
+              showDialog<void>(
+                context: context,
+                builder: (context) {
+                  return const ConfirmBackDialog();
+                },
+              );
+            } else {
+              GoRouter.of(context).pop();
+            }
+          },
+        ),
+      ),
+      bottomNavigationBar: DecoratedBox(
+        decoration: BoxDecoration(
+          color: context.colorScheme.secondary,
+          boxShadow: boxShadow(context),
+        ),
+        child: const SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(Sizes.medium),
+            child: SizedBox(
+              height: Sizes.buttonHeight,
+              child: AppointmentSaveButton(),
+            ),
+          ),
         ),
       ),
       body: GestureDetector(
@@ -57,21 +94,28 @@ class AppointmentFormPage extends HookConsumerWidget {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(Sizes.medium),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const AppointmentNameInput(),
-                const AppointmentSpecialityDropDown(),
-                AppointmentDateSelector(
-                  initialValue: appointment?.date,
-                ),
-                const AppointmentDoctorInput(),
-                const AppointmentLocationInput(),
-                const AppointmentNotesInput(),
-                const AppointmentSaveButton(),
-                const SizedBox(height: Sizes.extraLarge),
-              ],
+            child: Builder(
+              builder: (context) {
+                return AsyncValueWidget(
+                  value: ref.watch(appointmentControllerProvider),
+                  builder: (_) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const AppointmentNameInput(),
+                        const AppointmentSpecialityDropDown(),
+                        AppointmentDateSelector(
+                          initialValue: appointment?.date,
+                        ),
+                        const AppointmentDoctorInput(),
+                        const AppointmentLocationInput(),
+                        const AppointmentNotesInput(),
+                      ],
+                    );
+                  },
+                );
+              },
             ),
           ),
         ),
@@ -93,11 +137,10 @@ class AppointmentSaveButton extends ConsumerWidget {
         (value) => value.isEditing,
       ),
     );
-    final isValid = ref.watch(isAppointmentFormValidProvider);
+    final isValid = ref.watch(isAppointmentFormValidProvider) && !isLoading;
 
     return Button(
       isValid: isValid,
-      isLoading: isLoading,
       onPressed: () => isEditing
           ? ref.read(appointmentFormControllerProvider.notifier).save()
           : ref.read(appointmentFormControllerProvider.notifier).add(),

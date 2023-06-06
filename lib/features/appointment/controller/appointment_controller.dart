@@ -28,6 +28,7 @@ class AppointmentController extends _$AppointmentController {
   }
 
   Future<void> addAppointment(Appointment appointment) async {
+    state = const AsyncLoading();
     final repository = ref.watch(appointmentRepositoryProvider);
 
     final (err, _) = await repository.addAppointment(appointment);
@@ -41,6 +42,7 @@ class AppointmentController extends _$AppointmentController {
   }
 
   Future<void> deleteAppointment(int id) async {
+    state = const AsyncLoading();
     final repository = ref.watch(appointmentRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
@@ -55,6 +57,7 @@ class AppointmentController extends _$AppointmentController {
   }
 
   Future<void> updateAppointment(Appointment appointment) async {
+    state = const AsyncLoading();
     final repository = ref.watch(appointmentRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 

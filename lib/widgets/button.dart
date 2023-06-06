@@ -25,6 +25,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: AnimatedContainer(
+        height: Sizes.buttonHeight,
         width:
             isLoading ? Sizes.buttonHeight : MediaQuery.of(context).size.width,
         duration: const Duration(milliseconds: 100),

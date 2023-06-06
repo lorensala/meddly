@@ -2,6 +2,8 @@ export 'calendar_api_provider.dart';
 export 'calendar_daily_events_provider.dart';
 export 'calendar_date_provider.dart';
 export 'calendar_event_provider.dart';
+export 'calendar_has_all_consumed_provider.dart';
+export 'calendar_has_events_provider.dart';
 export 'calendar_repository_provider.dart';
 export 'calendar_selected_date_provider.dart';
 export 'calendar_selected_users_provider.dart';

@@ -67,7 +67,7 @@ class UserBody extends ConsumerWidget {
                 ),
                 const SizedBox(height: Sizes.medium),
                 const SettingsItem(
-                  vector: Vectors.user,
+                  vector: Vectors.userEdit,
                   label: 'Modificar mis datos',
                 ),
                 const SizedBox(height: Sizes.medium),

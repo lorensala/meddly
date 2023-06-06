@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -77,7 +78,7 @@ class AppointmentDetailPage extends ConsumerWidget {
                         '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentFormPage.routeName}/${appointment.id}',
                       );
                     },
-                    label: 'Editar turno médico',
+                    label: context.l10n.editAppointment,
                   ),
                 ],
               );
