@@ -43,7 +43,7 @@ class _NextButton extends ConsumerWidget {
     return MedicineNextButton(
       isValid: true,
       onPressed: () => ref.read(goRouterProvider).push(
-          '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineDosisPage.routeName}'),
+          '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineDosisPage.routeName}',),
     );
   }
 }

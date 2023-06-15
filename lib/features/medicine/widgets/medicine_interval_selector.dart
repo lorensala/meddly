@@ -87,7 +87,7 @@ class _IntervalBody extends HookConsumerWidget {
             borderRadius: BorderRadius.circular(Sizes.small),
           ),
           child: Padding(
-            padding: EdgeInsets.all(Sizes.medium),
+            padding: const EdgeInsets.all(Sizes.medium),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,

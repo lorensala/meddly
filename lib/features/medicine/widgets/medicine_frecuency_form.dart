@@ -12,7 +12,7 @@ class MedicineFrecuencyForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.all(Sizes.medium),
+        padding: const EdgeInsets.all(Sizes.medium),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

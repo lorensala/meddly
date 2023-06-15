@@ -4,8 +4,7 @@ import 'package:meddly/features/onboarding/widgets/widgets.dart';
 
 class OnboardingPageIndicators extends StatelessWidget {
   const OnboardingPageIndicators({
-    super.key,
-    required this.currentPage,
+    required this.currentPage, super.key,
   });
 
   final int currentPage;

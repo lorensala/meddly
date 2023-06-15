@@ -5,8 +5,7 @@ import 'package:meddly/l10n/l10n.dart';
 
 class OnBoardingCards extends StatelessWidget {
   const OnBoardingCards({
-    super.key,
-    required this.pageController,
+    required this.pageController, super.key,
   });
 
   final PageController pageController;

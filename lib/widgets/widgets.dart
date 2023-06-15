@@ -10,4 +10,3 @@ export 'empty_container.dart';
 export 'error_container.dart';
 export 'input_description.dart';
 export 'input_label.dart';
-export 'shimmered_container.dart';

@@ -15,4 +15,6 @@ class Sizes {
   static const extraLarge = 32.0;
 
   static const buttonHeight = 60.0;
+
+  static const filterChipHeight = 40.0;
 }

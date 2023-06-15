@@ -9,7 +9,7 @@ class MedicineIntervalForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(Sizes.medium),
+      padding: const EdgeInsets.all(Sizes.medium),
       child: Column(
         children: [
           Flexible(child: SvgPicture.asset(Vectors.onboarding3)),

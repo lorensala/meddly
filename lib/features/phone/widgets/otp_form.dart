@@ -14,7 +14,7 @@ class OtpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(Sizes.medium),
+      padding: const EdgeInsets.all(Sizes.medium),
       decoration: const BoxDecoration(),
       child: const Column(
         mainAxisSize: MainAxisSize.min,

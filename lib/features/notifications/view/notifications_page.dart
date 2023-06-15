@@ -9,13 +9,6 @@ class NotificationsPage extends StatelessWidget {
 
   static const routeName = '/notifications';
 
-  /// The static route for NotificationsPage
-  static Route<dynamic> route() {
-    return MaterialPageRoute<dynamic>(
-      builder: (_) => const NotificationsPreferencesPage(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +25,7 @@ class NotificationsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(notificationPreferencesControllerProvider, (_, state) {
+    ref.listen(notificationsControllerProvider, (_, state) {
       state.whenOrNull(
         error: (err, _) {
           showSnackBar(context, err.toString());

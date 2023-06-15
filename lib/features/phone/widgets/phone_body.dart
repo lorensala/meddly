@@ -104,7 +104,7 @@ class _PhoneSection extends StatelessWidget {
       child: SizedBox(
         height: context.height,
         child: Padding(
-          padding: EdgeInsets.all(Sizes.medium),
+          padding: const EdgeInsets.all(Sizes.medium),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

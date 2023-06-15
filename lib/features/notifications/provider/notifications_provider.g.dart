@@ -41,6 +41,39 @@ final notificationPreferenceProvider =
 
 typedef NotificationPreferenceRef
     = AutoDisposeProviderRef<NotificationPreference>;
+String _$filteredNotificationsHash() =>
+    r'ace2b1f6d6d00dd6507312fee2bd166bef45b69d';
+
+/// See also [filteredNotifications].
+@ProviderFor(filteredNotifications)
+final filteredNotificationsProvider =
+    AutoDisposeProvider<List<Notification>>.internal(
+  filteredNotifications,
+  name: r'filteredNotificationsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$filteredNotificationsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FilteredNotificationsRef = AutoDisposeProviderRef<List<Notification>>;
+String _$hasUnreadNotificationsHash() =>
+    r'315ef732d62724c8f7b6675903b66f904a3a46d1';
+
+/// See also [hasUnreadNotifications].
+@ProviderFor(hasUnreadNotifications)
+final hasUnreadNotificationsProvider = AutoDisposeProvider<bool>.internal(
+  hasUnreadNotifications,
+  name: r'hasUnreadNotificationsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$hasUnreadNotificationsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef HasUnreadNotificationsRef = AutoDisposeProviderRef<bool>;
 String _$notificationsApiHash() => r'8eb14877b88fc9ba62f436c3117126b8642896aa';
 
 /// See also [notificationsApi].
@@ -56,6 +89,20 @@ final notificationsApiProvider = AutoDisposeProvider<NotificationsApi>.internal(
 );
 
 typedef NotificationsApiRef = AutoDisposeProviderRef<NotificationsApi>;
+String _$notificationHash() => r'07f13e3ceb1f4b376c219d21e7e23a1b342eeeb9';
+
+/// See also [notification].
+@ProviderFor(notification)
+final notificationProvider = AutoDisposeProvider<Notification>.internal(
+  notification,
+  name: r'notificationProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$notificationHash,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
+);
+
+typedef NotificationRef = AutoDisposeProviderRef<Notification>;
 String _$notificationsRepositoryHash() =>
     r'1f0d5ffd1e3fa514faa8601929f419d1a95cf1f4';
 

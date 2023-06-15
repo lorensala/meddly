@@ -14,7 +14,7 @@ class MedicinePresentationForm extends StatelessWidget {
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Padding(
-        padding: EdgeInsets.all(Sizes.medium),
+        padding: const EdgeInsets.all(Sizes.medium),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

@@ -14,7 +14,7 @@ class MedicineNameForm extends StatelessWidget {
     return SingleChildScrollView(
       reverse: true,
       child: Padding(
-        padding: EdgeInsets.all(Sizes.medium),
+        padding: const EdgeInsets.all(Sizes.medium),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

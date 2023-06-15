@@ -1,4 +1,5 @@
 import 'package:appointment/appointment.dart';
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/provider/provider.dart';

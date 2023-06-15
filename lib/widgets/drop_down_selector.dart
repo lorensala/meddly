@@ -32,7 +32,7 @@ class DropDownSelector<T> extends StatelessWidget {
             : null,
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: Sizes.medium),
+        padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
         child: DropdownButtonHideUnderline(
           child: DropdownButton<T>(
             borderRadius: BorderRadius.circular(Sizes.small),

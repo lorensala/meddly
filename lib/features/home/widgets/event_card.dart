@@ -13,7 +13,7 @@ class EventCard extends ConsumerWidget {
 
     return Container(
       width: 150,
-      padding: EdgeInsets.all(Sizes.medium),
+      padding: const EdgeInsets.all(Sizes.medium),
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
         borderRadius: BorderRadius.circular(Sizes.small),

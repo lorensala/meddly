@@ -21,7 +21,7 @@ class FeatureCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(Sizes.small),
         ),
         child: Padding(
-          padding: EdgeInsets.all(Sizes.medium),
+          padding: const EdgeInsets.all(Sizes.medium),
           child: SizedBox(
             width: 150,
             height: 150,

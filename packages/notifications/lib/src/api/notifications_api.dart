@@ -6,11 +6,29 @@ class NotificationsApi {
 
   final Dio _dio;
 
-  Future<List<String>> fetchAll() async {
+  Future<List<Notification>> fetchAll() async {
     late final Response<List<dynamic>> res;
 
     try {
-      res = await _dio.get<List<dynamic>>(notificationsPath);
+      res = await _dio.get<List<dynamic>>(notificationPath);
+    } on DioError catch (e) {
+      throw NotificationException.fromDioError(e);
+    }
+
+    try {
+      return res.data!
+          .map((dynamic e) => Notification.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      throw NotificationSerializationException();
+    }
+  }
+
+  Future<List<String>> fetchAllPreferences() async {
+    late final Response<List<dynamic>> res;
+
+    try {
+      res = await _dio.get<List<dynamic>>(notificationPreferencesPath);
     } on DioError catch (e) {
       throw NotificationException.fromDioError(e);
     }
@@ -27,7 +45,7 @@ class NotificationsApi {
   ) async {
     try {
       await _dio.post<dynamic>(
-        notificationsPath,
+        notificationPreferencesPath,
         queryParameters: {'notification_preference': notificationPrefence},
       );
     } on DioError catch (e) {
@@ -40,7 +58,7 @@ class NotificationsApi {
   ) async {
     try {
       await _dio.delete<dynamic>(
-        notificationsPath,
+        notificationPreferencesPath,
         queryParameters: {'notification_preference': notificationPrefence},
       );
     } on DioError catch (e) {

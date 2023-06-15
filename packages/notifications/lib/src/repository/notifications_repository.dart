@@ -10,10 +10,21 @@ class NotificationsRepository {
   final NotificationsApi _api;
   final NotificationsCache _cache;
 
-  Future<(NotificationException?, List<NotificationPreference>)>
-      fetchAll() async {
+  Future<(NotificationException?, List<Notification>)> fetchAll() async {
     try {
       final preferences = await _api.fetchAll();
+      return (null, preferences);
+    } on NotificationException catch (e) {
+      return (e, <Notification>[]);
+    } catch (_) {
+      return (NotificationUnknownException(), <Notification>[]);
+    }
+  }
+
+  Future<(NotificationException?, List<NotificationPreference>)>
+      fetchAllPreferences() async {
+    try {
+      final preferences = await _api.fetchAllPreferences();
       await _cache.addAll(preferences);
       return (
         null,

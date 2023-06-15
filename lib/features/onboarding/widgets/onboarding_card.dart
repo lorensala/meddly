@@ -17,7 +17,7 @@ class OnboardingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(Sizes.medium),
+      padding: const EdgeInsets.all(Sizes.medium),
       child: Column(
         children: [
           const SizedBox(height: Sizes.medium),

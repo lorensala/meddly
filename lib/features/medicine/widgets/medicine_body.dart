@@ -21,7 +21,7 @@ class MedicineBody extends ConsumerWidget {
         }
 
         return Padding(
-          padding: EdgeInsets.all(Sizes.medium),
+          padding: const EdgeInsets.all(Sizes.medium),
           child: ListView.separated(
             itemCount: medicines.length,
             itemBuilder: (context, index) {
