@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class AppointmentBody extends ConsumerWidget {
@@ -23,7 +24,7 @@ class AppointmentBody extends ConsumerWidget {
       value: appointments,
       builder: (appointments) {
         if (appointments.isEmpty) {
-          return const EmptyContainer(message: 'No hay turnos médicos');
+          return EmptyContainer(message: context.l10n.emptyAppointments);
         }
 
         return ListView.builder(

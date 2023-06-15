@@ -1,6 +1,7 @@
 import 'package:appointment/appointment.dart';
 import 'package:meddly/features/appointment/core/core.dart';
 import 'package:meddly/features/appointment/provider/provider.dart';
+import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -37,6 +38,7 @@ class AppointmentController extends _$AppointmentController {
       state = AsyncError(err.toString(), StackTrace.current);
     } else {
       refresh();
+      ref.invalidate(calendarControllerProvider);
       ref.watch(goRouterProvider).pop();
     }
   }
@@ -67,6 +69,7 @@ class AppointmentController extends _$AppointmentController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       refresh();
+      ref.invalidate(calendarControllerProvider);
       ref.watch(goRouterProvider).pop();
     }
   }

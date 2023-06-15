@@ -7,7 +7,7 @@ part of 'consumption_controller.dart';
 // **************************************************************************
 
 String _$consumptionControllerHash() =>
-    r'e6f4cc61cb588cc860b9a41bf8a9063904b201b4';
+    r'637659ab1c159d6f9c784788bae9ea7de7adb311';
 
 /// See also [ConsumptionController].
 @ProviderFor(ConsumptionController)

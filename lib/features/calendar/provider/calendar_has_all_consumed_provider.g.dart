@@ -7,7 +7,7 @@ part of 'calendar_has_all_consumed_provider.dart';
 // **************************************************************************
 
 String _$calendarHasAllConsumedHash() =>
-    r'd9a5d74292f2c013ab5f099e3251d52718977713';
+    r'4f2fd78ac2d0ed63442a9c6b82d75f1ce728094e';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -15,6 +15,7 @@ class DateSelector extends HookWidget {
     this.initialValue,
     this.firstDate,
     this.lastDate,
+    this.enabled = true,
     super.key,
   });
 
@@ -23,6 +24,7 @@ class DateSelector extends HookWidget {
   final DateTime? firstDate;
   final DateTime? lastDate;
   final String? errorText;
+  final bool enabled;
   final void Function(DateTime value) onDateTimeChanged;
 
   @override
@@ -42,6 +44,7 @@ class DateSelector extends HookWidget {
     );
 
     return TextFormField(
+      enabled: enabled,
       controller: controller,
       style: textStyle.value,
       onTap: () async {

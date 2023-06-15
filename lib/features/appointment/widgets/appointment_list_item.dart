@@ -26,8 +26,8 @@ class AppointmentListItem extends ConsumerWidget {
           context: context,
           builder: (context) => AlertDialog(
             title: Text(context.l10n.confirm),
-            content: const Text(
-              'Estas seguro que quieres eliminar este turno médico?',
+            content: Text(
+              context.l10n.deleteAppointmentConfirmation,
             ),
             actions: [
               TextButton(
@@ -64,7 +64,7 @@ class AppointmentListItem extends ConsumerWidget {
         title: Text(appointment.name),
         subtitle: Text(appointment.speciality!.localized(context.l10n)),
         onTap: () => GoRouter.of(context).go(
-          '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentDetailPage.routeName}/${appointment.id}',
+          '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentFormPage.routeName}/${appointment.id}',
         ),
       ),
     );

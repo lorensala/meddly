@@ -114,28 +114,30 @@ extension DateTimeX on DateTime {
     }
   }
 
-  String toNamedDayNumberAndMonthString() {
-    return 'test';
-    // String? namedDay;
+  String toNamedDayNumberAndMonthString(BuildContext context) {
+    String? namedDay;
 
-    // // check if is yesterday
-    // if (isYesterday(this)) {
-    //   namedDay = 'Yesterday';
-    //   // check if is tomorrow
-    // } else if (isTomorrow(this)) {
-    //   namedDay = 'Tomorrow';
-    //   // check if is today
-    // } else if (isToday()) {
-    //   namedDay = 'Today';
-    // }
+    // check if is yesterday
+    if (isYesterday(this)) {
+      namedDay = 'Yesterday';
+      // check if is tomorrow
+    } else if (isTomorrow(this)) {
+      namedDay = 'Tomorrow';
+      // check if is today
+    } else if (isToday()) {
+      namedDay = 'Today';
+    }
 
-    // // return named day
-    // if (namedDay != null) {
-    //   return '$namedDay, $day ${toNamedMonthString()}';
-    // } else {
-    //   return '${toNamedDayString()} $day ${toNamedMonthString()}';
-    // }
+    // return named day
+    if (namedDay != null) {
+      return '$namedDay, $day ${toNamedMonthString()}';
+    } else {
+      return '${toNamedDayString(context)} $day ${toNamedMonthString()}';
+    }
   }
+
+  String toDayMonthYearHourMinuteString() =>
+      '${day.toString().padLeft(2, '0')}/${month.toString().padLeft(2, '0')}/$year ${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
 
   String toNamedDayString(BuildContext context) =>
       DateFormat('EEE', Localizations.localeOf(context).languageCode)

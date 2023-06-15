@@ -2,7 +2,9 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 Future<void> showConfirmationDialog(
   BuildContext context,
@@ -76,4 +78,132 @@ List<BoxShadow> boxShadow(BuildContext context) {
       offset: const Offset(2, 2),
     ),
   ];
+}
+
+Future<DateTime?> showAdaptiveDatePicker({
+  required BuildContext context,
+  required DateTime initialDateTime,
+  DateTime? firstDate,
+  DateTime? lastDate,
+}) async {
+  if (Platform.isAndroid) {
+    return showDatePicker(
+      context: context,
+      initialDate: initialDateTime,
+      firstDate: firstDate ?? DateTime(1900),
+      lastDate: lastDate ?? DateTime.now(),
+    );
+  } else {
+    return showCupertinoDatePicker(
+      context: context,
+      initialDateTime: initialDateTime,
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
+  }
+}
+
+Future<DateTime?> showCupertinoDatePicker({
+  required BuildContext context,
+  required DateTime initialDateTime,
+  DateTime? firstDate,
+  DateTime? lastDate,
+}) async {
+  DateTime? dateTime = initialDateTime;
+
+  await showCupertinoModalPopup<DateTime>(
+    context: context,
+    builder: (_) => Container(
+      color: context.colorScheme.secondary,
+      height: MediaQuery.of(context).size.height / 2,
+      child: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.date,
+                initialDateTime: initialDateTime,
+                minimumDate: firstDate ?? DateTime(1900),
+                maximumDate: lastDate ?? DateTime.now(),
+                onDateTimeChanged: (value) {
+                  dateTime = value;
+                },
+              ),
+            ),
+            CupertinoButton(
+              child: Text(context.l10n.accept),
+              onPressed: () {
+                GoRouter.of(context).pop();
+              },
+            ),
+            const SizedBox(height: Sizes.medium),
+          ],
+        ),
+      ),
+    ),
+  );
+
+  return dateTime;
+}
+
+Future<TimeOfDay?> showAdaptiveTimePicker({
+  required BuildContext context,
+  required TimeOfDay initialTimeOfDay,
+}) async {
+  if (Platform.isAndroid) {
+    return showTimePicker(
+      context: context,
+      initialTime: initialTimeOfDay,
+    );
+  } else {
+    return showCupertinoTimePicker(
+      context: context,
+      initialTime: initialTimeOfDay,
+    );
+  }
+}
+
+Future<TimeOfDay?> showCupertinoTimePicker({
+  required BuildContext context,
+  required TimeOfDay initialTime,
+}) async {
+  TimeOfDay? timeOfDay = initialTime;
+
+  await showCupertinoModalPopup<TimeOfDay>(
+    context: context,
+    builder: (_) => Container(
+      color: context.colorScheme.secondary,
+      height: MediaQuery.of(context).size.height / 2,
+      child: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.time,
+                initialDateTime: DateTime(
+                  DateTime.now().year,
+                  DateTime.now().month,
+                  DateTime.now().day,
+                  initialTime.hour,
+                  initialTime.minute,
+                ),
+                onDateTimeChanged: (value) {
+                  timeOfDay = TimeOfDay.fromDateTime(value);
+                },
+              ),
+            ),
+            CupertinoButton(
+              child: Text(context.l10n.accept),
+              onPressed: () {
+                GoRouter.of(context).pop();
+              },
+            ),
+            const SizedBox(height: Sizes.medium),
+          ],
+        ),
+      ),
+    ),
+  );
+
+  return timeOfDay;
 }

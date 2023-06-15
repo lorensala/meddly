@@ -128,6 +128,8 @@
     "otolaryngology": "Otolaryngology",
     "surgery": "Surgery",
     "other": "Other",
+    "emptyAppointments": "You don't have any appointments yet",
+    "deleteAppointmentConfirmation": "Are you sure you want to delete this appointment?",
     "@_ONBOARDING": {},
     "guidanceConsultationDescription": "Talk to a doctor and get your doubts clarified",
     "registerMedicationsDescription": "Register your medications and receive reminders",

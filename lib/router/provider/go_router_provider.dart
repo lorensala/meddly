@@ -87,13 +87,6 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                       int.tryParse(state.pathParameters['id']!),
                     ),
                   ),
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: '${AppointmentDetailPage.routeName}/:id',
-                    builder: (context, state) => AppointmentDetailPage(
-                      int.parse(state.pathParameters['id']!),
-                    ),
-                  ),
                 ],
               ),
               GoRoute(

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:meddly/features/appointment/view/view.dart';
 import 'package:meddly/features/appointment/widgets/appointment_body.dart';
 import 'package:meddly/features/browse/browse.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 class AppointmentPage extends StatelessWidget {
   const AppointmentPage({super.key});
@@ -13,7 +14,7 @@ class AppointmentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Appointment'),
+        title: Text(context.l10n.appointments),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -21,7 +22,7 @@ class AppointmentPage extends StatelessWidget {
             '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentFormPage.routeName}/""',
           );
         },
-        tooltip: 'Nuevo turno médico',
+        tooltip: context.l10n.newAppointment,
         child: const Icon(Icons.add),
       ),
       body: const AppointmentBody(),

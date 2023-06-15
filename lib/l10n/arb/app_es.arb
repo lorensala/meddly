@@ -127,6 +127,8 @@
     "otolaryngology": "Otorrinolaringología",
     "surgery": "Cirugía",
     "other": "Otra",
+    "emptyAppointments": "No has registrado ningún turno médico",
+    "deleteAppointmentConfirmation": "¿Estás seguro que deseas eliminar este turno médico?",
     "@_ONBOARDING": {},
     "guidanceConsultationDescription": "Habla con un médico y aclara tus dudas",
     "registerMedicationsDescription": "Registra tus medicamentos y recibe recordatorios",

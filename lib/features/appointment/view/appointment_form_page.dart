@@ -1,6 +1,4 @@
 import 'package:appointment/appointment.dart';
-// ignore: depend_on_referenced_packages
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -19,47 +17,34 @@ class AppointmentFormPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appointment = ref
-        .watch(
-      appointmentControllerProvider,
-    )
-        .whenOrNull(
-      data: (appointments) {
-        return appointments.firstWhereOrNull(
-          (element) => element.id == id,
-        );
-      },
-    );
+    ref.watch(loadExistingAppointmentProvider(id: id));
+    return const AppointmentFormBody();
+  }
+}
 
-    useEffect(
-      () {
-        if (appointment != null) {
-          Future.delayed(
-            Duration.zero,
-            () {
-              ref
-                  .read(appointmentFormControllerProvider.notifier)
-                  .loadAppointment(
-                    appointment,
-                  );
-            },
-          );
-        }
-        return null;
-      },
-      [],
-    );
+class AppointmentFormBody extends ConsumerWidget {
+  const AppointmentFormBody({
+    super.key,
+  });
 
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          appointment == null
-              ? context.l10n.newAppointment
-              : context.l10n.editAppointment,
+          context.l10n.appointments,
         ),
         leading: BackButton(
           onPressed: () {
             final form = ref.read(appointmentFormControllerProvider);
+            final isEditing = ref.read(
+              appointmentFormControllerProvider
+                  .select((value) => value.isEditing),
+            );
+
+            if (!isEditing) {
+              return GoRouter.of(context).pop();
+            }
 
             if (form.isDirty) {
               showDialog<void>(
@@ -99,18 +84,16 @@ class AppointmentFormPage extends HookConsumerWidget {
                 return AsyncValueWidget(
                   value: ref.watch(appointmentControllerProvider),
                   builder: (_) {
-                    return Column(
+                    return const Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const AppointmentNameInput(),
-                        const AppointmentSpecialityDropDown(),
-                        AppointmentDateSelector(
-                          initialValue: appointment?.date,
-                        ),
-                        const AppointmentDoctorInput(),
-                        const AppointmentLocationInput(),
-                        const AppointmentNotesInput(),
+                        AppointmentNameInput(),
+                        AppointmentSpecialityDropDown(),
+                        AppointmentDateSelector(),
+                        AppointmentDoctorInput(),
+                        AppointmentLocationInput(),
+                        AppointmentNotesInput(),
                       ],
                     );
                   },
@@ -137,14 +120,19 @@ class AppointmentSaveButton extends ConsumerWidget {
         (value) => value.isEditing,
       ),
     );
+
     final isValid = ref.watch(isAppointmentFormValidProvider) && !isLoading;
 
     return Button(
       isValid: isValid,
-      onPressed: () => isEditing
-          ? ref.read(appointmentFormControllerProvider.notifier).save()
-          : ref.read(appointmentFormControllerProvider.notifier).add(),
-      label: context.l10n.save,
+      onPressed: () {
+        if (isEditing) {
+          ref.read(appointmentFormControllerProvider.notifier).save();
+        } else {
+          ref.read(appointmentFormControllerProvider.notifier).edit();
+        }
+      },
+      label: isEditing ? context.l10n.save : context.l10n.editAppointment,
     );
   }
 }
@@ -158,6 +146,9 @@ class AppointmentNotesInput extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
     final controller = useTextEditingController();
+    final isEditing = ref.watch(
+      appointmentFormControllerProvider.select((value) => value.isEditing),
+    );
 
     ref.listen(
       appointmentFormControllerProvider.select((value) => value.notes),
@@ -175,13 +166,15 @@ class AppointmentNotesInput extends HookConsumerWidget {
         const InputLabel(label: 'Notas', isRequired: false),
         const SizedBox(height: Sizes.extraSmall),
         TextFormField(
+          enabled: isEditing,
           controller: controller,
           style: context.textTheme.bodyMedium,
           onChanged: notifier.onNotesChanged,
           maxLength: 200,
           keyboardType: TextInputType.multiline,
           maxLines: 4,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
+            filled: !isEditing,
             hintText: 'Ej: Llevar estudios previos',
           ),
         ),
@@ -200,6 +193,9 @@ class AppointmentLocationInput extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
     final controller = useTextEditingController();
+    final isEditing = ref.watch(
+      appointmentFormControllerProvider.select((value) => value.isEditing),
+    );
 
     ref.listen(
       appointmentFormControllerProvider.select((value) => value.location),
@@ -217,10 +213,12 @@ class AppointmentLocationInput extends HookConsumerWidget {
         const InputLabel(label: 'Ubicación', isRequired: false),
         const SizedBox(height: Sizes.extraSmall),
         TextFormField(
+          enabled: isEditing,
           controller: controller,
           style: context.textTheme.bodyMedium,
           onChanged: notifier.onLocationChanged,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
+            filled: !isEditing,
             hintText: 'Ej: Hospital Italiano',
           ),
         ),
@@ -239,6 +237,9 @@ class AppointmentDoctorInput extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
     final controller = useTextEditingController();
+    final isEditing = ref.watch(
+      appointmentFormControllerProvider.select((value) => value.isEditing),
+    );
 
     ref.listen(
       appointmentFormControllerProvider.select((value) => value.doctor),
@@ -256,10 +257,12 @@ class AppointmentDoctorInput extends HookConsumerWidget {
         const InputLabel(label: 'Nombre del médico', isRequired: false),
         const SizedBox(height: Sizes.extraSmall),
         TextFormField(
+          enabled: isEditing,
           controller: controller,
           style: context.textTheme.bodyMedium,
           onChanged: notifier.onDoctorChanged,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
+            filled: !isEditing,
             hintText: 'Ej: Dr. Juan Pérez',
           ),
         ),
@@ -272,32 +275,89 @@ class AppointmentDoctorInput extends HookConsumerWidget {
 class AppointmentDateSelector extends HookConsumerWidget {
   const AppointmentDateSelector({
     super.key,
-    this.initialValue,
   });
-
-  final DateTime? initialValue;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
+    final isEditing = ref.watch(
+      appointmentFormControllerProvider.select((value) => value.isEditing),
+    );
+    final controller = useTextEditingController();
+    final date = ref.watch(
+      appointmentFormControllerProvider.select((value) => value.date),
+    );
+
+    useEffect(
+      () {
+        controller.value = TextEditingValue(
+          text: date == null
+              ? ''
+              //! TODO(me): arreglar esto urgente!!
+              : date.toDayMonthYearHourMinuteString(),
+          selection: TextSelection.collapsed(offset: date.toString().length),
+        );
+        return null;
+      },
+      [date],
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const InputLabel(label: 'Fecha y hora', isRequired: true),
         const SizedBox(height: Sizes.extraSmall),
-        DateSelector(
-          initialValue: initialValue,
-          initialDateTime: DateTime.now(),
-          firstDate: DateTime(
-            DateTime.now().year,
-            DateTime.now().month,
-            DateTime.now().day,
+        TextFormField(
+          enabled: isEditing,
+          readOnly: true,
+          controller: controller,
+          style: context.textTheme.bodyMedium,
+          onTap: () async {
+            final value = await showAdaptiveDatePicker(
+              context: context,
+              initialDateTime: DateTime.now(),
+            );
+
+            if (value == null) return;
+
+            // ignore: use_build_context_synchronously
+            final time = await showAdaptiveTimePicker(
+              context: context,
+              initialTimeOfDay: TimeOfDay.now(),
+            );
+
+            if (time == null) return;
+
+            notifier.onDateChanged(
+              DateTime(
+                value.year,
+                value.month,
+                value.day,
+                time.hour,
+                time.minute,
+              ),
+            );
+          },
+          onChanged: notifier.onNameChanged,
+          decoration: InputDecoration(
+            filled: !isEditing,
+            hintText: 'Ej: Turno médico de cabecera',
           ),
-          lastDate: DateTime.now().add(const Duration(days: 365)),
-          onDateTimeChanged: notifier.onDateChanged,
-          errorText: null,
         ),
+
+        // DateSelector(
+        //   enabled: isEditing,
+        //   initialValue: initialValue,
+        //   initialDateTime: DateTime.now(),
+        //   firstDate: DateTime(
+        //     DateTime.now().year,
+        //     DateTime.now().month,
+        //     DateTime.now().day,
+        //   ),
+        //   lastDate: DateTime.now().add(const Duration(days: 365)),
+        //   onDateTimeChanged: notifier.onDateChanged,
+        //   errorText: null,
+        // ),
         const SizedBox(height: Sizes.medium),
       ],
     );
@@ -314,6 +374,9 @@ class AppointmentSpecialityDropDown extends HookConsumerWidget {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
     final value = ref.watch(
       appointmentFormControllerProvider.select((value) => value.speciality),
+    );
+    final isEditing = ref.watch(
+      appointmentFormControllerProvider.select((value) => value.isEditing),
     );
 
     return Column(
@@ -333,12 +396,13 @@ class AppointmentSpecialityDropDown extends HookConsumerWidget {
           ),
           child: DropDownSelector<AppointmentSpeciality>(
             value: value,
+            enabled: isEditing,
             items: AppointmentSpeciality.values
                 .map(
                   (e) => DropdownMenuItem<AppointmentSpeciality>(
                     value: e,
                     child: Text(
-                      e.name.capitalize(),
+                      e.localized(context.l10n),
                       style: context.textTheme.bodyMedium,
                     ),
                   ),
@@ -365,11 +429,13 @@ class AppointmentNameInput extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.read(appointmentFormControllerProvider.notifier);
     final controller = useTextEditingController();
-    final name = ref
-        .watch(
-          appointmentFormControllerProvider,
-        )
-        .name;
+    final isEditing = ref.watch(
+      appointmentFormControllerProvider.select((value) => value.isEditing),
+    );
+
+    final name = ref.watch(
+      appointmentFormControllerProvider.select((value) => value.name),
+    );
 
     useEffect(
       () {
@@ -388,10 +454,12 @@ class AppointmentNameInput extends HookConsumerWidget {
         const InputLabel(label: 'Nombre', isRequired: true),
         const SizedBox(height: Sizes.extraSmall),
         TextFormField(
+          enabled: isEditing,
           controller: controller,
           style: context.textTheme.bodyMedium,
           onChanged: notifier.onNameChanged,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
+            filled: !isEditing,
             hintText: 'Ej: Turno médico de cabecera',
           ),
         ),

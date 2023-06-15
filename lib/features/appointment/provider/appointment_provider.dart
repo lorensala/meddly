@@ -1,5 +1,6 @@
 import 'package:appointment/appointment.dart';
-import 'package:meddly/features/appointment/controller/apointment_form_controller.dart';
+import 'package:collection/collection.dart';
+import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -26,4 +27,30 @@ bool isAppointmentFormValid(IsAppointmentFormValidRef ref) {
     appointmentFormControllerProvider
         .select((s) => s.name.isValid && s.date != null),
   );
+}
+
+@riverpod
+void loadExistingAppointment(LoadExistingAppointmentRef ref, {int? id}) {
+  final appointment = ref
+      .watch(
+    appointmentControllerProvider,
+  )
+      .whenOrNull(
+    data: (appointments) {
+      return appointments.firstWhereOrNull(
+        (element) => element.id == id,
+      );
+    },
+  );
+
+  if (appointment != null) {
+    Future.delayed(
+      Duration.zero,
+      () {
+        ref.read(appointmentFormControllerProvider.notifier).loadAppointment(
+              appointment,
+            );
+      },
+    );
+  }
 }

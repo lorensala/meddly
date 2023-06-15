@@ -30,6 +30,7 @@ class InvitationCodeBottomSheet extends HookConsumerWidget {
             width: 220,
             child: TextFormField(
               keyboardType: TextInputType.text,
+              textCapitalization: TextCapitalization.characters,
               textAlign: TextAlign.center,
               controller: controller,
               inputFormatters: [

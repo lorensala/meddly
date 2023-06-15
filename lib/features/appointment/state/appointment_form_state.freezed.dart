@@ -194,7 +194,7 @@ class _$_AppointmentFormState extends _AppointmentFormState {
       this.doctor = const Name.pure(),
       this.location = '',
       this.notes = '',
-      this.isEditing = false})
+      this.isEditing = true})
       : super._();
 
   @override

@@ -64,8 +64,7 @@ class AppTheme {
       fillColor: MaterialStateColor.resolveWith((states) => _primaryLight),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: _secondaryLight,
+      fillColor: _onSecondaryLight.withOpacity(0.05),
       hintStyle: _lightTextTheme().bodyMedium!.copyWith(
             color: _lightTextTheme().bodyMedium!.color!.withOpacity(0.4),
           ),
@@ -77,6 +76,10 @@ class AppTheme {
           color: _surfaceLight,
           width: 1.5,
         ),
+        borderRadius: BorderRadius.circular(Sizes.small),
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: _surfaceLight, width: 1.5),
         borderRadius: BorderRadius.circular(Sizes.small),
       ),
       border: OutlineInputBorder(
@@ -106,6 +109,8 @@ class AppTheme {
     dividerTheme: const DividerThemeData(
       thickness: 1.5,
       color: _surfaceLight,
+      indent: Sizes.medium,
+      endIndent: Sizes.medium,
     ),
     colorScheme: const ColorScheme.light().copyWith(
       primary: _primaryLight,

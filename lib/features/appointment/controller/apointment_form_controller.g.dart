@@ -7,7 +7,7 @@ part of 'apointment_form_controller.dart';
 // **************************************************************************
 
 String _$appointmentFormControllerHash() =>
-    r'c9a658e32189c22dfb580802cd8b950b056b43ee';
+    r'eaa1a9dcc1009fcd4d590629917ea4f5a3e49b69';
 
 /// See also [AppointmentFormController].
 @ProviderFor(AppointmentFormController)

@@ -23,7 +23,7 @@ class AppointmentFormController extends _$AppointmentFormController {
       doctor: Name.dirty(existingAppointment.doctor ?? ''),
       location: existingAppointment.location ?? '',
       notes: existingAppointment.notes ?? '',
-      isEditing: true,
+      isEditing: false,
     );
   }
 
@@ -51,34 +51,36 @@ class AppointmentFormController extends _$AppointmentFormController {
     state = state.copyWith(notes: value);
   }
 
-  Future<void> add() async {
-    final appointment = Appointment(
-      name: state.name.value,
-      speciality: state.speciality,
-      date: state.date!,
-      doctor: state.doctor.value,
-      location: state.location,
-      notes: state.notes,
-    );
-
-    await ref
-        .watch(appointmentControllerProvider.notifier)
-        .addAppointment(appointment);
+  void edit() {
+    state = state.copyWith(isEditing: true);
   }
 
   Future<void> save() async {
-    final appointment = Appointment(
-      id: state.id,
-      name: state.name.value,
-      speciality: state.speciality,
-      date: state.date!,
-      doctor: state.doctor.value,
-      location: state.location,
-      notes: state.notes,
-    );
-
-    await ref
-        .watch(appointmentControllerProvider.notifier)
-        .updateAppointment(appointment);
+    if (state.id == 0) {
+      final appointment = Appointment(
+        name: state.name.value,
+        speciality: state.speciality,
+        date: state.date!,
+        doctor: state.doctor.value,
+        location: state.location,
+        notes: state.notes,
+      );
+      await ref
+          .watch(appointmentControllerProvider.notifier)
+          .addAppointment(appointment);
+    } else {
+      final appointment = Appointment(
+        id: state.id,
+        name: state.name.value,
+        speciality: state.speciality,
+        date: state.date!,
+        doctor: state.doctor.value,
+        location: state.location,
+        notes: state.notes,
+      );
+      await ref
+          .watch(appointmentControllerProvider.notifier)
+          .updateAppointment(appointment);
+    }
   }
 }

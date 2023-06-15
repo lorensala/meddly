@@ -6,6 +6,7 @@ class DropDownSelector<T> extends StatelessWidget {
     required this.value,
     required this.items,
     required this.onChanged,
+    this.enabled = true,
     this.hasBorder = false,
     super.key,
   });
@@ -14,12 +15,15 @@ class DropDownSelector<T> extends StatelessWidget {
   final List<DropdownMenuItem<T>> items;
   final void Function(T?) onChanged;
   final bool hasBorder;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
+        color: enabled
+            ? context.colorScheme.secondary
+            : context.colorScheme.onSecondary.withOpacity(0.05),
         borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
         border: hasBorder
             ? Border.all(
@@ -35,7 +39,7 @@ class DropDownSelector<T> extends StatelessWidget {
             value: value,
             items: items,
             style: context.textTheme.bodyMedium,
-            onChanged: onChanged,
+            onChanged: enabled ? onChanged : null,
           ),
         ),
       ),
