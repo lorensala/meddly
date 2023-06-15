@@ -5,7 +5,8 @@ import 'package:meddly/l10n/l10n.dart';
 
 class OnBoardingCards extends StatelessWidget {
   const OnBoardingCards({
-    required this.pageController, super.key,
+    required this.pageController,
+    super.key,
   });
 
   final PageController pageController;
@@ -20,8 +21,8 @@ class OnBoardingCards extends StatelessWidget {
       ),
       OnboardingCard(
         asset: Vectors.onboarding2,
-        description: context.l10n.registerMedicationsDescription,
-        title: context.l10n.registerMedicationsTitle,
+        description: context.l10n.registerMeasurementsDescription,
+        title: context.l10n.registerMeasurementsTitle,
       ),
       OnboardingCard(
         asset: Vectors.onboarding3,

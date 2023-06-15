@@ -33,8 +33,8 @@ class OnboardingCard extends StatelessWidget {
               const SizedBox(height: Sizes.small),
               Text(
                 description,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: context.colorScheme.onSecondary.withOpacity(0.5),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: context.colorScheme.onBackground.withOpacity(0.5),
                     ),
                 textAlign: TextAlign.center,
               ),

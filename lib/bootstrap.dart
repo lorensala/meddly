@@ -33,6 +33,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
         [DeviceOrientation.portraitUp],
       );
 
+      //TODO(me): svg precache
+
       final hive = Hive;
       await hive.initFlutter();
       hive.registerAdapter<UserDto>(UserDtoAdapter());
