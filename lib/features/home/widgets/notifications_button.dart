@@ -39,24 +39,21 @@ class NotificationsButton extends ConsumerWidget {
                   ),
                   width: _iconSize,
                   height: _iconSize,
-                )
-                    .animate(
-                      autoPlay: hasUnreadNotificatons,
-                      onPlay: (controller) {
-                        if (hasUnreadNotificatons) {
-                          controller.repeat();
-                        } else {
-                          controller.stop();
-                        }
-                      },
-                    )
-                    .shake(
-                      rotation: 0.2,
-                      hz: 3,
-                      curve: Curves.easeInOut,
-                      duration: const Duration(seconds: 1),
-                      delay: const Duration(seconds: 1),
-                    ),
+                ).animate(
+                  onPlay: (controller) {
+                    if (hasUnreadNotificatons) {
+                      controller.repeat();
+                    } else {
+                      controller.stop();
+                    }
+                  },
+                ).shake(
+                  rotation: 0.2,
+                  hz: 3,
+                  curve: Curves.easeInOut,
+                  duration: const Duration(seconds: 1),
+                  delay: const Duration(seconds: 1),
+                ),
               ),
             ),
             Positioned(

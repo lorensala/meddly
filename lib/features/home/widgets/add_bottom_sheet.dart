@@ -53,6 +53,13 @@ class AddBottomSheet extends ConsumerWidget {
             },
             description: context.l10n.medicinesDescriptions,
           ),
+          Padding(
+            padding: const EdgeInsets.all(Sizes.medium),
+            child: Button(
+              onPressed: () => ref.read(goRouterProvider).pop(),
+              label: context.l10n.cancel,
+            ),
+          ),
           const SizedBox(height: Sizes.medium),
         ],
       ),
