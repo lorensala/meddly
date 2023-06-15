@@ -9,7 +9,7 @@ class AppTheme {
   static const Color _backgroundLight = Color(0xFFFFFFFF);
   static const Color _onBackgroundLight = Colors.black;
   static const Color _onPrimaryLight = Color(0xFFFFFFFF);
-  static const Color _onSecondaryLight = Color(0xFF383838);
+  static const Color _onSecondaryLight = Color(0xFF000000);
   static const Color _secondaryContainerLight = Color(0xffEDF1F4);
   static const Color _onSecondaryContainerLight = Color(0xff383838);
   static const Color _surfaceLight = Color(0xFFD9D9D9);
@@ -122,10 +122,13 @@ class AppTheme {
       shadow: _shadowLight,
     ),
     listTileTheme: ListTileThemeData(
-      // shape: RoundedRectangleBorder(
-      //   borderRadius: BorderRadius.circular(Sizes.small),
-      // ),
       selectedColor: _primaryLight,
+      titleTextStyle: _lightTextTheme().titleMedium!.copyWith(
+            color: _onSecondaryLight,
+          ),
+      subtitleTextStyle: _lightTextTheme().bodyMedium!.copyWith(
+            color: _onSecondaryLight.withOpacity(0.5),
+          ),
       selectedTileColor: _primaryLight.withOpacity(0.1),
       tileColor: _backgroundLight,
     ),
