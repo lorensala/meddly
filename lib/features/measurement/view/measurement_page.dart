@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 
@@ -18,7 +17,7 @@ class MeasurementPage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => ref.read(goRouterProvider).go(
-              '${BrowsePage.routeName}/${MeasurementPage.routeName}/${MeasurementFormPage.routeName}',
+              MeasurementFormPage.routeName,
             ),
         tooltip: 'Añadir medición',
         child: const Icon(Icons.add),

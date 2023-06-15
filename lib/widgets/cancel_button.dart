@@ -19,7 +19,7 @@ class CancelButton extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: Sizes.mediumPadding,
+        padding: EdgeInsets.all(Sizes.medium),
         child: Center(
           child: Text(
             'Cancel',

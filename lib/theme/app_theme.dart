@@ -129,7 +129,7 @@ class AppTheme {
     ),
     listTileTheme: ListTileThemeData(
       // shape: RoundedRectangleBorder(
-      //   borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+      //   borderRadius: BorderRadius.circular(Sizes.small),
       // ),
       selectedColor: _primaryLight,
       selectedTileColor: _primaryLight.withOpacity(0.1),
@@ -144,10 +144,10 @@ class AppTheme {
         disabledForegroundColor: _primaryLight,
         splashFactory: NoSplash.splashFactory,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+          borderRadius: BorderRadius.circular(Sizes.small),
         ),
         textStyle: _lightTextTheme().bodyMedium,
-        padding: Sizes.mediumPadding,
+        padding: EdgeInsets.all(Sizes.medium),
       ),
     ),
     textTheme: _lightTextTheme(),
@@ -344,7 +344,7 @@ class AppTheme {
     ),
     listTileTheme: ListTileThemeData(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+        borderRadius: BorderRadius.circular(Sizes.small),
       ),
       selectedColor: _primaryDark,
       selectedTileColor: _primaryDark.withOpacity(0.1),
@@ -362,10 +362,10 @@ class AppTheme {
         disabledForegroundColor: _primaryDark,
         splashFactory: NoSplash.splashFactory,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+          borderRadius: BorderRadius.circular(Sizes.small),
         ),
         textStyle: _darkTextTheme().bodyMedium,
-        padding: Sizes.mediumPadding,
+        padding: EdgeInsets.all(Sizes.medium),
       ),
     ),
     textTheme: _darkTextTheme(),

@@ -24,7 +24,7 @@ class HomeBody extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: Sizes.mediumPadding,
+              padding: EdgeInsets.all(Sizes.medium),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

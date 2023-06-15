@@ -12,7 +12,7 @@ class ForgotPasswordForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Sizes.mediumPadding,
+      padding: EdgeInsets.all(Sizes.medium),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),

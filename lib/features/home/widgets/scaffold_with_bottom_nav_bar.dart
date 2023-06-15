@@ -2,13 +2,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/browse/view/browse_page.dart';
 import 'package:meddly/features/home/home.dart';
+import 'package:meddly/features/measurement/measurement.dart';
+import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/router.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 class ScaffoldWithBottomNavBar extends StatelessWidget {
   const ScaffoldWithBottomNavBar({
@@ -53,59 +58,233 @@ class BottomNavBar extends HookConsumerWidget {
       }
     });
 
-    return Theme(
-      data: Theme.of(context).copyWith(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-      ),
-      child: BottomNavigationBar(
-        currentIndex: selectedIndex.value,
-        backgroundColor: context.colorScheme.background,
-        unselectedFontSize: 13,
-        selectedFontSize: 13,
-        elevation: 0,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          selectedIndex.value = index;
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Vectors.home,
-              colorFilter: ColorFilter.mode(
-                selectedIndex.value == 0
-                    ? context.colorScheme.primary
-                    : context.colorScheme.onSecondary.withOpacity(0.8),
-                BlendMode.srcIn,
-              ),
-            ),
-            label: context.l10n.home,
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Vectors.browse,
-              colorFilter: ColorFilter.mode(
-                selectedIndex.value == 1
-                    ? context.colorScheme.primary
-                    : context.colorScheme.onSecondary.withOpacity(0.8),
-                BlendMode.srcIn,
-              ),
-            ),
-            label: context.l10n.browse,
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Vectors.user,
-              colorFilter: ColorFilter.mode(
-                selectedIndex.value == 2
-                    ? context.colorScheme.primary
-                    : context.colorScheme.onSecondary.withOpacity(0.8),
-                BlendMode.srcIn,
-              ),
-            ),
-            label: context.l10n.profile,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: context.colorScheme.background,
+        boxShadow: [
+          BoxShadow(
+            color: context.colorScheme.onSecondary.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, -5),
           ),
         ],
+      ),
+      child: SafeArea(
+        child: SizedBox(
+          height: 60,
+          child: Row(
+            children: [
+              Expanded(
+                child: _BottomNavBarItem(
+                  icon: Vectors.home,
+                  label: context.l10n.home,
+                  isSelected: selectedIndex.value == 0,
+                  onTap: () {
+                    if (selectedIndex.value == 0) {
+                      ref.read(goRouterProvider).go(HomePage.routeName);
+                    } else {
+                      selectedIndex.value = 0;
+                    }
+                  },
+                ),
+              ),
+              Expanded(
+                child: _BottomNavBarItem(
+                  icon: Vectors.plusCircle,
+                  label: context.l10n.add,
+                  isSelected: false,
+                  onTap: () {
+                    showModalBottomSheet<void>(
+                      context: context,
+                      useRootNavigator: true,
+                      backgroundColor: context.colorScheme.background,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(Sizes.large),
+                        ),
+                      ),
+                      builder: (_) {
+                        return ProviderScope(
+                          parent: ProviderScope.containerOf(context),
+                          child: const _AddBottomSheet(),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
+              Expanded(
+                child: _BottomNavBarItem(
+                  icon: Vectors.browse,
+                  label: context.l10n.browse,
+                  isSelected: selectedIndex.value == 1,
+                  onTap: () {
+                    if (selectedIndex.value == 1) {
+                      ref.read(goRouterProvider).go(BrowsePage.routeName);
+                    } else {
+                      selectedIndex.value = 1;
+                    }
+                  },
+                ),
+              ),
+              Expanded(
+                child: _BottomNavBarItem(
+                  icon: Vectors.user,
+                  label: context.l10n.profile,
+                  isSelected: selectedIndex.value == 2,
+                  onTap: () {
+                    if (selectedIndex.value == 2) {
+                      ref.read(goRouterProvider).go(UserPage.routeName);
+                    } else {
+                      selectedIndex.value = 2;
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BottomNavBarItem extends StatelessWidget {
+  const _BottomNavBarItem({
+    required this.icon,
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String icon;
+  final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        height: 60,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              icon,
+              colorFilter: isSelected
+                  ? ColorFilter.mode(
+                      context.colorScheme.primary,
+                      BlendMode.srcIn,
+                    )
+                  : ColorFilter.mode(
+                      context.colorScheme.onBackground.withOpacity(0.5),
+                      BlendMode.srcIn,
+                    ),
+            ),
+            Text(
+              label,
+              style: TextStyle(
+                color: isSelected
+                    ? context.colorScheme.primary
+                    : context.colorScheme.onBackground.withOpacity(0.5),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _AddBottomSheet extends ConsumerWidget {
+  const _AddBottomSheet();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: Sizes.medium),
+          const BottomSheetDecoration(),
+          const SizedBox(height: Sizes.extraLarge),
+          _AddBottomSheetItem(
+            icon: Vectors.measurement,
+            label: context.l10n.newMeasurement,
+            onTap: () {
+              ref.read(goRouterProvider).go(
+                    '${BrowsePage.routeName}/${MeasurementPage.routeName}/${MeasurementFormPage.routeName}',
+                  );
+            },
+            description: context.l10n.measurementsDescription,
+          ),
+          _AddBottomSheetItem(
+            icon: Vectors.appointment,
+            label: context.l10n.newAppointment,
+            onTap: () {
+              ref.read(goRouterProvider).go(
+                    '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentFormPage.routeName}/""',
+                  );
+            },
+            description: context.l10n.appointmentDescription,
+          ),
+          _AddBottomSheetItem(
+            icon: Vectors.medicine,
+            label: context.l10n.newMedicine,
+            onTap: () {
+              ref.read(goRouterProvider).go(
+                    '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineNamePage.routeName}',
+                  );
+            },
+            description: context.l10n.medicinesDescriptions,
+          ),
+          const SizedBox(height: Sizes.medium),
+        ],
+      ),
+    );
+  }
+}
+
+class _AddBottomSheetItem extends StatelessWidget {
+  const _AddBottomSheetItem({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    required this.description,
+  });
+
+  final String icon;
+  final String label;
+  final String description;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: () {
+        onTap();
+        GoRouter.of(context).pop();
+      },
+      minLeadingWidth: 0,
+      titleAlignment: ListTileTitleAlignment.center,
+      leading: SvgPicture.asset(
+        icon,
+        colorFilter: ColorFilter.mode(
+          context.colorScheme.onSecondary,
+          BlendMode.srcIn,
+        ),
+      ),
+      title: Text(
+        label,
+        style: context.textTheme.titleMedium,
+      ),
+      subtitle: Text(
+        description,
+        style: context.textTheme.bodyMedium!.copyWith(
+          color: context.colorScheme.onBackground.withOpacity(0.5),
+        ),
       ),
     );
   }

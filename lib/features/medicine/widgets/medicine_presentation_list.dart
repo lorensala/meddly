@@ -21,7 +21,7 @@ class MedicinePresentationList extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
         boxShadow: boxShadow(context),
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+        borderRadius: BorderRadius.circular(Sizes.small),
       ),
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),

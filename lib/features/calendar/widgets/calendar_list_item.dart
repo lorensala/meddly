@@ -1,7 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'dart:math' as math;
-
 import 'package:calendar/calendar.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +20,7 @@ class CalendarListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: Sizes.horizontalPadding,
+      padding: EdgeInsets.symmetric(horizontal: Sizes.medium),
       child: Row(
         children: [
           _EventHour(),
@@ -45,7 +43,7 @@ class _EventCard extends ConsumerWidget {
         decoration: BoxDecoration(
           boxShadow: boxShadow(context),
           color: context.colorScheme.secondary,
-          borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+          borderRadius: BorderRadius.circular(Sizes.small),
         ),
         child: ListTile(
           titleAlignment: ListTileTitleAlignment.center,
@@ -205,14 +203,11 @@ class _EventLeading extends ConsumerWidget {
       height: double.infinity,
       width: Sizes.large,
       child: switch (event) {
-        MedicineEvent() => Transform.rotate(
-            angle: math.pi / 4,
-            child: SvgPicture.asset(
-              Vectors.medicine,
-              colorFilter: ColorFilter.mode(
-                context.colorScheme.onBackground,
-                BlendMode.srcIn,
-              ),
+        MedicineEvent() => SvgPicture.asset(
+            Vectors.medicine,
+            colorFilter: ColorFilter.mode(
+              context.colorScheme.onBackground,
+              BlendMode.srcIn,
             ),
           ),
         AppointmentEvent() => SvgPicture.asset(

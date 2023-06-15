@@ -23,7 +23,7 @@ class NotificationsButton extends ConsumerWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorScheme.background,
-            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+            borderRadius: BorderRadius.circular(Sizes.small),
           ),
           child: Center(
             child: SvgPicture.asset(

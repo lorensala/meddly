@@ -12,7 +12,7 @@ class CircleCheckSuffixIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.mediumPadding,
+      padding: EdgeInsets.all(Sizes.medium),
       child: ElasticIn(
         duration: const Duration(milliseconds: 300),
         child: SvgPicture.asset(

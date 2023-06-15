@@ -9,7 +9,7 @@ class HomeTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.horizontalPadding,
+      padding: EdgeInsets.symmetric(horizontal: Sizes.medium),
       child: Text(
         title,
         style: context.textTheme.titleLarge,

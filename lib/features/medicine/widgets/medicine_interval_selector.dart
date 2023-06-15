@@ -62,7 +62,7 @@ class _IntervalBody extends HookConsumerWidget {
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,
             boxShadow: boxShadow(context),
-            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+            borderRadius: BorderRadius.circular(Sizes.small),
           ),
           child: Row(
             children: [
@@ -84,10 +84,10 @@ class _IntervalBody extends HookConsumerWidget {
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,
             boxShadow: boxShadow(context),
-            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+            borderRadius: BorderRadius.circular(Sizes.small),
           ),
           child: Padding(
-            padding: Sizes.mediumPadding,
+            padding: EdgeInsets.all(Sizes.medium),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -40,6 +40,7 @@ class Vectors {
   static const String browse = 'assets/svg/browse.svg';
   static const String settings = 'assets/svg/settings.svg';
   static const String user = 'assets/svg/user.svg';
+  static const String plusCircle = 'assets/svg/plus-circle.svg';
 
   // * Notifications
   static const String trash = 'assets/svg/trash.svg';

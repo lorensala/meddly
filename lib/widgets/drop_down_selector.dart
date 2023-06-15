@@ -24,7 +24,7 @@ class DropDownSelector<T> extends StatelessWidget {
         color: enabled
             ? context.colorScheme.secondary
             : context.colorScheme.onSecondary.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+        borderRadius: BorderRadius.circular(Sizes.small),
         border: hasBorder
             ? Border.all(
                 color: context.colorScheme.surface,
@@ -32,10 +32,10 @@ class DropDownSelector<T> extends StatelessWidget {
             : null,
       ),
       child: Padding(
-        padding: Sizes.horizontalPadding,
+        padding: EdgeInsets.symmetric(horizontal: Sizes.medium),
         child: DropdownButtonHideUnderline(
           child: DropdownButton<T>(
-            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+            borderRadius: BorderRadius.circular(Sizes.small),
             value: value,
             items: items,
             style: context.textTheme.bodyMedium,

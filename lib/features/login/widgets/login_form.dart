@@ -8,7 +8,7 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: Sizes.mediumPadding,
+      padding: EdgeInsets.all(Sizes.medium),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

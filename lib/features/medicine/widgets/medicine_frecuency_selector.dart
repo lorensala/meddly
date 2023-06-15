@@ -20,7 +20,7 @@ class MedicineFrecuencySelector extends ConsumerWidget {
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
         boxShadow: boxShadow(context),
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+        borderRadius: BorderRadius.circular(Sizes.small),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

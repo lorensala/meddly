@@ -15,7 +15,7 @@ class MedicineDosisForm extends StatelessWidget {
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Padding(
-        padding: Sizes.mediumPadding,
+        padding: EdgeInsets.all(Sizes.medium),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -58,7 +58,7 @@ class _DosisUnitSelector extends ConsumerWidget {
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
         boxShadow: boxShadow(context),
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+        borderRadius: BorderRadius.circular(Sizes.small),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

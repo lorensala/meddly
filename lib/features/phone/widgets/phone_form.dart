@@ -112,7 +112,7 @@ class _CountryCodeSelector extends ConsumerWidget {
     final notifier = ref.watch(phoneFormControllerProvider.notifier);
     return Container(
       width: 140,
-      padding: Sizes.horizontalPadding.copyWith(
+      padding: EdgeInsets.symmetric(horizontal: Sizes.medium).copyWith(
         top: Sizes.small / 2,
         bottom: Sizes.small / 2,
       ),
