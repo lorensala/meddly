@@ -82,7 +82,12 @@ class _EventSubtitle extends ConsumerWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(event.description),
+            Text(
+              event.description,
+              style: context.textTheme.bodyMedium!.copyWith(
+                color: context.colorScheme.onBackground.withOpacity(0.5),
+              ),
+            ),
             Consumer(
               builder: (context, ref, child) {
                 final user = ref.watch(userProvider);
@@ -140,7 +145,12 @@ class _EventSubtitle extends ConsumerWidget {
       _ => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(event.description),
+            Text(
+              event.description,
+              style: context.textTheme.bodyMedium!.copyWith(
+                color: context.colorScheme.onBackground.withOpacity(0.5),
+              ),
+            ),
             const _EventUser(),
           ],
         ),

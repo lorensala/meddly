@@ -3,6 +3,7 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/core/core.dart';
 import 'package:meddly/features/calendar/controller/controller.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
+import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -44,7 +45,7 @@ List<CalendarEvent> calendarDailyEvents(
                       id: measurement.id,
                       uid: uid,
                       title: measurement.value.toString(),
-                      description: measurement.type.name,
+                      description: measurement.type.localizedString(l10n),
                       date: measurement.date,
                     ),
                   );
