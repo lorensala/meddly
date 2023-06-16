@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
-import 'package:meddly/widgets/widgets.dart';
 
 class AppointmentDoctorInput extends ConsumerWidget {
   const AppointmentDoctorInput({
@@ -22,8 +21,6 @@ class AppointmentDoctorInput extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Nombre del médico', isRequired: false),
-        const SizedBox(height: Sizes.extraSmall),
         TextFormField(
           initialValue: doctor,
           enabled: isEditing,
@@ -31,6 +28,7 @@ class AppointmentDoctorInput extends ConsumerWidget {
           onChanged: notifier.onDoctorChanged,
           decoration: InputDecoration(
             filled: !isEditing,
+            labelText: 'Nombre del médico',
             hintText: 'Ej: Dr. Juan Pérez',
           ),
         ),

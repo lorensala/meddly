@@ -23,7 +23,6 @@ part 'go_router_provider.g.dart';
 Raw<GoRouter> goRouter(GoRouterRef ref) {
   final rootNavigatorKey = GlobalKey<NavigatorState>();
   final shellNavigatorKey = GlobalKey<NavigatorState>();
-  final appointmentNavigatorKey = GlobalKey<NavigatorState>();
 
   final router = GoRouter(
     initialLocation: SplashPage.routeName,

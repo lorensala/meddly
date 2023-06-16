@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
-import 'package:meddly/widgets/widgets.dart';
 
 class AppointmentNotesInput extends HookConsumerWidget {
   const AppointmentNotesInput({
@@ -22,8 +21,6 @@ class AppointmentNotesInput extends HookConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Notas', isRequired: false),
-        const SizedBox(height: Sizes.extraSmall),
         TextFormField(
           initialValue: notes,
           enabled: isEditing,
@@ -34,6 +31,8 @@ class AppointmentNotesInput extends HookConsumerWidget {
           maxLines: 4,
           decoration: InputDecoration(
             filled: !isEditing,
+            labelText: 'Notas',
+            alignLabelWithHint: true,
             hintText: 'Ej: Llevar estudios previos',
           ),
         ),

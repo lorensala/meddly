@@ -76,27 +76,33 @@ class AppTheme {
           color: _surfaceLight,
           width: 1.5,
         ),
-        borderRadius: BorderRadius.circular(Sizes.small),
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
+      ),
+      floatingLabelStyle: _lightTextTheme().titleMedium,
+      focusColor: _onPrimaryLight,
+      labelStyle: _lightTextTheme().bodyMedium!.copyWith(
+            color: _onBackgroundLight.withOpacity(0.5),
+          ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
+        borderSide: const BorderSide(
+          width: 2,
+        ),
       ),
       disabledBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: _surfaceLight, width: 1.5),
-        borderRadius: BorderRadius.circular(Sizes.small),
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
       ),
       border: OutlineInputBorder(
         borderSide: const BorderSide(color: _surfaceLight, width: 1.5),
-        borderRadius: BorderRadius.circular(Sizes.small),
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
       ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: _surfaceLight, width: 1.5),
-        borderRadius: BorderRadius.circular(Sizes.small),
-      ),
-      labelStyle: _lightTextTheme().bodyMedium,
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(Sizes.small),
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
         borderSide: const BorderSide(color: _errorLight, width: 1.5),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(Sizes.small),
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
         borderSide: const BorderSide(color: _errorLight, width: 1.5),
       ),
     ),

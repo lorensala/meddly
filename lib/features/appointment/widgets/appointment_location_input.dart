@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
-import 'package:meddly/widgets/widgets.dart';
 
 class AppointmentLocationInput extends ConsumerWidget {
   const AppointmentLocationInput({
@@ -22,8 +21,8 @@ class AppointmentLocationInput extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Ubicación', isRequired: false),
-        const SizedBox(height: Sizes.extraSmall),
+        // const InputLabel(label: 'Ubicación', isRequired: false),
+        // const SizedBox(height: Sizes.extraSmall),
         TextFormField(
           initialValue: location,
           enabled: isEditing,
@@ -31,6 +30,7 @@ class AppointmentLocationInput extends ConsumerWidget {
           onChanged: notifier.onLocationChanged,
           decoration: InputDecoration(
             filled: !isEditing,
+            labelText: 'Ubicación',
             hintText: 'Ej: Hospital Italiano',
           ),
         ),

@@ -46,17 +46,16 @@ class AppointmentFormPage extends HookConsumerWidget {
           },
         ),
       ),
-      bottomNavigationBar: DecoratedBox(
-        decoration: BoxDecoration(
-          color: context.colorScheme.secondary,
-          boxShadow: boxShadow(context),
-        ),
-        child: const SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(Sizes.medium),
-            child: SizedBox(
-              height: Sizes.buttonHeight,
-              child: _SaveButton(),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(Sizes.medium),
+          child: SizedBox(
+            height: Sizes.buttonHeight,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                boxShadow: boxShadow(context),
+              ),
+              child: const _SaveButton(),
             ),
           ),
         ),
@@ -99,7 +98,6 @@ class _SaveButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = ref.watch(appointmentControllerProvider).isLoading;
     final isEditing = ref.watch(
       appointmentFormControllerProvider.select(
         (value) => value.isEditing,
@@ -110,7 +108,6 @@ class _SaveButton extends ConsumerWidget {
 
     return Button(
       isValid: isValid,
-      isLoading: isLoading,
       onPressed: () {
         if (isEditing) {
           ref.read(appointmentFormControllerProvider.notifier).save();
