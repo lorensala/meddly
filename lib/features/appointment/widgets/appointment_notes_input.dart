@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 class AppointmentNotesInput extends HookConsumerWidget {
   const AppointmentNotesInput({
@@ -31,9 +32,9 @@ class AppointmentNotesInput extends HookConsumerWidget {
           maxLines: 4,
           decoration: InputDecoration(
             filled: !isEditing,
-            labelText: 'Notas',
+            labelText: context.l10n.notes,
             alignLabelWithHint: true,
-            hintText: 'Ej: Llevar estudios previos',
+            hintText: context.l10n.notesHint,
           ),
         ),
         const SizedBox(height: Sizes.medium),

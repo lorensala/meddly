@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 extension StringX on String {
   String capitalize() => '${this[0].toUpperCase()}${substring(1)}';
@@ -83,63 +84,32 @@ extension DateTimeX on DateTime {
         yesterday.day == date.day;
   }
 
-  String toNamedMonthString() {
-    switch (month) {
-      case 1:
-        return 'January';
-      case 2:
-        return 'February';
-      case 3:
-        return 'March';
-      case 4:
-        return 'April';
-      case 5:
-        return 'May';
-      case 6:
-        return 'June';
-      case 7:
-        return 'July';
-      case 8:
-        return 'August';
-      case 9:
-        return 'September';
-      case 10:
-        return 'October';
-      case 11:
-        return 'November';
-      case 12:
-        return 'December';
-      default:
-        return 'Unknown';
-    }
-  }
+  String toNamedMonthString(BuildContext context) =>
+      DateFormat('MMMM', 'es').format(this);
 
-  String toNamedDayNumberAndMonthString(BuildContext context) {
+  String localizedString(BuildContext context) {
     String? namedDay;
 
     // check if is yesterday
     if (isYesterday(this)) {
-      namedDay = 'Yesterday';
+      namedDay = context.l10n.yesterday;
       // check if is tomorrow
     } else if (isTomorrow(this)) {
-      namedDay = 'Tomorrow';
+      namedDay = context.l10n.tomorow;
       // check if is today
     } else if (isToday()) {
-      namedDay = 'Today';
+      namedDay = context.l10n.today;
     }
 
     // return named day
     if (namedDay != null) {
-      return '$namedDay, $day ${toNamedMonthString()}';
+      return '$namedDay, $day ${toNamedMonthString(context)}';
     } else {
-      return '${toNamedDayString(context)} $day ${toNamedMonthString()}';
+      return '${localizedDay(context)} $day ${toNamedMonthString(context)}';
     }
   }
 
-  String toDayMonthYearHourMinuteString() =>
-      '${day.toString().padLeft(2, '0')}/${month.toString().padLeft(2, '0')}/$year ${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
-
-  String toNamedDayString(BuildContext context) =>
+  String localizedDay(BuildContext context) =>
       DateFormat('EEE', Localizations.localeOf(context).languageCode)
           .format(this);
 }

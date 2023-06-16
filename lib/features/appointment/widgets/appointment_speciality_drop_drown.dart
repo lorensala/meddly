@@ -27,10 +27,9 @@ class AppointmentSpecialityDropDown extends HookConsumerWidget {
         DropdownButtonFormField<AppointmentSpeciality>(
           value: value,
           decoration: InputDecoration(
-            labelText: 'Especialidad ${isEditing ? '*' : ''}',
+            labelText: 'Especialidad${isEditing ? '*' : ''}',
             filled: !isEditing,
           ),
-          // enabled: isEditing,
           items: AppointmentSpeciality.values
               .map(
                 (e) => DropdownMenuItem<AppointmentSpeciality>(

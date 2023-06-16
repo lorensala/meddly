@@ -1,4 +1,5 @@
 import 'package:appointment/appointment.dart';
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 import 'package:meddly/features/appointment/core/core.dart';
 import 'package:meddly/features/appointment/provider/provider.dart';
@@ -34,7 +35,7 @@ class AppointmentController extends _$AppointmentController {
       data: (appointments) {
         return appointments.firstWhereOrNull((element) => element.id == id);
       },
-      error: (err, _) => null,
+      error: (_, __) => null,
       loading: () => null,
     );
   }

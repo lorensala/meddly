@@ -36,7 +36,7 @@ class CalendarDayCarrouselItem extends HookConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                date.toNamedDayString(context).substring(0, 1).capitalize(),
+                date.localizedDay(context).substring(0, 1).capitalize(),
                 style: context.textTheme.bodyMedium!.copyWith(
                   fontWeight: FontWeight.w600,
                   color: isToday

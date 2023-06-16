@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 class AppointmentNameInput extends ConsumerWidget {
   const AppointmentNameInput({
@@ -20,25 +21,27 @@ class AppointmentNameInput extends ConsumerWidget {
       appointmentFormControllerProvider.select((value) => value.isEditing),
     );
     final name = ref.watch(
-      appointmentFormControllerProvider.select((value) => value.name.value),
+      appointmentFormControllerProvider.select((value) => value.name),
     );
-    final error = ref.watch(
-      appointmentFormControllerProvider.select((value) => value.name.error),
+    final hasError = ref.watch(
+      appointmentFormControllerProvider
+          .select((value) => !value.name.isPure && value.name.error != null),
     );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormField(
-          initialValue: name,
+          initialValue: name.value,
           enabled: isEditing,
           style: context.textTheme.bodyMedium,
           onChanged: notifier.onNameChanged,
           decoration: InputDecoration(
-            labelText: '${context.l10n.nameHint} ${isEditing ? '*' : ''}',
+            labelText: '${context.l10n.appointment}${isEditing ? '*' : ''}',
             filled: !isEditing,
-            errorText: error != null ? context.l10n.invalidName : null,
-            hintText: 'Ej: Turno médico de cabecera',
+            errorText: hasError ? context.l10n.invalidName : null,
+            hintText: context.l10n.appointmentHint,
+            suffixIcon: isEditing && name.isValid ? const CircleCheck() : null,
           ),
         ),
         const SizedBox(height: Sizes.medium),

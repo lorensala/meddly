@@ -13,11 +13,13 @@ class AppointmentFormState with _$AppointmentFormState, FormzMixin {
     @Default(0) int id,
     @Default(Name.pure()) Name name,
     @Default(Specialty.pure()) Specialty speciality,
-    @Default(AppointmentDateTime.pure()) AppointmentDateTime dateTime,
+    @Default(AppointmentDate.pure()) AppointmentDate date,
+    @Default(AppointmentTime.pure()) AppointmentTime time,
     @Default(Doctor.pure()) Doctor doctor,
     @Default(Location.pure()) Location location,
     @Default(Notes.pure()) Notes notes,
     @Default(true) bool isEditing,
+    @Default(true) bool isNew,
   }) = _AppointmentFormState;
 
   const AppointmentFormState._();
@@ -29,6 +31,7 @@ class AppointmentFormState with _$AppointmentFormState, FormzMixin {
         speciality,
         location,
         notes,
-        dateTime,
+        date,
+        time,
       ];
 }

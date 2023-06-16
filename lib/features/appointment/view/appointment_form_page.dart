@@ -36,9 +36,7 @@ class AppointmentFormPage extends HookConsumerWidget {
             if (form.isDirty) {
               showDialog<void>(
                 context: context,
-                builder: (context) {
-                  return const ConfirmBackDialog();
-                },
+                builder: (context) => const ConfirmBackDialog(),
               );
             } else {
               GoRouter.of(context).pop();
@@ -46,31 +44,29 @@ class AppointmentFormPage extends HookConsumerWidget {
           },
         ),
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(Sizes.medium),
-          child: SizedBox(
-            height: Sizes.buttonHeight,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                boxShadow: boxShadow(context),
-              ),
-              child: const _SaveButton(),
+      bottomNavigationBar: ColoredBox(
+        color: context.colorScheme.secondary,
+        child: const SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(Sizes.medium),
+            child: SizedBox(
+              height: Sizes.buttonHeight,
+              child: _SaveButton(),
             ),
           ),
         ),
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(Sizes.medium),
-            child: Builder(
-              builder: (context) {
-                return AsyncValueWidget(
-                  value: ref.watch(appointmentControllerProvider),
-                  builder: (_) {
-                    return const Column(
+        child: Builder(
+          builder: (context) {
+            return AsyncValueWidget(
+              value: ref.watch(appointmentControllerProvider),
+              builder: (_) {
+                return const SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.all(Sizes.medium),
+                    child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -81,12 +77,12 @@ class AppointmentFormPage extends HookConsumerWidget {
                         AppointmentLocationInput(),
                         AppointmentNotesInput(),
                       ],
-                    );
-                  },
+                    ),
+                  ),
                 );
               },
-            ),
-          ),
+            );
+          },
         ),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 
-const String fontFamily = 'Be Vietnam Pro';
+const String fontFamily = 'Montserrat';
 
 class AppTheme {
   static const Color _primaryLight = Color(0xFF516EB4);
@@ -386,92 +386,62 @@ class AppTheme {
     return ThemeData.dark().textTheme.copyWith(
           displayLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w700,
-            fontSize: 57,
             color: _onSecondaryDark,
           ),
           displayMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w700,
-            fontSize: 45,
             color: _onSecondaryDark,
           ),
           displaySmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w700,
-            fontSize: 36,
             color: _onSecondaryDark,
           ),
           headlineLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w600,
-            fontSize: 32,
             color: _onSecondaryDark,
           ),
           headlineMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w600,
-            fontSize: 28,
             color: _onSecondaryDark,
           ),
           headlineSmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w600,
-            fontSize: 24,
             color: _onSecondaryDark,
           ),
           titleLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 22,
             color: _onSecondaryDark,
           ),
           titleMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
             color: _onSecondaryDark,
           ),
           titleSmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
             color: _onSecondaryDark,
           ),
           labelLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
             color: _onSecondaryDark,
           ),
           labelMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
             color: _onSecondaryDark,
           ),
           labelSmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 11,
             color: _onSecondaryDark,
           ),
           bodyLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
             color: _onSecondaryDark,
           ),
           bodyMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w400,
-            fontSize: 14,
             color: _onSecondaryDark,
           ),
           bodySmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w400,
-            fontSize: 12,
             color: _onSecondaryDark,
           ),
         );
@@ -479,7 +449,7 @@ class AppTheme {
 }
 
 extension ColorSchemeExtension on ColorScheme {
-  static const Color _success = Color(0xFF68B92E);
+  static const Color _success = Color.fromARGB(255, 46, 185, 99);
   static const Color _onSuccess = Color(0xFFFFFFFF);
 
   Color get success => _success;

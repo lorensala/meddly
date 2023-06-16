@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_public_notifier_properties
 import 'package:appointment/appointment.dart';
+import 'package:flutter/material.dart';
 import 'package:meddly/features/appointment/appointment.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:validators/validators.dart';
@@ -14,14 +15,27 @@ class AppointmentFormController extends _$AppointmentFormController {
 
     if (existingAppointment != null) {
       return AppointmentFormState(
-        id: existingAppointment.id!,
+        id: existingAppointment.id ?? 0,
         name: Name.dirty(existingAppointment.name),
         speciality: Specialty.dirty(existingAppointment.speciality),
-        dateTime: AppointmentDateTime.dirty(existingAppointment.date),
+        date: AppointmentDate.dirty(
+          DateTime(
+            existingAppointment.date.year,
+            existingAppointment.date.month,
+            existingAppointment.date.day,
+          ),
+        ),
+        time: AppointmentTime.dirty(
+          TimeOfDay(
+            hour: existingAppointment.date.hour,
+            minute: existingAppointment.date.minute,
+          ),
+        ),
         doctor: Doctor.dirty(existingAppointment.doctor ?? ''),
         location: Location.dirty(existingAppointment.location),
         notes: Notes.dirty(existingAppointment.notes),
         isEditing: false,
+        isNew: false,
       );
     }
     return const AppointmentFormState();
@@ -37,8 +51,13 @@ class AppointmentFormController extends _$AppointmentFormController {
   }
 
   void onDateChanged(DateTime value) {
-    final date = AppointmentDateTime.dirty(value);
-    state = state.copyWith(dateTime: date);
+    final date = AppointmentDate.dirty(value);
+    state = state.copyWith(date: date);
+  }
+
+  void onTimeChanged(TimeOfDay value) {
+    final time = AppointmentTime.dirty(value);
+    state = state.copyWith(time: time);
   }
 
   void onDoctorChanged(String value) {
@@ -65,20 +84,26 @@ class AppointmentFormController extends _$AppointmentFormController {
       id: state.id,
       name: state.name.value,
       speciality: state.speciality.value,
-      date: state.dateTime.value!,
+      date: DateTime(
+        state.date.value!.year,
+        state.date.value!.month,
+        state.date.value!.day,
+        state.time.value!.hour,
+        state.time.value!.minute,
+      ),
       doctor: state.doctor.value,
       location: state.location.value,
       notes: state.notes.value,
     );
 
-    if (state.isEditing) {
-      await ref
-          .watch(appointmentControllerProvider.notifier)
-          .updateAppointment(appointment);
-    } else {
+    if (state.isNew) {
       await ref
           .watch(appointmentControllerProvider.notifier)
           .addAppointment(appointment);
+    } else {
+      await ref
+          .watch(appointmentControllerProvider.notifier)
+          .updateAppointment(appointment);
     }
   }
 }
