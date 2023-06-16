@@ -23,6 +23,10 @@ class CircleCheck extends StatelessWidget {
           fit: BoxFit.scaleDown,
         ),
       ),
-    ).animate().fadeIn();
+    ).animate().scale(
+          duration: const Duration(milliseconds: 100),
+          curve: Curves.easeInOut,
+          alignment: Alignment.center,
+        );
   }
 }

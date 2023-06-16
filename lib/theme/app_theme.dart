@@ -127,6 +127,14 @@ class AppTheme {
       onError: _onErrorLight,
       shadow: _shadowLight,
     ),
+    tabBarTheme: TabBarTheme(
+      labelStyle: _lightTextTheme().titleSmall,
+      unselectedLabelStyle: _lightTextTheme().titleSmall!.copyWith(
+            fontWeight: FontWeight.w400,
+          ),
+      labelColor: _onBackgroundLight,
+      indicatorColor: _primaryLight,
+    ),
     listTileTheme: ListTileThemeData(
       selectedColor: _primaryLight,
       titleTextStyle: _lightTextTheme().titleMedium!.copyWith(

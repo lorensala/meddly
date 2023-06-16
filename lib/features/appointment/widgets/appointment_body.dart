@@ -6,7 +6,9 @@ import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class AppointmentBody extends ConsumerWidget {
-  const AppointmentBody({super.key});
+  const AppointmentBody(this.controller, {super.key});
+
+  final TabController controller;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,25 +22,64 @@ class AppointmentBody extends ConsumerWidget {
 
     final appointments = ref.watch(appointmentControllerProvider);
 
-    return AsyncValueWidget(
-      value: appointments,
-      builder: (appointments) {
-        if (appointments.isEmpty) {
-          return EmptyContainer(message: context.l10n.emptyAppointments);
-        }
+    return TabBarView(
+      controller: controller,
+      children: <Widget>[
+        AsyncValueWidget(
+          value: appointments,
+          builder: (appointments) {
+            final upcomingAppointments = appointments
+                .where((appointment) => appointment.isUpcoming)
+                .toList();
 
-        return ListView.builder(
-          itemCount: appointments.length,
-          itemBuilder: (context, index) {
-            return ProviderScope(
-              overrides: [
-                appointmentProvider.overrideWithValue(appointments[index]),
-              ],
-              child: const AppointmentListItem(),
+            if (upcomingAppointments.isEmpty) {
+              return EmptyContainer(
+                message: context.l10n.emptyUpcomingAppointments,
+              );
+            }
+
+            return ListView.builder(
+              itemCount: upcomingAppointments.length,
+              itemBuilder: (context, index) {
+                return ProviderScope(
+                  overrides: [
+                    appointmentProvider
+                        .overrideWithValue(upcomingAppointments[index]),
+                  ],
+                  child: const AppointmentListItem(),
+                );
+              },
             );
           },
-        );
-      },
+        ),
+        AsyncValueWidget(
+          value: appointments,
+          builder: (appointments) {
+            final pastAppointments = appointments
+                .where((appointment) => !appointment.isUpcoming)
+                .toList();
+
+            if (pastAppointments.isEmpty) {
+              return EmptyContainer(
+                message: context.l10n.emptyPastAppointments,
+              );
+            }
+
+            return ListView.builder(
+              itemCount: pastAppointments.length,
+              itemBuilder: (context, index) {
+                return ProviderScope(
+                  overrides: [
+                    appointmentProvider
+                        .overrideWithValue(pastAppointments[index]),
+                  ],
+                  child: const AppointmentListItem(),
+                );
+              },
+            );
+          },
+        ),
+      ],
     );
   }
 }

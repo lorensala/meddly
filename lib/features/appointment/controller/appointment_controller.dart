@@ -27,7 +27,9 @@ class AppointmentController extends _$AppointmentController {
   }
 
   void refresh() {
-    ref.invalidateSelf();
+    ref
+      ..invalidate(calendarControllerProvider)
+      ..invalidateSelf();
   }
 
   Appointment? getAppointment(int id) {
@@ -50,7 +52,7 @@ class AppointmentController extends _$AppointmentController {
       state = AsyncError(err.toString(), StackTrace.current);
     } else {
       refresh();
-      ref.invalidate(calendarControllerProvider);
+
       ref.watch(goRouterProvider).pop();
     }
   }
@@ -66,7 +68,6 @@ class AppointmentController extends _$AppointmentController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       refresh();
-      ref.watch(goRouterProvider).pop();
     }
   }
 
@@ -81,7 +82,6 @@ class AppointmentController extends _$AppointmentController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       refresh();
-      ref.invalidate(calendarControllerProvider);
       ref.watch(goRouterProvider).pop();
     }
   }
