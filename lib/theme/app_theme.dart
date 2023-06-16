@@ -5,8 +5,8 @@ const String fontFamily = 'Be Vietnam Pro';
 
 class AppTheme {
   static const Color _primaryLight = Color(0xFF516EB4);
-  static const Color _secondaryLight = Color(0xFFFFFFFF);
-  static const Color _backgroundLight = Color(0xFFFFFFFF);
+  static const Color _secondaryLight = Colors.white;
+  static const Color _backgroundLight = Colors.white;
   static const Color _onBackgroundLight = Colors.black;
   static const Color _onPrimaryLight = Color(0xFFFFFFFF);
   static const Color _onSecondaryLight = Color(0xFF000000);

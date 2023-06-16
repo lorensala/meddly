@@ -11,7 +11,7 @@ class CalendarIndicator extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: ColoredBox(
-        color: context.colorScheme.background,
+        color: context.colorScheme.secondary,
         child: const Icon(Icons.arrow_drop_down),
       ),
     );

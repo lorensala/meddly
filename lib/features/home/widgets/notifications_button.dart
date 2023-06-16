@@ -27,7 +27,7 @@ class NotificationsButton extends ConsumerWidget {
           children: [
             DecoratedBox(
               decoration: BoxDecoration(
-                color: context.colorScheme.background,
+                color: context.colorScheme.secondary,
                 borderRadius: BorderRadius.circular(Sizes.small),
               ),
               child: Center(

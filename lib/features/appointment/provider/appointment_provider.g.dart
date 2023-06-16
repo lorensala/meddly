@@ -53,124 +53,39 @@ final appointmentProvider = AutoDisposeProvider<Appointment>.internal(
 );
 
 typedef AppointmentRef = AutoDisposeProviderRef<Appointment>;
-String _$isAppointmentFormValidHash() =>
-    r'8c2b0b76e5df0a9117c63ee569cd837dd8f5e199';
+String _$existingAppointmentHash() =>
+    r'e9d2d474336d8d443356d7a431317869bfe17b8a';
 
-/// See also [isAppointmentFormValid].
-@ProviderFor(isAppointmentFormValid)
-final isAppointmentFormValidProvider = AutoDisposeProvider<bool>.internal(
-  isAppointmentFormValid,
-  name: r'isAppointmentFormValidProvider',
+/// See also [existingAppointment].
+@ProviderFor(existingAppointment)
+final existingAppointmentProvider = AutoDisposeProvider<Appointment?>.internal(
+  existingAppointment,
+  name: r'existingAppointmentProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$isAppointmentFormValidHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+      : _$existingAppointmentHash,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
-typedef IsAppointmentFormValidRef = AutoDisposeProviderRef<bool>;
-String _$loadExistingAppointmentHash() =>
-    r'9a7157c9d171171e30f2748225cd88427be05a84';
+typedef ExistingAppointmentRef = AutoDisposeProviderRef<Appointment?>;
+String _$isAppointmentValidHash() =>
+    r'63ea4401a3415a3a7dabf8943ea6afba4d88269a';
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
+/// See also [isAppointmentValid].
+@ProviderFor(isAppointmentValid)
+final isAppointmentValidProvider = AutoDisposeProvider<bool>.internal(
+  isAppointmentValid,
+  name: r'isAppointmentValidProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$isAppointmentValidHash,
+  dependencies: <ProviderOrFamily>[appointmentFormControllerProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    appointmentFormControllerProvider,
+    ...?appointmentFormControllerProvider.allTransitiveDependencies
+  },
+);
 
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-typedef LoadExistingAppointmentRef = AutoDisposeProviderRef<void>;
-
-/// See also [loadExistingAppointment].
-@ProviderFor(loadExistingAppointment)
-const loadExistingAppointmentProvider = LoadExistingAppointmentFamily();
-
-/// See also [loadExistingAppointment].
-class LoadExistingAppointmentFamily extends Family<void> {
-  /// See also [loadExistingAppointment].
-  const LoadExistingAppointmentFamily();
-
-  /// See also [loadExistingAppointment].
-  LoadExistingAppointmentProvider call({
-    int? id,
-  }) {
-    return LoadExistingAppointmentProvider(
-      id: id,
-    );
-  }
-
-  @override
-  LoadExistingAppointmentProvider getProviderOverride(
-    covariant LoadExistingAppointmentProvider provider,
-  ) {
-    return call(
-      id: provider.id,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'loadExistingAppointmentProvider';
-}
-
-/// See also [loadExistingAppointment].
-class LoadExistingAppointmentProvider extends AutoDisposeProvider<void> {
-  /// See also [loadExistingAppointment].
-  LoadExistingAppointmentProvider({
-    this.id,
-  }) : super.internal(
-          (ref) => loadExistingAppointment(
-            ref,
-            id: id,
-          ),
-          from: loadExistingAppointmentProvider,
-          name: r'loadExistingAppointmentProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$loadExistingAppointmentHash,
-          dependencies: LoadExistingAppointmentFamily._dependencies,
-          allTransitiveDependencies:
-              LoadExistingAppointmentFamily._allTransitiveDependencies,
-        );
-
-  final int? id;
-
-  @override
-  bool operator ==(Object other) {
-    return other is LoadExistingAppointmentProvider && other.id == id;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
+typedef IsAppointmentValidRef = AutoDisposeProviderRef<bool>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

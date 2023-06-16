@@ -1,4 +1,5 @@
 import 'package:appointment/appointment.dart';
+import 'package:collection/collection.dart';
 import 'package:meddly/features/appointment/core/core.dart';
 import 'package:meddly/features/appointment/provider/provider.dart';
 import 'package:meddly/features/calendar/calendar.dart';
@@ -26,6 +27,16 @@ class AppointmentController extends _$AppointmentController {
 
   void refresh() {
     ref.invalidateSelf();
+  }
+
+  Appointment? getAppointment(int id) {
+    return state.when(
+      data: (appointments) {
+        return appointments.firstWhereOrNull((element) => element.id == id);
+      },
+      error: (err, _) => null,
+      loading: () => null,
+    );
   }
 
   Future<void> addAppointment(Appointment appointment) async {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meddly/features/appointment/view/view.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/measurement/measurement.dart';
@@ -22,6 +23,7 @@ part 'go_router_provider.g.dart';
 Raw<GoRouter> goRouter(GoRouterRef ref) {
   final rootNavigatorKey = GlobalKey<NavigatorState>();
   final shellNavigatorKey = GlobalKey<NavigatorState>();
+  final appointmentNavigatorKey = GlobalKey<NavigatorState>();
 
   final router = GoRouter(
     initialLocation: SplashPage.routeName,
@@ -83,9 +85,24 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                   GoRoute(
                     parentNavigatorKey: shellNavigatorKey,
                     path: '${AppointmentFormPage.routeName}/:id',
-                    builder: (context, state) => AppointmentFormPage(
-                      int.tryParse(state.pathParameters['id']!),
-                    ),
+                    builder: (context, state) {
+                      final id = int.tryParse(state.pathParameters['id']!);
+                      if (id != null) {
+                        final appointment = ref
+                            .read(appointmentControllerProvider.notifier)
+                            .getAppointment(id);
+
+                        return ProviderScope(
+                          overrides: [
+                            existingAppointmentProvider.overrideWithValue(
+                              appointment,
+                            ),
+                          ],
+                          child: const AppointmentFormPage(),
+                        );
+                      }
+                      return const AppointmentFormPage();
+                    },
                   ),
                 ],
               ),

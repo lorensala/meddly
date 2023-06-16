@@ -29,7 +29,7 @@ class CalendarDayCarrouselItem extends HookConsumerWidget {
             color: isToday
                 ? context.colorScheme.primary
                 : context.colorScheme.secondary,
-            borderRadius: BorderRadius.circular(Sizes.extraLarge),
+            borderRadius: BorderRadius.circular(Sizes.large),
           ),
           duration: const Duration(milliseconds: 200),
           child: Column(

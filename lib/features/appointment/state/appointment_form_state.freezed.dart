@@ -18,11 +18,11 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppointmentFormState {
   int get id => throw _privateConstructorUsedError;
   Name get name => throw _privateConstructorUsedError;
-  AppointmentSpeciality get speciality => throw _privateConstructorUsedError;
-  DateTime? get date => throw _privateConstructorUsedError;
-  Name get doctor => throw _privateConstructorUsedError;
-  String get location => throw _privateConstructorUsedError;
-  String get notes => throw _privateConstructorUsedError;
+  Specialty get speciality => throw _privateConstructorUsedError;
+  AppointmentDateTime get dateTime => throw _privateConstructorUsedError;
+  Doctor get doctor => throw _privateConstructorUsedError;
+  Location get location => throw _privateConstructorUsedError;
+  Notes get notes => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,11 +39,11 @@ abstract class $AppointmentFormStateCopyWith<$Res> {
   $Res call(
       {int id,
       Name name,
-      AppointmentSpeciality speciality,
-      DateTime? date,
-      Name doctor,
-      String location,
-      String notes,
+      Specialty speciality,
+      AppointmentDateTime dateTime,
+      Doctor doctor,
+      Location location,
+      Notes notes,
       bool isEditing});
 }
 
@@ -64,7 +64,7 @@ class _$AppointmentFormStateCopyWithImpl<$Res,
     Object? id = null,
     Object? name = null,
     Object? speciality = null,
-    Object? date = freezed,
+    Object? dateTime = null,
     Object? doctor = null,
     Object? location = null,
     Object? notes = null,
@@ -82,23 +82,23 @@ class _$AppointmentFormStateCopyWithImpl<$Res,
       speciality: null == speciality
           ? _value.speciality
           : speciality // ignore: cast_nullable_to_non_nullable
-              as AppointmentSpeciality,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as Specialty,
+      dateTime: null == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as AppointmentDateTime,
       doctor: null == doctor
           ? _value.doctor
           : doctor // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as Doctor,
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Location,
       notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Notes,
       isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -118,11 +118,11 @@ abstract class _$$_AppointmentFormStateCopyWith<$Res>
   $Res call(
       {int id,
       Name name,
-      AppointmentSpeciality speciality,
-      DateTime? date,
-      Name doctor,
-      String location,
-      String notes,
+      Specialty speciality,
+      AppointmentDateTime dateTime,
+      Doctor doctor,
+      Location location,
+      Notes notes,
       bool isEditing});
 }
 
@@ -140,7 +140,7 @@ class __$$_AppointmentFormStateCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? speciality = null,
-    Object? date = freezed,
+    Object? dateTime = null,
     Object? doctor = null,
     Object? location = null,
     Object? notes = null,
@@ -158,23 +158,23 @@ class __$$_AppointmentFormStateCopyWithImpl<$Res>
       speciality: null == speciality
           ? _value.speciality
           : speciality // ignore: cast_nullable_to_non_nullable
-              as AppointmentSpeciality,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as Specialty,
+      dateTime: null == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as AppointmentDateTime,
       doctor: null == doctor
           ? _value.doctor
           : doctor // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as Doctor,
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Location,
       notes: null == notes
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Notes,
       isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -189,11 +189,11 @@ class _$_AppointmentFormState extends _AppointmentFormState {
   const _$_AppointmentFormState(
       {this.id = 0,
       this.name = const Name.pure(),
-      this.speciality = AppointmentSpeciality.cardiology,
-      this.date,
-      this.doctor = const Name.pure(),
-      this.location = '',
-      this.notes = '',
+      this.speciality = const Specialty.pure(),
+      this.dateTime = const AppointmentDateTime.pure(),
+      this.doctor = const Doctor.pure(),
+      this.location = const Location.pure(),
+      this.notes = const Notes.pure(),
       this.isEditing = true})
       : super._();
 
@@ -205,25 +205,26 @@ class _$_AppointmentFormState extends _AppointmentFormState {
   final Name name;
   @override
   @JsonKey()
-  final AppointmentSpeciality speciality;
-  @override
-  final DateTime? date;
+  final Specialty speciality;
   @override
   @JsonKey()
-  final Name doctor;
+  final AppointmentDateTime dateTime;
   @override
   @JsonKey()
-  final String location;
+  final Doctor doctor;
   @override
   @JsonKey()
-  final String notes;
+  final Location location;
+  @override
+  @JsonKey()
+  final Notes notes;
   @override
   @JsonKey()
   final bool isEditing;
 
   @override
   String toString() {
-    return 'AppointmentFormState(id: $id, name: $name, speciality: $speciality, date: $date, doctor: $doctor, location: $location, notes: $notes, isEditing: $isEditing)';
+    return 'AppointmentFormState(id: $id, name: $name, speciality: $speciality, dateTime: $dateTime, doctor: $doctor, location: $location, notes: $notes, isEditing: $isEditing)';
   }
 
   @override
@@ -235,7 +236,8 @@ class _$_AppointmentFormState extends _AppointmentFormState {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.speciality, speciality) ||
                 other.speciality == speciality) &&
-            (identical(other.date, date) || other.date == date) &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime) &&
             (identical(other.doctor, doctor) || other.doctor == doctor) &&
             (identical(other.location, location) ||
                 other.location == location) &&
@@ -245,7 +247,7 @@ class _$_AppointmentFormState extends _AppointmentFormState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, speciality, date,
+  int get hashCode => Object.hash(runtimeType, id, name, speciality, dateTime,
       doctor, location, notes, isEditing);
 
   @JsonKey(ignore: true)
@@ -260,11 +262,11 @@ abstract class _AppointmentFormState extends AppointmentFormState {
   const factory _AppointmentFormState(
       {final int id,
       final Name name,
-      final AppointmentSpeciality speciality,
-      final DateTime? date,
-      final Name doctor,
-      final String location,
-      final String notes,
+      final Specialty speciality,
+      final AppointmentDateTime dateTime,
+      final Doctor doctor,
+      final Location location,
+      final Notes notes,
       final bool isEditing}) = _$_AppointmentFormState;
   const _AppointmentFormState._() : super._();
 
@@ -273,15 +275,15 @@ abstract class _AppointmentFormState extends AppointmentFormState {
   @override
   Name get name;
   @override
-  AppointmentSpeciality get speciality;
+  Specialty get speciality;
   @override
-  DateTime? get date;
+  AppointmentDateTime get dateTime;
   @override
-  Name get doctor;
+  Doctor get doctor;
   @override
-  String get location;
+  Location get location;
   @override
-  String get notes;
+  Notes get notes;
   @override
   bool get isEditing;
   @override

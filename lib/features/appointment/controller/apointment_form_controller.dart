@@ -1,30 +1,30 @@
 // ignore_for_file: avoid_public_notifier_properties
 import 'package:appointment/appointment.dart';
-import 'package:meddly/features/appointment/controller/appointment_controller.dart';
-import 'package:meddly/features/appointment/state/appointment_form_state.dart';
+import 'package:meddly/features/appointment/appointment.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:validators/validators.dart';
 
 part 'apointment_form_controller.g.dart';
 
-@riverpod
+@Riverpod(dependencies: [existingAppointment])
 class AppointmentFormController extends _$AppointmentFormController {
   @override
   AppointmentFormState build() {
-    return const AppointmentFormState();
-  }
+    final existingAppointment = ref.watch(existingAppointmentProvider);
 
-  void loadAppointment(Appointment existingAppointment) {
-    state = state.copyWith(
-      id: existingAppointment.id!,
-      name: Name.dirty(existingAppointment.name),
-      speciality: existingAppointment.speciality!,
-      date: existingAppointment.date,
-      doctor: Name.dirty(existingAppointment.doctor ?? ''),
-      location: existingAppointment.location ?? '',
-      notes: existingAppointment.notes ?? '',
-      isEditing: false,
-    );
+    if (existingAppointment != null) {
+      return AppointmentFormState(
+        id: existingAppointment.id!,
+        name: Name.dirty(existingAppointment.name),
+        speciality: Specialty.dirty(existingAppointment.speciality),
+        dateTime: AppointmentDateTime.dirty(existingAppointment.date),
+        doctor: Doctor.dirty(existingAppointment.doctor ?? ''),
+        location: Location.dirty(existingAppointment.location),
+        notes: Notes.dirty(existingAppointment.notes),
+        isEditing: false,
+      );
+    }
+    return const AppointmentFormState();
   }
 
   void onNameChanged(String value) {
@@ -32,23 +32,28 @@ class AppointmentFormController extends _$AppointmentFormController {
   }
 
   void onSpecialityChanged(AppointmentSpeciality value) {
-    state = state.copyWith(speciality: value);
+    final speciality = Specialty.dirty(value);
+    state = state.copyWith(speciality: speciality);
   }
 
   void onDateChanged(DateTime value) {
-    state = state.copyWith(date: value);
+    final date = AppointmentDateTime.dirty(value);
+    state = state.copyWith(dateTime: date);
   }
 
   void onDoctorChanged(String value) {
-    state = state.copyWith(doctor: Name.dirty(value));
+    final doctor = Doctor.dirty(value);
+    state = state.copyWith(doctor: doctor);
   }
 
   void onLocationChanged(String value) {
-    state = state.copyWith(location: value);
+    final location = Location.dirty(value);
+    state = state.copyWith(location: location);
   }
 
   void onNotesChanged(String value) {
-    state = state.copyWith(notes: value);
+    final notes = Notes.dirty(value);
+    state = state.copyWith(notes: notes);
   }
 
   void edit() {
@@ -56,31 +61,24 @@ class AppointmentFormController extends _$AppointmentFormController {
   }
 
   Future<void> save() async {
-    if (state.id == 0) {
-      final appointment = Appointment(
-        name: state.name.value,
-        speciality: state.speciality,
-        date: state.date!,
-        doctor: state.doctor.value,
-        location: state.location,
-        notes: state.notes,
-      );
-      await ref
-          .watch(appointmentControllerProvider.notifier)
-          .addAppointment(appointment);
-    } else {
-      final appointment = Appointment(
-        id: state.id,
-        name: state.name.value,
-        speciality: state.speciality,
-        date: state.date!,
-        doctor: state.doctor.value,
-        location: state.location,
-        notes: state.notes,
-      );
+    final appointment = Appointment(
+      id: state.id,
+      name: state.name.value,
+      speciality: state.speciality.value,
+      date: state.dateTime.value!,
+      doctor: state.doctor.value,
+      location: state.location.value,
+      notes: state.notes.value,
+    );
+
+    if (state.isEditing) {
       await ref
           .watch(appointmentControllerProvider.notifier)
           .updateAppointment(appointment);
+    } else {
+      await ref
+          .watch(appointmentControllerProvider.notifier)
+          .addAppointment(appointment);
     }
   }
 }
