@@ -1,6 +1,4 @@
 import 'package:appointment/appointment.dart';
-// ignore: depend_on_referenced_packages
-import 'package:collection/collection.dart';
 import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -22,36 +20,24 @@ Appointment appointment(AppointmentRef ref) {
   throw UnimplementedError();
 }
 
-@riverpod
-bool isAppointmentFormValid(IsAppointmentFormValidRef ref) {
-  return ref.watch(
-    appointmentFormControllerProvider
-        .select((s) => s.name.isValid && s.date != null),
-  );
+@Riverpod(dependencies: [])
+Appointment? existingAppointment(ExistingAppointmentRef ref) {
+  return null;
 }
 
-@riverpod
-void loadExistingAppointment(LoadExistingAppointmentRef ref, {int? id}) {
-  final appointment = ref
-      .watch(
-    appointmentControllerProvider,
-  )
-      .whenOrNull(
-    data: (appointments) {
-      return appointments.firstWhereOrNull(
-        (element) => element.id == id,
-      );
-    },
+@Riverpod(dependencies: [AppointmentFormController])
+bool isAppointmentValid(IsAppointmentValidRef ref) {
+  final isEditing = ref.watch(
+    appointmentFormControllerProvider.select((value) => value.isEditing),
   );
+  final isLoading = ref.watch(appointmentControllerProvider).isLoading;
 
-  if (appointment != null) {
-    Future.delayed(
-      Duration.zero,
-      () {
-        ref.read(appointmentFormControllerProvider.notifier).loadAppointment(
-              appointment,
-            );
-      },
-    );
+  if (!isEditing) {
+    return true;
   }
+
+  return ref.watch(
+        appointmentFormControllerProvider.select((value) => value.isValid),
+      ) &&
+      !isLoading;
 }

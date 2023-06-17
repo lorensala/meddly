@@ -31,10 +31,10 @@ class BottomNavBar extends HookConsumerWidget {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: context.colorScheme.background,
+        color: context.colorScheme.secondary,
         boxShadow: [
           BoxShadow(
-            color: context.colorScheme.onSecondary.withOpacity(0.1),
+            color: context.colorScheme.onBackground.withOpacity(0.1),
             blurRadius: 10,
             offset: const Offset(0, -5),
           ),
@@ -42,7 +42,7 @@ class BottomNavBar extends HookConsumerWidget {
       ),
       child: SafeArea(
         child: SizedBox(
-          height: 60,
+          height: kBottomNavigationBarHeight + Sizes.small,
           child: Row(
             children: [
               Expanded(
@@ -156,7 +156,7 @@ class _BottomNavBarItem extends StatelessWidget {
             ),
             Text(
               label,
-              style: TextStyle(
+              style: context.textTheme.bodySmall!.copyWith(
                 color: isSelected
                     ? context.colorScheme.primary
                     : context.colorScheme.onBackground.withOpacity(0.5),

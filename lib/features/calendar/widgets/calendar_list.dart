@@ -18,6 +18,7 @@ class CalendarList extends ConsumerWidget {
       loading: ListView.separated(
         separatorBuilder: (_, __) => const SizedBox(height: Sizes.medium),
         itemCount: 3,
+        padding: const EdgeInsets.symmetric(vertical: Sizes.medium),
         physics: const ClampingScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
@@ -34,23 +35,26 @@ class CalendarList extends ConsumerWidget {
           );
         }
 
-        return ListView.separated(
-          separatorBuilder: (_, __) => const SizedBox(height: Sizes.medium),
-          itemCount: calendarDailyEvents.length,
-          physics: const ClampingScrollPhysics(),
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return ProviderScope(
-              overrides: [
-                calendarEventProvider.overrideWithValue(
-                  calendarDailyEvents[index],
-                ),
-                consumptionControllerProvider
-                    .overrideWith(ConsumptionController.new)
-              ],
-              child: const CalendarListItem(),
-            );
-          },
+        return Expanded(
+          child: ListView.separated(
+            separatorBuilder: (_, __) => const SizedBox(height: Sizes.medium),
+            itemCount: calendarDailyEvents.length,
+            physics: const ClampingScrollPhysics(),
+            padding: const EdgeInsets.symmetric(vertical: Sizes.medium),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return ProviderScope(
+                overrides: [
+                  calendarEventProvider.overrideWithValue(
+                    calendarDailyEvents[index],
+                  ),
+                  consumptionControllerProvider
+                      .overrideWith(ConsumptionController.new)
+                ],
+                child: const CalendarListItem(),
+              );
+            },
+          ),
         );
       },
     );

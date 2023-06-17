@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
 
-const String fontFamily = 'Be Vietnam Pro';
+const String fontFamily = 'Montserrat';
 
 class AppTheme {
   static const Color _primaryLight = Color(0xFF516EB4);
-  static const Color _secondaryLight = Color(0xFFFFFFFF);
-  static const Color _backgroundLight = Color(0xFFFFFFFF);
+  static const Color _secondaryLight = Colors.white;
+  static const Color _backgroundLight = Colors.white;
   static const Color _onBackgroundLight = Colors.black;
   static const Color _onPrimaryLight = Color(0xFFFFFFFF);
   static const Color _onSecondaryLight = Color(0xFF000000);
@@ -76,27 +76,33 @@ class AppTheme {
           color: _surfaceLight,
           width: 1.5,
         ),
-        borderRadius: BorderRadius.circular(Sizes.small),
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
+      ),
+      floatingLabelStyle: _lightTextTheme().titleMedium,
+      focusColor: _onPrimaryLight,
+      labelStyle: _lightTextTheme().bodyMedium!.copyWith(
+            color: _onBackgroundLight.withOpacity(0.5),
+          ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
+        borderSide: const BorderSide(
+          width: 2,
+        ),
       ),
       disabledBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: _surfaceLight, width: 1.5),
-        borderRadius: BorderRadius.circular(Sizes.small),
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
       ),
       border: OutlineInputBorder(
         borderSide: const BorderSide(color: _surfaceLight, width: 1.5),
-        borderRadius: BorderRadius.circular(Sizes.small),
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
       ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: _surfaceLight, width: 1.5),
-        borderRadius: BorderRadius.circular(Sizes.small),
-      ),
-      labelStyle: _lightTextTheme().bodyMedium,
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(Sizes.small),
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
         borderSide: const BorderSide(color: _errorLight, width: 1.5),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(Sizes.small),
+        borderRadius: BorderRadius.circular(Sizes.extraSmall),
         borderSide: const BorderSide(color: _errorLight, width: 1.5),
       ),
     ),
@@ -120,6 +126,14 @@ class AppTheme {
       error: _errorLight,
       onError: _onErrorLight,
       shadow: _shadowLight,
+    ),
+    tabBarTheme: TabBarTheme(
+      labelStyle: _lightTextTheme().titleSmall,
+      unselectedLabelStyle: _lightTextTheme().titleSmall!.copyWith(
+            fontWeight: FontWeight.w400,
+          ),
+      labelColor: _onBackgroundLight,
+      indicatorColor: _primaryLight,
     ),
     listTileTheme: ListTileThemeData(
       selectedColor: _primaryLight,
@@ -380,92 +394,62 @@ class AppTheme {
     return ThemeData.dark().textTheme.copyWith(
           displayLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w700,
-            fontSize: 57,
             color: _onSecondaryDark,
           ),
           displayMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w700,
-            fontSize: 45,
             color: _onSecondaryDark,
           ),
           displaySmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w700,
-            fontSize: 36,
             color: _onSecondaryDark,
           ),
           headlineLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w600,
-            fontSize: 32,
             color: _onSecondaryDark,
           ),
           headlineMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w600,
-            fontSize: 28,
             color: _onSecondaryDark,
           ),
           headlineSmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w600,
-            fontSize: 24,
             color: _onSecondaryDark,
           ),
           titleLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 22,
             color: _onSecondaryDark,
           ),
           titleMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
             color: _onSecondaryDark,
           ),
           titleSmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
             color: _onSecondaryDark,
           ),
           labelLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
             color: _onSecondaryDark,
           ),
           labelMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
             color: _onSecondaryDark,
           ),
           labelSmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w500,
-            fontSize: 11,
             color: _onSecondaryDark,
           ),
           bodyLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
             color: _onSecondaryDark,
           ),
           bodyMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w400,
-            fontSize: 14,
             color: _onSecondaryDark,
           ),
           bodySmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w400,
-            fontSize: 12,
             color: _onSecondaryDark,
           ),
         );
@@ -473,7 +457,7 @@ class AppTheme {
 }
 
 extension ColorSchemeExtension on ColorScheme {
-  static const Color _success = Color(0xFF68B92E);
+  static const Color _success = Color.fromARGB(255, 46, 185, 99);
   static const Color _onSuccess = Color(0xFFFFFFFF);
 
   Color get success => _success;

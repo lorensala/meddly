@@ -17,13 +17,14 @@ class HomeBody extends ConsumerWidget {
       );
     });
 
-    return const SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ColoredBox(
+            color: context.colorScheme.secondary,
+            child: const Padding(
               padding: EdgeInsets.all(Sizes.medium),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,14 +35,12 @@ class HomeBody extends ConsumerWidget {
                 ],
               ),
             ),
-            CalendarSupervisor(),
-            CalendarIndicator(),
-            CalendarDayCarrousel(),
-            SizedBox(height: Sizes.medium),
-            CalendarList(),
-            SizedBox(height: Sizes.medium),
-          ],
-        ),
+          ),
+          const CalendarSupervisor(),
+          const CalendarIndicator(),
+          const CalendarDayCarrousel(),
+          const CalendarList(),
+        ],
       ),
     );
   }

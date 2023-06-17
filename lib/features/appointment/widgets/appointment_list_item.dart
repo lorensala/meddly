@@ -48,19 +48,20 @@ class AppointmentListItem extends ConsumerWidget {
       },
       background: ColoredBox(
         color: context.colorScheme.error,
-        child: const Padding(
-          padding: EdgeInsets.only(right: Sizes.medium),
+        child: Padding(
+          padding: const EdgeInsets.only(right: Sizes.medium),
           child: Align(
             alignment: Alignment.centerRight,
             child: Icon(
               Icons.delete,
-              color: Colors.white,
+              color: context.colorScheme.secondary,
             ),
           ),
         ),
       ),
       direction: DismissDirection.endToStart,
       child: ListTile(
+        trailing: Text(appointment.date.localizedString(context)),
         title: Text(appointment.name),
         subtitle: Text(appointment.speciality!.localized(context.l10n)),
         onTap: () => GoRouter.of(context).go(

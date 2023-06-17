@@ -73,8 +73,8 @@ Future<void> showSnackBar(
 List<BoxShadow> boxShadow(BuildContext context) {
   return [
     BoxShadow(
-      color: context.colorScheme.onSecondary.withOpacity(0.2),
-      blurRadius: 6,
+      color: context.colorScheme.onBackground.withOpacity(0.1),
+      blurRadius: 10,
       offset: const Offset(2, 2),
     ),
   ];

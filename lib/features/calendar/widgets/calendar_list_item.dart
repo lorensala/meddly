@@ -249,7 +249,7 @@ class _EventHour extends ConsumerWidget {
       child: Text(
         event.date.toHoursAndMinutesString(),
         style: context.textTheme.bodyMedium!.copyWith(
-          color: context.colorScheme.onBackground.withOpacity(0.6),
+          color: context.colorScheme.onBackground,
         ),
       ),
     );

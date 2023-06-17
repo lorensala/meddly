@@ -18,37 +18,40 @@ class CalendarSupervisor extends HookConsumerWidget {
 
     return Builder(
       builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(Sizes.medium),
-          child: Center(
-            child: GestureDetector(
-              onTap: () {
-                showModalBottomSheet<void>(
-                  context: context,
-                  isDismissible: false,
-                  useRootNavigator: true,
-                  backgroundColor: context.colorScheme.background,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(Sizes.large),
+        return ColoredBox(
+          color: context.colorScheme.secondary,
+          child: Padding(
+            padding: const EdgeInsets.all(Sizes.medium),
+            child: Center(
+              child: GestureDetector(
+                onTap: () {
+                  showModalBottomSheet<void>(
+                    context: context,
+                    isDismissible: false,
+                    useRootNavigator: true,
+                    backgroundColor: context.colorScheme.background,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(Sizes.large),
+                      ),
                     ),
+                    builder: (_) {
+                      return ProviderScope(
+                        parent: ProviderScope.containerOf(context),
+                        child: const SelectSupervisedBottomSheet(),
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  calendarUsers.length == selectedUser.length
+                      ? 'Todos'
+                      : 'Supervisados',
+                  style: context.textTheme.bodyMedium!.copyWith(
+                    decoration: TextDecoration.underline,
                   ),
-                  builder: (_) {
-                    return ProviderScope(
-                      parent: ProviderScope.containerOf(context),
-                      child: const SelectSupervisedBottomSheet(),
-                    );
-                  },
-                );
-              },
-              child: Text(
-                calendarUsers.length == selectedUser.length
-                    ? 'Todos'
-                    : 'Supervisados',
-                style: context.textTheme.bodyMedium!.copyWith(
-                  decoration: TextDecoration.underline,
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
           ),

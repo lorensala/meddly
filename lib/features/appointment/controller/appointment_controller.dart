@@ -1,4 +1,6 @@
 import 'package:appointment/appointment.dart';
+// ignore: depend_on_referenced_packages
+import 'package:collection/collection.dart';
 import 'package:meddly/features/appointment/core/core.dart';
 import 'package:meddly/features/appointment/provider/provider.dart';
 import 'package:meddly/features/calendar/calendar.dart';
@@ -25,7 +27,19 @@ class AppointmentController extends _$AppointmentController {
   }
 
   void refresh() {
-    ref.invalidateSelf();
+    ref
+      ..invalidate(calendarControllerProvider)
+      ..invalidateSelf();
+  }
+
+  Appointment? getAppointment(int id) {
+    return state.when(
+      data: (appointments) {
+        return appointments.firstWhereOrNull((element) => element.id == id);
+      },
+      error: (_, __) => null,
+      loading: () => null,
+    );
   }
 
   Future<void> addAppointment(Appointment appointment) async {
@@ -38,7 +52,7 @@ class AppointmentController extends _$AppointmentController {
       state = AsyncError(err.toString(), StackTrace.current);
     } else {
       refresh();
-      ref.invalidate(calendarControllerProvider);
+
       ref.watch(goRouterProvider).pop();
     }
   }
@@ -54,7 +68,6 @@ class AppointmentController extends _$AppointmentController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       refresh();
-      ref.watch(goRouterProvider).pop();
     }
   }
 
@@ -69,7 +82,6 @@ class AppointmentController extends _$AppointmentController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       refresh();
-      ref.invalidate(calendarControllerProvider);
       ref.watch(goRouterProvider).pop();
     }
   }

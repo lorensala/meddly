@@ -26,7 +26,16 @@ class CalendarDayCarrousel extends HookConsumerWidget {
     );
 
     return Container(
-      color: context.colorScheme.background,
+      decoration: BoxDecoration(
+        color: context.colorScheme.secondary,
+        boxShadow: [
+          BoxShadow(
+            color: context.colorScheme.onBackground.withOpacity(0.05),
+            blurRadius: 4,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
       height: _height,
       child: PageView.builder(
         onPageChanged: (int page) {
