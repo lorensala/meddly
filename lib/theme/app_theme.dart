@@ -248,19 +248,19 @@ class AppTheme {
           ),
           bodyLarge: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
             fontSize: 16,
             color: _onSecondaryLight,
           ),
           bodyMedium: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
             fontSize: 14,
             color: _onSecondaryLight,
           ),
           bodySmall: const TextStyle(
             fontFamily: fontFamily,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
             fontSize: 12,
             color: _onSecondaryLight,
           ),
