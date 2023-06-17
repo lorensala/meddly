@@ -25,6 +25,7 @@ class SupervisorPage extends StatelessWidget {
                 onPressed: () {
                   showModalBottomSheet<void>(
                     context: context,
+                    useRootNavigator: true,
                     backgroundColor: context.colorScheme.background,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(

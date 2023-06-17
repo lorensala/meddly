@@ -19,49 +19,70 @@ class InvitationCodeBottomSheet extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController();
-    return Container(
-      padding: const EdgeInsets.all(Sizes.medium),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const BottomSheetDecoration(),
-          const SizedBox(height: Sizes.medium),
-          SizedBox(
-            width: 220,
-            child: TextFormField(
-              keyboardType: TextInputType.text,
-              textCapitalization: TextCapitalization.characters,
-              textAlign: TextAlign.center,
-              controller: controller,
-              inputFormatters: [
-                codeMaskFormatter,
-                UpperCaseTextFormatter(),
-                LengthLimitingTextInputFormatter(12),
-              ],
-              style: context.textTheme.titleLarge,
-              decoration: InputDecoration(
-                hintText: 'AEF-12F1-QS2',
-                hintStyle: context.textTheme.titleLarge!.copyWith(
-                  color: context.colorScheme.onSecondary.withOpacity(0.4),
+    return SafeArea(
+      child: Container(
+        padding: const EdgeInsets.all(Sizes.medium),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const BottomSheetDecoration(),
+            const SizedBox(height: Sizes.medium),
+            SizedBox(
+              width: 220,
+              child: TextFormField(
+                keyboardType: TextInputType.text,
+                textCapitalization: TextCapitalization.characters,
+                textAlign: TextAlign.center,
+                controller: controller,
+                inputFormatters: [
+                  codeMaskFormatter,
+                  UpperCaseTextFormatter(),
+                  LengthLimitingTextInputFormatter(12),
+                ],
+                style: context.textTheme.titleLarge,
+                decoration: InputDecoration(
+                  suffixIcon: GestureDetector(
+                    onTap: () async {
+                      await Clipboard.getData('text/plain').then((value) {
+                        if (value?.text != null) {
+                          controller.text = value!.text!;
+                          ref
+                              .read(
+                                supervisorCodeFormControllerProvider.notifier,
+                              )
+                              .codeChanged(value.text!);
+                        }
+                      });
+                    },
+                    child: const Icon(Icons.paste_rounded),
+                  ),
+                  suffixIconColor:
+                      context.colorScheme.onSecondary.withOpacity(0.4),
+                  hintText: 'AEF-12F1-QS2',
+                  hintStyle: context.textTheme.titleLarge!.copyWith(
+                    color: context.colorScheme.onSecondary.withOpacity(0.4),
+                  ),
                 ),
+                onChanged: (value) => ref
+                    .read(supervisorCodeFormControllerProvider.notifier)
+                    .codeChanged(value),
               ),
-              onChanged: (value) => ref
-                  .read(supervisorCodeFormControllerProvider.notifier)
-                  .codeChanged(value),
             ),
-          ),
-          const SizedBox(height: Sizes.large),
-          Button(
-            isValid: ref.watch(supervisorCodeFormControllerProvider).isValid,
-            isLoading: ref.watch(supervisorControllerProvider).isLoading,
-            onPressed: () {
-              ref.read(supervisorCodeFormControllerProvider.notifier).submit();
-              GoRouter.of(context).pop();
-            },
-            label: 'Aceptar',
-          ),
-          const SizedBox(height: Sizes.medium),
-        ],
+            const SizedBox(height: Sizes.large),
+            Button(
+              isValid: ref.watch(supervisorCodeFormControllerProvider).isValid,
+              isLoading: ref.watch(supervisorControllerProvider).isLoading,
+              onPressed: () {
+                ref
+                    .read(supervisorCodeFormControllerProvider.notifier)
+                    .submit();
+                GoRouter.of(context).pop();
+              },
+              label: 'Aceptar',
+            ),
+            const SizedBox(height: Sizes.medium),
+          ],
+        ),
       ),
     );
   }

@@ -5,6 +5,7 @@ class Vectors {
   static const String logo = 'assets/svg/logo.svg';
   static const String share = 'assets/svg/share.svg';
   static const String checkCircle = 'assets/svg/check-circle.svg';
+  static const String paste = 'assets/svg/paste.svg';
 
   // * Onboarding
   static const String onboarding1 = 'assets/svg/onboarding-1.svg';

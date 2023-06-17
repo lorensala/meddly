@@ -98,24 +98,3 @@ class CalendarSupervisor extends HookConsumerWidget {
     );
   }
 }
-
-// get color from user initials
-// Color getColorFromInitials(String initials) {
-//   final colors = [
-//     Colors.red,
-//     Colors.green,
-//     Colors.blue,
-//     Colors.orange,
-//     Colors.purple,
-//     Colors.pink,
-//     Colors.teal,
-//     Colors.cyan,
-//     Colors.indigo,
-//     Colors.amber,
-//     Colors.brown,
-//     Colors.grey,
-//   ];
-
-//   final index = initials.codeUnitAt(0) % colors.length;
-//   return colors[index];
-// }
