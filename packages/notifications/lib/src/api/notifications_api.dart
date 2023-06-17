@@ -65,4 +65,17 @@ class NotificationsApi {
       throw NotificationException.fromDioError(e);
     }
   }
+
+  Future<void> deleteNotification(
+    int notificationId,
+  ) async {
+    try {
+      await _dio.delete<dynamic>(
+        notificationPath,
+        queryParameters: {'notification_id': notificationId},
+      );
+    } on DioError catch (e) {
+      throw NotificationException.fromDioError(e);
+    }
+  }
 }

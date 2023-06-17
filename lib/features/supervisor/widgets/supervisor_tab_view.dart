@@ -21,7 +21,7 @@ class SupervisorTabView extends HookWidget {
               color: context.colorScheme.background,
               boxShadow: [
                 BoxShadow(
-                  color: context.colorScheme.onBackground.withOpacity(0.07),
+                  color: context.colorScheme.onBackground.withOpacity(0.05),
                   blurRadius: 6,
                   offset: const Offset(0, 8),
                 ),

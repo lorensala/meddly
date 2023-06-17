@@ -68,4 +68,19 @@ class NotificationsRepository {
       return (NotificationUnknownException(), null);
     }
   }
+
+  //deleteNotification
+  Future<(NotificationException?, void)> deleteNotification(
+    Notification notification,
+  ) async {
+    try {
+      await _api.deleteNotification(notification.id);
+
+      return (null, null);
+    } on NotificationException catch (e) {
+      return (e, null);
+    } catch (_) {
+      return (NotificationUnknownException(), null);
+    }
+  }
 }

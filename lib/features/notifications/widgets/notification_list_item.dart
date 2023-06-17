@@ -31,7 +31,9 @@ class NotificationListItem extends ConsumerWidget {
       key: const Key('notification'),
       onDismissed: (direction) {
         if (direction == DismissDirection.endToStart) {
-          // TODO(me): Delete notification ??
+          ref.read(notificationsControllerProvider.notifier).delete(
+                notification,
+              );
         }
       },
       child: ListTile(
