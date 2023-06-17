@@ -85,7 +85,7 @@ extension DateTimeX on DateTime {
   }
 
   String toNamedMonthString(BuildContext context) =>
-      DateFormat('MMMM', 'es').format(this);
+      DateFormat('MMMM', 'es').format(this).capitalize();
 
   String localizedString(BuildContext context) {
     String? namedDay;
@@ -111,7 +111,8 @@ extension DateTimeX on DateTime {
 
   String localizedDay(BuildContext context) =>
       DateFormat('EEE', Localizations.localeOf(context).languageCode)
-          .format(this);
+          .format(this)
+          .capitalize();
 }
 
 extension RefDebounceX on Ref {

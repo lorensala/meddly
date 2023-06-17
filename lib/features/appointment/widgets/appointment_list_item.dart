@@ -61,6 +61,7 @@ class AppointmentListItem extends ConsumerWidget {
       ),
       direction: DismissDirection.endToStart,
       child: ListTile(
+        trailing: Text(appointment.date.localizedString(context)),
         title: Text(appointment.name),
         subtitle: Text(appointment.speciality!.localized(context.l10n)),
         onTap: () => GoRouter.of(context).go(

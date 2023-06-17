@@ -6,3 +6,4 @@ export 'appointment_location_input.dart';
 export 'appointment_name_input.dart';
 export 'appointment_notes_input.dart';
 export 'appointment_speciality_drop_drown.dart';
+export 'appointment_tab_bar.dart';
