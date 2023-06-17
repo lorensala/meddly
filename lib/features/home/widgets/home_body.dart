@@ -17,29 +17,26 @@ class HomeBody extends ConsumerWidget {
       );
     });
 
-    return SafeArea(
+    return const SafeArea(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ColoredBox(
-            color: context.colorScheme.secondary,
-            child: const Padding(
-              padding: EdgeInsets.all(Sizes.medium),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  UserGreetings(),
-                  Spacer(),
-                  NotificationsButton(),
-                ],
-              ),
+          Padding(
+            padding: EdgeInsets.all(Sizes.medium),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                UserGreetings(),
+                Spacer(),
+                NotificationsButton(),
+              ],
             ),
           ),
-          const CalendarSupervisor(),
-          const CalendarIndicator(),
-          const CalendarDayCarrousel(),
-          const CalendarList(),
+          CalendarSupervisor(),
+          CalendarIndicator(),
+          CalendarDayCarrousel(),
+          CalendarList(),
         ],
       ),
     );

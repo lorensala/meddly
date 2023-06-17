@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meddly/core/core.dart';
 
 class CalendarIndicator extends StatelessWidget {
   const CalendarIndicator({
@@ -10,10 +9,7 @@ class CalendarIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      child: ColoredBox(
-        color: context.colorScheme.secondary,
-        child: const Icon(Icons.arrow_drop_down),
-      ),
+      child: const Icon(Icons.arrow_drop_down),
     );
   }
 }

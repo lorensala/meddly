@@ -72,7 +72,7 @@ class SupervisedSelectionItem extends ConsumerWidget {
       subtitle: Text(
         supervised.email,
         style: context.textTheme.bodyMedium!.copyWith(
-          color: context.colorScheme.onBackground.withOpacity(0.5),
+          color: context.colorScheme.onBackground.withOpacity(0.7),
         ),
       ),
     );

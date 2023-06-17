@@ -78,7 +78,7 @@ class _CalendarDayCarrouselItemStatusIndicator extends ConsumerWidget {
       radius: Sizes.extraSmall - 1,
       backgroundColor: hasAllConsumed
           ? context.colorScheme.primary
-          : context.colorScheme.onBackground,
+          : context.colorScheme.onBackground.withOpacity(0.2),
     );
   }
 }
