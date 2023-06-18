@@ -61,9 +61,19 @@ class AppointmentListItem extends ConsumerWidget {
       ),
       direction: DismissDirection.endToStart,
       child: ListTile(
-        trailing: Text(appointment.date.localizedString(context)),
+        trailing: Text(
+          appointment.date.localizedString(context),
+          style: context.textTheme.bodyMedium!.copyWith(
+            color: context.colorScheme.onSecondary.withOpacity(0.5),
+          ),
+        ),
         title: Text(appointment.name),
-        subtitle: Text(appointment.speciality!.localized(context.l10n)),
+        subtitle: Text(
+          appointment.speciality!.localized(context.l10n),
+          style: context.textTheme.bodyMedium!.copyWith(
+            color: context.colorScheme.onSecondary.withOpacity(0.5),
+          ),
+        ),
         onTap: () => GoRouter.of(context).go(
           '${BrowsePage.routeName}/${AppointmentPage.routeName}/${AppointmentFormPage.routeName}/${appointment.id}',
         ),

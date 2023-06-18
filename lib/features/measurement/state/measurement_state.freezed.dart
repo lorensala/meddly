@@ -20,6 +20,8 @@ mixin _$MeasurementState {
   MeasurementType get type => throw _privateConstructorUsedError;
   MeasurementUnit get unit => throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
+  bool get isEditing => throw _privateConstructorUsedError;
+  bool get isNew => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MeasurementStateCopyWith<MeasurementState> get copyWith =>
@@ -36,7 +38,9 @@ abstract class $MeasurementStateCopyWith<$Res> {
       {NotNegativeIntNumber value,
       MeasurementType type,
       MeasurementUnit unit,
-      DateTime? date});
+      DateTime? date,
+      bool isEditing,
+      bool isNew});
 }
 
 /// @nodoc
@@ -56,6 +60,8 @@ class _$MeasurementStateCopyWithImpl<$Res, $Val extends MeasurementState>
     Object? type = null,
     Object? unit = null,
     Object? date = freezed,
+    Object? isEditing = null,
+    Object? isNew = null,
   }) {
     return _then(_value.copyWith(
       value: null == value
@@ -74,6 +80,14 @@ class _$MeasurementStateCopyWithImpl<$Res, $Val extends MeasurementState>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      isEditing: null == isEditing
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNew: null == isNew
+          ? _value.isNew
+          : isNew // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -90,7 +104,9 @@ abstract class _$$_MeasurementStateCopyWith<$Res>
       {NotNegativeIntNumber value,
       MeasurementType type,
       MeasurementUnit unit,
-      DateTime? date});
+      DateTime? date,
+      bool isEditing,
+      bool isNew});
 }
 
 /// @nodoc
@@ -108,6 +124,8 @@ class __$$_MeasurementStateCopyWithImpl<$Res>
     Object? type = null,
     Object? unit = null,
     Object? date = freezed,
+    Object? isEditing = null,
+    Object? isNew = null,
   }) {
     return _then(_$_MeasurementState(
       value: null == value
@@ -126,6 +144,14 @@ class __$$_MeasurementStateCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      isEditing: null == isEditing
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isNew: null == isNew
+          ? _value.isNew
+          : isNew // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -135,9 +161,11 @@ class __$$_MeasurementStateCopyWithImpl<$Res>
 class _$_MeasurementState extends _MeasurementState {
   const _$_MeasurementState(
       {this.value = const NotNegativeIntNumber.pure(),
-      this.type = MeasurementType.other,
-      this.unit = MeasurementUnit.other,
-      this.date})
+      this.type = MeasurementType.bloodPressure,
+      this.unit = MeasurementUnit.mmHg,
+      this.date,
+      this.isEditing = true,
+      this.isNew = true})
       : super._();
 
   @override
@@ -151,10 +179,16 @@ class _$_MeasurementState extends _MeasurementState {
   final MeasurementUnit unit;
   @override
   final DateTime? date;
+  @override
+  @JsonKey()
+  final bool isEditing;
+  @override
+  @JsonKey()
+  final bool isNew;
 
   @override
   String toString() {
-    return 'MeasurementState(value: $value, type: $type, unit: $unit, date: $date)';
+    return 'MeasurementState(value: $value, type: $type, unit: $unit, date: $date, isEditing: $isEditing, isNew: $isNew)';
   }
 
   @override
@@ -165,11 +199,15 @@ class _$_MeasurementState extends _MeasurementState {
             (identical(other.value, value) || other.value == value) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.unit, unit) || other.unit == unit) &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.isEditing, isEditing) ||
+                other.isEditing == isEditing) &&
+            (identical(other.isNew, isNew) || other.isNew == isNew));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value, type, unit, date);
+  int get hashCode =>
+      Object.hash(runtimeType, value, type, unit, date, isEditing, isNew);
 
   @JsonKey(ignore: true)
   @override
@@ -183,7 +221,9 @@ abstract class _MeasurementState extends MeasurementState {
       {final NotNegativeIntNumber value,
       final MeasurementType type,
       final MeasurementUnit unit,
-      final DateTime? date}) = _$_MeasurementState;
+      final DateTime? date,
+      final bool isEditing,
+      final bool isNew}) = _$_MeasurementState;
   const _MeasurementState._() : super._();
 
   @override
@@ -194,6 +234,10 @@ abstract class _MeasurementState extends MeasurementState {
   MeasurementUnit get unit;
   @override
   DateTime? get date;
+  @override
+  bool get isEditing;
+  @override
+  bool get isNew;
   @override
   @JsonKey(ignore: true)
   _$$_MeasurementStateCopyWith<_$_MeasurementState> get copyWith =>

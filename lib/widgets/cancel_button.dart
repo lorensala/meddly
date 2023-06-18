@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 class CancelButton extends StatelessWidget {
   const CancelButton({
@@ -22,7 +23,7 @@ class CancelButton extends StatelessWidget {
         padding: const EdgeInsets.all(Sizes.medium),
         child: Center(
           child: Text(
-            'Cancel',
+            context.l10n.cancel,
             style: context.textTheme.bodyLarge,
           ),
         ),

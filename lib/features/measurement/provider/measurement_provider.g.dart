@@ -39,24 +39,8 @@ final measurementRepositoryProvider =
 
 typedef MeasurementRepositoryRef
     = AutoDisposeProviderRef<MeasurementRepository>;
-String _$measurementValueErrorHash() =>
-    r'cefc1b50cc635801dab333cbce8671c6ab77af23';
-
-/// See also [measurementValueError].
-@ProviderFor(measurementValueError)
-final measurementValueErrorProvider = AutoDisposeProvider<String?>.internal(
-  measurementValueError,
-  name: r'measurementValueErrorProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$measurementValueErrorHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MeasurementValueErrorRef = AutoDisposeProviderRef<String?>;
 String _$measurementIsValidHash() =>
-    r'0b185d11e3e1995b1ff394b47452760174420744';
+    r'795804de055af03254723b47b931c828a7502d75';
 
 /// See also [measurementIsValid].
 @ProviderFor(measurementIsValid)
@@ -66,12 +50,15 @@ final measurementIsValidProvider = AutoDisposeProvider<bool>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$measurementIsValidHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[measurementFormControllerProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    measurementFormControllerProvider,
+    ...?measurementFormControllerProvider.allTransitiveDependencies
+  },
 );
 
 typedef MeasurementIsValidRef = AutoDisposeProviderRef<bool>;
-String _$measurementHash() => r'c44ef95fa50619e7bede1ab68803d5dcd46fb559';
+String _$measurementHash() => r'd4cb536e1b39dcb74e7538389651f531f3e8e10f';
 
 /// See also [measurement].
 @ProviderFor(measurement)
@@ -80,9 +67,25 @@ final measurementProvider = AutoDisposeProvider<Measurement>.internal(
   name: r'measurementProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$measurementHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
 typedef MeasurementRef = AutoDisposeProviderRef<Measurement>;
+String _$existingMeasurementHash() =>
+    r'e126f6e29f6d557d320fd957ea0b2456f41c4950';
+
+/// See also [existingMeasurement].
+@ProviderFor(existingMeasurement)
+final existingMeasurementProvider = AutoDisposeProvider<Measurement?>.internal(
+  existingMeasurement,
+  name: r'existingMeasurementProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$existingMeasurementHash,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
+);
+
+typedef ExistingMeasurementRef = AutoDisposeProviderRef<Measurement?>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

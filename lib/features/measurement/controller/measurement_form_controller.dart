@@ -5,11 +5,26 @@ import 'package:validators/validators.dart';
 
 part 'measurement_form_controller.g.dart';
 
-@riverpod
+@Riverpod(dependencies: [existingMeasurement])
 class MeasurementFormController extends _$MeasurementFormController {
   @override
   MeasurementState build() {
-    return const MeasurementState();
+    final existingMeasurement = ref.watch(existingMeasurementProvider);
+
+    if (existingMeasurement != null) {
+      return MeasurementState(
+        date: existingMeasurement.date,
+        type: existingMeasurement.type,
+        unit: existingMeasurement.unit,
+        value: NotNegativeIntNumber.dirty(
+          existingMeasurement.value.toInt().toString(),
+        ),
+        isEditing: false,
+        isNew: false,
+      );
+    } else {
+      return const MeasurementState();
+    }
   }
 
   void valueChanged(String value) {
@@ -18,18 +33,24 @@ class MeasurementFormController extends _$MeasurementFormController {
 
   void unitChanged(MeasurementUnit? unit) {
     if (unit == null) return;
-    if (unit == state.unit) return;
     state = state.copyWith(unit: unit);
   }
 
   void typeChanged(MeasurementType? type) {
     if (type == null) return;
-    if (type == state.type) return;
-    state = state.copyWith(type: type);
+
+    state = state.copyWith(
+      type: type,
+      unit: type.units.isEmpty ? MeasurementUnit.other : type.units.first,
+    );
   }
 
   void dateChanged(DateTime date) {
     state = state.copyWith(date: date);
+  }
+
+  void edit() {
+    state = state.copyWith(isEditing: true);
   }
 
   void save() {

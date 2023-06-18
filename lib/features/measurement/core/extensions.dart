@@ -46,3 +46,32 @@ extension MeasurementTypeX on MeasurementType {
     };
   }
 }
+
+extension MeasurementUnitX on MeasurementUnit {
+  String localizedString(AppLocalizations l10n) {
+    return switch (this) {
+      MeasurementUnit.mmHg => l10n.measurementUnitMmHg,
+      MeasurementUnit.mgPerDL => l10n.measurementUnitMgPerDL,
+      MeasurementUnit.kg => l10n.measurementUnitKg,
+      MeasurementUnit.pounds => l10n.measurementUnitPounds,
+      MeasurementUnit.cm => l10n.measurementUnitCm,
+      MeasurementUnit.inches => l10n.measurementUnitInches,
+      MeasurementUnit.celsius => l10n.measurementUnitCelsius,
+      MeasurementUnit.fahrenheit => l10n.measurementUnitFahrenheit,
+      MeasurementUnit.bpm => l10n.measurementUnitBpm,
+      MeasurementUnit.percentage => l10n.measurementUnitPercentage,
+      MeasurementUnit.breathsPerMin => l10n.measurementUnitBreathsPerMin,
+      MeasurementUnit.kgPerSquareMeter => l10n.measurementUnitKgPerSquareMeter,
+      MeasurementUnit.snellen => l10n.measurementUnitSnellen,
+      MeasurementUnit.logMAR => l10n.measurementUnitLogMAR,
+      MeasurementUnit.decibels => l10n.measurementUnitDecibels,
+      MeasurementUnit.cellsPerUL => l10n.measurementUnitCellsPerUL,
+      MeasurementUnit.millionsPerUL => l10n.measurementUnitMillionsPerUL,
+      MeasurementUnit.thousandPerUL => l10n.measurementUnitThousandPerUL,
+      MeasurementUnit.gramsPerDL => l10n.measurementUnitGramsPerDL,
+      MeasurementUnit.ngPerML => l10n.measurementUnitNgPerML,
+      MeasurementUnit.microgramsPerDL => l10n.measurementUnitMgPerDL,
+      MeasurementUnit.other => l10n.other,
+    };
+  }
+}

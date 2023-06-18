@@ -360,6 +360,9 @@ class AppTheme {
       selectedColor: _primaryDark,
       selectedTileColor: _primaryDark.withOpacity(0.1),
       tileColor: _backgroundDark,
+      subtitleTextStyle: _lightTextTheme().bodyMedium?.copyWith(
+            color: _onSecondaryLight.withOpacity(0.5),
+          ),
     ),
     dividerTheme: const DividerThemeData(
       color: _surfaceDark,

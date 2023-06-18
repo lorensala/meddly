@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:measurement/measurement.dart';
 import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -56,5 +57,11 @@ class MeasurementController extends _$MeasurementController {
       ref.watch(goRouterProvider).pop();
       refresh();
     }
+  }
+
+  Measurement? getMeasurement(int id) {
+    return state.whenOrNull(
+      data: (measurements) => measurements.firstWhereOrNull((m) => m.id == id),
+    );
   }
 }

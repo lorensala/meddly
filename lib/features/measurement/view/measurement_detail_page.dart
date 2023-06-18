@@ -47,7 +47,6 @@ class MeasurementDetailPage extends ConsumerWidget {
                     ref
                         .read(measurementControllerProvider.notifier)
                         .deleteMeasurement(id);
-                    Navigator.pop(context);
                   },
                   label: 'Delete',
                 ),

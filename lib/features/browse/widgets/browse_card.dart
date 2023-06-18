@@ -59,8 +59,7 @@ class BrowseCard extends ConsumerWidget {
                   Text(
                     description,
                     style: context.textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: context.colorScheme.onSecondary.withOpacity(0.6),
+                      color: context.colorScheme.onSecondary.withOpacity(0.5),
                     ),
                   ),
                 ],

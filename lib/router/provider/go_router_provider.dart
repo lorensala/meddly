@@ -112,15 +112,26 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                 routes: [
                   GoRoute(
                     parentNavigatorKey: shellNavigatorKey,
-                    path: MeasurementFormPage.routeName,
-                    builder: (context, state) => const MeasurementFormPage(),
-                  ),
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: '${MeasurementDetailPage.routeName}/:id',
-                    builder: (context, state) => MeasurementDetailPage(
-                      int.parse(state.pathParameters['id']!),
-                    ),
+                    path: '${MeasurementFormPage.routeName}/:id',
+                    builder: (context, state) {
+                      final id = int.tryParse(state.pathParameters['id']!);
+
+                      if (id != null) {
+                        final measurement = ref
+                            .read(measurementControllerProvider.notifier)
+                            .getMeasurement(id);
+
+                        return ProviderScope(
+                          overrides: [
+                            existingMeasurementProvider.overrideWithValue(
+                              measurement,
+                            ),
+                          ],
+                          child: const MeasurementFormPage(),
+                        );
+                      }
+                      return const MeasurementFormPage();
+                    },
                   ),
                 ],
               ),

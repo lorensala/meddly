@@ -1,6 +1,5 @@
 import 'package:measurement/measurement.dart';
 import 'package:meddly/features/measurement/measurement.dart';
-import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -16,18 +15,7 @@ MeasurementRepository measurementRepository(MeasurementRepositoryRef ref) {
   return MeasurementRepository(api: ref.watch(measurementApiProvider));
 }
 
-@riverpod
-String? measurementValueError(MeasurementValueErrorRef ref) {
-  final value = ref
-      .watch(measurementFormControllerProvider.select((value) => value.value));
-  final l10n = ref.watch(l10nProvider) as AppLocalizations;
-
-  return !value.isPure && value.isNotValid
-      ? l10n.invalidMeasurementValue
-      : null;
-}
-
-@riverpod
+@Riverpod(dependencies: [MeasurementFormController])
 bool measurementIsValid(MeasurementIsValidRef ref) {
   final value = ref
       .watch(measurementFormControllerProvider.select((value) => value.value));
@@ -37,7 +25,12 @@ bool measurementIsValid(MeasurementIsValidRef ref) {
   return value.isValid && value.value.isNotEmpty && date != null;
 }
 
-@riverpod
+@Riverpod(dependencies: [])
 Measurement measurement(MeasurementRef ref) {
   throw UnimplementedError();
+}
+
+@Riverpod(dependencies: [])
+Measurement? existingMeasurement(ExistingMeasurementRef ref) {
+  return null;
 }
