@@ -189,13 +189,12 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                         builder: (context, state) =>
                             const PredictionsSymptomsSearchPage(),
                       ),
-                      GoRoute(
-                        parentNavigatorKey: shellNavigatorKey,
-                        path: PredictionResultsPage.routeName,
-                        builder: (context, state) =>
-                            const PredictionResultsPage(),
-                      ),
                     ],
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: shellNavigatorKey,
+                    path: PredictionResultsPage.routeName,
+                    builder: (context, state) => const PredictionResultsPage(),
                   ),
                 ],
               ),
