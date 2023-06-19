@@ -7,5 +7,4 @@ export 'home_title.dart';
 export 'notifications_button.dart';
 export 'scaffold_with_bottom_nav_bar.dart';
 export 'settings_button.dart';
-export 'user_avatar.dart';
 export 'user_greetings.dart';

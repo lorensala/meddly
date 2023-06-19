@@ -82,18 +82,19 @@ class _SupervisedListItem extends ConsumerWidget {
           .deleteSupervised(supervised.uid),
       background: const DismissibleBackground(),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: context.colorScheme.primary,
-          child: Text(
-            '${supervised.firstName[0]}${supervised.lastName[0]}',
-            style: context.textTheme.bodyMedium!
-                .copyWith(color: context.colorScheme.onPrimary),
-          ),
+        leading: UserCircleAvatar(
+          user: supervised,
+          radius: Sizes.medium + Sizes.extraSmall,
         ),
         title: Text(
           '${supervised.firstName} ${supervised.lastName}',
         ),
-        subtitle: Text(supervised.email),
+        subtitle: Text(
+          supervised.email,
+          style: context.textTheme.bodyMedium!.copyWith(
+            color: context.colorScheme.onSecondary.withOpacity(0.5),
+          ),
+        ),
       ),
     );
   }

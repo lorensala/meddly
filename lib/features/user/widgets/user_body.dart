@@ -5,7 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/export/export.dart';
-import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/notifications/view/view.dart';
 import 'package:meddly/features/settings/settings.dart';
 import 'package:meddly/features/user/user.dart';
@@ -33,7 +32,7 @@ class UserBody extends ConsumerWidget {
               children: [
                 Row(
                   children: [
-                    const UserAvatar(radius: 30),
+                    UserCircleAvatar(user: user, radius: Sizes.large),
                     const SizedBox(width: Sizes.medium),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

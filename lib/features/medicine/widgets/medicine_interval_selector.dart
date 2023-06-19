@@ -106,7 +106,10 @@ class _IntervalBody extends HookConsumerWidget {
                                 ? context.colorScheme.primary
                                 : context.colorScheme.secondary,
                             child: Text(
-                              day.name.substring(0, 1).toUpperCase(),
+                              day
+                                  .localizedString(context.l10n)
+                                  .substring(0, 1)
+                                  .toUpperCase(),
                               style: context.textTheme.bodyMedium!.copyWith(
                                 color: selectedDays.contains(day)
                                     ? context.colorScheme.onPrimary
@@ -123,7 +126,7 @@ class _IntervalBody extends HookConsumerWidget {
                   selectedDays.isEmpty
                       ? context.l10n.selectAtLeastOneDay
                       // ignore: lines_longer_than_80_chars
-                      : '${context.l10n.everyX(selectedDays.map((e) => e.name).join(', '))}.',
+                      : '${context.l10n.everyX(selectedDays.map((e) => e.localizedString(context.l10n).toLowerCase()).join(', '))}.',
                   style: context.textTheme.bodyMedium!.copyWith(
                     color: selectedDays.isEmpty
                         ? context.colorScheme.error

@@ -16,20 +16,15 @@ class MedicineNextButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        boxShadow: boxShadow(context),
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(Sizes.medium),
-          child: FittedBox(
-            child: Button(
-              isValid: isValid,
-              onPressed: onPressed,
-              label: context.l10n.next,
-            ),
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(Sizes.medium),
+        child: SizedBox(
+          height: Sizes.buttonHeight,
+          child: Button(
+            isValid: isValid,
+            onPressed: onPressed,
+            label: context.l10n.next,
           ),
         ),
       ),

@@ -15,4 +15,6 @@ class Constants {
     begin: Alignment(-1, -0.3),
     end: Alignment(1, 0.3),
   );
+
+  static const noName = 'NN';
 }

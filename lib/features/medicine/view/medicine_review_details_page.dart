@@ -44,22 +44,16 @@ class _SaveButton extends ConsumerWidget {
     final isLoading = ref.watch(medicineControllerProvider).isLoading;
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        boxShadow: boxShadow(context),
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(Sizes.medium),
-          child: SizedBox(
-            height: Sizes.buttonHeight,
-            child: Button(
-              isLoading: isLoading,
-              isValid: isValid,
-              onPressed: notifier.save,
-              label: context.l10n.save,
-            ),
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(Sizes.medium),
+        child: SizedBox(
+          height: Sizes.buttonHeight,
+          child: Button(
+            isLoading: isLoading,
+            isValid: isValid,
+            onPressed: notifier.save,
+            label: context.l10n.save,
           ),
         ),
       ),

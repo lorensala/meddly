@@ -58,7 +58,7 @@ class _MedicineInfo extends ConsumerWidget {
           backgroundColor: context.colorScheme.primary,
           child: Text(
             getMedicineInitials(),
-            style: context.textTheme.titleLarge!.copyWith(
+            style: context.textTheme.bodyLarge!.copyWith(
               color: context.colorScheme.onPrimary,
             ),
           ),

@@ -40,3 +40,17 @@ extension MedicinePresentationX on MedicinePresentation {
     };
   }
 }
+
+extension MedicineDayX on MedicineDay {
+  String localizedString(AppLocalizations l10n) {
+    return switch (this) {
+      MedicineDay.monday => l10n.monday,
+      MedicineDay.tuesday => l10n.tuesday,
+      MedicineDay.wednesday => l10n.wednesday,
+      MedicineDay.thursday => l10n.thursday,
+      MedicineDay.friday => l10n.friday,
+      MedicineDay.saturday => l10n.saturday,
+      MedicineDay.sunday => l10n.sunday,
+    };
+  }
+}

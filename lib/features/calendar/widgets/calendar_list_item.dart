@@ -183,16 +183,7 @@ class _EventUser extends ConsumerWidget {
         const SizedBox(height: Sizes.medium),
         Row(
           children: [
-            CircleAvatar(
-              backgroundColor: context.colorScheme.primary,
-              radius: 13,
-              child: Text(
-                '${user.firstName[0]}${user.lastName[0]}',
-                style: context.textTheme.bodySmall!.copyWith(
-                  color: context.colorScheme.background,
-                ),
-              ),
-            ),
+            UserCircleAvatar(user: user, radius: Sizes.medium),
             const SizedBox(width: Sizes.small),
             Text('${user.firstName} ${user.lastName}'),
           ],

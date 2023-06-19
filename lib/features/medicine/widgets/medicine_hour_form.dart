@@ -144,6 +144,7 @@ class _StartDateInput extends HookConsumerWidget {
         (s) => s.startDate,
       ),
     );
+    final now = DateTime.now();
 
     final controller =
         useTextEditingController(text: date?.localizedString(context));
@@ -152,14 +153,31 @@ class _StartDateInput extends HookConsumerWidget {
       controller.text = state.startDate?.localizedString(context) ?? '';
     });
 
-    TextFormField(
+    return TextFormField(
       readOnly: true,
       controller: controller,
       style: context.textTheme.bodyMedium,
+      decoration: InputDecoration(
+        hintText: context.l10n.selectADate,
+      ),
       onTap: () async {
         final date = await showAdaptiveDatePicker(
           context: context,
-          initialDateTime: DateTime.now(),
+          initialDateTime: DateTime(
+            now.year,
+            now.month,
+            now.day,
+          ),
+          firstDate: DateTime(
+            now.year,
+            now.month,
+            now.day,
+          ),
+          lastDate: DateTime(
+            now.year + 1,
+            now.month,
+            now.day,
+          ),
         );
         if (date != null) {
           notifier.startDateChanged(date);
@@ -167,12 +185,6 @@ class _StartDateInput extends HookConsumerWidget {
       },
       keyboardType: TextInputType.number,
       onTapOutside: (_) => FocusScope.of(context).unfocus(),
-    );
-
-    return DateSelector(
-      initialDateTime: DateTime.now(),
-      onDateTimeChanged: notifier.startDateChanged,
-      errorText: null,
     );
   }
 }

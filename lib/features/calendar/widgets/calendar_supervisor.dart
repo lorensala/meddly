@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/supervisor/supervisor.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 class CalendarSupervisor extends HookConsumerWidget {
   const CalendarSupervisor({super.key});
@@ -56,15 +57,9 @@ class CalendarSupervisor extends HookConsumerWidget {
                           child: CircleAvatar(
                             radius: Sizes.medium + 2,
                             backgroundColor: context.colorScheme.background,
-                            child: CircleAvatar(
+                            child: UserCircleAvatar(
+                              user: user,
                               radius: Sizes.medium,
-                              backgroundColor: context.colorScheme.primary,
-                              child: Text(
-                                user.firstName[0] + user.lastName[0],
-                                style: context.textTheme.bodyLarge?.copyWith(
-                                  color: context.colorScheme.onPrimary,
-                                ),
-                              ),
                             ),
                           ),
                         ),
