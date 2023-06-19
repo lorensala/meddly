@@ -22,7 +22,9 @@ part 'go_router_provider.g.dart';
 @riverpod
 Raw<GoRouter> goRouter(GoRouterRef ref) {
   final rootNavigatorKey = GlobalKey<NavigatorState>();
-  final shellNavigatorKey = GlobalKey<NavigatorState>();
+  final homeNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Home');
+  final browseNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'Browse');
+  final userNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'User');
 
   final router = GoRouter(
     initialLocation: SplashPage.routeName,
@@ -61,173 +63,190 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         path: SetupSuccessPage.routeName,
         builder: (context, state) => const SetupSuccessPage(),
       ),
-      ShellRoute(
-        navigatorKey: shellNavigatorKey,
-        routes: [
-          GoRoute(
-            parentNavigatorKey: shellNavigatorKey,
-            path: HomePage.routeName,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: HomePage()),
-          ),
-          GoRoute(
-            parentNavigatorKey: shellNavigatorKey,
-            path: BrowsePage.routeName,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: BrowsePage()),
+      StatefulShellRoute.indexedStack(
+        branches: [
+          StatefulShellBranch(
+            navigatorKey: homeNavigatorKey,
             routes: [
               GoRoute(
-                parentNavigatorKey: shellNavigatorKey,
-                path: AppointmentPage.routeName,
-                builder: (context, state) => const AppointmentPage(),
+                path: HomePage.routeName,
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: HomePage()),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: browseNavigatorKey,
+            routes: [
+              GoRoute(
+                parentNavigatorKey: browseNavigatorKey,
+                path: BrowsePage.routeName,
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: BrowsePage()),
                 routes: [
                   GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: '${AppointmentFormPage.routeName}/:id',
-                    builder: (context, state) {
-                      final id = int.tryParse(state.pathParameters['id']!);
-                      if (id != null) {
-                        final appointment = ref
-                            .read(appointmentControllerProvider.notifier)
-                            .getAppointment(id);
-
-                        return ProviderScope(
-                          overrides: [
-                            existingAppointmentProvider.overrideWithValue(
-                              appointment,
-                            ),
-                          ],
-                          child: const AppointmentFormPage(),
-                        );
-                      }
-                      return const AppointmentFormPage();
-                    },
-                  ),
-                ],
-              ),
-              GoRoute(
-                path: MeasurementPage.routeName,
-                parentNavigatorKey: shellNavigatorKey,
-                builder: (context, state) => const MeasurementPage(),
-                routes: [
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: '${MeasurementFormPage.routeName}/:id',
-                    builder: (context, state) {
-                      final id = int.tryParse(state.pathParameters['id']!);
-
-                      if (id != null) {
-                        final measurement = ref
-                            .read(measurementControllerProvider.notifier)
-                            .getMeasurement(id);
-
-                        return ProviderScope(
-                          overrides: [
-                            existingMeasurementProvider.overrideWithValue(
-                              measurement,
-                            ),
-                          ],
-                          child: const MeasurementFormPage(),
-                        );
-                      }
-                      return const MeasurementFormPage();
-                    },
-                  ),
-                ],
-              ),
-              GoRoute(
-                parentNavigatorKey: shellNavigatorKey,
-                path: MedicinePage.routeName,
-                builder: (context, state) => const MedicinePage(),
-                routes: [
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: MedicineNamePage.routeName,
-                    builder: (context, state) => const MedicineNamePage(),
-                  ),
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: MedicinePresentationPage.routeName,
-                    builder: (context, state) =>
-                        const MedicinePresentationPage(),
-                  ),
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: MedicineFrecuencyPage.routeName,
-                    builder: (context, state) => const MedicineFrecuencyPage(),
-                  ),
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: MedicineDosisPage.routeName,
-                    builder: (context, state) => const MedicineDosisPage(),
-                  ),
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: MedicineIntervalPage.routeName,
-                    builder: (context, state) => const MedicineIntervalPage(),
-                  ),
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: MedicineHourPage.routeName,
-                    builder: (context, state) => const MedicineHourPage(),
-                  ),
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: MedicineReviewDetailsPage.routeName,
-                    builder: (context, state) =>
-                        const MedicineReviewDetailsPage(),
-                  ),
-                ],
-              ),
-              GoRoute(
-                path: SupervisorPage.routeName,
-                parentNavigatorKey: shellNavigatorKey,
-                builder: (context, state) => const SupervisorPage(),
-              ),
-              GoRoute(
-                parentNavigatorKey: shellNavigatorKey,
-                path: PredictionsPage.routeName,
-                builder: (context, state) => const PredictionsPage(),
-                routes: [
-                  GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: PredictionSymptomsPage.routeName,
-                    builder: (context, state) => const PredictionSymptomsPage(),
+                    parentNavigatorKey: browseNavigatorKey,
+                    path: AppointmentPage.routeName,
+                    builder: (context, state) => const AppointmentPage(),
                     routes: [
                       GoRoute(
-                        parentNavigatorKey: shellNavigatorKey,
-                        path: PredictionsSymptomsSearchPage.routeName,
-                        builder: (context, state) =>
-                            const PredictionsSymptomsSearchPage(),
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: '${AppointmentFormPage.routeName}/:id',
+                        builder: (context, state) {
+                          final id = int.tryParse(state.pathParameters['id']!);
+                          if (id != null) {
+                            final appointment = ref
+                                .read(appointmentControllerProvider.notifier)
+                                .getAppointment(id);
+
+                            return ProviderScope(
+                              overrides: [
+                                existingAppointmentProvider.overrideWithValue(
+                                  appointment,
+                                ),
+                              ],
+                              child: const AppointmentFormPage(),
+                            );
+                          }
+                          return const AppointmentFormPage();
+                        },
                       ),
                     ],
                   ),
                   GoRoute(
-                    parentNavigatorKey: shellNavigatorKey,
-                    path: PredictionResultsPage.routeName,
-                    builder: (context, state) => const PredictionResultsPage(),
+                    path: MeasurementPage.routeName,
+                    parentNavigatorKey: browseNavigatorKey,
+                    builder: (context, state) => const MeasurementPage(),
+                    routes: [
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: '${MeasurementFormPage.routeName}/:id',
+                        builder: (context, state) {
+                          final id = int.tryParse(state.pathParameters['id']!);
+
+                          if (id != null) {
+                            final measurement = ref
+                                .read(measurementControllerProvider.notifier)
+                                .getMeasurement(id);
+
+                            return ProviderScope(
+                              overrides: [
+                                existingMeasurementProvider.overrideWithValue(
+                                  measurement,
+                                ),
+                              ],
+                              child: const MeasurementFormPage(),
+                            );
+                          }
+                          return const MeasurementFormPage();
+                        },
+                      ),
+                    ],
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: browseNavigatorKey,
+                    path: MedicinePage.routeName,
+                    builder: (context, state) => const MedicinePage(),
+                    routes: [
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: MedicineNamePage.routeName,
+                        builder: (context, state) => const MedicineNamePage(),
+                      ),
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: MedicinePresentationPage.routeName,
+                        builder: (context, state) =>
+                            const MedicinePresentationPage(),
+                      ),
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: MedicineFrecuencyPage.routeName,
+                        builder: (context, state) =>
+                            const MedicineFrecuencyPage(),
+                      ),
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: MedicineDosisPage.routeName,
+                        builder: (context, state) => const MedicineDosisPage(),
+                      ),
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: MedicineIntervalPage.routeName,
+                        builder: (context, state) =>
+                            const MedicineIntervalPage(),
+                      ),
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: MedicineHourPage.routeName,
+                        builder: (context, state) => const MedicineHourPage(),
+                      ),
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: MedicineReviewDetailsPage.routeName,
+                        builder: (context, state) =>
+                            const MedicineReviewDetailsPage(),
+                      ),
+                    ],
+                  ),
+                  GoRoute(
+                    path: SupervisorPage.routeName,
+                    parentNavigatorKey: browseNavigatorKey,
+                    builder: (context, state) => const SupervisorPage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: browseNavigatorKey,
+                    path: PredictionsPage.routeName,
+                    builder: (context, state) => const PredictionsPage(),
+                    routes: [
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: PredictionSymptomsPage.routeName,
+                        builder: (context, state) =>
+                            const PredictionSymptomsPage(),
+                        routes: [
+                          GoRoute(
+                            parentNavigatorKey: browseNavigatorKey,
+                            path: PredictionsSymptomsSearchPage.routeName,
+                            builder: (context, state) =>
+                                const PredictionsSymptomsSearchPage(),
+                          ),
+                        ],
+                      ),
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: PredictionResultsPage.routeName,
+                        builder: (context, state) =>
+                            const PredictionResultsPage(),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ],
           ),
-          GoRoute(
-            parentNavigatorKey: shellNavigatorKey,
-            path: UserPage.routeName,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: UserPage()),
+          StatefulShellBranch(
+            navigatorKey: userNavigatorKey,
             routes: [
               GoRoute(
-                parentNavigatorKey: shellNavigatorKey,
-                path: NotificationsPreferencesPage.routeName,
-                builder: (context, state) =>
-                    const NotificationsPreferencesPage(),
+                parentNavigatorKey: userNavigatorKey,
+                path: UserPage.routeName,
+                pageBuilder: (context, state) =>
+                    const NoTransitionPage(child: UserPage()),
+                routes: [
+                  GoRoute(
+                    parentNavigatorKey: userNavigatorKey,
+                    path: NotificationsPreferencesPage.routeName,
+                    builder: (context, state) =>
+                        const NotificationsPreferencesPage(),
+                  ),
+                ],
               ),
             ],
           ),
         ],
         builder: (context, state, child) {
-          return ScaffoldWithBottomNavBar(child: child);
+          return ScaffoldWithBottomNavBar(navigationShell: child);
         },
       ),
       GoRoute(

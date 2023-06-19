@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class PredictionResultsPage extends StatelessWidget {
@@ -14,7 +15,7 @@ class PredictionResultsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Resultados'),
+        title: Text(context.l10n.results),
       ),
       body: const PredictionResultsBody(),
     );
@@ -26,15 +27,13 @@ class PredictionResultsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        PredictionResultsList(),
-        SizedBox(height: Sizes.large),
+        const PredictionResultsList(),
+        const SizedBox(height: Sizes.large),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: Sizes.medium),
-          child: Text(
-            '''La interpretación de los resultados obtenidos mediante la evaluación realizada por Meddly se fundamenta en la estimación de la probabilidad de presencia de una enfermedad, por lo que es importante tener en cuenta que dichos resultados no deben ser considerados como un diagnóstico médico definitivo.''',
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
+          child: Text(context.l10n.predictionsResultDescripcion),
         )
       ],
     );
@@ -85,7 +84,7 @@ class PredictionResultsList extends ConsumerWidget {
                             height: Sizes.large,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
-                              child: AnimatedLinearProgressIndicator(
+                              child: _AnimatedLinearProgressIndicator(
                                 value: result.probability,
                               ),
                             ),
@@ -95,7 +94,7 @@ class PredictionResultsList extends ConsumerWidget {
                             child: SizedBox(
                               width: 60,
                               child: Text(
-                                '${result.probability}%',
+                                '${result.probability * 100}%',
                                 textAlign: TextAlign.end,
                               ),
                             ),
@@ -114,18 +113,16 @@ class PredictionResultsList extends ConsumerWidget {
   }
 }
 
-class AnimatedLinearProgressIndicator extends HookWidget {
-  const AnimatedLinearProgressIndicator({
+class _AnimatedLinearProgressIndicator extends HookWidget {
+  const _AnimatedLinearProgressIndicator({
     required this.value,
-    super.key,
-    this.duration = const Duration(milliseconds: 800),
   });
   final double value;
-  final Duration duration;
+  static const Duration _duration = Duration(milliseconds: 800);
 
   @override
   Widget build(BuildContext context) {
-    final animationController = useAnimationController(duration: duration);
+    final animationController = useAnimationController(duration: _duration);
     final curvedAnimation = CurvedAnimation(
       parent: animationController,
       curve: Curves.easeInOut,

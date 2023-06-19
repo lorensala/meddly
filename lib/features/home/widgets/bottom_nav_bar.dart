@@ -11,22 +11,18 @@ import 'package:meddly/router/provider/provider.dart';
 
 class BottomNavBar extends HookConsumerWidget {
   const BottomNavBar({
+    required this.onBranchTapped,
     super.key,
   });
+
+  final void Function(int) onBranchTapped;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = useState(0);
 
     selectedIndex.addListener(() {
-      switch (selectedIndex.value) {
-        case 0:
-          ref.read(goRouterProvider).go(HomePage.routeName);
-        case 1:
-          ref.read(goRouterProvider).go(BrowsePage.routeName);
-        case 2:
-          ref.read(goRouterProvider).go(UserPage.routeName);
-      }
+      onBranchTapped(selectedIndex.value);
     });
 
     return DecoratedBox(

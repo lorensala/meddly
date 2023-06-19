@@ -7,11 +7,11 @@ part of 'calendar_controller.dart';
 // **************************************************************************
 
 String _$calendarControllerHash() =>
-    r'84579a7cddb6777a84c25c32e92928bfb979b9ef';
+    r'61066d81bfc57691d3eb1b473d4dc9476df4494f';
 
 /// See also [CalendarController].
 @ProviderFor(CalendarController)
-final calendarControllerProvider = AsyncNotifierProvider<
+final calendarControllerProvider = AutoDisposeAsyncNotifierProvider<
     CalendarController,
     List<
         Map<
@@ -30,7 +30,7 @@ final calendarControllerProvider = AsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$CalendarController = AsyncNotifier<
+typedef _$CalendarController = AutoDisposeAsyncNotifier<
     List<
         Map<
             String,

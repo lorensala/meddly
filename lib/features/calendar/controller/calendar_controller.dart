@@ -8,7 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'calendar_controller.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 class CalendarController extends _$CalendarController {
   @override
   Future<List<UserCalendar>> build() async {

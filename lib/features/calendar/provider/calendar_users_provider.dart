@@ -25,7 +25,5 @@ List<User> calendarUsers(CalendarUsersRef ref) {
     return [];
   }
 
-  ref.keepAlive();
-
   return [user, ...supervisors];
 }

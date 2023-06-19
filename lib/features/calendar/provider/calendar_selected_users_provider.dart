@@ -14,6 +14,5 @@ class CalendarSelectedUsers extends _$CalendarSelectedUsers {
   // ignore: use_setters_to_change_properties
   void update(List<User> users) {
     state = users;
-    ref.keepAlive();
   }
 }
