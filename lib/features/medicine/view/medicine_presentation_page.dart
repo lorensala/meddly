@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
@@ -51,7 +50,7 @@ class _NextButton extends ConsumerWidget {
     return MedicineNextButton(
       isValid: true,
       onPressed: () => ref.read(goRouterProvider).push(
-            '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineDosisPage.routeName}',
+            '/${MedicineDosisPage.routeName}',
           ),
     );
   }

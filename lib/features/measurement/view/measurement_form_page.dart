@@ -61,7 +61,6 @@ class _SaveButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isValid = ref.watch(measurementIsValidProvider);
     final isEditing = ref.watch(
       measurementFormControllerProvider.select(
         (value) => value.isEditing,
@@ -72,9 +71,9 @@ class _SaveButton extends ConsumerWidget {
         (value) => value.isLoading,
       ),
     );
+    final isValid = ref.watch(measurementIsValidProvider) && !isLoading;
 
     return Button(
-      isLoading: isLoading,
       isValid: isValid,
       onPressed: () {
         if (isEditing) {

@@ -64,6 +64,7 @@ class BottomNavBar extends HookConsumerWidget {
                     showModalBottomSheet<void>(
                       context: context,
                       useRootNavigator: true,
+                      isScrollControlled: true,
                       backgroundColor: context.colorScheme.background,
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.vertical(

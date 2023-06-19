@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/supervisor/supervisor.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 MaskTextInputFormatter codeMaskFormatter = MaskTextInputFormatter(
@@ -19,6 +20,7 @@ class InvitationCodeBottomSheet extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController();
+
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(Sizes.medium),
@@ -27,8 +29,13 @@ class InvitationCodeBottomSheet extends HookConsumerWidget {
           children: [
             const BottomSheetDecoration(),
             const SizedBox(height: Sizes.medium),
+            Text(
+              context.l10n.enterSupervisorCode,
+              style: context.textTheme.titleMedium,
+            ),
+            const SizedBox(height: Sizes.medium),
             SizedBox(
-              width: 220,
+              width: context.width * 0.7,
               child: TextFormField(
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.characters,
@@ -58,7 +65,7 @@ class InvitationCodeBottomSheet extends HookConsumerWidget {
                   ),
                   suffixIconColor:
                       context.colorScheme.onSecondary.withOpacity(0.4),
-                  hintText: 'AEF-12F1-QS2',
+                  hintText: 'L0R-3NZ0-S4L',
                   hintStyle: context.textTheme.titleLarge!.copyWith(
                     color: context.colorScheme.onSecondary.withOpacity(0.4),
                   ),
@@ -78,7 +85,7 @@ class InvitationCodeBottomSheet extends HookConsumerWidget {
                     .submit();
                 GoRouter.of(context).pop();
               },
-              label: 'Aceptar',
+              label: context.l10n.accept,
             ),
             const SizedBox(height: Sizes.medium),
           ],

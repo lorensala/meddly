@@ -63,6 +63,86 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         path: SetupSuccessPage.routeName,
         builder: (context, state) => const SetupSuccessPage(),
       ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: '/${AppointmentFormPage.routeName}/:id',
+        builder: (context, state) {
+          final id = int.tryParse(state.pathParameters['id']!);
+          if (id != null) {
+            final appointment = ref
+                .read(appointmentControllerProvider.notifier)
+                .getAppointment(id);
+
+            return ProviderScope(
+              overrides: [
+                existingAppointmentProvider.overrideWithValue(
+                  appointment,
+                ),
+              ],
+              child: const AppointmentFormPage(),
+            );
+          }
+          return const AppointmentFormPage();
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: '/${MeasurementFormPage.routeName}/:id',
+        builder: (context, state) {
+          final id = int.tryParse(state.pathParameters['id']!);
+
+          if (id != null) {
+            final measurement = ref
+                .read(measurementControllerProvider.notifier)
+                .getMeasurement(id);
+
+            return ProviderScope(
+              overrides: [
+                existingMeasurementProvider.overrideWithValue(
+                  measurement,
+                ),
+              ],
+              child: const MeasurementFormPage(),
+            );
+          }
+          return const MeasurementFormPage();
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: '/${MedicineNamePage.routeName}',
+        builder: (context, state) => const MedicineNamePage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: '/${MedicinePresentationPage.routeName}',
+        builder: (context, state) => const MedicinePresentationPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: '/${MedicineFrecuencyPage.routeName}',
+        builder: (context, state) => const MedicineFrecuencyPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: '/${MedicineDosisPage.routeName}',
+        builder: (context, state) => const MedicineDosisPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: '/${MedicineIntervalPage.routeName}',
+        builder: (context, state) => const MedicineIntervalPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: '/${MedicineHourPage.routeName}',
+        builder: (context, state) => const MedicineHourPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: '/${MedicineReviewDetailsPage.routeName}',
+        builder: (context, state) => const MedicineReviewDetailsPage(),
+      ),
       StatefulShellRoute.indexedStack(
         branches: [
           StatefulShellBranch(
@@ -147,47 +227,6 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                     parentNavigatorKey: browseNavigatorKey,
                     path: MedicinePage.routeName,
                     builder: (context, state) => const MedicinePage(),
-                    routes: [
-                      GoRoute(
-                        parentNavigatorKey: browseNavigatorKey,
-                        path: MedicineNamePage.routeName,
-                        builder: (context, state) => const MedicineNamePage(),
-                      ),
-                      GoRoute(
-                        parentNavigatorKey: browseNavigatorKey,
-                        path: MedicinePresentationPage.routeName,
-                        builder: (context, state) =>
-                            const MedicinePresentationPage(),
-                      ),
-                      GoRoute(
-                        parentNavigatorKey: browseNavigatorKey,
-                        path: MedicineFrecuencyPage.routeName,
-                        builder: (context, state) =>
-                            const MedicineFrecuencyPage(),
-                      ),
-                      GoRoute(
-                        parentNavigatorKey: browseNavigatorKey,
-                        path: MedicineDosisPage.routeName,
-                        builder: (context, state) => const MedicineDosisPage(),
-                      ),
-                      GoRoute(
-                        parentNavigatorKey: browseNavigatorKey,
-                        path: MedicineIntervalPage.routeName,
-                        builder: (context, state) =>
-                            const MedicineIntervalPage(),
-                      ),
-                      GoRoute(
-                        parentNavigatorKey: browseNavigatorKey,
-                        path: MedicineHourPage.routeName,
-                        builder: (context, state) => const MedicineHourPage(),
-                      ),
-                      GoRoute(
-                        parentNavigatorKey: browseNavigatorKey,
-                        path: MedicineReviewDetailsPage.routeName,
-                        builder: (context, state) =>
-                            const MedicineReviewDetailsPage(),
-                      ),
-                    ],
                   ),
                   GoRoute(
                     path: SupervisorPage.routeName,
