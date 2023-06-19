@@ -12,15 +12,36 @@ class SelectSupervisedBottomSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final users = ref.watch(calendarUsersProvider);
+    final me = users.firstOrNull;
+    final supervised = users.skip(1);
 
     return SafeArea(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: Sizes.medium),
           const BottomSheetDecoration(),
-          const SizedBox(height: Sizes.extraLarge),
-          ...users.map(
+          const SizedBox(height: Sizes.large),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
+            child: Text(
+              context.l10n.selectSupervisedDescription,
+              style: context.textTheme.bodySmall?.copyWith(
+                fontWeight: FontWeight.w400,
+                color: context.colorScheme.onBackground.withOpacity(0.5),
+              ),
+            ),
+          ),
+          const SizedBox(height: Sizes.medium),
+          ProviderScope(
+            overrides: [
+              supervisedProvider.overrideWithValue(me!),
+            ],
+            child: const SupervisedSelectionItem(),
+          ),
+          const Divider(),
+          ...supervised.map(
             (user) {
               return ProviderScope(
                 overrides: [
@@ -33,14 +54,14 @@ class SelectSupervisedBottomSheet extends ConsumerWidget {
           const SizedBox(height: Sizes.large),
           const _ApplyChangesButton(),
           const SizedBox(height: Sizes.medium),
-          TextButton(
-            onPressed: () {
-              ref.read(calendarSelectedUsersProvider.notifier).update([]);
-            },
-            child: Text(
-              context.l10n.cleanSelection,
-              style: context.textTheme.bodyMedium!.copyWith(
-                decoration: TextDecoration.underline,
+          Center(
+            child: TextButton(
+              onPressed: () {
+                ref.read(calendarSelectedUsersProvider.notifier).update([]);
+              },
+              child: Text(
+                context.l10n.cleanSelection,
+                style: context.textTheme.bodyMedium?.underlined(),
               ),
             ),
           ),

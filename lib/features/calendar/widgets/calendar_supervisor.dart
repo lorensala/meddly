@@ -24,6 +24,7 @@ class CalendarSupervisor extends HookConsumerWidget {
             context: context,
             isDismissible: false,
             useRootNavigator: true,
+            isScrollControlled: true,
             backgroundColor: context.colorScheme.background,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(

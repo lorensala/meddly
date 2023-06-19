@@ -358,6 +358,8 @@
     "@_SUPERVISOR": {},
     "supervisors": "Supervisors",
     "supervised": "Supervised",
+    "selectSupervised": "Select supervised",
+    "selectSupervisedDescription": "Select the users you want to supervise. This allows you to see their medicines, appointments and measurements calendar",
     "supervisedConfrimation": "Are you sure you want to stop supervising {name}?",
     "@supervisedConfrimation": {
         "placeholders": {
