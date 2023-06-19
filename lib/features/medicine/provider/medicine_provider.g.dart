@@ -214,4 +214,37 @@ final medicineProvider = AutoDisposeProvider<Medicine>.internal(
 );
 
 typedef MedicineRef = AutoDisposeProviderRef<Medicine>;
+String _$filteredMedicinesHash() => r'9e00254453452fce2975a047b6138f05ddba66c4';
+
+/// See also [filteredMedicines].
+@ProviderFor(filteredMedicines)
+final filteredMedicinesProvider = AutoDisposeProvider<List<Medicine>>.internal(
+  filteredMedicines,
+  name: r'filteredMedicinesProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$filteredMedicinesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FilteredMedicinesRef = AutoDisposeProviderRef<List<Medicine>>;
+String _$medicinePresentationsHash() =>
+    r'ea7d98f2630e2d15281ec29cf70a5ec26903a436';
+
+/// See also [MedicinePresentations].
+@ProviderFor(MedicinePresentations)
+final medicinePresentationsProvider = AutoDisposeNotifierProvider<
+    MedicinePresentations, List<MedicinePresentation>>.internal(
+  MedicinePresentations.new,
+  name: r'medicinePresentationsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$medicinePresentationsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$MedicinePresentations
+    = AutoDisposeNotifier<List<MedicinePresentation>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

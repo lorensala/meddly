@@ -44,8 +44,6 @@ class MeasurementController extends _$MeasurementController {
   }
 
   Future<void> deleteMeasurement(int id) async {
-    state = const AsyncLoading();
-
     final repository = ref.read(measurementRepositoryProvider);
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
@@ -53,9 +51,6 @@ class MeasurementController extends _$MeasurementController {
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
-    } else {
-      ref.watch(goRouterProvider).pop();
-      refresh();
     }
   }
 

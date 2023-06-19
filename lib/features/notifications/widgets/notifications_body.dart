@@ -9,16 +9,7 @@ class NotificationsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          NotificationsFilters(),
-          Divider(),
-          NotificationsList(),
-        ],
-      ),
-    );
+    return const NotificationsList();
   }
 }
 
@@ -38,14 +29,12 @@ class NotificationsList extends ConsumerWidget {
         if (notifications.isEmpty) {
           return EmptyContainer(
             message: context.l10n.emptyNotifications,
-            isFlex: false,
           );
         }
 
         if (filteredNotifications.isEmpty) {
           return EmptyContainer(
             message: context.l10n.emptyFilteredNotifications,
-            isFlex: false,
           );
         }
 

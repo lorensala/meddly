@@ -13,7 +13,12 @@ class NotificationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 5,
+        shadowColor: context.colorScheme.onBackground.withOpacity(0.2),
         title: Text(context.l10n.notifications),
+        actions: const [
+          NotificationsFilter(),
+        ],
       ),
       body: const NotificationsView(),
     );

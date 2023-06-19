@@ -1,5 +1,6 @@
 export 'medicine_body.dart';
 export 'medicine_dosis_form.dart';
+export 'medicine_filter.dart';
 export 'medicine_frecuency_form.dart';
 export 'medicine_frecuency_selector.dart';
 export 'medicine_hour_form.dart';
@@ -12,3 +13,5 @@ export 'medicine_presentation_form.dart';
 export 'medicine_presentation_list.dart';
 export 'medicine_presentation_list_item.dart';
 export 'medicine_review_details.dart';
+export 'medicine_tab_bar.dart';
+export 'medicine_tab_view.dart';

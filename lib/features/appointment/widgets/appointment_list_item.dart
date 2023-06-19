@@ -5,6 +5,7 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 class AppointmentListItem extends ConsumerWidget {
   const AppointmentListItem({
@@ -46,19 +47,7 @@ class AppointmentListItem extends ConsumerWidget {
           ),
         );
       },
-      background: ColoredBox(
-        color: context.colorScheme.error,
-        child: Padding(
-          padding: const EdgeInsets.only(right: Sizes.medium),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Icon(
-              Icons.delete,
-              color: context.colorScheme.secondary,
-            ),
-          ),
-        ),
-      ),
+      background: const DismissibleBackground(),
       direction: DismissDirection.endToStart,
       child: ListTile(
         trailing: Text(

@@ -17,7 +17,6 @@ NotificationPreference notificationPreference(NotificationPreferenceRef ref) {
 
 @riverpod
 List<Notification> filteredNotifications(FilteredNotificationsRef ref) {
-  final selectedFilters = ref.watch(notificationSelectedFiltersProvider);
   final selectedTypes = ref.watch(notificationSelectedTypesProvider);
 
   return ref.watch(notificationsControllerProvider).maybeWhen(
@@ -29,17 +28,7 @@ List<Notification> filteredNotifications(FilteredNotificationsRef ref) {
               )
               .toList();
 
-          final filteredNotifications =
-              filteredByTypeNotifications.where((notification) {
-            if (selectedFilters.length == 2) return true;
-            if (selectedFilters.contains(NotificationFilter.read) &&
-                notification.isRead) return true;
-            if (selectedFilters.contains(NotificationFilter.notRead) &&
-                !notification.isRead) return true;
-            return false;
-          }).toList();
-
-          return filteredNotifications;
+          return filteredByTypeNotifications;
         },
       );
 }

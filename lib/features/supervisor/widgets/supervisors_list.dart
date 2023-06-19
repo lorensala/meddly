@@ -80,19 +80,7 @@ class _SupervisorListItem extends ConsumerWidget {
       onDismissed: (_) => ref
           .read(supervisorControllerProvider.notifier)
           .deleteSupervisor(supervisor.uid),
-      background: ColoredBox(
-        color: context.colorScheme.error,
-        child: const Padding(
-          padding: EdgeInsets.only(right: Sizes.medium),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
+      background: const DismissibleBackground(),
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor: context.colorScheme.primary,

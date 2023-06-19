@@ -6,6 +6,7 @@ export 'circle_check.dart';
 export 'circle_check_suffix_icon.dart';
 export 'confirm_back_dialog.dart';
 export 'date_selector.dart';
+export 'dismissible_background.dart';
 export 'drop_down_selector.dart';
 export 'empty_container.dart';
 export 'error_container.dart';

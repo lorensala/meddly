@@ -1,3 +1,4 @@
+import 'package:meddly/features/medicine/controller/medicine_controller.dart';
 import 'package:meddly/features/medicine/controller/medicine_form_controller.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/provider/provider.dart';
@@ -5,11 +6,6 @@ import 'package:medicine/medicine.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'medicine_provider.g.dart';
-
-// @riverpod
-// MedicineCache medicineCache(MedicineCacheRef ref) {
-//   return MedicineCache(ref.read(medicineBoxProvider));
-// }
 
 @riverpod
 MedicineApi medicineApi(MedicineApiRef ref) {
@@ -128,4 +124,40 @@ bool isMedicineFrecuencyValid(IsMedicineFrecuencyValidRef ref) {
 @Riverpod(dependencies: [])
 Medicine medicine(MedicineRef ref) {
   throw UnimplementedError();
+}
+
+@riverpod
+List<Medicine> filteredMedicines(FilteredMedicinesRef ref) {
+  final medicines = ref.watch(medicineControllerProvider);
+  final filtersSelected = ref.watch(medicinePresentationsProvider);
+
+  return medicines.when(
+    data: (medicines) {
+      return medicines.where((medicine) {
+        return filtersSelected.contains(medicine.presentation);
+      }).toList();
+    },
+    loading: () => [],
+    error: (e, s) => [],
+  );
+}
+
+@riverpod
+class MedicinePresentations extends _$MedicinePresentations {
+  @override
+  List<MedicinePresentation> build() {
+    return MedicinePresentation.values;
+  }
+
+  void select(MedicinePresentation presentation) {
+    state = [...state, presentation];
+  }
+
+  void deselect(MedicinePresentation presentation) {
+    state = state.where((e) => e != presentation).toList();
+  }
+
+  void clear() {
+    state = [];
+  }
 }

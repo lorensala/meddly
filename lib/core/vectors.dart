@@ -67,6 +67,7 @@ class Vectors {
   static const String medicinePresentation =
       'assets/svg/medicine-presentation.svg';
   static const String medicineDosis = 'assets/svg/medicine-dosis.svg';
+  static const String archive = 'assets/svg/archive.svg';
 
   // * Settings
   static const String pdf = 'assets/svg/pdf.svg';

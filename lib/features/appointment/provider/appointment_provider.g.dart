@@ -106,7 +106,7 @@ final isAppointmentValidProvider = AutoDisposeProvider<bool>.internal(
 
 typedef IsAppointmentValidRef = AutoDisposeProviderRef<bool>;
 String _$appointmentSpecialitiesHash() =>
-    r'09c02352c4b14f8cfd7079c920e537d5a4b19f55';
+    r'2a9331fd534216632c4e0959a99b32a845baa527';
 
 /// See also [AppointmentSpecialities].
 @ProviderFor(AppointmentSpecialities)

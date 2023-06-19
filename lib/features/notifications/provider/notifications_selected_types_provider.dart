@@ -22,4 +22,8 @@ class NotificationSelectedTypes extends _$NotificationSelectedTypes {
 
     state = state.where((e) => e != type).toList();
   }
+
+  void clear() {
+    state = [];
+  }
 }

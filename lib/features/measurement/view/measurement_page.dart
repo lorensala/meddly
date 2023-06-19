@@ -15,6 +15,7 @@ class MeasurementPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
+        shadowColor: context.colorScheme.onBackground.withOpacity(0.2),
         title: Text(context.l10n.measurements),
         actions: const [
           MeasurementFilter(),

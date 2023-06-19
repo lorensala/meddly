@@ -16,3 +16,27 @@ extension MedicineFailureX on MedicineException {
     };
   }
 }
+
+extension MedicinePresentationX on MedicinePresentation {
+  String localizedString(AppLocalizations l10n) {
+    return switch (this) {
+      MedicinePresentation.capsule => l10n.medicinePresentationCapsule,
+      MedicinePresentation.tablet => l10n.medicinePresentationTablet,
+      MedicinePresentation.liquid => l10n.medicinePresentationLiquid,
+      MedicinePresentation.topical => l10n.medicinePresentationTopical,
+      MedicinePresentation.cream => l10n.medicinePresentationCream,
+      MedicinePresentation.device => l10n.medicinePresentationDevice,
+      MedicinePresentation.drops => l10n.medicinePresentationDrops,
+      MedicinePresentation.foam => l10n.medicinePresentationFoam,
+      MedicinePresentation.gel => l10n.medicinePresentationGel,
+      MedicinePresentation.inhaler => l10n.medicinePresentationInhaler,
+      MedicinePresentation.injection => l10n.medicinePresentationInjection,
+      MedicinePresentation.lotion => l10n.medicinePresentationLotion,
+      MedicinePresentation.ointment => l10n.medicinePresentationOintment,
+      MedicinePresentation.patch => l10n.medicinePresentationPatch,
+      MedicinePresentation.powder => l10n.medicinePresentationPowder,
+      MedicinePresentation.spray => l10n.medicinePresentationSpray,
+      MedicinePresentation.suppository => l10n.medicinePresentationSuppository,
+    };
+  }
+}
