@@ -14,7 +14,7 @@ extension AppointmentExceptionX on AppointmentException {
 }
 
 extension AppointmentSpecialityX on AppointmentSpeciality {
-  String localized(AppLocalizations l10n) {
+  String localizedString(AppLocalizations l10n) {
     return switch (this) {
       AppointmentSpeciality.cardiology => l10n.cardiology,
       AppointmentSpeciality.dermatology => l10n.dermatology,

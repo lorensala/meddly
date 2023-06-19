@@ -67,8 +67,14 @@ class _SaveButton extends ConsumerWidget {
         (value) => value.isEditing,
       ),
     );
+    final isLoading = ref.watch(
+      measurementControllerProvider.select(
+        (value) => value.isLoading,
+      ),
+    );
 
     return Button(
+      isLoading: isLoading,
       isValid: isValid,
       onPressed: () {
         if (isEditing) {

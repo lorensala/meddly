@@ -24,6 +24,9 @@ class AppointmentPage extends HookWidget {
           preferredSize: const Size.fromHeight(48),
           child: AppointmentTabBar(controller),
         ),
+        actions: const [
+          AppointmentFilter(),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

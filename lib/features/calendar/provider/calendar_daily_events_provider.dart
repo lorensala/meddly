@@ -31,7 +31,8 @@ List<CalendarEvent> calendarDailyEvents(
                       id: appointment.id ?? 0,
                       uid: uid,
                       title: appointment.name,
-                      description: appointment.speciality!.localized(l10n),
+                      description:
+                          appointment.speciality!.localizedString(l10n),
                       date: appointment.date,
                     ),
                   );

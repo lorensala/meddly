@@ -35,7 +35,7 @@ class AppointmentSpecialityDropDown extends HookConsumerWidget {
                 (e) => DropdownMenuItem<AppointmentSpeciality>(
                   value: e,
                   child: Text(
-                    e.localized(context.l10n),
+                    e.localizedString(context.l10n),
                     style: context.textTheme.bodyMedium,
                   ),
                 ),

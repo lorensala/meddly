@@ -69,7 +69,7 @@ class AppointmentListItem extends ConsumerWidget {
         ),
         title: Text(appointment.name),
         subtitle: Text(
-          appointment.speciality!.localized(context.l10n),
+          appointment.speciality!.localizedString(context.l10n),
           style: context.textTheme.bodyMedium!.copyWith(
             color: context.colorScheme.onSecondary.withOpacity(0.5),
           ),

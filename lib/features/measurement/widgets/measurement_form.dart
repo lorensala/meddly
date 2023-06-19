@@ -78,7 +78,7 @@ class MeasurementDateSelector extends HookConsumerWidget {
           onTapOutside: (_) => FocusScope.of(context).unfocus(),
           decoration: InputDecoration(
             filled: !isEditing,
-            labelText: 'Seleccionar una fecha*',
+            labelText: '${context.l10n.selectADate}${!isEditing ? '' : '*'}',
           ),
         ),
         const SizedBox(height: Sizes.medium),
@@ -108,7 +108,8 @@ class MeasurementTypeDropDownSelector extends ConsumerWidget {
           value: selectedType,
           style: context.textTheme.bodyMedium,
           decoration: InputDecoration(
-            labelText: 'Tipo de medición*',
+            labelText:
+                '${context.l10n.measurementType}${!isEditing ? '' : '*'}',
             border: const OutlineInputBorder(),
             filled: !isEditing,
           ),
@@ -165,7 +166,8 @@ class MeasurementUnitDropDownSelector extends HookConsumerWidget {
           style: context.textTheme.bodyMedium,
           decoration: InputDecoration(
             filled: !isEditing,
-            labelText: 'Unidad*',
+            labelText:
+                '${context.l10n.measurementUnit}${!isEditing ? '' : '*'}',
             border: const OutlineInputBorder(),
           ),
           items: selectedType.units
@@ -221,12 +223,12 @@ class MeasurementValueField extends ConsumerWidget {
           decoration: InputDecoration(
             filled: !isEditing,
             errorText: errorText,
-            labelText: 'Medición*',
+            labelText: '${context.l10n.measurement}${!isEditing ? '' : '*'}',
           ),
         ),
         const SizedBox(height: Sizes.small),
-        const InputDescription(
-          description: 'El valor de la medición en la unidad seleccionada',
+        InputDescription(
+          description: context.l10n.measurementDescription,
         ),
         const SizedBox(height: Sizes.medium),
       ],

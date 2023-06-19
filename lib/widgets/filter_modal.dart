@@ -31,72 +31,79 @@ class FilterModal<T> extends HookWidget {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(Sizes.medium),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const BottomSheetDecoration(),
-            const SizedBox(height: Sizes.medium),
-            // search
-            TextFormField(
-              style: context.textTheme.bodyMedium,
-              controller: controller,
-              onChanged: (value) {
-                searchedItems.value = items
-                    .where(
-                      (item) =>
-                          labelBuilder(item).toLowerCase().contains(value),
-                    )
-                    .toList();
-              },
-              decoration: InputDecoration(
-                hintText: context.l10n.search,
-                prefixIcon: const Icon(Icons.search),
-                suffixIcon: controller.text.isNotEmpty
-                    ? IconButton(
-                        onPressed: () {
-                          controller.clear();
-                          searchedItems.value = items;
-                        },
-                        icon: const Icon(Icons.clear),
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(Sizes.medium),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const BottomSheetDecoration(),
+              const SizedBox(height: Sizes.medium),
+              // search
+              TextFormField(
+                style: context.textTheme.bodyMedium,
+                controller: controller,
+                onChanged: (value) {
+                  searchedItems.value = items
+                      .where(
+                        (item) =>
+                            labelBuilder(item).toLowerCase().contains(value),
                       )
-                    : null,
-              ),
-            ),
-            const SizedBox(height: Sizes.medium),
-            Expanded(
-              child: _FilterList<T>(
-                items: searchedItems.value,
-                selectedItems: selectedItems,
-                labelBuilder: labelBuilder,
-                onDeselected: onDeselected,
-                onSelected: onSelected,
-                onAllSelected: onAllSelected,
-              ),
-            ),
-            const SizedBox(height: Sizes.medium),
-            Button(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              label: context.l10n.accept,
-            ),
-            Center(
-              child: TextButton(
-                onPressed: onCleanSelection,
-                child: Text(
-                  context.l10n.cleanSelection,
-                  style: context.textTheme.bodyMedium
-                      ?.copyWith(
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.black,
-                        decorationThickness: 2,
-                      )
-                      .underlined(distance: 2),
+                      .toList();
+                },
+                decoration: InputDecoration(
+                  hintText: context.l10n.search,
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: controller.text.isNotEmpty
+                      ? IconButton(
+                          onPressed: () {
+                            controller.clear();
+                            searchedItems.value = items;
+                          },
+                          icon: const Icon(Icons.clear),
+                        )
+                      : null,
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: Sizes.medium),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
+                child: _FilterList<T>(
+                  items: searchedItems.value,
+                  selectedItems: selectedItems,
+                  labelBuilder: labelBuilder,
+                  onDeselected: onDeselected,
+                  onSelected: onSelected,
+                  onAllSelected: onAllSelected,
+                ),
+              ),
+              const SizedBox(height: Sizes.medium),
+              Button(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                label: context.l10n.accept,
+              ),
+              Center(
+                child: TextButton(
+                  onPressed: onCleanSelection,
+                  child: Text(
+                    context.l10n.cleanSelection,
+                    style: context.textTheme.bodyMedium
+                        ?.copyWith(
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.black,
+                          decorationThickness: 2,
+                        )
+                        .underlined(distance: 2),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -124,7 +131,7 @@ class _FilterList<T> extends HookWidget {
   @override
   Widget build(BuildContext context) {
     if (items.isEmpty) {
-      return const EmptyContainer(message: 'No items found');
+      return EmptyContainer(message: context.l10n.emptySearch);
     }
 
     return Theme(

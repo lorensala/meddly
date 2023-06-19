@@ -25,6 +25,42 @@ Appointment? existingAppointment(ExistingAppointmentRef ref) {
   return null;
 }
 
+@riverpod
+class AppointmentSpecialities extends _$AppointmentSpecialities {
+  @override
+  List<AppointmentSpeciality> build() {
+    return AppointmentSpeciality.values;
+  }
+
+  void select(AppointmentSpeciality speciality) {
+    state = [...state, speciality];
+  }
+
+  void deselect(AppointmentSpeciality speciality) {
+    state = state.where((s) => s != speciality).toList();
+  }
+
+  void clear() {
+    state = [];
+  }
+}
+
+@riverpod
+List<Appointment> filteredAppointments(FilteredAppointmentsRef ref) {
+  final appointments = ref.watch(appointmentControllerProvider);
+  final filtersSelected = ref.watch(appointmentSpecialitiesProvider);
+
+  return appointments.when(
+    data: (data) {
+      return data.where((a) {
+        return filtersSelected.contains(a.speciality);
+      }).toList();
+    },
+    error: (_, __) => [],
+    loading: () => [],
+  );
+}
+
 @Riverpod(dependencies: [AppointmentFormController])
 bool isAppointmentValid(IsAppointmentValidRef ref) {
   final isEditing = ref.watch(

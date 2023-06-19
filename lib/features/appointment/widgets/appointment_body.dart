@@ -21,6 +21,7 @@ class AppointmentBody extends ConsumerWidget {
     });
 
     final appointments = ref.watch(appointmentControllerProvider);
+    final filteredAppointments = ref.watch(filteredAppointmentsProvider);
 
     return TabBarView(
       controller: controller,
@@ -28,7 +29,19 @@ class AppointmentBody extends ConsumerWidget {
         AsyncValueWidget(
           value: appointments,
           builder: (appointments) {
-            final upcomingAppointments = appointments
+            if (appointments.isEmpty) {
+              return EmptyContainer(
+                message: context.l10n.emptyUpcomingAppointments,
+              );
+            }
+
+            if (filteredAppointments.isEmpty) {
+              return EmptyContainer(
+                message: context.l10n.emptyFilteredAppointments,
+              );
+            }
+
+            final upcomingAppointments = filteredAppointments
                 .where((appointment) => appointment.isUpcoming)
                 .toList();
 
@@ -55,7 +68,19 @@ class AppointmentBody extends ConsumerWidget {
         AsyncValueWidget(
           value: appointments,
           builder: (appointments) {
-            final pastAppointments = appointments
+            if (appointments.isEmpty) {
+              return EmptyContainer(
+                message: context.l10n.emptyUpcomingAppointments,
+              );
+            }
+
+            if (filteredAppointments.isEmpty) {
+              return EmptyContainer(
+                message: context.l10n.emptyFilteredAppointments,
+              );
+            }
+
+            final pastAppointments = filteredAppointments
                 .where((appointment) => !appointment.isUpcoming)
                 .toList();
 

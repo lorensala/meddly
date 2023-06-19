@@ -105,7 +105,7 @@ final filteredMeasurementsProvider =
 );
 
 typedef FilteredMeasurementsRef = AutoDisposeProviderRef<List<Measurement>>;
-String _$measurementTypesHash() => r'3d53df402d357468d98fc485a865b733f0341979';
+String _$measurementTypesHash() => r'ee6ee24358c247df58a6cb5bd1d42cb955578c39';
 
 /// See also [MeasurementTypes].
 @ProviderFor(MeasurementTypes)

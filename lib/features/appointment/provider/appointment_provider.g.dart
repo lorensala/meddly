@@ -69,6 +69,23 @@ final existingAppointmentProvider = AutoDisposeProvider<Appointment?>.internal(
 );
 
 typedef ExistingAppointmentRef = AutoDisposeProviderRef<Appointment?>;
+String _$filteredAppointmentsHash() =>
+    r'1503db1301a27c8aa47c77f359f33f8df6fae55c';
+
+/// See also [filteredAppointments].
+@ProviderFor(filteredAppointments)
+final filteredAppointmentsProvider =
+    AutoDisposeProvider<List<Appointment>>.internal(
+  filteredAppointments,
+  name: r'filteredAppointmentsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$filteredAppointmentsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FilteredAppointmentsRef = AutoDisposeProviderRef<List<Appointment>>;
 String _$isAppointmentValidHash() =>
     r'63ea4401a3415a3a7dabf8943ea6afba4d88269a';
 
@@ -88,4 +105,22 @@ final isAppointmentValidProvider = AutoDisposeProvider<bool>.internal(
 );
 
 typedef IsAppointmentValidRef = AutoDisposeProviderRef<bool>;
+String _$appointmentSpecialitiesHash() =>
+    r'09c02352c4b14f8cfd7079c920e537d5a4b19f55';
+
+/// See also [AppointmentSpecialities].
+@ProviderFor(AppointmentSpecialities)
+final appointmentSpecialitiesProvider = AutoDisposeNotifierProvider<
+    AppointmentSpecialities, List<AppointmentSpeciality>>.internal(
+  AppointmentSpecialities.new,
+  name: r'appointmentSpecialitiesProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$appointmentSpecialitiesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$AppointmentSpecialities
+    = AutoDisposeNotifier<List<AppointmentSpeciality>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
