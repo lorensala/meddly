@@ -3,12 +3,9 @@ import 'package:notifications/notifications.dart';
 class NotificationsRepository {
   NotificationsRepository({
     required NotificationsApi api,
-    required NotificationsCache cache,
-  })  : _api = api,
-        _cache = cache;
+  }) : _api = api;
 
   final NotificationsApi _api;
-  final NotificationsCache _cache;
 
   Future<(NotificationException?, List<Notification>)> fetchAll() async {
     try {
@@ -25,7 +22,6 @@ class NotificationsRepository {
       fetchAllPreferences() async {
     try {
       final preferences = await _api.fetchAllPreferences();
-      await _cache.addAll(preferences);
       return (
         null,
         preferences
@@ -45,7 +41,6 @@ class NotificationsRepository {
     try {
       await _api.add(notificationPreference.name);
 
-      await _cache.add(notificationPreference.name);
       return (null, null);
     } on NotificationException catch (e) {
       return (e, null);
@@ -60,7 +55,6 @@ class NotificationsRepository {
     try {
       await _api.delete(notificationPreference.name);
 
-      await _cache.remove(notificationPreference.name);
       return (null, null);
     } on NotificationException catch (e) {
       return (e, null);

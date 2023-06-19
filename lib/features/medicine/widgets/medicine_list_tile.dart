@@ -7,45 +7,88 @@ import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class MedicineListTile extends ConsumerWidget {
-  const MedicineListTile({super.key});
+  const MedicineListTile({this.isArchived = false, super.key});
+
+  final bool isArchived;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final medicine = ref.watch(medicineProvider);
     return Dismissible(
       key: Key(medicine.id.toString()),
-      onDismissed: (_) {
-        // ref
-        //     .read(medicineControllerProvider.notifier)
-        //     .deleteAppointment(medicine.id!);
+      onDismissed: (direction) {
+        if (direction == DismissDirection.endToStart) {
+          ref
+              .read(medicineControllerProvider.notifier)
+              .deleteMedicine(medicine);
+        } else if (direction == DismissDirection.startToEnd) {
+          if (isArchived) {
+            ref
+                .read(archivedMedicineControllerProvider.notifier)
+                .unarchiveMedicine(medicine);
+          } else {
+            ref
+                .read(archivedMedicineControllerProvider.notifier)
+                .archiveMedicine(medicine);
+          }
+        }
       },
-      confirmDismiss: (_) {
-        return showDialog<bool>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(context.l10n.confirm),
-            content: Text(
-              context.l10n.deleteMedicineConfirmation,
+      confirmDismiss: (direction) async {
+        if (direction == DismissDirection.endToStart) {
+          return showDialog<bool>(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text(context.l10n.confirm),
+              content: Text(
+                context.l10n.deleteMedicineConfirmation,
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  child: Text(context.l10n.cancel),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Text(context.l10n.delete),
+                ),
+              ],
             ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
-                child: Text(context.l10n.cancel),
+          );
+        } else if (direction == DismissDirection.startToEnd) {
+          return showDialog<bool>(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text(context.l10n.confirm),
+              content: Text(
+                context.l10n.archiveMedicineConfirmation,
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
-                child: Text(context.l10n.delete),
-              ),
-            ],
-          ),
-        );
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  child: Text(context.l10n.cancel),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child: Text(context.l10n.archive),
+                ),
+              ],
+            ),
+          );
+        }
+        return Future.value(false);
       },
       secondaryBackground: const DismissibleSecondaryBackground(),
-      background: const DismissibleBackground(),
+      background: isArchived
+          ? const DismissibleBackgroundVariant()
+          : const DismissibleBackground(),
       child: ListTile(
         title: Text(medicine.name),
         leading: SizedBox(

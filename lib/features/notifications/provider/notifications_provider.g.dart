@@ -6,23 +6,6 @@ part of 'notifications_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$notificationsCacheHash() =>
-    r'0b6a4170c8cf81554a920e80859088c44961afc0';
-
-/// See also [notificationsCache].
-@ProviderFor(notificationsCache)
-final notificationsCacheProvider =
-    AutoDisposeProvider<NotificationsCache>.internal(
-  notificationsCache,
-  name: r'notificationsCacheProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$notificationsCacheHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef NotificationsCacheRef = AutoDisposeProviderRef<NotificationsCache>;
 String _$notificationPreferenceHash() =>
     r'50bfa6745b139f787c4afdb42343bd7cc2ec2aa3';
 
@@ -42,7 +25,7 @@ final notificationPreferenceProvider =
 typedef NotificationPreferenceRef
     = AutoDisposeProviderRef<NotificationPreference>;
 String _$filteredNotificationsHash() =>
-    r'ace2b1f6d6d00dd6507312fee2bd166bef45b69d';
+    r'39d2003c218807be6d52fb1a634c3485838b4c33';
 
 /// See also [filteredNotifications].
 @ProviderFor(filteredNotifications)
@@ -104,7 +87,7 @@ final notificationProvider = AutoDisposeProvider<Notification>.internal(
 
 typedef NotificationRef = AutoDisposeProviderRef<Notification>;
 String _$notificationsRepositoryHash() =>
-    r'1f0d5ffd1e3fa514faa8601929f419d1a95cf1f4';
+    r'269e63ef61d7b4c6e2c0ecbcfef0e6669f3e6a05';
 
 /// See also [notificationsRepository].
 @ProviderFor(notificationsRepository)

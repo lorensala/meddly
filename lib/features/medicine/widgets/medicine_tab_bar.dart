@@ -28,9 +28,6 @@ class MedicineTabBar extends StatelessWidget {
         controller: controller,
         tabs: [
           Tab(
-            text: context.l10n.all,
-          ),
-          Tab(
             text: context.l10n.active,
           ),
           Tab(

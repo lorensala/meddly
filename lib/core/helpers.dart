@@ -123,6 +123,7 @@ Future<DateTime?> showCupertinoDatePicker({
               child: CupertinoDatePicker(
                 mode: CupertinoDatePickerMode.date,
                 initialDateTime: initialDateTime,
+                minimumYear: firstDate?.year ?? 1900,
                 minimumDate: firstDate ?? DateTime(1900),
                 maximumDate: lastDate ?? DateTime.now(),
                 onDateTimeChanged: (value) {

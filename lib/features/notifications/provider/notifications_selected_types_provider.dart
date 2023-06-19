@@ -18,8 +18,6 @@ class NotificationSelectedTypes extends _$NotificationSelectedTypes {
   }
 
   void unselect(NotificationType type) {
-    if (state.length == 1) return;
-
     state = state.where((e) => e != type).toList();
   }
 

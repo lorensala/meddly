@@ -7,10 +7,12 @@ import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 // ignore: depend_on_referenced_packages
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/features/medicine/provider/medicine_provider.dart';
 import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/firebase_options.dart';
 import 'package:meddly/log/logger.dart';
 import 'package:meddly/provider/provider.dart';
+import 'package:medicine/medicine.dart';
 import 'package:notifications/notifications.dart';
 import 'package:user/user.dart';
 
@@ -38,10 +40,11 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
       final hive = Hive;
       await hive.initFlutter();
       hive.registerAdapter<UserDto>(UserDtoAdapter());
+      final medicineBox = await hive.openBox<String>(medicineBoxKey);
 
       await Future.wait<dynamic>([
         hive.openBox<UserDto>(userBoxKey),
-        hive.openBox<List<String>>(preferencesBoxKey),
+        hive.openBox<String>(preferencesBoxKey),
       ]);
 
       FlutterError.onError = (details) {
@@ -56,6 +59,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
                 .overrideWithValue(localNotificationService),
             firebaseMessagingServiceProvider
                 .overrideWithValue(firebaseMessaginService),
+            medicineBoxProvider.overrideWithValue(medicineBox),
           ],
           observers: [Logger()],
           child: await builder(),

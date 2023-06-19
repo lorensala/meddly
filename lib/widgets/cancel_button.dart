@@ -24,7 +24,7 @@ class CancelButton extends StatelessWidget {
         child: Center(
           child: Text(
             context.l10n.cancel,
-            style: context.textTheme.bodyLarge,
+            style: context.textTheme.bodyMedium,
           ),
         ),
       ),

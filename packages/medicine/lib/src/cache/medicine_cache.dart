@@ -1,16 +1,16 @@
+import 'dart:convert';
+
 import 'package:hive/hive.dart';
 import 'package:medicine/medicine.dart';
 
 class MedicineCache {
   MedicineCache(this._box);
 
-  final Box<Map<String, dynamic>> _box;
+  final Box<String> _box;
 
-  Future<void> write(List<Medicine> medicine) async {
+  Future<void> write(Medicine medicine) async {
     try {
-      for (final med in medicine) {
-        await _box.put(med.id, med.toJson());
-      }
+      await _box.put(medicine.id.toString(), jsonEncode(medicine.toJson()));
     } catch (e) {
       throw MedicineCacheException();
     }
@@ -20,7 +20,17 @@ class MedicineCache {
     try {
       final medicine = _box.get(id);
       if (medicine == null) throw MedicineNotFoundException();
-      return Medicine.fromJson(medicine);
+      return Medicine.fromJson(medicine as Map<String, dynamic>);
+    } catch (e) {
+      throw MedicineCacheException();
+    }
+  }
+
+  List<Medicine> readAll() {
+    try {
+      return _box.values
+          .map((e) => Medicine.fromJson(jsonDecode(e) as Map<String, dynamic>))
+          .toList();
     } catch (e) {
       throw MedicineCacheException();
     }

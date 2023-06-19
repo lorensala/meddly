@@ -16,7 +16,7 @@ class MedicinePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTabController(initialLength: 3);
+    final controller = useTabController(initialLength: 2);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

@@ -22,7 +22,7 @@ class InputLabel extends StatelessWidget {
         children: [
           if (isRequired)
             TextSpan(
-              text: ' *',
+              text: '*',
               style: TextStyle(color: context.colorScheme.error),
             ),
         ],

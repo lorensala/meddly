@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/medicine/medicine.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/router.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:medicine/medicine.dart';
@@ -22,7 +23,7 @@ class MedicineFrecuencyPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Medicine'),
+        title: Text(context.l10n.medicines),
         actions: [
           CancelButton(
             onConfirm: () => Navigator.of(context)

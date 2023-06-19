@@ -1,11 +1,22 @@
-import 'package:meddly/features/medicine/controller/medicine_controller.dart';
-import 'package:meddly/features/medicine/controller/medicine_form_controller.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/provider/provider.dart';
 import 'package:medicine/medicine.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'medicine_provider.g.dart';
+
+@riverpod
+Box<String> medicineBox(MedicineBoxRef ref) {
+  throw UnimplementedError();
+}
+
+@riverpod
+MedicineCache medicineCache(MedicineCacheRef ref) {
+  final box = ref.read(medicineBoxProvider);
+  return MedicineCache(box);
+}
 
 @riverpod
 MedicineApi medicineApi(MedicineApiRef ref) {
@@ -16,6 +27,7 @@ MedicineApi medicineApi(MedicineApiRef ref) {
 MedicineRepository medicineRepository(MedicineRepositoryRef ref) {
   return MedicineRepository(
     api: ref.read(medicineApiProvider),
+    cache: ref.read(medicineCacheProvider),
   );
 }
 
@@ -129,6 +141,22 @@ Medicine medicine(MedicineRef ref) {
 @riverpod
 List<Medicine> filteredMedicines(FilteredMedicinesRef ref) {
   final medicines = ref.watch(medicineControllerProvider);
+  final filtersSelected = ref.watch(medicinePresentationsProvider);
+
+  return medicines.when(
+    data: (medicines) {
+      return medicines.where((medicine) {
+        return filtersSelected.contains(medicine.presentation);
+      }).toList();
+    },
+    loading: () => [],
+    error: (e, s) => [],
+  );
+}
+
+@riverpod
+List<Medicine> filteredArchivedMedicines(FilteredArchivedMedicinesRef ref) {
+  final medicines = ref.watch(archivedMedicineControllerProvider);
   final filtersSelected = ref.watch(medicinePresentationsProvider);
 
   return medicines.when(

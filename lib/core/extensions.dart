@@ -23,11 +23,11 @@ extension StringX on String {
 }
 
 extension IntX on int {
-  String toDaysString() {
+  String toLocalizedDayString(AppLocalizations l10n) {
     if (this == 1) {
-      return '$this Day';
+      return '$this ${l10n.day}';
     } else {
-      return '$this Days';
+      return '$this ${l10n.days}';
     }
   }
 }

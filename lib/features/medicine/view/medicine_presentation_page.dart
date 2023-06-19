@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/medicine/medicine.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -20,8 +22,9 @@ class MedicinePresentationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: context.colorScheme.background,
       appBar: AppBar(
-        title: const Text('Medicine'),
+        title: Text(context.l10n.medicines),
         actions: [
           CancelButton(
             onConfirm: () => Navigator.of(context)
@@ -30,7 +33,12 @@ class MedicinePresentationPage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: const _NextButton(),
-      body: const MedicinePresentationView(),
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: const MedicinePresentationForm(),
+        ),
+      ),
     );
   }
 }
@@ -43,21 +51,8 @@ class _NextButton extends ConsumerWidget {
     return MedicineNextButton(
       isValid: true,
       onPressed: () => ref.read(goRouterProvider).push(
-          '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineDosisPage.routeName}',),
-    );
-  }
-}
-
-class MedicinePresentationView extends StatelessWidget {
-  const MedicinePresentationView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: const MedicinePresentationForm(),
-      ),
+            '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineDosisPage.routeName}',
+          ),
     );
   }
 }

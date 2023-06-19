@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/medicine/medicine.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 
 class MedicineNamePage extends StatelessWidget {
@@ -17,7 +18,7 @@ class MedicineNamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Medicine'),
+        title: Text(context.l10n.medicines),
       ),
       body: const MedicineNameView(),
       resizeToAvoidBottomInset: false,

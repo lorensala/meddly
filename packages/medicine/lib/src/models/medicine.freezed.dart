@@ -20,20 +20,33 @@ Medicine _$MedicineFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Medicine {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   DateTime get startDate => throw _privateConstructorUsedError;
+  @HiveField(3)
   DateTime? get endDate => throw _privateConstructorUsedError;
+  @HiveField(4)
   int? get stock => throw _privateConstructorUsedError;
+  @HiveField(5)
   int? get stockWarning => throw _privateConstructorUsedError;
+  @HiveField(6)
   MedicinePresentation get presentation => throw _privateConstructorUsedError;
+  @HiveField(7)
   MedicineDosisUnit get dosisUnit => throw _privateConstructorUsedError;
+  @HiveField(8)
   double get dosis => throw _privateConstructorUsedError;
+  @HiveField(9)
   int? get interval => throw _privateConstructorUsedError;
+  @HiveField(10)
   @ListMedicineDayOrNullConverter()
   List<MedicineDay>? get days => throw _privateConstructorUsedError;
+  @HiveField(11)
   @ListTimeOfDayOrNullConverter()
   List<TimeOfDay>? get hours => throw _privateConstructorUsedError;
+  @HiveField(12)
   String? get instructions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,19 +61,19 @@ abstract class $MedicineCopyWith<$Res> {
       _$MedicineCopyWithImpl<$Res, Medicine>;
   @useResult
   $Res call(
-      {int id,
-      String name,
-      DateTime startDate,
-      DateTime? endDate,
-      int? stock,
-      int? stockWarning,
-      MedicinePresentation presentation,
-      MedicineDosisUnit dosisUnit,
-      double dosis,
-      int? interval,
-      @ListMedicineDayOrNullConverter() List<MedicineDay>? days,
-      @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
-      String? instructions});
+      {@HiveField(0) int id,
+      @HiveField(1) String name,
+      @HiveField(2) DateTime startDate,
+      @HiveField(3) DateTime? endDate,
+      @HiveField(4) int? stock,
+      @HiveField(5) int? stockWarning,
+      @HiveField(6) MedicinePresentation presentation,
+      @HiveField(7) MedicineDosisUnit dosisUnit,
+      @HiveField(8) double dosis,
+      @HiveField(9) int? interval,
+      @HiveField(10) @ListMedicineDayOrNullConverter() List<MedicineDay>? days,
+      @HiveField(11) @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
+      @HiveField(12) String? instructions});
 }
 
 /// @nodoc
@@ -155,19 +168,19 @@ abstract class _$$_MedicineCopyWith<$Res> implements $MedicineCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String name,
-      DateTime startDate,
-      DateTime? endDate,
-      int? stock,
-      int? stockWarning,
-      MedicinePresentation presentation,
-      MedicineDosisUnit dosisUnit,
-      double dosis,
-      int? interval,
-      @ListMedicineDayOrNullConverter() List<MedicineDay>? days,
-      @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
-      String? instructions});
+      {@HiveField(0) int id,
+      @HiveField(1) String name,
+      @HiveField(2) DateTime startDate,
+      @HiveField(3) DateTime? endDate,
+      @HiveField(4) int? stock,
+      @HiveField(5) int? stockWarning,
+      @HiveField(6) MedicinePresentation presentation,
+      @HiveField(7) MedicineDosisUnit dosisUnit,
+      @HiveField(8) double dosis,
+      @HiveField(9) int? interval,
+      @HiveField(10) @ListMedicineDayOrNullConverter() List<MedicineDay>? days,
+      @HiveField(11) @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
+      @HiveField(12) String? instructions});
 }
 
 /// @nodoc
@@ -256,19 +269,34 @@ class __$$_MedicineCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Medicine implements _Medicine {
   const _$_Medicine(
-      {required this.id,
-      required this.name,
-      required this.startDate,
-      this.endDate,
-      this.stock,
-      this.stockWarning,
-      required this.presentation,
-      required this.dosisUnit,
-      required this.dosis,
-      this.interval,
-      @ListMedicineDayOrNullConverter() final List<MedicineDay>? days,
-      @ListTimeOfDayOrNullConverter() final List<TimeOfDay>? hours,
-      this.instructions})
+      {@HiveField(0)
+          required this.id,
+      @HiveField(1)
+          required this.name,
+      @HiveField(2)
+          required this.startDate,
+      @HiveField(3)
+          this.endDate,
+      @HiveField(4)
+          this.stock,
+      @HiveField(5)
+          this.stockWarning,
+      @HiveField(6)
+          required this.presentation,
+      @HiveField(7)
+          required this.dosisUnit,
+      @HiveField(8)
+          required this.dosis,
+      @HiveField(9)
+          this.interval,
+      @HiveField(10)
+      @ListMedicineDayOrNullConverter()
+          final List<MedicineDay>? days,
+      @HiveField(11)
+      @ListTimeOfDayOrNullConverter()
+          final List<TimeOfDay>? hours,
+      @HiveField(12)
+          this.instructions})
       : _days = days,
         _hours = hours;
 
@@ -276,27 +304,38 @@ class _$_Medicine implements _Medicine {
       _$$_MedicineFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String name;
   @override
+  @HiveField(2)
   final DateTime startDate;
   @override
+  @HiveField(3)
   final DateTime? endDate;
   @override
+  @HiveField(4)
   final int? stock;
   @override
+  @HiveField(5)
   final int? stockWarning;
   @override
+  @HiveField(6)
   final MedicinePresentation presentation;
   @override
+  @HiveField(7)
   final MedicineDosisUnit dosisUnit;
   @override
+  @HiveField(8)
   final double dosis;
   @override
+  @HiveField(9)
   final int? interval;
   final List<MedicineDay>? _days;
   @override
+  @HiveField(10)
   @ListMedicineDayOrNullConverter()
   List<MedicineDay>? get days {
     final value = _days;
@@ -308,6 +347,7 @@ class _$_Medicine implements _Medicine {
 
   final List<TimeOfDay>? _hours;
   @override
+  @HiveField(11)
   @ListTimeOfDayOrNullConverter()
   List<TimeOfDay>? get hours {
     final value = _hours;
@@ -318,6 +358,7 @@ class _$_Medicine implements _Medicine {
   }
 
   @override
+  @HiveField(12)
   final String? instructions;
 
   @override
@@ -385,49 +426,77 @@ class _$_Medicine implements _Medicine {
 
 abstract class _Medicine implements Medicine {
   const factory _Medicine(
-      {required final int id,
-      required final String name,
-      required final DateTime startDate,
-      final DateTime? endDate,
-      final int? stock,
-      final int? stockWarning,
-      required final MedicinePresentation presentation,
-      required final MedicineDosisUnit dosisUnit,
-      required final double dosis,
-      final int? interval,
-      @ListMedicineDayOrNullConverter() final List<MedicineDay>? days,
-      @ListTimeOfDayOrNullConverter() final List<TimeOfDay>? hours,
-      final String? instructions}) = _$_Medicine;
+      {@HiveField(0)
+          required final int id,
+      @HiveField(1)
+          required final String name,
+      @HiveField(2)
+          required final DateTime startDate,
+      @HiveField(3)
+          final DateTime? endDate,
+      @HiveField(4)
+          final int? stock,
+      @HiveField(5)
+          final int? stockWarning,
+      @HiveField(6)
+          required final MedicinePresentation presentation,
+      @HiveField(7)
+          required final MedicineDosisUnit dosisUnit,
+      @HiveField(8)
+          required final double dosis,
+      @HiveField(9)
+          final int? interval,
+      @HiveField(10)
+      @ListMedicineDayOrNullConverter()
+          final List<MedicineDay>? days,
+      @HiveField(11)
+      @ListTimeOfDayOrNullConverter()
+          final List<TimeOfDay>? hours,
+      @HiveField(12)
+          final String? instructions}) = _$_Medicine;
 
   factory _Medicine.fromJson(Map<String, dynamic> json) = _$_Medicine.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get name;
   @override
+  @HiveField(2)
   DateTime get startDate;
   @override
+  @HiveField(3)
   DateTime? get endDate;
   @override
+  @HiveField(4)
   int? get stock;
   @override
+  @HiveField(5)
   int? get stockWarning;
   @override
+  @HiveField(6)
   MedicinePresentation get presentation;
   @override
+  @HiveField(7)
   MedicineDosisUnit get dosisUnit;
   @override
+  @HiveField(8)
   double get dosis;
   @override
+  @HiveField(9)
   int? get interval;
   @override
+  @HiveField(10)
   @ListMedicineDayOrNullConverter()
   List<MedicineDay>? get days;
   @override
+  @HiveField(11)
   @ListTimeOfDayOrNullConverter()
   List<TimeOfDay>? get hours;
   @override
+  @HiveField(12)
   String? get instructions;
   @override
   @JsonKey(ignore: true)

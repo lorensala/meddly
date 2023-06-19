@@ -21,7 +21,7 @@ class MedicineReviewDetailsPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Medicine'),
+        title: Text(context.l10n.medicines),
         actions: [
           CancelButton(
             onConfirm: () => Navigator.of(context)

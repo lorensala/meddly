@@ -15,3 +15,4 @@ export 'medicine_presentation_list_item.dart';
 export 'medicine_review_details.dart';
 export 'medicine_tab_bar.dart';
 export 'medicine_tab_view.dart';
+export 'medicine_vector.dart';

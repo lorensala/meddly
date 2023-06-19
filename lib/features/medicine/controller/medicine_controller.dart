@@ -46,4 +46,20 @@ class MedicineController extends _$MedicineController {
           .go('${BrowsePage.routeName}/${MedicinePage.routeName}');
     }
   }
+
+  Future<void> deleteMedicine(Medicine medicine) async {
+    final repository = ref.watch(medicineRepositoryProvider);
+
+    final (err, _) = await repository.deleteMedicine(medicine);
+
+    final l10n = ref.watch(l10nProvider) as AppLocalizations;
+
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      ref
+        ..invalidate(calendarControllerProvider)
+        ..invalidateSelf();
+    }
+  }
 }
