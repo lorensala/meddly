@@ -67,14 +67,12 @@ class NotificationListItem extends ConsumerWidget {
           notification.body,
           style: context.textTheme.bodyMedium!.copyWith(
             color: context.colorScheme.onSecondary.withOpacity(0.5),
-            fontWeight: FontWeight.w400,
           ),
         ),
         trailing: Text(
           notification.createdAt.toHoursAndMinutesString(),
           style: context.textTheme.bodyMedium!.copyWith(
             color: context.colorScheme.onSecondary.withOpacity(0.5),
-            fontWeight: FontWeight.w400,
           ),
         ),
       ),
