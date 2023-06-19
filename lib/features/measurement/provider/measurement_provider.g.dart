@@ -88,4 +88,37 @@ final existingMeasurementProvider = AutoDisposeProvider<Measurement?>.internal(
 );
 
 typedef ExistingMeasurementRef = AutoDisposeProviderRef<Measurement?>;
+String _$filteredMeasurementsHash() =>
+    r'ac37caae76098da22d6cbea9ad5572dd4672b2fe';
+
+/// See also [filteredMeasurements].
+@ProviderFor(filteredMeasurements)
+final filteredMeasurementsProvider =
+    AutoDisposeProvider<List<Measurement>>.internal(
+  filteredMeasurements,
+  name: r'filteredMeasurementsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$filteredMeasurementsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FilteredMeasurementsRef = AutoDisposeProviderRef<List<Measurement>>;
+String _$measurementTypesHash() => r'3d53df402d357468d98fc485a865b733f0341979';
+
+/// See also [MeasurementTypes].
+@ProviderFor(MeasurementTypes)
+final measurementTypesProvider = AutoDisposeNotifierProvider<MeasurementTypes,
+    List<MeasurementType>>.internal(
+  MeasurementTypes.new,
+  name: r'measurementTypesProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$measurementTypesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$MeasurementTypes = AutoDisposeNotifier<List<MeasurementType>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

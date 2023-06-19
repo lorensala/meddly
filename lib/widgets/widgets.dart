@@ -9,5 +9,6 @@ export 'date_selector.dart';
 export 'drop_down_selector.dart';
 export 'empty_container.dart';
 export 'error_container.dart';
+export 'filter_modal.dart';
 export 'input_description.dart';
 export 'input_label.dart';

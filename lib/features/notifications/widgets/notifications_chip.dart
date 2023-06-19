@@ -14,7 +14,6 @@ class CustomFilterChip<T> extends ConsumerWidget {
 
   final T type;
   final String label;
-  // ignore: avoid_positional_boolean_parameters
   final VoidCallback onSelect;
   final VoidCallback onUnselect;
   final bool isSelected;
@@ -23,6 +22,7 @@ class CustomFilterChip<T> extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return FilterChip(
       selected: isSelected,
+      selectedColor: context.colorScheme.primary.withOpacity(0.2),
       checkmarkColor: context.colorScheme.primary,
       shadowColor: Colors.transparent,
       selectedShadowColor: Colors.transparent,

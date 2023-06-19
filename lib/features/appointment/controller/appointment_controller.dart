@@ -22,6 +22,7 @@ class AppointmentController extends _$AppointmentController {
     if (err != null) {
       throw Exception(err.describe(l10n));
     } else {
+      appointments.sort((a, b) => b.date.compareTo(a.date));
       return appointments;
     }
   }
