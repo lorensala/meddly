@@ -51,10 +51,10 @@ extension BuildContextX on BuildContext {
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
   TextTheme get textTheme => Theme.of(this).textTheme;
   double get height =>
-      MediaQuery.of(this).size.height -
+      MediaQuery.sizeOf(this).height -
       kToolbarHeight -
       kBottomNavigationBarHeight;
-  double get width => MediaQuery.of(this).size.width;
+  double get width => MediaQuery.sizeOf(this).width;
 }
 
 extension DateTimeX on DateTime {
@@ -144,9 +144,6 @@ extension ShimmerX on Widget {
 }
 
 extension TextStyleX on TextStyle {
-  /// A method to underline a text with a customizable [distance] between the text
-  /// and underline. The [color], [thickness] and [style] can be set
-  /// as the decorations of a [TextStyle].
   TextStyle underlined({
     Color? color,
     double distance = 1,

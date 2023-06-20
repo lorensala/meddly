@@ -7,4 +7,3 @@ export 'calendar_has_events_provider.dart';
 export 'calendar_repository_provider.dart';
 export 'calendar_selected_date_provider.dart';
 export 'calendar_selected_users_provider.dart';
-export 'calendar_users_provider.dart';

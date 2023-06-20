@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/calendar/controller/consumption_controller.dart';
+import 'package:meddly/features/supervisor/controller/controller.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
@@ -164,28 +165,64 @@ class _EventUser extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final event = ref.watch(calendarEventProvider);
-    final user = ref.watch(
-      calendarUsersProvider
-          .select((value) => value.firstWhereOrNull((u) => u.uid == event.uid)),
-    );
+
+    final users = ref.watch(supervisorControllerProvider);
     final me = ref.watch(userProvider);
 
-    if (user == null) {
-      return const SizedBox.shrink();
-    }
+    return AsyncValueWidget(
+      value: users,
+      loading: const _EventUserShimmered().customShimmer(),
+      builder: (users) {
+        final user =
+            users.supervised.firstWhereOrNull((u) => u.uid == event.uid);
+        if (user == null) {
+          return const SizedBox.shrink();
+        }
 
-    if (user.uid == me?.uid) {
-      return const SizedBox.shrink();
-    }
+        if (user.uid == me?.uid) {
+          return const SizedBox.shrink();
+        }
 
+        return Column(
+          children: [
+            const SizedBox(height: Sizes.medium),
+            Row(
+              children: [
+                UserCircleAvatar(user: user, radius: Sizes.medium),
+                const SizedBox(width: Sizes.small),
+                Text('${user.firstName} ${user.lastName}'),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _EventUserShimmered extends StatelessWidget {
+  const _EventUserShimmered();
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: Sizes.medium),
         Row(
           children: [
-            UserCircleAvatar(user: user, radius: Sizes.medium),
+            CircleAvatar(
+              radius: Sizes.medium,
+              backgroundColor: context.colorScheme.surface,
+            ),
             const SizedBox(width: Sizes.small),
-            Text('${user.firstName} ${user.lastName}'),
+            Container(
+              decoration: BoxDecoration(
+                color: context.colorScheme.surface,
+                borderRadius: BorderRadius.circular(Sizes.extraSmall),
+              ),
+              height: Sizes.large,
+              width: context.width * 0.3,
+            ),
           ],
         ),
       ],

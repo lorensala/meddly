@@ -26,6 +26,7 @@ class AddBottomSheet extends ConsumerWidget {
             icon: Vectors.measurement,
             label: context.l10n.newMeasurement,
             onTap: () {
+              Navigator.of(context).pop();
               ref.read(goRouterProvider).push(
                     '/${MeasurementFormPage.routeName}/""',
                   );
@@ -36,6 +37,7 @@ class AddBottomSheet extends ConsumerWidget {
             icon: Vectors.appointment,
             label: context.l10n.newAppointment,
             onTap: () {
+              Navigator.of(context).pop();
               ref.read(goRouterProvider).push(
                     '/${AppointmentFormPage.routeName}/""',
                   );
@@ -46,6 +48,7 @@ class AddBottomSheet extends ConsumerWidget {
             icon: Vectors.medicine,
             label: context.l10n.newMedicine,
             onTap: () {
+              Navigator.of(context).pop();
               ref.read(goRouterProvider).push(
                     '/${MedicineNamePage.routeName}',
                   );
@@ -56,6 +59,7 @@ class AddBottomSheet extends ConsumerWidget {
             icon: Vectors.linkedAccount,
             label: context.l10n.addSupervisor,
             onTap: () async {
+              Navigator.of(context).pop();
               await showModalBottomSheet<void>(
                 context: context,
                 useRootNavigator: true,
