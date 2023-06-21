@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 sealed class MedicineException implements Exception {
   const MedicineException();
 
   factory MedicineException.fromDioError(DioError error) {
+    if (error.error is SocketException) {
+      return const MedicineConnectionException();
+    }
+
     switch (error.type) {
       case DioErrorType.connectionError:
       case DioErrorType.receiveTimeout:

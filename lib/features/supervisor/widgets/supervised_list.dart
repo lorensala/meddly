@@ -89,12 +89,7 @@ class _SupervisedListItem extends ConsumerWidget {
         title: Text(
           '${supervised.firstName} ${supervised.lastName}',
         ),
-        subtitle: Text(
-          supervised.email,
-          style: context.textTheme.bodyMedium!.copyWith(
-            color: context.colorScheme.onSecondary.withOpacity(0.5),
-          ),
-        ),
+        subtitle: Text(supervised.email),
       ),
     );
   }

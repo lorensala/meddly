@@ -97,12 +97,13 @@ class MedicineListTile extends ConsumerWidget {
           child: SvgPicture.asset(Vectors.medicine),
         ),
         trailing: SizedBox(
-          child: Text('${medicine.dosis} ${medicine.dosisUnit.value}'),
+          child:
+              Text('${medicine.dosis.truncate()} ${medicine.dosisUnit.value}'),
         ),
         titleAlignment: ListTileTitleAlignment.center,
         minLeadingWidth: 0,
         subtitle: Text(
-          '${medicine.stock} unidades restantes',
+          '${medicine.stock} ${context.l10n.unitsLeft}',
           style: context.textTheme.bodyMedium?.copyWith(
             color: context.colorScheme.onSecondary.withOpacity(0.5),
           ),

@@ -48,7 +48,7 @@ class MeasurementListItem extends ConsumerWidget {
           ),
         );
       },
-      background: const DismissibleBackground(),
+      background: const DismissibleSecondaryBackground(),
       direction: DismissDirection.endToStart,
       child: ListTile(
         title: Text(measurement.type.localizedString(context.l10n)),

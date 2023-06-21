@@ -25,16 +25,19 @@ class BottomNavBar extends HookConsumerWidget {
       onBranchTapped(selectedIndex.value);
     });
 
-    return DecoratedBox(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 100),
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        boxShadow: [
-          BoxShadow(
-            color: context.colorScheme.onBackground.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, -5),
-          ),
-        ],
+        boxShadow: selectedIndex.value == 0
+            ? [
+                BoxShadow(
+                  color: context.colorScheme.onBackground.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, -5),
+                ),
+              ]
+            : null,
       ),
       child: SafeArea(
         child: SizedBox(

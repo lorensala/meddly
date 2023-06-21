@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 sealed class CalendarException implements Exception {
   const CalendarException();
 
   factory CalendarException.fromDioError(DioError error) {
+    if (error.error is SocketException) {
+      return const CalendarConnectionException();
+    }
     switch (error.type) {
       case DioErrorType.connectionError:
       case DioErrorType.receiveTimeout:

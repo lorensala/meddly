@@ -279,6 +279,11 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                     builder: (context, state) =>
                         const NotificationsPreferencesPage(),
                   ),
+                  GoRoute(
+                    parentNavigatorKey: userNavigatorKey,
+                    path: UserFormPage.routeName,
+                    builder: (context, state) => const UserFormPage(),
+                  ),
                 ],
               ),
             ],

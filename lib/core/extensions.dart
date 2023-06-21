@@ -32,6 +32,12 @@ extension IntX on int {
   }
 }
 
+extension DoubleX on double {
+  String truncate() => toStringAsFixed(
+        truncateToDouble() == this ? 0 : 2,
+      );
+}
+
 extension TimeOfDayX on TimeOfDay {
   DateTime toDateTime() {
     final now = DateTime.now();

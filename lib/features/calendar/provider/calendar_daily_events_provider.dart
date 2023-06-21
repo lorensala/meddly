@@ -1,4 +1,7 @@
+// ignore_for_file: lines_longer_than_80_chars, depend_on_referenced_packages
+
 import 'package:calendar/calendar.dart';
+import 'package:collection/collection.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/core/core.dart';
 import 'package:meddly/features/calendar/controller/controller.dart';
@@ -55,17 +58,24 @@ List<CalendarEvent> calendarDailyEvents(
 
               for (final consumption in calendar.consumptions) {
                 if (consumption.date.isSameDay(selectedDate)) {
-                  userCalendarEvents.add(
-                    MedicineEvent(
-                      id: consumption.medicineId,
-                      uid: uid,
-                      title: 'Medicamento ${consumption.medicineId}',
-                      description: 'Descripción ${consumption.medicineId}',
-                      date: consumption.date,
-                      consumed: consumption.consumed,
-                      consumedDate: consumption.realConsumptionDate,
-                    ),
-                  );
+                  final medicine = calendar.medicines
+                      .firstWhereOrNull((m) => m.id == consumption.medicineId);
+
+                  if (medicine != null) {
+                    final title =
+                        '${medicine.name} ${medicine.dosis.truncate()}${medicine.dosisUnit.name}';
+                    userCalendarEvents.add(
+                      MedicineEvent(
+                        id: consumption.medicineId,
+                        uid: uid,
+                        title: title,
+                        description: '${medicine.stock} ${l10n.unitsLeft}',
+                        date: consumption.date,
+                        consumed: consumption.consumed,
+                        consumedDate: consumption.realConsumptionDate,
+                      ),
+                    );
+                  }
                 }
               }
             });
@@ -73,7 +83,13 @@ List<CalendarEvent> calendarDailyEvents(
             events.addAll(userCalendarEvents);
           }
 
-          events.sort((a, b) => a.date.compareTo(b.date));
+          events.sort((a, b) {
+            final date = a.date.compareTo(b.date);
+            if (date != 0) {
+              return date;
+            }
+            return a.uid.compareTo(b.uid);
+          });
 
           return events;
         },

@@ -35,8 +35,10 @@ class LastPredictions extends ConsumerWidget {
           itemBuilder: (context, index) {
             final prediction = lastPredictions[index];
             return ListTile(
-              title: Text(prediction.id.toString()),
-              subtitle: Text(prediction.prediction.toString()),
+              title: Text(prediction.verified.toString()),
+              subtitle: Text(
+                prediction.prediction.map((e) => e.disease).join(', '),
+              ),
             );
           },
           separatorBuilder: (BuildContext context, int index) => const SizedBox(

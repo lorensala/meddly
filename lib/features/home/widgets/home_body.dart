@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/home/widgets/widgets.dart';
 import 'package:meddly/features/measurement/controller/controller.dart';
@@ -28,6 +29,13 @@ class HomeBody extends ConsumerWidget {
         );
       })
       ..listen(supervisorControllerProvider, (_, state) {
+        state.whenOrNull(
+          error: (err, _) {
+            showSnackBar(context, err.toString());
+          },
+        );
+      })
+      ..listen(appointmentControllerProvider, (_, state) {
         state.whenOrNull(
           error: (err, _) {
             showSnackBar(context, err.toString());

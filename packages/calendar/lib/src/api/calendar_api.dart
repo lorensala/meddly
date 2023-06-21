@@ -3,6 +3,7 @@ import 'package:calendar/src/core/core.dart';
 import 'package:calendar/src/models/models.dart';
 import 'package:dio/dio.dart';
 import 'package:measurement/measurement.dart';
+import 'package:medicine/medicine.dart';
 
 typedef UserCalendar = Map<String, Calendar>;
 
@@ -10,6 +11,7 @@ typedef Calendar = ({
   List<Appointment> appointments,
   List<Measurement> measurements,
   List<Consumption> consumptions,
+  List<Medicine> medicines,
 });
 
 class CalendarApi {
@@ -44,6 +46,7 @@ class CalendarApi {
         final appointments = userCalendar['appointments'] as List<dynamic>;
         final measurements = userCalendar['measurements'] as List<dynamic>;
         final consumptions = userCalendar['consumptions'] as List<dynamic>;
+        final medicines = userCalendar['medicines'] as List<dynamic>;
 
         calendar.add({
           userId: (
@@ -59,6 +62,11 @@ class CalendarApi {
                 .toList(),
             consumptions: consumptions
                 .map<Consumption>((e) => Consumption.fromJson(
+                      e as Map<String, dynamic>,
+                    ))
+                .toList(),
+            medicines: medicines
+                .map<Medicine>((e) => Medicine.fromJson(
                       e as Map<String, dynamic>,
                     ))
                 .toList(),

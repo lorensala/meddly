@@ -26,7 +26,10 @@ class PredictionsSymptomsSearchPage extends ConsumerWidget {
           preferredSize: Size.fromHeight(80),
           child: Padding(
             padding: EdgeInsets.all(Sizes.medium),
-            child: PredictionsSymptomsSearchField(),
+            child: Hero(
+              tag: 'search',
+              child: PredictionsSymptomsSearchField(),
+            ),
           ),
         ),
       ),

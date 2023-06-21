@@ -1,6 +1,7 @@
 import 'package:appointment/appointment.dart';
 import 'package:calendar/calendar.dart';
 import 'package:measurement/measurement.dart';
+import 'package:medicine/medicine.dart';
 
 class CalendarRepository {
   CalendarRepository({
@@ -20,12 +21,14 @@ class CalendarRepository {
         final List<Appointment> appointments = [];
         final List<Measurement> measurements = [];
         final List<Consumption> consumptions = [];
+        final List<Medicine> medicines = [];
 
         calendar.forEach((userCalendar) {
           userCalendar.forEach((userId, calendar) {
             appointments.addAll(calendar.appointments);
             measurements.addAll(calendar.measurements);
             consumptions.addAll(calendar.consumptions);
+            medicines.addAll(calendar.medicines);
           });
         });
 

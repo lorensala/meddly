@@ -63,9 +63,12 @@ class UserBody extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: Sizes.medium),
-                const SettingsItem(
+                SettingsItem(
                   vector: Vectors.userEdit,
                   label: 'Modificar mis datos',
+                  onPressed: () => GoRouter.of(context).push(
+                    UserFormPage.fullRouteName,
+                  ),
                 ),
                 const SizedBox(height: Sizes.medium),
                 const SettingsItem(
@@ -90,16 +93,6 @@ class UserBody extends ConsumerWidget {
                     );
                   },
                 ),
-                // const SizedBox(height: Sizes.medium),
-                // SettingsItem(
-                //   vector: Vectors.sun,
-                //   label: 'Cambiar tema',
-                //   onPressed: () {
-                //     // GoRouter.of(context).push(
-                //     //   '${UserPage.routeName}/${NotificationsPreferencesPage.routeName}',
-                //     // );
-                //   },
-                // ),
                 const SizedBox(height: Sizes.medium),
                 const ExportItem(),
                 const SizedBox(height: Sizes.medium),

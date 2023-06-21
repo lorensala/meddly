@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:meddly/widgets/widgets.dart';
 
@@ -21,8 +22,8 @@ class PredictionsBody extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             PredictionCard(
-              title: 'Escaneo por imágen',
-              description: 'Escanea una parte de tu cuerpo y te diremos que es',
+              title: context.l10n.imageScan,
+              description: context.l10n.imageScanDescription,
               onTap: () {
                 showModalBottomSheet<void>(
                   context: context,
@@ -41,8 +42,8 @@ class PredictionsBody extends ConsumerWidget {
             ),
             const SizedBox(height: Sizes.medium),
             PredictionCard(
-              title: 'Ingreso de síntomas',
-              description: 'Escanea una parte de tu cuerpo y te diremos que es',
+              title: context.l10n.enterSympthoms,
+              description: context.l10n.enterSympthomsDescription,
               onTap: () => ref.read(goRouterProvider).push(
                     '${BrowsePage.routeName}/${PredictionsPage.routeName}/${PredictionSymptomsPage.routeName}',
                   ),

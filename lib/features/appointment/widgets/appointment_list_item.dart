@@ -47,7 +47,7 @@ class AppointmentListItem extends ConsumerWidget {
           ),
         );
       },
-      background: const DismissibleBackground(),
+      background: const DismissibleSecondaryBackground(),
       direction: DismissDirection.endToStart,
       child: ListTile(
         trailing: Text(

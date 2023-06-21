@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meddly/features/predictions/widgets/predictions_body.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 class PredictionsPage extends StatelessWidget {
   const PredictionsPage({super.key});
@@ -14,7 +15,7 @@ class PredictionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Consultas orientativas'),
+        title: Text(context.l10n.orientativeConsultations),
       ),
       body: const PredictionsBody(),
     );

@@ -94,7 +94,8 @@ class PredictionResultsList extends ConsumerWidget {
                             child: SizedBox(
                               width: 60,
                               child: Text(
-                                '${result.probability * 100}%',
+                                // ignore: lines_longer_than_80_chars
+                                '${result.probability.toStringAsFixed(2).substring(2)}%',
                                 textAlign: TextAlign.end,
                               ),
                             ),

@@ -19,7 +19,7 @@ class CalendarSelectedUsers extends _$CalendarSelectedUsers {
             return [me, ...users.supervised];
           },
           loading: () => const [],
-          error: (err, _) => throw Exception(err.toString()),
+          error: (err, _) => [],
         );
   }
 

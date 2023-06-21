@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:calendar/calendar.dart';
 // ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
@@ -74,7 +76,6 @@ class _EventSubtitle extends ConsumerWidget {
 
     return switch (event) {
       MedicineEvent(
-        :final uid,
         :final consumed,
         :final id,
         :final date,
@@ -94,10 +95,6 @@ class _EventSubtitle extends ConsumerWidget {
                 final user = ref.watch(userProvider);
 
                 if (user == null) {
-                  return const SizedBox();
-                }
-
-                if (uid != user.uid) {
                   return const SizedBox();
                 }
 

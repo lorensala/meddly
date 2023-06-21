@@ -51,13 +51,13 @@ class CalendarDayCarrousel extends HookConsumerWidget {
               calendarDateProvider.overrideWithValue(date),
             ],
             child: GestureDetector(
-              onTap: () {
-                ref.read(calendarSelectedDateProvider.notifier).update(date);
-                controller.animateToPage(
+              onTap: () async {
+                await controller.animateToPage(
                   index,
                   duration: _duration,
                   curve: Curves.easeInOut,
                 );
+                ref.read(calendarSelectedDateProvider.notifier).update(date);
               },
               child: const CalendarDayCarrouselItem(),
             ),

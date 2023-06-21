@@ -78,7 +78,7 @@ class SetupController extends _$SetupController {
       email: '',
       firstName: state.name.value.capitalize().trim(),
       lastName: state.lastname.value.trim(),
-      birth: state.birthdate.value,
+      birth: DateTime.tryParse(state.birthdate.value),
       sex: state.sex.value ? const Sex.female() : const Sex.male(),
       height: double.tryParse(state.height.value),
       weight: double.tryParse(state.weight.value),

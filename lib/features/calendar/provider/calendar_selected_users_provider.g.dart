@@ -7,7 +7,7 @@ part of 'calendar_selected_users_provider.dart';
 // **************************************************************************
 
 String _$calendarSelectedUsersHash() =>
-    r'f4260874e2ea831bb675771b362517fdab8a5175';
+    r'f0334a52842ea8d3b7d26e7ff32d29b68512bee9';
 
 /// See also [CalendarSelectedUsers].
 @ProviderFor(CalendarSelectedUsers)

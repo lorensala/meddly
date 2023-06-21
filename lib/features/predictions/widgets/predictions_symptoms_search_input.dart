@@ -3,7 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
-import 'package:meddly/router/provider/go_router_provider.dart';
 
 class PredictionsSymptomsSearchField extends HookConsumerWidget {
   const PredictionsSymptomsSearchField({
@@ -23,9 +22,7 @@ class PredictionsSymptomsSearchField extends HookConsumerWidget {
     useListenable(controller);
 
     return GestureDetector(
-      onTap: () => ref
-          .read(goRouterProvider)
-          .push(PredictionsSymptomsSearchPage.routeName),
+      onTap: onTap,
       child: TextFormField(
         style: context.textTheme.bodyMedium,
         enabled: enabled,
