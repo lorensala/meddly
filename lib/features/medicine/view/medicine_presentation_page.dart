@@ -24,11 +24,8 @@ class MedicinePresentationPage extends StatelessWidget {
       backgroundColor: context.colorScheme.background,
       appBar: AppBar(
         title: Text(context.l10n.medicines),
-        actions: [
-          CancelButton(
-            onConfirm: () => Navigator.of(context)
-                .pushAndRemoveUntil(MedicinePage.route(), (route) => false),
-          ),
+        actions: const [
+          CancelButton(),
         ],
       ),
       bottomNavigationBar: const _NextButton(),

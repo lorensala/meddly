@@ -29,10 +29,7 @@ class MeasurementFormPage extends ConsumerWidget {
             }
 
             if (form.isDirty) {
-              showDialog<void>(
-                context: context,
-                builder: (context) => const ConfirmBackDialog(),
-              );
+              showConfirmDialog(context, ref);
             } else {
               GoRouter.of(context).pop();
             }

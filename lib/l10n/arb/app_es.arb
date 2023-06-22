@@ -25,6 +25,8 @@
     "day": "día",
     "days": "días",
     "goBack": "Volver",
+    "@_USER": {},
+    "editUser": "Editar usuario",
     "@_ERRORS": {},
     "calendarNotFoundError": "Calendario no encontrado",
     "alreadyConsumedError": "Este medicamento ya ha sido consumido",

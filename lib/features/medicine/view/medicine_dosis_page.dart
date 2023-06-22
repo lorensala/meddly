@@ -20,11 +20,8 @@ class MedicineDosisPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        actions: [
-          CancelButton(
-            onConfirm: () => Navigator.of(context)
-                .pushAndRemoveUntil(MedicinePage.route(), (route) => false),
-          ),
+        actions: const [
+          CancelButton(),
         ],
       ),
       bottomNavigationBar: const _NextButton(),

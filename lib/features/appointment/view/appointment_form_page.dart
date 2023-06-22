@@ -34,10 +34,7 @@ class AppointmentFormPage extends HookConsumerWidget {
             }
 
             if (form.isDirty) {
-              showDialog<void>(
-                context: context,
-                builder: (context) => const ConfirmBackDialog(),
-              );
+              showConfirmDialog(context, ref);
             } else {
               GoRouter.of(context).pop();
             }

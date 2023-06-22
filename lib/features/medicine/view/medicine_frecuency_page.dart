@@ -23,11 +23,8 @@ class MedicineFrecuencyPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(context.l10n.medicines),
-        actions: [
-          CancelButton(
-            onConfirm: () => Navigator.of(context)
-                .pushAndRemoveUntil(MedicinePage.route(), (route) => false),
-          ),
+        actions: const [
+          CancelButton(),
         ],
       ),
       body: const MedicineFrecuencyView(),

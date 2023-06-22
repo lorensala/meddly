@@ -1,25 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'setup_controller.dart';
+part of 'user_form_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$setupControllerHash() => r'a63b214b1f015962fcb791f5b8be2c14707b71c7';
+String _$userFormControllerHash() =>
+    r'9557fcc7eda32b589eacdffcd7baf0d65bc9dfe5';
 
-/// See also [SetupController].
-@ProviderFor(SetupController)
-final setupControllerProvider =
-    AutoDisposeNotifierProvider<SetupController, SetupState>.internal(
-  SetupController.new,
-  name: r'setupControllerProvider',
+/// See also [UserFormController].
+@ProviderFor(UserFormController)
+final userFormControllerProvider =
+    AutoDisposeNotifierProvider<UserFormController, UserFormState>.internal(
+  UserFormController.new,
+  name: r'userFormControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$setupControllerHash,
+      : _$userFormControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$SetupController = AutoDisposeNotifier<SetupState>;
+typedef _$UserFormController = AutoDisposeNotifier<UserFormState>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

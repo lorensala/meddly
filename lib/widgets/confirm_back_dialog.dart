@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/router/provider/go_router_provider.dart';
 
-class ConfirmBackDialog extends StatelessWidget {
+class ConfirmBackDialog extends ConsumerWidget {
   const ConfirmBackDialog({
+    required this.onConfirm,
+    required this.onCancel,
     super.key,
   });
 
+  final VoidCallback? onConfirm;
+  final VoidCallback? onCancel;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return AlertDialog(
       title: Text(
         context.l10n.confirmDiscardChangesTitle,
@@ -21,16 +27,17 @@ class ConfirmBackDialog extends StatelessWidget {
       ),
       actions: [
         TextButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-          },
+          onPressed: onConfirm == null
+              ? () => ref.read(goRouterProvider).pop()
+              : () => onConfirm!(),
           child: Text(context.l10n.cancel),
         ),
         TextButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
-            GoRouter.of(context).pop();
-          },
+          onPressed: onCancel ??
+              () {
+                ref.read(goRouterProvider).pop();
+                ref.read(goRouterProvider).pop();
+              },
           child: Text(
             context.l10n.discardChanges,
           ),

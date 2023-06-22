@@ -41,6 +41,8 @@ class UserController extends _$UserController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     }
+
+    ref.read(goRouterProvider).pop();
   }
 
   Future<void> signOut() async {
