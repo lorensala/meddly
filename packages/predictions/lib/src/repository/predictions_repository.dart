@@ -9,17 +9,17 @@ class PredictionsRepository {
 
   final PredictionsApi _api;
 
-  Future<(PredictionException?, List<Symptom>)> search(
+  Future<List<Symptom>> search(
     String query,
   ) async {
-    try {
-      final predictions = await _api.search(query);
-      return (null, predictions);
-    } on PredictionException catch (e) {
-      return (e, const <Symptom>[]);
-    } catch (e) {
-      return (const PredictionUnknownException(), const <Symptom>[]);
-    }
+    return await _api.search(query);
+    // try {
+    //   return (null, predictions);
+    // } on PredictionException catch (e) {
+    //   return (e, const <Symptom>[]);
+    // } catch (e) {
+    //   return (const PredictionUnknownException(), const <Symptom>[]);
+    // }
   }
 
   Future<(PredictionException?, List<Disease>)> predictWithSymptoms(

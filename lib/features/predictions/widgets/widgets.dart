@@ -1,3 +1,4 @@
+export 'image_picker_bottom_sheet.dart';
 export 'last_predictions.dart';
 export 'prediction_card.dart';
 export 'predictions_body.dart';

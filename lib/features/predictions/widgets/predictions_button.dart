@@ -13,9 +13,15 @@ class PredictionsButton extends ConsumerWidget {
     final isValid = ref.watch(
       symptomPredictionControllerProvider.select((value) => value.isNotEmpty),
     );
+    final isLoading = ref
+        .watch(
+          predictionControllerProvider,
+        )
+        .isLoading;
 
     return Button(
       isValid: isValid,
+      isLoading: isLoading,
       onPressed: () =>
           ref.read(symptomPredictionControllerProvider.notifier).predict(),
       label: 'Consultar',

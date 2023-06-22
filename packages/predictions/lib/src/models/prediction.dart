@@ -9,6 +9,7 @@ class Prediction with _$Prediction {
   const factory Prediction({
     required int id,
     required List<Disease> prediction,
+    required DateTime createdAt,
     required bool verified,
     required List<String> symptoms,
   }) = _Prediction;

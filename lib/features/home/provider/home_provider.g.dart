@@ -34,20 +34,4 @@ final userInitialsProvider = AutoDisposeProvider<String>.internal(
 );
 
 typedef UserInitialsRef = AutoDisposeProviderRef<String>;
-String _$selectedIndexHash() => r'001190b51b061f0742f6dddeff141593dde6d378';
-
-/// See also [SelectedIndex].
-@ProviderFor(SelectedIndex)
-final selectedIndexProvider =
-    AutoDisposeNotifierProvider<SelectedIndex, int>.internal(
-  SelectedIndex.new,
-  name: r'selectedIndexProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$selectedIndexHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SelectedIndex = AutoDisposeNotifier<int>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

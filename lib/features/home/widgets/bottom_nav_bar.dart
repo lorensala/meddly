@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/l10n/l10n.dart';
 
-class BottomNavBar extends HookConsumerWidget {
+class BottomNavBar extends HookWidget {
   const BottomNavBar({
     required this.onBranchTapped,
     super.key,
@@ -14,15 +15,18 @@ class BottomNavBar extends HookConsumerWidget {
   final void Function(int) onBranchTapped;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final selectedIndex = ref.watch(selectedIndexProvider);
-    onBranchTapped(selectedIndex);
+  Widget build(BuildContext context) {
+    final selectedIndex = useState(0);
+
+    selectedIndex.addListener(() {
+      onBranchTapped(selectedIndex.value);
+    });
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        boxShadow: selectedIndex == 0
+        boxShadow: selectedIndex.value == 0
             ? [
                 BoxShadow(
                   color: context.colorScheme.onBackground.withOpacity(0.1),
@@ -41,12 +45,8 @@ class BottomNavBar extends HookConsumerWidget {
                 child: _BottomNavBarItem(
                   icon: Vectors.home,
                   label: context.l10n.home,
-                  isSelected: selectedIndex == 0,
-                  onTap: () {
-                    ref
-                        .read(selectedIndexProvider.notifier)
-                        .select(0, onSelected: onBranchTapped);
-                  },
+                  isSelected: selectedIndex.value == 0,
+                  onTap: () => selectedIndex.value = 0,
                 ),
               ),
               Expanded(
@@ -79,24 +79,16 @@ class BottomNavBar extends HookConsumerWidget {
                 child: _BottomNavBarItem(
                   icon: Vectors.browse,
                   label: context.l10n.browse,
-                  isSelected: selectedIndex == 1,
-                  onTap: () {
-                    ref
-                        .read(selectedIndexProvider.notifier)
-                        .select(1, onSelected: onBranchTapped);
-                  },
+                  isSelected: selectedIndex.value == 1,
+                  onTap: () => selectedIndex.value = 1,
                 ),
               ),
               Expanded(
                 child: _BottomNavBarItem(
                   icon: Vectors.user,
                   label: context.l10n.profile,
-                  isSelected: selectedIndex == 2,
-                  onTap: () {
-                    ref
-                        .read(selectedIndexProvider.notifier)
-                        .select(2, onSelected: onBranchTapped);
-                  },
+                  isSelected: selectedIndex.value == 2,
+                  onTap: () => selectedIndex.value = 2,
                 ),
               ),
             ],

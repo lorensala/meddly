@@ -21,7 +21,7 @@ class LastPredictions extends ConsumerWidget {
         if (predictions.isEmpty) {
           return EmptyContainer(
             isFlex: false,
-            size: MediaQuery.of(context).size.height * 0.3,
+            size: context.height * 0.3,
             message: 'Aún no tienes consultas orientativas',
           );
         }
@@ -34,10 +34,38 @@ class LastPredictions extends ConsumerWidget {
           itemCount: lastPredictions.length,
           itemBuilder: (context, index) {
             final prediction = lastPredictions[index];
-            return ListTile(
-              title: Text(prediction.verified.toString()),
-              subtitle: Text(
-                prediction.prediction.map((e) => e.disease).join(', '),
+
+            return ElevatedButton(
+              onPressed: () {},
+              style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
+                    padding: MaterialStateProperty.all(EdgeInsets.zero),
+                  ),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Sizes.small),
+                  color: context.colorScheme.secondary,
+                  boxShadow: boxShadow(context),
+                ),
+                child: ListTile(
+                  title: Text(
+                    'Predicción por síntomas',
+                    style: context.textTheme.bodyMedium,
+                  ),
+                  subtitle: Text(
+                    prediction.verified
+                        ? 'Validada'
+                        : 'Pendiente de validación',
+                    style: context.textTheme.bodySmall?.copyWith(
+                        // color: context.colorScheme.onBackground.withOpacity(0.5),
+                        ),
+                  ),
+                  trailing: Text(
+                    prediction.createdAt.localizedString(context),
+                    style: context.textTheme.bodySmall?.copyWith(
+                      color: context.colorScheme.onBackground.withOpacity(0.5),
+                    ),
+                  ),
+                ),
               ),
             );
           },

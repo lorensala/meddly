@@ -22,6 +22,7 @@ Prediction _$PredictionFromJson(Map<String, dynamic> json) {
 mixin _$Prediction {
   int get id => throw _privateConstructorUsedError;
   List<Disease> get prediction => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   bool get verified => throw _privateConstructorUsedError;
   List<String> get symptoms => throw _privateConstructorUsedError;
 
@@ -38,7 +39,11 @@ abstract class $PredictionCopyWith<$Res> {
       _$PredictionCopyWithImpl<$Res, Prediction>;
   @useResult
   $Res call(
-      {int id, List<Disease> prediction, bool verified, List<String> symptoms});
+      {int id,
+      List<Disease> prediction,
+      DateTime createdAt,
+      bool verified,
+      List<String> symptoms});
 }
 
 /// @nodoc
@@ -56,6 +61,7 @@ class _$PredictionCopyWithImpl<$Res, $Val extends Prediction>
   $Res call({
     Object? id = null,
     Object? prediction = null,
+    Object? createdAt = null,
     Object? verified = null,
     Object? symptoms = null,
   }) {
@@ -68,6 +74,10 @@ class _$PredictionCopyWithImpl<$Res, $Val extends Prediction>
           ? _value.prediction
           : prediction // ignore: cast_nullable_to_non_nullable
               as List<Disease>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       verified: null == verified
           ? _value.verified
           : verified // ignore: cast_nullable_to_non_nullable
@@ -89,7 +99,11 @@ abstract class _$$_PredictionCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, List<Disease> prediction, bool verified, List<String> symptoms});
+      {int id,
+      List<Disease> prediction,
+      DateTime createdAt,
+      bool verified,
+      List<String> symptoms});
 }
 
 /// @nodoc
@@ -105,6 +119,7 @@ class __$$_PredictionCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? prediction = null,
+    Object? createdAt = null,
     Object? verified = null,
     Object? symptoms = null,
   }) {
@@ -117,6 +132,10 @@ class __$$_PredictionCopyWithImpl<$Res>
           ? _value._prediction
           : prediction // ignore: cast_nullable_to_non_nullable
               as List<Disease>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       verified: null == verified
           ? _value.verified
           : verified // ignore: cast_nullable_to_non_nullable
@@ -135,6 +154,7 @@ class _$_Prediction implements _Prediction {
   const _$_Prediction(
       {required this.id,
       required final List<Disease> prediction,
+      required this.createdAt,
       required this.verified,
       required final List<String> symptoms})
       : _prediction = prediction,
@@ -154,6 +174,8 @@ class _$_Prediction implements _Prediction {
   }
 
   @override
+  final DateTime createdAt;
+  @override
   final bool verified;
   final List<String> _symptoms;
   @override
@@ -165,7 +187,7 @@ class _$_Prediction implements _Prediction {
 
   @override
   String toString() {
-    return 'Prediction(id: $id, prediction: $prediction, verified: $verified, symptoms: $symptoms)';
+    return 'Prediction(id: $id, prediction: $prediction, createdAt: $createdAt, verified: $verified, symptoms: $symptoms)';
   }
 
   @override
@@ -176,6 +198,8 @@ class _$_Prediction implements _Prediction {
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._prediction, _prediction) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.verified, verified) ||
                 other.verified == verified) &&
             const DeepCollectionEquality().equals(other._symptoms, _symptoms));
@@ -187,6 +211,7 @@ class _$_Prediction implements _Prediction {
       runtimeType,
       id,
       const DeepCollectionEquality().hash(_prediction),
+      createdAt,
       verified,
       const DeepCollectionEquality().hash(_symptoms));
 
@@ -208,6 +233,7 @@ abstract class _Prediction implements Prediction {
   const factory _Prediction(
       {required final int id,
       required final List<Disease> prediction,
+      required final DateTime createdAt,
       required final bool verified,
       required final List<String> symptoms}) = _$_Prediction;
 
@@ -218,6 +244,8 @@ abstract class _Prediction implements Prediction {
   int get id;
   @override
   List<Disease> get prediction;
+  @override
+  DateTime get createdAt;
   @override
   bool get verified;
   @override

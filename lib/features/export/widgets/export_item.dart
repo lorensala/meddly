@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/export/export.dart';
@@ -15,7 +14,12 @@ class ExportItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(
       exportControllerProvider,
-      (_, state) => _listen(state, context),
+      (_, state) => switch (state) {
+        ExportError(:final err) => showSnackBar(context, err),
+        ExportLoading() => null,
+        ExportSuccess(:final file) => _onSuccess(file, ref),
+        _ => null,
+      },
     );
 
     return SettingsItem(
@@ -26,31 +30,22 @@ class ExportItem extends ConsumerWidget {
           ref.read(exportControllerProvider.notifier).exportPdf(),
         );
 
-        await showDialog<void>(
-          context: context,
-          builder: (_) {
-            return ProviderScope(
-              parent: ProviderScope.containerOf(context),
-              child: const ExportDialog(),
-            );
-          },
+        unawaited(
+          showDialog<void>(
+            context: context,
+            builder: (_) {
+              return ProviderScope(
+                parent: ProviderScope.containerOf(context),
+                child: const ExportDialog(),
+              );
+            },
+          ),
         );
       },
     );
   }
 
-  Future<void> _listen(ExportState state, BuildContext context) async {
-    return switch (state) {
-      ExportError(:final err) => showSnackBar(context, err),
-      ExportLoading() => null,
-      ExportSuccess(:final file) => _onSuccess(file, context),
-      _ => null,
-    };
-  }
-
-  Future<void> _onSuccess(File? file, BuildContext context) async {
-    GoRouter.of(context).pop();
-
+  Future<void> _onSuccess(File? file, WidgetRef ref) async {
     if (file == null) return;
 
     await OpenFile.open(file.path);

@@ -8,6 +8,13 @@ class ExportDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      exportControllerProvider,
+      (_, state) => switch (state) {
+        ExportSuccess() => Navigator.of(context).pop(),
+        _ => null,
+      },
+    );
     final progress = ref.watch(
       exportControllerProvider.select((state) {
         return switch (state) {

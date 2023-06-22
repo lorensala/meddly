@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -129,13 +130,22 @@ extension RefDebounceX on Ref {
     final timer = Timer(duration, () {
       if (!completer.isCompleted) completer.complete();
     });
+
     onDispose(() {
       timer.cancel();
       if (!completer.isCompleted) {
-        completer.completeError(StateError('Cancelled'));
+        completer.completeError(StateError('cancelled'));
       }
     });
     return completer.future;
+  }
+
+  /// Create a CancelToken from package:dio for cancelling pending
+  /// network requests if they are no-longer needed.
+  CancelToken cancelToken() {
+    final token = CancelToken();
+    onDispose(token.cancel);
+    return token;
   }
 }
 

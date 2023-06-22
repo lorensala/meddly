@@ -35,8 +35,8 @@ class PredictionsSymptomsBody extends HookWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(height: Sizes.medium),
-                Center(
-                  child: Flexible(
+                Flexible(
+                  child: Center(
                     child: SvgPicture.asset(Vectors.predictionsSymptoms),
                   ),
                 ),

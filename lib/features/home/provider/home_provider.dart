@@ -32,17 +32,3 @@ String userInitials(UserInitialsRef ref) {
 
   return '${user.firstName[0]}${user.lastName[0]}';
 }
-
-@riverpod
-class SelectedIndex extends _$SelectedIndex {
-  @override
-  int build() {
-    return 0;
-  }
-
-  // ignore: use_setters_to_change_properties
-  void select(int index, {required void Function(int value) onSelected}) {
-    onSelected(index);
-    state = index;
-  }
-}

@@ -116,6 +116,7 @@
     "enterSympthoms": "Enter sympthoms",
     "enterSympthomsDescription": "Enter the sympthoms you are experiencing",
     "results": "Results",
+    "predictionsSearchNoResults": "No results found",
     "predictionsResultDescripcion": "The interpretation of the results obtained through the evaluation carried out by Meddly is based on the estimation of the probability of the presence of a disease, so it is important to take into account that these results should not be considered as a definitive medical diagnosis.",
     "@_APPOINTMENTS": {},
     "appointment": "Appointment",

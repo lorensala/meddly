@@ -243,14 +243,6 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                         path: PredictionSymptomsPage.routeName,
                         builder: (context, state) =>
                             const PredictionSymptomsPage(),
-                        routes: [
-                          GoRoute(
-                            parentNavigatorKey: browseNavigatorKey,
-                            path: PredictionsSymptomsSearchPage.routeName,
-                            builder: (context, state) =>
-                                const PredictionsSymptomsSearchPage(),
-                          ),
-                        ],
                       ),
                       GoRoute(
                         parentNavigatorKey: browseNavigatorKey,
