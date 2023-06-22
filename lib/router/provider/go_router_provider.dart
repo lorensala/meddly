@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/features/browse/browse.dart';
+import 'package:meddly/features/change_password/view/change_password_page.dart';
 import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/features/medicine/medicine.dart';
@@ -302,6 +303,11 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                     parentNavigatorKey: userNavigatorKey,
                     path: UserFormPage.routeName,
                     builder: (context, state) => const UserFormPage(),
+                  ),
+                  GoRoute(
+                    parentNavigatorKey: userNavigatorKey,
+                    path: ChangePasswordPage.routeName,
+                    builder: (context, state) => const ChangePasswordPage(),
                   ),
                 ],
               ),

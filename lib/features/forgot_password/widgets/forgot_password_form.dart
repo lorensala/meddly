@@ -24,7 +24,7 @@ class ForgotPasswordForm extends StatelessWidget {
           const _EmailInput(),
           const SizedBox(height: Sizes.medium),
           Text(
-            'We will send you a link to reset your password',
+            context.l10n.passwordResetEmailSentDescription,
             style: context.textTheme.bodySmall!.copyWith(
               color: context.colorScheme.onSecondary.withOpacity(0.5),
             ),

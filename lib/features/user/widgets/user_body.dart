@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
+import 'package:meddly/features/change_password/view/change_password_page.dart';
 import 'package:meddly/features/export/export.dart';
 import 'package:meddly/features/notifications/view/view.dart';
 import 'package:meddly/features/settings/settings.dart';
@@ -71,9 +72,12 @@ class UserBody extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: Sizes.medium),
-                const SettingsItem(
+                SettingsItem(
                   vector: Vectors.changePassword,
                   label: 'Cambiar contraseña',
+                  onPressed: () => GoRouter.of(context).push(
+                    ChangePasswordPage.fullRouteName,
+                  ),
                 ),
                 const SizedBox(height: Sizes.extraLarge),
                 Text(
