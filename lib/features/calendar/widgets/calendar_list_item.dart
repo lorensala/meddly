@@ -107,6 +107,7 @@ class _EventSubtitle extends ConsumerWidget {
                         elevation: 2,
                         isValid: !consumed,
                         isLoading: isLoading,
+                        shrink: false,
                         onPressed: () {
                           if (!consumed) {
                             notifier.addConsumption(

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/home/home.dart';
-import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:meddly/router/provider/provider.dart';
 
 class BottomNavBar extends HookConsumerWidget {
   const BottomNavBar({
@@ -19,17 +15,14 @@ class BottomNavBar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedIndex = useState(0);
-
-    selectedIndex.addListener(() {
-      onBranchTapped(selectedIndex.value);
-    });
+    final selectedIndex = ref.watch(selectedIndexProvider);
+    onBranchTapped(selectedIndex);
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 100),
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        boxShadow: selectedIndex.value == 0
+        boxShadow: selectedIndex == 0
             ? [
                 BoxShadow(
                   color: context.colorScheme.onBackground.withOpacity(0.1),
@@ -48,13 +41,11 @@ class BottomNavBar extends HookConsumerWidget {
                 child: _BottomNavBarItem(
                   icon: Vectors.home,
                   label: context.l10n.home,
-                  isSelected: selectedIndex.value == 0,
+                  isSelected: selectedIndex == 0,
                   onTap: () {
-                    if (selectedIndex.value == 0) {
-                      ref.read(goRouterProvider).go(HomePage.routeName);
-                    } else {
-                      selectedIndex.value = 0;
-                    }
+                    ref
+                        .read(selectedIndexProvider.notifier)
+                        .select(0, onSelected: onBranchTapped);
                   },
                 ),
               ),
@@ -88,13 +79,11 @@ class BottomNavBar extends HookConsumerWidget {
                 child: _BottomNavBarItem(
                   icon: Vectors.browse,
                   label: context.l10n.browse,
-                  isSelected: selectedIndex.value == 1,
+                  isSelected: selectedIndex == 1,
                   onTap: () {
-                    if (selectedIndex.value == 1) {
-                      ref.read(goRouterProvider).go(BrowsePage.routeName);
-                    } else {
-                      selectedIndex.value = 1;
-                    }
+                    ref
+                        .read(selectedIndexProvider.notifier)
+                        .select(1, onSelected: onBranchTapped);
                   },
                 ),
               ),
@@ -102,13 +91,11 @@ class BottomNavBar extends HookConsumerWidget {
                 child: _BottomNavBarItem(
                   icon: Vectors.user,
                   label: context.l10n.profile,
-                  isSelected: selectedIndex.value == 2,
+                  isSelected: selectedIndex == 2,
                   onTap: () {
-                    if (selectedIndex.value == 2) {
-                      ref.read(goRouterProvider).go(UserPage.routeName);
-                    } else {
-                      selectedIndex.value = 2;
-                    }
+                    ref
+                        .read(selectedIndexProvider.notifier)
+                        .select(2, onSelected: onBranchTapped);
                   },
                 ),
               ),

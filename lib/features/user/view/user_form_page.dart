@@ -20,7 +20,7 @@ class UserFormPage extends StatelessWidget {
         leading: Consumer(
           builder: (context, ref, child) {
             return BackButton(
-              onPressed: () {
+              onPressed: () async {
                 final form = ref.read(userFormControllerProvider);
                 final isEditing = ref.read(
                   userFormControllerProvider.select((value) => value.isEditing),
@@ -31,7 +31,17 @@ class UserFormPage extends StatelessWidget {
                 }
 
                 if (form.isDirty) {
-                  showConfirmDialog(context, ref);
+                  await showConfirmDialog(
+                    context,
+                    ref,
+                    onConfirm: () {
+                      ref.read(goRouterProvider).pop();
+                      ref.read(goRouterProvider).pop();
+                    },
+                    onCancel: () {
+                      ref.read(goRouterProvider).pop();
+                    },
+                  );
                 } else {
                   ref.read(goRouterProvider).pop();
                 }

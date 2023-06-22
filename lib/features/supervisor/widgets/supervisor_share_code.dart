@@ -68,13 +68,15 @@ class SupervisorShareCode extends ConsumerWidget {
   }
 
   String inivitationText(String? code) {
-    return '''Únete a Meddly y supervisa mi progreso. Pruebala ahora!
+    return '''
+      Únete a Meddly y supervisa mi progreso. Pruebala ahora!
       Quería compartir contigo la aplicación Meddly que estoy usando para seguir mi progreso de salud. Me encantaría que te unas como persona "supervisora" para brindarme apoyo en mi cuidado.
       
       Código de invitación: $code
 
       Descarga la aplicación en [enlace de descarga de la aplicación para Android/iOS] y conéctate conmigo para comenzar.
 
-      ¡Espero contar contigo en Meddly!''';
+      ¡Espero contar contigo en Meddly!
+      ''';
   }
 }
