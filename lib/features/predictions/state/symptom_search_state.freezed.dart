@@ -17,8 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SymptomSearchState {
   Name get query => throw _privateConstructorUsedError;
-  List<Symptom> get results => throw _privateConstructorUsedError;
-  FormzSubmissionStatus get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SymptomSearchStateCopyWith<SymptomSearchState> get copyWith =>
@@ -31,7 +29,7 @@ abstract class $SymptomSearchStateCopyWith<$Res> {
           SymptomSearchState value, $Res Function(SymptomSearchState) then) =
       _$SymptomSearchStateCopyWithImpl<$Res, SymptomSearchState>;
   @useResult
-  $Res call({Name query, List<Symptom> results, FormzSubmissionStatus status});
+  $Res call({Name query});
 }
 
 /// @nodoc
@@ -48,22 +46,12 @@ class _$SymptomSearchStateCopyWithImpl<$Res, $Val extends SymptomSearchState>
   @override
   $Res call({
     Object? query = null,
-    Object? results = null,
-    Object? status = null,
   }) {
     return _then(_value.copyWith(
       query: null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as Name,
-      results: null == results
-          ? _value.results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<Symptom>,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzSubmissionStatus,
     ) as $Val);
   }
 }
@@ -76,7 +64,7 @@ abstract class _$$_SymptomSearchStateCopyWith<$Res>
       __$$_SymptomSearchStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Name query, List<Symptom> results, FormzSubmissionStatus status});
+  $Res call({Name query});
 }
 
 /// @nodoc
@@ -91,22 +79,12 @@ class __$$_SymptomSearchStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? query = null,
-    Object? results = null,
-    Object? status = null,
   }) {
     return _then(_$_SymptomSearchState(
       query: null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as Name,
-      results: null == results
-          ? _value._results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<Symptom>,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzSubmissionStatus,
     ));
   }
 }
@@ -114,32 +92,15 @@ class __$$_SymptomSearchStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SymptomSearchState extends _SymptomSearchState {
-  const _$_SymptomSearchState(
-      {this.query = const Name.pure(),
-      final List<Symptom> results = const <Symptom>[],
-      this.status = FormzSubmissionStatus.initial})
-      : _results = results,
-        super._();
+  const _$_SymptomSearchState({this.query = const Name.pure()}) : super._();
 
   @override
   @JsonKey()
   final Name query;
-  final List<Symptom> _results;
-  @override
-  @JsonKey()
-  List<Symptom> get results {
-    if (_results is EqualUnmodifiableListView) return _results;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_results);
-  }
-
-  @override
-  @JsonKey()
-  final FormzSubmissionStatus status;
 
   @override
   String toString() {
-    return 'SymptomSearchState(query: $query, results: $results, status: $status)';
+    return 'SymptomSearchState(query: $query)';
   }
 
   @override
@@ -147,14 +108,11 @@ class _$_SymptomSearchState extends _SymptomSearchState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SymptomSearchState &&
-            (identical(other.query, query) || other.query == query) &&
-            const DeepCollectionEquality().equals(other._results, _results) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.query, query) || other.query == query));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, query,
-      const DeepCollectionEquality().hash(_results), status);
+  int get hashCode => Object.hash(runtimeType, query);
 
   @JsonKey(ignore: true)
   @override
@@ -165,18 +123,11 @@ class _$_SymptomSearchState extends _SymptomSearchState {
 }
 
 abstract class _SymptomSearchState extends SymptomSearchState {
-  const factory _SymptomSearchState(
-      {final Name query,
-      final List<Symptom> results,
-      final FormzSubmissionStatus status}) = _$_SymptomSearchState;
+  const factory _SymptomSearchState({final Name query}) = _$_SymptomSearchState;
   const _SymptomSearchState._() : super._();
 
   @override
   Name get query;
-  @override
-  List<Symptom> get results;
-  @override
-  FormzSubmissionStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_SymptomSearchStateCopyWith<_$_SymptomSearchState> get copyWith =>

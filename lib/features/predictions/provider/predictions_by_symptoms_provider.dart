@@ -1,3 +1,5 @@
+// ignore: depend_on_referenced_packages
+import 'package:collection/collection.dart';
 import 'package:meddly/features/predictions/core/extensions.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -21,5 +23,14 @@ class PredictionsBySymptoms extends _$PredictionsBySymptoms {
     } else {
       return predictions;
     }
+  }
+
+  Prediction? getPrediction(int id) {
+    return state.maybeWhen(
+      data: (predictions) => predictions.firstWhereOrNull(
+        (prediction) => prediction.id == id,
+      ),
+      orElse: () => null,
+    );
   }
 }

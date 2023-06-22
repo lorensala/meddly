@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/features/predictions/view/prediction_validate_page.dart';
+import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class LastPredictions extends ConsumerWidget {
@@ -36,7 +38,9 @@ class LastPredictions extends ConsumerWidget {
             final prediction = lastPredictions[index];
 
             return ElevatedButton(
-              onPressed: () {},
+              onPressed: () => ref.read(goRouterProvider).push(
+                    '${PredictionValidatePage.fullRouteName}/${prediction.id}',
+                  ),
               style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
                     padding: MaterialStateProperty.all(EdgeInsets.zero),
                   ),

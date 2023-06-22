@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/predictions/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -31,7 +30,7 @@ class PredictionController extends _$PredictionController {
       state = AsyncData(diseases);
       ref.read(goRouterProvider).pop();
       await ref.read(goRouterProvider).push(
-            '${BrowsePage.routeName}/${PredictionsPage.routeName}/${PredictionResultsPage.routeName}',
+            PredictionResultsPage.fullRouteName,
           );
     }
   }
@@ -49,8 +48,29 @@ class PredictionController extends _$PredictionController {
       state = AsyncData(diseases);
       ref.read(goRouterProvider).pop();
       await ref.read(goRouterProvider).push(
-            '${BrowsePage.routeName}/${PredictionsPage.routeName}/${PredictionResultsPage.routeName}',
+            PredictionResultsPage.fullRouteName,
           );
+    }
+  }
+
+  Future<void> verifyPredictionBySymptoms({
+    required Prediction prediction,
+    required String realDisease,
+  }) async {
+    final (err, _) = await ref
+        .read(predictionsRepositoryProvider)
+        .verifyPredictionBySymptoms(
+          prediction: prediction,
+          disease: realDisease,
+          approvalToSave: true,
+        );
+
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      ref.invalidateSelf();
     }
   }
 }

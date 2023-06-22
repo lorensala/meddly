@@ -41,6 +41,27 @@ class PredictionsApi {
     }
   }
 
+  Future<void> verifyPredictionBySymptoms({
+    required Prediction prediction,
+    required String disease,
+    required bool approvalToSave,
+  }) async {
+    try {
+      await _dio.post<dynamic>(
+        '${predictionsVerifySymptomsPath}/${prediction.id}',
+        cancelToken: _cancelToken,
+        queryParameters: {
+          'real_disease': disease,
+          'approval_to_save': approvalToSave,
+        },
+      );
+    } on DioError catch (e) {
+      throw PredictionException.fromDioError(e);
+    } catch (e) {
+      throw PredictionUnknownException();
+    }
+  }
+
   Future<List<Prediction>> fetchPredictionsBySymptoms() async {
     late final Response<List<dynamic>> res;
     try {

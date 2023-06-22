@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
@@ -10,6 +11,8 @@ class PredictionResultsPage extends StatelessWidget {
   const PredictionResultsPage({super.key});
 
   static const String routeName = 'results';
+  static const String fullRouteName =
+      '${BrowsePage.routeName}/${PredictionsPage.routeName}/${PredictionResultsPage.routeName}';
 
   @override
   Widget build(BuildContext context) {

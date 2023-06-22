@@ -20,8 +20,6 @@ class SymptomSearchController extends _$SymptomSearchController {
     state = state.copyWith(
       query: query,
     );
-
-    // search(value);
   }
 
   Future<void> clear() async {

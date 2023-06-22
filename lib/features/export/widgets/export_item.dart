@@ -17,7 +17,7 @@ class ExportItem extends ConsumerWidget {
       (_, state) => switch (state) {
         ExportError(:final err) => showSnackBar(context, err),
         ExportLoading() => null,
-        ExportSuccess(:final file) => _onSuccess(file, ref),
+        ExportSuccess(:final file) => _onSuccess(file),
         _ => null,
       },
     );
@@ -45,7 +45,7 @@ class ExportItem extends ConsumerWidget {
     );
   }
 
-  Future<void> _onSuccess(File? file, WidgetRef ref) async {
+  Future<void> _onSuccess(File? file) async {
     if (file == null) return;
 
     await OpenFile.open(file.path);

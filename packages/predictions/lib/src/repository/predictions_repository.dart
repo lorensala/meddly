@@ -13,13 +13,25 @@ class PredictionsRepository {
     String query,
   ) async {
     return await _api.search(query);
-    // try {
-    //   return (null, predictions);
-    // } on PredictionException catch (e) {
-    //   return (e, const <Symptom>[]);
-    // } catch (e) {
-    //   return (const PredictionUnknownException(), const <Symptom>[]);
-    // }
+  }
+
+  Future<(PredictionException?, void)> verifyPredictionBySymptoms(
+      {required Prediction prediction,
+      required String disease,
+      required bool approvalToSave}) async {
+    try {
+      await _api.verifyPredictionBySymptoms(
+        prediction: prediction,
+        disease: disease,
+        approvalToSave: approvalToSave,
+      );
+
+      return (null, null);
+    } on PredictionException catch (e) {
+      return (e, null);
+    } catch (e) {
+      return (const PredictionUnknownException(), const <Disease>[]);
+    }
   }
 
   Future<(PredictionException?, List<Disease>)> predictWithSymptoms(

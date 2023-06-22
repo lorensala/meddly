@@ -10,6 +10,7 @@ import 'package:meddly/features/notifications/view/view.dart';
 import 'package:meddly/features/onboarding/onboarding.dart';
 import 'package:meddly/features/phone/view/view.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/features/predictions/view/prediction_validate_page.dart';
 import 'package:meddly/features/setup/view/view.dart';
 import 'package:meddly/features/splash/splash.dart';
 import 'package:meddly/features/supervisor/view/view.dart';
@@ -238,6 +239,32 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                     path: PredictionsPage.routeName,
                     builder: (context, state) => const PredictionsPage(),
                     routes: [
+                      GoRoute(
+                        parentNavigatorKey: browseNavigatorKey,
+                        path: '${PredictionValidatePage.routeName}/:id',
+                        builder: (context, state) {
+                          final id = int.tryParse(state.pathParameters['id']!);
+
+                          if (id != null) {
+                            final prediction = ref
+                                .read(predictionsBySymptomsProvider.notifier)
+                                .getPrediction(id);
+
+                            if (prediction == null) return const SizedBox();
+
+                            return ProviderScope(
+                              overrides: [
+                                predictionProvider.overrideWithValue(
+                                  prediction,
+                                ),
+                              ],
+                              child: const PredictionValidatePage(),
+                            );
+                          }
+
+                          return const PredictionValidatePage();
+                        },
+                      ),
                       GoRoute(
                         parentNavigatorKey: browseNavigatorKey,
                         path: PredictionSymptomsPage.routeName,
