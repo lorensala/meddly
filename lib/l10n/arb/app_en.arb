@@ -29,6 +29,7 @@
     "@_USER": {},
     "editUser": "Edit user",
     "@_PASSWORD": {},
+    "changePassword": "Change password",
     "sendPasswordResetEmail": "Send password reset email",
     "passwordResetEmailSent": "Password reset email sent",
     "passwordResetEmailSentDescription": "Check your email to reset your password",

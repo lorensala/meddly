@@ -31,15 +31,10 @@ class UserFormPage extends StatelessWidget {
                 }
 
                 if (form.isDirty) {
-                  await showConfirmDialog(
-                    context,
-                    ref,
-                    onConfirm: () {
-                      ref.read(goRouterProvider).pop();
-                      ref.read(goRouterProvider).pop();
-                    },
-                    onCancel: () {
-                      ref.read(goRouterProvider).pop();
+                  await showDialog<void>(
+                    context: context,
+                    builder: (context) {
+                      return const ConfirmDiscardDialog();
                     },
                   );
                 } else {

@@ -16,7 +16,7 @@ class ChangePasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n.forgotPassword),
+        title: Text(context.l10n.changePassword),
       ),
       body: const ChangePasswordView(),
     );

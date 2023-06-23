@@ -3,7 +3,7 @@ export 'bottom_sheet_decorator.dart';
 export 'button.dart';
 export 'cancel_button.dart';
 export 'circle_check.dart';
-export 'confirm_back_dialog.dart';
+export 'confirm_discard_dialog.dart';
 export 'date_selector.dart';
 export 'dismissible_background.dart';
 export 'drop_down_selector.dart';

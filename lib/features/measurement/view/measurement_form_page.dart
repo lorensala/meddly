@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/router/router.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class MeasurementFormPage extends ConsumerWidget {
@@ -25,13 +25,18 @@ class MeasurementFormPage extends ConsumerWidget {
             );
 
             if (!isEditing) {
-              return GoRouter.of(context).pop();
+              return ref.read(goRouterProvider).pop();
             }
 
             if (form.isDirty) {
-              showConfirmDialog(context, ref);
+              showDialog<void>(
+                context: context,
+                builder: (context) {
+                  return const ConfirmDiscardDialog();
+                },
+              );
             } else {
-              GoRouter.of(context).pop();
+              ref.read(goRouterProvider).pop();
             }
           },
         ),

@@ -3,10 +3,8 @@ import 'dart:io' show Platform;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/l10n/l10n.dart';
-import 'package:meddly/widgets/widgets.dart';
 
 Future<void> showConfirmationDialog(
   BuildContext context,
@@ -209,22 +207,4 @@ Future<TimeOfDay?> showCupertinoTimePicker({
   );
 
   return timeOfDay;
-}
-
-Future<void> showConfirmDialog(
-  BuildContext context,
-  WidgetRef ref, {
-  VoidCallback? onConfirm,
-  VoidCallback? onCancel,
-}) {
-  return showDialog<void>(
-    context: context,
-    builder: (_) => ProviderScope(
-      parent: ProviderScope.containerOf(context),
-      child: ConfirmBackDialog(
-        onConfirm: onConfirm,
-        onCancel: onCancel,
-      ),
-    ),
-  );
 }

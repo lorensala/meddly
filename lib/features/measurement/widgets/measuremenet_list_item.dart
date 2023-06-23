@@ -26,25 +26,28 @@ class MeasurementListItem extends ConsumerWidget {
       confirmDismiss: (_) {
         return showDialog<bool>(
           context: context,
-          builder: (context) => AlertDialog(
-            title: Text(context.l10n.confirm),
-            content: Text(
-              context.l10n.deleteMeasurementConfirmation,
+          builder: (_) => ProviderScope(
+            parent: ProviderScope.containerOf(context),
+            child: AlertDialog(
+              title: Text(context.l10n.confirm),
+              content: Text(
+                context.l10n.deleteMeasurementConfirmation,
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    ref.read(goRouterProvider).pop(false);
+                  },
+                  child: Text(context.l10n.cancel),
+                ),
+                TextButton(
+                  onPressed: () {
+                    ref.read(goRouterProvider).pop(true);
+                  },
+                  child: Text(context.l10n.delete),
+                ),
+              ],
             ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
-                child: Text(context.l10n.cancel),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
-                child: Text(context.l10n.delete),
-              ),
-            ],
           ),
         );
       },

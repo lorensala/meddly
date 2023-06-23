@@ -28,6 +28,7 @@
     "@_USER": {},
     "editUser": "Editar usuario",
     "@_PASSWORD": {},
+    "changePassword": "Cambiar contraseña",
     "sendPasswordResetEmail": "Enviar correo para restablecer la contraseña",
     "passwordResetEmailSent": "Se ha enviado un correo electrónico para restablecer la contraseña",
     "passwordResetEmailSentDescription": "Enviaremos un link para restablecer tu contraseña a tu correo electrónico",
