@@ -5,13 +5,14 @@ import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/features/predictions/view/prediction_validate_page.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:meddly/widgets/widgets.dart';
+import 'package:predictions/predictions.dart';
 
 class LastPredictions extends ConsumerWidget {
   const LastPredictions({
     super.key,
   });
 
-  static const int _lastConsultsCount = 3;
+  static const int _lastConsultsCount = 10;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,18 +29,19 @@ class LastPredictions extends ConsumerWidget {
           );
         }
 
-        final lastConsults = consults.take(_lastConsultsCount).toList();
+        final lastConsults = consults.take(_lastConsultsCount).toList()
+          ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
 
         return ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: lastConsults.length,
           itemBuilder: (context, index) {
-            final prediction = lastConsults[index];
+            final consult = lastConsults[index];
 
             return ElevatedButton(
               onPressed: () => ref.read(goRouterProvider).push(
-                    '${PredictionValidatePage.fullRouteName}/${prediction.id}',
+                    '${PredictionValidatePage.fullRouteName}/${consult.id}',
                   ),
               style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
                     padding: MaterialStateProperty.all(EdgeInsets.zero),
@@ -52,19 +54,20 @@ class LastPredictions extends ConsumerWidget {
                 ),
                 child: ListTile(
                   title: Text(
-                    'Predicción por síntomas',
+                    switch (consult) {
+                      ConsultByImage() => 'Consulta por imagen',
+                      ConsultBySymptoms() => 'Consulta por síntomas',
+                    },
                     style: context.textTheme.bodyMedium,
                   ),
                   subtitle: Text(
-                    prediction.verified
-                        ? 'Validada'
-                        : 'Pendiente de validación',
+                    consult.verified ? 'Validada' : 'Pendiente de validación',
                     style: context.textTheme.bodySmall?.copyWith(
-                        // color: context.colorScheme.onBackground.withOpacity(0.5),
-                        ),
+                      color: context.colorScheme.onBackground.withOpacity(0.5),
+                    ),
                   ),
                   trailing: Text(
-                    prediction.createdAt.localizedString(context),
+                    consult.createdAt.localizedString(context),
                     style: context.textTheme.bodySmall?.copyWith(
                       color: context.colorScheme.onBackground.withOpacity(0.5),
                     ),

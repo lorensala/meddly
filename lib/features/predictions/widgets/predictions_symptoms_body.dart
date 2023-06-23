@@ -19,7 +19,7 @@ class PredictionsSymptomsBody extends HookWidget {
         children: [
           Padding(
             padding: EdgeInsets.all(Sizes.medium),
-            child: PredictionsSymptomsSearchField(),
+            child: PredictionsSymptomsSearchInput(),
           ),
           Expanded(child: PredictionsSymptomsSearchBody()),
         ],
@@ -46,7 +46,7 @@ class PredictionsSymptomsBody extends HookWidget {
                   isRequired: true,
                 ),
                 const SizedBox(height: Sizes.medium),
-                PredictionsSymptomsSearchField(
+                PredictionsSymptomsSearchInput(
                   enabled: false,
                   onTap: () => isSearching.value = true,
                 ),

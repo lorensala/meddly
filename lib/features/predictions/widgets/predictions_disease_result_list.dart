@@ -5,13 +5,14 @@ import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
-class PredictionSymptomsResultList extends ConsumerWidget {
-  const PredictionSymptomsResultList({super.key});
+class PredictionDiseaseResultsList extends ConsumerWidget {
+  const PredictionDiseaseResultsList({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final results = ref.watch(symptomSearchResultsProvider);
-
+    final results = ref.watch(diseaseSearchResultsProvider);
     return AsyncValueWidget(
       value: results,
       builder: (results) {
@@ -29,17 +30,18 @@ class PredictionSymptomsResultList extends ConsumerWidget {
         }
 
         return ListView.separated(
-          itemCount: results.length,
           shrinkWrap: true,
-          padding: const EdgeInsets.symmetric(vertical: Sizes.medium),
           physics: const ClampingScrollPhysics(),
+          itemCount: results.length,
+          padding: const EdgeInsets.symmetric(vertical: Sizes.medium),
           itemBuilder: (context, index) {
             final result = results[index];
+
             return ProviderScope(
               overrides: [
-                symptomSearchResultProvider.overrideWithValue(result),
+                diseaseSearchResultProvider.overrideWithValue(result),
               ],
-              child: const PredictionSymptomsResultListItem(),
+              child: const PredictionDiseaseResultListItem(),
             );
           },
           separatorBuilder: (BuildContext context, int index) {

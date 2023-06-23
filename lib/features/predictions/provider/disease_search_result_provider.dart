@@ -1,9 +1,9 @@
 import 'package:predictions/predictions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'prediction_provider.g.dart';
+part 'disease_search_result_provider.g.dart';
 
-@riverpod
-Prediction prediction(PredictionRef ref) {
+@Riverpod(dependencies: [])
+Symptom diseaseSearchResult(DiseaseSearchResultRef ref) {
   throw UnimplementedError();
 }

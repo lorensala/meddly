@@ -5,20 +5,22 @@ import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/l10n/l10n.dart';
 
-class PredictionsSymptomsSearchInput extends HookConsumerWidget {
-  const PredictionsSymptomsSearchInput({
+class PredictionsDiseaseSearchInput extends HookConsumerWidget {
+  const PredictionsDiseaseSearchInput({
     this.enabled = true,
+    this.autofocus = false,
     this.onTap,
     super.key,
   });
 
   final bool enabled;
+  final bool autofocus;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController();
-    final notifier = ref.watch(symptomSearchControllerProvider.notifier);
+    final notifier = ref.watch(diseaseSearchControllerProvider.notifier);
 
     useListenable(controller);
 

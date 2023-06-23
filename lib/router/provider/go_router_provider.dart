@@ -244,24 +244,24 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
                         parentNavigatorKey: browseNavigatorKey,
                         path: '${PredictionValidatePage.routeName}/:id',
                         builder: (context, state) {
-                          // final id = int.tryParse(state.pathParameters['id']!);
+                          final id = int.tryParse(state.pathParameters['id']!);
 
-                          // if (id != null) {
-                          //   final prediction = ref
-                          //       .read(predictionsBySymptomsProvider.notifier)
-                          //       .getPrediction(id);
+                          if (id != null) {
+                            final consult = ref
+                                .read(consultsProvider.notifier)
+                                .getConsult(id);
 
-                          //   if (prediction == null) return const SizedBox();
+                            if (consult == null) return const SizedBox();
 
-                          //   return ProviderScope(
-                          //     overrides: [
-                          //       predictionProvider.overrideWithValue(
-                          //         prediction,
-                          //       ),
-                          //     ],
-                          //     child: const PredictionValidatePage(),
-                          //   );
-                          // }
+                            return ProviderScope(
+                              overrides: [
+                                consultProvider.overrideWithValue(
+                                  consult,
+                                ),
+                              ],
+                              child: const PredictionValidatePage(),
+                            );
+                          }
 
                           return const PredictionValidatePage();
                         },

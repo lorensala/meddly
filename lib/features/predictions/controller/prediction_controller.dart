@@ -18,6 +18,7 @@ class PredictionController extends _$PredictionController {
   }
 
   Future<void> predictWithSymptoms(List<Symptom> symptoms) async {
+    state = const AsyncLoading();
     final (err, diseases) = await ref
         .read(predictionsRepositoryProvider)
         .predictWithSymptoms(symptoms);
@@ -36,6 +37,7 @@ class PredictionController extends _$PredictionController {
   }
 
   Future<void> predictWithImage(XFile file) async {
+    state = const AsyncLoading();
     final (err, diseases) = await ref
         .read(predictionsRepositoryProvider)
         .predictWithImage(File(file.path));
@@ -57,6 +59,7 @@ class PredictionController extends _$PredictionController {
     required Consult consult,
     required Disease realDisease,
   }) async {
+    state = const AsyncLoading();
     final (err, _) =
         await ref.read(predictionsRepositoryProvider).verifyConsultBySymptoms(
               consult: consult,
@@ -70,6 +73,70 @@ class PredictionController extends _$PredictionController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       ref.invalidateSelf();
+    }
+  }
+
+  Future<void> validate({
+    required Consult consult,
+    required Disease disease,
+    required bool approvalToSave,
+  }) async {
+    return switch (consult) {
+      ConsultBySymptoms() => _validateBySymptoms(
+          consult: consult,
+          disease: disease,
+          approvalToSave: approvalToSave,
+        ),
+      ConsultByImage() => _validateByImage(
+          consult: consult,
+          disease: disease,
+          approvalToSave: approvalToSave,
+        ),
+    };
+  }
+
+  Future<void> _validateByImage({
+    required Consult consult,
+    required Disease disease,
+    required bool approvalToSave,
+  }) async {
+    state = const AsyncLoading();
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+
+    final (err, _) =
+        await ref.read(predictionsRepositoryProvider).verifyConsultByImage(
+              consult: consult,
+              disease: disease,
+              approvalToSave: approvalToSave,
+            );
+
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      ref.invalidateSelf();
+    }
+  }
+
+  Future<void> _validateBySymptoms({
+    required Consult consult,
+    required Disease disease,
+    required bool approvalToSave,
+  }) async {
+    state = const AsyncLoading();
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+
+    final (err, _) =
+        await ref.read(predictionsRepositoryProvider).verifyConsultBySymptoms(
+              consult: consult,
+              disease: disease,
+              approvalToSave: approvalToSave,
+            );
+
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      ref.invalidateSelf();
+      ref.read(goRouterProvider).pop();
     }
   }
 }

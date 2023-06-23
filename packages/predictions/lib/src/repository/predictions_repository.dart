@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' show File;
 
 import 'package:predictions/src/api/api.dart';
 import 'package:predictions/src/core/core.dart';

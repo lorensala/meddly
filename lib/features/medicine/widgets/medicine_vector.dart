@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meddly/core/core.dart';
 
 class MedicineVector extends StatelessWidget {
   const MedicineVector({
@@ -15,7 +16,7 @@ class MedicineVector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox.square(
-        dimension: dimension ?? MediaQuery.of(context).size.width * 0.6,
+        dimension: dimension ?? context.width * 0.6,
         child: SvgPicture.asset(vector),
       ),
     );
