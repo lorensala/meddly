@@ -3,10 +3,13 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/browse/view/browse_page.dart';
 import 'package:meddly/features/home/home.dart';
+import 'package:meddly/features/user/user.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/router/router.dart';
 
-class BottomNavBar extends HookWidget {
+class BottomNavBar extends HookConsumerWidget {
   const BottomNavBar({
     required this.onBranchTapped,
     super.key,
@@ -15,7 +18,7 @@ class BottomNavBar extends HookWidget {
   final void Function(int) onBranchTapped;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = useState(0);
 
     selectedIndex.addListener(() {
@@ -46,7 +49,13 @@ class BottomNavBar extends HookWidget {
                   icon: Vectors.home,
                   label: context.l10n.home,
                   isSelected: selectedIndex.value == 0,
-                  onTap: () => selectedIndex.value = 0,
+                  onTap: () {
+                    if (selectedIndex.value == 0) {
+                      ref.read(goRouterProvider).go(HomePage.routeName);
+                    } else {
+                      selectedIndex.value = 0;
+                    }
+                  },
                 ),
               ),
               Expanded(
@@ -80,7 +89,13 @@ class BottomNavBar extends HookWidget {
                   icon: Vectors.browse,
                   label: context.l10n.browse,
                   isSelected: selectedIndex.value == 1,
-                  onTap: () => selectedIndex.value = 1,
+                  onTap: () {
+                    if (selectedIndex.value == 1) {
+                      ref.read(goRouterProvider).go(BrowsePage.routeName);
+                    } else {
+                      selectedIndex.value = 1;
+                    }
+                  },
                 ),
               ),
               Expanded(
@@ -88,7 +103,13 @@ class BottomNavBar extends HookWidget {
                   icon: Vectors.user,
                   label: context.l10n.profile,
                   isSelected: selectedIndex.value == 2,
-                  onTap: () => selectedIndex.value = 2,
+                  onTap: () {
+                    if (selectedIndex.value == 2) {
+                      ref.read(goRouterProvider).go(UserPage.routeName);
+                    } else {
+                      selectedIndex.value = 2;
+                    }
+                  },
                 ),
               ),
             ],

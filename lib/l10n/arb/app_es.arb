@@ -393,5 +393,5 @@
     "supervisorDescription": "Una persona que supervisará tu tratamiento y recibirá notificaciones sobre el estado de tus medicamentos, turnos médicos y mediciones",
     "supervisedDescription": "Una persona a la que le supervisaras su tratamiento y recibirás notificaciones sobre el estado de sus medicamentos, turnos médicos y mediciones",
     "selectASupervised": "Selecciona un supervisado",
-    "supervisorCodeDescription": "Comparte este código con la persona que deseas supervisar.\nPodrá ingresarlo en la sección de \"Supervisor\" de su aplicación, presionando el botón flotante con el signo de suma."
+    "supervisorCodeDescription": "Comparte este código con la persona que deseas supervisar.\nPodrá ingresarlo en la sección de \"Agregar supervisor\" de su aplicación, presionando el botón \"Agregar\" en la barra de navegación."
 }
