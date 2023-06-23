@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
@@ -50,6 +51,13 @@ class AppointmentListItem extends ConsumerWidget {
       background: const DismissibleSecondaryBackground(),
       direction: DismissDirection.endToStart,
       child: ListTile(
+        leading: SizedBox(
+          height: Sizes.large,
+          width: Sizes.large,
+          child: SvgPicture.asset(Vectors.appointment),
+        ),
+        minLeadingWidth: 0,
+        titleAlignment: ListTileTitleAlignment.center,
         trailing: Text(
           appointment.date.localizedString(context),
           style: context.textTheme.bodyMedium!.copyWith(
