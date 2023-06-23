@@ -41,17 +41,17 @@ class PredictionsApi {
     }
   }
 
-  Future<void> verifyPredictionBySymptoms({
-    required Prediction prediction,
-    required String disease,
+  Future<void> verifyConsultBySymptoms({
+    required Consult consult,
+    required String realDisease,
     required bool approvalToSave,
   }) async {
     try {
       await _dio.post<dynamic>(
-        '${predictionsVerifySymptomsPath}/${prediction.id}',
+        '${predictionsVerifySymptomsPath}/${consult.id}',
         cancelToken: _cancelToken,
         queryParameters: {
-          'real_disease': disease,
+          'real_disease': realDisease,
           'approval_to_save': approvalToSave,
         },
       );
@@ -62,12 +62,92 @@ class PredictionsApi {
     }
   }
 
-  Future<List<Prediction>> fetchPredictionsBySymptoms() async {
+  Future<void> verifyConsultByImage({
+    required Consult consult,
+    required String realDisease,
+    required bool approvalToSave,
+  }) async {
+    try {
+      await _dio.post<dynamic>(
+        '${predictionsVerifySymptomsPath}/${consult.id}',
+        cancelToken: _cancelToken,
+        queryParameters: {
+          'real_disease': realDisease,
+          'approval_to_save': approvalToSave,
+        },
+      );
+    } on DioError catch (e) {
+      throw PredictionException.fromDioError(e);
+    } catch (e) {
+      throw PredictionUnknownException();
+    }
+  }
+
+  Future<List<Consult>> fetchConsultsBySymptoms() async {
     late final Response<List<dynamic>> res;
     try {
       res = await _dio.get<List<dynamic>>(
         predictionsWithSymptomsPath,
         cancelToken: _cancelToken,
+      );
+
+      if (res.statusCode == 401) {
+        throw PredictionNotFoundException();
+      }
+    } on DioError catch (e) {
+      throw PredictionException.fromDioError(e);
+    }
+
+    try {
+      if (res.data == null) return <Consult>[];
+      final results = res.data!;
+
+      return results
+          .map(
+            (e) => Consult.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+    } catch (e) {
+      throw PredictionSerializationException();
+    }
+  }
+
+  Future<List<Consult>> fetchConsultsByImage() async {
+    late final Response<List<dynamic>> res;
+    try {
+      res = await _dio.get<List<dynamic>>(
+        predictionsWithImagePath,
+        cancelToken: _cancelToken,
+      );
+
+      if (res.statusCode == 401) {
+        throw PredictionNotFoundException();
+      }
+    } on DioError catch (e) {
+      throw PredictionException.fromDioError(e);
+    }
+
+    try {
+      if (res.data == null) return <Consult>[];
+      final results = res.data!;
+
+      return results
+          .map(
+            (e) => Consult.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+    } catch (e) {
+      throw PredictionSerializationException();
+    }
+  }
+
+  Future<List<Prediction>> predictWithSymptoms(List<Symptom> symptoms) async {
+    late final Response<List<dynamic>> res;
+    try {
+      res = await _dio.post<List<dynamic>>(
+        predictionsWithSymptomsPath,
+        cancelToken: _cancelToken,
+        data: jsonEncode(symptoms.map((e) => e.code).toList()),
       );
 
       if (res.statusCode == 401) {
@@ -91,37 +171,7 @@ class PredictionsApi {
     }
   }
 
-  Future<List<Disease>> predictWithSymptoms(List<Symptom> symptoms) async {
-    late final Response<List<dynamic>> res;
-    try {
-      res = await _dio.post<List<dynamic>>(
-        predictionsWithSymptomsPath,
-        cancelToken: _cancelToken,
-        data: jsonEncode(symptoms.map((e) => e.code).toList()),
-      );
-
-      if (res.statusCode == 401) {
-        throw PredictionNotFoundException();
-      }
-    } on DioError catch (e) {
-      throw PredictionException.fromDioError(e);
-    }
-
-    try {
-      if (res.data == null) return <Disease>[];
-      final results = res.data!;
-
-      return results
-          .map(
-            (e) => Disease.fromJson(e as Map<String, dynamic>),
-          )
-          .toList();
-    } catch (e) {
-      throw PredictionSerializationException();
-    }
-  }
-
-  Future<List<Disease>> predictWithImage(File file) async {
+  Future<List<Prediction>> predictWithImage(File file) async {
     late final Response<List<dynamic>> res;
     try {
       final fileName = file.path.split('/').last;
@@ -148,12 +198,12 @@ class PredictionsApi {
     }
 
     try {
-      if (res.data == null) return <Disease>[];
+      if (res.data == null) return <Prediction>[];
       final results = res.data!;
 
       return results
           .map(
-            (e) => Disease.fromJson(e as Map<String, dynamic>),
+            (e) => Prediction.fromJson(e as Map<String, dynamic>),
           )
           .toList();
     } catch (e) {

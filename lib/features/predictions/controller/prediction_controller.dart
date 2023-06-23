@@ -13,8 +13,8 @@ part 'prediction_controller.g.dart';
 @riverpod
 class PredictionController extends _$PredictionController {
   @override
-  FutureOr<List<Disease>> build() async {
-    return <Disease>[];
+  FutureOr<List<Prediction>> build() async {
+    return <Prediction>[];
   }
 
   Future<void> predictWithSymptoms(List<Symptom> symptoms) async {
@@ -54,16 +54,15 @@ class PredictionController extends _$PredictionController {
   }
 
   Future<void> verifyPredictionBySymptoms({
-    required Prediction prediction,
-    required String realDisease,
+    required Consult consult,
+    required Disease realDisease,
   }) async {
-    final (err, _) = await ref
-        .read(predictionsRepositoryProvider)
-        .verifyPredictionBySymptoms(
-          prediction: prediction,
-          disease: realDisease,
-          approvalToSave: true,
-        );
+    final (err, _) =
+        await ref.read(predictionsRepositoryProvider).verifyConsultBySymptoms(
+              consult: consult,
+              disease: realDisease,
+              approvalToSave: true,
+            );
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 

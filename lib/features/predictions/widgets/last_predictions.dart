@@ -11,16 +11,16 @@ class LastPredictions extends ConsumerWidget {
     super.key,
   });
 
-  static const int lastPredictionsCount = 3;
+  static const int _lastConsultsCount = 3;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final predictions = ref.watch(predictionsBySymptomsProvider);
+    final consults = ref.watch(consultsProvider);
 
     return AsyncValueWidget(
-      value: predictions,
-      builder: (predictions) {
-        if (predictions.isEmpty) {
+      value: consults,
+      builder: (consults) {
+        if (consults.isEmpty) {
           return EmptyContainer(
             isFlex: false,
             size: context.height * 0.3,
@@ -28,14 +28,14 @@ class LastPredictions extends ConsumerWidget {
           );
         }
 
-        final lastPredictions = predictions.take(lastPredictionsCount).toList();
+        final lastConsults = consults.take(_lastConsultsCount).toList();
 
         return ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: lastPredictions.length,
+          itemCount: lastConsults.length,
           itemBuilder: (context, index) {
-            final prediction = lastPredictions[index];
+            final prediction = lastConsults[index];
 
             return ElevatedButton(
               onPressed: () => ref.read(goRouterProvider).push(

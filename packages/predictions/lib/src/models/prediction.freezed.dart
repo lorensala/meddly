@@ -20,11 +20,8 @@ Prediction _$PredictionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Prediction {
-  int get id => throw _privateConstructorUsedError;
-  List<Disease> get prediction => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  bool get verified => throw _privateConstructorUsedError;
-  List<String> get symptoms => throw _privateConstructorUsedError;
+  String get disease => throw _privateConstructorUsedError;
+  double get probability => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,12 +35,7 @@ abstract class $PredictionCopyWith<$Res> {
           Prediction value, $Res Function(Prediction) then) =
       _$PredictionCopyWithImpl<$Res, Prediction>;
   @useResult
-  $Res call(
-      {int id,
-      List<Disease> prediction,
-      DateTime createdAt,
-      bool verified,
-      List<String> symptoms});
+  $Res call({String disease, double probability});
 }
 
 /// @nodoc
@@ -59,33 +51,18 @@ class _$PredictionCopyWithImpl<$Res, $Val extends Prediction>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? prediction = null,
-    Object? createdAt = null,
-    Object? verified = null,
-    Object? symptoms = null,
+    Object? disease = null,
+    Object? probability = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      prediction: null == prediction
-          ? _value.prediction
-          : prediction // ignore: cast_nullable_to_non_nullable
-              as List<Disease>,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      verified: null == verified
-          ? _value.verified
-          : verified // ignore: cast_nullable_to_non_nullable
-              as bool,
-      symptoms: null == symptoms
-          ? _value.symptoms
-          : symptoms // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      disease: null == disease
+          ? _value.disease
+          : disease // ignore: cast_nullable_to_non_nullable
+              as String,
+      probability: null == probability
+          ? _value.probability
+          : probability // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -98,12 +75,7 @@ abstract class _$$_PredictionCopyWith<$Res>
       __$$_PredictionCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      List<Disease> prediction,
-      DateTime createdAt,
-      bool verified,
-      List<String> symptoms});
+  $Res call({String disease, double probability});
 }
 
 /// @nodoc
@@ -117,33 +89,18 @@ class __$$_PredictionCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? prediction = null,
-    Object? createdAt = null,
-    Object? verified = null,
-    Object? symptoms = null,
+    Object? disease = null,
+    Object? probability = null,
   }) {
     return _then(_$_Prediction(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      prediction: null == prediction
-          ? _value._prediction
-          : prediction // ignore: cast_nullable_to_non_nullable
-              as List<Disease>,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      verified: null == verified
-          ? _value.verified
-          : verified // ignore: cast_nullable_to_non_nullable
-              as bool,
-      symptoms: null == symptoms
-          ? _value._symptoms
-          : symptoms // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      disease: null == disease
+          ? _value.disease
+          : disease // ignore: cast_nullable_to_non_nullable
+              as String,
+      probability: null == probability
+          ? _value.probability
+          : probability // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -151,43 +108,19 @@ class __$$_PredictionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Prediction implements _Prediction {
-  const _$_Prediction(
-      {required this.id,
-      required final List<Disease> prediction,
-      required this.createdAt,
-      required this.verified,
-      required final List<String> symptoms})
-      : _prediction = prediction,
-        _symptoms = symptoms;
+  const _$_Prediction({required this.disease, required this.probability});
 
   factory _$_Prediction.fromJson(Map<String, dynamic> json) =>
       _$$_PredictionFromJson(json);
 
   @override
-  final int id;
-  final List<Disease> _prediction;
+  final String disease;
   @override
-  List<Disease> get prediction {
-    if (_prediction is EqualUnmodifiableListView) return _prediction;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_prediction);
-  }
-
-  @override
-  final DateTime createdAt;
-  @override
-  final bool verified;
-  final List<String> _symptoms;
-  @override
-  List<String> get symptoms {
-    if (_symptoms is EqualUnmodifiableListView) return _symptoms;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_symptoms);
-  }
+  final double probability;
 
   @override
   String toString() {
-    return 'Prediction(id: $id, prediction: $prediction, createdAt: $createdAt, verified: $verified, symptoms: $symptoms)';
+    return 'Prediction(disease: $disease, probability: $probability)';
   }
 
   @override
@@ -195,25 +128,14 @@ class _$_Prediction implements _Prediction {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Prediction &&
-            (identical(other.id, id) || other.id == id) &&
-            const DeepCollectionEquality()
-                .equals(other._prediction, _prediction) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.verified, verified) ||
-                other.verified == verified) &&
-            const DeepCollectionEquality().equals(other._symptoms, _symptoms));
+            (identical(other.disease, disease) || other.disease == disease) &&
+            (identical(other.probability, probability) ||
+                other.probability == probability));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      const DeepCollectionEquality().hash(_prediction),
-      createdAt,
-      verified,
-      const DeepCollectionEquality().hash(_symptoms));
+  int get hashCode => Object.hash(runtimeType, disease, probability);
 
   @JsonKey(ignore: true)
   @override
@@ -231,25 +153,16 @@ class _$_Prediction implements _Prediction {
 
 abstract class _Prediction implements Prediction {
   const factory _Prediction(
-      {required final int id,
-      required final List<Disease> prediction,
-      required final DateTime createdAt,
-      required final bool verified,
-      required final List<String> symptoms}) = _$_Prediction;
+      {required final String disease,
+      required final double probability}) = _$_Prediction;
 
   factory _Prediction.fromJson(Map<String, dynamic> json) =
       _$_Prediction.fromJson;
 
   @override
-  int get id;
+  String get disease;
   @override
-  List<Disease> get prediction;
-  @override
-  DateTime get createdAt;
-  @override
-  bool get verified;
-  @override
-  List<String> get symptoms;
+  double get probability;
   @override
   @JsonKey(ignore: true)
   _$$_PredictionCopyWith<_$_Prediction> get copyWith =>

@@ -20,8 +20,8 @@ Disease _$DiseaseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Disease {
-  String get disease => throw _privateConstructorUsedError;
-  double get probability => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +33,7 @@ abstract class $DiseaseCopyWith<$Res> {
   factory $DiseaseCopyWith(Disease value, $Res Function(Disease) then) =
       _$DiseaseCopyWithImpl<$Res, Disease>;
   @useResult
-  $Res call({String disease, double probability});
+  $Res call({String code, String description});
 }
 
 /// @nodoc
@@ -49,18 +49,18 @@ class _$DiseaseCopyWithImpl<$Res, $Val extends Disease>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? disease = null,
-    Object? probability = null,
+    Object? code = null,
+    Object? description = null,
   }) {
     return _then(_value.copyWith(
-      disease: null == disease
-          ? _value.disease
-          : disease // ignore: cast_nullable_to_non_nullable
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String,
-      probability: null == probability
-          ? _value.probability
-          : probability // ignore: cast_nullable_to_non_nullable
-              as double,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -72,7 +72,7 @@ abstract class _$$_DiseaseCopyWith<$Res> implements $DiseaseCopyWith<$Res> {
       __$$_DiseaseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String disease, double probability});
+  $Res call({String code, String description});
 }
 
 /// @nodoc
@@ -85,18 +85,18 @@ class __$$_DiseaseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? disease = null,
-    Object? probability = null,
+    Object? code = null,
+    Object? description = null,
   }) {
     return _then(_$_Disease(
-      disease: null == disease
-          ? _value.disease
-          : disease // ignore: cast_nullable_to_non_nullable
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String,
-      probability: null == probability
-          ? _value.probability
-          : probability // ignore: cast_nullable_to_non_nullable
-              as double,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -104,19 +104,19 @@ class __$$_DiseaseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Disease implements _Disease {
-  const _$_Disease({required this.disease, required this.probability});
+  const _$_Disease({required this.code, required this.description});
 
   factory _$_Disease.fromJson(Map<String, dynamic> json) =>
       _$$_DiseaseFromJson(json);
 
   @override
-  final String disease;
+  final String code;
   @override
-  final double probability;
+  final String description;
 
   @override
   String toString() {
-    return 'Disease(disease: $disease, probability: $probability)';
+    return 'Disease(code: $code, description: $description)';
   }
 
   @override
@@ -124,14 +124,14 @@ class _$_Disease implements _Disease {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Disease &&
-            (identical(other.disease, disease) || other.disease == disease) &&
-            (identical(other.probability, probability) ||
-                other.probability == probability));
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, disease, probability);
+  int get hashCode => Object.hash(runtimeType, code, description);
 
   @JsonKey(ignore: true)
   @override
@@ -149,15 +149,15 @@ class _$_Disease implements _Disease {
 
 abstract class _Disease implements Disease {
   const factory _Disease(
-      {required final String disease,
-      required final double probability}) = _$_Disease;
+      {required final String code,
+      required final String description}) = _$_Disease;
 
   factory _Disease.fromJson(Map<String, dynamic> json) = _$_Disease.fromJson;
 
   @override
-  String get disease;
+  String get code;
   @override
-  double get probability;
+  String get description;
   @override
   @JsonKey(ignore: true)
   _$$_DiseaseCopyWith<_$_Disease> get copyWith =>
