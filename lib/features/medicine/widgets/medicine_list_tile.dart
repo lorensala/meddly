@@ -103,7 +103,9 @@ class MedicineListTile extends ConsumerWidget {
         titleAlignment: ListTileTitleAlignment.center,
         minLeadingWidth: 0,
         subtitle: Text(
-          '${medicine.stock} ${context.l10n.unitsLeft}',
+          medicine.stock == null || medicine.stock == 0
+              ? context.l10n.noUnitsLeft
+              : '${medicine.stock} ${context.l10n.unitsLeft}',
           style: context.textTheme.bodyMedium?.copyWith(
             color: context.colorScheme.onSecondary.withOpacity(0.5),
           ),

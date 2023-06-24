@@ -1,10 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
-import 'package:meddly/router/router.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class ImagePickerBottomSheet extends ConsumerWidget {
@@ -39,6 +40,8 @@ class ImagePickerBottomSheet extends ConsumerWidget {
 
                 if (image == null) return;
 
+                Navigator.of(context).pop();
+
                 await ref
                     .read(predictionControllerProvider.notifier)
                     .predictWithImage(image);
@@ -69,13 +72,14 @@ class ImagePickerBottomSheet extends ConsumerWidget {
 
                 if (image == null) return;
 
+                Navigator.of(context).pop();
+
                 await ref
                     .read(predictionControllerProvider.notifier)
                     .predictWithImage(image);
               } catch (e) {
                 await showSnackBar(context, 'Error al abrir la galería');
               }
-              ref.read(goRouterProvider).pop();
             },
             child: Container(
               padding: const EdgeInsets.all(Sizes.medium),

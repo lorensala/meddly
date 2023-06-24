@@ -29,11 +29,10 @@ class PredictionController extends _$PredictionController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       state = AsyncData(diseases);
-      ref.invalidate(consultsProvider);
-      ref.read(goRouterProvider).pop();
       await ref.read(goRouterProvider).push(
             PredictionResultsPage.fullRouteName,
           );
+      ref.invalidate(consultsProvider);
     }
   }
 
@@ -49,11 +48,10 @@ class PredictionController extends _$PredictionController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       state = AsyncData(diseases);
-      ref.invalidate(consultsProvider);
-      ref.read(goRouterProvider).pop();
       await ref.read(goRouterProvider).push(
             PredictionResultsPage.fullRouteName,
           );
+      ref.invalidate(consultsProvider);
     }
   }
 

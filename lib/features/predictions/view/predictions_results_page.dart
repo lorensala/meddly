@@ -138,7 +138,8 @@ class _AnimatedLinearProgressIndicator extends HookWidget {
     useEffect(
       () {
         animationController.forward();
-        return animationController.dispose;
+
+        return null;
       },
       [],
     );

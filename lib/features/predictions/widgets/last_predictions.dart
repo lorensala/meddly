@@ -29,8 +29,9 @@ class LastPredictions extends ConsumerWidget {
           );
         }
 
-        final lastConsults = consults.take(_lastConsultsCount).toList()
-          ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+        consults.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+
+        final lastConsults = consults.take(_lastConsultsCount).toList();
 
         return ListView.separated(
           shrinkWrap: true,
