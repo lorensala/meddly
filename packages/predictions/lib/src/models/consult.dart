@@ -23,7 +23,7 @@ sealed class Consult {
 }
 
 class ConsultBySymptoms extends Consult {
-  final List<String> symptoms;
+  final List<Symptom> symptoms;
 
   const ConsultBySymptoms({
     required int id,
@@ -46,11 +46,9 @@ class ConsultBySymptoms extends Consult {
           .toList(),
       createdAt: DateTime.parse(json['created_at'] as String),
       verified: json['verified'] as bool,
-      symptoms:
-          (json['symptoms'] as List<dynamic>).map((e) => e as String).toList(),
-      // symptoms: (json['symptoms'] as List<dynamic>)
-      //     .map((e) => Symptom.fromJson(e as Map<String, dynamic>))
-      //     .toList(),
+      symptoms: (json['symptoms'] as List<dynamic>)
+          .map((e) => Symptom.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 }

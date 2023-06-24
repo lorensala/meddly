@@ -94,6 +94,10 @@ extension DateTimeX on DateTime {
   String toNamedMonthString(BuildContext context) =>
       DateFormat('MMMM', 'es').format(this).capitalize();
 
+  String localizedBirthdayString(BuildContext context) {
+    return '${localizedDay(context)} $day ${toNamedMonthString(context)}';
+  }
+
   String localizedString(BuildContext context) {
     String? namedDay;
 

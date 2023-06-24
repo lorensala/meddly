@@ -1,4 +1,3 @@
-import 'package:meddly/features/predictions/predictions.dart';
 import 'package:predictions/predictions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

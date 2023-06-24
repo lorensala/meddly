@@ -7,7 +7,7 @@ part of 'symptom_search_results_provider.dart';
 // **************************************************************************
 
 String _$symptomSearchResultsHash() =>
-    r'924de3cdfb81acec3ceda918d79f4b035c8345a2';
+    r'bbe4b0354f2ba17db691d9dd3138d69cef5539d7';
 
 /// See also [symptomSearchResults].
 @ProviderFor(symptomSearchResults)

@@ -6,7 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'disease_search_results_provider.g.dart';
 
 @riverpod
-Future<List<Symptom>> diseaseSearchResults(
+Future<List<Disease>> diseaseSearchResults(
   DiseaseSearchResultsRef ref,
 ) async {
   final query =
@@ -14,5 +14,5 @@ Future<List<Symptom>> diseaseSearchResults(
 
   await ref.debounce(const Duration(milliseconds: 250));
 
-  return ref.read(predictionsRepositoryProvider).search(query.value);
+  return ref.read(predictionsRepositoryProvider).searchDisease(query.value);
 }

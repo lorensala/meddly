@@ -70,7 +70,7 @@ class FilterModal<T> extends HookWidget {
               ),
               const SizedBox(height: Sizes.medium),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.4,
+                height: context.height * 0.3,
                 child: _FilterList<T>(
                   items: searchedItems.value,
                   selectedItems: selectedItems,
@@ -87,6 +87,7 @@ class FilterModal<T> extends HookWidget {
                 },
                 label: context.l10n.accept,
               ),
+              const SizedBox(height: Sizes.medium),
               Center(
                 child: TextButton(
                   onPressed: onCleanSelection,
@@ -146,6 +147,7 @@ class _FilterList<T> extends HookWidget {
       ),
       child: ListView.builder(
         shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
         itemCount: items.length + 2,
         itemBuilder: (context, index) {
           if (index == 0) {

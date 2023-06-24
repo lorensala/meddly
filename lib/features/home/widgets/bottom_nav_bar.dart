@@ -137,33 +137,39 @@ class _BottomNavBarItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: SizedBox(
-        height: 60,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              icon,
-              colorFilter: isSelected
-                  ? ColorFilter.mode(
-                      context.colorScheme.primary,
-                      BlendMode.srcIn,
-                    )
-                  : ColorFilter.mode(
-                      context.colorScheme.onBackground.withOpacity(0.5),
-                      BlendMode.srcIn,
-                    ),
-            ),
-            Text(
-              label,
-              style: context.textTheme.bodySmall!.copyWith(
-                color: isSelected
-                    ? context.colorScheme.primary
-                    : context.colorScheme.onBackground.withOpacity(0.5),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Transform.scale(
+            filterQuality: FilterQuality.medium,
+            scale: 0.5,
+            child: Transform.scale(
+              scale: 2,
+              child: SvgPicture.asset(
+                icon,
+                height: Sizes.extraLarge - Sizes.extraSmall,
+                width: Sizes.extraLarge - Sizes.extraSmall,
+                colorFilter: isSelected
+                    ? ColorFilter.mode(
+                        context.colorScheme.primary,
+                        BlendMode.srcIn,
+                      )
+                    : ColorFilter.mode(
+                        context.colorScheme.onBackground.withOpacity(0.5),
+                        BlendMode.srcIn,
+                      ),
               ),
             ),
-          ],
-        ),
+          ),
+          Text(
+            label,
+            style: context.textTheme.bodySmall!.copyWith(
+              color: isSelected
+                  ? context.colorScheme.primary
+                  : context.colorScheme.onBackground.withOpacity(0.5),
+            ),
+          ),
+        ],
       ),
     );
   }

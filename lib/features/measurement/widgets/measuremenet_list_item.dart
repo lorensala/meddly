@@ -52,7 +52,7 @@ class MeasurementListItem extends ConsumerWidget {
           ),
         );
       },
-      background: const DismissibleSecondaryBackground(),
+      background: const DismissibleDeleteBackground(),
       direction: DismissDirection.endToStart,
       child: ListTile(
         leading: SizedBox(

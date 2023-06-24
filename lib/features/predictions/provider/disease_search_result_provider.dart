@@ -4,6 +4,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'disease_search_result_provider.g.dart';
 
 @Riverpod(dependencies: [])
-Symptom diseaseSearchResult(DiseaseSearchResultRef ref) {
+Disease diseaseSearchResult(DiseaseSearchResultRef ref) {
   throw UnimplementedError();
 }

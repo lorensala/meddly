@@ -13,11 +13,11 @@ class PredictionsApi {
   final Dio _dio;
   final CancelToken _cancelToken;
 
-  Future<List<Symptom>> search(String query) async {
+  Future<List<Symptom>> searchSymptoms(String query) async {
     late final Response<List<dynamic>> res;
     try {
-      res = await _dio.post<List<dynamic>>(
-        predictionsSearchPath,
+      res = await _dio.get<List<dynamic>>(
+        predictionsSymptomSearchPath,
         cancelToken: _cancelToken,
         queryParameters: {
           'query': query,
@@ -34,6 +34,34 @@ class PredictionsApi {
       return results
           .map(
             (e) => Symptom.fromJson(e as Map<String, dynamic>),
+          )
+          .toList();
+    } catch (e) {
+      throw PredictionSerializationException();
+    }
+  }
+
+  Future<List<Disease>> searchDisease(String query) async {
+    late final Response<List<dynamic>> res;
+    try {
+      res = await _dio.get<List<dynamic>>(
+        predictionsDiseaseSearchPath,
+        cancelToken: _cancelToken,
+        queryParameters: {
+          'query': query,
+        },
+      );
+    } on DioError catch (e) {
+      throw PredictionException.fromDioError(e);
+    }
+
+    try {
+      if (res.data == null) return <Disease>[];
+      final results = res.data!;
+
+      return results
+          .map(
+            (e) => Disease.fromJson(e as Map<String, dynamic>),
           )
           .toList();
     } catch (e) {
@@ -69,7 +97,7 @@ class PredictionsApi {
   }) async {
     try {
       await _dio.post<dynamic>(
-        '${predictionsVerifySymptomsPath}/${consult.id}',
+        '${predictionsVerifyImagePath}/${consult.id}',
         cancelToken: _cancelToken,
         queryParameters: {
           'real_disease': realDisease,

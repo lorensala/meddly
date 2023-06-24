@@ -98,7 +98,7 @@ class PredictionResultsList extends ConsumerWidget {
                               width: 60,
                               child: Text(
                                 // ignore: lines_longer_than_80_chars
-                                '${result.probability.toStringAsFixed(2).substring(2)}%',
+                                '${(result.probability * 100).toInt()}%',
                                 textAlign: TextAlign.end,
                               ),
                             ),

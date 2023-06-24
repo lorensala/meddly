@@ -9,10 +9,16 @@ class PredictionsRepository {
 
   final PredictionsApi _api;
 
-  Future<List<Symptom>> search(
+  Future<List<Symptom>> searchSymptoms(
     String query,
   ) async {
-    return await _api.search(query);
+    return await _api.searchSymptoms(query);
+  }
+
+  Future<List<Disease>> searchDisease(
+    String query,
+  ) async {
+    return await _api.searchDisease(query);
   }
 
   Future<(PredictionException?, void)> verifyConsultBySymptoms(

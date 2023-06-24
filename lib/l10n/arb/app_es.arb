@@ -284,6 +284,7 @@
     "friday": "Viernes",
     "saturday": "Sábado",
     "unitsLeft": "unidades restantes",
+    "noUnitsLeft": "No quedan unidades",
     "sunday": "Domingo",
     "selectDateMedicine": "Selecciona la fecha de comienzo del tratamiento médico",
     "selectTimeMedicine": "Selecciona las horas en las que deseas tomar este medicamento",

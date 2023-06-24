@@ -29,6 +29,7 @@ class PredictionController extends _$PredictionController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       state = AsyncData(diseases);
+      ref.invalidate(consultsProvider);
       ref.read(goRouterProvider).pop();
       await ref.read(goRouterProvider).push(
             PredictionResultsPage.fullRouteName,
@@ -48,31 +49,11 @@ class PredictionController extends _$PredictionController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       state = AsyncData(diseases);
+      ref.invalidate(consultsProvider);
       ref.read(goRouterProvider).pop();
       await ref.read(goRouterProvider).push(
             PredictionResultsPage.fullRouteName,
           );
-    }
-  }
-
-  Future<void> verifyPredictionBySymptoms({
-    required Consult consult,
-    required Disease realDisease,
-  }) async {
-    state = const AsyncLoading();
-    final (err, _) =
-        await ref.read(predictionsRepositoryProvider).verifyConsultBySymptoms(
-              consult: consult,
-              disease: realDisease,
-              approvalToSave: true,
-            );
-
-    final l10n = ref.read(l10nProvider) as AppLocalizations;
-
-    if (err != null) {
-      state = AsyncError(err.describe(l10n), StackTrace.current);
-    } else {
-      ref.invalidateSelf();
     }
   }
 
@@ -113,7 +94,10 @@ class PredictionController extends _$PredictionController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
-      ref.invalidateSelf();
+      ref
+        ..invalidate(consultsProvider)
+        ..invalidateSelf();
+      ref.read(goRouterProvider).pop();
     }
   }
 
@@ -135,7 +119,9 @@ class PredictionController extends _$PredictionController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
-      ref.invalidateSelf();
+      ref
+        ..invalidate(consultsProvider)
+        ..invalidateSelf();
       ref.read(goRouterProvider).pop();
     }
   }

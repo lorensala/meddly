@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
-import 'package:predictions/predictions.dart';
 
 class PredictionDiseaseResultListItem extends ConsumerWidget {
   const PredictionDiseaseResultListItem({super.key});
@@ -27,9 +26,10 @@ class PredictionDiseaseResultListItem extends ConsumerWidget {
         ),
         child: ElevatedButton(
           onPressed: () {
+            ref.read(diseaseSearchControllerProvider.notifier).clear();
             ref
                 .read(consultValidateControllerProvider.notifier)
-                .selectDisease(const Disease(code: '123', description: 'test'));
+                .selectDisease(result);
           },
           child: Container(
             padding: const EdgeInsets.all(Sizes.medium),

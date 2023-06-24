@@ -16,9 +16,13 @@ class AuthInterceptor extends QueuedInterceptor {
     RequestInterceptorHandler handler,
   ) async {
     final token = await authRepository.getIdToken();
-    final deviceToken = await FirebaseMessaging.instance.getToken();
-    final baseUrl =
-        Platform.isAndroid ? Strings.baseUrlAndroid : Strings.baseUrliOs;
+
+    final deviceToken = Platform.isAndroid
+        ? await FirebaseMessaging.instance.getToken()
+        : await FirebaseMessaging.instance.getAPNSToken();
+
+    const baseUrl = Strings.remoteBaseUrl;
+    // Platform.isAndroid ? Strings.baseUrlAndroid : Strings.baseUrliOs;
 
     final headers = {
       HttpHeaders.authorizationHeader: 'Bearer $token',
@@ -29,7 +33,7 @@ class AuthInterceptor extends QueuedInterceptor {
       ..baseUrl = baseUrl
       ..headers = headers;
 
-    await Future.delayed(const Duration(milliseconds: 800));
+    // await Future.delayed(const Duration(milliseconds: 800));
 
     return handler.next(options);
   }

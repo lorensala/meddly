@@ -14,5 +14,5 @@ Future<List<Symptom>> symptomSearchResults(
 
   await ref.debounce(const Duration(milliseconds: 250));
 
-  return ref.read(predictionsRepositoryProvider).search(query.value);
+  return ref.read(predictionsRepositoryProvider).searchSymptoms(query.value);
 }

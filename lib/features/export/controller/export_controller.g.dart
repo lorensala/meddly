@@ -6,7 +6,7 @@ part of 'export_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$exportControllerHash() => r'1ff99cfb1cace59db838f9195139ef43c305f227';
+String _$exportControllerHash() => r'c930f672143d5245486b6d7a58ceccbde4300eaf';
 
 /// See also [ExportController].
 @ProviderFor(ExportController)

@@ -70,6 +70,8 @@ class _EmailInput extends ConsumerWidget {
     return TextFormField(
       style: context.textTheme.bodyMedium,
       onChanged: notifier.onEmailChanged,
+      keyboardType: TextInputType.emailAddress,
+      onTapOutside: (_) => FocusScope.of(context).unfocus(),
       decoration: InputDecoration(
         errorText: errorText,
         hintText: l10n.emailHint,

@@ -55,8 +55,8 @@ class DismissibleBackgroundVariant extends StatelessWidget {
   }
 }
 
-class DismissibleSecondaryBackground extends StatelessWidget {
-  const DismissibleSecondaryBackground({
+class DismissibleDeleteBackground extends StatelessWidget {
+  const DismissibleDeleteBackground({
     super.key,
   });
 

@@ -64,12 +64,25 @@ List<CalendarEvent> calendarDailyEvents(
                   if (medicine != null) {
                     final title =
                         '${medicine.name} ${medicine.dosis.truncate()}${medicine.dosisUnit.name}';
+
+                    final unitsLeft = medicine.stock == null
+                        ? ''
+                        : medicine.stock! > 0
+                            ? '${medicine.stock} ${l10n.unitsLeft}'
+                            : l10n.noUnitsLeft;
+
+                    final note = medicine.instructions == null
+                        ? ''
+                        : medicine.instructions!.isNotEmpty
+                            ? '\n${medicine.instructions!}'
+                            : '';
+
                     userCalendarEvents.add(
                       MedicineEvent(
                         id: consumption.medicineId,
                         uid: uid,
                         title: title,
-                        description: '${medicine.stock} ${l10n.unitsLeft}',
+                        description: unitsLeft + note,
                         date: consumption.date,
                         consumed: consumption.consumed,
                         consumedDate: consumption.realConsumptionDate,

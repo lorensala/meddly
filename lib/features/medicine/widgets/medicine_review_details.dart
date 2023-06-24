@@ -80,7 +80,7 @@ class _MedicineInfo extends ConsumerWidget {
                   const SizedBox(width: Sizes.extraSmall),
                   Text(
                     // ignore: lines_longer_than_80_chars
-                    '- ${medicine.presentation.name.capitalize()}',
+                    '- ${medicine.presentation.localizedString(context.l10n)}',
                     style: context.textTheme.bodyMedium,
                   ),
                 ],

@@ -95,6 +95,7 @@ class AuthController extends _$AuthController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
+      ref.invalidateSelf();
       ref.read(goRouterProvider).pop();
     }
   }

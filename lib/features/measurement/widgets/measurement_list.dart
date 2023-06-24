@@ -30,7 +30,6 @@ class MeasurementList extends ConsumerWidget {
         }
 
         return ListView.builder(
-          shrinkWrap: true,
           itemCount: filteredMeasurements.length,
           itemBuilder: (context, index) {
             final measurement = filteredMeasurements[index];

@@ -41,7 +41,7 @@ class _InitialBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final consult = ref.watch(consultProvider);
+    // final consult = ref.watch(consultProvider);
     final selectedDisease = ref.watch(
       consultValidateControllerProvider.select((value) => value.disease),
     );
@@ -91,28 +91,33 @@ class _Checkbox extends ConsumerWidget {
       consultValidateControllerProvider.select((value) => value.isAccepted),
     );
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox.square(
-          dimension: Sizes.medium,
-          child: Checkbox(
-            value: isAccepted,
-            onChanged: (value) {
-              if (value == null) return;
-              ref
-                  .read(consultValidateControllerProvider.notifier)
-                  .isAccepted(value: value);
-            },
+    return GestureDetector(
+      onTap: () => ref
+          .read(consultValidateControllerProvider.notifier)
+          .isAccepted(value: !isAccepted),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox.square(
+            dimension: Sizes.medium,
+            child: Checkbox(
+              value: isAccepted,
+              onChanged: (value) {
+                if (value == null) return;
+                ref
+                    .read(consultValidateControllerProvider.notifier)
+                    .isAccepted(value: value);
+              },
+            ),
           ),
-        ),
-        const SizedBox(width: Sizes.medium),
-        const Expanded(
-          child: Text(
-            'Permito que se utilicen mis datos para mejorar el modelo de IA',
+          const SizedBox(width: Sizes.medium),
+          const Expanded(
+            child: Text(
+              'Permito que se utilicen mis datos para mejorar el modelo de IA',
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

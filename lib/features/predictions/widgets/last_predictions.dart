@@ -53,6 +53,13 @@ class LastPredictions extends ConsumerWidget {
                   boxShadow: boxShadow(context),
                 ),
                 child: ListTile(
+                  leading: SizedBox(
+                    height: Sizes.medium,
+                    width: Sizes.medium,
+                    child: Checkbox(value: consult.verified, onChanged: (_) {}),
+                  ),
+                  titleAlignment: ListTileTitleAlignment.center,
+                  minLeadingWidth: 0,
                   title: Text(
                     switch (consult) {
                       ConsultByImage() => 'Consulta por imagen',

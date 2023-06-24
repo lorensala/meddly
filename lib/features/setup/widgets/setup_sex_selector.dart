@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/setup/controller/controller.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/widgets/bottom_sheet_decorator.dart';
 
 class SetupSexSelector extends ConsumerWidget {
   const SetupSexSelector({super.key});
@@ -46,41 +48,8 @@ class SetupSexSelector extends ConsumerWidget {
           onTap: () => showModalBottomSheet<void>(
             backgroundColor: Colors.transparent,
             context: context,
-            builder: (context) => BottomSheet(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(Sizes.medium),
-                  topRight: Radius.circular(Sizes.medium),
-                ),
-              ),
-              builder: (context) {
-                return Padding(
-                  padding: const EdgeInsets.all(Sizes.medium),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const SizedBox(height: Sizes.large),
-                        Text(
-                          context.l10n.sexWhy,
-                          style: context.textTheme.titleMedium,
-                        ),
-                        const SizedBox(height: Sizes.medium),
-                        Text(
-                          context.l10n.sexWhyDescription,
-                          style: context.textTheme.bodyMedium,
-                        ),
-                        const SizedBox(height: Sizes.large),
-                      ],
-                    ),
-                  ),
-                );
-              },
-              onClosing: () {
-                Navigator.of(context).pop();
-              },
-            ),
+            isScrollControlled: true,
+            builder: (context) => const _SexWhyBottomSheet(),
           ),
           child: Text(
             context.l10n.sexWhy,
@@ -92,6 +61,74 @@ class SetupSexSelector extends ConsumerWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class _SexWhyBottomSheet extends HookWidget {
+  const _SexWhyBottomSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = useScrollController();
+    return BottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(Sizes.medium),
+          topRight: Radius.circular(Sizes.medium),
+        ),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(Sizes.medium),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(height: Sizes.large),
+                const BottomSheetDecoration(),
+                const SizedBox(height: Sizes.large),
+                Text(
+                  context.l10n.sexWhy,
+                  style: context.textTheme.titleMedium,
+                ),
+                const SizedBox(height: Sizes.medium),
+                SizedBox(
+                  height: context.height * 0.5,
+                  child: Scrollbar(
+                    controller: controller,
+                    child: SingleChildScrollView(
+                      controller: controller,
+                      child: Text(
+                        context.l10n.sexWhyDescription,
+                        style: context.textTheme.bodyMedium,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: Sizes.large),
+                GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: Center(
+                    child: Text(
+                      context.l10n.goBack,
+                      style: context.textTheme.bodyMedium
+                          ?.copyWith(
+                            color: context.colorScheme.primary,
+                          )
+                          .underlined(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+      onClosing: () {
+        Navigator.of(context).pop();
+      },
     );
   }
 }

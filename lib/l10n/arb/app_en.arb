@@ -284,6 +284,7 @@
     "friday": "Friday",
     "saturday": "Saturday",
     "unitsLeft": "units left", 
+    "noUnitsLeft": "no units left",
     "sunday": "Sunday",
     "selectDateMedicine": "Select the date and time you want to start taking this medicine",
     "selectTimeMedicine": "Select the times you want to take this medicine",

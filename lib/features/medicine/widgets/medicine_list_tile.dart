@@ -85,7 +85,7 @@ class MedicineListTile extends ConsumerWidget {
         }
         return Future.value(false);
       },
-      secondaryBackground: const DismissibleSecondaryBackground(),
+      secondaryBackground: const DismissibleDeleteBackground(),
       background: isArchived
           ? const DismissibleBackgroundVariant()
           : const DismissibleBackground(),

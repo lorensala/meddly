@@ -80,7 +80,7 @@ class _SupervisorListItem extends ConsumerWidget {
       onDismissed: (_) => ref
           .read(supervisorControllerProvider.notifier)
           .deleteSupervisor(supervisor.uid),
-      background: const DismissibleBackground(),
+      background: const DismissibleDeleteBackground(),
       child: ListTile(
         leading: UserCircleAvatar(
           user: supervisor,

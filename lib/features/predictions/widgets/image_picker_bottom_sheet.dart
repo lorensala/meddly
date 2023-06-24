@@ -45,8 +45,6 @@ class ImagePickerBottomSheet extends ConsumerWidget {
               } catch (e) {
                 await showSnackBar(context, 'Error al abrir la cámara');
               }
-
-              ref.read(goRouterProvider).pop();
             },
             child: Container(
               padding: const EdgeInsets.all(Sizes.medium),
