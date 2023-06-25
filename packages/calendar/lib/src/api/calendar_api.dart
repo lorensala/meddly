@@ -25,8 +25,13 @@ class CalendarApi {
     try {
       res = await _dio.get<dynamic>(calendarPath,
           queryParameters: users.isEmpty
-              ? null
+              ? {
+                  'start': DateTime.now().subtract(const Duration(days: 60)),
+                  'end': DateTime.now().add(const Duration(days: 60)),
+                }
               : {
+                  'start': DateTime.now().subtract(const Duration(days: 60)),
+                  'end': DateTime.now().add(const Duration(days: 60)),
                   'users': users,
                 });
     } on DioError catch (e) {
