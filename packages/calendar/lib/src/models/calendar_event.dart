@@ -12,6 +12,13 @@ sealed class CalendarEvent {
     required this.description,
     required this.date,
   });
+
+  bool get asNeeded {
+    return switch (this) {
+      MedicineEvent(:final isAsNeeded) => isAsNeeded,
+      _ => false,
+    };
+  }
 }
 
 class MedicineEvent extends CalendarEvent {
@@ -23,10 +30,12 @@ class MedicineEvent extends CalendarEvent {
     required super.description,
     required super.date,
     this.consumedDate,
+    this.isAsNeeded = false,
   });
 
   final bool consumed;
   final DateTime? consumedDate;
+  final bool isAsNeeded;
 }
 
 class AppointmentEvent extends CalendarEvent {

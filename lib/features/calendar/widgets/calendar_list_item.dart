@@ -273,7 +273,11 @@ class _EventHour extends ConsumerWidget {
     return SizedBox(
       width: Sizes.large * 2,
       child: Text(
-        event.date.toHoursAndMinutesString(),
+        switch (event) {
+          MedicineEvent(:final isAsNeeded) =>
+            isAsNeeded ? '' : event.date.toHoursAndMinutesString(),
+          _ => event.date.toHoursAndMinutesString(),
+        },
         style: context.textTheme.bodyMedium!.copyWith(
           color: context.colorScheme.onBackground,
         ),

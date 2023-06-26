@@ -267,7 +267,7 @@ class __$$_MedicineCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Medicine implements _Medicine {
+class _$_Medicine extends _Medicine {
   const _$_Medicine(
       {@HiveField(0)
           required this.id,
@@ -298,7 +298,8 @@ class _$_Medicine implements _Medicine {
       @HiveField(12)
           this.instructions})
       : _days = days,
-        _hours = hours;
+        _hours = hours,
+        super._();
 
   factory _$_Medicine.fromJson(Map<String, dynamic> json) =>
       _$$_MedicineFromJson(json);
@@ -424,7 +425,7 @@ class _$_Medicine implements _Medicine {
   }
 }
 
-abstract class _Medicine implements Medicine {
+abstract class _Medicine extends Medicine {
   const factory _Medicine(
       {@HiveField(0)
           required final int id,
@@ -454,6 +455,7 @@ abstract class _Medicine implements Medicine {
           final List<TimeOfDay>? hours,
       @HiveField(12)
           final String? instructions}) = _$_Medicine;
+  const _Medicine._() : super._();
 
   factory _Medicine.fromJson(Map<String, dynamic> json) = _$_Medicine.fromJson;
 

@@ -27,6 +27,39 @@ List<CalendarEvent> calendarDailyEvents(
             final userCalendarEvents = <CalendarEvent>[];
 
             userCalendar.forEach((String uid, Calendar calendar) {
+              final asNeededMedicines = calendar.medicines
+                  .where((medicine) => medicine.isAsNeeded)
+                  .toList();
+
+              for (final medicine in asNeededMedicines) {
+                final title = '${medicine.name} ${medicine.dosis.truncate()}'
+                    '${medicine.dosisUnit.name}';
+
+                final unitsLeft = medicine.stock == null
+                    ? ''
+                    : medicine.stock! > 0
+                        ? '${medicine.stock} ${l10n.unitsLeft}'
+                        : l10n.noUnitsLeft;
+
+                final note = medicine.instructions == null
+                    ? ''
+                    : medicine.instructions!.isNotEmpty
+                        ? '\n${medicine.instructions!}'
+                        : '';
+
+                userCalendarEvents.add(
+                  MedicineEvent(
+                    id: medicine.id,
+                    uid: uid,
+                    title: title,
+                    description: unitsLeft + note,
+                    date: selectedDate,
+                    consumed: false,
+                    isAsNeeded: true,
+                  ),
+                );
+              }
+
               for (final appointment in calendar.appointments) {
                 if (appointment.date.isSameDay(selectedDate)) {
                   userCalendarEvents.add(
@@ -97,6 +130,7 @@ List<CalendarEvent> calendarDailyEvents(
           }
 
           events.sort((a, b) {
+            if (a.asNeeded) return -1;
             final date = a.date.compareTo(b.date);
             if (date != 0) {
               return date;

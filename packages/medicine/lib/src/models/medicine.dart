@@ -27,6 +27,11 @@ class Medicine with _$Medicine {
 
   factory Medicine.fromJson(Map<String, dynamic> json) =>
       _$MedicineFromJson(json);
+
+  const Medicine._();
+
+  bool get isAsNeeded =>
+      days == null && hours == null && interval == null && endDate == null;
 }
 
 class ListTimeOfDayOrNullConverter
