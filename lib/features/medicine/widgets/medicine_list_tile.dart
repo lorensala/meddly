@@ -16,6 +16,7 @@ class MedicineListTile extends ConsumerWidget {
     final medicine = ref.watch(medicineProvider);
     return Dismissible(
       key: Key(medicine.id.toString()),
+      direction: DismissDirection.endToStart,
       onDismissed: (direction) {
         if (direction == DismissDirection.endToStart) {
           ref

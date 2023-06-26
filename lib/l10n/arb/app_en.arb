@@ -188,6 +188,7 @@
     "@_SETUP": {},
     "startNow": "Start now",
     "nameHint": "Name",
+    "verifyOTP": "Verify OTP",
     "nameEmpty": "Name cannot be empty",
     "lastNameHint": "Last name",
     "birthdateHint": "Birthdate",

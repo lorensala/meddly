@@ -131,6 +131,7 @@ class _FilterList<T> extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = useScrollController();
     if (items.isEmpty) {
       return EmptyContainer(message: context.l10n.emptySearch);
     }
@@ -145,34 +146,38 @@ class _FilterList<T> extends HookWidget {
           titleAlignment: ListTileTitleAlignment.center,
         ),
       ),
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: const ClampingScrollPhysics(),
-        itemCount: items.length + 2,
-        itemBuilder: (context, index) {
-          if (index == 0) {
+      child: Scrollbar(
+        controller: controller,
+        child: ListView.builder(
+          shrinkWrap: true,
+          controller: controller,
+          physics: const ClampingScrollPhysics(),
+          itemCount: items.length + 2,
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              return _FilterListItem<T>(
+                labelBuilder: (_) => context.l10n.all,
+                item: items.first,
+                onSelected: (_) => onAllSelected(),
+                onDeselected: (_) {},
+                isSelected: selectedItems.length == items.length,
+              );
+            }
+
+            if (index == 1) {
+              return const Divider();
+            }
+
+            final item = items[index - 2];
             return _FilterListItem<T>(
-              labelBuilder: (_) => context.l10n.all,
-              item: items.first,
-              onSelected: (_) => onAllSelected(),
-              onDeselected: (_) {},
-              isSelected: selectedItems.length == items.length,
+              labelBuilder: labelBuilder,
+              item: item,
+              onSelected: onSelected,
+              onDeselected: onDeselected,
+              isSelected: selectedItems.contains(item),
             );
-          }
-
-          if (index == 1) {
-            return const Divider();
-          }
-
-          final item = items[index - 2];
-          return _FilterListItem<T>(
-            labelBuilder: labelBuilder,
-            item: item,
-            onSelected: onSelected,
-            onDeselected: onDeselected,
-            isSelected: selectedItems.contains(item),
-          );
-        },
+          },
+        ),
       ),
     );
   }

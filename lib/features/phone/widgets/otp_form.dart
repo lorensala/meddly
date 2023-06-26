@@ -71,7 +71,7 @@ class _OtpButton extends ConsumerWidget {
 
         notifier.verifyPhone(smsCode);
       },
-      label: 'Verify OTP',
+      label: context.l10n.verifyOTP,
     );
   }
 }
