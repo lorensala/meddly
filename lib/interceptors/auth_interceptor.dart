@@ -22,7 +22,6 @@ class AuthInterceptor extends QueuedInterceptor {
         : await FirebaseMessaging.instance.getAPNSToken();
 
     const baseUrl = Strings.remoteBaseUrl;
-    // Platform.isAndroid ? Strings.baseUrlAndroid : Strings.baseUrliOs;
 
     final headers = {
       HttpHeaders.authorizationHeader: 'Bearer $token',
@@ -33,14 +32,15 @@ class AuthInterceptor extends QueuedInterceptor {
       ..baseUrl = baseUrl
       ..headers = headers;
 
-    // await Future.delayed(const Duration(milliseconds: 800));
-
     return handler.next(options);
   }
 
   @override
-  Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
-    if (err.type == DioErrorType.badResponse &&
+  Future<void> onError(
+    DioException err,
+    ErrorInterceptorHandler handler,
+  ) async {
+    if (err.type == DioExceptionType.badResponse &&
         err.response!.statusCode == 401) {
       await authRepository.signOut();
     }
