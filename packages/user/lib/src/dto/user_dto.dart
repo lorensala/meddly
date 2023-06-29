@@ -40,7 +40,7 @@ class UserDto with _$UserDto {
         sex: user.sex.toBool(),
         height: user.height,
         weight: user.weight,
-        birth: user.birth.isEmpty ? null : user.birth,
+        birth: user.birth?.toIso8601String(),
         invitation: user.invitation,
       );
     } catch (e) {
@@ -69,7 +69,7 @@ class UserDto with _$UserDto {
         sex: Sex.fromBool(value: sex),
         height: height ?? 0,
         weight: weight ?? 0,
-        birth: birth ?? '',
+        birth: DateTime.tryParse(birth ?? ''),
         invitation: invitation ?? '',
       );
     } catch (e) {

@@ -53,20 +53,74 @@ final appointmentProvider = AutoDisposeProvider<Appointment>.internal(
 );
 
 typedef AppointmentRef = AutoDisposeProviderRef<Appointment>;
-String _$isAppointmentFormValidHash() =>
-    r'8c2b0b76e5df0a9117c63ee569cd837dd8f5e199';
+String _$existingAppointmentHash() =>
+    r'e9d2d474336d8d443356d7a431317869bfe17b8a';
 
-/// See also [isAppointmentFormValid].
-@ProviderFor(isAppointmentFormValid)
-final isAppointmentFormValidProvider = AutoDisposeProvider<bool>.internal(
-  isAppointmentFormValid,
-  name: r'isAppointmentFormValidProvider',
+/// See also [existingAppointment].
+@ProviderFor(existingAppointment)
+final existingAppointmentProvider = AutoDisposeProvider<Appointment?>.internal(
+  existingAppointment,
+  name: r'existingAppointmentProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$isAppointmentFormValidHash,
+      : _$existingAppointmentHash,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
+);
+
+typedef ExistingAppointmentRef = AutoDisposeProviderRef<Appointment?>;
+String _$filteredAppointmentsHash() =>
+    r'1503db1301a27c8aa47c77f359f33f8df6fae55c';
+
+/// See also [filteredAppointments].
+@ProviderFor(filteredAppointments)
+final filteredAppointmentsProvider =
+    AutoDisposeProvider<List<Appointment>>.internal(
+  filteredAppointments,
+  name: r'filteredAppointmentsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$filteredAppointmentsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef IsAppointmentFormValidRef = AutoDisposeProviderRef<bool>;
+typedef FilteredAppointmentsRef = AutoDisposeProviderRef<List<Appointment>>;
+String _$isAppointmentValidHash() =>
+    r'63ea4401a3415a3a7dabf8943ea6afba4d88269a';
+
+/// See also [isAppointmentValid].
+@ProviderFor(isAppointmentValid)
+final isAppointmentValidProvider = AutoDisposeProvider<bool>.internal(
+  isAppointmentValid,
+  name: r'isAppointmentValidProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$isAppointmentValidHash,
+  dependencies: <ProviderOrFamily>[appointmentFormControllerProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    appointmentFormControllerProvider,
+    ...?appointmentFormControllerProvider.allTransitiveDependencies
+  },
+);
+
+typedef IsAppointmentValidRef = AutoDisposeProviderRef<bool>;
+String _$appointmentSpecialitiesHash() =>
+    r'2a9331fd534216632c4e0959a99b32a845baa527';
+
+/// See also [AppointmentSpecialities].
+@ProviderFor(AppointmentSpecialities)
+final appointmentSpecialitiesProvider = AutoDisposeNotifierProvider<
+    AppointmentSpecialities, List<AppointmentSpeciality>>.internal(
+  AppointmentSpecialities.new,
+  name: r'appointmentSpecialitiesProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$appointmentSpecialitiesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$AppointmentSpecialities
+    = AutoDisposeNotifier<List<AppointmentSpeciality>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

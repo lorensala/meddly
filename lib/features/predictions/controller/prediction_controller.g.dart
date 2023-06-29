@@ -7,12 +7,12 @@ part of 'prediction_controller.dart';
 // **************************************************************************
 
 String _$predictionControllerHash() =>
-    r'97fdd06fdef63e577e755c7454e621da866279d7';
+    r'6e66d9eb7d75ad2899e575df3c7a84d56954d93b';
 
 /// See also [PredictionController].
 @ProviderFor(PredictionController)
 final predictionControllerProvider = AutoDisposeAsyncNotifierProvider<
-    PredictionController, List<Disease>>.internal(
+    PredictionController, List<Prediction>>.internal(
   PredictionController.new,
   name: r'predictionControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,5 +22,5 @@ final predictionControllerProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$PredictionController = AutoDisposeAsyncNotifier<List<Disease>>;
+typedef _$PredictionController = AutoDisposeAsyncNotifier<List<Prediction>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

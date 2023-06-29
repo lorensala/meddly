@@ -17,7 +17,7 @@ class OnboardingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.mediumPadding,
+      padding: const EdgeInsets.all(Sizes.medium),
       child: Column(
         children: [
           const SizedBox(height: Sizes.medium),
@@ -33,8 +33,8 @@ class OnboardingCard extends StatelessWidget {
               const SizedBox(height: Sizes.small),
               Text(
                 description,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: context.colorScheme.onSecondary.withOpacity(0.5),
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: context.colorScheme.onBackground.withOpacity(0.5),
                     ),
                 textAlign: TextAlign.center,
               ),

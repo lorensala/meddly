@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/medicine.dart';
-import 'package:meddly/features/setup/setup.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:medicine/medicine.dart';
@@ -13,23 +12,29 @@ class MedicineHourForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(Sizes.medium),
-      child: Column(
-        children: [
-          Flexible(child: SvgPicture.asset(Vectors.birthdate)),
-          const SizedBox(height: Sizes.large),
-          const FormTitle(
-            title:
-                'Select the date and time you want to start taking this medicine',
-            isRequired: true,
-          ),
-          const SizedBox(height: Sizes.medium),
-          const _StartDateInput(),
-          const SizedBox(height: Sizes.medium),
-          const _HourSelector(),
-          const SizedBox(height: Sizes.large),
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(Sizes.medium),
+        child: Column(
+          children: [
+            const MedicineVector(vector: Vectors.birthdate),
+            const SizedBox(height: Sizes.large),
+            InputLabel(
+              label: context.l10n.selectDateMedicine,
+              isRequired: true,
+            ),
+            const SizedBox(height: Sizes.medium),
+            const _StartDateInput(),
+            const SizedBox(height: Sizes.medium),
+            InputLabel(
+              label: context.l10n.selectTimeMedicine,
+              isRequired: true,
+            ),
+            const SizedBox(height: Sizes.medium),
+            const _HourSelector(),
+            const SizedBox(height: Sizes.large),
+          ],
+        ),
       ),
     );
   }
@@ -59,7 +64,7 @@ class _HourSelector extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(Sizes.small),
       decoration: BoxDecoration(
-        boxShadow: Constants.boxShadow,
+        boxShadow: boxShadow(context),
         color: context.colorScheme.secondary,
         borderRadius: BorderRadius.circular(Sizes.small),
       ),
@@ -128,17 +133,58 @@ class _HourSelector extends ConsumerWidget {
   }
 }
 
-class _StartDateInput extends ConsumerWidget {
+class _StartDateInput extends HookConsumerWidget {
   const _StartDateInput();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
+    final date = ref.watch(
+      medicineFormControllerProvider.select(
+        (s) => s.startDate,
+      ),
+    );
+    final now = DateTime.now();
 
-    return DateSelector(
-      initialDateTime: DateTime.now(),
-      onDateTimeChanged: notifier.startDateChanged,
-      errorText: null,
+    final controller =
+        useTextEditingController(text: date?.localizedString(context));
+
+    ref.listen(medicineFormControllerProvider, (_, state) {
+      controller.text = state.startDate?.localizedString(context) ?? '';
+    });
+
+    return TextFormField(
+      readOnly: true,
+      controller: controller,
+      style: context.textTheme.bodyMedium,
+      decoration: InputDecoration(
+        hintText: context.l10n.selectADate,
+      ),
+      onTap: () async {
+        final date = await showAdaptiveDatePicker(
+          context: context,
+          initialDateTime: DateTime(
+            now.year,
+            now.month,
+            now.day,
+          ),
+          firstDate: DateTime(
+            now.year,
+            now.month,
+            now.day,
+          ),
+          lastDate: DateTime(
+            now.year + 1,
+            now.month,
+            now.day,
+          ),
+        );
+        if (date != null) {
+          notifier.startDateChanged(date);
+        }
+      },
+      keyboardType: TextInputType.number,
+      onTapOutside: (_) => FocusScope.of(context).unfocus(),
     );
   }
 }

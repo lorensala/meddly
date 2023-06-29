@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/auth/auth.dart';
-import 'package:meddly/features/calendar/calendar.dart';
+import 'package:meddly/features/change_password/view/change_password_page.dart';
 import 'package:meddly/features/export/export.dart';
-import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/notifications/view/view.dart';
 import 'package:meddly/features/settings/settings.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class UserBody extends ConsumerWidget {
@@ -22,7 +23,7 @@ class UserBody extends ConsumerWidget {
       value: userStream,
       builder: (user) {
         if (user == null) {
-          return const Text('No user');
+          return const SizedBox.shrink();
         }
 
         return SingleChildScrollView(
@@ -33,7 +34,7 @@ class UserBody extends ConsumerWidget {
               children: [
                 Row(
                   children: [
-                    const UserAvatar(radius: 30),
+                    UserCircleAvatar(user: user, radius: Sizes.large),
                     const SizedBox(width: Sizes.medium),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,31 +58,40 @@ class UserBody extends ConsumerWidget {
                 ),
                 const SizedBox(height: Sizes.extraLarge),
                 Text(
-                  'CUENTA',
+                  context.l10n.account.toUpperCase(),
                   style: context.textTheme.titleMedium!.copyWith(
                     fontWeight: FontWeight.w500,
                     color: context.colorScheme.onSurface.withOpacity(0.5),
                   ),
                 ),
                 const SizedBox(height: Sizes.medium),
-                const SettingsItem(
-                  vector: Vectors.user,
-                  label: 'Modificar mis datos',
+                SettingsItem(
+                  vector: Vectors.userEdit,
+                  label: context.l10n.editProfile,
+                  onPressed: () => GoRouter.of(context).push(
+                    UserFormPage.fullRouteName,
+                  ),
                 ),
                 const SizedBox(height: Sizes.medium),
-                const SettingsItem(
+                SettingsItem(
                   vector: Vectors.changePassword,
-                  label: 'Cambiar contraseña',
+                  label: context.l10n.changePassword,
+                  onPressed: () => GoRouter.of(context).push(
+                    ChangePasswordPage.fullRouteName,
+                  ),
                 ),
                 const SizedBox(height: Sizes.extraLarge),
                 Text(
-                  'AJUSTES',
-                  style: context.textTheme.titleMedium,
+                  context.l10n.settings.toUpperCase(),
+                  style: context.textTheme.titleMedium!.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: context.colorScheme.onSurface.withOpacity(0.5),
+                  ),
                 ),
                 const SizedBox(height: Sizes.medium),
                 SettingsItem(
                   vector: Vectors.bellRinging,
-                  label: 'Preferencia de notificaciones',
+                  label: context.l10n.notificationPreferences,
                   onPressed: () {
                     GoRouter.of(context).push(
                       '${UserPage.routeName}/${NotificationsPreferencesPage.routeName}',
@@ -89,21 +99,11 @@ class UserBody extends ConsumerWidget {
                   },
                 ),
                 const SizedBox(height: Sizes.medium),
-                SettingsItem(
-                  vector: Vectors.sun,
-                  label: 'Cambiar tema',
-                  onPressed: () {
-                    // GoRouter.of(context).push(
-                    //   '${UserPage.routeName}/${NotificationsPreferencesPage.routeName}',
-                    // );
-                  },
-                ),
-                const SizedBox(height: Sizes.medium),
                 const ExportItem(),
                 const SizedBox(height: Sizes.medium),
                 SettingsItem(
                   vector: Vectors.about,
-                  label: 'Sobre Meddly',
+                  label: context.l10n.aboutMeddly,
                   onPressed: () async {
                     await showDialog<void>(
                       context: context,
@@ -123,13 +123,12 @@ class UserBody extends ConsumerWidget {
                   builder: (context, ref, child) {
                     return SettingsItem(
                       vector: Vectors.logout,
-                      label: 'Cerrar sesión',
+                      label: context.l10n.logOut,
                       onPressed: () async {
                         await Future.wait([
                           ref.read(userControllerProvider.notifier).signOut(),
                           ref.read(authControllerProvider.notifier).signOut(),
                         ]);
-                        ref.invalidate(calendarControllerProvider);
                       },
                     );
                   },

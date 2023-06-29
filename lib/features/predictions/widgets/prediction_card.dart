@@ -15,8 +15,6 @@ class PredictionCard extends StatelessWidget {
   final String vector;
   final VoidCallback onTap;
 
-  // static const double _iconSize = 100;
-
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -34,16 +32,10 @@ class PredictionCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: context.colorScheme.secondary,
           borderRadius: BorderRadius.circular(Sizes.small),
-          boxShadow: Constants.boxShadow,
+          boxShadow: boxShadow(context),
         ),
         child: Row(
           children: [
-            // SizedBox(
-            //   height: _iconSize,
-            //   width: _iconSize,
-            //   child: SvgPicture.asset(vector),
-            // ),
-            // const SizedBox(width: Sizes.medium),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

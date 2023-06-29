@@ -20,4 +20,8 @@ class Appointment with _$Appointment {
 
   factory Appointment.fromJson(Map<String, dynamic> json) =>
       _$AppointmentFromJson(json);
+
+  bool get isUpcoming {
+    return date.isAfter(DateTime.now());
+  }
 }

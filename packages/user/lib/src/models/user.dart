@@ -12,7 +12,7 @@ class User with _$User {
     @Default('') String lastName,
     @Default('') String phone,
     @Default(Sex.male()) Sex sex,
-    @Default('') String birth,
+    DateTime? birth,
     double? height,
     double? weight,
     @Default('') String invitation,
@@ -26,7 +26,7 @@ class User with _$User {
   );
 
   bool get hasBasicInformation =>
-      firstName.isNotEmpty && lastName.isNotEmpty && birth.isNotEmpty;
+      firstName.isNotEmpty && lastName.isNotEmpty && birth != null;
 
   bool get hasPhoneNumber => phone.isNotEmpty;
 }

@@ -34,7 +34,7 @@ class PredictionSymptomsResultListItem extends ConsumerWidget {
             decoration: BoxDecoration(
               color: context.colorScheme.secondary,
               borderRadius: BorderRadius.circular(Sizes.extraSmall),
-              boxShadow: Constants.boxShadow,
+              boxShadow: boxShadow(context),
             ),
             child: Text(result.description),
           ),

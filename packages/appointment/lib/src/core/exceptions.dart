@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 sealed class AppointmentException implements Exception {
   const AppointmentException();
 
   factory AppointmentException.fromDioError(DioError error) {
+    if (error.error is SocketException) {
+      return const AppointmentConnectionException();
+    }
+
     switch (error.type) {
       case DioErrorType.connectionError:
       case DioErrorType.receiveTimeout:

@@ -6,23 +6,6 @@ part of 'notifications_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$notificationsCacheHash() =>
-    r'0b6a4170c8cf81554a920e80859088c44961afc0';
-
-/// See also [notificationsCache].
-@ProviderFor(notificationsCache)
-final notificationsCacheProvider =
-    AutoDisposeProvider<NotificationsCache>.internal(
-  notificationsCache,
-  name: r'notificationsCacheProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$notificationsCacheHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef NotificationsCacheRef = AutoDisposeProviderRef<NotificationsCache>;
 String _$notificationPreferenceHash() =>
     r'50bfa6745b139f787c4afdb42343bd7cc2ec2aa3';
 
@@ -41,6 +24,39 @@ final notificationPreferenceProvider =
 
 typedef NotificationPreferenceRef
     = AutoDisposeProviderRef<NotificationPreference>;
+String _$filteredNotificationsHash() =>
+    r'39d2003c218807be6d52fb1a634c3485838b4c33';
+
+/// See also [filteredNotifications].
+@ProviderFor(filteredNotifications)
+final filteredNotificationsProvider =
+    AutoDisposeProvider<List<Notification>>.internal(
+  filteredNotifications,
+  name: r'filteredNotificationsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$filteredNotificationsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FilteredNotificationsRef = AutoDisposeProviderRef<List<Notification>>;
+String _$hasUnreadNotificationsHash() =>
+    r'315ef732d62724c8f7b6675903b66f904a3a46d1';
+
+/// See also [hasUnreadNotifications].
+@ProviderFor(hasUnreadNotifications)
+final hasUnreadNotificationsProvider = AutoDisposeProvider<bool>.internal(
+  hasUnreadNotifications,
+  name: r'hasUnreadNotificationsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$hasUnreadNotificationsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef HasUnreadNotificationsRef = AutoDisposeProviderRef<bool>;
 String _$notificationsApiHash() => r'8eb14877b88fc9ba62f436c3117126b8642896aa';
 
 /// See also [notificationsApi].
@@ -56,8 +72,22 @@ final notificationsApiProvider = AutoDisposeProvider<NotificationsApi>.internal(
 );
 
 typedef NotificationsApiRef = AutoDisposeProviderRef<NotificationsApi>;
+String _$notificationHash() => r'07f13e3ceb1f4b376c219d21e7e23a1b342eeeb9';
+
+/// See also [notification].
+@ProviderFor(notification)
+final notificationProvider = AutoDisposeProvider<Notification>.internal(
+  notification,
+  name: r'notificationProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$notificationHash,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
+);
+
+typedef NotificationRef = AutoDisposeProviderRef<Notification>;
 String _$notificationsRepositoryHash() =>
-    r'1f0d5ffd1e3fa514faa8601929f419d1a95cf1f4';
+    r'269e63ef61d7b4c6e2c0ecbcfef0e6669f3e6a05';
 
 /// See also [notificationsRepository].
 @ProviderFor(notificationsRepository)

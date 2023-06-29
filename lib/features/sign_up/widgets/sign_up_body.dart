@@ -3,13 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/sign_up/widgets/widgets.dart';
 
-/// {@template sign_up_body}
-/// Body of the SignUpPage.
-///
-/// Add what it does
-/// {@endtemplate}
 class SignUpBody extends StatelessWidget {
-  /// {@macro sign_up_body}
   const SignUpBody({super.key});
 
   @override

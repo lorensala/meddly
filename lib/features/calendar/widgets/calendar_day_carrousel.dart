@@ -7,7 +7,7 @@ import 'package:meddly/features/calendar/calendar.dart';
 class CalendarDayCarrousel extends HookConsumerWidget {
   const CalendarDayCarrousel({super.key});
 
-  static const double _height = 90;
+  static const double _height = 108;
   static const Duration _duration = Duration(milliseconds: 300);
   static const double _viewportFraction = 0.15;
 
@@ -26,7 +26,16 @@ class CalendarDayCarrousel extends HookConsumerWidget {
     );
 
     return Container(
-      color: context.colorScheme.background,
+      decoration: BoxDecoration(
+        color: context.colorScheme.secondary,
+        boxShadow: [
+          BoxShadow(
+            color: context.colorScheme.onBackground.withOpacity(0.05),
+            blurRadius: 4,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
       height: _height,
       child: PageView.builder(
         onPageChanged: (int page) {
@@ -42,13 +51,13 @@ class CalendarDayCarrousel extends HookConsumerWidget {
               calendarDateProvider.overrideWithValue(date),
             ],
             child: GestureDetector(
-              onTap: () {
-                ref.read(calendarSelectedDateProvider.notifier).update(date);
-                controller.animateToPage(
+              onTap: () async {
+                await controller.animateToPage(
                   index,
                   duration: _duration,
                   curve: Curves.easeInOut,
                 );
+                ref.read(calendarSelectedDateProvider.notifier).update(date);
               },
               child: const CalendarDayCarrouselItem(),
             ),

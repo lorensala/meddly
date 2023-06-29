@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/medicine.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class MedicineBody extends ConsumerWidget {
@@ -10,32 +10,34 @@ class MedicineBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final medicines = ref.watch(medicineControllerProvider);
+    final filteredMedicines = ref.watch(filteredMedicinesProvider);
 
     return AsyncValueWidget(
       value: medicines,
       builder: (medicines) {
         if (medicines.isEmpty) {
-          return const EmptyContainer(
-            message: 'No tienes medicinas registradas',
+          return EmptyContainer(
+            message: context.l10n.emptyMedicines,
           );
         }
 
-        return Padding(
-          padding: Sizes.mediumPadding,
-          child: ListView.separated(
-            itemCount: medicines.length,
-            itemBuilder: (context, index) {
-              final medicine = medicines[index];
-              return ProviderScope(
-                overrides: [
-                  medicineProvider.overrideWithValue(medicine),
-                ],
-                child: const MedicineListTile(),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(height: Sizes.medium),
-          ),
+        if (filteredMedicines.isEmpty) {
+          return EmptyContainer(
+            message: context.l10n.emptyFilteredMedicines,
+          );
+        }
+
+        return ListView.builder(
+          itemCount: filteredMedicines.length,
+          itemBuilder: (context, index) {
+            final medicine = filteredMedicines[index];
+            return ProviderScope(
+              overrides: [
+                medicineProvider.overrideWithValue(medicine),
+              ],
+              child: const MedicineListTile(),
+            );
+          },
         );
       },
     );

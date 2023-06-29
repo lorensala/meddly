@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 sealed class PredictionException implements Exception {
   const PredictionException();
 
   factory PredictionException.fromDioError(DioError error) {
+    if (error.error is SocketException) {
+      return const PredictionConnectionException();
+    }
+
     switch (error.type) {
       case DioErrorType.connectionError:
       case DioErrorType.receiveTimeout:

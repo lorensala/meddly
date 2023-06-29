@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:meddly/features/browse/browse.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/measurement/measurement.dart';
-import 'package:meddly/router/provider/go_router_provider.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 class MeasurementPage extends ConsumerWidget {
   const MeasurementPage({super.key});
@@ -13,14 +13,11 @@ class MeasurementPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mediciones'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => ref.read(goRouterProvider).go(
-              '${BrowsePage.routeName}/${MeasurementPage.routeName}/${MeasurementFormPage.routeName}',
-            ),
-        tooltip: 'Añadir medición',
-        child: const Icon(Icons.add),
+        shadowColor: context.colorScheme.onBackground.withOpacity(0.2),
+        title: Text(context.l10n.measurements),
+        actions: const [
+          MeasurementFilter(),
+        ],
       ),
       body: const MeasurementView(),
     );
@@ -35,15 +32,11 @@ class MeasurementView extends ConsumerWidget {
     ref.listen(measurementControllerProvider, (_, state) {
       state.whenOrNull(
         error: (err, _) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(err.toString()),
-            ),
-          );
+          showSnackBar(context, err.toString());
         },
       );
     });
 
-    return const MeasurementBody();
+    return const MeasurementList();
   }
 }

@@ -13,20 +13,30 @@ class DateSelector extends HookWidget {
     required this.onDateTimeChanged,
     required this.errorText,
     this.initialValue,
+    this.firstDate,
+    this.lastDate,
+    this.enabled = true,
     super.key,
   });
 
   final DateTime initialDateTime;
   final DateTime? initialValue;
+  final DateTime? firstDate;
+  final DateTime? lastDate;
   final String? errorText;
+  final bool enabled;
   final void Function(DateTime value) onDateTimeChanged;
 
   @override
   Widget build(BuildContext context) {
     final textStyle = useState<TextStyle>(
-      context.textTheme.bodyMedium!
-          .copyWith(color: context.colorScheme.onSecondary.withOpacity(0.5)),
+      initialValue == null
+          ? context.textTheme.bodyMedium!.copyWith(
+              color: context.colorScheme.onSecondary.withOpacity(0.5),
+            )
+          : context.textTheme.bodyMedium!,
     );
+
     final controller = useTextEditingController(
       text: initialValue == null
           ? 'Select a date'
@@ -34,6 +44,7 @@ class DateSelector extends HookWidget {
     );
 
     return TextFormField(
+      enabled: enabled,
       controller: controller,
       style: textStyle.value,
       onTap: () async {
@@ -43,17 +54,17 @@ class DateSelector extends HookWidget {
           final value = await showDatePicker(
             context: context,
             initialDate: initialDateTime,
-            firstDate: DateTime(1900),
-            lastDate: DateTime.now(),
+            firstDate: firstDate ?? DateTime(1900),
+            lastDate: lastDate ?? DateTime.now(),
           );
 
           if (value != null) {
             controller.text = value.toString().dateTimeStringFormat();
-            textStyle.value = textTheme.bodyLarge!;
+            textStyle.value = textTheme.bodyMedium!;
             onDateTimeChanged(value);
           } else {
             controller.text = 'Select a date';
-            textStyle.value = textTheme.bodyLarge!.copyWith(
+            textStyle.value = textTheme.bodyMedium!.copyWith(
               color: colorScheme.onSecondary.withOpacity(0.5),
             );
             onDateTimeChanged(initialDateTime);
@@ -71,12 +82,12 @@ class DateSelector extends HookWidget {
                       child: CupertinoDatePicker(
                         mode: CupertinoDatePickerMode.date,
                         initialDateTime: initialDateTime,
-                        minimumDate: DateTime(1900),
-                        maximumDate: DateTime.now(),
+                        minimumDate: firstDate ?? DateTime(1900),
+                        maximumDate: lastDate ?? DateTime.now(),
                         onDateTimeChanged: (value) {
                           controller.text =
                               value.toString().dateTimeStringFormat();
-                          textStyle.value = textTheme.bodyLarge!;
+                          textStyle.value = textTheme.bodyMedium!;
                           onDateTimeChanged(value);
                         },
                       ),
@@ -88,13 +99,13 @@ class DateSelector extends HookWidget {
                           controller.text =
                               initialDateTime.toString().dateTimeStringFormat();
                           textStyle.value =
-                              context.textTheme.bodyLarge!.copyWith(
+                              context.textTheme.bodyMedium!.copyWith(
                             color: context.colorScheme.onSecondary
                                 .withOpacity(0.5),
                           );
                           onDateTimeChanged(initialDateTime);
                         }
-                        textStyle.value = context.textTheme.bodyLarge!;
+                        textStyle.value = context.textTheme.bodyMedium!;
                         GoRouter.of(context).pop();
                       },
                     ),

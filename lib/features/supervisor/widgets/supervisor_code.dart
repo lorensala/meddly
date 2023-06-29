@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/supervisor/supervisor.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class SupervisorCode extends ConsumerWidget {
@@ -28,10 +29,10 @@ class SupervisorCode extends ConsumerWidget {
                 );
                 showSnackBar(
                   context,
-                  'Código copiado al portapapeles',
+                  context.l10n.copyCodeSuccess,
                 );
               } catch (e) {
-                showSnackBar(context, 'Error al copiar el código');
+                showSnackBar(context, context.l10n.copyCodeError);
               }
             },
             child: ConstrainedBox(

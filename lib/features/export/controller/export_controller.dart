@@ -25,8 +25,8 @@ class ExportController extends _$ExportController {
 
       final (err, file) = await repository.exportPdf(
         (count, total) {
-          final progress = (count / total * 100).toInt();
-          state = ExportLoading(progress: progress.toDouble());
+          final progress = count / total;
+          state = ExportLoading(progress: progress);
         },
         externalPath!.path,
       );

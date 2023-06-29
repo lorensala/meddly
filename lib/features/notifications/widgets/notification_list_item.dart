@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/notifications/notifications.dart';
+import 'package:notifications/notifications.dart';
 
-class NotificationListItem extends StatelessWidget {
+class NotificationListItem extends ConsumerWidget {
   const NotificationListItem({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notification = ref.watch(notificationProvider);
+
     return Dismissible(
       direction: DismissDirection.endToStart,
       background: ColoredBox(
@@ -25,34 +30,49 @@ class NotificationListItem extends StatelessWidget {
       ),
       key: const Key('notification'),
       onDismissed: (direction) {
-        // TODO(me): ...
-        if (direction == DismissDirection.endToStart) {}
+        if (direction == DismissDirection.endToStart) {
+          ref.read(notificationsControllerProvider.notifier).delete(
+                notification,
+              );
+        }
       },
       child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: Sizes.medium,
+          vertical: Sizes.small,
+        ),
+        selected: !notification.isRead,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(0),
         ),
         tileColor: context.colorScheme.secondary,
-        leading: const SizedBox(
-          height: double.infinity,
-          child: Icon(Icons.medical_services_outlined),
+        leading: SvgPicture.asset(
+          switch (notification.type) {
+            NotificationType.appointment => Vectors.appointment,
+            NotificationType.medicine => Vectors.medicine,
+            NotificationType.supervisors => Vectors.linkedAccount,
+          },
+          colorFilter: ColorFilter.mode(
+            context.colorScheme.onBackground,
+            BlendMode.srcIn,
+          ),
         ),
+        titleAlignment: ListTileTitleAlignment.center,
+        minLeadingWidth: 0,
         title: Text(
-          'Tomar medicamento',
+          notification.title,
           style: context.textTheme.titleMedium,
         ),
         subtitle: Text(
-          'Debes tomar Tafirol 200ml',
+          notification.body,
           style: context.textTheme.bodyMedium!.copyWith(
             color: context.colorScheme.onSecondary.withOpacity(0.5),
-            fontWeight: FontWeight.w500,
           ),
         ),
         trailing: Text(
-          '09:00',
+          notification.createdAt.toHoursAndMinutesString(),
           style: context.textTheme.bodyMedium!.copyWith(
             color: context.colorScheme.onSecondary.withOpacity(0.5),
-            fontWeight: FontWeight.w500,
           ),
         ),
       ),

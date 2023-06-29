@@ -30,10 +30,14 @@ class EmptyContainer extends StatelessWidget {
               height: size,
             ),
           const SizedBox(height: Sizes.medium),
-          Text(
-            message,
-            style: context.textTheme.titleMedium!.copyWith(
-              color: context.colorScheme.onSecondary.withOpacity(0.5),
+          SizedBox(
+            width: context.width * 0.8,
+            child: Text(
+              message,
+              style: context.textTheme.titleMedium!.copyWith(
+                color: context.colorScheme.onSecondary.withOpacity(0.5),
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
         ],

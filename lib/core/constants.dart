@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Constants {
-  static const boxShadow = [
-    BoxShadow(
-      color: Color.fromARGB(255, 215, 215, 215),
-      blurRadius: 6,
-      offset: Offset(2, 2),
-    ),
-  ];
-
   static const shimmerGradient = LinearGradient(
     colors: [
       Color(0xFFEBEBF4),
@@ -23,4 +15,6 @@ class Constants {
     begin: Alignment(-1, -0.3),
     end: Alignment(1, 0.3),
   );
+
+  static const noName = 'NN';
 }

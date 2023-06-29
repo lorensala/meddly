@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/export/export.dart';
-import 'package:meddly/features/home/home.dart';
 
 class ExportDialog extends ConsumerWidget {
   const ExportDialog({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      exportControllerProvider,
+      (_, state) => switch (state) {
+        ExportSuccess() => Navigator.of(context).pop(),
+        _ => null,
+      },
+    );
     final progress = ref.watch(
       exportControllerProvider.select((state) {
         return switch (state) {

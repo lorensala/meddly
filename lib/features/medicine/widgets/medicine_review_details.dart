@@ -13,12 +13,12 @@ class MedicineReviewDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
       child: Padding(
-        padding: Sizes.mediumPadding,
+        padding: EdgeInsets.all(Sizes.medium),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             _MedicineInfo(),
-            SizedBox(height: Sizes.medium),
+            SizedBox(height: Sizes.large),
             Column(
               children: [
                 _StockField(),
@@ -41,36 +41,24 @@ class _MedicineInfo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final medicineName =
-        ref.watch(medicineFormControllerProvider.select((s) => s.name));
-    final medicinePresentation =
-        ref.watch(medicineFormControllerProvider.select((s) => s.presentation));
-    final medicineFrecuency =
-        ref.watch(medicineFormControllerProvider.select((s) => s.frecuency));
-    final medicineFrecuencyValue = ref
-        .watch(medicineFormControllerProvider.select((s) => s.frecuencyValue));
-    final medicineDays =
-        ref.watch(medicineFormControllerProvider.select((s) => s.days));
-    final medicineDosis =
-        ref.watch(medicineFormControllerProvider.select((s) => s.dosis));
-    final medicineDosisUnit =
-        ref.watch(medicineFormControllerProvider.select((s) => s.dosisUnit));
+    final medicine = ref.watch(medicineFormControllerProvider);
 
     String getMedicineInitials() {
-      if (medicineName.value.length == 1) {
-        return '${medicineName.value[0]}${medicineName.value[0]}'.toUpperCase();
+      if (medicine.name.value.length == 1) {
+        return '${medicine.name.value[0]}${medicine.name.value[0]}'
+            .toUpperCase();
       }
-      return (medicineName.value[0] + medicineName.value[1]).toUpperCase();
+      return (medicine.name.value[0] + medicine.name.value[1]).toUpperCase();
     }
 
     return Row(
       children: [
         CircleAvatar(
-          radius: 50,
+          radius: Sizes.extraLarge,
           backgroundColor: context.colorScheme.primary,
           child: Text(
             getMedicineInitials(),
-            style: context.textTheme.displaySmall!.copyWith(
+            style: context.textTheme.bodyLarge!.copyWith(
               color: context.colorScheme.onPrimary,
             ),
           ),
@@ -80,24 +68,35 @@ class _MedicineInfo extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                medicineName.value,
-                style: context.textTheme.titleLarge,
+              Row(
+                children: [
+                  Text(
+                    // ignore: lines_longer_than_80_chars
+                    '${medicine.name.value} ${medicine.dosis.value}${medicine.dosisUnit.value}',
+                    style: context.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(width: Sizes.extraSmall),
+                  Text(
+                    // ignore: lines_longer_than_80_chars
+                    '- ${medicine.presentation.localizedString(context.l10n)}',
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ],
               ),
-              const SizedBox(height: Sizes.small),
-              Text(
-                '${medicinePresentation.name.capitalize()}, ${medicineDosis.value}${medicineDosisUnit.value}',
-                style: context.textTheme.bodyLarge,
-              ),
-              const SizedBox(height: Sizes.small),
-              if (medicineFrecuency == MedicineFrecuency.regular)
-                Text(context.l10n.everyXdays(medicineFrecuencyValue)),
-              if (medicineFrecuency == MedicineFrecuency.specificDays)
+              const SizedBox(height: Sizes.extraSmall),
+              if (medicine.frecuency == MedicineFrecuency.regular)
+                Text(context.l10n.everyXdays(medicine.frecuencyValue)),
+              if (medicine.frecuency == MedicineFrecuency.specificDays)
                 Text(
-                  context.l10n
-                      .everyX(medicineDays.map((e) => e.name).join(', ')),
+                  context.l10n.everyX(
+                    medicine.days
+                        .map((e) => e.localizedString(context.l10n))
+                        .join(', '),
+                  ),
                 ),
-              if (medicineFrecuency == MedicineFrecuency.asNeeded)
+              if (medicine.frecuency == MedicineFrecuency.asNeeded)
                 Text(context.l10n.asNeeded),
             ],
           ),
@@ -118,11 +117,6 @@ class _StockWarningField extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InputLabel(
-          label: context.l10n.stockWarning,
-          isRequired: false,
-        ),
-        const SizedBox(height: Sizes.small),
         TextFormField(
           style: context.textTheme.bodyMedium,
           textInputAction: TextInputAction.done,
@@ -130,6 +124,7 @@ class _StockWarningField extends ConsumerWidget {
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             errorText: errorText,
+            labelText: context.l10n.stockWarning,
           ),
         ),
         const SizedBox(height: Sizes.small),
@@ -152,8 +147,6 @@ class _StockField extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InputLabel(label: context.l10n.currentStock, isRequired: false),
-        const SizedBox(height: Sizes.small),
         TextFormField(
           textInputAction: TextInputAction.done,
           onChanged: notifier.stockChanged,
@@ -161,6 +154,7 @@ class _StockField extends ConsumerWidget {
           style: context.textTheme.bodyMedium,
           decoration: InputDecoration(
             errorText: errorText,
+            labelText: context.l10n.currentStock,
           ),
         ),
         const SizedBox(height: Sizes.small),
@@ -180,23 +174,18 @@ class _InstructionsField extends ConsumerWidget {
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
     final errorText = ref.watch(medicineInstructionErrorTextProvider);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        InputLabel(label: context.l10n.instructions, isRequired: false),
-        const SizedBox(height: Sizes.small),
-        TextFormField(
-          textInputAction: TextInputAction.done,
-          onChanged: notifier.instructionsChanged,
-          keyboardType: TextInputType.multiline,
-          style: context.textTheme.bodyMedium,
-          maxLines: 3,
-          decoration: InputDecoration(
-            hintText: context.l10n.instructionsHint,
-            errorText: errorText,
-          ),
-        ),
-      ],
+    return TextFormField(
+      textInputAction: TextInputAction.done,
+      onChanged: notifier.instructionsChanged,
+      keyboardType: TextInputType.multiline,
+      style: context.textTheme.bodyMedium,
+      maxLines: 3,
+      decoration: InputDecoration(
+        hintText: context.l10n.instructionsHint,
+        errorText: errorText,
+        labelText: context.l10n.instructions,
+        alignLabelWithHint: true,
+      ),
     );
   }
 }

@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 sealed class UserException implements Exception {
   const UserException();
 
   factory UserException.fromDioError(DioError error) {
+    if (error.error is SocketException) {
+      return const UserConnectionException();
+    }
+
     switch (error.type) {
       case DioErrorType.connectionError:
       case DioErrorType.receiveTimeout:

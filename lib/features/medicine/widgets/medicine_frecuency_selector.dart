@@ -19,16 +19,26 @@ class MedicineFrecuencySelector extends ConsumerWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        boxShadow: Constants.boxShadow,
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+        boxShadow: boxShadow(context),
+        borderRadius: BorderRadius.circular(Sizes.small),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: MedicineFrecuency.values
             .map(
               (frecuency) => ListTile(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(Sizes.small),
+                ),
                 selected: selectedFrecuency == frecuency,
-                title: Text(getl10nFrecuency(frecuency, context)),
+                title: Text(
+                  getl10nFrecuency(frecuency, context),
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: selectedFrecuency == frecuency
+                        ? context.colorScheme.primary
+                        : context.colorScheme.onSecondary,
+                  ),
+                ),
                 trailing: selectedFrecuency == frecuency
                     ? const Icon(Icons.check)
                     : null,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/widgets/widgets.dart';
 
@@ -8,13 +7,14 @@ class MedicineIntervalForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Sizes.mediumPadding,
+    return const Padding(
+      padding: EdgeInsets.all(Sizes.medium),
       child: Column(
         children: [
-          Flexible(child: SvgPicture.asset(Vectors.onboarding3)),
-          const MedcineIntervalSelector(),
-          const SizedBox(height: Sizes.extraLarge),
+          MedicineVector(vector: Vectors.onboarding3),
+          SizedBox(height: Sizes.large),
+          MedcineIntervalSelector(),
+          SizedBox(height: Sizes.extraLarge),
         ],
       ),
     );

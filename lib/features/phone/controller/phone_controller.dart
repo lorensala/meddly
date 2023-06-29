@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages, avoid_public_notifier_properties, lines_longer_than_80_chars
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_repository/firebase_auth_repository.dart';
 import 'package:meddly/features/auth/auth.dart';

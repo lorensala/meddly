@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-
 import 'package:meddly/features/user/user.dart';
 
 class SettingsButton extends ConsumerWidget {
@@ -20,14 +19,15 @@ class SettingsButton extends ConsumerWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,
-            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+            borderRadius: BorderRadius.circular(Sizes.small),
           ),
           child: Center(
-              child: SvgPicture.asset(
-            Assets.settingsIcon,
-            width: 24,
-            height: 24,
-          ),),
+            child: SvgPicture.asset(
+              Assets.settingsIcon,
+              width: 24,
+              height: 24,
+            ),
+          ),
         ),
       ),
     );

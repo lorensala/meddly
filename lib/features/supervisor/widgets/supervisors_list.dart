@@ -23,19 +23,22 @@ class SupervisorsList extends ConsumerWidget {
           );
         }
 
-        return ListView(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          children: res.supervisors.map(
-            (supervisor) {
-              return ProviderScope(
-                overrides: [
-                  supervisorProvider.overrideWithValue(supervisor),
-                ],
-                child: const _SupervisorListItem(),
-              );
-            },
-          ).toList(),
+        return RefreshIndicator(
+          onRefresh: () async =>
+              ref.read(supervisorControllerProvider.notifier).refresh(),
+          child: ListView(
+            shrinkWrap: true,
+            children: res.supervisors.map(
+              (supervisor) {
+                return ProviderScope(
+                  overrides: [
+                    supervisorProvider.overrideWithValue(supervisor),
+                  ],
+                  child: const _SupervisorListItem(),
+                );
+              },
+            ).toList(),
+          ),
         );
       },
     );
@@ -80,27 +83,11 @@ class _SupervisorListItem extends ConsumerWidget {
       onDismissed: (_) => ref
           .read(supervisorControllerProvider.notifier)
           .deleteSupervisor(supervisor.uid),
-      background: ColoredBox(
-        color: context.colorScheme.error,
-        child: const Padding(
-          padding: EdgeInsets.only(right: Sizes.medium),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
+      background: const DismissibleDeleteBackground(),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: context.colorScheme.primary,
-          child: Text(
-            '${supervisor.firstName[0]}${supervisor.lastName[0]}',
-            style: context.textTheme.bodyMedium!
-                .copyWith(color: context.colorScheme.onPrimary),
-          ),
+        leading: UserCircleAvatar(
+          user: supervisor,
+          radius: Sizes.medium + Sizes.extraSmall,
         ),
         title: Text(
           '${supervisor.firstName} ${supervisor.lastName}',

@@ -13,7 +13,7 @@ class OnboardingLoginButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.mediumPadding,
+      padding: const EdgeInsets.all(Sizes.medium),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

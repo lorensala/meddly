@@ -1,30 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
 import 'package:medicine/medicine.dart';
 
 part 'medicine.freezed.dart';
 part 'medicine.g.dart';
 
 @freezed
+@HiveType(typeId: 2)
 class Medicine with _$Medicine {
   const factory Medicine({
-    required int id,
-    required String name,
-    required DateTime startDate,
-    DateTime? endDate,
-    int? stock,
-    int? stockWarning,
-    required MedicinePresentation presentation,
-    required MedicineDosisUnit dosisUnit,
-    required double dosis,
-    int? interval,
-    @ListMedicineDayOrNullConverter() List<MedicineDay>? days,
-    @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
-    String? instructions,
+    @HiveField(0) required int id,
+    @HiveField(1) required String name,
+    @HiveField(2) required DateTime startDate,
+    @HiveField(3) DateTime? endDate,
+    @HiveField(4) int? stock,
+    @HiveField(5) int? stockWarning,
+    @HiveField(6) required MedicinePresentation presentation,
+    @HiveField(7) required MedicineDosisUnit dosisUnit,
+    @HiveField(8) required double dosis,
+    @HiveField(9) int? interval,
+    @HiveField(10) @ListMedicineDayOrNullConverter() List<MedicineDay>? days,
+    @HiveField(11) @ListTimeOfDayOrNullConverter() List<TimeOfDay>? hours,
+    @HiveField(12) String? instructions,
   }) = _Medicine;
 
   factory Medicine.fromJson(Map<String, dynamic> json) =>
       _$MedicineFromJson(json);
+
+  const Medicine._();
+
+  bool get isAsNeeded =>
+      days == null && hours == null && interval == null && endDate == null;
 }
 
 class ListTimeOfDayOrNullConverter

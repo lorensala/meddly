@@ -5,13 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/onboarding/widgets/widgets.dart';
 
-/// {@template onboarding_body}
-/// Body of the OnboardingPage.
-///
-/// Add what it does
-/// {@endtemplate}
 class OnboardingBody extends HookWidget {
-  /// {@macro onboarding_body}
   const OnboardingBody({super.key});
 
   static const _timerDuration = Duration(seconds: 9);

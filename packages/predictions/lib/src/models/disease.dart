@@ -6,8 +6,8 @@ part 'disease.g.dart';
 @freezed
 class Disease with _$Disease {
   const factory Disease({
-    required String disease,
-    required double probability,
+    required String code,
+    required String description,
   }) = _Disease;
 
   factory Disease.fromJson(Map<String, dynamic> json) =>

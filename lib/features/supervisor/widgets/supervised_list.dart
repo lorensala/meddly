@@ -23,19 +23,22 @@ class SupervisedList extends ConsumerWidget {
           );
         }
 
-        return ListView(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          children: res.supervised.map(
-            (supervised) {
-              return ProviderScope(
-                overrides: [
-                  supervisedProvider.overrideWithValue(supervised),
-                ],
-                child: const _SupervisedListItem(),
-              );
-            },
-          ).toList(),
+        return RefreshIndicator(
+          onRefresh: () =>
+              ref.read(supervisorControllerProvider.notifier).refresh(),
+          child: ListView(
+            shrinkWrap: true,
+            children: res.supervised.map(
+              (supervised) {
+                return ProviderScope(
+                  overrides: [
+                    supervisedProvider.overrideWithValue(supervised),
+                  ],
+                  child: const _SupervisedListItem(),
+                );
+              },
+            ).toList(),
+          ),
         );
       },
     );
@@ -80,27 +83,11 @@ class _SupervisedListItem extends ConsumerWidget {
       onDismissed: (_) => ref
           .read(supervisorControllerProvider.notifier)
           .deleteSupervised(supervised.uid),
-      background: ColoredBox(
-        color: context.colorScheme.error,
-        child: const Padding(
-          padding: EdgeInsets.only(right: Sizes.medium),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
+      background: const DismissibleDeleteBackground(),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: context.colorScheme.primary,
-          child: Text(
-            '${supervised.firstName[0]}${supervised.lastName[0]}',
-            style: context.textTheme.bodyMedium!
-                .copyWith(color: context.colorScheme.onPrimary),
-          ),
+        leading: UserCircleAvatar(
+          user: supervised,
+          radius: Sizes.medium + Sizes.extraSmall,
         ),
         title: Text(
           '${supervised.firstName} ${supervised.lastName}',

@@ -1,62 +1,154 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class PredictionResultsPage extends StatelessWidget {
   const PredictionResultsPage({super.key});
 
   static const String routeName = 'results';
+  static const String fullRouteName =
+      '${BrowsePage.routeName}/${PredictionsPage.routeName}/${PredictionResultsPage.routeName}';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Results'),
+        title: Text(context.l10n.results),
       ),
-      body: Consumer(
-        builder: (context, ref, _) {
-          final predictionResults = ref.watch(predictionControllerProvider);
+      body: const PredictionResultsBody(),
+    );
+  }
+}
 
-          return AsyncValueWidget(
-            value: predictionResults,
-            builder: (results) {
-              if (results.isEmpty) {
-                return const Center(child: Text('No results'));
-              }
+class PredictionResultsBody extends StatelessWidget {
+  const PredictionResultsBody({super.key});
 
-              return ListView.builder(
-                itemCount: results.length,
-                itemBuilder: (context, index) {
-                  final result = results[index];
-                  return ListTile(
-                    title: Text(result.disease),
-                    subtitle: Row(
-                      children: [
-                        Expanded(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: LinearProgressIndicator(
-                              value: result.probability,
-                              backgroundColor: context.colorScheme.surface,
-                              minHeight: 8,
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const PredictionResultsList(),
+        const SizedBox(height: Sizes.large),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
+          child: Text(context.l10n.predictionsResultDescripcion),
+        )
+      ],
+    );
+  }
+}
+
+class PredictionResultsList extends ConsumerWidget {
+  const PredictionResultsList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final predictionResults = ref.watch(predictionControllerProvider);
+
+    return AsyncValueWidget(
+      value: predictionResults,
+      builder: (results) {
+        if (results.isEmpty) {
+          return Center(child: Text(context.l10n.predictionsSearchNoResults));
+        }
+
+        return ListView.builder(
+          shrinkWrap: true,
+          itemCount: results.length,
+          itemBuilder: (context, index) {
+            final result = results[index];
+
+            if (result.probability == 0) return const SizedBox.shrink();
+
+            return ListTile(
+              title: Padding(
+                padding: const EdgeInsets.only(bottom: Sizes.small),
+                child: Text(
+                  result.disease,
+                  style: context.textTheme.titleSmall,
+                ),
+              ),
+              subtitle: Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: Sizes.large,
+                      child: Stack(
+                        alignment: Alignment.centerLeft,
+                        children: [
+                          SizedBox(
+                            height: Sizes.large,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: _AnimatedLinearProgressIndicator(
+                                value: result.probability,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(width: Sizes.medium),
-                        Text(
-                          '${result.probability}%',
-                        ),
-                      ],
+                          Positioned(
+                            right: 16,
+                            child: SizedBox(
+                              width: 60,
+                              child: Text(
+                                // ignore: lines_longer_than_80_chars
+                                '${(result.probability * 100).toInt()}%',
+                                textAlign: TextAlign.end,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  );
-                },
-              );
-            },
-          );
-        },
-      ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class _AnimatedLinearProgressIndicator extends HookWidget {
+  const _AnimatedLinearProgressIndicator({
+    required this.value,
+  });
+  final double value;
+  static const Duration _duration = Duration(milliseconds: 800);
+
+  @override
+  Widget build(BuildContext context) {
+    final animationController = useAnimationController(duration: _duration);
+    final curvedAnimation = CurvedAnimation(
+      parent: animationController,
+      curve: Curves.easeInOut,
+    );
+    final animation = useAnimation<double>(
+      Tween<double>(begin: 0, end: value).animate(curvedAnimation),
+    );
+
+    useEffect(
+      () {
+        animationController.forward();
+
+        return null;
+      },
+      [],
+    );
+
+    return LinearProgressIndicator(
+      value: animation,
+      color: context.colorScheme.primary.withOpacity(0.8),
+      backgroundColor: context.colorScheme.onBackground.withOpacity(0.05),
+      minHeight: 8,
     );
   }
 }

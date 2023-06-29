@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/medicine/medicine.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/router.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:medicine/medicine.dart';
@@ -22,12 +22,9 @@ class MedicineFrecuencyPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Medicine'),
-        actions: [
-          CancelButton(
-            onConfirm: () => Navigator.of(context)
-                .pushAndRemoveUntil(MedicinePage.route(), (route) => false),
-          ),
+        title: Text(context.l10n.medicines),
+        actions: const [
+          CancelButton(),
         ],
       ),
       body: const MedicineFrecuencyView(),
@@ -64,11 +61,11 @@ class _NextButton extends ConsumerWidget {
       onPressed: () {
         if (isAsNeeded) {
           ref.read(goRouterProvider).push(
-                '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineReviewDetailsPage.routeName}',
+                '/${MedicineReviewDetailsPage.routeName}',
               );
         } else {
           ref.read(goRouterProvider).push(
-                '${BrowsePage.routeName}/${MedicinePage.routeName}/${MedicineIntervalPage.routeName}',
+                '/${MedicineIntervalPage.routeName}',
               );
         }
       },

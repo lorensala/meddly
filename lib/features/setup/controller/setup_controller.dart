@@ -71,17 +71,15 @@ class SetupController extends _$SetupController {
   }
 
   void save() {
-    if (state.isNotValid) return;
-
     final newUser = User(
       uid: '',
       email: '',
       firstName: state.name.value.capitalize().trim(),
       lastName: state.lastname.value.trim(),
-      birth: state.birthdate.value,
+      birth: DateTime.tryParse(state.birthdate.value),
       sex: state.sex.value ? const Sex.female() : const Sex.male(),
-      height: double.tryParse(state.height.value),
-      weight: double.tryParse(state.weight.value),
+      height: state.height.isPure ? null : double.tryParse(state.height.value),
+      weight: state.weight.isPure ? null : double.tryParse(state.weight.value),
     );
 
     ref.read(userControllerProvider.notifier).createUser(newUser);

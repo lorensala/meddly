@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
-import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
@@ -21,12 +21,9 @@ class MedicineReviewDetailsPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Medicine'),
-        actions: [
-          CancelButton(
-            onConfirm: () => Navigator.of(context)
-                .pushAndRemoveUntil(MedicinePage.route(), (route) => false),
-          ),
+        title: Text(context.l10n.medicines),
+        actions: const [
+          CancelButton(),
         ],
       ),
       bottomNavigationBar: const _SaveButton(),
@@ -44,22 +41,16 @@ class _SaveButton extends ConsumerWidget {
     final isLoading = ref.watch(medicineControllerProvider).isLoading;
     final notifier = ref.watch(medicineFormControllerProvider.notifier);
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        boxShadow: Constants.boxShadow,
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(Sizes.medium),
-          child: SizedBox(
-            height: Sizes.buttonHeight,
-            child: Button(
-              isLoading: isLoading,
-              isValid: isValid,
-              onPressed: notifier.save,
-              label: context.l10n.save,
-            ),
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(Sizes.medium),
+        child: SizedBox(
+          height: Sizes.buttonHeight,
+          child: Button(
+            isLoading: isLoading,
+            isValid: isValid,
+            onPressed: notifier.save,
+            label: context.l10n.save,
           ),
         ),
       ),

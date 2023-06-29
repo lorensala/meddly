@@ -25,7 +25,7 @@ class BrowseBody extends ConsumerWidget {
             BrowseCard(
               title: context.l10n.measurements,
               description: context.l10n.measurementsDescription,
-              vector: Vectors.measurements,
+              vector: Vectors.measurement,
               onTap: () => ref
                   .read(goRouterProvider)
                   .push('${BrowsePage.routeName}/${MeasurementPage.routeName}'),
@@ -34,7 +34,7 @@ class BrowseBody extends ConsumerWidget {
             BrowseCard(
               title: context.l10n.orientativeConsultations,
               description: context.l10n.orientativeConsultationsDescription,
-              vector: Vectors.predictions,
+              vector: Vectors.consult,
               onTap: () => ref.read(goRouterProvider).push(
                     '${BrowsePage.routeName}/${PredictionsPage.routeName}',
                   ),
@@ -43,7 +43,7 @@ class BrowseBody extends ConsumerWidget {
             BrowseCard(
               title: context.l10n.medicines,
               description: context.l10n.medicinesDescriptions,
-              vector: Vectors.medicines,
+              vector: Vectors.medicine,
               onTap: () => ref
                   .read(goRouterProvider)
                   .push('${BrowsePage.routeName}/${MedicinePage.routeName}'),
@@ -52,7 +52,7 @@ class BrowseBody extends ConsumerWidget {
             BrowseCard(
               title: context.l10n.appointments,
               description: context.l10n.appointmentDescription,
-              vector: Vectors.appointments,
+              vector: Vectors.appointment,
               onTap: () => ref
                   .read(goRouterProvider)
                   .push('${BrowsePage.routeName}/${AppointmentPage.routeName}'),
@@ -61,7 +61,7 @@ class BrowseBody extends ConsumerWidget {
             BrowseCard(
               title: context.l10n.linkedAccounts,
               description: context.l10n.linkedAccountsDescription,
-              vector: Vectors.supervision,
+              vector: Vectors.linkedAccount,
               onTap: () => ref
                   .read(goRouterProvider)
                   .push('${BrowsePage.routeName}/${SupervisorPage.routeName}'),

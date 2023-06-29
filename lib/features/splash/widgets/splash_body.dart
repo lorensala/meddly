@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meddly/features/home/home.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SplashBody extends ConsumerWidget {
   const SplashBody({super.key});

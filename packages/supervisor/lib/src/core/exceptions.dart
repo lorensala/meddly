@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 sealed class SupervisorException implements Exception {
   const SupervisorException();
 
   factory SupervisorException.fromDioError(DioError error) {
+    if (error.error is SocketException) {
+      return const SupervisorConnectionException();
+    }
+
     switch (error.type) {
       case DioErrorType.connectionError:
       case DioErrorType.receiveTimeout:

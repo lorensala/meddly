@@ -7,7 +7,7 @@ part of 'apointment_form_controller.dart';
 // **************************************************************************
 
 String _$appointmentFormControllerHash() =>
-    r'428b174ce5ff63a63d5834242da353c94f9bfdf3';
+    r'648c6f21ebde86d9f67fbe8fdde32e3270b414cd';
 
 /// See also [AppointmentFormController].
 @ProviderFor(AppointmentFormController)
@@ -18,8 +18,11 @@ final appointmentFormControllerProvider = AutoDisposeNotifierProvider<
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$appointmentFormControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[existingAppointmentProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    existingAppointmentProvider,
+    ...?existingAppointmentProvider.allTransitiveDependencies
+  },
 );
 
 typedef _$AppointmentFormController = AutoDisposeNotifier<AppointmentFormState>;

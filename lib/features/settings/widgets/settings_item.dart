@@ -23,7 +23,7 @@ class SettingsItem extends StatelessWidget {
       onPressed: onPressed,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          boxShadow: Constants.boxShadow,
+          boxShadow: boxShadow(context),
           borderRadius: BorderRadius.circular(Sizes.small),
           color: context.colorScheme.secondary,
         ),
@@ -31,7 +31,13 @@ class SettingsItem extends StatelessWidget {
           padding: const EdgeInsets.all(Sizes.medium),
           child: Row(
             children: [
-              SvgPicture.asset(vector),
+              SvgPicture.asset(
+                vector,
+                colorFilter: ColorFilter.mode(
+                  context.colorScheme.onBackground,
+                  BlendMode.srcIn,
+                ),
+              ),
               const SizedBox(width: Sizes.medium),
               Text(label, style: context.textTheme.titleSmall),
               const Spacer(),

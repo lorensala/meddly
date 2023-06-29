@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/medicine.dart';
-import 'package:meddly/features/setup/setup.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 class MedicineNameForm extends StatelessWidget {
   const MedicineNameForm({super.key});
@@ -14,14 +13,18 @@ class MedicineNameForm extends StatelessWidget {
     return SingleChildScrollView(
       reverse: true,
       child: Padding(
-        padding: Sizes.mediumPadding,
+        padding: const EdgeInsets.all(Sizes.medium),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Flexible(child: SvgPicture.asset(Vectors.onboarding3)),
+            MedicineVector(
+              vector: Vectors.onboarding3,
+              dimension: context.width * 0.8,
+            ),
             const SizedBox(height: Sizes.medium),
-            FormTitle(title: context.l10n.medicineName, isRequired: true),
-            const SizedBox(height: Sizes.large),
+            InputLabel(label: context.l10n.medicineName, isRequired: true),
+            const SizedBox(height: Sizes.small),
             const _NameInputField(),
           ],
         ),

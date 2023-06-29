@@ -22,7 +22,7 @@ mixin _$User {
   String get lastName => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   Sex get sex => throw _privateConstructorUsedError;
-  String get birth => throw _privateConstructorUsedError;
+  DateTime? get birth => throw _privateConstructorUsedError;
   double? get height => throw _privateConstructorUsedError;
   double? get weight => throw _privateConstructorUsedError;
   String get invitation => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $UserCopyWith<$Res> {
       String lastName,
       String phone,
       Sex sex,
-      String birth,
+      DateTime? birth,
       double? height,
       double? weight,
       String invitation});
@@ -70,7 +70,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? lastName = null,
     Object? phone = null,
     Object? sex = null,
-    Object? birth = null,
+    Object? birth = freezed,
     Object? height = freezed,
     Object? weight = freezed,
     Object? invitation = null,
@@ -100,10 +100,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
               as Sex,
-      birth: null == birth
+      birth: freezed == birth
           ? _value.birth
           : birth // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime?,
       height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -141,7 +141,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String lastName,
       String phone,
       Sex sex,
-      String birth,
+      DateTime? birth,
       double? height,
       double? weight,
       String invitation});
@@ -165,7 +165,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? lastName = null,
     Object? phone = null,
     Object? sex = null,
-    Object? birth = null,
+    Object? birth = freezed,
     Object? height = freezed,
     Object? weight = freezed,
     Object? invitation = null,
@@ -195,10 +195,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.sex
           : sex // ignore: cast_nullable_to_non_nullable
               as Sex,
-      birth: null == birth
+      birth: freezed == birth
           ? _value.birth
           : birth // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime?,
       height: freezed == height
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
@@ -225,7 +225,7 @@ class _$_User extends _User {
       this.lastName = '',
       this.phone = '',
       this.sex = const Sex.male(),
-      this.birth = '',
+      this.birth,
       this.height,
       this.weight,
       this.invitation = ''})
@@ -248,8 +248,7 @@ class _$_User extends _User {
   @JsonKey()
   final Sex sex;
   @override
-  @JsonKey()
-  final String birth;
+  final DateTime? birth;
   @override
   final double? height;
   @override
@@ -302,7 +301,7 @@ abstract class _User extends User {
       final String lastName,
       final String phone,
       final Sex sex,
-      final String birth,
+      final DateTime? birth,
       final double? height,
       final double? weight,
       final String invitation}) = _$_User;
@@ -321,7 +320,7 @@ abstract class _User extends User {
   @override
   Sex get sex;
   @override
-  String get birth;
+  DateTime? get birth;
   @override
   double? get height;
   @override

@@ -1,7 +1,13 @@
+// ignore_for_file: lines_longer_than_80_chars, depend_on_referenced_packages
+
 import 'package:calendar/calendar.dart';
+import 'package:collection/collection.dart';
 import 'package:meddly/core/core.dart';
+import 'package:meddly/features/appointment/core/core.dart';
 import 'package:meddly/features/calendar/controller/controller.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
+import 'package:meddly/features/measurement/measurement.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'calendar_daily_events_provider.g.dart';
@@ -11,52 +17,126 @@ List<CalendarEvent> calendarDailyEvents(
   CalendarDailyEventsRef ref,
 ) {
   final selectedDate = ref.watch(calendarSelectedDateProvider);
+  final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
   return ref.watch(calendarControllerProvider).maybeWhen(
-        data: (res) {
+        data: (usersCalendarList) {
           final events = <CalendarEvent>[];
 
-          for (final appointment in res.appointments) {
-            if (appointment.date.isSameDay(selectedDate)) {
-              events.add(
-                CalendarEvent.fromAppointment(
-                  description: appointment.location ??
-                      appointment.speciality?.name ??
-                      '',
-                  title: appointment.name,
-                  date: appointment.date,
-                  id: appointment.id!,
-                ),
-              );
-            }
+          for (final userCalendar in usersCalendarList) {
+            final userCalendarEvents = <CalendarEvent>[];
+
+            userCalendar.forEach((String uid, Calendar calendar) {
+              final asNeededMedicines = calendar.medicines
+                  .where((medicine) => medicine.isAsNeeded)
+                  .toList();
+
+              for (final medicine in asNeededMedicines) {
+                final title = '${medicine.name} ${medicine.dosis.truncate()}'
+                    '${medicine.dosisUnit.name}';
+
+                final unitsLeft = medicine.stock == null
+                    ? ''
+                    : medicine.stock! > 0
+                        ? '${medicine.stock} ${l10n.unitsLeft}'
+                        : l10n.noUnitsLeft;
+
+                final note = medicine.instructions == null
+                    ? ''
+                    : medicine.instructions!.isNotEmpty
+                        ? '\n${medicine.instructions!}'
+                        : '';
+
+                userCalendarEvents.add(
+                  MedicineEvent(
+                    id: medicine.id,
+                    uid: uid,
+                    title: title,
+                    description: unitsLeft + note,
+                    date: selectedDate,
+                    consumed: false,
+                    isAsNeeded: true,
+                  ),
+                );
+              }
+
+              for (final appointment in calendar.appointments) {
+                if (appointment.date.isSameDay(selectedDate)) {
+                  userCalendarEvents.add(
+                    AppointmentEvent(
+                      id: appointment.id ?? 0,
+                      uid: uid,
+                      title: appointment.name,
+                      description:
+                          appointment.speciality!.localizedString(l10n),
+                      date: appointment.date,
+                    ),
+                  );
+                }
+              }
+
+              for (final measurement in calendar.measurements) {
+                if (measurement.date.isSameDay(selectedDate)) {
+                  userCalendarEvents.add(
+                    MeasurementEvent(
+                      id: measurement.id,
+                      uid: uid,
+                      title: measurement.value.toString(),
+                      description: measurement.type.localizedString(l10n),
+                      date: measurement.date,
+                    ),
+                  );
+                }
+              }
+
+              for (final consumption in calendar.consumptions) {
+                if (consumption.date.isSameDay(selectedDate)) {
+                  final medicine = calendar.medicines
+                      .firstWhereOrNull((m) => m.id == consumption.medicineId);
+
+                  if (medicine != null) {
+                    final title =
+                        '${medicine.name} ${medicine.dosis.truncate()}${medicine.dosisUnit.name}';
+
+                    final unitsLeft = medicine.stock == null
+                        ? ''
+                        : medicine.stock! > 0
+                            ? '${medicine.stock} ${l10n.unitsLeft}'
+                            : l10n.noUnitsLeft;
+
+                    final note = medicine.instructions == null
+                        ? ''
+                        : medicine.instructions!.isNotEmpty
+                            ? '\n${medicine.instructions!}'
+                            : '';
+
+                    userCalendarEvents.add(
+                      MedicineEvent(
+                        id: consumption.medicineId,
+                        uid: uid,
+                        title: title,
+                        description: unitsLeft + note,
+                        date: consumption.date,
+                        consumed: consumption.consumed,
+                        consumedDate: consumption.realConsumptionDate,
+                      ),
+                    );
+                  }
+                }
+              }
+            });
+
+            events.addAll(userCalendarEvents);
           }
 
-          for (final consumption in res.consumptions) {
-            if (consumption.date.isSameDay(selectedDate)) {
-              events.add(
-                CalendarEvent.fromConsumption(
-                  title: consumption.consumed.toString(),
-                  description:
-                      consumption.realConsumptionDate.toIso8601String(),
-                  id: consumption.medicineId,
-                  date: consumption.date,
-                ),
-              );
+          events.sort((a, b) {
+            if (a.asNeeded) return -1;
+            final date = a.date.compareTo(b.date);
+            if (date != 0) {
+              return date;
             }
-          }
-
-          for (final measurement in res.measurements) {
-            if (measurement.date.isSameDay(selectedDate)) {
-              events.add(
-                CalendarEvent.fromMeasurement(
-                  title: measurement.value.toString(),
-                  description: measurement.type.name,
-                  id: measurement.id,
-                  date: measurement.date,
-                ),
-              );
-            }
-          }
+            return a.uid.compareTo(b.uid);
+          });
 
           return events;
         },

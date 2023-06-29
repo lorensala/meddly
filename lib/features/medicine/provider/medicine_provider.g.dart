@@ -6,6 +6,35 @@ part of 'medicine_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$medicineBoxHash() => r'c53759f0a7dbb6e34544e219304103467098e62f';
+
+/// See also [medicineBox].
+@ProviderFor(medicineBox)
+final medicineBoxProvider = AutoDisposeProvider<Box<String>>.internal(
+  medicineBox,
+  name: r'medicineBoxProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$medicineBoxHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef MedicineBoxRef = AutoDisposeProviderRef<Box<String>>;
+String _$medicineCacheHash() => r'b46493a93889809dfd342f65d893a1a76b73e3b5';
+
+/// See also [medicineCache].
+@ProviderFor(medicineCache)
+final medicineCacheProvider = AutoDisposeProvider<MedicineCache>.internal(
+  medicineCache,
+  name: r'medicineCacheProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$medicineCacheHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef MedicineCacheRef = AutoDisposeProviderRef<MedicineCache>;
 String _$medicineApiHash() => r'7ba69bd9ef97dc10ea70cb3cd4e5b29eec1c10c4';
 
 /// See also [medicineApi].
@@ -21,7 +50,7 @@ final medicineApiProvider = AutoDisposeProvider<MedicineApi>.internal(
 
 typedef MedicineApiRef = AutoDisposeProviderRef<MedicineApi>;
 String _$medicineRepositoryHash() =>
-    r'9aec7041087679e7cd65d54771388590adf9ae7f';
+    r'ace9c1ac159298362bf76b94cb21e401b7f116b3';
 
 /// See also [medicineRepository].
 @ProviderFor(medicineRepository)
@@ -214,4 +243,54 @@ final medicineProvider = AutoDisposeProvider<Medicine>.internal(
 );
 
 typedef MedicineRef = AutoDisposeProviderRef<Medicine>;
+String _$filteredMedicinesHash() => r'2c91e14565c1f2161cb99d202ab833a33e22e829';
+
+/// See also [filteredMedicines].
+@ProviderFor(filteredMedicines)
+final filteredMedicinesProvider = AutoDisposeProvider<List<Medicine>>.internal(
+  filteredMedicines,
+  name: r'filteredMedicinesProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$filteredMedicinesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FilteredMedicinesRef = AutoDisposeProviderRef<List<Medicine>>;
+String _$filteredArchivedMedicinesHash() =>
+    r'6826ca2809ad93ad7a13c05cf44d77ce7b587240';
+
+/// See also [filteredArchivedMedicines].
+@ProviderFor(filteredArchivedMedicines)
+final filteredArchivedMedicinesProvider =
+    AutoDisposeProvider<List<Medicine>>.internal(
+  filteredArchivedMedicines,
+  name: r'filteredArchivedMedicinesProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$filteredArchivedMedicinesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef FilteredArchivedMedicinesRef = AutoDisposeProviderRef<List<Medicine>>;
+String _$medicinePresentationsHash() =>
+    r'7f03f9cad9551805f386ae1a8330bb7178ab57cb';
+
+/// See also [MedicinePresentations].
+@ProviderFor(MedicinePresentations)
+final medicinePresentationsProvider = AutoDisposeNotifierProvider<
+    MedicinePresentations, List<MedicinePresentation>>.internal(
+  MedicinePresentations.new,
+  name: r'medicinePresentationsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$medicinePresentationsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$MedicinePresentations
+    = AutoDisposeNotifier<List<MedicinePresentation>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

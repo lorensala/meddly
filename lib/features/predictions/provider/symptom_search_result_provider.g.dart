@@ -7,7 +7,7 @@ part of 'symptom_search_result_provider.dart';
 // **************************************************************************
 
 String _$symptomSearchResultHash() =>
-    r'9133454998f3f8e3da4218151ffa61451c6c1096';
+    r'5e31f450971dc0ddf796d511459feccff21074e8';
 
 /// See also [symptomSearchResult].
 @ProviderFor(symptomSearchResult)
@@ -17,8 +17,8 @@ final symptomSearchResultProvider = AutoDisposeProvider<Symptom>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$symptomSearchResultHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: const <ProviderOrFamily>[],
+  allTransitiveDependencies: const <ProviderOrFamily>{},
 );
 
 typedef SymptomSearchResultRef = AutoDisposeProviderRef<Symptom>;

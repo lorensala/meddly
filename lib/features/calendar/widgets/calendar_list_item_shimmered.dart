@@ -9,7 +9,7 @@ class CalendarListItemShimmered extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Sizes.horizontalPadding,
+      padding: const EdgeInsets.symmetric(horizontal: Sizes.medium),
       child: Row(
         children: [
           ShimmeredContainer(

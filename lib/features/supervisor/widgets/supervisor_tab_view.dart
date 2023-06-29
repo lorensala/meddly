@@ -16,18 +16,30 @@ class SupervisorTabView extends HookWidget {
     return Expanded(
       child: Column(
         children: [
-          TabBar(
-            controller: controller,
-            labelStyle: context.textTheme.titleSmall,
-            unselectedLabelStyle: context.textTheme.titleSmall!.copyWith(
-              fontWeight: FontWeight.w400,
+          DecoratedBox(
+            decoration: BoxDecoration(
+              color: context.colorScheme.background,
+              boxShadow: [
+                BoxShadow(
+                  color: context.colorScheme.onBackground.withOpacity(0.05),
+                  blurRadius: 6,
+                  offset: const Offset(0, 8),
+                ),
+              ],
             ),
-            labelColor: context.colorScheme.onBackground,
-            indicatorColor: context.colorScheme.primary,
-            tabs: [
-              Tab(text: context.l10n.supervised),
-              Tab(text: context.l10n.supervisors),
-            ],
+            child: TabBar(
+              controller: controller,
+              labelStyle: context.textTheme.titleSmall,
+              unselectedLabelStyle: context.textTheme.titleSmall!.copyWith(
+                fontWeight: FontWeight.w400,
+              ),
+              labelColor: context.colorScheme.onBackground,
+              indicatorColor: context.colorScheme.primary,
+              tabs: [
+                Tab(text: context.l10n.supervised),
+                Tab(text: context.l10n.supervisors),
+              ],
+            ),
           ),
           SizedBox(
             height: 300,

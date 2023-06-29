@@ -4,6 +4,9 @@ class Vectors {
   static const String empty = 'assets/svg/empty.svg';
   static const String logo = 'assets/svg/logo.svg';
   static const String share = 'assets/svg/share.svg';
+  static const String checkCircle = 'assets/svg/check-circle.svg';
+  static const String paste = 'assets/svg/paste.svg';
+  static const String filterLines = 'assets/svg/filter-lines.svg';
 
   // * Onboarding
   static const String onboarding1 = 'assets/svg/onboarding-1.svg';
@@ -40,6 +43,7 @@ class Vectors {
   static const String browse = 'assets/svg/browse.svg';
   static const String settings = 'assets/svg/settings.svg';
   static const String user = 'assets/svg/user.svg';
+  static const String plusCircle = 'assets/svg/plus-circle.svg';
 
   // * Notifications
   static const String trash = 'assets/svg/trash.svg';
@@ -50,17 +54,21 @@ class Vectors {
   static const String predictions = 'assets/svg/predictions.svg';
   static const String measurements = 'assets/svg/measurements.svg';
   static const String supervision = 'assets/svg/supervision.svg';
+  static const String linkedAccount = 'assets/svg/linked-account.svg';
+  static const String consult = 'assets/svg/consult.svg';
 
   // * Predictions
   static const String predictionsSymptoms =
       'assets/svg/predictions-symptoms.svg';
   static const String gallery = 'assets/svg/gallery.svg';
   static const String camera = 'assets/svg/camera.svg';
+  static const String ai = 'assets/svg/ai.svg';
 
   // * Medicine
   static const String medicinePresentation =
       'assets/svg/medicine-presentation.svg';
   static const String medicineDosis = 'assets/svg/medicine-dosis.svg';
+  static const String archive = 'assets/svg/archive.svg';
 
   // * Settings
   static const String pdf = 'assets/svg/pdf.svg';
@@ -70,6 +78,7 @@ class Vectors {
   static const String about = 'assets/svg/about.svg';
   static const String moon = 'assets/svg/moon.svg';
   static const String sun = 'assets/svg/sun.svg';
+  static const String userEdit = 'assets/svg/user-edit.svg';
 
   // * Calendar
   static const String medicine = 'assets/svg/medicine.svg';

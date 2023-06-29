@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 sealed class NotificationException implements Exception {
   const NotificationException();
 
   factory NotificationException.fromDioError(DioError error) {
+    if (error.error is SocketException) {
+      return const NotificationConnectionException();
+    }
+
     switch (error.type) {
       case DioErrorType.connectionError:
       case DioErrorType.receiveTimeout:

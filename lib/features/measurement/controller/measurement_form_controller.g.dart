@@ -7,7 +7,7 @@ part of 'measurement_form_controller.dart';
 // **************************************************************************
 
 String _$measurementFormControllerHash() =>
-    r'da02884ae10c3110e133dda5d85f5c9d2e559eb7';
+    r'7b35898de875a3accb56caa40e02b5d2e549672e';
 
 /// See also [MeasurementFormController].
 @ProviderFor(MeasurementFormController)
@@ -18,8 +18,11 @@ final measurementFormControllerProvider = AutoDisposeNotifierProvider<
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$measurementFormControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[existingMeasurementProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    existingMeasurementProvider,
+    ...?existingMeasurementProvider.allTransitiveDependencies
+  },
 );
 
 typedef _$MeasurementFormController = AutoDisposeNotifier<MeasurementState>;

@@ -15,33 +15,6 @@ class SupervisorPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(context.l10n.linkedAccounts),
       ),
-      floatingActionButton: Consumer(
-        builder: (context, ref, child) {
-          return ProviderScope(
-            parent: ProviderScope.containerOf(context),
-            child: Tooltip(
-              message: context.l10n.addSupervisor,
-              child: FloatingActionButton(
-                onPressed: () {
-                  showModalBottomSheet<void>(
-                    context: context,
-                    backgroundColor: context.colorScheme.background,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(Sizes.large),
-                      ),
-                    ),
-                    builder: (context) {
-                      return const InvitationCodeBottomSheet();
-                    },
-                  );
-                },
-                child: const Icon(Icons.add),
-              ),
-            ),
-          );
-        },
-      ),
       body: const SupervisorBody(),
     );
   }

@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 sealed class CalendarException implements Exception {
   const CalendarException();
 
   factory CalendarException.fromDioError(DioError error) {
+    if (error.error is SocketException) {
+      return const CalendarConnectionException();
+    }
     switch (error.type) {
       case DioErrorType.connectionError:
       case DioErrorType.receiveTimeout:
@@ -12,7 +17,22 @@ sealed class CalendarException implements Exception {
       case DioErrorType.connectionTimeout:
         return const CalendarConnectionException();
       case DioErrorType.badResponse:
-        return const CalendarUnknownException();
+        final response = error.response;
+        if (response == null) {
+          return const CalendarUnknownException();
+        }
+        // ignore: avoid_dynamic_calls
+        final errorCode = response.data['detail']['code'] as int?;
+
+        switch (errorCode) {
+          case 306:
+            return const CalendarAlreadyConsumedException();
+          case 307:
+            return const CalendarConsumptionDoesNotExistException();
+          default:
+            return const CalendarUnknownException();
+        }
+
       case DioErrorType.badCertificate:
       case DioErrorType.cancel:
       case DioErrorType.unknown:
@@ -21,18 +41,26 @@ sealed class CalendarException implements Exception {
   }
 }
 
-class CalendarUnknownException extends CalendarException {
+final class CalendarUnknownException extends CalendarException {
   const CalendarUnknownException();
 }
 
-class CalendarNotFoundException extends CalendarException {
+final class CalendarNotFoundException extends CalendarException {
   const CalendarNotFoundException();
 }
 
-class CalendarSerializationException extends CalendarException {
+final class CalendarSerializationException extends CalendarException {
   const CalendarSerializationException();
 }
 
-class CalendarConnectionException extends CalendarException {
+final class CalendarConnectionException extends CalendarException {
   const CalendarConnectionException();
+}
+
+final class CalendarAlreadyConsumedException extends CalendarException {
+  const CalendarAlreadyConsumedException();
+}
+
+final class CalendarConsumptionDoesNotExistException extends CalendarException {
+  const CalendarConsumptionDoesNotExistException();
 }

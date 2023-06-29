@@ -12,12 +12,6 @@ class SymptomPredictionController extends _$SymptomPredictionController {
   }
 
   void add(Symptom result) {
-    // cant add more than 6
-    //! TODO(me): preguntar...
-    // if (state.length >= 6) {
-    //   return;
-    // }
-
     // cant add the same symptom twice
     if (state.contains(result)) {
       return;

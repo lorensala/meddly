@@ -13,7 +13,7 @@ class NotificationPreferencesController
     final repository = ref.read(notificationsRepositoryProvider);
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    final (err, preferences) = await repository.fetchAll();
+    final (err, preferences) = await repository.fetchAllPreferences();
 
     if (err != null) {
       throw Exception(err.describe(l10n));

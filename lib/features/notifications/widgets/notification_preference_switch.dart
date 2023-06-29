@@ -1,5 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages
-
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -7,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 class NotificationPreferenceSwitch extends HookConsumerWidget {
   const NotificationPreferenceSwitch({super.key});
@@ -45,7 +45,7 @@ class NotificationPreferenceSwitch extends HookConsumerWidget {
           style: context.textTheme.bodySmall!.copyWith(
             color: context.colorScheme.onSecondary.withOpacity(0.6),
           ),
-          text: 'Enviar notificaciones a ',
+          text: '${context.l10n.sendNotificationsTo} ',
           children: [
             TextSpan(
               text: preference.name == 'email' ? '$email' : '$phone',
@@ -59,42 +59,26 @@ class NotificationPreferenceSwitch extends HookConsumerWidget {
       );
     }
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+    return ListTile(
+      title: Text(
+        preference.name.capitalize(),
+        style: context.textTheme.titleSmall,
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  preference.name.capitalize(),
-                  style: context.textTheme.titleSmall,
-                ),
-                description(),
-              ],
-            ),
-          ),
-          const SizedBox(width: Sizes.medium),
-          IgnorePointer(
-            ignoring: isLoading,
-            child: Switch.adaptive(
-              onChanged: (bool value) {
-                if (value) {
-                  isOn.value = true;
-                  notifier.addNotificationPreference(preference);
-                } else {
-                  isOn.value = false;
-                  notifier.deleteNotificationPreference(preference);
-                }
-              },
-              value: isOn.value,
-            ),
-          )
-        ],
+      subtitle: description(),
+      trailing: IgnorePointer(
+        ignoring: isLoading,
+        child: Switch.adaptive(
+          onChanged: (bool value) {
+            if (value) {
+              isOn.value = true;
+              notifier.addNotificationPreference(preference);
+            } else {
+              isOn.value = false;
+              notifier.deleteNotificationPreference(preference);
+            }
+          },
+          value: isOn.value,
+        ),
       ),
     );
   }

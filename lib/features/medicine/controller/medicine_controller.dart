@@ -1,5 +1,5 @@
-import 'package:meddly/features/browse/browse.dart';
 import 'package:meddly/features/calendar/calendar.dart';
+import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/router.dart';
@@ -41,9 +41,23 @@ class MedicineController extends _$MedicineController {
         ..invalidate(calendarControllerProvider)
         ..invalidateSelf();
 
+      ref.read(goRouterProvider).go(HomePage.routeName);
+    }
+  }
+
+  Future<void> deleteMedicine(Medicine medicine) async {
+    final repository = ref.watch(medicineRepositoryProvider);
+
+    final (err, _) = await repository.deleteMedicine(medicine);
+
+    final l10n = ref.watch(l10nProvider) as AppLocalizations;
+
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
       ref
-          .read(goRouterProvider)
-          .go('${BrowsePage.routeName}/${MedicinePage.routeName}');
+        ..invalidate(calendarControllerProvider)
+        ..invalidateSelf();
     }
   }
 }

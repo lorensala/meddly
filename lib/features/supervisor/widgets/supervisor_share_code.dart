@@ -1,8 +1,11 @@
+// ignore_for_file: leading_newlines_in_multiline_strings
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -26,9 +29,9 @@ class SupervisorShareCode extends ConsumerWidget {
             ),
             onPressed: () {
               try {
-                Share.share('${user?.invitation}');
+                Share.share(inivitationText(user?.invitation));
               } catch (e) {
-                showSnackBar(context, 'Error al compartir el código');
+                showSnackBar(context, context.l10n.shareCodeError);
               }
             },
             child: Container(
@@ -51,7 +54,7 @@ class SupervisorShareCode extends ConsumerWidget {
                   ),
                   const SizedBox(width: Sizes.small),
                   Text(
-                    'Compartir',
+                    context.l10n.share,
                     style: context.textTheme.bodyMedium!.copyWith(
                       color: context.colorScheme.onPrimary,
                     ),
@@ -63,5 +66,18 @@ class SupervisorShareCode extends ConsumerWidget {
         );
       },
     );
+  }
+
+  String inivitationText(String? code) {
+    return '''
+      Únete a Meddly y supervisa mi progreso. Pruebala ahora!
+      Quería compartir contigo la aplicación Meddly que estoy usando para seguir mi progreso de salud. Me encantaría que te unas como persona "supervisora" para brindarme apoyo en mi cuidado.
+      
+      Código de invitación: $code
+
+      Descarga la aplicación en [enlace de descarga de la aplicación para Android/iOS] y conéctate conmigo para comenzar.
+
+      ¡Espero contar contigo en Meddly!
+      ''';
   }
 }

@@ -45,7 +45,7 @@ class SetupNamePage extends StatelessWidget {
                   const SizedBox(height: Sizes.extraLarge),
                   const SetupNameInput(),
                   const SizedBox(height: Sizes.medium),
-                  const SetupLastnameInput(),
+                  const SetupLastNameInput(),
                   const SizedBox(height: Sizes.large),
                   const _NextButton(),
                 ],

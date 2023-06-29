@@ -3,7 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/medicine.dart';
-import 'package:meddly/features/setup/widgets/widgets.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:medicine/medicine.dart';
@@ -19,12 +18,13 @@ class MedcineIntervalSelector extends ConsumerWidget {
     return selectedFrecuency == MedicineFrecuency.asNeeded
         ? const SizedBox.shrink()
         : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              FormTitle(
-                title: context.l10n.chooseTheIntervalBetweenDoses,
+              InputLabel(
+                label: context.l10n.chooseTheIntervalBetweenDoses,
                 isRequired: true,
               ),
-              const SizedBox(height: Sizes.large),
+              const SizedBox(height: Sizes.small),
               const _IntervalBody(),
             ],
           );
@@ -50,44 +50,47 @@ class _IntervalBody extends HookConsumerWidget {
         for (var i = 1; i <= 100; i++)
           DropdownMenuItem(
             value: i,
-            child: Text(i.toDaysString()),
+            child: Text(
+              i.toLocalizedDayString(context.l10n),
+              style: context.textTheme.bodyMedium,
+            ),
           ),
       ],
     );
 
-    switch (selectedFrequency) {
-      case MedicineFrecuency.regular:
-        return Container(
+    return switch (selectedFrequency) {
+      MedicineFrecuency.regular => Container(
           padding: const EdgeInsets.all(Sizes.medium),
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,
-            boxShadow: Constants.boxShadow,
-            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+            boxShadow: boxShadow(context),
+            borderRadius: BorderRadius.circular(Sizes.small),
           ),
           child: Row(
             children: [
               Text(
                 context.l10n.every,
-                style: context.textTheme.titleMedium,
+                style: context.textTheme.bodyMedium,
               ),
               const Spacer(),
-              DropDownSelector<int>(
-                items: items,
-                onChanged: notifier.frecuencyValueChanged,
-                value: selectedFrecuencValue,
+              DropdownButtonHideUnderline(
+                child: DropdownButton<int>(
+                  items: items,
+                  value: selectedFrecuencValue,
+                  onChanged: notifier.frecuencyValueChanged,
+                ),
               ),
             ],
           ),
-        );
-      case MedicineFrecuency.specificDays:
-        return DecoratedBox(
+        ),
+      MedicineFrecuency.specificDays => DecoratedBox(
           decoration: BoxDecoration(
             color: context.colorScheme.secondary,
-            boxShadow: Constants.boxShadow,
-            borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+            boxShadow: boxShadow(context),
+            borderRadius: BorderRadius.circular(Sizes.small),
           ),
           child: Padding(
-            padding: Sizes.mediumPadding,
+            padding: const EdgeInsets.all(Sizes.medium),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +106,10 @@ class _IntervalBody extends HookConsumerWidget {
                                 ? context.colorScheme.primary
                                 : context.colorScheme.secondary,
                             child: Text(
-                              day.name.substring(0, 1).toUpperCase(),
+                              day
+                                  .localizedString(context.l10n)
+                                  .substring(0, 1)
+                                  .toUpperCase(),
                               style: context.textTheme.bodyMedium!.copyWith(
                                 color: selectedDays.contains(day)
                                     ? context.colorScheme.onPrimary
@@ -119,7 +125,8 @@ class _IntervalBody extends HookConsumerWidget {
                 Text(
                   selectedDays.isEmpty
                       ? context.l10n.selectAtLeastOneDay
-                      : '${context.l10n.everyX(selectedDays.map((e) => e.name).join(', '))}.',
+                      // ignore: lines_longer_than_80_chars
+                      : '${context.l10n.everyX(selectedDays.map((e) => e.localizedString(context.l10n).toLowerCase()).join(', '))}.',
                   style: context.textTheme.bodyMedium!.copyWith(
                     color: selectedDays.isEmpty
                         ? context.colorScheme.error
@@ -129,12 +136,8 @@ class _IntervalBody extends HookConsumerWidget {
               ],
             ),
           ),
-        );
-      case MedicineFrecuency.asNeeded:
-        return const SizedBox.shrink();
-      // ignore: no_default_cases
-      default:
-        return const SizedBox.shrink();
-    }
+        ),
+      MedicineFrecuency.asNeeded => const SizedBox.shrink()
+    };
   }
 }

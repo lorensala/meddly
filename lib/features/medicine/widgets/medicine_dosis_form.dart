@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/features/setup/setup.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/widgets/widgets.dart';
 import 'package:medicine/medicine.dart';
 
 class MedicineDosisForm extends StatelessWidget {
@@ -15,17 +15,15 @@ class MedicineDosisForm extends StatelessWidget {
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
       child: Padding(
-        padding: Sizes.mediumPadding,
+        padding: const EdgeInsets.all(Sizes.medium),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 300, maxHeight: 300),
-              child: SvgPicture.asset(Vectors.medicineDosis),
-            ),
+            const MedicineVector(vector: Vectors.medicineDosis),
             const SizedBox(height: Sizes.large),
-            const FormTitle(
-              title: 'Ingrese la dosis del medicamento',
+            const InputLabel(
+              label: 'Ingrese la dosis del medicamento',
               isRequired: true,
             ),
             const SizedBox(height: Sizes.small),
@@ -57,22 +55,36 @@ class _DosisUnitSelector extends ConsumerWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        boxShadow: Constants.boxShadow,
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+        boxShadow: boxShadow(context),
+        borderRadius: BorderRadius.circular(Sizes.small),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: MedicineDosisUnit.values
-            .map(
-              (unit) => ListTile(
-                selected: selectedDosisUnit == unit,
-                title: Text(unit.value),
+      child: ClipRRect(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: MedicineDosisUnit.values.map(
+            (unit) {
+              final isSelected = selectedDosisUnit == unit;
+
+              return ListTile(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(Sizes.small),
+                ),
+                selected: isSelected,
+                title: Text(
+                  unit.value,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: isSelected
+                        ? context.colorScheme.primary
+                        : context.colorScheme.onSecondary,
+                  ),
+                ),
                 trailing:
                     selectedDosisUnit == unit ? const Icon(Icons.check) : null,
                 onTap: () => notifier.dosisUnitChanged(unit),
-              ),
-            )
-            .toList(),
+              );
+            },
+          ).toList(),
+        ),
       ),
     );
   }

@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 sealed class MeasurementException implements Exception {
   const MeasurementException();
 
   factory MeasurementException.fromDioError(DioError error) {
+    if (error.error is SocketException) {
+      return const MeasurementConnectionException();
+    }
+
     switch (error.type) {
       case DioErrorType.connectionError:
       case DioErrorType.receiveTimeout:

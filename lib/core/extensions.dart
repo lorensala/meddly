@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 extension StringX on String {
   String capitalize() => '${this[0].toUpperCase()}${substring(1)}';
@@ -22,13 +24,19 @@ extension StringX on String {
 }
 
 extension IntX on int {
-  String toDaysString() {
+  String toLocalizedDayString(AppLocalizations l10n) {
     if (this == 1) {
-      return '$this Day';
+      return '$this ${l10n.day}';
     } else {
-      return '$this Days';
+      return '$this ${l10n.days}';
     }
   }
+}
+
+extension DoubleX on double {
+  String truncate() => toStringAsFixed(
+        truncateToDouble() == this ? 0 : 2,
+      );
 }
 
 extension TimeOfDayX on TimeOfDay {
@@ -50,10 +58,10 @@ extension BuildContextX on BuildContext {
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
   TextTheme get textTheme => Theme.of(this).textTheme;
   double get height =>
-      MediaQuery.of(this).size.height -
+      MediaQuery.sizeOf(this).height -
       kToolbarHeight -
       kBottomNavigationBarHeight;
-  double get width => MediaQuery.of(this).size.width;
+  double get width => MediaQuery.sizeOf(this).width;
 }
 
 extension DateTimeX on DateTime {
@@ -83,63 +91,39 @@ extension DateTimeX on DateTime {
         yesterday.day == date.day;
   }
 
-  String toNamedMonthString() {
-    switch (month) {
-      case 1:
-        return 'January';
-      case 2:
-        return 'February';
-      case 3:
-        return 'March';
-      case 4:
-        return 'April';
-      case 5:
-        return 'May';
-      case 6:
-        return 'June';
-      case 7:
-        return 'July';
-      case 8:
-        return 'August';
-      case 9:
-        return 'September';
-      case 10:
-        return 'October';
-      case 11:
-        return 'November';
-      case 12:
-        return 'December';
-      default:
-        return 'Unknown';
+  String toNamedMonthString(BuildContext context) =>
+      DateFormat('MMMM', 'es').format(this).capitalize();
+
+  String localizedBirthdayString(BuildContext context) {
+    return '${localizedDay(context)} $day ${toNamedMonthString(context)}';
+  }
+
+  String localizedString(BuildContext context) {
+    String? namedDay;
+
+    // check if is yesterday
+    if (isYesterday(this)) {
+      namedDay = context.l10n.yesterday;
+      // check if is tomorrow
+    } else if (isTomorrow(this)) {
+      namedDay = context.l10n.tomorow;
+      // check if is today
+    } else if (isToday()) {
+      namedDay = context.l10n.today;
+    }
+
+    // return named day
+    if (namedDay != null) {
+      return '$namedDay, $day ${toNamedMonthString(context)}';
+    } else {
+      return '${localizedDay(context)} $day ${toNamedMonthString(context)}';
     }
   }
 
-  String toNamedDayNumberAndMonthString() {
-    return 'test';
-    // String? namedDay;
-
-    // // check if is yesterday
-    // if (isYesterday(this)) {
-    //   namedDay = 'Yesterday';
-    //   // check if is tomorrow
-    // } else if (isTomorrow(this)) {
-    //   namedDay = 'Tomorrow';
-    //   // check if is today
-    // } else if (isToday()) {
-    //   namedDay = 'Today';
-    // }
-
-    // // return named day
-    // if (namedDay != null) {
-    //   return '$namedDay, $day ${toNamedMonthString()}';
-    // } else {
-    //   return '${toNamedDayString()} $day ${toNamedMonthString()}';
-    // }
-  }
-
-  String toNamedDayString(BuildContext context) =>
+  String localizedDay(BuildContext context) =>
       DateFormat('EEE', Localizations.localeOf(context).languageCode)
-          .format(this);
+          .format(this)
+          .capitalize();
 }
 
 extension RefDebounceX on Ref {
@@ -150,13 +134,22 @@ extension RefDebounceX on Ref {
     final timer = Timer(duration, () {
       if (!completer.isCompleted) completer.complete();
     });
+
     onDispose(() {
       timer.cancel();
       if (!completer.isCompleted) {
-        completer.completeError(StateError('Cancelled'));
+        completer.completeError(StateError('cancelled'));
       }
     });
     return completer.future;
+  }
+
+  /// Create a CancelToken from package:dio for cancelling pending
+  /// network requests if they are no-longer needed.
+  CancelToken cancelToken() {
+    final token = CancelToken();
+    onDispose(token.cancel);
+    return token;
   }
 }
 
@@ -166,6 +159,29 @@ extension ShimmerX on Widget {
       onPlay: (controller) => controller.repeat(),
     ).shimmer(
       duration: const Duration(seconds: 1),
+    );
+  }
+}
+
+extension TextStyleX on TextStyle {
+  TextStyle underlined({
+    Color? color,
+    double distance = 1,
+    double thickness = 1,
+    TextDecorationStyle style = TextDecorationStyle.solid,
+  }) {
+    return copyWith(
+      shadows: [
+        Shadow(
+          color: this.color ?? Colors.black,
+          offset: Offset(0, -distance),
+        )
+      ],
+      color: Colors.transparent,
+      decoration: TextDecoration.underline,
+      decorationThickness: thickness,
+      decorationColor: color ?? this.color,
+      decorationStyle: style,
     );
   }
 }

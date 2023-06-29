@@ -7,17 +7,21 @@ part of 'calendar_controller.dart';
 // **************************************************************************
 
 String _$calendarControllerHash() =>
-    r'f0e3a1deef09d19ccf9329258f4c3affaa901991';
+    r'61066d81bfc57691d3eb1b473d4dc9476df4494f';
 
 /// See also [CalendarController].
 @ProviderFor(CalendarController)
-final calendarControllerProvider = AsyncNotifierProvider<
+final calendarControllerProvider = AutoDisposeAsyncNotifierProvider<
     CalendarController,
-    ({
-      List<Appointment> appointments,
-      List<Consumption> consumptions,
-      List<Measurement> measurements
-    })>.internal(
+    List<
+        Map<
+            String,
+            ({
+              List<Appointment> appointments,
+              List<Consumption> consumptions,
+              List<Measurement> measurements,
+              List<Medicine> medicines
+            })>>>.internal(
   CalendarController.new,
   name: r'calendarControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -27,10 +31,14 @@ final calendarControllerProvider = AsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$CalendarController = AsyncNotifier<
-    ({
-      List<Appointment> appointments,
-      List<Consumption> consumptions,
-      List<Measurement> measurements
-    })>;
+typedef _$CalendarController = AutoDisposeAsyncNotifier<
+    List<
+        Map<
+            String,
+            ({
+              List<Appointment> appointments,
+              List<Consumption> consumptions,
+              List<Measurement> measurements,
+              List<Medicine> medicines
+            })>>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

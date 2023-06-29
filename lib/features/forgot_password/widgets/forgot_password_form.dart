@@ -12,7 +12,7 @@ class ForgotPasswordForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Sizes.mediumPadding,
+      padding: const EdgeInsets.all(Sizes.medium),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20),
@@ -24,7 +24,7 @@ class ForgotPasswordForm extends StatelessWidget {
           const _EmailInput(),
           const SizedBox(height: Sizes.medium),
           Text(
-            'We will send you a link to reset your password',
+            context.l10n.passwordResetEmailSentDescription,
             style: context.textTheme.bodySmall!.copyWith(
               color: context.colorScheme.onSecondary.withOpacity(0.5),
             ),
@@ -70,6 +70,8 @@ class _EmailInput extends ConsumerWidget {
     return TextFormField(
       style: context.textTheme.bodyMedium,
       onChanged: notifier.onEmailChanged,
+      keyboardType: TextInputType.emailAddress,
+      onTapOutside: (_) => FocusScope.of(context).unfocus(),
       decoration: InputDecoration(
         errorText: errorText,
         hintText: l10n.emailHint,

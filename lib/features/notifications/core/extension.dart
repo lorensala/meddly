@@ -16,3 +16,13 @@ extension NotificationExceptionX on NotificationException {
     };
   }
 }
+
+extension NotificationTypeX on NotificationType {
+  String localizedString(AppLocalizations l10n) {
+    return switch (this) {
+      NotificationType.supervisors => l10n.linkedAccounts,
+      NotificationType.appointment => l10n.appointments,
+      NotificationType.medicine => l10n.medicines,
+    };
+  }
+}

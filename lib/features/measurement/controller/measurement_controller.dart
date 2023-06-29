@@ -1,4 +1,8 @@
+// ignore_for_file: depend_on_referenced_packages
+
+import 'package:collection/collection.dart';
 import 'package:measurement/measurement.dart';
+import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/measurement/measurement.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
@@ -23,7 +27,9 @@ class MeasurementController extends _$MeasurementController {
   }
 
   void refresh() {
-    ref.invalidateSelf();
+    ref
+      ..invalidate(calendarControllerProvider)
+      ..invalidateSelf();
   }
 
   Future<void> createMeasurement(Measurement measurement) async {
@@ -43,8 +49,6 @@ class MeasurementController extends _$MeasurementController {
   }
 
   Future<void> deleteMeasurement(int id) async {
-    state = const AsyncLoading();
-
     final repository = ref.read(measurementRepositoryProvider);
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
@@ -52,9 +56,12 @@ class MeasurementController extends _$MeasurementController {
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
-    } else {
-      ref.watch(goRouterProvider).pop();
-      refresh();
     }
+  }
+
+  Measurement? getMeasurement(int id) {
+    return state.whenOrNull(
+      data: (measurements) => measurements.firstWhereOrNull((m) => m.id == id),
+    );
   }
 }

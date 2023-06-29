@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:measurement/measurement.dart';
 import 'package:meddly/core/core.dart';
@@ -15,19 +16,14 @@ class MeasurementForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
       child: Padding(
-        padding: Sizes.mediumPadding,
+        padding: EdgeInsets.all(Sizes.medium),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _TypeDropDownSelector(),
-            SizedBox(height: Sizes.medium),
-            _UnitDropDownSelector(),
-            SizedBox(height: Sizes.medium),
-            _ValueField(),
-            SizedBox(height: Sizes.medium),
-            _DateSelector(),
-            SizedBox(height: Sizes.medium),
-            _SaveButton()
+            MeasurementTypeDropDownSelector(),
+            MeasurementUnitDropDownSelector(),
+            MeasurementValueField(),
+            MeasurementDateSelector(),
           ],
         ),
       ),
@@ -35,166 +31,206 @@ class MeasurementForm extends StatelessWidget {
   }
 }
 
-class _SaveButton extends ConsumerWidget {
-  const _SaveButton();
+class MeasurementDateSelector extends HookConsumerWidget {
+  const MeasurementDateSelector({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(measurementFormControllerProvider.notifier);
-    final isValid = ref.watch(measurementIsValidProvider);
-    final isLoading = ref.watch(measurementControllerProvider).isLoading;
-
-    return Button(
-      isValid: isValid,
-      isLoading: isLoading,
-      onPressed: notifier.save,
-      label: context.l10n.save,
+    final isEditing = ref.watch(
+      measurementFormControllerProvider.select(
+        (value) => value.isEditing,
+      ),
     );
-  }
-}
 
-class _DateSelector extends ConsumerWidget {
-  const _DateSelector();
+    final date = ref.watch(
+      measurementFormControllerProvider.select(
+        (value) => value.date,
+      ),
+    );
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final notifier = ref.watch(measurementFormControllerProvider.notifier);
-    final initialDateTime = DateTime.now();
+    final controller = useTextEditingController(
+      text: date?.localizedString(context),
+    );
+
+    ref.listen(measurementFormControllerProvider, (_, state) {
+      controller.text = state.date?.localizedString(context) ?? '';
+    });
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Fecha de medición', isRequired: true),
-        const SizedBox(height: Sizes.small),
-        DateSelector(
-          initialDateTime: initialDateTime,
-          onDateTimeChanged: notifier.dateChanged,
-          errorText: null,
+        TextFormField(
+          readOnly: true,
+          enabled: isEditing,
+          controller: controller,
+          style: context.textTheme.bodyMedium,
+          onTap: () async {
+            final date = await showAdaptiveDatePicker(
+              context: context,
+              initialDateTime: DateTime.now(),
+            );
+            if (date != null) {
+              notifier.dateChanged(date);
+            }
+          },
+          keyboardType: TextInputType.number,
+          onTapOutside: (_) => FocusScope.of(context).unfocus(),
+          decoration: InputDecoration(
+            filled: !isEditing,
+            labelText: '${context.l10n.selectADate}${!isEditing ? '' : '*'}',
+          ),
         ),
-        const SizedBox(height: Sizes.small),
-        const InputDescription(description: 'Algo que va a escribir Sofi'),
+        const SizedBox(height: Sizes.medium),
       ],
     );
   }
 }
 
-class _TypeDropDownSelector extends ConsumerWidget {
-  const _TypeDropDownSelector();
+class MeasurementTypeDropDownSelector extends ConsumerWidget {
+  const MeasurementTypeDropDownSelector({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(measurementFormControllerProvider.notifier);
+    final isEditing = ref.watch(
+      measurementFormControllerProvider.select(
+        (value) => value.isEditing,
+      ),
+    );
     final selectedType = ref
         .watch(measurementFormControllerProvider.select((value) => value.type));
 
-    Future.delayed(
-      Duration.zero,
-      () => notifier.unitChanged(MeasurementUnit.other),
-    );
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Tipo de medición', isRequired: true),
-        const SizedBox(height: Sizes.small),
-        SizedBox(
-          height: kBottomNavigationBarHeight,
-          width: double.infinity,
-          child: DropDownSelector(
-            value: selectedType,
-            hasBorder: true,
-            items: MeasurementType.values
-                .map(
-                  (e) => DropdownMenuItem<MeasurementType>(
-                    value: e,
-                    child: Text(e.name),
-                  ),
-                )
-                .toList(),
-            onChanged: notifier.typeChanged,
+        DropdownButtonFormField<MeasurementType>(
+          value: selectedType,
+          style: context.textTheme.bodyMedium,
+          decoration: InputDecoration(
+            labelText:
+                '${context.l10n.measurementType}${!isEditing ? '' : '*'}',
+            border: const OutlineInputBorder(),
+            filled: !isEditing,
           ),
+          items: MeasurementType.values
+              .map(
+                (e) => DropdownMenuItem<MeasurementType>(
+                  value: e,
+                  child: Text(
+                    e.localizedString(context.l10n),
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ),
+              )
+              .toList(),
+          onChanged: isEditing ? notifier.typeChanged : null,
         ),
+        const SizedBox(height: Sizes.medium),
       ],
     );
   }
 }
 
-class _UnitDropDownSelector extends HookConsumerWidget {
-  const _UnitDropDownSelector();
+class MeasurementUnitDropDownSelector extends HookConsumerWidget {
+  const MeasurementUnitDropDownSelector({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(measurementFormControllerProvider.notifier);
+    final isEditing = ref.watch(
+      measurementFormControllerProvider.select(
+        (value) => value.isEditing,
+      ),
+    );
     final selectedType = ref
         .watch(measurementFormControllerProvider.select((value) => value.type));
     final selectedUnit = ref
         .watch(measurementFormControllerProvider.select((value) => value.unit));
 
-    final units = getUnits(selectedType);
-
-    if (units.isEmpty) {
+    if (selectedType.units.isEmpty) {
       Future.delayed(Duration.zero, () => notifier.unitChanged(null));
 
       return const SizedBox.shrink();
     }
 
-    if (units.length == 1) {
-      Future.delayed(Duration.zero, () => notifier.unitChanged(units.first));
-
+    if (selectedType.units.isEmpty) {
       return const SizedBox.shrink();
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Unidad', isRequired: true),
-        const SizedBox(height: Sizes.small),
-        SizedBox(
-          height: kBottomNavigationBarHeight,
-          width: double.infinity,
-          child: DropDownSelector<MeasurementUnit>(
-            value: selectedUnit,
-            hasBorder: true,
-            items: units
-                .map(
-                  (e) => DropdownMenuItem<MeasurementUnit>(
-                    value: e,
-                    key: Key(e.name),
-                    child: Text(e.name),
-                  ),
-                )
-                .toList(),
-            onChanged: notifier.unitChanged,
+        DropdownButtonFormField<MeasurementUnit>(
+          value: selectedUnit,
+          style: context.textTheme.bodyMedium,
+          decoration: InputDecoration(
+            filled: !isEditing,
+            labelText:
+                '${context.l10n.measurementUnit}${!isEditing ? '' : '*'}',
+            border: const OutlineInputBorder(),
           ),
+          items: selectedType.units
+              .map(
+                (e) => DropdownMenuItem<MeasurementUnit>(
+                  value: e,
+                  child: Text(
+                    e.localizedString(context.l10n),
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ),
+              )
+              .toList(),
+          onChanged: isEditing ? notifier.unitChanged : null,
         ),
+        const SizedBox(height: Sizes.medium),
       ],
     );
   }
 }
 
-class _ValueField extends ConsumerWidget {
-  const _ValueField();
+class MeasurementValueField extends ConsumerWidget {
+  const MeasurementValueField({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(measurementFormControllerProvider.notifier);
-    final errorText = ref.watch(measurementValueErrorProvider);
+    final isEditing = ref.watch(
+      measurementFormControllerProvider.select(
+        (value) => value.isEditing,
+      ),
+    );
+    final value = ref.watch(
+      measurementFormControllerProvider.select(
+        (value) => value.value,
+      ),
+    );
+
+    final errorText = !value.isPure && value.isNotValid
+        ? context.l10n.invalidMeasurementValue
+        : null;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const InputLabel(label: 'Medición', isRequired: true),
-        const SizedBox(height: Sizes.small),
         TextFormField(
+          initialValue: value.value,
+          enabled: isEditing,
           style: context.textTheme.bodyMedium,
           onChanged: notifier.valueChanged,
           keyboardType: TextInputType.number,
+          onTapOutside: (_) => FocusScope.of(context).unfocus(),
           decoration: InputDecoration(
+            filled: !isEditing,
             errorText: errorText,
+            labelText: '${context.l10n.measurement}${!isEditing ? '' : '*'}',
           ),
         ),
         const SizedBox(height: Sizes.small),
-        const InputDescription(description: 'Algo que va a escribir Sofi'),
+        InputDescription(
+          description: context.l10n.measurementDescription,
+        ),
+        const SizedBox(height: Sizes.medium),
       ],
     );
   }

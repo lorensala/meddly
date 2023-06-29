@@ -44,6 +44,8 @@ class AuthController extends _$AuthController {
     if (err == null) {
       if (isNotCancel) {
         ref.read(goRouterProvider).go(SplashPage.routeName);
+      } else {
+        ref.invalidateSelf();
       }
     } else {
       state = AsyncError(err.describe(l10n), StackTrace.current);
@@ -94,6 +96,9 @@ class AuthController extends _$AuthController {
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      ref.invalidateSelf();
+      ref.read(goRouterProvider).pop();
     }
   }
 

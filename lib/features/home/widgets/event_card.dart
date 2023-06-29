@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/provider/provider.dart';
-import 'package:meddly/features/home/home.dart';
 
 class EventCard extends ConsumerWidget {
   const EventCard({super.key});
@@ -13,10 +13,10 @@ class EventCard extends ConsumerWidget {
 
     return Container(
       width: 150,
-      padding: Sizes.mediumPadding,
+      padding: const EdgeInsets.all(Sizes.medium),
       decoration: BoxDecoration(
         color: context.colorScheme.secondary,
-        borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+        borderRadius: BorderRadius.circular(Sizes.small),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -30,8 +30,7 @@ class EventCard extends ConsumerWidget {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     color: context.colorScheme.background,
-                    borderRadius:
-                        BorderRadius.circular(Sizes.mediumBorderRadius),
+                    borderRadius: BorderRadius.circular(Sizes.small),
                   ),
                 ),
               ),
@@ -59,16 +58,20 @@ class EventCard extends ConsumerWidget {
               DecoratedBox(
                 decoration: BoxDecoration(
                   color: context.colorScheme.primary,
-                  borderRadius: BorderRadius.circular(Sizes.mediumBorderRadius),
+                  borderRadius: BorderRadius.circular(Sizes.small),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8),
                   child: Row(
                     children: [
-                      SvgPicture.asset(Assets.clockThree,
-                          colorFilter: ColorFilter.mode(
-                              context.colorScheme.onPrimary, BlendMode.srcIn,),
-                          height: 14,),
+                      SvgPicture.asset(
+                        Assets.clockThree,
+                        colorFilter: ColorFilter.mode(
+                          context.colorScheme.onPrimary,
+                          BlendMode.srcIn,
+                        ),
+                        height: 14,
+                      ),
                       const SizedBox(width: Sizes.small),
                       Text(
                         event.date.toHoursAndMinutesString(),

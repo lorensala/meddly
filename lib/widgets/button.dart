@@ -10,6 +10,8 @@ class Button extends StatelessWidget {
     this.isLoading = false,
     this.isValid = true,
     this.prefix,
+    this.elevation,
+    this.shrink = true,
     super.key,
   });
 
@@ -18,15 +20,22 @@ class Button extends StatelessWidget {
   final VoidCallback onPressed;
   final String label;
   final String? prefix;
+  final double? elevation;
+  final bool shrink;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: AnimatedContainer(
-        width:
-            isLoading ? Sizes.buttonHeight : MediaQuery.of(context).size.width,
+        height: Sizes.buttonHeight,
+        width: isLoading && shrink
+            ? Sizes.buttonHeight
+            : MediaQuery.of(context).size.width,
         duration: const Duration(milliseconds: 100),
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: elevation ?? 0,
+          ),
           onPressed: isValid
               ? !isLoading
                   ? () {

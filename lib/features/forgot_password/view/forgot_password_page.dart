@@ -5,19 +5,16 @@ import 'package:meddly/features/auth/auth.dart';
 import 'package:meddly/features/forgot_password/widgets/widgets.dart';
 import 'package:meddly/l10n/l10n.dart';
 
-/// {@template forgot_password_page}
-/// A description for ForgotPasswordPage
-/// {@endtemplate}
 class ForgotPasswordPage extends StatelessWidget {
-  /// {@macro forgot_password_page}
   const ForgotPasswordPage({super.key});
 
-  /// The static route for ForgotPasswordPage
   static Route<dynamic> route() {
     return MaterialPageRoute<dynamic>(
       builder: (_) => const ForgotPasswordPage(),
     );
   }
+
+  static String routeName = '/forgot-password';
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +27,7 @@ class ForgotPasswordPage extends StatelessWidget {
   }
 }
 
-/// {@template forgot_password_view}
-/// Displays the Body of ForgotPasswordView
-/// {@endtemplate}
 class ForgotPasswordView extends ConsumerWidget {
-  /// {@macro forgot_password_view}
   const ForgotPasswordView({super.key});
 
   @override
