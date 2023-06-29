@@ -27,6 +27,11 @@ class SupervisorController extends _$SupervisorController {
     return (supervisors: supervisors, supervised: supervised);
   }
 
+  Future<void> refresh() async {
+    state = const AsyncLoading();
+    ref.invalidateSelf();
+  }
+
   Future<void> acceptInvitation(String code) async {
     final repository = ref.watch(supervisorRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;

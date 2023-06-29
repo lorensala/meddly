@@ -23,19 +23,22 @@ class SupervisedList extends ConsumerWidget {
           );
         }
 
-        return ListView(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          children: res.supervised.map(
-            (supervised) {
-              return ProviderScope(
-                overrides: [
-                  supervisedProvider.overrideWithValue(supervised),
-                ],
-                child: const _SupervisedListItem(),
-              );
-            },
-          ).toList(),
+        return RefreshIndicator(
+          onRefresh: () =>
+              ref.read(supervisorControllerProvider.notifier).refresh(),
+          child: ListView(
+            shrinkWrap: true,
+            children: res.supervised.map(
+              (supervised) {
+                return ProviderScope(
+                  overrides: [
+                    supervisedProvider.overrideWithValue(supervised),
+                  ],
+                  child: const _SupervisedListItem(),
+                );
+              },
+            ).toList(),
+          ),
         );
       },
     );
