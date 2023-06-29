@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class ImagePickerBottomSheet extends ConsumerWidget {
@@ -46,7 +47,7 @@ class ImagePickerBottomSheet extends ConsumerWidget {
                     .read(predictionControllerProvider.notifier)
                     .predictWithImage(image);
               } catch (e) {
-                await showSnackBar(context, 'Error al abrir la cámara');
+                await showSnackBar(context, context.l10n.cameraError);
               }
             },
             child: Container(
@@ -57,7 +58,7 @@ class ImagePickerBottomSheet extends ConsumerWidget {
                   SvgPicture.asset(Vectors.camera),
                   const SizedBox(width: Sizes.medium),
                   Text(
-                    'Abrir cámara',
+                    context.l10n.takePhoto,
                     style: context.textTheme.bodyMedium,
                   ),
                 ],
@@ -78,7 +79,7 @@ class ImagePickerBottomSheet extends ConsumerWidget {
                     .read(predictionControllerProvider.notifier)
                     .predictWithImage(image);
               } catch (e) {
-                await showSnackBar(context, 'Error al abrir la galería');
+                await showSnackBar(context, context.l10n.galleryError);
               }
             },
             child: Container(
@@ -89,7 +90,7 @@ class ImagePickerBottomSheet extends ConsumerWidget {
                   SvgPicture.asset(Vectors.gallery),
                   const SizedBox(width: Sizes.medium),
                   Text(
-                    'Seleccionar de la galería',
+                    context.l10n.openGallery,
                     style: context.textTheme.bodyMedium,
                   ),
                 ],

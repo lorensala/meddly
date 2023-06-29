@@ -20,6 +20,11 @@ class PredictionsSymptomsSearchInput extends HookConsumerWidget {
     final controller = useTextEditingController();
     final notifier = ref.watch(symptomSearchControllerProvider.notifier);
 
+    ref.listen(symptomPredictionControllerProvider, (_, state) {
+      controller.text = '';
+      notifier.queryChanged('');
+    });
+
     useListenable(controller);
 
     return GestureDetector(

@@ -21,6 +21,7 @@ class SignUpEmailInput extends ConsumerWidget {
       decoration: InputDecoration(
         hintText: context.l10n.emailHint,
         errorText: errorText,
+        errorMaxLines: 2,
       ),
     );
   }

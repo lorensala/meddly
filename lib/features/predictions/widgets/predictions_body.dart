@@ -53,7 +53,7 @@ class PredictionsBody extends ConsumerWidget {
                 ),
                 const SizedBox(height: Sizes.large),
                 Text(
-                  'Ultimas consultas',
+                  context.l10n.lastConsults,
                   style: context.textTheme.titleMedium,
                 ),
                 const SizedBox(height: Sizes.large),

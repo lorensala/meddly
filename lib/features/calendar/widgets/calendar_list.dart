@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/calendar/controller/consumption_controller.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class CalendarList extends ConsumerWidget {
@@ -29,8 +30,8 @@ class CalendarList extends ConsumerWidget {
         final calendarDailyEvents = ref.watch(calendarDailyEventsProvider);
 
         if (calendarDailyEvents.isEmpty) {
-          return const EmptyContainer(
-            message: 'No hay eventos para el día seleccionado',
+          return EmptyContainer(
+            message: context.l10n.calendarNoEventsForSelectedDay,
             isFlex: false,
           );
         }

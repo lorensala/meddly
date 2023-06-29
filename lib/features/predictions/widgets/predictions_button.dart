@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class PredictionsButton extends ConsumerWidget {
@@ -24,7 +25,7 @@ class PredictionsButton extends ConsumerWidget {
       isLoading: isLoading,
       onPressed: () =>
           ref.read(symptomPredictionControllerProvider.notifier).predict(),
-      label: 'Consultar',
+      label: context.l10n.consult,
     );
   }
 }

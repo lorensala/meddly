@@ -32,9 +32,10 @@ class _SplashViewState extends ConsumerState<SplashView> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      ref.watch(userExistProvider);
-      ref.watch(localNotificationServiceProvider);
-      ref.watch(firebaseMessagingServiceProvider);
+      ref
+        ..watch(userExistProvider)
+        ..watch(localNotificationServiceProvider)
+        ..watch(firebaseMessagingServiceProvider);
     });
 
     return const SplashBody();

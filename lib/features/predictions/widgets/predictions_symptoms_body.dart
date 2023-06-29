@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class PredictionsSymptomsBody extends HookWidget {
@@ -41,8 +42,8 @@ class PredictionsSymptomsBody extends HookWidget {
                   ),
                 ),
                 const SizedBox(height: Sizes.medium),
-                const InputLabel(
-                  label: 'Ingrese sus síntomas',
+                InputLabel(
+                  label: context.l10n.enterYourSymptoms,
                   isRequired: true,
                 ),
                 const SizedBox(height: Sizes.medium),

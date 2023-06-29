@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/notifications/notifications.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 class NotificationsPreferencesPage extends StatelessWidget {
   const NotificationsPreferencesPage({super.key});
@@ -18,7 +19,7 @@ class NotificationsPreferencesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notificaciones'),
+        title: Text(context.l10n.notifications),
       ),
       body: const NotificationsPreferencesView(),
     );

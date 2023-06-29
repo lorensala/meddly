@@ -4,9 +4,11 @@ import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 // ignore: depend_on_referenced_packages
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/core/core.dart';
 import 'package:meddly/features/medicine/provider/medicine_provider.dart';
 import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/firebase_options.dart';
@@ -35,7 +37,30 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
         [DeviceOrientation.portraitUp],
       );
 
-      //TODO(me): svg precache
+      const pdf = SvgAssetLoader(Vectors.pdf);
+      const logout = SvgAssetLoader(Vectors.logout);
+      const changePassword = SvgAssetLoader(Vectors.changePassword);
+      const userData = SvgAssetLoader(Vectors.userData);
+      const about = SvgAssetLoader(Vectors.about);
+      const moon = SvgAssetLoader(Vectors.moon);
+      const sun = SvgAssetLoader(Vectors.sun);
+      const userEdit = SvgAssetLoader(Vectors.userEdit);
+
+      const vectors = [
+        pdf,
+        logout,
+        changePassword,
+        userData,
+        about,
+        moon,
+        sun,
+        userEdit
+      ];
+
+      for (final vector in vectors) {
+        await svg.cache
+            .putIfAbsent(vector.cacheKey(null), () => vector.loadBytes(null));
+      }
 
       final hive = Hive;
       await hive.initFlutter();

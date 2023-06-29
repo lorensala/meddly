@@ -66,9 +66,8 @@ class _InitialBody extends ConsumerWidget {
                   .isSearching(value: true),
             ),
             const SizedBox(height: Sizes.small),
-            const InputDescription(
-              description:
-                  'Ingresa el nombre de la enfermedad que el médico te ha diagnosticado',
+            InputDescription(
+              description: context.l10n.enterTheDiagnostedDisease,
             ),
             const SizedBox(height: Sizes.large),
             const PredictionDiseaseWrapSelectedItem(),
@@ -111,9 +110,9 @@ class _Checkbox extends ConsumerWidget {
             ),
           ),
           const SizedBox(width: Sizes.medium),
-          const Expanded(
+          Expanded(
             child: Text(
-              'Permito que se utilicen mis datos para mejorar el modelo de IA',
+              context.l10n.acceptIAToUseMyData,
             ),
           ),
         ],

@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -30,7 +31,7 @@ class SupervisorShareCode extends ConsumerWidget {
               try {
                 Share.share(inivitationText(user?.invitation));
               } catch (e) {
-                showSnackBar(context, 'Error al compartir el código');
+                showSnackBar(context, context.l10n.shareCodeError);
               }
             },
             child: Container(
@@ -53,7 +54,7 @@ class SupervisorShareCode extends ConsumerWidget {
                   ),
                   const SizedBox(width: Sizes.small),
                   Text(
-                    'Compartir',
+                    context.l10n.share,
                     style: context.textTheme.bodyMedium!.copyWith(
                       color: context.colorScheme.onPrimary,
                     ),

@@ -298,29 +298,17 @@ class _EmailInput extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isEditing = ref
-        .watch(userFormControllerProvider.select((value) => value.isEditing));
     final email = ref.watch(
       userFormControllerProvider.select((value) => value.email),
     );
 
     return TextFormField(
       onTapOutside: (_) => FocusScope.of(context).unfocus(),
-      enabled: isEditing,
+      enabled: false,
       style: context.textTheme.bodyMedium,
       initialValue: email.value,
-      onChanged: ref.read(userFormControllerProvider.notifier).emailChange,
-      decoration: InputDecoration(
-        filled: !isEditing,
-        errorText: !email.isPure
-            ? email.error?.when(
-                invalid: () => context.l10n.invalidEmail,
-                empty: () => context.l10n.emailEmpty,
-              )
-            : null,
-        suffixIcon: email.isValid && isEditing ? const CircleCheck() : null,
-        errorMaxLines: 2,
-        labelText: context.l10n.emailHint,
+      decoration: const InputDecoration(
+        filled: true,
       ),
     );
   }

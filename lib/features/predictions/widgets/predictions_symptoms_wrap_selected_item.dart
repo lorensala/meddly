@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 class PredictionSymptomsWrapSelectedItem extends ConsumerWidget {
   const PredictionSymptomsWrapSelectedItem({
@@ -21,7 +22,7 @@ class PredictionSymptomsWrapSelectedItem extends ConsumerWidget {
         size: 16,
         color: context.colorScheme.primary,
       ),
-      deleteButtonTooltipMessage: 'Remove',
+      deleteButtonTooltipMessage: context.l10n.remove,
       onDeleted: () => ref
           .read(symptomPredictionControllerProvider.notifier)
           .remove(selected),

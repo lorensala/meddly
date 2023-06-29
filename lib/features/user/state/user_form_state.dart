@@ -22,6 +22,5 @@ class UserFormState with _$UserFormState, FormzMixin {
 
   @override
   // ignore: strict_raw_type
-  List<FormzInput> get inputs =>
-      [email, name, lastname, height, weight, sex, birthdate];
+  List<FormzInput> get inputs => [email, name, lastname, height, weight];
 }

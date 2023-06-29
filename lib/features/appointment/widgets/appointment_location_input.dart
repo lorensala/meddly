@@ -23,8 +23,6 @@ class AppointmentLocationInput extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // const InputLabel(label: 'Ubicación', isRequired: false),
-        // const SizedBox(height: Sizes.extraSmall),
         TextFormField(
           initialValue: location.value,
           enabled: isEditing,

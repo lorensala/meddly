@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/notifications/notifications.dart';
 import 'package:meddly/features/user/user.dart';
+import 'package:meddly/l10n/l10n.dart';
 
 class NotificationPreferenceSwitch extends HookConsumerWidget {
   const NotificationPreferenceSwitch({super.key});
@@ -44,7 +45,7 @@ class NotificationPreferenceSwitch extends HookConsumerWidget {
           style: context.textTheme.bodySmall!.copyWith(
             color: context.colorScheme.onSecondary.withOpacity(0.6),
           ),
-          text: 'Enviar notificaciones a ',
+          text: '${context.l10n.sendNotificationsTo} ',
           children: [
             TextSpan(
               text: preference.name == 'email' ? '$email' : '$phone',

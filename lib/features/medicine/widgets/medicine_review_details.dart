@@ -90,8 +90,11 @@ class _MedicineInfo extends ConsumerWidget {
                 Text(context.l10n.everyXdays(medicine.frecuencyValue)),
               if (medicine.frecuency == MedicineFrecuency.specificDays)
                 Text(
-                  context.l10n
-                      .everyX(medicine.days.map((e) => e.name).join(', ')),
+                  context.l10n.everyX(
+                    medicine.days
+                        .map((e) => e.localizedString(context.l10n))
+                        .join(', '),
+                  ),
                 ),
               if (medicine.frecuency == MedicineFrecuency.asNeeded)
                 Text(context.l10n.asNeeded),

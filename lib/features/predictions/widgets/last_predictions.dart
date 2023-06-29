@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/predictions/predictions.dart';
 import 'package:meddly/features/predictions/view/prediction_validate_page.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:meddly/widgets/widgets.dart';
 import 'package:predictions/predictions.dart';
@@ -25,7 +26,7 @@ class LastPredictions extends ConsumerWidget {
           return EmptyContainer(
             isFlex: false,
             size: context.height * 0.3,
-            message: 'Aún no tienes consultas orientativas',
+            message: context.l10n.emptyLastConsults,
           );
         }
 
@@ -63,13 +64,15 @@ class LastPredictions extends ConsumerWidget {
                   minLeadingWidth: 0,
                   title: Text(
                     switch (consult) {
-                      ConsultByImage() => 'Consulta por imagen',
-                      ConsultBySymptoms() => 'Consulta por síntomas',
+                      ConsultByImage() => context.l10n.imageConsult,
+                      ConsultBySymptoms() => context.l10n.symptomConsult,
                     },
                     style: context.textTheme.bodyMedium,
                   ),
                   subtitle: Text(
-                    consult.verified ? 'Validada' : 'Pendiente de validación',
+                    consult.verified
+                        ? context.l10n.validated
+                        : context.l10n.pendingValidation,
                     style: context.textTheme.bodySmall?.copyWith(
                       color: context.colorScheme.onBackground.withOpacity(0.5),
                     ),

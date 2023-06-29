@@ -56,7 +56,7 @@ class PredictionResultsList extends ConsumerWidget {
       value: predictionResults,
       builder: (results) {
         if (results.isEmpty) {
-          return const Center(child: Text('No results'));
+          return Center(child: Text(context.l10n.predictionsSearchNoResults));
         }
 
         return ListView.builder(

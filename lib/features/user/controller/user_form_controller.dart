@@ -45,11 +45,19 @@ class UserFormController extends _$UserFormController {
   }
 
   void heightChange(String height) {
-    state = state.copyWith(height: Height.dirty(height));
+    if (height.isEmpty) {
+      state = state.copyWith(height: const Height.pure());
+    } else {
+      state = state.copyWith(height: Height.dirty(height));
+    }
   }
 
   void weightChange(String weight) {
-    state = state.copyWith(weight: Weight.dirty(weight));
+    if (weight.isEmpty) {
+      state = state.copyWith(weight: const Weight.pure());
+    } else {
+      state = state.copyWith(weight: Weight.dirty(weight));
+    }
   }
 
   void save() {
@@ -59,8 +67,8 @@ class UserFormController extends _$UserFormController {
       email: state.email.value,
       firstName: state.name.value,
       lastName: state.lastname.value,
-      height: double.tryParse(state.height.value),
-      weight: double.tryParse(state.weight.value),
+      height: state.height.isPure ? null : double.tryParse(state.height.value),
+      weight: state.weight.isPure ? null : double.tryParse(state.weight.value),
     );
     if (editedUser != null) {
       ref.read(userControllerProvider.notifier).updateUser(editedUser);
