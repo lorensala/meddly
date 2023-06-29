@@ -6,19 +6,15 @@ import 'package:http_parser/http_parser.dart';
 import 'package:predictions/predictions.dart';
 
 class PredictionsApi {
-  PredictionsApi(Dio dio)
-      : _cancelToken = CancelToken(),
-        _dio = dio;
+  PredictionsApi(Dio dio) : _dio = dio;
 
   final Dio _dio;
-  final CancelToken _cancelToken;
 
   Future<List<Symptom>> searchSymptoms(String query) async {
     late final Response<List<dynamic>> res;
     try {
       res = await _dio.get<List<dynamic>>(
         predictionsSymptomSearchPath,
-        cancelToken: _cancelToken,
         queryParameters: {
           'query': query,
         },
@@ -46,7 +42,6 @@ class PredictionsApi {
     try {
       res = await _dio.get<List<dynamic>>(
         predictionsDiseaseSearchPath,
-        cancelToken: _cancelToken,
         queryParameters: {
           'query': query,
         },
@@ -77,7 +72,6 @@ class PredictionsApi {
     try {
       await _dio.post<dynamic>(
         '${predictionsVerifySymptomsPath}/${consult.id}',
-        cancelToken: _cancelToken,
         queryParameters: {
           'real_disease': realDisease,
           'approval_to_save': approvalToSave,
@@ -98,7 +92,6 @@ class PredictionsApi {
     try {
       await _dio.post<dynamic>(
         '${predictionsVerifyImagePath}/${consult.id}',
-        cancelToken: _cancelToken,
         queryParameters: {
           'real_disease': realDisease,
           'approval_to_save': approvalToSave,
@@ -111,12 +104,13 @@ class PredictionsApi {
     }
   }
 
-  Future<List<Consult>> fetchConsultsBySymptoms() async {
+  Future<List<Consult>> fetchConsultsBySymptoms(
+      {required CancelToken cancelToken}) async {
     late final Response<List<dynamic>> res;
     try {
       res = await _dio.get<List<dynamic>>(
         predictionsWithSymptomsPath,
-        cancelToken: _cancelToken,
+        cancelToken: cancelToken,
       );
 
       if (res.statusCode == 401) {
@@ -140,12 +134,13 @@ class PredictionsApi {
     }
   }
 
-  Future<List<Consult>> fetchConsultsByImage() async {
+  Future<List<Consult>> fetchConsultsByImage(
+      {required CancelToken cancelToken}) async {
     late final Response<List<dynamic>> res;
     try {
       res = await _dio.get<List<dynamic>>(
         predictionsWithImagePath,
-        cancelToken: _cancelToken,
+        cancelToken: cancelToken,
       );
 
       if (res.statusCode == 401) {
@@ -174,7 +169,6 @@ class PredictionsApi {
     try {
       res = await _dio.post<List<dynamic>>(
         predictionsWithSymptomsPath,
-        cancelToken: _cancelToken,
         data: jsonEncode(symptoms.map((e) => e.code).toList()),
       );
 
@@ -214,7 +208,6 @@ class PredictionsApi {
       });
       res = await _dio.post<List<dynamic>>(
         predictionsWithImagePath,
-        cancelToken: _cancelToken,
         data: formData,
       );
 
@@ -237,9 +230,5 @@ class PredictionsApi {
     } catch (e) {
       throw PredictionSerializationException();
     }
-  }
-
-  Future<void> cancel() async {
-    _cancelToken.cancel();
   }
 }

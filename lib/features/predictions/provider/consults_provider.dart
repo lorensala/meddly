@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
+import 'package:dio/dio.dart';
 import 'package:meddly/features/predictions/core/core.dart';
 import 'package:meddly/features/predictions/provider/provider.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -12,10 +13,15 @@ part 'consults_provider.g.dart';
 class Consults extends _$Consults {
   @override
   Future<List<Consult>> build() async {
+    final cancelToken = CancelToken();
+
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
-    final (err, consults) =
-        await ref.read(predictionsRepositoryProvider).fetchConsults();
+    ref.onDispose(cancelToken.cancel);
+
+    final (err, consults) = await ref
+        .read(predictionsRepositoryProvider)
+        .fetchConsults(cancelToken: cancelToken);
 
     if (err != null) {
       throw Exception(err.describe(l10n));

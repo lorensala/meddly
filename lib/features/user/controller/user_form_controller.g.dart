@@ -7,7 +7,7 @@ part of 'user_form_controller.dart';
 // **************************************************************************
 
 String _$userFormControllerHash() =>
-    r'9557fcc7eda32b589eacdffcd7baf0d65bc9dfe5';
+    r'c5c5bb10b0f6fe787981a1929717beac3bf4d5b2';
 
 /// See also [UserFormController].
 @ProviderFor(UserFormController)

@@ -1,5 +1,6 @@
 import 'dart:io' show File;
 
+import 'package:dio/dio.dart';
 import 'package:predictions/src/api/api.dart';
 import 'package:predictions/src/core/core.dart';
 import 'package:predictions/src/models/models.dart';
@@ -72,9 +73,11 @@ class PredictionsRepository {
     }
   }
 
-  Future<(PredictionException?, List<Consult>)> _fetchConsultsByImage() async {
+  Future<(PredictionException?, List<Consult>)> _fetchConsultsByImage(
+      {required CancelToken cancelToken}) async {
     try {
-      final predictions = await _api.fetchConsultsByImage();
+      final predictions =
+          await _api.fetchConsultsByImage(cancelToken: cancelToken);
       return (null, predictions);
     } on PredictionException catch (e) {
       return (e, const <Consult>[]);
@@ -83,10 +86,11 @@ class PredictionsRepository {
     }
   }
 
-  Future<(PredictionException?, List<Consult>)>
-      _fetchConsultsBySymptoms() async {
+  Future<(PredictionException?, List<Consult>)> _fetchConsultsBySymptoms(
+      {required CancelToken cancelToken}) async {
     try {
-      final predictions = await _api.fetchConsultsBySymptoms();
+      final predictions =
+          await _api.fetchConsultsBySymptoms(cancelToken: cancelToken);
       return (null, predictions);
     } on PredictionException catch (e) {
       return (e, const <Consult>[]);
@@ -95,10 +99,13 @@ class PredictionsRepository {
     }
   }
 
-  Future<(PredictionException?, List<Consult>)> fetchConsults() async {
+  Future<(PredictionException?, List<Consult>)> fetchConsults(
+      {required CancelToken cancelToken}) async {
     try {
-      final (err1, consultsByImage) = await _fetchConsultsByImage();
-      final (err2, consultsBySymtoms) = await _fetchConsultsBySymptoms();
+      final (err1, consultsByImage) =
+          await _fetchConsultsByImage(cancelToken: cancelToken);
+      final (err2, consultsBySymtoms) =
+          await _fetchConsultsBySymptoms(cancelToken: cancelToken);
 
       if (err1 != null) {
         return (err1, const <Consult>[]);
@@ -127,9 +134,5 @@ class PredictionsRepository {
     } catch (e) {
       return (const PredictionUnknownException(), const <Prediction>[]);
     }
-  }
-
-  Future<void> cancel() async {
-    await _api.cancel();
   }
 }
