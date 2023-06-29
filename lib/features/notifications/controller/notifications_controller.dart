@@ -21,6 +21,11 @@ class NotificationsController extends _$NotificationsController {
     }
   }
 
+  Future<void> refresh() async {
+    state = const AsyncLoading();
+    ref.invalidateSelf();
+  }
+
   Future<void> delete(Notification notification) async {
     final repository = ref.read(notificationsRepositoryProvider);
 

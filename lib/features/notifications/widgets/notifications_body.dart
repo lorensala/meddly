@@ -39,7 +39,6 @@ class NotificationsList extends ConsumerWidget {
         }
 
         return ListView.builder(
-          shrinkWrap: true,
           physics: const ClampingScrollPhysics(),
           itemCount: filteredNotifications.length,
           itemBuilder: (context, index) {

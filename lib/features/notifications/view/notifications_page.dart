@@ -16,8 +16,18 @@ class NotificationsPage extends StatelessWidget {
         elevation: 5,
         shadowColor: context.colorScheme.onBackground.withOpacity(0.2),
         title: Text(context.l10n.notifications),
-        actions: const [
-          NotificationsFilter(),
+        actions: [
+          Consumer(
+            builder: (context, ref, child) {
+              return IconButton(
+                icon: const Icon(Icons.refresh),
+                onPressed: () {
+                  ref.read(notificationsControllerProvider.notifier).refresh();
+                },
+              );
+            },
+          ),
+          const NotificationsFilter(),
         ],
       ),
       body: const NotificationsView(),
