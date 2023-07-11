@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:medicine/medicine.dart';
 
 class MedicineRepository {
@@ -10,9 +11,10 @@ class MedicineRepository {
   final MedicineApi _api;
   final MedicineCache _cache;
 
-  Future<(MedicineException?, List<Medicine>)> fetchAll() async {
+  Future<(MedicineException?, List<Medicine>)> fetchAll(
+      {required CancelToken cancelToken}) async {
     try {
-      final medicines = await _api.fetchAll();
+      final medicines = await _api.fetchAll(cancelToken: cancelToken);
 
       return (null, medicines);
     } on MedicineException catch (e) {
@@ -22,11 +24,10 @@ class MedicineRepository {
     }
   }
 
-  Future<(MedicineException?, void)> addMedicine(
-    Medicine medicine,
-  ) async {
+  Future<(MedicineException?, void)> addMedicine(Medicine medicine,
+      {required CancelToken cancelToken}) async {
     try {
-      await _api.addMedicine(medicine);
+      await _api.addMedicine(medicine, cancelToken: cancelToken);
 
       return (null, null);
     } on MedicineException catch (e) {
@@ -36,11 +37,10 @@ class MedicineRepository {
     }
   }
 
-  Future<(MedicineException?, void)> deleteMedicine(
-    Medicine medicine,
-  ) async {
+  Future<(MedicineException?, void)> deleteMedicine(Medicine medicine,
+      {required CancelToken cancelToken}) async {
     try {
-      await _api.deleteMedicine(medicine);
+      await _api.deleteMedicine(medicine, cancelToken: cancelToken);
 
       return (null, null);
     } on MedicineException catch (e) {
@@ -50,11 +50,10 @@ class MedicineRepository {
     }
   }
 
-  Future<(MedicineException?, void)> updateMedicine(
-    Medicine medicine,
-  ) async {
+  Future<(MedicineException?, void)> updateMedicine(Medicine medicine,
+      {required CancelToken cancelToken}) async {
     try {
-      await _api.updateMedicine(medicine);
+      await _api.updateMedicine(medicine, cancelToken: cancelToken);
 
       return (null, null);
     } on MedicineException catch (e) {

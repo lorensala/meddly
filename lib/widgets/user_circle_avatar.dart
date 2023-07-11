@@ -21,7 +21,8 @@ class UserCircleAvatar extends StatelessWidget {
         child: Center(
           child: Text(
             _getInitials(),
-            style: context.textTheme.bodyLarge?.copyWith(
+            style: context.textTheme.bodyMedium?.copyWith(
+              fontSize: radius - 4,
               color: context.colorScheme.onPrimary,
             ),
           ),

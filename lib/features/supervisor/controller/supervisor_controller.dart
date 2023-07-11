@@ -1,6 +1,9 @@
+import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/supervisor/core/core.dart';
 import 'package:meddly/features/supervisor/provider/provider.dart';
 import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/router/router.dart';
+import 'package:meddly/widgets/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:user/user.dart';
 
@@ -29,21 +32,30 @@ class SupervisorController extends _$SupervisorController {
 
   Future<void> refresh() async {
     state = const AsyncLoading();
-    ref.invalidateSelf();
+    ref
+      ..invalidateSelf()
+      ..invalidate(calendarControllerProvider);
+  }
+
+  void reload() {
+    ref
+      ..invalidateSelf()
+      ..invalidate(calendarControllerProvider);
   }
 
   Future<void> acceptInvitation(String code) async {
     final repository = ref.watch(supervisorRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-    state = const AsyncLoading();
-
     final (err, _) = await repository.acceptInvitation(code);
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      ref.read(goRouterProvider).go(SuccessPage.routeName);
     }
-    ref.invalidateSelf();
+
+    reload();
   }
 
   Future<void> deleteSupervisor(String id) async {
@@ -57,7 +69,7 @@ class SupervisorController extends _$SupervisorController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     }
-    ref.invalidateSelf();
+    reload();
   }
 
   Future<void> deleteSupervised(String id) async {
@@ -71,6 +83,6 @@ class SupervisorController extends _$SupervisorController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     }
-    ref.invalidateSelf();
+    reload();
   }
 }

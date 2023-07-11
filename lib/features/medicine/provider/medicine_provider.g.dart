@@ -258,23 +258,6 @@ final filteredMedicinesProvider = AutoDisposeProvider<List<Medicine>>.internal(
 );
 
 typedef FilteredMedicinesRef = AutoDisposeProviderRef<List<Medicine>>;
-String _$filteredArchivedMedicinesHash() =>
-    r'6826ca2809ad93ad7a13c05cf44d77ce7b587240';
-
-/// See also [filteredArchivedMedicines].
-@ProviderFor(filteredArchivedMedicines)
-final filteredArchivedMedicinesProvider =
-    AutoDisposeProvider<List<Medicine>>.internal(
-  filteredArchivedMedicines,
-  name: r'filteredArchivedMedicinesProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$filteredArchivedMedicinesHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef FilteredArchivedMedicinesRef = AutoDisposeProviderRef<List<Medicine>>;
 String _$medicinePresentationsHash() =>
     r'7f03f9cad9551805f386ae1a8330bb7178ab57cb';
 

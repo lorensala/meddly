@@ -14,6 +14,7 @@ class MeasurementList extends ConsumerWidget {
 
     return AsyncValueWidget(
       value: measurements,
+      onRetry: () => ref.read(measurementControllerProvider.notifier).refresh(),
       builder: (measurements) {
         if (measurements.isEmpty) {
           return EmptyContainer(

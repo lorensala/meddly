@@ -59,11 +59,14 @@ Future<void> showSnackBar(
   String message, {
   Duration duration = const Duration(seconds: 2),
 }) async {
+  final errorMessage =
+      message == 'Exception' ? context.l10n.unknownError : message;
+
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()
     ..showSnackBar(
       SnackBar(
-        content: Text(message),
+        content: Text(errorMessage),
         backgroundColor: Colors.black,
         duration: duration,
       ),

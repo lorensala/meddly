@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:meddly/l10n/l10n.dart';
+import 'package:meddly/widgets/widgets.dart';
 
 class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget({
@@ -7,6 +9,7 @@ class AsyncValueWidget<T> extends StatelessWidget {
     required this.builder,
     this.loading,
     this.error,
+    this.onRetry,
     super.key,
   });
 
@@ -14,13 +17,19 @@ class AsyncValueWidget<T> extends StatelessWidget {
   final Widget Function(T) builder;
   final Widget? loading;
   final Widget? error;
+  final VoidCallback? onRetry;
 
   @override
   Widget build(BuildContext context) {
     return value.when(
       data: builder,
       error: (err, stackTrace) {
-        return error ?? errorWidget(err.toString());
+        final message = err is String ? err : context.l10n.unknownError;
+        if (error == null) {
+          return ErrorContainer(message: message, onRetry: onRetry);
+        } else {
+          return error!;
+        }
       },
       loading: () => loading ?? _loadingWidget(),
     );

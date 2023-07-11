@@ -16,6 +16,7 @@ class SupervisedList extends ConsumerWidget {
 
     return AsyncValueWidget(
       value: res,
+      onRetry: () => ref.read(supervisorControllerProvider.notifier).refresh(),
       builder: (res) {
         if (res.supervised.isEmpty) {
           return EmptyContainer(
@@ -27,7 +28,6 @@ class SupervisedList extends ConsumerWidget {
           onRefresh: () =>
               ref.read(supervisorControllerProvider.notifier).refresh(),
           child: ListView(
-            shrinkWrap: true,
             children: res.supervised.map(
               (supervised) {
                 return ProviderScope(

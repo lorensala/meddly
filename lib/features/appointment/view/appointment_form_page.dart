@@ -16,6 +16,14 @@ class AppointmentFormPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(appointmentControllerProvider, (_, state) {
+      state.whenOrNull(
+        error: (err, _) {
+          showSnackBar(context, err.toString());
+        },
+      );
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -58,35 +66,7 @@ class AppointmentFormPage extends HookConsumerWidget {
           ),
         ),
       ),
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Builder(
-          builder: (context) {
-            return AsyncValueWidget(
-              value: ref.watch(appointmentControllerProvider),
-              builder: (_) {
-                return const SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.all(Sizes.medium),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppointmentNameInput(),
-                        AppointmentSpecialityDropDown(),
-                        AppointmentDateSelector(),
-                        AppointmentDoctorInput(),
-                        AppointmentLocationInput(),
-                        AppointmentNotesInput(),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          },
-        ),
-      ),
+      body: const AppointmentForm(),
     );
   }
 }

@@ -25,13 +25,6 @@ class SupervisorBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(
-      supervisorControllerProvider,
-      (_, state) => state.whenOrNull(
-        error: (err, _) => showSnackBar(context, err.toString()),
-      ),
-    );
-
     return Column(
       children: [
         const SupervisorCode(),

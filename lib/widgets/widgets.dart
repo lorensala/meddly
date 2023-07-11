@@ -12,4 +12,5 @@ export 'error_container.dart';
 export 'filter_modal.dart';
 export 'input_description.dart';
 export 'input_label.dart';
+export 'success_page.dart';
 export 'user_circle_avatar.dart';

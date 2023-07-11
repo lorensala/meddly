@@ -38,18 +38,22 @@ class NotificationsList extends ConsumerWidget {
           );
         }
 
-        return ListView.builder(
-          physics: const ClampingScrollPhysics(),
-          itemCount: filteredNotifications.length,
-          itemBuilder: (context, index) {
-            return ProviderScope(
-              overrides: [
-                notificationProvider
-                    .overrideWithValue(filteredNotifications[index]),
-              ],
-              child: const NotificationListItem(),
-            );
+        return RefreshIndicator(
+          onRefresh: () async {
+            await ref.read(notificationsControllerProvider.notifier).refresh();
           },
+          child: ListView.builder(
+            itemCount: filteredNotifications.length,
+            itemBuilder: (context, index) {
+              return ProviderScope(
+                overrides: [
+                  notificationProvider
+                      .overrideWithValue(filteredNotifications[index]),
+                ],
+                child: const NotificationListItem(),
+              );
+            },
+          ),
         );
       },
     );

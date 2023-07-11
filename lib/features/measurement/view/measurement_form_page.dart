@@ -9,10 +9,18 @@ import 'package:meddly/widgets/widgets.dart';
 class MeasurementFormPage extends ConsumerWidget {
   const MeasurementFormPage({super.key});
 
-  static String routeName = 'measurement_form';
+  static const String routeName = 'measurement_form';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(measurementControllerProvider, (_, state) {
+      state.whenOrNull(
+        error: (err, _) {
+          showSnackBar(context, err.toString());
+        },
+      );
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.measurements),

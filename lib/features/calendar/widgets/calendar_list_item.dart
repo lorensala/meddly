@@ -169,6 +169,7 @@ class _EventUser extends ConsumerWidget {
 
     return AsyncValueWidget(
       value: users,
+      error: const SizedBox.shrink(),
       loading: const _EventUserShimmered().customShimmer(),
       builder: (users) {
         final user =

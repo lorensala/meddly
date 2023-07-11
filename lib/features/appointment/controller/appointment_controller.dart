@@ -1,11 +1,13 @@
 import 'package:appointment/appointment.dart';
 // ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
+import 'package:dio/dio.dart';
 import 'package:meddly/features/appointment/core/core.dart';
 import 'package:meddly/features/appointment/provider/provider.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
+import 'package:meddly/widgets/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'appointment_controller.g.dart';
@@ -14,10 +16,15 @@ part 'appointment_controller.g.dart';
 class AppointmentController extends _$AppointmentController {
   @override
   FutureOr<List<Appointment>> build() async {
+    final cancelToken = CancelToken();
+
     final repository = ref.watch(appointmentRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-    final (err, appointments) = await repository.fectchAll();
+    ref.onDispose(cancelToken.cancel);
+
+    final (err, appointments) =
+        await repository.fectchAll(cancelToken: cancelToken);
 
     if (err != null) {
       throw Exception(err.describe(l10n));
@@ -28,6 +35,13 @@ class AppointmentController extends _$AppointmentController {
   }
 
   void refresh() {
+    state = const AsyncLoading();
+    ref
+      ..invalidate(calendarControllerProvider)
+      ..invalidateSelf();
+  }
+
+  void reload() {
     ref
       ..invalidate(calendarControllerProvider)
       ..invalidateSelf();
@@ -44,45 +58,63 @@ class AppointmentController extends _$AppointmentController {
   }
 
   Future<void> addAppointment(Appointment appointment) async {
+    final cancelToken = CancelToken();
+
     state = const AsyncLoading();
     final repository = ref.watch(appointmentRepositoryProvider);
 
-    final (err, _) = await repository.addAppointment(appointment);
+    ref.onDispose(cancelToken.cancel);
+
+    final (err, _) =
+        await repository.addAppointment(appointment, cancelToken: cancelToken);
 
     if (err != null) {
       state = AsyncError(err.toString(), StackTrace.current);
     } else {
-      refresh();
-
-      ref.watch(goRouterProvider).pop();
+      ref.read(goRouterProvider).go(SuccessPage.routeName);
+      reload();
     }
   }
 
   Future<void> deleteAppointment(int id) async {
+    final cancelToken = CancelToken();
+
     state = const AsyncLoading();
+
     final repository = ref.watch(appointmentRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-    final (err, _) = await repository.deleteAppointment(id);
+    ref.onDispose(cancelToken.cancel);
+
+    final (err, _) =
+        await repository.deleteAppointment(id, cancelToken: cancelToken);
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
-      refresh();
+      reload();
     }
   }
 
   Future<void> updateAppointment(Appointment appointment) async {
+    final cancelToken = CancelToken();
+
     state = const AsyncLoading();
+
     final repository = ref.watch(appointmentRepositoryProvider);
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
-    final (err, _) = await repository.updateAppointment(appointment);
+    ref.onDispose(cancelToken.cancel);
+
+    final (err, _) = await repository.updateAppointment(
+      appointment,
+      cancelToken: cancelToken,
+    );
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
-      refresh();
+      reload();
       ref.watch(goRouterProvider).pop();
     }
   }

@@ -7,9 +7,7 @@ import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
 
 class MedicineListTile extends ConsumerWidget {
-  const MedicineListTile({this.isArchived = false, super.key});
-
-  final bool isArchived;
+  const MedicineListTile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,21 +16,7 @@ class MedicineListTile extends ConsumerWidget {
       key: Key(medicine.id.toString()),
       direction: DismissDirection.endToStart,
       onDismissed: (direction) {
-        if (direction == DismissDirection.endToStart) {
-          ref
-              .read(medicineControllerProvider.notifier)
-              .deleteMedicine(medicine);
-        } else if (direction == DismissDirection.startToEnd) {
-          if (isArchived) {
-            ref
-                .read(archivedMedicineControllerProvider.notifier)
-                .unarchiveMedicine(medicine);
-          } else {
-            ref
-                .read(archivedMedicineControllerProvider.notifier)
-                .archiveMedicine(medicine);
-          }
-        }
+        ref.read(medicineControllerProvider.notifier).deleteMedicine(medicine);
       },
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.endToStart) {
@@ -86,10 +70,7 @@ class MedicineListTile extends ConsumerWidget {
         }
         return Future.value(false);
       },
-      secondaryBackground: const DismissibleDeleteBackground(),
-      background: isArchived
-          ? const DismissibleBackgroundVariant()
-          : const DismissibleBackground(),
+      background: const DismissibleDeleteBackground(),
       child: ListTile(
         title: Text(medicine.name),
         leading: SizedBox(

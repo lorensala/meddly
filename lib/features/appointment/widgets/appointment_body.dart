@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:meddly/core/core.dart';
 import 'package:meddly/features/appointment/appointment.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/widgets/widgets.dart';
@@ -12,14 +11,6 @@ class AppointmentBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(appointmentControllerProvider, (_, state) {
-      state.whenOrNull(
-        error: (err, _) {
-          showSnackBar(context, err.toString());
-        },
-      );
-    });
-
     final appointments = ref.watch(appointmentControllerProvider);
     final filteredAppointments = ref.watch(filteredAppointmentsProvider);
 
@@ -28,6 +19,8 @@ class AppointmentBody extends ConsumerWidget {
       children: <Widget>[
         AsyncValueWidget(
           value: appointments,
+          onRetry: () =>
+              ref.read(appointmentControllerProvider.notifier).refresh(),
           builder: (appointments) {
             if (appointments.isEmpty) {
               return EmptyContainer(
@@ -67,6 +60,8 @@ class AppointmentBody extends ConsumerWidget {
         ),
         AsyncValueWidget(
           value: appointments,
+          onRetry: () =>
+              ref.read(appointmentControllerProvider.notifier).refresh(),
           builder: (appointments) {
             if (appointments.isEmpty) {
               return EmptyContainer(
