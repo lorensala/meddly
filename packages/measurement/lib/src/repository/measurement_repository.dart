@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:measurement/src/api/api.dart';
 import 'package:measurement/src/core/core.dart';
 import 'package:measurement/src/models/models.dart';
@@ -7,9 +8,10 @@ class MeasurementRepository {
 
   final MeasurementApi _api;
 
-  Future<(MeasurementException?, List<Measurement>)> fetchAll() async {
+  Future<(MeasurementException?, List<Measurement>)> fetchAll(
+      {required CancelToken cancelToken}) async {
     try {
-      final measurements = await _api.fetchAll();
+      final measurements = await _api.fetchAll(cancelToken: cancelToken);
 
       return (null, measurements);
     } on MeasurementException catch (e) {
@@ -19,11 +21,11 @@ class MeasurementRepository {
     }
   }
 
-  Future<(MeasurementException?, void)> addMeasurement(
-    Measurement measurement,
-  ) async {
+  Future<(MeasurementException?, void)> createMeasurement(
+      Measurement measurement,
+      {required CancelToken cancelToken}) async {
     try {
-      await _api.createMeasurement(measurement);
+      await _api.createMeasurement(measurement, cancelToken: cancelToken);
 
       return (null, null);
     } on MeasurementException catch (e) {
@@ -33,11 +35,10 @@ class MeasurementRepository {
     }
   }
 
-  Future<(MeasurementException?, void)> deleteMeasurement(
-    int id,
-  ) async {
+  Future<(MeasurementException?, void)> deleteMeasurement(int id,
+      {required CancelToken cancelToken}) async {
     try {
-      await _api.deleteMeasurement(id);
+      await _api.deleteMeasurement(id, cancelToken: cancelToken);
 
       return (null, null);
     } on MeasurementException catch (e) {
@@ -48,10 +49,10 @@ class MeasurementRepository {
   }
 
   Future<(MeasurementException?, void)> updateMeasurement(
-    Measurement measurement,
-  ) async {
+      Measurement measurement,
+      {required CancelToken cancelToken}) async {
     try {
-      await _api.updateMeasurement(measurement);
+      await _api.updateMeasurement(measurement, cancelToken: cancelToken);
 
       return (null, null);
     } on MeasurementException catch (e) {

@@ -17,6 +17,7 @@ import 'package:meddly/features/splash/splash.dart';
 import 'package:meddly/features/supervisor/view/view.dart';
 import 'package:meddly/features/user/user.dart';
 import 'package:meddly/router/router.dart';
+import 'package:meddly/widgets/success_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'go_router_provider.g.dart';
@@ -64,6 +65,13 @@ Raw<GoRouter> goRouter(GoRouterRef ref) {
         parentNavigatorKey: rootNavigatorKey,
         path: SetupSuccessPage.routeName,
         builder: (context, state) => const SetupSuccessPage(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: SuccessPage.routeName,
+        builder: (context, state) {
+          return const SuccessPage();
+        },
       ),
       GoRoute(
         parentNavigatorKey: rootNavigatorKey,

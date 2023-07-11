@@ -74,29 +74,9 @@ class _HourSelector extends ConsumerWidget {
         children: [
           GestureDetector(
             onTap: () async {
-              final hour = await showTimePicker(
+              final hour = await showAdaptiveTimePicker(
                 context: context,
-                builder: (context, child) {
-                  return Theme(
-                    data: ThemeData.light().copyWith(
-                      colorScheme: ColorScheme.light(
-                        primary: context.colorScheme.primary,
-                        onPrimary: context.colorScheme.onPrimary,
-                        secondary: context.colorScheme.secondary,
-                        onSecondary: context.colorScheme.onSecondary,
-                        surface: context.colorScheme.secondary,
-                        onSurface: context.colorScheme.onSurface,
-                        background: context.colorScheme.background,
-                        onBackground: context.colorScheme.onBackground,
-                        error: context.colorScheme.error,
-                        onError: context.colorScheme.onError,
-                        brightness: context.colorScheme.brightness,
-                      ),
-                    ),
-                    child: child!,
-                  );
-                },
-                initialTime: const TimeOfDay(hour: 0, minute: 0),
+                initialTimeOfDay: const TimeOfDay(hour: 0, minute: 0),
               );
 
               if (hour != null) {

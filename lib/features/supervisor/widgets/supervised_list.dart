@@ -27,7 +27,6 @@ class SupervisedList extends ConsumerWidget {
           onRefresh: () =>
               ref.read(supervisorControllerProvider.notifier).refresh(),
           child: ListView(
-            shrinkWrap: true,
             children: res.supervised.map(
               (supervised) {
                 return ProviderScope(

@@ -7,37 +7,41 @@ class AppointmentApi {
 
   final Dio _dio;
 
-  Future<void> createAppointment(Appointment appointment) async {
+  Future<void> createAppointment(Appointment appointment,
+      {required CancelToken cancelToken}) async {
     try {
-      await _dio.post<dynamic>(appointmentPath, data: appointment.toJson());
+      await _dio.post<dynamic>(appointmentPath,
+          data: appointment.toJson(), cancelToken: cancelToken);
     } on DioError catch (e) {
       throw AppointmentException.fromDioError(e);
     }
   }
 
-  Future<void> deleteAppointment(int id) async {
+  Future<void> deleteAppointment(int id,
+      {required CancelToken cancelToken}) async {
     try {
-      await _dio.delete<dynamic>('$appointmentPath/$id');
+      await _dio.delete<dynamic>('$appointmentPath/$id',
+          cancelToken: cancelToken);
     } on DioError catch (e) {
       throw AppointmentException.fromDioError(e);
     }
   }
 
-  Future<void> updateAppointment(Appointment appointment) async {
+  Future<void> updateAppointment(Appointment appointment,
+      {required CancelToken cancelToken}) async {
     try {
-      await _dio.post<dynamic>(
-        '$appointmentPath/${appointment.id}',
-        data: appointment.toJson(),
-      );
+      await _dio.post<dynamic>('$appointmentPath/${appointment.id}',
+          data: appointment.toJson(), cancelToken: cancelToken);
     } on DioError catch (e) {
       throw AppointmentException.fromDioError(e);
     }
   }
 
-  Future<List<Appointment>> fetchAll() async {
+  Future<List<Appointment>> fetchAll({required CancelToken cancelToken}) async {
     late final Response<List<dynamic>> res;
     try {
-      res = await _dio.get<List<dynamic>>(appointmentPath);
+      res = await _dio.get<List<dynamic>>(appointmentPath,
+          cancelToken: cancelToken);
     } on DioError catch (e) {
       throw AppointmentException.fromDioError(e);
     }

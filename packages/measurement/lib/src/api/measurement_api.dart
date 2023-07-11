@@ -7,15 +7,18 @@ class MeasurementApi {
 
   final Dio _dio;
 
-  Future<void> createMeasurement(Measurement measurement) async {
+  Future<void> createMeasurement(Measurement measurement,
+      {required CancelToken cancelToken}) async {
     try {
-      await _dio.post<dynamic>(measurementPath, data: measurement.toJson());
+      await _dio.post<dynamic>(measurementPath,
+          data: measurement.toJson(), cancelToken: cancelToken);
     } on DioError catch (e) {
       throw MeasurementException.fromDioError(e);
     }
   }
 
-  Future<void> deleteMeasurement(int id) async {
+  Future<void> deleteMeasurement(int id,
+      {required CancelToken cancelToken}) async {
     try {
       await _dio.delete<dynamic>('$measurementPath/$id');
     } on DioError catch (e) {
@@ -23,7 +26,8 @@ class MeasurementApi {
     }
   }
 
-  Future<void> updateMeasurement(Measurement measurement) async {
+  Future<void> updateMeasurement(Measurement measurement,
+      {required CancelToken cancelToken}) async {
     try {
       await _dio.post<dynamic>(
         '$measurementPath/${measurement.id}',
@@ -34,10 +38,11 @@ class MeasurementApi {
     }
   }
 
-  Future<List<Measurement>> fetchAll() async {
+  Future<List<Measurement>> fetchAll({required CancelToken cancelToken}) async {
     late final Response<List<dynamic>> res;
     try {
-      res = await _dio.get<List<dynamic>>(measurementPath);
+      res = await _dio.get<List<dynamic>>(measurementPath,
+          cancelToken: cancelToken);
     } on DioError catch (e) {
       throw MeasurementException.fromDioError(e);
     }

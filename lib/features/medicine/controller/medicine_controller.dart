@@ -1,8 +1,8 @@
 import 'package:meddly/features/calendar/calendar.dart';
-import 'package:meddly/features/home/home.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/router.dart';
+import 'package:meddly/widgets/widgets.dart';
 import 'package:medicine/medicine.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -41,7 +41,7 @@ class MedicineController extends _$MedicineController {
         ..invalidate(calendarControllerProvider)
         ..invalidateSelf();
 
-      ref.read(goRouterProvider).go(HomePage.routeName);
+      ref.read(goRouterProvider).go(SuccessPage.routeName);
     }
   }
 
