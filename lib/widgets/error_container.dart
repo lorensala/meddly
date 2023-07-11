@@ -23,13 +23,13 @@ class ErrorContainer extends StatelessWidget {
           Flexible(
             child: SvgPicture.asset(Vectors.error),
           ),
+          const SizedBox(height: Sizes.medium),
           Text(
             message,
             style: context.textTheme.titleSmall!.copyWith(
-              color: context.colorScheme.onSecondary.withOpacity(0.5),
+              color: context.colorScheme.onSecondary.withOpacity(0.6),
             ),
           ),
-          const SizedBox(height: Sizes.medium),
           if (onRetry != null)
             TextButton(
               onPressed: onRetry,

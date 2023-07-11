@@ -16,6 +16,14 @@ class AppointmentFormPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(appointmentControllerProvider, (_, state) {
+      state.whenOrNull(
+        error: (err, _) {
+          showSnackBar(context, err.toString());
+        },
+      );
+    });
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
