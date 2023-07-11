@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:meddly/core/core.dart';
 import 'package:meddly/features/home/view/home_page.dart';
+import 'package:meddly/l10n/l10n.dart';
 import 'package:meddly/router/provider/go_router_provider.dart';
 import 'package:meddly/theme/theme.dart';
 
@@ -48,7 +49,7 @@ class SuccessPage extends HookConsumerWidget {
             const SizedBox(height: Sizes.large),
             Center(
               child: Text(
-                'Operación realizada con éxito',
+                context.l10n.operationSuccessful,
                 style: context.textTheme.titleMedium,
                 textAlign: TextAlign.center,
               ),
