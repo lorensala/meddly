@@ -8,10 +8,11 @@ class MedicineApi {
 
   final Dio _dio;
 
-  Future<List<Medicine>> fetchAll() async {
+  Future<List<Medicine>> fetchAll({required CancelToken cancelToken}) async {
     late final Response<List<dynamic>> res;
     try {
-      res = await _dio.get<List<dynamic>>(medicinePath);
+      res =
+          await _dio.get<List<dynamic>>(medicinePath, cancelToken: cancelToken);
 
       if (res.statusCode == 401) {
         throw MedicineNotFoundException();
@@ -29,9 +30,11 @@ class MedicineApi {
     }
   }
 
-  Future<void> addMedicine(Medicine medicine) async {
+  Future<void> addMedicine(Medicine medicine,
+      {required CancelToken cancelToken}) async {
     try {
-      await _dio.post<dynamic>(medicinePath, data: medicine.toJson());
+      await _dio.post<dynamic>(medicinePath,
+          data: medicine.toJson(), cancelToken: cancelToken);
     } on DioError catch (e) {
       throw MedicineException.fromDioError(e);
     } catch (_) {
@@ -39,9 +42,11 @@ class MedicineApi {
     }
   }
 
-  Future<void> deleteMedicine(Medicine medicine) async {
+  Future<void> deleteMedicine(Medicine medicine,
+      {required CancelToken cancelToken}) async {
     try {
-      await _dio.delete<dynamic>('${medicinePath}/${medicine.id}');
+      await _dio.delete<dynamic>('${medicinePath}/${medicine.id}',
+          cancelToken: cancelToken);
     } on DioError catch (e) {
       throw MedicineException.fromDioError(e);
     } catch (_) {
@@ -49,14 +54,14 @@ class MedicineApi {
     }
   }
 
-  Future<Medicine> updateMedicine(
-    Medicine medicine,
-  ) async {
+  Future<Medicine> updateMedicine(Medicine medicine,
+      {required CancelToken cancelToken}) async {
     late final Response<Map<String, dynamic>> res;
     try {
       res = await _dio.post<Map<String, dynamic>>(
         medicinePath,
         data: medicine.toJson(),
+        cancelToken: cancelToken,
       );
     } on DioError catch (e) {
       throw MedicineException.fromDioError(e);

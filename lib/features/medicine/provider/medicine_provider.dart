@@ -155,22 +155,6 @@ List<Medicine> filteredMedicines(FilteredMedicinesRef ref) {
 }
 
 @riverpod
-List<Medicine> filteredArchivedMedicines(FilteredArchivedMedicinesRef ref) {
-  final medicines = ref.watch(archivedMedicineControllerProvider);
-  final filtersSelected = ref.watch(medicinePresentationsProvider);
-
-  return medicines.when(
-    data: (medicines) {
-      return medicines.where((medicine) {
-        return filtersSelected.contains(medicine.presentation);
-      }).toList();
-    },
-    loading: () => [],
-    error: (e, s) => [],
-  );
-}
-
-@riverpod
 class MedicinePresentations extends _$MedicinePresentations {
   @override
   List<MedicinePresentation> build() {

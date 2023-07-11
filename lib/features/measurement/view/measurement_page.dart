@@ -19,24 +19,7 @@ class MeasurementPage extends ConsumerWidget {
           MeasurementFilter(),
         ],
       ),
-      body: const MeasurementView(),
+      body: const MeasurementList(),
     );
-  }
-}
-
-class MeasurementView extends ConsumerWidget {
-  const MeasurementView({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(measurementControllerProvider, (_, state) {
-      state.whenOrNull(
-        error: (err, _) {
-          showSnackBar(context, err.toString());
-        },
-      );
-    });
-
-    return const MeasurementList();
   }
 }

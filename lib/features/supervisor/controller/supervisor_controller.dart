@@ -1,3 +1,4 @@
+import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/supervisor/core/core.dart';
 import 'package:meddly/features/supervisor/provider/provider.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -31,7 +32,15 @@ class SupervisorController extends _$SupervisorController {
 
   Future<void> refresh() async {
     state = const AsyncLoading();
-    ref.invalidateSelf();
+    ref
+      ..invalidateSelf()
+      ..invalidate(calendarControllerProvider);
+  }
+
+  void reload() {
+    ref
+      ..invalidateSelf()
+      ..invalidate(calendarControllerProvider);
   }
 
   Future<void> acceptInvitation(String code) async {
@@ -46,7 +55,7 @@ class SupervisorController extends _$SupervisorController {
       ref.read(goRouterProvider).go(SuccessPage.routeName);
     }
 
-    ref.invalidateSelf();
+    reload();
   }
 
   Future<void> deleteSupervisor(String id) async {
@@ -60,7 +69,7 @@ class SupervisorController extends _$SupervisorController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     }
-    ref.invalidateSelf();
+    reload();
   }
 
   Future<void> deleteSupervised(String id) async {
@@ -74,6 +83,6 @@ class SupervisorController extends _$SupervisorController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     }
-    ref.invalidateSelf();
+    reload();
   }
 }

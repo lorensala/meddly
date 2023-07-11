@@ -19,25 +19,29 @@ class ErrorContainer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Flexible(child: SvgPicture.asset(Vectors.error)),
           const SizedBox(height: Sizes.medium),
+          Flexible(
+            child: SvgPicture.asset(Vectors.error),
+          ),
           Text(
             message,
-            style: context.textTheme.titleMedium!.copyWith(
+            style: context.textTheme.titleSmall!.copyWith(
               color: context.colorScheme.onSecondary.withOpacity(0.5),
             ),
           ),
           const SizedBox(height: Sizes.medium),
-          TextButton(
-            onPressed: onRetry,
-            child: Text(
-              context.l10n.tryAgain,
-              style: context.textTheme.bodyMedium!.copyWith(
-                color: context.colorScheme.primary,
-                decoration: TextDecoration.underline,
+          if (onRetry != null)
+            TextButton(
+              onPressed: onRetry,
+              child: Text(
+                context.l10n.tryAgain,
+                style: context.textTheme.bodyMedium!
+                    .copyWith(
+                      color: context.colorScheme.primary,
+                    )
+                    .underlined(),
               ),
             ),
-          ),
         ],
       ),
     );

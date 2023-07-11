@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:meddly/features/calendar/calendar.dart';
 import 'package:meddly/features/medicine/medicine.dart';
 import 'package:meddly/l10n/l10n.dart';
@@ -12,9 +13,13 @@ part 'medicine_controller.g.dart';
 class MedicineController extends _$MedicineController {
   @override
   FutureOr<List<Medicine>> build() async {
+    final cancelToken = CancelToken();
     final repository = ref.read(medicineRepositoryProvider);
 
-    final (err, medicines) = await repository.fetchAll();
+    ref.onDispose(cancelToken.cancel);
+
+    final (err, medicines) =
+        await repository.fetchAll(cancelToken: cancelToken);
 
     final l10n = ref.read(l10nProvider) as AppLocalizations;
 
@@ -26,11 +31,15 @@ class MedicineController extends _$MedicineController {
   }
 
   Future<void> addMedicine(Medicine medicine) async {
+    final cancelToken = CancelToken();
     state = const AsyncLoading();
+
+    ref.onDispose(cancelToken.cancel);
 
     final repository = ref.watch(medicineRepositoryProvider);
 
-    final (err, _) = await repository.addMedicine(medicine);
+    final (err, _) =
+        await repository.addMedicine(medicine, cancelToken: cancelToken);
 
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
@@ -46,9 +55,13 @@ class MedicineController extends _$MedicineController {
   }
 
   Future<void> deleteMedicine(Medicine medicine) async {
+    final cancelToken = CancelToken();
     final repository = ref.watch(medicineRepositoryProvider);
 
-    final (err, _) = await repository.deleteMedicine(medicine);
+    ref.onDispose(cancelToken.cancel);
+
+    final (err, _) =
+        await repository.deleteMedicine(medicine, cancelToken: cancelToken);
 
     final l10n = ref.watch(l10nProvider) as AppLocalizations;
 
@@ -59,5 +72,12 @@ class MedicineController extends _$MedicineController {
         ..invalidate(calendarControllerProvider)
         ..invalidateSelf();
     }
+  }
+
+  void refresh() {
+    state = const AsyncLoading();
+    ref
+      ..invalidate(calendarControllerProvider)
+      ..invalidateSelf();
   }
 }

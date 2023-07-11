@@ -6,7 +6,7 @@ part of 'consults_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$consultsHash() => r'f06fa5db674a40bd6294e431d74fe761e805b774';
+String _$consultsHash() => r'f960ac0f95cfa81464e8b299994061222f907efb';
 
 /// See also [Consults].
 @ProviderFor(Consults)

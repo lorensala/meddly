@@ -35,6 +35,13 @@ class AppointmentController extends _$AppointmentController {
   }
 
   void refresh() {
+    state = const AsyncLoading();
+    ref
+      ..invalidate(calendarControllerProvider)
+      ..invalidateSelf();
+  }
+
+  void reload() {
     ref
       ..invalidate(calendarControllerProvider)
       ..invalidateSelf();
@@ -65,7 +72,7 @@ class AppointmentController extends _$AppointmentController {
       state = AsyncError(err.toString(), StackTrace.current);
     } else {
       ref.read(goRouterProvider).go(SuccessPage.routeName);
-      refresh();
+      reload();
     }
   }
 
@@ -85,7 +92,7 @@ class AppointmentController extends _$AppointmentController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
-      refresh();
+      reload();
     }
   }
 
@@ -107,7 +114,7 @@ class AppointmentController extends _$AppointmentController {
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
-      refresh();
+      reload();
       ref.watch(goRouterProvider).pop();
     }
   }

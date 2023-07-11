@@ -16,6 +16,7 @@ class CalendarSupervisor extends HookConsumerWidget {
 
     return AsyncValueWidget(
       value: users,
+      error: const SizedBox.shrink(),
       loading: const _CalendarSupervisorShimmered(),
       builder: (users) {
         if (users.supervised.isEmpty) {

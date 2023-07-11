@@ -14,6 +14,7 @@ class MedicineBody extends ConsumerWidget {
 
     return AsyncValueWidget(
       value: medicines,
+      onRetry: () => ref.read(medicineControllerProvider.notifier).refresh(),
       builder: (medicines) {
         if (medicines.isEmpty) {
           return EmptyContainer(

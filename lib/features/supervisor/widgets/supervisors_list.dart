@@ -16,6 +16,7 @@ class SupervisorsList extends ConsumerWidget {
 
     return AsyncValueWidget(
       value: res,
+      onRetry: () => ref.read(supervisorControllerProvider.notifier).refresh(),
       builder: (res) {
         if (res.supervisors.isEmpty) {
           return EmptyContainer(

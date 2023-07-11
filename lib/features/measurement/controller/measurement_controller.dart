@@ -33,6 +33,13 @@ class MeasurementController extends _$MeasurementController {
   }
 
   void refresh() {
+    state = const AsyncLoading();
+    ref
+      ..invalidate(calendarControllerProvider)
+      ..invalidateSelf();
+  }
+
+  void reload() {
     ref
       ..invalidate(calendarControllerProvider)
       ..invalidateSelf();
@@ -57,7 +64,7 @@ class MeasurementController extends _$MeasurementController {
       state = AsyncError(err.describe(l10n), StackTrace.current);
     } else {
       ref.read(goRouterProvider).go(SuccessPage.routeName);
-      refresh();
+      reload();
     }
   }
 
