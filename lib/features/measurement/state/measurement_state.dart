@@ -8,6 +8,7 @@ part 'measurement_state.freezed.dart';
 @freezed
 class MeasurementState with _$MeasurementState, FormzMixin {
   const factory MeasurementState({
+    @Default(0) int id,
     @Default(NotNegativeIntNumber.pure()) NotNegativeIntNumber value,
     @Default(MeasurementType.bloodPressure) MeasurementType type,
     @Default(MeasurementUnit.mmHg) MeasurementUnit unit,

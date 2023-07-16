@@ -13,6 +13,7 @@ class MeasurementFormController extends _$MeasurementFormController {
 
     if (existingMeasurement != null) {
       return MeasurementState(
+        id: existingMeasurement.id,
         date: existingMeasurement.date,
         type: existingMeasurement.type,
         unit: existingMeasurement.unit,
@@ -57,15 +58,21 @@ class MeasurementFormController extends _$MeasurementFormController {
     if (state.isNotValid) return;
 
     final measurement = Measurement(
+      id: state.id,
       date: state.date ?? DateTime.now(),
       type: state.type,
       value: double.parse(state.value.value),
-      id: 0,
       unit: state.unit,
     );
 
-    ref
-        .watch(measurementControllerProvider.notifier)
-        .createMeasurement(measurement);
+    if (state.isNew) {
+      ref
+          .watch(measurementControllerProvider.notifier)
+          .createMeasurement(measurement);
+    } else {
+      ref
+          .watch(measurementControllerProvider.notifier)
+          .updateMeasurement(measurement);
+    }
   }
 }

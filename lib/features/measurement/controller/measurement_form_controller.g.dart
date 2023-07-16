@@ -7,7 +7,7 @@ part of 'measurement_form_controller.dart';
 // **************************************************************************
 
 String _$measurementFormControllerHash() =>
-    r'7b35898de875a3accb56caa40e02b5d2e549672e';
+    r'1b84c7935f6d5fa2494679260ade7274674fe86d';
 
 /// See also [MeasurementFormController].
 @ProviderFor(MeasurementFormController)
