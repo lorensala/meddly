@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MeasurementState {
+  int get id => throw _privateConstructorUsedError;
   NotNegativeIntNumber get value => throw _privateConstructorUsedError;
   MeasurementType get type => throw _privateConstructorUsedError;
   MeasurementUnit get unit => throw _privateConstructorUsedError;
@@ -35,7 +36,8 @@ abstract class $MeasurementStateCopyWith<$Res> {
       _$MeasurementStateCopyWithImpl<$Res, MeasurementState>;
   @useResult
   $Res call(
-      {NotNegativeIntNumber value,
+      {int id,
+      NotNegativeIntNumber value,
       MeasurementType type,
       MeasurementUnit unit,
       DateTime? date,
@@ -56,6 +58,7 @@ class _$MeasurementStateCopyWithImpl<$Res, $Val extends MeasurementState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? value = null,
     Object? type = null,
     Object? unit = null,
@@ -64,6 +67,10 @@ class _$MeasurementStateCopyWithImpl<$Res, $Val extends MeasurementState>
     Object? isNew = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -101,7 +108,8 @@ abstract class _$$_MeasurementStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {NotNegativeIntNumber value,
+      {int id,
+      NotNegativeIntNumber value,
       MeasurementType type,
       MeasurementUnit unit,
       DateTime? date,
@@ -120,6 +128,7 @@ class __$$_MeasurementStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? value = null,
     Object? type = null,
     Object? unit = null,
@@ -128,6 +137,10 @@ class __$$_MeasurementStateCopyWithImpl<$Res>
     Object? isNew = null,
   }) {
     return _then(_$_MeasurementState(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -160,7 +173,8 @@ class __$$_MeasurementStateCopyWithImpl<$Res>
 
 class _$_MeasurementState extends _MeasurementState {
   const _$_MeasurementState(
-      {this.value = const NotNegativeIntNumber.pure(),
+      {this.id = 0,
+      this.value = const NotNegativeIntNumber.pure(),
       this.type = MeasurementType.bloodPressure,
       this.unit = MeasurementUnit.mmHg,
       this.date,
@@ -168,6 +182,9 @@ class _$_MeasurementState extends _MeasurementState {
       this.isNew = true})
       : super._();
 
+  @override
+  @JsonKey()
+  final int id;
   @override
   @JsonKey()
   final NotNegativeIntNumber value;
@@ -188,7 +205,7 @@ class _$_MeasurementState extends _MeasurementState {
 
   @override
   String toString() {
-    return 'MeasurementState(value: $value, type: $type, unit: $unit, date: $date, isEditing: $isEditing, isNew: $isNew)';
+    return 'MeasurementState(id: $id, value: $value, type: $type, unit: $unit, date: $date, isEditing: $isEditing, isNew: $isNew)';
   }
 
   @override
@@ -196,6 +213,7 @@ class _$_MeasurementState extends _MeasurementState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MeasurementState &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.unit, unit) || other.unit == unit) &&
@@ -207,7 +225,7 @@ class _$_MeasurementState extends _MeasurementState {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, value, type, unit, date, isEditing, isNew);
+      Object.hash(runtimeType, id, value, type, unit, date, isEditing, isNew);
 
   @JsonKey(ignore: true)
   @override
@@ -218,7 +236,8 @@ class _$_MeasurementState extends _MeasurementState {
 
 abstract class _MeasurementState extends MeasurementState {
   const factory _MeasurementState(
-      {final NotNegativeIntNumber value,
+      {final int id,
+      final NotNegativeIntNumber value,
       final MeasurementType type,
       final MeasurementUnit unit,
       final DateTime? date,
@@ -226,6 +245,8 @@ abstract class _MeasurementState extends MeasurementState {
       final bool isNew}) = _$_MeasurementState;
   const _MeasurementState._() : super._();
 
+  @override
+  int get id;
   @override
   NotNegativeIntNumber get value;
   @override

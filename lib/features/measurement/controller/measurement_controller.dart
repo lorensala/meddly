@@ -68,6 +68,29 @@ class MeasurementController extends _$MeasurementController {
     }
   }
 
+  Future<void> updateMeasurement(Measurement measurement) async {
+    final cancelToken = CancelToken();
+
+    state = const AsyncLoading();
+
+    final repository = ref.read(measurementRepositoryProvider);
+    final l10n = ref.read(l10nProvider) as AppLocalizations;
+
+    ref.onDispose(cancelToken.cancel);
+
+    final (err, _) = await repository.updateMeasurement(
+      measurement,
+      cancelToken: cancelToken,
+    );
+
+    if (err != null) {
+      state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      reload();
+      ref.watch(goRouterProvider).pop();
+    }
+  }
+
   Future<void> deleteMeasurement(int id) async {
     final cancelToken = CancelToken();
 
