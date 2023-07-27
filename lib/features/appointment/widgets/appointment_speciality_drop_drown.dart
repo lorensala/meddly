@@ -21,6 +21,14 @@ class AppointmentSpecialityDropDown extends HookConsumerWidget {
       appointmentFormControllerProvider.select((value) => value.isEditing),
     );
 
+    final sortedAppointmentSpecialities =
+        List<AppointmentSpeciality>.from(AppointmentSpeciality.values)
+          ..sort(
+            (a, b) => a
+                .localizedString(context.l10n)
+                .compareTo(b.localizedString(context.l10n)),
+          );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -30,7 +38,7 @@ class AppointmentSpecialityDropDown extends HookConsumerWidget {
             labelText: 'Especialidad${isEditing ? '*' : ''}',
             filled: !isEditing,
           ),
-          items: AppointmentSpeciality.values
+          items: sortedAppointmentSpecialities
               .map(
                 (e) => DropdownMenuItem<AppointmentSpeciality>(
                   value: e,

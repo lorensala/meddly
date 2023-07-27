@@ -104,6 +104,8 @@ class MeasurementController extends _$MeasurementController {
 
     if (err != null) {
       state = AsyncError(err.describe(l10n), StackTrace.current);
+    } else {
+      reload();
     }
   }
 

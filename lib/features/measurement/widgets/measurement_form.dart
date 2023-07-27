@@ -101,6 +101,14 @@ class MeasurementTypeDropDownSelector extends ConsumerWidget {
     final selectedType = ref
         .watch(measurementFormControllerProvider.select((value) => value.type));
 
+    final sortedMeasurementTypes =
+        List<MeasurementType>.from(MeasurementType.values)
+          ..sort(
+            (a, b) => a
+                .localizedString(context.l10n)
+                .compareTo(b.localizedString(context.l10n)),
+          );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -113,7 +121,7 @@ class MeasurementTypeDropDownSelector extends ConsumerWidget {
             border: const OutlineInputBorder(),
             filled: !isEditing,
           ),
-          items: MeasurementType.values
+          items: sortedMeasurementTypes
               .map(
                 (e) => DropdownMenuItem<MeasurementType>(
                   value: e,
