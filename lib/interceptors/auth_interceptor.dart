@@ -1,4 +1,4 @@
-import 'dart:io' show HttpHeaders, Platform;
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:firebase_auth_repository/firebase_auth_repository.dart';
@@ -21,7 +21,11 @@ class AuthInterceptor extends QueuedInterceptor {
         ? await FirebaseMessaging.instance.getToken()
         : await FirebaseMessaging.instance.getAPNSToken();
 
-    const baseUrl = Strings.remoteBaseUrl;
+    final baseUrl = Platform.isAndroid
+        ? Strings.localBaseUrlAndroid
+        : Strings.localBaseUrlIOS;
+
+    // Strings.remoteBaseUrl;
 
     final headers = {
       HttpHeaders.authorizationHeader: 'Bearer $token',

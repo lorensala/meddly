@@ -1,3 +1,4 @@
 class Strings {
-  static const remoteBaseUrl = 'http://20.172.159.177:11001/';
+  static const localBaseUrlAndroid = 'http://10.0.2.2:11001';
+  static const localBaseUrlIOS = 'http://localhost:11001';
 }
